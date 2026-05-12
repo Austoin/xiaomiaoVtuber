@@ -220,6 +220,7 @@ xiaomiao/NapCat.Shell.Windows.OneKey/
 xiaomiao/napcat_data/
 
 # nanobot local and generated files
+nanobot/.nanobot/
 nanobot/.worktrees/
 nanobot/.worktree/
 nanobot/.assets

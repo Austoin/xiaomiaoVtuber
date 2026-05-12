@@ -29,3 +29,32 @@ Tool execution aborted
 - See Also: 再次发生于继续翻译 `nanobot/SECURITY.md` 前，原因仍是误发空 `apply_patch` 参数。
 
 ---
+
+## [ERR-20260513-001] conda_run_unicode_help
+
+**Logged**: 2026-05-13T00:00:00+08:00
+**Priority**: medium
+**Status**: pending
+**Area**: config
+
+### Summary
+在 Windows 上通过 `conda run -n xiaomiao nanobot --help` 检查 CLI 时，conda 输出包含 GBK 无法编码字符，触发 `UnicodeEncodeError` 并进入错误报告提示。
+
+### Error
+```text
+UnicodeEncodeError: 'gbk' codec can't encode character '\ufffd'
+```
+
+### Context
+- 命令：`conda run -n xiaomiao nanobot --help`
+- 环境：Windows PowerShell，conda 24.11.3，`xiaomiao` 环境。
+- 影响：帮助输出失败，但不代表 nanobot CLI 不可用。
+
+### Suggested Fix
+运行 conda 命令时设置 `PYTHONIOENCODING=utf-8` 和 `CONDA_NO_PLUGINS=true`，或在已激活的 conda 环境中直接运行 `nanobot`。
+
+### Metadata
+- Reproducible: yes
+- Related Files: docs/STARTUP.md
+
+---
