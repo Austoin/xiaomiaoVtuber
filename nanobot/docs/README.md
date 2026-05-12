@@ -1,35 +1,34 @@
-# nanobot Docs
+# nanobot 文档
 
-For the latest documentation, visit [nanobot.wiki](https://nanobot.wiki/docs/latest/getting-started/nanobot-overview).
+最新文档请访问 [nanobot.wiki](https://nanobot.wiki/docs/latest/getting-started/nanobot-overview)。
 
-The pages in this directory track the current repository and may move faster than the published website.
+本目录中的页面会跟随当前仓库更新，可能比已发布的网站文档更新更快。
 
-## Core Docs
+## 核心文档
 
-Start here for setup, everyday usage, and deployment.
+如果你要安装、日常使用或部署 nanobot，请从这里开始。
 
-| Topic | Repo docs | What it covers |
+| 主题 | 仓库文档 | 内容说明 |
 |---|---|---|
-| Install and quick start | [`quick-start.md`](./quick-start.md) | Installation, onboarding, and first-run setup |
-| Chat apps | [`chat-apps.md`](./chat-apps.md) | Connect nanobot to Telegram, Discord, WeChat, and more |
-| Agent social network | [`agent-social-network.md`](./agent-social-network.md) | Join external agent communities from nanobot |
-| Configuration | [`configuration.md`](./configuration.md) | Providers, tools, channels, MCP, and runtime settings |
-| Image generation | [`image-generation.md`](./image-generation.md) | Configure image providers, WebUI image mode, and generated artifacts |
-| Multiple instances | [`multiple-instances.md`](./multiple-instances.md) | Run isolated bots with separate configs and workspaces |
-| CLI reference | [`cli-reference.md`](./cli-reference.md) | Core CLI commands and common entrypoints |
-| In-chat commands | [`chat-commands.md`](./chat-commands.md) | Slash commands and periodic task behavior |
-| OpenAI-compatible API | [`openai-api.md`](./openai-api.md) | Local API endpoints, request format, and file uploads |
-| Deployment | [`deployment.md`](./deployment.md) | Docker, Linux service, and macOS LaunchAgent setup |
+| 安装与快速开始 | [`quick-start.md`](./quick-start.md) | 安装、初始化和首次运行配置 |
+| 聊天应用 | [`chat-apps.md`](./chat-apps.md) | 连接 Telegram、Discord、微信等平台 |
+| Agent 社交网络 | [`agent-social-network.md`](./agent-social-network.md) | 从 nanobot 加入外部 Agent 社区 |
+| 配置 | [`configuration.md`](./configuration.md) | Provider、工具、通道、MCP 和运行时设置 |
+| 图像生成 | [`image-generation.md`](./image-generation.md) | 配置图像 Provider、WebUI 图像模式和生成产物 |
+| 多实例 | [`multiple-instances.md`](./multiple-instances.md) | 使用独立配置和工作区运行多个 Bot |
+| CLI 参考 | [`cli-reference.md`](./cli-reference.md) | 核心 CLI 命令和常用入口 |
+| 聊天内命令 | [`chat-commands.md`](./chat-commands.md) | Slash 命令和周期任务行为 |
+| OpenAI 兼容 API | [`openai-api.md`](./openai-api.md) | 本地 API 端点、请求格式和文件上传 |
+| 部署 | [`deployment.md`](./deployment.md) | Docker、Linux service 和 macOS LaunchAgent 配置 |
 
-## Advanced Docs
+## 高级文档
 
-Use these when you want deeper customization, integration, or extension details.
+当你需要更深入的定制、集成或扩展时，请阅读这些文档。
 
-| Topic | Repo docs | What it covers |
+| 主题 | 仓库文档 | 内容说明 |
 |---|---|---|
-| Memory | [`memory.md`](./memory.md) | How nanobot stores, consolidates, and restores memory |
-| Python SDK | [`python-sdk.md`](./python-sdk.md) | Use nanobot programmatically from Python |
-| Channel plugin guide | [`channel-plugin-guide.md`](./channel-plugin-guide.md) | Build and test custom chat channel plugins |
-| WebSocket channel | [`websocket.md`](./websocket.md) | Real-time WebSocket access and protocol details |
-| Custom tools | [`my-tool.md`](./my-tool.md) | Inspect and tune runtime state with the `my` tool |
-
+| 记忆 | [`memory.md`](./memory.md) | nanobot 如何存储、整理和恢复记忆 |
+| Python SDK | [`python-sdk.md`](./python-sdk.md) | 在 Python 中以编程方式使用 nanobot |
+| 通道插件指南 | [`channel-plugin-guide.md`](./channel-plugin-guide.md) | 构建和测试自定义聊天通道插件 |
+| WebSocket 通道 | [`websocket.md`](./websocket.md) | 实时 WebSocket 访问和协议细节 |
+| 自定义工具 | [`my-tool.md`](./my-tool.md) | 使用 `my` 工具检查和调整运行时状态 |

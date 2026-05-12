@@ -34,7 +34,7 @@ exit /b 1
 :start_bot
 echo.
 echo [2/2] Starting Jianer Bot...
-start "Jianer Bot" cmd /k "python main.py"
+start "Jianer Bot" cmd /k "call conda activate xiaomiao && python main.py"
 echo.
 echo ========================================
 echo  Started successfully!

@@ -1,8 +1,8 @@
 # Python SDK
 
-Use nanobot as a library — no CLI, no gateway, just Python.
+把 nanobot 当作库使用，不需要 CLI，不需要 gateway，只需要 Python。
 
-## Quick Start
+## 快速开始
 
 ```python
 import asyncio
@@ -19,11 +19,11 @@ async def main() -> None:
 asyncio.run(main())
 ```
 
-`Nanobot.from_config()` reuses your normal `~/.nanobot/config.json`, so the SDK follows the same provider, model, tools, and workspace defaults as the CLI unless you override them.
+`Nanobot.from_config()` 会复用常规的 `~/.nanobot/config.json`，所以除非你显式覆盖，否则 SDK 会使用与 CLI 相同的 Provider、模型、工具和工作区默认值。
 
-## Common Patterns
+## 常见模式
 
-### Use a specific config or workspace
+### 使用指定配置或工作区
 
 ```python
 from nanobot import Nanobot
@@ -34,18 +34,18 @@ bot = Nanobot.from_config(
 )
 ```
 
-### Isolate conversations with `session_key`
+### 使用 `session_key` 隔离对话
 
-Different session keys keep independent conversation history:
+不同 session key 会保留独立的对话历史：
 
 ```python
 await bot.run("hi", session_key="user-alice")
 await bot.run("hi", session_key="task-42")
 ```
 
-### Attach hooks for observability
+### 挂载 hook 以便观测
 
-Hooks let you inspect tool calls, streaming, and iteration state without modifying nanobot internals:
+hook 让你可以查看工具调用、流式输出和迭代状态，而无需修改 nanobot 内部实现：
 
 ```python
 from nanobot.agent import AgentHook, AgentHookContext
@@ -60,54 +60,54 @@ class AuditHook(AgentHook):
 result = await bot.run("Review this change", hooks=[AuditHook()])
 ```
 
-## API Reference
+## API 参考
 
 ### `Nanobot.from_config(config_path=None, *, workspace=None)`
 
-Create a `Nanobot` instance from a config file.
+从配置文件创建 `Nanobot` 实例。
 
-| Param | Type | Default | Description |
+| 参数 | 类型 | 默认值 | 说明 |
 |-------|------|---------|-------------|
-| `config_path` | `str \| Path \| None` | `None` | Path to `config.json`. Defaults to `~/.nanobot/config.json`. |
-| `workspace` | `str \| Path \| None` | `None` | Override the workspace directory from config. |
+| `config_path` | `str \| Path \| None` | `None` | `config.json` 的路径。默认是 `~/.nanobot/config.json`。 |
+| `workspace` | `str \| Path \| None` | `None` | 覆盖配置中的工作区目录。 |
 
-Raises `FileNotFoundError` if an explicit config path does not exist.
+如果显式配置路径不存在，会抛出 `FileNotFoundError`。
 
 ### `await bot.run(message, *, session_key="sdk:default", hooks=None)`
 
-Run the agent once and return a `RunResult`.
+运行一次 agent，并返回 `RunResult`。
 
-| Param | Type | Default | Description |
+| 参数 | 类型 | 默认值 | 说明 |
 |-------|------|---------|-------------|
-| `message` | `str` | *(required)* | The user message to process. |
-| `session_key` | `str` | `"sdk:default"` | Session identifier for conversation isolation. Different keys get independent history. |
-| `hooks` | `list[AgentHook] \| None` | `None` | Lifecycle hooks for this run only. |
+| `message` | `str` | *必填* | 要处理的用户消息。 |
+| `session_key` | `str` | `"sdk:default"` | 用于对话隔离的会话标识。不同 key 会拥有独立历史。 |
+| `hooks` | `list[AgentHook] \| None` | `None` | 仅用于本次运行的生命周期 hook。 |
 
 ### `RunResult`
 
-| Field | Type | Description |
+| 字段 | 类型 | 说明 |
 |-------|------|-------------|
-| `content` | `str` | The agent's final text response. |
-| `tools_used` | `list[str]` | Reserved for richer SDK introspection; may be empty in current versions. |
-| `messages` | `list[dict]` | Reserved for richer SDK introspection; may be empty in current versions. |
+| `content` | `str` | agent 的最终文本回复。 |
+| `tools_used` | `list[str]` | 预留给更丰富的 SDK 自省能力；当前版本中可能为空。 |
+| `messages` | `list[dict]` | 预留给更丰富的 SDK 自省能力；当前版本中可能为空。 |
 
 ## Hooks
 
-Hooks let you observe or customize the agent loop. Subclass `AgentHook` and override the methods you need.
+hook 让你可以观察或定制 agent loop。继承 `AgentHook`，并按需覆盖对应方法。
 
-### Hook lifecycle
+### Hook 生命周期
 
-| Method | When |
+| 方法 | 调用时机 |
 |--------|------|
-| `wants_streaming()` | Return `True` if you want token-by-token `on_stream()` callbacks |
-| `before_iteration(context)` | Before each LLM call |
-| `on_stream(context, delta)` | On each streamed token when streaming is enabled |
-| `on_stream_end(context, *, resuming)` | When streaming finishes |
-| `before_execute_tools(context)` | Before tool execution |
-| `after_iteration(context)` | After each iteration |
-| `finalize_content(context, content)` | Transform final output text |
+| `wants_streaming()` | 如果希望逐 token 接收 `on_stream()` 回调，则返回 `True` |
+| `before_iteration(context)` | 每次 LLM 调用前 |
+| `on_stream(context, delta)` | 启用 streaming 时，每个流式 token 到达时 |
+| `on_stream_end(context, *, resuming)` | 流式输出结束时 |
+| `before_execute_tools(context)` | 工具执行前 |
+| `after_iteration(context)` | 每次迭代后 |
+| `finalize_content(context, content)` | 转换最终输出文本 |
 
-Useful fields on `AgentHookContext` include:
+`AgentHookContext` 中常用字段包括：
 
 - `iteration`
 - `messages`
@@ -120,7 +120,7 @@ Useful fields on `AgentHookContext` include:
 - `stop_reason`
 - `error`
 
-### Example: audit tool calls
+### 示例：审计工具调用
 
 ```python
 from nanobot.agent import AgentHook, AgentHookContext
@@ -144,7 +144,7 @@ print(result.content)
 print(f"Tools observed: {hook.calls}")
 ```
 
-### Example: receive streaming tokens
+### 示例：接收流式 token
 
 ```python
 from nanobot.agent import AgentHook, AgentHookContext
@@ -161,17 +161,17 @@ class StreamingHook(AgentHook):
         print()
 ```
 
-### Compose multiple hooks
+### 组合多个 hook
 
-Pass multiple hooks when you want to combine behaviors:
+当你想组合多个行为时，可以传入多个 hook：
 
 ```python
 result = await bot.run("hi", hooks=[AuditHook(), MetricsHook()])
 ```
 
-Async hook methods are fan-out with error isolation. `finalize_content` is a pipeline: each hook receives the previous hook's output.
+异步 hook 方法会 fan-out 执行，并隔离错误。`finalize_content` 是一个 pipeline：每个 hook 接收前一个 hook 的输出。
 
-### Example: post-process final content
+### 示例：后处理最终内容
 
 ```python
 from nanobot.agent import AgentHook
@@ -182,7 +182,7 @@ class Censor(AgentHook):
         return content.replace("secret", "***") if content else content
 ```
 
-## Full Example
+## 完整示例
 
 ```python
 import asyncio

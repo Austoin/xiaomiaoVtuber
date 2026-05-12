@@ -1,32 +1,33 @@
-# Chat Apps
+# 聊天应用
 
-Connect nanobot to your favorite chat platform. Want to build your own? See the [Channel Plugin Guide](./channel-plugin-guide.md).
+把 nanobot 连接到你常用的聊天平台。若要构建自己的通道，请参考[通道插件指南](./channel-plugin-guide.md)。
 
-| Channel | What you need |
+| 通道 | 需要准备 |
 |---------|---------------|
-| **Telegram** | Bot token from @BotFather |
+| **Telegram** | 从 @BotFather 获取 Bot token |
 | **Discord** | Bot token + Message Content intent |
-| **WhatsApp** | QR code scan (`nanobot channels login whatsapp`) |
-| **WeChat (Weixin)** | QR code scan (`nanobot channels login weixin`) |
+| **WhatsApp** | 扫描二维码（`nanobot channels login whatsapp`） |
+| **WeChat / Weixin** | 扫描二维码（`nanobot channels login weixin`） |
 | **Feishu** | App ID + App Secret |
 | **DingTalk** | App Key + App Secret |
 | **Slack** | Bot token + App-Level token |
-| **Matrix** | Homeserver URL + Access token |
-| **Email** | IMAP/SMTP credentials |
+| **Matrix** | Homeserver URL + Access token 或密码 |
+| **Email** | IMAP/SMTP 凭据 |
 | **QQ** | App ID + App Secret |
 | **Wecom** | Bot ID + Bot Secret |
-| **Microsoft Teams** | App ID + App Password + public HTTPS endpoint |
-| **Mochat** | Claw token (auto-setup available) |
+| **Microsoft Teams** | App ID + App Password + 公开 HTTPS 端点 |
+| **Mochat** | Claw token（支持自动配置） |
 
 <details>
-<summary><b>Telegram</b> (Recommended)</summary>
+<summary><b>Telegram</b>（推荐）</summary>
 
-**1. Create a bot**
-- Open Telegram, search `@BotFather`
-- Send `/newbot`, follow prompts
-- Copy the token
+**1. 创建 Bot**
 
-**2. Configure**
+- 打开 Telegram，搜索 `@BotFather`。
+- 发送 `/newbot`，按提示完成创建。
+- 复制 token。
+
+**2. 配置**
 
 ```json
 {
@@ -40,11 +41,9 @@ Connect nanobot to your favorite chat platform. Want to build your own? See the 
 }
 ```
 
-> You can find your **User ID** in Telegram settings. It is shown as `@yourUserId`.
-> Copy this value **without the `@` symbol** and paste it into the config file.
+可在 Telegram 设置中找到 **User ID**，通常显示为 `@yourUserId`。复制到配置时不要包含 `@`。
 
-
-**3. Run**
+**3. 运行**
 
 ```bash
 nanobot gateway
@@ -53,36 +52,27 @@ nanobot gateway
 </details>
 
 <details>
-<summary><b>Mochat (Claw IM)</b></summary>
+<summary><b>Mochat（Claw IM）</b></summary>
 
-Uses **Socket.IO WebSocket** by default, with HTTP polling fallback.
+默认使用 **Socket.IO WebSocket**，并带 HTTP polling fallback。
 
-**1. Ask nanobot to set up Mochat for you**
+**1. 让 nanobot 自动配置 Mochat**
 
-Simply send this message to nanobot (replace `xxx@xxx` with your real email):
+把下面消息发送给 nanobot，并将 `xxx@xxx` 替换为你的真实邮箱：
 
-```
+```text
 Read https://raw.githubusercontent.com/HKUDS/MoChat/refs/heads/main/skills/nanobot/skill.md and register on MoChat. My Email account is xxx@xxx Bind me as your owner and DM me on MoChat.
 ```
 
-nanobot will automatically register, configure `~/.nanobot/config.json`, and connect to Mochat.
+nanobot 会自动注册、配置 `~/.nanobot/config.json` 并连接 Mochat。
 
-**2. Restart gateway**
+**2. 重启 gateway**
 
 ```bash
 nanobot gateway
 ```
 
-That's it — nanobot handles the rest!
-
-<br>
-
-<details>
-<summary>Manual configuration (advanced)</summary>
-
-If you prefer to configure manually, add the following to `~/.nanobot/config.json`:
-
-> Keep `claw_token` private. It should only be sent in `X-Claw-Token` header to your Mochat API endpoint.
+如果希望手动配置，请在 `~/.nanobot/config.json` 中添加：
 
 ```json
 {
@@ -103,29 +93,30 @@ If you prefer to configure manually, add the following to `~/.nanobot/config.jso
 }
 ```
 
-
-
-</details>
+请保密 `claw_token`。它只应通过 `X-Claw-Token` header 发送到你的 Mochat API 端点。
 
 </details>
 
 <details>
 <summary><b>Discord</b></summary>
 
-**1. Create a bot**
-- Go to https://discord.com/developers/applications
-- Create an application → Bot → Add Bot
-- Copy the bot token
+**1. 创建 Bot**
 
-**2. Enable intents**
-- In the Bot settings, enable **MESSAGE CONTENT INTENT**
-- (Optional) Enable **SERVER MEMBERS INTENT** if you plan to use allow lists based on member data
+- 打开 https://discord.com/developers/applications。
+- 创建 application → Bot → Add Bot。
+- 复制 Bot token。
 
-**3. Get your User ID**
-- Discord Settings → Advanced → enable **Developer Mode**
-- Right-click your avatar → **Copy User ID**
+**2. 启用 intents**
 
-**4. Configure**
+- 在 Bot 设置中启用 **MESSAGE CONTENT INTENT**。
+- 如需基于成员数据使用允许列表，可选启用 **SERVER MEMBERS INTENT**。
+
+**3. 获取 User ID**
+
+- Discord Settings → Advanced → 启用 **Developer Mode**。
+- 右键头像 → **Copy User ID**。
+
+**4. 配置**
 
 ```json
 {
@@ -142,21 +133,18 @@ If you prefer to configure manually, add the following to `~/.nanobot/config.jso
 }
 ```
 
-> `groupPolicy` controls how the bot responds in group channels:
-> - `"mention"` (default) — Only respond when @mentioned
-> - `"open"` — Respond to all messages
-> DMs always respond when the sender is in `allowFrom`.
-> - If you set group policy to open create new threads as private threads and then @ the bot into it. Otherwise the thread itself and the channel in which you spawned it will spawn a bot session.
-> `allowChannels` restricts the bot to specific Discord channel IDs. Empty (default) means respond in every channel the bot can see. Example: `["1234567890", "0987654321"]`. The filter applies after `allowFrom`, so both must pass. Discord threads under an allowed parent channel are also allowed; for Forum channels, allowing the parent Forum channel allows all threads/posts in that forum.
-> `streaming` defaults to `true`. Disable it only if you explicitly want non-streaming replies.
+`groupPolicy` 控制群组频道中的回复方式：`"mention"` 表示仅在被 @ 时回复，`"open"` 表示回复所有消息。DM 中只要发送者在 `allowFrom` 中就会回复。
 
-**5. Invite the bot**
-- OAuth2 → URL Generator
-- Scopes: `bot`
-- Bot Permissions: `Send Messages`, `Read Message History`
-- Open the generated invite URL and add the bot to your server
+`allowChannels` 可限制 Bot 只在指定 Discord channel ID 中响应；空列表表示所有可见频道。Discord thread 会继承允许的父频道；Forum channel 允许父频道后，其所有帖子/thread 也允许。
 
-**6. Run**
+**5. 邀请 Bot**
+
+- OAuth2 → URL Generator。
+- Scopes：`bot`。
+- Bot Permissions：`Send Messages`、`Read Message History`。
+- 打开生成的邀请 URL，把 Bot 加入服务器。
+
+**6. 运行**
 
 ```bash
 nanobot gateway
@@ -165,37 +153,27 @@ nanobot gateway
 </details>
 
 <details>
-<summary><b>Matrix (Element)</b></summary>
+<summary><b>Matrix（Element）</b></summary>
 
-Install Matrix dependencies first:
+先安装 Matrix 依赖：
 
 ```bash
 pip install nanobot-ai[matrix]
 ```
 
 > [!NOTE]
-> Matrix is not supported on Windows. `matrix-nio[e2e]` depends on
-> `python-olm`, which has no pre-built Windows wheel and is skipped by the
-> `matrix` extra on `sys_platform == 'win32'`. The command above will still
-> succeed on Windows but without `matrix-nio` installed, so enabling the
-> Matrix channel will fail at startup. Use macOS, Linux, or WSL2.
+> Matrix 不支持 Windows。`matrix-nio[e2e]` 依赖 `python-olm`，它没有预编译 Windows wheel，并会在 `sys_platform == 'win32'` 时被 `matrix` extra 跳过。Windows 上上述命令仍可能成功，但不会安装 `matrix-nio`，启用 Matrix 通道会在启动时失败。请使用 macOS、Linux 或 WSL2。
 
-**1. Create/choose a Matrix account**
+**1. 创建或选择 Matrix 账号**
 
-- Create or reuse a Matrix account on your homeserver (for example `matrix.org`).
-- Confirm you can log in with Element.
+- 在你的 homeserver（例如 `matrix.org`）创建或复用账号。
+- 确认可以通过 Element 登录。
 
-**2. Get credentials**
+**2. 获取凭据**
 
-- You need:
-  - `userId` (example: `@nanobot:matrix.org`)
-  - `password`
+需要 `userId`（例如 `@nanobot:matrix.org`）和 `password`。`accessToken` 和 `deviceId` 仍因旧版兼容而支持，但为了可靠加密，推荐使用密码登录。提供 `password` 时，`accessToken` 和 `deviceId` 会被忽略。
 
-(Note: `accessToken` and `deviceId` are still supported for legacy reasons, but
-for reliable encryption, password login is recommended instead. If the
-`password` is provided, `accessToken` and `deviceId` will be ignored.)
-
-**3. Configure**
+**3. 配置**
 
 ```json
 {
@@ -216,21 +194,18 @@ for reliable encryption, password login is recommended instead. If the
 }
 ```
 
-> Keep a persistent `matrix-store` — encrypted session state is lost if these change across restarts.
+请保持持久 `matrix-store`，否则重启后会丢失加密会话状态。
 
-| Option | Description |
+| 选项 | 说明 |
 |--------|-------------|
-| `allowFrom` | User IDs allowed to interact. Empty denies all; use `["*"]` to allow everyone. |
-| `groupPolicy` | `open` (default), `mention`, or `allowlist`. |
-| `groupAllowFrom` | Room allowlist (used when policy is `allowlist`). |
-| `allowRoomMentions` | Accept `@room` mentions in mention mode. |
-| `e2eeEnabled` | E2EE support (default `true`). Set `false` for plaintext-only. |
-| `maxMediaBytes` | Max attachment size (default `20MB`). Set `0` to block all media. |
+| `allowFrom` | 允许交互的 User ID。空列表拒绝所有；`["*"]` 允许所有人。 |
+| `groupPolicy` | `open`（默认）、`mention` 或 `allowlist`。 |
+| `groupAllowFrom` | 房间允许列表，仅在 `allowlist` 策略下使用。 |
+| `allowRoomMentions` | mention 模式下接受 `@room` 提及。 |
+| `e2eeEnabled` | E2EE 支持，默认 `true`。设为 `false` 可只使用明文。 |
+| `maxMediaBytes` | 最大附件大小，默认 `20MB`。设为 `0` 可阻止所有媒体。 |
 
-
-
-
-**4. Run**
+**4. 运行**
 
 ```bash
 nanobot gateway
@@ -241,16 +216,16 @@ nanobot gateway
 <details>
 <summary><b>WhatsApp</b></summary>
 
-Requires **Node.js ≥18**.
+需要 **Node.js ≥18**。
 
-**1. Link device**
+**1. 关联设备**
 
 ```bash
 nanobot channels login whatsapp
-# Scan QR with WhatsApp → Settings → Linked Devices
+# 使用 WhatsApp → Settings → Linked Devices 扫描二维码
 ```
 
-**2. Configure**
+**2. 配置**
 
 ```json
 {
@@ -263,7 +238,7 @@ nanobot channels login whatsapp
 }
 ```
 
-**3. Run** (two terminals)
+**3. 运行**（两个终端）
 
 ```bash
 # Terminal 1
@@ -273,30 +248,30 @@ nanobot channels login whatsapp
 nanobot gateway
 ```
 
-> WhatsApp bridge updates are not applied automatically for existing installations.
-> After upgrading nanobot, rebuild the local bridge with:
-> `rm -rf ~/.nanobot/bridge && nanobot channels login whatsapp`
+WhatsApp bridge 更新不会自动应用到已有安装。升级 nanobot 后，请重建本地 bridge：
+
+```bash
+rm -rf ~/.nanobot/bridge && nanobot channels login whatsapp
+```
 
 </details>
 
 <details>
 <summary><b>Feishu</b></summary>
 
-Uses **WebSocket** long connection — no public IP required.
+使用 **WebSocket** 长连接，无需公网 IP。
 
-**1. Create a Feishu bot**
-- Visit [Feishu Open Platform](https://open.feishu.cn/app)
-- Create a new app → Enable **Bot** capability
-- **Permissions**:
-  - `im:message` (send messages) and `im:message.p2p_msg:readonly` (receive messages)
-  - **Streaming replies** (default in nanobot): add **`cardkit:card:write`** (often labeled **Create and update cards** in the Feishu developer console). Required for CardKit entities and streamed assistant text. Older apps may not have it yet — open **Permission management**, enable the scope, then **publish** a new app version if the console requires it.
-  - If you **cannot** add `cardkit:card:write`, set `"streaming": false` under `channels.feishu` (see below). The bot still works; replies use normal interactive cards without token-by-token streaming.
-- **Events**: Add `im.message.receive_v1` (receive messages)
-  - Select **Long Connection** mode (requires running nanobot first to establish connection)
-- Get **App ID** and **App Secret** from "Credentials & Basic Info"
-- Publish the app
+**1. 创建飞书 Bot**
 
-**2. Configure**
+- 访问[飞书开放平台](https://open.feishu.cn/app)。
+- 创建新应用 → 启用 **Bot** 能力。
+- 权限：添加 `im:message`（发送消息）和 `im:message.p2p_msg:readonly`（接收消息）。
+- 如果启用默认流式回复，还需添加 **`cardkit:card:write`**（控制台里常显示为创建和更新卡片）。如果无法添加该权限，可在 `channels.feishu` 下设置 `"streaming": false`。
+- 事件：添加 `im.message.receive_v1`，并选择 **Long Connection** 模式。
+- 从 “Credentials & Basic Info” 获取 **App ID** 和 **App Secret**。
+- 发布应用。
+
+**2. 配置**
 
 ```json
 {
@@ -319,46 +294,39 @@ Uses **WebSocket** long connection — no public IP required.
 }
 ```
 
-> `streaming` defaults to `true`. Use `false` if your app does not have **`cardkit:card:write`** (see permissions above).
-> `encryptKey` and `verificationToken` are optional for Long Connection mode.
-> `allowFrom`: Add your open_id (find it in nanobot logs when you message the bot). Use `["*"]` to allow all users.
-> `groupPolicy`: `"mention"` (default — respond only when @mentioned), `"open"` (respond to all group messages). Private chats always respond.
-> `reactEmoji`: Emoji for "processing" status (default: `OnIt`). See [available emojis](https://open.larkoffice.com/document/server-docs/im-v1/message-reaction/emojis-introduce).
-> `doneEmoji`: Optional emoji for "completed" status (e.g., `DONE`, `OK`, `HEART`). When set, bot adds this reaction after removing `reactEmoji`.
-> `toolHintPrefix`: Prefix for inline tool hints in streaming cards (default: `🔧`).
-> `domain`: `"feishu"` (default) for China (open.feishu.cn), `"lark"` for international Lark (open.larksuite.com).
+`streaming` 默认 `true`。如果应用没有 **`cardkit:card:write`**，请设为 `false`。`encryptKey` 和 `verificationToken` 在 Long Connection 模式下可选。
 
-**3. Run**
+`allowFrom` 中添加你的 open_id，可在你给 Bot 发消息后的 nanobot 日志中找到；`["*"]` 允许所有用户。`groupPolicy` 可为 `"mention"` 或 `"open"`。`domain` 在中国大陆为 `"feishu"`，国际 Lark 为 `"lark"`。
+
+**3. 运行**
 
 ```bash
 nanobot gateway
 ```
 
 > [!TIP]
-> Feishu uses WebSocket to receive messages — no webhook or public IP needed!
+> 飞书使用 WebSocket 接收消息，不需要 webhook 或公网 IP。
 
 </details>
 
 <details>
-<summary><b>QQ (QQ单聊)</b></summary>
+<summary><b>QQ（QQ 单聊）</b></summary>
 
-Uses **botpy SDK** with WebSocket — no public IP required. Currently supports **private messages only**.
+使用 **botpy SDK** 和 WebSocket，无需公网 IP。目前仅支持**私聊消息**。
 
-**1. Register & create bot**
-- Visit [QQ Open Platform](https://q.qq.com) → Register as a developer (personal or enterprise)
-- Create a new bot application
-- Go to **开发设置 (Developer Settings)** → copy **AppID** and **AppSecret**
+**1. 注册并创建 Bot**
 
-**2. Set up sandbox for testing**
-- In the bot management console, find **沙箱配置 (Sandbox Config)**
-- Under **在消息列表配置**, click **添加成员** and add your own QQ number
-- Once added, scan the bot's QR code with mobile QQ → open the bot profile → tap "发消息" to start chatting
+- 访问 [QQ 开放平台](https://q.qq.com)，注册为个人或企业开发者。
+- 创建新的 Bot 应用。
+- 打开 **开发设置**，复制 **AppID** 和 **AppSecret**。
 
-**3. Configure**
+**2. 设置测试沙箱**
 
-> - `allowFrom`: Add your openid (find it in nanobot logs when you message the bot). Use `["*"]` for public access.
-> - `msgFormat`: Optional. Use `"plain"` (default) for maximum compatibility with legacy QQ clients, or `"markdown"` for richer formatting on newer clients.
-> - For production: submit a review in the bot console and publish. See [QQ Bot Docs](https://bot.q.qq.com/wiki/) for the full publishing flow.
+- 在 Bot 管理控制台中找到 **沙箱配置**。
+- 在 **在消息列表配置** 下点击 **添加成员**，添加你的 QQ 号。
+- 添加后，用手机 QQ 扫描 Bot 二维码，打开 Bot 资料页并点击“发消息”。
+
+**3. 配置**
 
 ```json
 {
@@ -374,31 +342,33 @@ Uses **botpy SDK** with WebSocket — no public IP required. Currently supports 
 }
 ```
 
-**4. Run**
+`allowFrom` 中添加你的 openid，可在日志中找到；`["*"]` 表示公开访问。`msgFormat` 可选，`"plain"` 兼容性最好，`"markdown"` 适合新客户端富文本。
+
+生产环境需要在 Bot 控制台提交审核并发布，完整流程见 [QQ Bot Docs](https://bot.q.qq.com/wiki/)。
+
+**4. 运行**
 
 ```bash
 nanobot gateway
 ```
 
-Now send a message to the bot from QQ — it should respond!
-
 </details>
 
 <details>
-<summary><b>DingTalk (钉钉)</b></summary>
+<summary><b>DingTalk（钉钉）</b></summary>
 
-Uses **Stream Mode** — no public IP required.
+使用 **Stream Mode**，无需公网 IP。
 
-**1. Create a DingTalk bot**
-- Visit [DingTalk Open Platform](https://open-dev.dingtalk.com/)
-- Create a new app -> Add **Robot** capability
-- **Configuration**:
-  - Toggle **Stream Mode** ON
-- **Permissions**: Add necessary permissions for sending messages
-- Get **AppKey** (Client ID) and **AppSecret** (Client Secret) from "Credentials"
-- Publish the app
+**1. 创建钉钉 Bot**
 
-**2. Configure**
+- 访问[钉钉开放平台](https://open-dev.dingtalk.com/)。
+- 创建新应用，添加 **Robot** 能力。
+- 开启 **Stream Mode**。
+- 添加发送消息所需权限。
+- 从凭据中获取 **AppKey**（Client ID）和 **AppSecret**（Client Secret）。
+- 发布应用。
+
+**2. 配置**
 
 ```json
 {
@@ -413,9 +383,9 @@ Uses **Stream Mode** — no public IP required.
 }
 ```
 
-> `allowFrom`: Add your staff ID. Use `["*"]` to allow all users.
+`allowFrom` 中添加你的 staff ID；`["*"]` 允许所有用户。
 
-**3. Run**
+**3. 运行**
 
 ```bash
 nanobot gateway
@@ -426,22 +396,24 @@ nanobot gateway
 <details>
 <summary><b>Slack</b></summary>
 
-Uses **Socket Mode** — no public URL required.
+使用 **Socket Mode**，无需公开 URL。
 
-**1. Create a Slack app**
-- Go to [Slack API](https://api.slack.com/apps) → **Create New App** → "From scratch"
-- Pick a name and select your workspace
+**1. 创建 Slack App**
 
-**2. Configure the app**
-- **Socket Mode**: Toggle ON → Generate an **App-Level Token** with `connections:write` scope → copy it (`xapp-...`)
-- **OAuth & Permissions**: Add bot scopes: `chat:write`, `reactions:write`, `app_mentions:read`, `files:read`, `files:write`, `channels:history`, `groups:history`, `im:history`, `mpim:history`
-- **Event Subscriptions**: Toggle ON → Subscribe to bot events: `message.im`, `message.channels`, `app_mention` → Save Changes
-- **App Home**: Scroll to **Show Tabs** → Enable **Messages Tab** → Check **"Allow users to send Slash commands and messages from the messages tab"**
-- **Install App**: Click **Install to Workspace** → Authorize → copy the **Bot Token** (`xoxb-...`)
+- 打开 [Slack API](https://api.slack.com/apps) → **Create New App** → “From scratch”。
+- 填写名称并选择 workspace。
 
-> `files:read` is required to read files users send to nanobot. `files:write` is required for nanobot to send images, videos, and other file uploads. If you add either scope later, reinstall the Slack app to the workspace and restart nanobot so it uses the updated bot token.
+**2. 配置 App**
 
-**3. Configure nanobot**
+- **Socket Mode**：开启后生成带 `connections:write` scope 的 **App-Level Token**，复制 `xapp-...`。
+- **OAuth & Permissions**：添加 bot scopes：`chat:write`、`reactions:write`、`app_mentions:read`、`files:read`、`files:write`、`channels:history`、`groups:history`、`im:history`、`mpim:history`。
+- **Event Subscriptions**：开启并订阅 `message.im`、`message.channels`、`app_mention`。
+- **App Home**：启用 **Messages Tab**，并允许用户从 messages tab 发送 Slash commands 和消息。
+- **Install App**：安装到 workspace，复制 **Bot Token**（`xoxb-...`）。
+
+`files:read` 用于读取用户发送的文件；`files:write` 用于发送图片、视频和其他文件。后续添加 scope 后，需要重新安装 Slack app 并重启 nanobot。
+
+**3. 配置 nanobot**
 
 ```json
 {
@@ -457,39 +429,30 @@ Uses **Socket Mode** — no public URL required.
 }
 ```
 
-**4. Run**
+**4. 运行**
 
 ```bash
 nanobot gateway
 ```
 
-DM the bot directly or @mention it in a channel — it should respond!
+你可以直接 DM Bot，或在频道中 @ 它。
 
-> [!TIP]
-> - `groupPolicy`: `"mention"` (default — respond only when @mentioned), `"open"` (respond to all channel messages), or `"allowlist"` (restrict to specific channels).
-> - DM policy defaults to open. Set `"dm": {"enabled": false}` to disable DMs.
+`groupPolicy` 可为 `"mention"`、`"open"` 或 `"allowlist"`。DM 默认开放，如需禁用 DM，设置 `"dm": {"enabled": false}`。
 
 </details>
 
 <details>
 <summary><b>Email</b></summary>
 
-Give nanobot its own email account. It polls **IMAP** for incoming mail and replies via **SMTP** — like a personal email assistant.
+给 nanobot 一个专用邮箱账号。它通过 **IMAP** 拉取新邮件，并通过 **SMTP** 回复，类似个人邮件助理。
 
-**1. Get credentials (Gmail example)**
-- Create a dedicated Gmail account for your bot (e.g. `my-nanobot@gmail.com`)
-- Enable 2-Step Verification → Create an [App Password](https://myaccount.google.com/apppasswords)
-- Use this app password for both IMAP and SMTP
+**1. 获取凭据（以 Gmail 为例）**
 
-**2. Configure**
+- 创建专用 Gmail 账号，例如 `my-nanobot@gmail.com`。
+- 启用两步验证，创建 [App Password](https://myaccount.google.com/apppasswords)。
+- IMAP 和 SMTP 都使用该 app password。
 
-> - `consentGranted` must be `true` to allow mailbox access. This is a safety gate — set `false` to fully disable.
-> - `allowFrom`: Add your email address. Use `["*"]` to accept emails from anyone.
-> - `smtpUseTls` and `smtpUseSsl` default to `true` / `false` respectively, which is correct for Gmail (port 587 + STARTTLS). No need to set them explicitly.
-> - Set `"autoReplyEnabled": false` if you only want to read/analyze emails without sending automatic replies.
-> - `allowedAttachmentTypes`: Save inbound attachments matching these MIME types — `["*"]` for all, e.g. `["application/pdf", "image/*"]` (default `[]` = disabled).
-> - `maxAttachmentSize`: Max size per attachment in bytes (default `2000000` / 2MB).
-> - `maxAttachmentsPerEmail`: Max attachments to save per email (default `5`).
+**2. 配置**
 
 ```json
 {
@@ -513,8 +476,9 @@ Give nanobot its own email account. It polls **IMAP** for incoming mail and repl
 }
 ```
 
+`consentGranted` 必须为 `true` 才允许访问邮箱；这是安全开关。`allowFrom` 中添加你的邮箱，`["*"]` 接受任何发件人。`autoReplyEnabled: false` 可只读/分析邮件而不自动回复。`allowedAttachmentTypes` 控制保存哪些附件 MIME 类型，默认空列表表示禁用附件保存。
 
-**3. Run**
+**3. 运行**
 
 ```bash
 nanobot gateway
@@ -523,17 +487,17 @@ nanobot gateway
 </details>
 
 <details>
-<summary><b>WeChat (微信 / Weixin)</b></summary>
+<summary><b>WeChat（微信 / Weixin）</b></summary>
 
-Uses **HTTP long-poll** with QR-code login via the ilinkai personal WeChat API. No local WeChat desktop client is required.
+通过 ilinkai 个人微信 API 使用 **HTTP long-poll** 和二维码登录，不需要本地微信桌面客户端。
 
-**1. Install with WeChat support**
+**1. 安装微信支持**
 
 ```bash
 pip install "nanobot-ai[weixin]"
 ```
 
-**2. Configure**
+**2. 配置**
 
 ```json
 {
@@ -546,25 +510,21 @@ pip install "nanobot-ai[weixin]"
 }
 ```
 
-> - `allowFrom`: Add the sender ID you see in nanobot logs for your WeChat account. Use `["*"]` to allow all users.
-> - `token`: Optional. If omitted, log in interactively and nanobot will save the token for you.
-> - `routeTag`: Optional. When your upstream Weixin deployment requires request routing, nanobot will send it as the `SKRouteTag` header.
-> - `stateDir`: Optional. Defaults to nanobot's runtime directory for Weixin state.
-> - `pollTimeout`: Optional long-poll timeout in seconds.
+`allowFrom` 中添加你在日志中看到的微信 sender ID；`["*"]` 允许所有用户。`token` 可选，省略时可交互式登录并由 nanobot 保存 token。`routeTag`、`stateDir`、`pollTimeout` 都是可选项。
 
-**3. Login**
+**3. 登录**
 
 ```bash
 nanobot channels login weixin
 ```
 
-Use `--force` to re-authenticate and ignore any saved token:
+如需重新认证并忽略已保存 token：
 
 ```bash
 nanobot channels login weixin --force
 ```
 
-**4. Run**
+**4. 运行**
 
 ```bash
 nanobot gateway
@@ -573,23 +533,21 @@ nanobot gateway
 </details>
 
 <details>
-<summary><b>Wecom (企业微信)</b></summary>
+<summary><b>Wecom（企业微信）</b></summary>
 
-> Here we use [wecom-aibot-sdk-python](https://github.com/chengyongru/wecom_aibot_sdk) (community Python version of the official [@wecom/aibot-node-sdk](https://www.npmjs.com/package/@wecom/aibot-node-sdk)).
->
-> Uses **WebSocket** long connection — no public IP required.
+这里使用 [wecom-aibot-sdk-python](https://github.com/chengyongru/wecom_aibot_sdk)，即官方 [@wecom/aibot-node-sdk](https://www.npmjs.com/package/@wecom/aibot-node-sdk) 的社区 Python 版本。它使用 **WebSocket** 长连接，无需公网 IP。
 
-**1. Install the optional dependency**
+**1. 安装可选依赖**
 
 ```bash
 pip install nanobot-ai[wecom]
 ```
 
-**2. Create a WeCom AI Bot**
+**2. 创建企业微信 AI Bot**
 
-Go to the WeCom admin console → Intelligent Robot → Create Robot → select **API mode** with **long connection**. Copy the Bot ID and Secret.
+进入企业微信管理后台 → 智能机器人 → 创建机器人 → 选择带长连接的 **API mode**，复制 Bot ID 和 Secret。
 
-**3. Configure**
+**3. 配置**
 
 ```json
 {
@@ -604,7 +562,7 @@ Go to the WeCom admin console → Intelligent Robot → Create Robot → select 
 }
 ```
 
-**4. Run**
+**4. 运行**
 
 ```bash
 nanobot gateway
@@ -613,22 +571,21 @@ nanobot gateway
 </details>
 
 <details>
-<summary><b>Microsoft Teams</b> (MVP — DM only)</summary>
+<summary><b>Microsoft Teams</b>（MVP，仅 DM）</summary>
 
-> Direct-message text in/out, tenant-aware OAuth, conversation reference persistence.
-> Uses a public HTTPS webhook — no WebSocket; you need a tunnel or reverse proxy.
+支持直接消息文本收发、租户感知 OAuth 和 conversation reference 持久化。它使用公开 HTTPS webhook，而不是 WebSocket；你需要 tunnel 或反向代理。
 
-**1. Install the optional dependency**
+**1. 安装可选依赖**
 
 ```bash
 pip install nanobot-ai[msteams]
 ```
 
-**2. Create a Teams / Azure bot app registration**
+**2. 创建 Teams / Azure Bot app registration**
 
-Create or reuse a Microsoft Teams / Azure bot app registration. Set the bot messaging endpoint to a public HTTPS URL ending in `/api/messages`.
+创建或复用 Microsoft Teams / Azure Bot app registration。将 Bot messaging endpoint 设置为以 `/api/messages` 结尾的公开 HTTPS URL。
 
-**3. Configure**
+**3. 配置**
 
 ```json
 {
@@ -654,15 +611,11 @@ Create or reuse a Microsoft Teams / Azure bot app registration. Set the bot mess
 }
 ```
 
-> - `replyInThread: true` replies to the triggering Teams activity when a stored `activity_id` is available.
-> - `mentionOnlyResponse` controls what Nanobot receives when a user sends only a bot mention (`<at>Nanobot</at>`). Set to `""` to ignore mention-only messages.
-> - `validateInboundAuth: true` enables inbound Bot Framework bearer-token validation (signature, issuer, audience, lifetime, `serviceUrl`). This is the safe default for public deployments. Only set it to `false` for local development or tightly controlled testing.
-> - `refTtlDays` (default `30`) controls how old stored conversation refs can be before they are pruned.
-> - `pruneWebChatRefs` (default `true`) drops refs with `webchat.botframework.com` service URLs.
-> - `pruneNonPersonalRefs` (default `true`) drops refs whose `conversation_type` is not `personal`.
-> - `refTouchIntervalS` (default `300`) throttles how often successful sends refresh `updated_at` for active refs.
+`validateInboundAuth: true` 会启用入站 Bot Framework bearer-token 校验，这是公开部署的安全默认值。只有在本地开发或严格受控测试中才设为 `false`。
 
-**4. Run**
+`replyInThread`、`mentionOnlyResponse`、`refTtlDays`、`pruneWebChatRefs`、`pruneNonPersonalRefs` 和 `refTouchIntervalS` 控制 Teams 回复线程和 conversation reference 清理行为。
+
+**4. 运行**
 
 ```bash
 nanobot gateway

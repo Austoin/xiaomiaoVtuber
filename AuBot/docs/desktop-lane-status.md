@@ -1,115 +1,96 @@
-# Desktop Lane Status
+# Desktop Lane 状态
 
-Updated: 2026-04-14
+更新日期：2026-04-14
 
-This note is a factual status memo for the current desktop lane work around PR #1649. It is intentionally narrow: only current state, actual blockers, and what should happen now vs later.
+这是一份围绕 PR #1649 当前 desktop lane 工作的事实状态备忘。范围刻意保持狭窄：只记录当前状态、真实阻塞点，以及现在应该做什么、之后再做什么。
 
-## What is already true
+## 已经确定的事实
 
-- The desktop lane direction is stable:
-  - macOS only
-  - Chrome-first
-  - visual + semantic tree + OS input
-  - overlay is a visualization layer, not a second system cursor
-- The following baselines already exist in code:
-  - `/Users/liuziheng/airi/services/computer-use-mcp/src/executors/macos-local.ts`
-    - saves the real cursor position and restores it with `CGWarpMouseCursorPosition(...)`
-  - `/Users/liuziheng/airi/apps/stage-tamagotchi/src/main/windows/shared/window.ts`
-    - `makeWindowPassThrough()` uses ignore-mouse-events + non-focusable overlay behavior
-  - `/Users/liuziheng/airi/services/computer-use-mcp/src/browser-dom/cdp-bridge.ts`
-    - 5-second heartbeat with teardown after 3 consecutive failures
-- The Chrome extension bridge and iframe offset work are no longer hypothetical:
-  - PR #1649 already contains a real extension-side WebSocket client bridge
-  - PR #1649 already contains frame offset propagation for iframe DOM candidates
+- desktop lane 方向已经稳定：
+  - 仅 macOS。
+  - Chrome 优先。
+  - visual + semantic tree + OS input。
+  - overlay 是可视化层，不是第二个系统光标。
+- 代码中已有以下基线：
+  - `/Users/liuziheng/airi/services/computer-use-mcp/src/executors/macos-local.ts`：保存真实光标位置，并用 `CGWarpMouseCursorPosition(...)` 恢复。
+  - `/Users/liuziheng/airi/apps/stage-tamagotchi/src/main/windows/shared/window.ts`：`makeWindowPassThrough()` 使用 ignore-mouse-events + non-focusable overlay 行为。
+  - `/Users/liuziheng/airi/services/computer-use-mcp/src/browser-dom/cdp-bridge.ts`：5 秒 heartbeat，连续 3 次失败后 teardown。
+- Chrome extension bridge 和 iframe offset 工作已不再是假设：
+  - PR #1649 已包含真实的 extension-side WebSocket client bridge。
+  - PR #1649 已包含 iframe DOM candidates 的 frame offset 传递。
 
-## What is actually still blocking
+## 当前真正的阻塞点
 
-These are the remaining real issues, ordered by severity.
+以下是真实剩余问题，按严重程度排序。
 
-### 1. Extension unknown actions still return `ok: true`
+### 1. Extension 未知 action 仍返回 `ok: true`
 
-- File:
-  - `/Users/liuziheng/airi-pr1649/services/computer-use-mcp/chrome-extension/background.js`
-- Current behavior:
-  - unsupported actions fall into `result = { error: ... }`
-  - but the response still returns `{ ok: true, result }`
-- Why this matters:
-  - upper layers can interpret unsupported DOM actions as successful bridge execution
-  - that can suppress OS-input fallback even though nothing actually happened
-- This is still a real unresolved review blocker.
+- 文件：`/Users/liuziheng/airi-pr1649/services/computer-use-mcp/chrome-extension/background.js`
+- 当前行为：不支持的 action 会进入 `result = { error: ... }`，但响应仍返回 `{ ok: true, result }`。
+- 影响：上层可能把不支持的 DOM action 解释为 bridge 成功执行，从而抑制 OS-input fallback，尽管实际什么都没发生。
+- 这是仍未解决的真实 review blocker。
 
-### 2. Browser-dom click routing still ignores non-default click semantics
+### 2. browser-dom 点击路由仍忽略非默认点击语义
 
-- File:
+- 文件：
   - `/Users/liuziheng/airi-pr1649/services/computer-use-mcp/src/browser-action-router.ts`
-  - called from `/Users/liuziheng/airi-pr1649/services/computer-use-mcp/src/server/register-desktop-grounding.ts`
-- Current behavior:
-  - `chrome_dom` candidates route to browser-dom if selector + bridge are available
-  - routing does not currently incorporate `button` / `clickCount`
-- Why this matters:
-  - right-click or double-click can still be routed to a DOM path that only performs a standard primary click
-- This is not as severe as the first issue, but it is still a real correctness gap.
+  - 调用方：`/Users/liuziheng/airi-pr1649/services/computer-use-mcp/src/server/register-desktop-grounding.ts`
+- 当前行为：当 `chrome_dom` candidate 具备 selector + bridge 时，会路由到 browser-dom，但路由逻辑尚未纳入 `button` / `clickCount`。
+- 影响：右键或双击仍可能路由到只执行标准主键点击的 DOM 路径。
+- 严重程度低于第一个问题，但仍是真实正确性缺口。
 
-### 3. Overlay lifecycle / RPC readiness is not fully closed yet
+### 3. Overlay 生命周期 / RPC readiness 尚未完全闭环
 
-- Files currently being worked on:
+- 当前正在处理的文件：
   - `/Users/liuziheng/airi-pr1649/apps/stage-tamagotchi/src/main/windows/desktop-overlay/rpc/contracts.ts`
   - `/Users/liuziheng/airi-pr1649/apps/stage-tamagotchi/src/main/windows/desktop-overlay/rpc/index.electron.ts`
   - `/Users/liuziheng/airi-pr1649/apps/stage-tamagotchi/src/renderer/pages/desktop-overlay-polling.ts`
   - `/Users/liuziheng/airi-pr1649/apps/stage-tamagotchi/src/renderer/pages/desktop-overlay-polling.test.ts`
-- Current state:
-  - there is already a preload-order mitigation in `desktop-overlay/index.ts`
-  - there is already a per-call timeout in `desktop-overlay-polling.ts`
-  - there is now work-in-progress code for an explicit readiness contract
-- Why this is not yet "done":
-  - the readiness flow is still uncommitted work
-  - the live window context still needs one narrow verification pass
-- This is not proven broken today, but it is the most likely remaining runtime risk on the overlay path.
+- 当前状态：已有 preload-order 缓解措施和 per-call timeout；显式 readiness contract 仍是进行中代码。
+- 尚未完成原因：readiness flow 仍未提交，live window context 还需要一次窄范围验证。
+- 这目前未被证明已坏，但它是 overlay 路径上最可能剩余的运行时风险。
 
-## What is not a current blocker
+## 当前不应作为阻塞点的事项
 
-These items are real ideas or cleanup work, but they are not the thing that should block the line right now.
+这些是真实想法或清理工作，但不应阻塞当前主线：
 
-- Eager overlay init cleanliness in `apps/stage-tamagotchi/src/main/index.ts`
-- Refactoring nested browser-dom routing logic for readability
-- Turning `macos-local.ts` into instant-warp-only fallback with zero motion trace
-- Rewriting overlay visuals, ghost pointer polish, or extra renderer debug UI
+- `apps/stage-tamagotchi/src/main/index.ts` 中 eager overlay init 的整洁性。
+- 重构嵌套 browser-dom 路由逻辑以提升可读性。
+- 将 `macos-local.ts` 改为 instant-warp-only fallback，完全消除运动痕迹。
+- 重写 overlay 视觉、ghost pointer 打磨或额外 renderer debug UI。
 
-## How to interpret m13v's comments
+## 如何理解 m13v 的评论
 
-m13v's comments were useful because they matched the real platform constraints, but they should be split correctly:
+m13v 的评论有价值，因为它们符合真实平台约束，但应正确拆分：
 
-- Already aligned with current code:
-  - save → act → restore cursor pattern
-  - overlay should not intercept user input
-  - heartbeat teardown for crashed CDP sessions
-- Still useful as future refinement:
-  - reducing native motion trace so UI owns more of the visible pointer animation
-  - deeper runtime discipline around session lifecycle
+- 已与当前代码对齐：
+  - 保存 → 执行 → 恢复光标模式。
+  - overlay 不应拦截用户输入。
+  - 对崩溃 CDP session 做 heartbeat teardown。
+- 仍适合作为未来优化：
+  - 减少 native motion trace，让 UI 承担更多可见指针动画。
+  - 对 session 生命周期保持更严格的运行时纪律。
 
-In short: m13v gave good runtime advice. That does not mean every suggestion is a current blocker.
+简言之：m13v 给出了很好的运行时建议，但并不意味着每条建议都是当前 blocker。
 
-## What should happen now
+## 现在应该做什么
 
-1. Fix the extension unknown-action response contract so unsupported actions return `ok: false`.
-2. Restrict browser-dom click routing to left single-click only; force OS-input for right-click or multi-click.
-3. Finish or explicitly shelve the overlay readiness contract work:
-   - if kept, validate it in a live overlay window context before merging
-   - if not finished now, do not half-merge it
+1. 修复 extension 未知 action 响应契约，让不支持的 action 返回 `ok: false`。
+2. 将 browser-dom 点击路由限制为左键单击；右键或多击强制使用 OS-input。
+3. 完成或明确搁置 overlay readiness contract：
+   - 如果保留，合并前必须在 live overlay window context 中验证。
+   - 如果现在无法完成，不要半成品合入。
 
-## What should happen later
+## 之后再做什么
 
-Only after the above is clean:
+只有在上述问题清理干净后再考虑：
 
-1. Optional follow-up:
-   - `fix(stage-tamagotchi): validate desktop overlay lifecycle and RPC readiness in live window context`
-2. Optional follow-up:
-   - `refactor(computer-use-mcp): evaluate instant-warp-only macOS fallback against ghost-pointer UX`
-3. Optional follow-up:
-   - strengthen iframe anchor matching when sibling iframes are highly similar
+1. 可选 follow-up：`fix(stage-tamagotchi): validate desktop overlay lifecycle and RPC readiness in live window context`
+2. 可选 follow-up：`refactor(computer-use-mcp): evaluate instant-warp-only macOS fallback against ghost-pointer UX`
+3. 可选 follow-up：在 sibling iframe 高度相似时增强 iframe anchor matching。
 
-## Bottom line
+## 结论
 
-The desktop lane is not blocked by direction. It is blocked by a small number of correctness issues and one still-open overlay lifecycle validation step.
+desktop lane 不是被方向阻塞，而是被少数正确性问题和一个仍未关闭的 overlay 生命周期验证步骤阻塞。
 
-Do not reopen architecture. Do not mix in polish. Do not keep piling unrelated changes onto the same PR.
+不要重新打开架构讨论。不要混入视觉打磨。不要继续把无关改动堆进同一个 PR。

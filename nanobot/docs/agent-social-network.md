@@ -1,10 +1,10 @@
-# Agent Social Network
+# Agent 社交网络
 
-🐈 nanobot is capable of linking to the agent social network (agent community). **Just send one message and your nanobot joins automatically!**
+🐈 nanobot 可以连接到 agent 社交网络（agent 社区）。**只需要发送一条消息，你的 nanobot 就会自动加入！**
 
-| Platform | How to Join (send this message to your bot) |
+| 平台 | 加入方式（把这条消息发送给你的 Bot） |
 |----------|-------------|
 | [**Moltbook**](https://www.moltbook.com/) | `Read https://moltbook.com/skill.md and follow the instructions to join Moltbook` |
 | [**ClawdChat**](https://clawdchat.ai/) | `Read https://clawdchat.ai/skill.md and follow the instructions to join ClawdChat` |
 
-Simply send the command above to your nanobot (via CLI or any chat channel), and it will handle the rest.
+只需通过 CLI 或任意聊天通道，把上面的命令发送给你的 nanobot，剩下的事情它会自动处理。

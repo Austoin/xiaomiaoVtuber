@@ -1,24 +1,24 @@
-# OpenAI-Compatible API
+# OpenAI 兼容 API
 
-nanobot can expose a minimal OpenAI-compatible endpoint for local integrations:
+nanobot 可以暴露一个最小化的 OpenAI 兼容端点，用于本地集成：
 
 ```bash
 pip install "nanobot-ai[api]"
 nanobot serve
 ```
 
-By default, the API binds to `127.0.0.1:8900`. You can change this in `config.json`.
+默认情况下，API 绑定到 `127.0.0.1:8900`。你可以在 `config.json` 中修改。
 
-## Behavior
+## 行为
 
-- Session isolation: pass `"session_id"` in the request body to isolate conversations; omit for a shared default session (`api:default`)
-- Single-message input: each request must contain exactly one `user` message
-- Fixed model: omit `model`, or pass the same model shown by `/v1/models`
-- Streaming: set `stream=true` to receive Server-Sent Events (`text/event-stream`) with OpenAI-compatible delta chunks, terminated by `data: [DONE]`; omit or set `stream=false` for a single JSON response
-- **File uploads**: supports images, PDF, Word (.docx), Excel (.xlsx), PowerPoint (.pptx) via JSON base64 or `multipart/form-data` (max 10MB per file)
-- API requests run in the synthetic `api` channel, so the `message` tool does **not** automatically deliver to Telegram/Discord/etc. To proactively send to another chat, call `message` with an explicit `channel` and `chat_id` for an enabled channel.
+- 会话隔离：在请求体中传入 `"session_id"` 可隔离对话；省略时使用共享默认会话（`api:default`）。
+- 单消息输入：每个请求必须且只能包含一条 `user` 消息。
+- 固定模型：省略 `model`，或传入与 `/v1/models` 显示相同的模型。
+- 流式输出：设置 `stream=true` 可接收 Server-Sent Events（`text/event-stream`），返回 OpenAI 兼容的 delta chunk，并以 `data: [DONE]` 结束；省略或设置 `stream=false` 时返回单个 JSON 响应。
+- **文件上传**：支持通过 JSON base64 或 `multipart/form-data` 上传图片、PDF、Word（.docx）、Excel（.xlsx）、PowerPoint（.pptx），单文件最大 10MB。
+- API 请求运行在合成的 `api` 通道中，因此 `message` 工具**不会**自动投递到 Telegram、Discord 等平台。若要主动发送到其他聊天，请调用 `message`，并显式传入已启用通道的 `channel` 和 `chat_id`。
 
-Example tool call for cross-channel delivery from an API session:
+API 会话中跨通道投递的工具调用示例：
 
 ```json
 {
@@ -28,9 +28,9 @@ Example tool call for cross-channel delivery from an API session:
 }
 ```
 
-If `channel` points to a channel that is not enabled in your config, nanobot will queue the outbound event but no platform delivery will occur.
+如果 `channel` 指向配置中未启用的通道，nanobot 会将出站事件入队，但不会发生平台投递。
 
-## Endpoints
+## 端点
 
 - `GET /health`
 - `GET /v1/models`
@@ -47,9 +47,9 @@ curl http://127.0.0.1:8900/v1/chat/completions \
   }'
 ```
 
-## File Upload (JSON base64)
+## 文件上传（JSON base64）
 
-Send images inline using the OpenAI multimodal content format:
+使用 OpenAI 多模态内容格式内联发送图片：
 
 ```bash
 curl http://127.0.0.1:8900/v1/chat/completions \
@@ -62,17 +62,17 @@ curl http://127.0.0.1:8900/v1/chat/completions \
   }'
 ```
 
-## File Upload (multipart/form-data)
+## 文件上传（multipart/form-data）
 
-Upload any supported file type (images, PDF, Word, Excel, PPT) via multipart:
+通过 multipart 上传任意受支持文件类型（图片、PDF、Word、Excel、PPT）：
 
 ```bash
-# Single file
+# 单个文件
 curl http://127.0.0.1:8900/v1/chat/completions \
   -F "message=Summarize this report" \
   -F "files=@report.docx"
 
-# Multiple files with session isolation
+# 多个文件，并隔离会话
 curl http://127.0.0.1:8900/v1/chat/completions \
   -F "message=Compare these files" \
   -F "files=@chart.png" \
@@ -80,12 +80,13 @@ curl http://127.0.0.1:8900/v1/chat/completions \
   -F "session_id=my-session"
 ```
 
-Supported file types:
-- **Images**: PNG, JPEG, GIF, WebP (sent to AI as base64 for vision analysis)
-- **Documents**: PDF, Word (.docx), Excel (.xlsx), PowerPoint (.pptx) (text extracted and sent to AI)
-- **Text**: TXT, Markdown, CSV, JSON, etc. (read directly)
+支持的文件类型：
 
-## Python (`requests`)
+- **图片**：PNG、JPEG、GIF、WebP（以 base64 发送给 AI 进行视觉分析）。
+- **文档**：PDF、Word（.docx）、Excel（.xlsx）、PowerPoint（.pptx）（提取文本后发送给 AI）。
+- **文本**：TXT、Markdown、CSV、JSON 等（直接读取）。
+
+## Python（`requests`）
 
 ```python
 import requests
@@ -102,7 +103,7 @@ resp.raise_for_status()
 print(resp.json()["choices"][0]["message"]["content"])
 ```
 
-## Python (`openai`)
+## Python（`openai`）
 
 ```python
 from openai import OpenAI

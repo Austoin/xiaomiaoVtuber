@@ -2,12 +2,15 @@
 
 ## 1. 项目定位
 
-`xiaomiaoVirtual` 是一个 QQ 机器人与 Vtuber 桌面角色联动项目。当前由两个子系统组成：
+`xiaomiaoVirtual` 是一个 QQ 机器人、Vtuber 桌面角色和轻量 Agent 框架的融合项目。当前由三个子系统组成：
 
 1. `xiaomiao`：Python QQ 机器人，负责 QQ 消息、命令、人设、模型调用、图片能力、群管理和本地桥接。
 2. `AuBot`：Project AIRI 风格的 Electron/Vue Vtuber 工程，负责桌面角色、Live2D/VRM、字幕、TTS 和口型同步。
+3. `nanobot`：Python Agent 框架，负责 Agent Loop、通道抽象、工具调用、记忆、会话管理、OpenAI 兼容 API 和 WebUI。
 
 当前项目已经打通最小闭环：QQ 消息进入机器人，AI 回复被桌面端读取，并驱动 Vtuber 的字幕、语音和 Live2D 口型。
+
+后续目标是在不破坏现有闭环的前提下，引入 `nanobot` 的 Agent 能力，把小喵从单一 QQ Bot 演进为多通道、可调用工具、有记忆、可通过 WebUI 管理的个人 Agent。
 
 ## 2. 总体架构
 
@@ -25,6 +28,13 @@
 [AuBot stage-tamagotchi]
     ↓
 [字幕 / 聊天历史 / TTS / Live2D LipSync]
+
+[nanobot]
+    ├── MessageBus / Channels
+    ├── AgentLoop / AgentRunner
+    ├── Tools / MCP / Cron / Web
+    ├── Memory / Session
+    └── WebUI / Gateway
 ```
 
 ## 3. xiaomiao 子系统
@@ -81,9 +91,66 @@ AuBot/
 └── services/                      # 其他机器人和平台适配
 ```
 
-## 5. 运行链路
+## 5. nanobot 子系统
 
-### 5.1 QQ 消息进入机器人
+`nanobot` 是一个轻量 Agent 框架，核心入口包括 `nanobot/cli/commands.py`、`nanobot/nanobot.py` 和 gateway/WebUI 相关模块。
+
+主要职责：
+
+- 通过 `MessageBus` 解耦外部通道和 Agent 核心。
+- 使用 `AgentLoop` 构建上下文、管理 session key、处理 hooks 和 turn 生命周期。
+- 使用 `AgentRunner` 执行 LLM 对话循环、工具调用和流式响应。
+- 支持 Telegram、Discord、Slack、Feishu、Matrix、QQ、WeChat、WebSocket 等 Channels。
+- 提供文件系统、Shell、Web Search/Fetch、MCP、Cron、Notebook、Subagent 等工具能力。
+- 提供 `Memory` 和 `Session Management`，支持会话历史、上下文压缩和 Dream 两阶段记忆整理。
+- 提供 React/Vite WebUI 和 gateway，可作为后续小喵控制台或多通道管理入口参考。
+
+关键目录：
+
+```text
+nanobot/
+├── nanobot/agent/loop.py       # Agent turn 协调
+├── nanobot/agent/runner.py     # LLM + tool 调用循环
+├── nanobot/agent/tools/        # 工具系统
+├── nanobot/channels/           # 多平台通道
+├── nanobot/providers/          # LLM provider 抽象
+├── nanobot/session/            # 会话管理
+├── nanobot/agent/memory.py     # 记忆管理
+├── nanobot/api/server.py       # API / Gateway
+└── webui/                      # React/Vite WebUI
+```
+
+### 5.1 与现有系统的融合边界
+
+`nanobot` 不应一次性替换 `xiaomiao/main.py`。当前更安全的融合边界是能力复用和事件桥接：
+
+```text
+QQ / WebUI / WebSocket
+    ↓
+xiaomiao 或 nanobot Channels
+    ↓
+统一消息事件
+    ↓
+Agent / Bot 回复
+    ↓
+desktop_bridge 或统一事件总线
+    ↓
+AuBot Vtuber 表现层
+```
+
+短期内，`xiaomiao` 继续负责 QQ Bot 的稳定运行；`nanobot` 先作为可选 Agent 能力层接入。中期可让 `xiaomiao` 调用 `nanobot` 的工具、记忆和 Web 搜索能力。长期再评估是否把 QQ 接入迁移到 `nanobot/channels/qq.py` 或统一 MessageBus。
+
+### 5.2 推荐融合优先级
+
+1. 只读监控：在小喵控制台展示 nanobot gateway、WebUI、Channels 和 session 状态。
+2. 工具调用：把 nanobot tools 暴露为 `xiaomiao` 可调用的内部服务。
+3. 记忆复用：将小喵多轮上下文逐步接入 nanobot session/memory，而不是继续只依赖 `GoogleAI.Context`。
+4. 通道抽象：评估 QQ、WebSocket、WebUI 是否统一到 nanobot Channel 模型。
+5. 表现层统一：让 AuBot 消费统一回复事件，而不是关心回复来自 `xiaomiao` 还是 `nanobot`。
+
+## 6. 运行链路
+
+### 6.1 QQ 消息进入机器人
 
 `xiaomiao/config.json` 中的 `Connection` 配置指向本机 NapCat：
 
@@ -108,7 +175,7 @@ AuBot/
 7. 将回复发送回 QQ。
 8. 调用 `publish_desktop_state()` 同步到桌面桥接状态。
 
-### 5.2 模型调用
+### 6.2 模型调用
 
 模型调用分为两个封装：
 
@@ -117,7 +184,7 @@ AuBot/
 
 `GoogleAI.Context` 维护用户对话历史，并通过 `client.chat.completions.create()` 调用模型。项目虽然保留 Gemini 命名，但实际可接入 DeepSeek、OpenAI 官方、Gemini OpenAI 兼容接口或第三方中转。
 
-## 6. 桌面桥接协议
+## 7. 桌面桥接协议
 
 `xiaomiao/desktop_bridge.py` 默认监听：
 
@@ -153,7 +220,7 @@ AuBot 侧的小喵桥接模块：
 
 `stage-tamagotchi` 主舞台挂载后会初始化聊天同步、确保桥接语音 provider 可用，并每 1.5 秒轮询一次小喵桥接状态。
 
-## 7. Vtuber 表现链路
+## 8. Vtuber 表现链路
 
 桥接回复进入 AuBot 后，会被同步到三个表现面：
 
@@ -181,7 +248,7 @@ bridge reply
 
 当前代码已经处理桥接语音绕过普通聊天 orchestrator 的问题，在音频播放边界统一初始化 analyser 和 lip sync，避免“有声音但嘴不动”。
 
-## 8. 配置与端口
+## 9. 配置与端口
 
 主配置文件：
 
@@ -220,34 +287,50 @@ pnpm typecheck        # 类型检查
 pnpm lint             # Lint 检查
 ```
 
-## 9. 工程风险
+nanobot 常用命令：
 
-### 9.1 明文密钥
+```text
+nanobot onboard       # 初始化配置
+nanobot gateway       # 启动 gateway
+cd webui && bun run dev
+```
+
+## 10. 工程风险
+
+### 10.1 明文密钥
 
 `xiaomiao/config.json` 当前承担模型配置。真实 API Key 不应保存在可提交源码配置中，应迁移到 `.env`、本机私有配置或系统环境变量。
 
-### 9.2 主程序职责过重
+### 10.2 主程序职责过重
 
 `xiaomiao/main.py` 同时负责事件监听、命令解析、权限判断、模型调用、图片处理、桥接发布和系统命令。后续建议拆为 `commands/`、`services/llm.py`、`services/bridge.py`、`services/roles.py`、`services/images.py` 和 `permissions.py`。
 
-### 9.3 桥接配置硬编码
+### 10.3 桥接配置硬编码
 
 AuBot 中桥接地址和绑定用户仍是原型硬编码：`http://127.0.0.1:5519` 和 `BOUND_XIAOMIAO_USER_ID`。这会限制多用户、多账号、多机器人实例场景。
 
-### 9.4 桥接协议缺少鉴权
+### 10.4 桥接协议缺少鉴权
 
 桥接服务默认只监听 `127.0.0.1`，风险较低，但本机任意进程仍可访问。如果后续开放到局域网或跨设备，应增加 token、签名或一次性配对机制。
 
-### 9.5 系统命令能力风险
+### 10.5 系统命令能力风险
 
 `runcommand` 类能力天然高危。当前采用危险命令黑名单，但黑名单无法覆盖所有变体。后续应改为白名单命令或移除远程系统命令执行能力。
 
-## 10. 测试现状
+### 10.6 Agent 工具权限风险
+
+`nanobot` 提供文件系统、Shell、Web、MCP、Cron、Subagent 等工具能力。融合时不能把这些能力直接暴露给 QQ 用户或公网 WebUI。必须按用户、通道、群、工具类型做权限隔离，并优先从只读工具开始。
+
+### 10.7 双 Agent 状态分裂
+
+如果 `xiaomiao` 和 `nanobot` 同时维护各自上下文、记忆和用户状态，可能出现同一用户在 QQ、WebUI、桌面端看到不同上下文。融合时需要定义统一 session key、用户映射和事件 ID。
+
+## 11. 测试现状
 
 已有测试集中在桥接链路：
 
 ```text
-xiaomiao/test_desktop_bridge.py
+test/xiaomiao/test_desktop_bridge.py
 AuBot/apps/stage-tamagotchi/src/renderer/pages/xiaomiao-bridge.test.ts
 AuBot/apps/stage-tamagotchi/src/renderer/pages/xiaomiao-bridge-chat.test.ts
 AuBot/apps/stage-tamagotchi/src/renderer/pages/xiaomiao-bridge-reaction.test.ts
@@ -255,14 +338,31 @@ AuBot/apps/stage-tamagotchi/src/renderer/pages/xiaomiao-bridge-reaction.test.ts
 
 覆盖范围包括 OpenAI 兼容路由、CORS preflight、读取桥接状态、桥接回复去重、字幕/历史/语音同步，以及 Kokoro 中文语音 provider 自动选择。
 
-## 11. 演进路线
+nanobot 自身测试位于：
+
+```text
+nanobot/tests/
+nanobot/webui/src/tests/
+```
+
+后续融合测试应覆盖三类边界：
+
+- `xiaomiao` 调用 nanobot 工具或记忆服务时的失败隔离。
+- nanobot gateway/WebUI 离线时，小喵 QQ Bot 不受影响。
+- AuBot 能区分并展示来自 `xiaomiao` 和 nanobot 的统一事件。
+
+## 12. 演进路线
 
 1. 配置安全：移除源码中的真实 API Key，补充 `.env.example` 或本机配置模板。
 2. 桥接配置：把桥接端口、绑定用户、模型名称变成可配置项。
 3. 桥接协议：增加消息 ID、健康检查、用户绑定握手和最小鉴权机制。
 4. Python 拆分：从 `main.py` 中拆出命令、权限、模型、桥接、图片和角色服务。
 5. Vtuber 增强：支持 QQ 用户到桌面会话映射，并根据回复情绪驱动 Live2D 表情。
+6. nanobot 只读接入：在小喵控制台展示 nanobot 运行状态和 WebUI/gateway 状态。
+7. nanobot 能力复用：逐步接入工具、记忆、Web 搜索、Cron 和多通道能力。
+8. 统一事件总线：定义跨 `xiaomiao`、`nanobot`、`AuBot` 的消息事件结构。
+9. 渐进迁移：在现有 QQ Bot 可运行的前提下，评估把长任务、工具调用和会话记忆迁移到 nanobot。
 
-## 12. 当前结论
+## 13. 当前结论
 
-项目已经完成 QQ 机器人与 Vtuber 桌面角色的最小闭环。当前最大价值在于桥接链路已经跑通。下一步最重要的不是继续堆功能，而是把配置、桥接协议和 Python Bot 模块边界工程化，避免原型代码继续膨胀。
+项目已经完成 QQ 机器人与 Vtuber 桌面角色的最小闭环。当前最大价值在于桥接链路已经跑通。下一步最重要的不是继续堆功能，而是把配置、桥接协议和 Python Bot 模块边界工程化，同时以只读、可回退的方式引入 `nanobot` 的 Agent、工具、记忆和 WebUI 能力。

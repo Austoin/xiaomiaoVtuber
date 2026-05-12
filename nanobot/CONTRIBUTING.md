@@ -1,53 +1,33 @@
-# Contributing to nanobot
+## 分支策略
 
-Thank you for being here.
+我们使用双分支模型，在稳定性和探索之间取得平衡：
 
-nanobot is built with a simple belief: good tools should feel calm, clear, and humane.
-We care deeply about useful features, but we also believe in achieving more with less:
-solutions should be powerful without becoming heavy, and ambitious without becoming
-needlessly complicated.
-
-This guide is not only about how to open a PR. It is also about how we hope to build
-software together: with care, clarity, and respect for the next person reading the code.
-
-## Maintainers
-
-| Maintainer | Focus |
-|------------|-------|
-| [@re-bin](https://github.com/re-bin) | Project lead, `main` branch |
-| [@chengyongru](https://github.com/chengyongru) | `nightly` branch, experimental features |
-
-## Branching Strategy
-
-We use a two-branch model to balance stability and exploration:
-
-| Branch | Purpose | Stability |
+| 分支 | 目的 | 稳定性 |
 |--------|---------|-----------|
-| `main` | Stable releases | Production-ready |
-| `nightly` | Experimental features | May have bugs or breaking changes |
+| `main` | 稳定发布 | 可用于生产 |
+| `nightly` | 实验性功能 | 可能包含 bug 或破坏性变更 |
 
-### Which Branch Should I Target?
+### 应该提交到哪个分支？
 
-**Target `nightly` if your PR includes:**
+**如果 PR 包含以下内容，请提交到 `nightly`：**
 
-- New features or functionality
-- Refactoring that may affect existing behavior
-- Changes to APIs or configuration
+- 新功能或新能力。
+- 可能影响现有行为的重构。
+- API 或配置变更。
 
-**Target `main` if your PR includes:**
+**如果 PR 包含以下内容，请提交到 `main`：**
 
-- Bug fixes with no behavior changes
-- Documentation improvements
-- Minor tweaks that don't affect functionality
+- 不改变行为的 bug 修复。
+- 文档改进。
+- 不影响功能的小调整。
 
-**When in doubt, target `nightly`.** It is easier to move a stable idea from `nightly`
-to `main` than to undo a risky change after it lands in the stable branch.
+**如果不确定，请提交到 `nightly`。** 将稳定想法从 `nightly` 移到 `main`，比在稳定分支落入高风险变更后再撤回更容易。
 
-### Starting Work
+### 开始工作
 
-Before making changes, sync the target branch and create a topic branch from it.
-For stable bug fixes and documentation-only changes, start from the latest `main`.
-For experimental work, start from the latest `nightly`.
+修改前，请同步目标分支，并基于它创建主题分支。
+稳定 bug 修复和纯文档变更应从最新 `main` 开始。
+实验性工作应从最新 `nightly` 开始。
 
 ```bash
 git fetch upstream
@@ -56,106 +36,85 @@ git pull --ff-only upstream main
 git switch -c your-topic-branch
 ```
 
-Use your primary HKUDS/nanobot remote in place of `upstream` if your checkout
-uses a different remote name.
+如果你的 checkout 使用不同的远端名，请用你主要的 HKUDS/nanobot remote 替换 `upstream`。
 
-Keep unrelated local changes out of the topic branch. If your checkout already has
-work in progress, use a separate worktree or finish that work before starting a
-new branch.
+不要把无关本地变更混入主题分支。如果你的 checkout 已经有进行中的工作，请使用单独 worktree，或先完成当前工作再创建新分支。
 
-### How Does Nightly Get Merged to Main?
+### nightly 如何合并到 main？
 
-We don't merge the entire `nightly` branch. Instead, stable features are **cherry-picked** from `nightly` into individual PRs targeting `main`:
+我们不会整体合并 `nightly` 分支。稳定功能会从 `nightly` **cherry-pick** 到单独 PR，再合入 `main`：
 
-```
-nightly  ──┬── feature A (stable) ──► PR ──► main
-           ├── feature B (testing)
-           └── feature C (stable) ──► PR ──► main
+```text
+nightly  ──┬── feature A（稳定） ──► PR ──► main
+           ├── feature B（测试中）
+           └── feature C（稳定） ──► PR ──► main
 ```
 
-This happens approximately **once a week**, but the timing depends on when features become stable enough.
+这通常大约 **每周一次**，但具体时间取决于功能何时足够稳定。
 
-### Quick Summary
+### 快速总结
 
-| Your Change | Target Branch |
+| 你的变更 | 目标分支 |
 |-------------|---------------|
-| New feature | `nightly` |
-| Bug fix | `main` |
-| Documentation | `main` |
-| Refactoring | `nightly` |
-| Unsure | `nightly` |
+| 新功能 | `nightly` |
+| Bug 修复 | `main` |
+| 文档 | `main` |
+| 重构 | `nightly` |
+| 不确定 | `nightly` |
 
-## Development Setup
+## 开发环境
 
-Keep setup boring and reliable. The goal is to get you into the code quickly:
+保持安装流程平淡而可靠。目标是让你尽快进入代码：
 
 ```bash
-# Clone the repository
+# 克隆仓库
 git clone https://github.com/HKUDS/nanobot.git
 cd nanobot
 
-# Install with dev dependencies
+# 安装开发依赖
 pip install -e ".[dev]"
 
-# Run tests
+# 运行测试
 pytest
 
-# Lint code
+# Lint 代码
 ruff check nanobot/
 
-# Format code
+# 格式化代码
 ruff format nanobot/
 ```
 
-## Contribution License
+## 贡献许可
 
-By submitting a contribution, you confirm that you have the right to submit it
-and agree that it will be licensed under the project's MIT License.
+提交贡献即表示你确认自己有权提交这些内容，并同意它们以项目的 MIT License 授权。
 
-## Code Style
+## 代码风格
 
-We care about more than passing lint. We want nanobot to stay small, calm, and readable.
+我们关心的不只是通过 lint。我们希望 nanobot 保持小巧、平静、可读。
 
-When contributing, please aim for code that feels:
+贡献时，请尽量让代码具备以下特质：
 
-- Simple: prefer the smallest change that solves the real problem
-- Clear: optimize for the next reader, not for cleverness
-- Decoupled: keep boundaries clean and avoid unnecessary new abstractions
-- Honest: do not hide complexity, but do not create extra complexity either
-- Durable: choose solutions that are easy to maintain, test, and extend
+- 简单：优先选择能解决真实问题的最小变更。
+- 清晰：为下一位读者优化，而不是为了炫技。
+- 解耦：保持边界清楚，避免不必要的新抽象。
+- 诚实：不隐藏复杂性，也不制造额外复杂性。
+- 耐久：选择易维护、易测试、易扩展的方案。
 
-In practice:
+实际约定：
 
-- Line length: 100 characters (`ruff`)
-- Target: Python 3.11+
-- Linting: `ruff` with rules E, F, I, N, W (E501 ignored)
-- Async: uses `asyncio` throughout; pytest with `asyncio_mode = "auto"`
-- Prefer readable code over magical code
-- Prefer focused patches over broad rewrites
-- If a new abstraction is introduced, it should clearly reduce complexity rather than move it around
+- 行宽：100 字符（`ruff`）。
+- 目标版本：Python 3.11+。
+- Lint：`ruff`，启用规则 E、F、I、N、W（忽略 E501）。
+- 异步：全项目使用 `asyncio`；pytest 使用 `asyncio_mode = "auto"`。
+- 优先写可读代码，而不是魔法代码。
+- 优先提交聚焦补丁，而不是大范围重写。
+- 如果引入新抽象，它必须明确降低复杂度，而不是把复杂度换个地方。
 
-## Modifying CI Workflows
+## 修改 CI Workflow
 
-If your PR touches `.github/workflows/`, please keep the CI within
-GitHub Actions' free tier:
+如果你的 PR 修改 `.github/workflows/`，请让 CI 保持在 GitHub Actions 免费额度内：
 
-- Use only standard GitHub-hosted runners (`ubuntu-latest`, `windows-latest`)
-- Avoid macOS runners, larger runners (`*-cores`, `*-xlarge`, `*-gpu`),
-  and self-hosted runners
-- Avoid uploading large artifacts or using long retention
-- Avoid paid Marketplace actions
-
-If your change genuinely needs to step outside this, please call it out
-explicitly in the PR description so it can be discussed before merge.
-
-## Questions?
-
-If you have questions, ideas, or half-formed insights, you are warmly welcome here.
-
-Please feel free to open an [issue](https://github.com/HKUDS/nanobot/issues), join the community, or simply reach out:
-
-- [Discord](https://discord.gg/MnCvHqpUGB)
-- [Feishu/WeChat](./COMMUNICATION.md)
-- Email: Xubin Ren (@Re-bin) — <xubinrencs@gmail.com>
-
-Thank you for spending your time and care on nanobot. We would love for more people to participate in this community, and we genuinely welcome contributions of all sizes.
+- 只使用标准 GitHub 托管 runner（`ubuntu-latest`、`windows-latest`）。
+- 避免 macOS runner、大规格 runner（`*-cores`、`*-xlarge`、`*-gpu`）和 self-hosted runner。
+- 避免上传大体积 artifact 或使用很长的保留时间。
+- 避免付费 Marketplace action。

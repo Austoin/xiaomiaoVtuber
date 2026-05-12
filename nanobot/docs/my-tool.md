@@ -1,20 +1,20 @@
 # My Tool
 
-Let the agent sense and adjust its own runtime state — like asking a coworker "are you busy? can you switch to a bigger monitor?"
+让 agent 感知并调整自己的运行时状态，就像问同事：“你现在忙吗？能不能换个更大的显示器？”
 
-## Why You Need It
+## 为什么需要它
 
-Normal tools let the agent operate on the outside world (read/write files, search code). But the agent knows nothing about itself — it doesn't know which model it's running on, how many iterations are left, or how many tokens it has consumed.
+普通工具让 agent 操作外部世界（读写文件、搜索代码）。但 agent 对自己一无所知，它不知道自己正在使用哪个模型、还剩多少轮迭代，或已经消耗了多少 token。
 
-My tool fills this gap. With it, the agent can:
+My Tool 用来填补这个空白。借助它，agent 可以：
 
-- **Know who it is**: What model am I using? Where is my workspace? How many iterations remain?
-- **Adapt on the fly**: Complex task? Expand the context window. Simple chat? Switch to a faster model.
-- **Remember across turns**: Store notes in your scratchpad that persist into the next conversation turn.
+- **知道自己是谁**：我正在使用什么模型？工作区在哪里？还剩多少次迭代？
+- **即时适应**：任务复杂？扩大上下文窗口。只是简单聊天？切换到更快的模型。
+- **跨轮记忆**：把备注存入 scratchpad，并在下一轮对话中继续保留。
 
-## Configuration
+## 配置
 
-Enabled by default (read-only mode). The agent can check its state but not set it.
+默认启用（只读模式）。agent 可以检查自己的状态，但不能修改状态。
 
 ```yaml
 tools:
@@ -23,18 +23,17 @@ tools:
     allow_set: false   # default: false (read-only)
 ```
 
-To allow the agent to set its configuration (e.g. switch models, adjust parameters), set `tools.my.allow_set: true`.
+如果要允许 agent 修改自己的配置（例如切换模型、调整参数），请设置 `tools.my.allow_set: true`。
 
-Legacy `tools.myEnabled` / `tools.mySet` keys are auto-migrated on load, and
-rewritten in-place the next time `nanobot onboard` refreshes the config.
+旧版 `tools.myEnabled` / `tools.mySet` 键会在加载时自动迁移，并在下次 `nanobot onboard` 刷新配置时原地重写。
 
-All modifications are held in memory only — restart restores defaults.
+所有修改都只保存在内存中，重启后会恢复默认值。
 
 ---
 
-## check — Check "my" current state
+## check - 检查当前“my”状态
 
-Without parameters, returns a key config overview:
+不带参数时，会返回关键配置概览：
 
 ```text
 my(action="check")
@@ -49,7 +48,7 @@ my(action="check")
 #   Note: prompt_tokens is cumulative across all turns, not current context window occupancy.
 ```
 
-With a key parameter, drill into a specific config:
+带 `key` 参数时，可以深入查看特定配置：
 
 ```text
 my(action="check", key="_last_usage.prompt_tokens")
@@ -62,22 +61,22 @@ my(action="check", key="web_config.enable")
 # → Whether web search is enabled
 ```
 
-### What you can do with it
+### 可以用它做什么
 
-| Scenario | How |
+| 场景 | 方法 |
 |----------|-----|
-| "What model are you using?" | `check("model")` |
-| "How many more tool calls can you make?" | `check("max_iterations")` minus `check("_current_iteration")` |
-| "How many tokens has this conversation used?" | `check("_last_usage")` — cumulative across all turns |
-| "Where is your working directory?" | `check("workspace")` |
-| "Show me your full config" | `check()` |
-| "Are there any subagents running?" | `check("subagents")` — shows phase, iteration, elapsed time, tool events |
+| “你正在使用什么模型？” | `check("model")` |
+| “你还能调用多少次工具？” | `check("max_iterations")` 减去 `check("_current_iteration")` |
+| “这次对话用了多少 token？” | `check("_last_usage")`，它是所有轮次的累计值 |
+| “你的工作目录在哪里？” | `check("workspace")` |
+| “显示完整配置” | `check()` |
+| “有没有子 agent 正在运行？” | `check("subagents")`，显示阶段、迭代次数、耗时和工具事件 |
 
 ---
 
-## set — Runtime tuning
+## set - 运行时调优
 
-Changes take effect immediately, no restart required.
+修改会立即生效，无需重启。
 
 ```text
 my(action="set", key="max_iterations", value=80)
@@ -90,7 +89,7 @@ my(action="set", key="context_window_tokens", value=131072)
 # → Expand context window for long documents
 ```
 
-You can also store custom state in your scratchpad:
+你也可以在 scratchpad 中存储自定义状态：
 
 ```text
 my(action="set", key="current_project", value="nanobot")
@@ -99,37 +98,37 @@ my(action="set", key="task_complexity", value="high")
 # → These values persist into the next conversation turn
 ```
 
-### Protected parameters
+### 受保护参数
 
-These parameters have type and range validation — invalid values are rejected:
+这些参数带有类型和范围校验，无效值会被拒绝：
 
-| Parameter | Type | Range | Purpose |
+| 参数 | 类型 | 范围 | 用途 |
 |-----------|------|-------|---------|
-| `max_iterations` | int | 1–100 | Max tool calls per conversation turn |
-| `context_window_tokens` | int | 4,096–1,000,000 | Context window size |
-| `model` | str | non-empty | LLM model to use |
+| `max_iterations` | int | 1-100 | 每轮对话最大工具调用次数 |
+| `context_window_tokens` | int | 4,096-1,000,000 | 上下文窗口大小 |
+| `model` | str | 非空 | 使用的 LLM 模型 |
 
-Other parameters (e.g. `workspace`, `provider_retry_mode`, `max_tool_result_chars`) can be set freely, as long as the value is JSON-safe.
+其他参数（例如 `workspace`、`provider_retry_mode`、`max_tool_result_chars`）可以自由设置，只要值是 JSON-safe 的。
 
 ---
 
-## Practical Scenarios
+## 实用场景
 
-### "This task is complex, I need more room"
+### “这个任务很复杂，我需要更多空间”
 
 ```text
 Agent: This codebase is large, let me expand my context window to handle it.
 → my(action="set", key="context_window_tokens", value=131072)
 ```
 
-### "Simple question, don't waste compute"
+### “简单问题，不要浪费算力”
 
 ```text
 Agent: This is a straightforward question, let me switch to a faster model.
 → my(action="set", key="model", value="fast-model")
 ```
 
-### "Remember user preferences across turns"
+### “跨轮记住用户偏好”
 
 ```text
 Turn 1: my(action="set", key="user_prefers_concise", value=True)
@@ -137,7 +136,7 @@ Turn 2: my(action="check", key="user_prefers_concise")
 # → True (still remembers the user likes concise replies)
 ```
 
-### "Self-diagnosis"
+### “自我诊断”
 
 ```text
 User: "Why aren't you searching the web?"
@@ -147,7 +146,7 @@ Agent: Let me check my web config.
 Agent: Web search is disabled — please set web.enable: true in your config.
 ```
 
-### "Token budget management"
+### “Token 预算管理”
 
 ```text
 Agent: Let me check how much budget I have left.
@@ -156,7 +155,7 @@ Agent: Let me check how much budget I have left.
 Agent: I've used ~53k tokens total so far. I'll keep my remaining replies concise.
 ```
 
-### "Subagent monitoring"
+### “子 agent 监控”
 
 ```text
 Agent: Let me check on the background tasks.
@@ -174,34 +173,34 @@ Agent: The code review is progressing well. The test task hasn't started yet.
 
 ---
 
-## Safety Mechanisms
+## 安全机制
 
-Core design principle: **All modifications live in memory only. Restart restores defaults.** The agent cannot cause persistent damage.
+核心设计原则：**所有修改只存在于内存中。重启会恢复默认值。** agent 无法造成持久破坏。
 
-### Off-limits (BLOCKED)
+### 禁区（已阻止）
 
-Cannot be checked or modified — fully hidden:
+不能检查或修改，完全隐藏：
 
-| Category | Attributes | Reason |
+| 类别 | 属性 | 原因 |
 |----------|-----------|--------|
-| Core infrastructure | `bus`, `provider`, `_running` | Changes would crash the system |
-| Tool registry | `tools` | Must not remove its own tools |
-| Subsystems | `runner`, `sessions`, `consolidator`, etc. | Affects other users/sessions |
-| Sensitive data | `_mcp_servers`, `_pending_queues`, etc. | Contains credentials and message routing |
-| Security boundaries | `restrict_to_workspace`, `channels_config` | Bypassing would violate isolation |
-| Python internals | `__class__`, `__dict__`, etc. | Prevents sandbox escape |
+| 核心基础设施 | `bus`、`provider`、`_running` | 修改会导致系统崩溃 |
+| 工具注册表 | `tools` | 不能移除自己的工具 |
+| 子系统 | `runner`、`sessions`、`consolidator` 等 | 会影响其他用户或会话 |
+| 敏感数据 | `_mcp_servers`、`_pending_queues` 等 | 包含凭据和消息路由 |
+| 安全边界 | `restrict_to_workspace`、`channels_config` | 绕过会破坏隔离 |
+| Python 内部结构 | `__class__`、`__dict__` 等 | 防止沙箱逃逸 |
 
-### Read-only (check only)
+### 只读（只能 check）
 
-Can be checked but not set:
+可以检查，但不能设置：
 
-| Category | Attributes | Reason |
+| 类别 | 属性 | 原因 |
 |----------|-----------|--------|
-| Subagent manager | `subagents` | Observable, but replacing breaks the system |
-| Execution config | `exec_config` | Can check sandbox/enable status, cannot change it |
-| Web config | `web_config` | Can check enable status, cannot change it |
-| Iteration counter | `_current_iteration` | Updated by runner only |
+| 子 agent 管理器 | `subagents` | 可观察，但替换会破坏系统 |
+| 执行配置 | `exec_config` | 可以检查沙箱/启用状态，不能修改 |
+| Web 配置 | `web_config` | 可以检查启用状态，不能修改 |
+| 迭代计数器 | `_current_iteration` | 只能由 runner 更新 |
 
-### Sensitive field protection
+### 敏感字段保护
 
-Sub-fields matching sensitive names (`api_key`, `password`, `secret`, `token`, etc.) are blocked from both check and set, regardless of parent path. This prevents credential leaks via dot-path traversal (e.g. `web_config.search.api_key`).
+匹配敏感名称的子字段（`api_key`、`password`、`secret`、`token` 等）会被同时禁止 check 和 set，无论其父路径是什么。这可以防止通过 dot-path 遍历泄露凭据，例如 `web_config.search.api_key`。
