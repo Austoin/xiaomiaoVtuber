@@ -1,0 +1,4140 @@
+# AuVirtual 项目结构
+
+本文记录 AuVirtual 的目录结构和文件作用。
+
+说明：`node_modules`、`.git`、缓存目录、构建产物不纳入索引。
+
+## 1. 项目定位
+
+AuVirtual 是一个面向 AI 虚拟角色的 monorepo，覆盖 Web、Electron 桌面端、移动端、服务端、插件、机器人服务和共享包。
+
+## 2. 顶层目录
+
+- `.agents/`：本地 AI agent 技能与指令配置。
+- `.cursor/`：Cursor 编辑器配置。
+- `.gemini/`：Gemini CLI/Agent 配置。
+- `.github/`：GitHub 工作流、Issue 模板和仓库自动化配置。
+- `.vscode/`：VS Code 工作区推荐配置。
+- `.zed/`：Zed 编辑器配置。
+- `apps/`：应用入口集合，包含 Web、桌面端、移动端、Server 和示例应用。
+- `bucket/`：Scoop/发布相关 bucket 配置。
+- `docs/`：文档站与项目文档内容。
+- `engines/`：非 Web 技术栈引擎实现，目前包含 Godot C# 版本。
+- `integrations/`：第三方平台集成，目前包含 VS Code 扩展。
+- `nix/`：Nix 环境与构建辅助配置。
+- `packages/`：共享包集合，包含 UI、SDK、运行时、协议、模型驱动和工具包。
+- `patches/`：pnpm patchedDependencies 使用的第三方依赖补丁。
+- `plugins/`：AIRI/AuVirtual 插件集合，用于扩展平台能力。
+- `scripts/`：项目级脚本。
+- `services/`：外部服务和机器人适配器，如 Discord、Telegram、Minecraft、MCP。
+
+## 3. 根目录关键文件
+
+- `.dockerignore`：Docker 构建忽略规则。
+- `.editorconfig`：跨编辑器格式配置。
+- `.gitattributes`：Git 文件属性配置。
+- `.gitignore`：Git 忽略规则。
+- `.prototools`：Proto 工具链配置。
+- `.tool-versions`：工具版本管理配置。
+- `AGENTS.md`：仓库级 AI 编码代理工作约定。
+- `bump.config.ts`：版本发布/变更 bump 配置。
+- `CLAUDE.md`：Claude/AI agent 使用的项目上下文说明。
+- `crowdin.yml`：Crowdin 翻译同步配置。
+- `cspell.config.yaml`：拼写检查配置。
+- `default.nix`：Nix 默认入口。
+- `eslint.config.js`：ESLint 根配置。
+- `flake.lock`：Nix flake 锁文件。
+- `flake.nix`：Nix flake 配置。
+- `knip.json`：Knip 未使用代码/依赖检查配置。
+- `LICENSE`：项目许可证。
+- `package.json`：根 workspace 清单，定义 pnpm 版本、脚本和 monorepo 元信息。
+- `pnpm-lock.yaml`：pnpm 锁文件，固定依赖解析结果。
+- `pnpm-workspace.yaml`：pnpm workspace 范围、catalog、overrides 和 patch 配置。
+- `posthog.config.ts`：PostHog 相关配置。
+- `README.md`：项目中文入口说明，介绍 AuVirtual 和快速开始。
+- `rustfmt.toml`：Rust 格式化配置。
+- `skills-lock.json`：AI skills 锁定信息。
+- `sponsorkit.config.js`：SponsorKit 赞助者资源生成配置。
+- `tsconfig.json`：TypeScript 根配置。
+- `turbo.json`：Turborepo 任务流水线配置。
+- `uno.config.ts`：UnoCSS 根配置。
+- `vite-env.d.ts`：Vite 全局类型声明。
+- `vitest.config.ts`：Vitest 根测试配置。
+- `操作文档.md`：本地操作手册，记录 Git 重建、上传、启动、构建和检查命令。
+
+## 4. Workspace 包结构
+
+### `apps/`
+
+- `apps/component-calling/`：组件调用示例/插件应用。
+- `apps/server/`：Hono 服务端 API。
+- `apps/stage-pocket/`：移动端应用。
+- `apps/stage-tamagotchi/`：Electron 桌面版应用。
+- `apps/stage-web/`：Web 版应用。
+- `apps/ui-server-auth/`：服务端认证 UI 示例应用。
+
+### `packages/`
+
+- `packages/audio/`：音频基础能力。
+- `packages/audio-pipelines-transcribe/`：workspace 子项目。
+- `packages/cap-vite/`：workspace 子项目。
+- `packages/ccc/`：workspace 子项目。
+- `packages/core-agent/`：Agent 核心逻辑。
+- `packages/core-character/`：角色核心数据结构。
+- `packages/drizzle-duckdb-wasm/`：workspace 子项目。
+- `packages/duckdb-wasm/`：workspace 子项目。
+- `packages/electron-eventa/`：workspace 子项目。
+- `packages/electron-screen-capture/`：workspace 子项目。
+- `packages/electron-vueuse/`：workspace 子项目。
+- `packages/font-chillroundm/`：workspace 子项目。
+- `packages/font-cjkfonts-allseto/`：workspace 子项目。
+- `packages/font-departure-mono/`：workspace 子项目。
+- `packages/font-xiaolai/`：workspace 子项目。
+- `packages/i18n/`：国际化翻译资源。
+- `packages/memory-pgvector/`：workspace 子项目。
+- `packages/model-driver-lipsync/`：口型同步模型驱动。
+- `packages/model-driver-mediapipe/`：MediaPipe 模型驱动。
+- `packages/pipelines-audio/`：音频流水线。
+- `packages/plugin-protocol/`：插件协议定义。
+- `packages/plugin-sdk/`：插件 SDK。
+- `packages/plugin-sdk-tamagotchi/`：workspace 子项目。
+- `packages/scenarios-stage-tamagotchi-browser/`：workspace 子项目。
+- `packages/scenarios-stage-tamagotchi-electron/`：workspace 子项目。
+- `packages/server-runtime/`：跨环境服务端运行时。
+- `packages/server-schema/`：服务端数据库 schema。
+- `packages/server-sdk/`：服务端 API SDK。
+- `packages/server-sdk-shared/`：workspace 子项目。
+- `packages/server-shared/`：服务端共享类型和工具。
+- `packages/stage-layouts/`：共用布局组件。
+- `packages/stage-pages/`：Web/桌面共用页面。
+- `packages/stage-shared/`：Stage 应用共享业务逻辑。
+- `packages/stage-ui/`：核心业务 UI 组件、stores 和 composables。
+- `packages/stage-ui-live2d/`：Live2D 相关 UI 能力。
+- `packages/stage-ui-three/`：Three.js 相关 Vue 组件与绑定。
+- `packages/stream-kit/`：流式处理工具包。
+- `packages/ui/`：基础 UI primitives。
+- `packages/ui-loading-screens/`：workspace 子项目。
+- `packages/ui-transitions/`：workspace 子项目。
+- `packages/unocss-preset-fonts/`：workspace 子项目。
+- `packages/vishot-runner-browser/`：workspace 子项目。
+- `packages/vishot-runner-electron/`：workspace 子项目。
+- `packages/vishot-runtime/`：workspace 子项目。
+- `packages/vite-plugin-warpdrive/`：Vite 插件。
+
+### `services/`
+
+- `services/computer-use-mcp/`：workspace 子项目。
+- `services/discord-bot/`：workspace 子项目。
+- `services/minecraft/`：workspace 子项目。
+- `services/satori-bot/`：workspace 子项目。
+- `services/telegram-bot/`：workspace 子项目。
+- `services/twitter-services/`：workspace 子项目。
+
+### `plugins/`
+
+- `plugins/airi-plugin-bilibili-laplace/`：workspace 子项目。
+- `plugins/airi-plugin-claude-code/`：workspace 子项目。
+- `plugins/airi-plugin-game-chess/`：workspace 子项目。
+- `plugins/airi-plugin-homeassistant/`：workspace 子项目。
+- `plugins/airi-plugin-web-extension/`：workspace 子项目。
+
+### `integrations/`
+
+- `integrations/vscode/`：workspace 子项目。
+
+### `engines/`
+
+- `engines/stage-tamagotchi-godot/`：workspace 子项目。
+
+## 5. 全文件作用索引
+
+共记录 3934 个项目文件。
+
+### .agents
+
+- `.agents/skills/agent-browser-electron/agents/openai.yaml`：YAML 配置文件。
+- `.agents/skills/agent-browser-electron/SKILL.md`：Markdown 文档。
+- `.agents/skills/agent-browser/references/authentication.md`：Markdown 文档。
+- `.agents/skills/agent-browser/references/commands.md`：Markdown 文档。
+- `.agents/skills/agent-browser/references/profiling.md`：Markdown 文档。
+- `.agents/skills/agent-browser/references/proxy-support.md`：Markdown 文档。
+- `.agents/skills/agent-browser/references/session-management.md`：Markdown 文档。
+- `.agents/skills/agent-browser/references/snapshot-refs.md`：Markdown 文档。
+- `.agents/skills/agent-browser/references/video-recording.md`：Markdown 文档。
+- `.agents/skills/agent-browser/SKILL.md`：Markdown 文档。
+- `.agents/skills/agent-browser/templates/authenticated-session.sh`：项目文件。
+- `.agents/skills/agent-browser/templates/capture-workflow.sh`：项目文件。
+- `.agents/skills/agent-browser/templates/form-automation.sh`：项目文件。
+- `.agents/skills/eventa/SKILL.md`：Markdown 文档。
+- `.agents/skills/pnpm/GENERATION.md`：Markdown 文档。
+- `.agents/skills/pnpm/references/best-practices-ci.md`：Markdown 文档。
+- `.agents/skills/pnpm/references/best-practices-migration.md`：Markdown 文档。
+- `.agents/skills/pnpm/references/best-practices-performance.md`：Markdown 文档。
+- `.agents/skills/pnpm/references/core-cli.md`：Markdown 文档。
+- `.agents/skills/pnpm/references/core-config.md`：Markdown 文档。
+- `.agents/skills/pnpm/references/core-store.md`：Markdown 文档。
+- `.agents/skills/pnpm/references/core-workspaces.md`：Markdown 文档。
+- `.agents/skills/pnpm/references/features-aliases.md`：Markdown 文档。
+- `.agents/skills/pnpm/references/features-catalogs.md`：Markdown 文档。
+- `.agents/skills/pnpm/references/features-hooks.md`：Markdown 文档。
+- `.agents/skills/pnpm/references/features-overrides.md`：Markdown 文档。
+- `.agents/skills/pnpm/references/features-patches.md`：Markdown 文档。
+- `.agents/skills/pnpm/references/features-peer-deps.md`：Markdown 文档。
+- `.agents/skills/pnpm/SKILL.md`：Markdown 文档。
+- `.agents/skills/stage-tamagotchi-godot-csharp/SKILL.md`：Markdown 文档。
+- `.agents/skills/unocss/GENERATION.md`：Markdown 文档。
+- `.agents/skills/unocss/references/core-config.md`：Markdown 文档。
+- `.agents/skills/unocss/references/core-extracting.md`：Markdown 文档。
+- `.agents/skills/unocss/references/core-layers.md`：Markdown 文档。
+- `.agents/skills/unocss/references/core-rules.md`：Markdown 文档。
+- `.agents/skills/unocss/references/core-safelist.md`：Markdown 文档。
+- `.agents/skills/unocss/references/core-shortcuts.md`：Markdown 文档。
+- `.agents/skills/unocss/references/core-theme.md`：Markdown 文档。
+- `.agents/skills/unocss/references/core-variants.md`：Markdown 文档。
+- `.agents/skills/unocss/references/integrations-nuxt.md`：Markdown 文档。
+- `.agents/skills/unocss/references/integrations-vite.md`：Markdown 文档。
+- `.agents/skills/unocss/references/preset-attributify.md`：Markdown 文档。
+- `.agents/skills/unocss/references/preset-icons.md`：Markdown 文档。
+- `.agents/skills/unocss/references/preset-mini.md`：Markdown 文档。
+- `.agents/skills/unocss/references/preset-rem-to-px.md`：Markdown 文档。
+- `.agents/skills/unocss/references/preset-tagify.md`：Markdown 文档。
+- `.agents/skills/unocss/references/preset-typography.md`：Markdown 文档。
+- `.agents/skills/unocss/references/preset-web-fonts.md`：Markdown 文档。
+- `.agents/skills/unocss/references/preset-wind3.md`：Markdown 文档。
+- `.agents/skills/unocss/references/preset-wind4.md`：Markdown 文档。
+- `.agents/skills/unocss/references/transformer-attributify-jsx.md`：Markdown 文档。
+- `.agents/skills/unocss/references/transformer-compile-class.md`：Markdown 文档。
+- `.agents/skills/unocss/references/transformer-directives.md`：Markdown 文档。
+- `.agents/skills/unocss/references/transformer-variant-group.md`：Markdown 文档。
+- `.agents/skills/unocss/SKILL.md`：Markdown 文档。
+- `.agents/skills/vue-best-practices/LICENSE.md`：Markdown 文档。
+- `.agents/skills/vue-best-practices/references/animation-class-based-technique.md`：Markdown 文档。
+- `.agents/skills/vue-best-practices/references/animation-state-driven-technique.md`：Markdown 文档。
+- `.agents/skills/vue-best-practices/references/component-async.md`：Markdown 文档。
+- `.agents/skills/vue-best-practices/references/component-data-flow.md`：Markdown 文档。
+- `.agents/skills/vue-best-practices/references/component-fallthrough-attrs.md`：Markdown 文档。
+- `.agents/skills/vue-best-practices/references/component-keep-alive.md`：Markdown 文档。
+- `.agents/skills/vue-best-practices/references/component-slots.md`：Markdown 文档。
+- `.agents/skills/vue-best-practices/references/component-suspense.md`：Markdown 文档。
+- `.agents/skills/vue-best-practices/references/component-teleport.md`：Markdown 文档。
+- `.agents/skills/vue-best-practices/references/component-transition-group.md`：Markdown 文档。
+- `.agents/skills/vue-best-practices/references/component-transition.md`：Markdown 文档。
+- `.agents/skills/vue-best-practices/references/composables.md`：Markdown 文档。
+- `.agents/skills/vue-best-practices/references/directives.md`：Markdown 文档。
+- `.agents/skills/vue-best-practices/references/perf-avoid-component-abstraction-in-lists.md`：Markdown 文档。
+- `.agents/skills/vue-best-practices/references/perf-v-once-v-memo-directives.md`：Markdown 文档。
+- `.agents/skills/vue-best-practices/references/perf-virtualize-large-lists.md`：Markdown 文档。
+- `.agents/skills/vue-best-practices/references/plugins.md`：Markdown 文档。
+- `.agents/skills/vue-best-practices/references/reactivity.md`：Markdown 文档。
+- `.agents/skills/vue-best-practices/references/render-functions.md`：Markdown 文档。
+- `.agents/skills/vue-best-practices/references/sfc.md`：Markdown 文档。
+- `.agents/skills/vue-best-practices/references/state-management.md`：Markdown 文档。
+- `.agents/skills/vue-best-practices/references/updated-hook-performance.md`：Markdown 文档。
+- `.agents/skills/vue-best-practices/SKILL.md`：Markdown 文档。
+- `.agents/skills/vue-best-practices/SYNC.md`：Markdown 文档。
+- `.agents/skills/vue/GENERATION.md`：Markdown 文档。
+- `.agents/skills/vue/references/advanced-patterns.md`：Markdown 文档。
+- `.agents/skills/vue/references/core-new-apis.md`：Markdown 文档。
+- `.agents/skills/vue/references/script-setup-macros.md`：Markdown 文档。
+- `.agents/skills/vue/SKILL.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/LICENSE.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/computedAsync.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/computedEager.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/computedInject.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/computedWithControl.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/createEventHook.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/createGenericProjection.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/createGlobalState.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/createInjectionState.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/createProjection.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/createRef.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/createReusableTemplate.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/createSharedComposable.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/createTemplatePromise.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/createUnrefFn.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/extendRef.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/from.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/get.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/injectLocal.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/isDefined.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/logicAnd.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/logicNot.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/logicOr.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/makeDestructurable.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/onClickOutside.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/onElementRemoval.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/onKeyStroke.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/onLongPress.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/onStartTyping.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/provideLocal.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/reactify.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/reactifyObject.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/reactiveComputed.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/reactiveOmit.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/reactivePick.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/refAutoReset.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/refDebounced.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/refDefault.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/refManualReset.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/refThrottled.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/refWithControl.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/set.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/syncRef.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/syncRefs.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/templateRef.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/toObserver.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/toReactive.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/toRef.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/toRefs.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/tryOnBeforeMount.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/tryOnBeforeUnmount.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/tryOnMounted.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/tryOnScopeDispose.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/tryOnUnmounted.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/unrefElement.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/until.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useAbs.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useActiveElement.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useAnimate.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useArrayDifference.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useArrayEvery.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useArrayFilter.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useArrayFind.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useArrayFindIndex.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useArrayFindLast.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useArrayIncludes.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useArrayJoin.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useArrayMap.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useArrayReduce.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useArraySome.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useArrayUnique.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useAsyncQueue.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useAsyncState.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useAsyncValidator.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useAuth.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useAverage.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useAxios.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useBase64.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useBattery.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useBluetooth.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useBreakpoints.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useBroadcastChannel.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useBrowserLocation.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useCached.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useCeil.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useChangeCase.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useClamp.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useClipboard.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useClipboardItems.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useCloned.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useColorMode.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useConfirmDialog.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useCookies.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useCountdown.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useCounter.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useCssSupports.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useCssVar.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useCurrentElement.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useCycleList.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useDark.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useDateFormat.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useDebouncedRefHistory.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useDebounceFn.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useDeviceMotion.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useDeviceOrientation.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useDevicePixelRatio.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useDevicesList.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useDisplayMedia.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useDocumentVisibility.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useDraggable.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useDrauu.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useDropZone.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useElementBounding.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useElementByPoint.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useElementHover.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useElementSize.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useElementVisibility.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useEventBus.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useEventListener.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useEventSource.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useExtractedObservable.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useEyeDropper.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useFavicon.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useFetch.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useFileDialog.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useFileSystemAccess.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useFirestore.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useFloor.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useFocus.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useFocusTrap.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useFocusWithin.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useFps.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useFullscreen.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useFuse.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useGamepad.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useGeolocation.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useIDBKeyval.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useIdle.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useImage.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useInfiniteScroll.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useIntersectionObserver.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useInterval.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useIntervalFn.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useIpcRenderer.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useIpcRendererInvoke.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useIpcRendererOn.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useJwt.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useKeyModifier.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useLastChanged.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useLocalStorage.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useMagicKeys.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useManualRefHistory.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useMath.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useMax.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useMediaControls.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useMediaQuery.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useMemoize.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useMemory.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useMin.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useMounted.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useMouse.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useMouseInElement.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useMousePressed.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useMutationObserver.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useNavigatorLanguage.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useNetwork.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useNow.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useNProgress.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useObjectUrl.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useObservable.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useOffsetPagination.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useOnline.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/usePageLeave.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useParallax.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useParentElement.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/usePerformanceObserver.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/usePermission.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/usePointer.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/usePointerLock.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/usePointerSwipe.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/usePrecision.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/usePreferredColorScheme.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/usePreferredContrast.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/usePreferredDark.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/usePreferredLanguages.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/usePreferredReducedMotion.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/usePreferredReducedTransparency.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/usePrevious.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useProjection.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useQRCode.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useRafFn.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useRefHistory.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useResizeObserver.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useRound.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useRouteHash.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useRouteParams.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useRouteQuery.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useRTDB.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useScreenOrientation.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useScreenSafeArea.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useScriptTag.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useScroll.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useScrollLock.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useSessionStorage.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useShare.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useSortable.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useSorted.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useSpeechRecognition.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useSpeechSynthesis.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useSSRWidth.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useStepper.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useStorage.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useStorageAsync.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useStyleTag.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useSubject.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useSubscription.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useSum.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useSupported.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useSwipe.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useTemplateRefsList.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useTextareaAutosize.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useTextDirection.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useTextSelection.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useThrottledRefHistory.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useThrottleFn.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useTimeAgo.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useTimeAgoIntl.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useTimeout.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useTimeoutFn.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useTimeoutPoll.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useTimestamp.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useTitle.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useToggle.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useToNumber.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useToString.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useTransition.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useTrunc.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useUrlSearchParams.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useUserMedia.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useVibrate.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useVirtualList.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useVModel.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useVModels.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useWakeLock.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useWebNotification.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useWebSocket.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useWebWorker.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useWebWorkerFn.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useWindowFocus.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useWindowScroll.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useWindowSize.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useZoomFactor.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/useZoomLevel.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/watchArray.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/watchAtMost.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/watchDebounced.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/watchDeep.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/watchExtractedObservable.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/watchIgnorable.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/watchImmediate.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/watchOnce.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/watchPausable.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/watchThrottled.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/watchTriggerable.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/watchWithFilter.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/references/whenever.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/SKILL.md`：Markdown 文档。
+- `.agents/skills/vueuse-functions/SYNC.md`：Markdown 文档。
+- `.agents/skills/xsai/agents/openai.yaml`：YAML 配置文件。
+- `.agents/skills/xsai/references/extensions.md`：Markdown 文档。
+- `.agents/skills/xsai/references/media-and-embeddings.md`：Markdown 文档。
+- `.agents/skills/xsai/references/package-selection.md`：Markdown 文档。
+- `.agents/skills/xsai/references/recipes.md`：Markdown 文档。
+- `.agents/skills/xsai/references/structured-output.md`：Markdown 文档。
+- `.agents/skills/xsai/references/text-stream-tools.md`：Markdown 文档。
+- `.agents/skills/xsai/SKILL.md`：Markdown 文档。
+### .cursor
+
+- `.cursor/commands/deslop.md`：Markdown 文档。
+### 根目录文件
+
+- `.dockerignore`：Docker 构建忽略规则。
+- `.editorconfig`：跨编辑器格式配置。
+### .gemini
+
+- `.gemini/config.yaml`：YAML 配置文件。
+- `.gemini/styleguide.md`：Markdown 文档。
+### 根目录文件
+
+- `.gitattributes`：Git 文件属性配置。
+### .github
+
+- `.github/agents/agentic-workflows.agent.md`：Markdown 文档。
+- `.github/aw/actions-lock.json`：JSON 配置或数据文件。
+- `.github/CODE_OF_CONDUCT.md`：Markdown 文档。
+- `.github/CONTRIBUTING.md`：Markdown 文档。
+- `.github/copilot-instructions.md`：Markdown 文档。
+- `.github/FUNDING.yml`：YAML 配置文件。
+- `.github/ISSUE_TEMPLATE/ai-task.md`：Markdown 文档。
+- `.github/ISSUE_TEMPLATE/bug_report.yaml`：YAML 配置文件。
+- `.github/ISSUE_TEMPLATE/feature_request.yaml`：YAML 配置文件。
+- `.github/ISSUE_TEMPLATE/typo.yaml`：YAML 配置文件。
+- `.github/labels.yml`：YAML 配置文件。
+- `.github/PULL_REQUEST_TEMPLATE.md`：Markdown 文档。
+- `.github/SECURITY.md`：Markdown 文档。
+- `.github/slash-command-dispatch.json`：JSON 配置或数据文件。
+- `.github/workflows/autofix.yaml`：YAML 配置文件。
+- `.github/workflows/ci.yml`：YAML 配置文件。
+- `.github/workflows/copilot-setup-steps.yml`：YAML 配置文件。
+- `.github/workflows/crowdin-cron-sync.yml`：YAML 配置文件。
+- `.github/workflows/crowdin-manual-upload.yml`：YAML 配置文件。
+- `.github/workflows/deploy-cloudflare-workers-dev-server.yml`：YAML 配置文件。
+- `.github/workflows/deploy-cloudflare-workers-preview-deploy.yml`：YAML 配置文件。
+- `.github/workflows/deploy-cloudflare-workers-preview-prepare.yml`：YAML 配置文件。
+- `.github/workflows/deploy-cloudflare-workers.yml`：YAML 配置文件。
+- `.github/workflows/deploy-huggingface-spaces.yml`：YAML 配置文件。
+- `.github/workflows/ops-slash-command-dispatch.yml`：YAML 配置文件。
+- `.github/workflows/ops-slash-command-hold.yml`：YAML 配置文件。
+- `.github/workflows/ops-slash-command-unhold.yml`：YAML 配置文件。
+- `.github/workflows/pr-triage-dispatch.yml`：YAML 配置文件。
+- `.github/workflows/pr-triage.lock.yml`：YAML 配置文件。
+- `.github/workflows/pr-triage.md`：Markdown 文档。
+- `.github/workflows/release-docker-assets.yml`：YAML 配置文件。
+- `.github/workflows/release-docker.yaml`：YAML 配置文件。
+- `.github/workflows/release-pkg.yaml`：YAML 配置文件。
+- `.github/workflows/release-pocket-android.yml`：YAML 配置文件。
+- `.github/workflows/release-pocket-ios.yml`：YAML 配置文件。
+- `.github/workflows/release-tamagotchi.yml`：YAML 配置文件。
+- `.github/workflows/release-vsix.yaml`：YAML 配置文件。
+- `.github/workflows/sponsors-svg.yml`：YAML 配置文件。
+- `.github/workflows/sync-labels.yml`：YAML 配置文件。
+- `.github/workflows/update-nix-assets-hash.yaml`：YAML 配置文件。
+- `.github/workflows/update-nix-pnpm-deps-hash.yaml`：YAML 配置文件。
+- `.github/workflows/update-post-release-readme-urls.yml`：YAML 配置文件。
+### 根目录文件
+
+- `.gitignore`：Git 忽略规则。
+- `.prototools`：Proto 工具链配置。
+- `.tool-versions`：工具版本管理配置。
+### .vscode
+
+- `.vscode/extensions.json`：JSON 配置或数据文件。
+- `.vscode/launch.json`：JSON 配置或数据文件。
+- `.vscode/settings.json`：JSON 配置或数据文件。
+### .zed
+
+- `.zed/settings.json`：JSON 配置或数据文件。
+### 根目录文件
+
+- `AGENTS.md`：仓库级 AI 编码代理工作约定。
+### apps
+
+- `apps/component-calling/index.html`：项目文件。
+- `apps/component-calling/netlify.toml`：项目文件。
+- `apps/component-calling/package.json`：包清单，定义包名、脚本、依赖和发布信息。
+- `apps/component-calling/public/apple-touch-icon.png`：静态资源或媒体文件。
+- `apps/component-calling/public/favicon.ico`：静态资源或媒体文件。
+- `apps/component-calling/public/favicon.svg`：静态资源或媒体文件。
+- `apps/component-calling/public/maskable_icon_x192.png`：静态资源或媒体文件。
+- `apps/component-calling/public/maskable_icon_x512.png`：静态资源或媒体文件。
+- `apps/component-calling/public/web-app-manifest-192x192.png`：静态资源或媒体文件。
+- `apps/component-calling/public/web-app-manifest-512x512.png`：静态资源或媒体文件。
+- `apps/component-calling/src/App.vue`：Vue 单文件组件。
+- `apps/component-calling/src/main.ts`：TypeScript 源码。
+- `apps/component-calling/src/pages/index.vue`：模块入口文件。
+- `apps/component-calling/src/plugins/plugin-component-calling-weather/assets/clear-day.svg`：静态资源或媒体文件。
+- `apps/component-calling/src/plugins/plugin-component-calling-weather/components/index.ts`：模块入口文件。
+- `apps/component-calling/src/plugins/plugin-component-calling-weather/components/Skeleton.vue`：Vue/UI 组件。
+- `apps/component-calling/src/plugins/plugin-component-calling-weather/components/Weather.vue`：Vue/UI 组件。
+- `apps/component-calling/src/plugins/plugin-component-calling-weather/index.ts`：模块入口文件。
+- `apps/component-calling/src/plugins/plugin-component-calling/index.ts`：模块入口文件。
+- `apps/component-calling/src/utils/xsai-testing.ts`：工具函数。
+- `apps/component-calling/tsconfig.json`：TypeScript 配置。
+- `apps/component-calling/uno.config.ts`：工具配置文件。
+- `apps/component-calling/vite.config.ts`：工具配置文件。
+- `apps/server/.env`：项目文件。
+- `apps/server/CLAUDE.md`：Markdown 文档。
+- `apps/server/docker-compose.otel.yml`：YAML 配置文件。
+- `apps/server/docker-compose.yml`：YAML 配置文件。
+- `apps/server/Dockerfile`：项目文件。
+- `apps/server/docs/ai-context/architecture-overview.md`：Markdown 文档。
+- `apps/server/docs/ai-context/auth-and-oidc.md`：Markdown 文档。
+- `apps/server/docs/ai-context/billing-architecture.md`：Markdown 文档。
+- `apps/server/docs/ai-context/config-and-naming-conventions.md`：Markdown 文档。
+- `apps/server/docs/ai-context/data-model-and-state.md`：Markdown 文档。
+- `apps/server/docs/ai-context/email-auth-resend.md`：Markdown 文档。
+- `apps/server/docs/ai-context/flux-meter.md`：Markdown 文档。
+- `apps/server/docs/ai-context/observability-conventions.md`：Markdown 文档。
+- `apps/server/docs/ai-context/README.md`：Markdown 文档。
+- `apps/server/docs/ai-context/redis-boundaries-and-pubsub.md`：Markdown 文档。
+- `apps/server/docs/ai-context/stripe-pricing.md`：Markdown 文档。
+- `apps/server/docs/ai-context/transport-and-routes.md`：Markdown 文档。
+- `apps/server/docs/ai-context/verifications/email-auth.md`：Markdown 文档。
+- `apps/server/docs/ai-context/workers-and-runtime.md`：Markdown 文档。
+- `apps/server/drizzle.config.ts`：工具配置文件。
+- `apps/server/drizzle/0000_mean_slipstream.sql`：项目文件。
+- `apps/server/drizzle/0001_magenta_skrulls.sql`：项目文件。
+- `apps/server/drizzle/0002_mean_tigra.sql`：项目文件。
+- `apps/server/drizzle/0003_old_titania.sql`：项目文件。
+- `apps/server/drizzle/0004_bouncy_devos.sql`：项目文件。
+- `apps/server/drizzle/0005_tough_living_tribunal.sql`：项目文件。
+- `apps/server/drizzle/0006_overconfident_susan_delgado.sql`：项目文件。
+- `apps/server/drizzle/0007_red_nicolaos.sql`：项目文件。
+- `apps/server/drizzle/0008_gray_xavin.sql`：项目文件。
+- `apps/server/drizzle/meta/0000_snapshot.json`：JSON 配置或数据文件。
+- `apps/server/drizzle/meta/0001_snapshot.json`：JSON 配置或数据文件。
+- `apps/server/drizzle/meta/0002_snapshot.json`：JSON 配置或数据文件。
+- `apps/server/drizzle/meta/0003_snapshot.json`：JSON 配置或数据文件。
+- `apps/server/drizzle/meta/0004_snapshot.json`：JSON 配置或数据文件。
+- `apps/server/drizzle/meta/0005_snapshot.json`：JSON 配置或数据文件。
+- `apps/server/drizzle/meta/0006_snapshot.json`：JSON 配置或数据文件。
+- `apps/server/drizzle/meta/0007_snapshot.json`：JSON 配置或数据文件。
+- `apps/server/drizzle/meta/0008_snapshot.json`：JSON 配置或数据文件。
+- `apps/server/drizzle/meta/_journal.json`：JSON 配置或数据文件。
+- `apps/server/instrumentation.mjs`：JavaScript 脚本或配置。
+- `apps/server/otel/collector/otel-collector.yaml`：YAML 配置文件。
+- `apps/server/otel/grafana/dashboards/airi-server-overview-cloud.json`：JSON 配置或数据文件。
+- `apps/server/otel/grafana/provisioning/dashboards/dashboards.yaml`：YAML 配置文件。
+- `apps/server/otel/grafana/provisioning/datasources/datasources.yaml`：YAML 配置文件。
+- `apps/server/otel/loki/loki.yaml`：YAML 配置文件。
+- `apps/server/otel/prometheus/prometheus.yaml`：YAML 配置文件。
+- `apps/server/otel/tempo/tempo.yaml`：YAML 配置文件。
+- `apps/server/package.json`：包清单，定义包名、脚本、依赖和发布信息。
+- `apps/server/production/railway/Dockerfile`：项目文件。
+- `apps/server/railway.toml`：项目文件。
+- `apps/server/sql/init.sql`：项目文件。
+- `apps/server/src/app.test.ts`：自动化测试。
+- `apps/server/src/app.ts`：TypeScript 源码。
+- `apps/server/src/bin/run-billing-consumer.ts`：TypeScript 源码。
+- `apps/server/src/bin/run.ts`：TypeScript 源码。
+- `apps/server/src/libs/auth.test.ts`：自动化测试。
+- `apps/server/src/libs/auth.ts`：TypeScript 源码。
+- `apps/server/src/libs/db.ts`：TypeScript 源码。
+- `apps/server/src/libs/env.test.ts`：自动化测试。
+- `apps/server/src/libs/env.ts`：TypeScript 源码。
+- `apps/server/src/libs/eventa-hono-adapter.ts`：TypeScript 源码。
+- `apps/server/src/libs/external-dependency.ts`：TypeScript 源码。
+- `apps/server/src/libs/mock-db.ts`：TypeScript 源码。
+- `apps/server/src/libs/mq/index.ts`：模块入口文件。
+- `apps/server/src/libs/mq/stream.ts`：TypeScript 源码。
+- `apps/server/src/libs/mq/tests/worker.test.ts`：自动化测试。
+- `apps/server/src/libs/mq/types.ts`：TypeScript 源码。
+- `apps/server/src/libs/mq/worker.ts`：TypeScript 源码。
+- `apps/server/src/libs/otel.ts`：TypeScript 源码。
+- `apps/server/src/libs/redis.ts`：TypeScript 源码。
+- `apps/server/src/libs/request-auth.test.ts`：自动化测试。
+- `apps/server/src/libs/request-auth.ts`：TypeScript 源码。
+- `apps/server/src/libs/tests/eventa-hono-adapter.test.ts`：自动化测试。
+- `apps/server/src/middlewares/auth.ts`：TypeScript 源码。
+- `apps/server/src/middlewares/config-guard.ts`：TypeScript 源码。
+- `apps/server/src/middlewares/otel.ts`：TypeScript 源码。
+- `apps/server/src/middlewares/rate-limit.ts`：TypeScript 源码。
+- `apps/server/src/routes/auth/index.ts`：模块入口文件。
+- `apps/server/src/routes/characters/index.ts`：模块入口文件。
+- `apps/server/src/routes/characters/route.test.ts`：服务端 HTTP/WebSocket 路由。
+- `apps/server/src/routes/characters/schema.ts`：服务端 HTTP/WebSocket 路由。
+- `apps/server/src/routes/chat-ws/index.ts`：模块入口文件。
+- `apps/server/src/routes/chats/index.ts`：模块入口文件。
+- `apps/server/src/routes/chats/schema.ts`：服务端 HTTP/WebSocket 路由。
+- `apps/server/src/routes/flux/index.ts`：模块入口文件。
+- `apps/server/src/routes/flux/route.test.ts`：服务端 HTTP/WebSocket 路由。
+- `apps/server/src/routes/oidc/electron-callback.ts`：服务端 HTTP/WebSocket 路由。
+- `apps/server/src/routes/oidc/token-auth.ts`：服务端 HTTP/WebSocket 路由。
+- `apps/server/src/routes/openai/v1/index.ts`：模块入口文件。
+- `apps/server/src/routes/openai/v1/route.test.ts`：服务端 HTTP/WebSocket 路由。
+- `apps/server/src/routes/providers/index.ts`：模块入口文件。
+- `apps/server/src/routes/providers/route.test.ts`：服务端 HTTP/WebSocket 路由。
+- `apps/server/src/routes/providers/schema.ts`：服务端 HTTP/WebSocket 路由。
+- `apps/server/src/routes/stripe/index.ts`：模块入口文件。
+- `apps/server/src/routes/stripe/route.test.ts`：服务端 HTTP/WebSocket 路由。
+- `apps/server/src/routes/stripe/schema.ts`：服务端 HTTP/WebSocket 路由。
+- `apps/server/src/schemas/accounts.ts`：数据 schema 或类型定义。
+- `apps/server/src/schemas/characters.ts`：数据 schema 或类型定义。
+- `apps/server/src/schemas/chats.ts`：数据 schema 或类型定义。
+- `apps/server/src/schemas/flux-transaction.ts`：数据 schema 或类型定义。
+- `apps/server/src/schemas/flux.ts`：数据 schema 或类型定义。
+- `apps/server/src/schemas/index.ts`：模块入口文件。
+- `apps/server/src/schemas/llm-request-log.ts`：数据 schema 或类型定义。
+- `apps/server/src/schemas/providers.ts`：数据 schema 或类型定义。
+- `apps/server/src/schemas/stripe.ts`：数据 schema 或类型定义。
+- `apps/server/src/schemas/user-character.ts`：数据 schema 或类型定义。
+- `apps/server/src/scripts/auth.ts`：脚本文件。
+- `apps/server/src/services/billing/billing-consumer-handler.ts`：服务端或应用业务服务。
+- `apps/server/src/services/billing/billing-events.ts`：服务端或应用业务服务。
+- `apps/server/src/services/billing/billing-service.ts`：服务端或应用业务服务。
+- `apps/server/src/services/billing/billing.ts`：服务端或应用业务服务。
+- `apps/server/src/services/billing/flux-meter.ts`：服务端或应用业务服务。
+- `apps/server/src/services/billing/tests/billing-consumer-handler.test.ts`：服务端或应用业务服务。
+- `apps/server/src/services/billing/tests/billing-events.test.ts`：服务端或应用业务服务。
+- `apps/server/src/services/billing/tests/billing-mq.test.ts`：服务端或应用业务服务。
+- `apps/server/src/services/billing/tests/billing-service.test.ts`：服务端或应用业务服务。
+- `apps/server/src/services/billing/tests/billing.test.ts`：服务端或应用业务服务。
+- `apps/server/src/services/billing/tests/flux-meter.test.ts`：服务端或应用业务服务。
+- `apps/server/src/services/characters.ts`：服务端或应用业务服务。
+- `apps/server/src/services/chats.ts`：服务端或应用业务服务。
+- `apps/server/src/services/config-kv.ts`：服务端或应用业务服务。
+- `apps/server/src/services/email.ts`：服务端或应用业务服务。
+- `apps/server/src/services/flux-transaction.ts`：服务端或应用业务服务。
+- `apps/server/src/services/flux.ts`：服务端或应用业务服务。
+- `apps/server/src/services/llm-request-log.ts`：服务端或应用业务服务。
+- `apps/server/src/services/providers.ts`：服务端或应用业务服务。
+- `apps/server/src/services/request-log.ts`：服务端或应用业务服务。
+- `apps/server/src/services/stripe.ts`：服务端或应用业务服务。
+- `apps/server/src/services/tests/characters.test.ts`：服务端或应用业务服务。
+- `apps/server/src/services/tests/chats.test.ts`：服务端或应用业务服务。
+- `apps/server/src/services/tests/config-kv.test.ts`：服务端或应用业务服务。
+- `apps/server/src/services/tests/flux-transaction.test.ts`：服务端或应用业务服务。
+- `apps/server/src/services/tests/flux.test.ts`：服务端或应用业务服务。
+- `apps/server/src/services/tests/providers.test.ts`：服务端或应用业务服务。
+- `apps/server/src/services/tests/stripe.test.ts`：服务端或应用业务服务。
+- `apps/server/src/types/character-avatar-model.ts`：类型声明。
+- `apps/server/src/types/character-capability.ts`：类型声明。
+- `apps/server/src/types/hono.ts`：类型声明。
+- `apps/server/src/utils/chat-broadcast.ts`：工具函数。
+- `apps/server/src/utils/error-message.ts`：工具函数。
+- `apps/server/src/utils/error.ts`：工具函数。
+- `apps/server/src/utils/http-query.ts`：工具函数。
+- `apps/server/src/utils/id.ts`：工具函数。
+- `apps/server/src/utils/observability.ts`：工具函数。
+- `apps/server/src/utils/origin.ts`：工具函数。
+- `apps/server/src/utils/redis-compressed.ts`：工具函数。
+- `apps/server/src/utils/redis-keys.ts`：工具函数。
+- `apps/server/src/utils/server-auth-ui.ts`：工具函数。
+- `apps/server/src/utils/tests/chat-broadcast.test.ts`：工具函数。
+- `apps/server/src/utils/tests/http-query.test.ts`：工具函数。
+- `apps/server/src/utils/tests/origin.test.ts`：工具函数。
+- `apps/server/src/utils/tests/redis-compressed.test.ts`：工具函数。
+- `apps/server/src/utils/tests/redis-keys.test.ts`：工具函数。
+- `apps/server/tsconfig.json`：TypeScript 配置。
+- `apps/server/vitest.config.ts`：工具配置文件。
+- `apps/stage-pocket/.swiftlint.yml`：YAML 配置文件。
+- `apps/stage-pocket/android/.gitignore`：项目文件。
+- `apps/stage-pocket/android/app-version.properties`：项目文件。
+- `apps/stage-pocket/android/app/.gitignore`：项目文件。
+- `apps/stage-pocket/android/app/build.gradle.kts`：项目文件。
+- `apps/stage-pocket/android/app/capacitor.build.gradle`：项目文件。
+- `apps/stage-pocket/android/app/proguard-rules.pro`：项目文件。
+- `apps/stage-pocket/android/app/src/androidTest/java/ai/moeru/airi_pocket/MainActivityBridgeTest.kt`：移动端原生源码。
+- `apps/stage-pocket/android/app/src/main/AndroidManifest.xml`：Electron 主进程源码。
+- `apps/stage-pocket/android/app/src/main/java/ai/moeru/airi_pocket/MainActivity.kt`：Electron 主进程源码。
+- `apps/stage-pocket/android/app/src/main/java/ai/moeru/airi_pocket/websocket/HostWebSocketBridge.kt`：Electron 主进程源码。
+- `apps/stage-pocket/android/app/src/main/java/ai/moeru/airi_pocket/websocket/HostWebSocketClient.kt`：Electron 主进程源码。
+- `apps/stage-pocket/android/app/src/main/java/ai/moeru/airi_pocket/websocket/OkHttpHostWebSocketSessionFactory.kt`：Electron 主进程源码。
+- `apps/stage-pocket/android/app/src/main/java/ai/moeru/airi_pocket/websocket/WebSocketBridgeJavascriptInterface.kt`：Electron 主进程源码。
+- `apps/stage-pocket/android/app/src/main/res/drawable-land-hdpi/splash.png`：Electron 主进程源码。
+- `apps/stage-pocket/android/app/src/main/res/drawable-land-ldpi/splash.png`：Electron 主进程源码。
+- `apps/stage-pocket/android/app/src/main/res/drawable-land-mdpi/splash.png`：Electron 主进程源码。
+- `apps/stage-pocket/android/app/src/main/res/drawable-land-xhdpi/splash.png`：Electron 主进程源码。
+- `apps/stage-pocket/android/app/src/main/res/drawable-land-xxhdpi/splash.png`：Electron 主进程源码。
+- `apps/stage-pocket/android/app/src/main/res/drawable-land-xxxhdpi/splash.png`：Electron 主进程源码。
+- `apps/stage-pocket/android/app/src/main/res/drawable-port-hdpi/splash.png`：Electron 主进程源码。
+- `apps/stage-pocket/android/app/src/main/res/drawable-port-ldpi/splash.png`：Electron 主进程源码。
+- `apps/stage-pocket/android/app/src/main/res/drawable-port-mdpi/splash.png`：Electron 主进程源码。
+- `apps/stage-pocket/android/app/src/main/res/drawable-port-xhdpi/splash.png`：Electron 主进程源码。
+- `apps/stage-pocket/android/app/src/main/res/drawable-port-xxhdpi/splash.png`：Electron 主进程源码。
+- `apps/stage-pocket/android/app/src/main/res/drawable-port-xxxhdpi/splash.png`：Electron 主进程源码。
+- `apps/stage-pocket/android/app/src/main/res/drawable/splash.png`：Electron 主进程源码。
+- `apps/stage-pocket/android/app/src/main/res/layout/activity_main.xml`：Electron 主进程源码。
+- `apps/stage-pocket/android/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml`：Electron 主进程源码。
+- `apps/stage-pocket/android/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml`：Electron 主进程源码。
+- `apps/stage-pocket/android/app/src/main/res/mipmap-hdpi/ic_launcher.png`：Electron 主进程源码。
+- `apps/stage-pocket/android/app/src/main/res/mipmap-hdpi/ic_launcher_foreground.png`：Electron 主进程源码。
+- `apps/stage-pocket/android/app/src/main/res/mipmap-hdpi/ic_launcher_round.png`：Electron 主进程源码。
+- `apps/stage-pocket/android/app/src/main/res/mipmap-ldpi/ic_launcher.png`：Electron 主进程源码。
+- `apps/stage-pocket/android/app/src/main/res/mipmap-ldpi/ic_launcher_foreground.png`：Electron 主进程源码。
+- `apps/stage-pocket/android/app/src/main/res/mipmap-ldpi/ic_launcher_round.png`：Electron 主进程源码。
+- `apps/stage-pocket/android/app/src/main/res/mipmap-mdpi/ic_launcher.png`：Electron 主进程源码。
+- `apps/stage-pocket/android/app/src/main/res/mipmap-mdpi/ic_launcher_foreground.png`：Electron 主进程源码。
+- `apps/stage-pocket/android/app/src/main/res/mipmap-mdpi/ic_launcher_round.png`：Electron 主进程源码。
+- `apps/stage-pocket/android/app/src/main/res/mipmap-xhdpi/ic_launcher.png`：Electron 主进程源码。
+- `apps/stage-pocket/android/app/src/main/res/mipmap-xhdpi/ic_launcher_foreground.png`：Electron 主进程源码。
+- `apps/stage-pocket/android/app/src/main/res/mipmap-xhdpi/ic_launcher_round.png`：Electron 主进程源码。
+- `apps/stage-pocket/android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png`：Electron 主进程源码。
+- `apps/stage-pocket/android/app/src/main/res/mipmap-xxhdpi/ic_launcher_foreground.png`：Electron 主进程源码。
+- `apps/stage-pocket/android/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.png`：Electron 主进程源码。
+- `apps/stage-pocket/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png`：Electron 主进程源码。
+- `apps/stage-pocket/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher_foreground.png`：Electron 主进程源码。
+- `apps/stage-pocket/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png`：Electron 主进程源码。
+- `apps/stage-pocket/android/app/src/main/res/values/ic_launcher_background.xml`：Electron 主进程源码。
+- `apps/stage-pocket/android/app/src/main/res/values/strings.xml`：Electron 主进程源码。
+- `apps/stage-pocket/android/app/src/main/res/values/styles.xml`：Electron 主进程源码。
+- `apps/stage-pocket/android/app/src/main/res/xml/file_paths.xml`：Electron 主进程源码。
+- `apps/stage-pocket/android/app/src/test/java/ai/moeru/airi_pocket/websocket/HostWebSocketBridgeTest.kt`：移动端原生源码。
+- `apps/stage-pocket/android/build.gradle.kts`：项目文件。
+- `apps/stage-pocket/android/capacitor.settings.gradle`：项目文件。
+- `apps/stage-pocket/android/gradle.properties`：项目文件。
+- `apps/stage-pocket/android/gradle/wrapper/gradle-wrapper.jar`：项目文件。
+- `apps/stage-pocket/android/gradle/wrapper/gradle-wrapper.properties`：项目文件。
+- `apps/stage-pocket/android/gradlew`：项目文件。
+- `apps/stage-pocket/android/gradlew.bat`：项目文件。
+- `apps/stage-pocket/android/settings.gradle.kts`：项目文件。
+- `apps/stage-pocket/android/variables.gradle.kts`：项目文件。
+- `apps/stage-pocket/capacitor.config.ts`：工具配置文件。
+- `apps/stage-pocket/index.html`：项目文件。
+- `apps/stage-pocket/ios/.gitignore`：项目文件。
+- `apps/stage-pocket/ios/App/App.xcodeproj/project.pbxproj`：项目文件。
+- `apps/stage-pocket/ios/App/App.xcodeproj/project.xcworkspace/contents.xcworkspacedata`：项目文件。
+- `apps/stage-pocket/ios/App/App.xcodeproj/project.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist`：项目文件。
+- `apps/stage-pocket/ios/App/App.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved`：项目文件。
+- `apps/stage-pocket/ios/App/App/AppDelegate.swift`：移动端原生源码。
+- `apps/stage-pocket/ios/App/App/AppIcon_LiquidGlass.icon/Assets/Body.png`：静态资源或媒体文件。
+- `apps/stage-pocket/ios/App/App/AppIcon_LiquidGlass.icon/Assets/Ear_L.png`：静态资源或媒体文件。
+- `apps/stage-pocket/ios/App/App/AppIcon_LiquidGlass.icon/Assets/Ear_R.png`：静态资源或媒体文件。
+- `apps/stage-pocket/ios/App/App/AppIcon_LiquidGlass.icon/Assets/Hard_Shadow.png`：静态资源或媒体文件。
+- `apps/stage-pocket/ios/App/App/AppIcon_LiquidGlass.icon/icon.json`：JSON 配置或数据文件。
+- `apps/stage-pocket/ios/App/App/Assets.xcassets/AppIcon.appiconset/AppIcon-512@2x-dark.png`：静态资源或媒体文件。
+- `apps/stage-pocket/ios/App/App/Assets.xcassets/AppIcon.appiconset/AppIcon-512@2x-light.png`：静态资源或媒体文件。
+- `apps/stage-pocket/ios/App/App/Assets.xcassets/AppIcon.appiconset/AppIcon-512@2x.png`：静态资源或媒体文件。
+- `apps/stage-pocket/ios/App/App/Assets.xcassets/AppIcon.appiconset/Contents.json`：JSON 配置或数据文件。
+- `apps/stage-pocket/ios/App/App/Assets.xcassets/Contents.json`：JSON 配置或数据文件。
+- `apps/stage-pocket/ios/App/App/Assets.xcassets/Splash.imageset/Contents.json`：JSON 配置或数据文件。
+- `apps/stage-pocket/ios/App/App/Assets.xcassets/Splash.imageset/splash-2732x2732-1.png`：静态资源或媒体文件。
+- `apps/stage-pocket/ios/App/App/Assets.xcassets/Splash.imageset/splash-2732x2732-2.png`：静态资源或媒体文件。
+- `apps/stage-pocket/ios/App/App/Assets.xcassets/Splash.imageset/splash-2732x2732.png`：静态资源或媒体文件。
+- `apps/stage-pocket/ios/App/App/Base.lproj/LaunchScreen.storyboard`：项目文件。
+- `apps/stage-pocket/ios/App/App/Base.lproj/Main.storyboard`：项目文件。
+- `apps/stage-pocket/ios/App/App/DevBridgeViewController.swift`：移动端原生源码。
+- `apps/stage-pocket/ios/App/App/HostWebSocketBridge.swift`：移动端原生源码。
+- `apps/stage-pocket/ios/App/App/Info.plist`：项目文件。
+- `apps/stage-pocket/ios/App/App/URLSessionHostWebSocketSession.swift`：移动端原生源码。
+- `apps/stage-pocket/ios/App/App/WeakScriptMessageHandler.swift`：移动端原生源码。
+- `apps/stage-pocket/ios/App/CapApp-SPM/.gitignore`：项目文件。
+- `apps/stage-pocket/ios/App/CapApp-SPM/Package.resolved`：项目文件。
+- `apps/stage-pocket/ios/App/CapApp-SPM/Package.swift`：移动端原生源码。
+- `apps/stage-pocket/ios/App/CapApp-SPM/Sources/CapApp-SPM/CapApp-SPM.swift`：移动端原生源码。
+- `apps/stage-pocket/ios/debug.xcconfig`：项目文件。
+- `apps/stage-pocket/ios/ExportOptions.plist`：项目文件。
+- `apps/stage-pocket/package.json`：包清单，定义包名、脚本、依赖和发布信息。
+- `apps/stage-pocket/public/.assetsignore`：项目文件。
+- `apps/stage-pocket/public/_headers`：项目文件。
+- `apps/stage-pocket/public/_redirects`：项目文件。
+- `apps/stage-pocket/public/apple-touch-icon.png`：静态资源或媒体文件。
+- `apps/stage-pocket/public/favicon.ico`：静态资源或媒体文件。
+- `apps/stage-pocket/public/favicon.svg`：静态资源或媒体文件。
+- `apps/stage-pocket/public/maskable_icon_x192.png`：静态资源或媒体文件。
+- `apps/stage-pocket/public/maskable_icon_x512.png`：静态资源或媒体文件。
+- `apps/stage-pocket/public/open-graph.png`：静态资源或媒体文件。
+- `apps/stage-pocket/public/web-app-manifest-192x192.png`：静态资源或媒体文件。
+- `apps/stage-pocket/public/web-app-manifest-512x512.png`：静态资源或媒体文件。
+- `apps/stage-pocket/resources/icon-foreground.png`：静态资源或媒体文件。
+- `apps/stage-pocket/resources/icon-only.png`：静态资源或媒体文件。
+- `apps/stage-pocket/resources/splash.png`：静态资源或媒体文件。
+- `apps/stage-pocket/src/App.vue`：Vue 单文件组件。
+- `apps/stage-pocket/src/assets/backgrounds/fairy-forest.e17cbc2774.ko-fi.com.avif`：静态资源或媒体文件。
+- `apps/stage-pocket/src/assets/icons/modules/games/factorio.png`：静态资源或媒体文件。
+- `apps/stage-pocket/src/components/AudioWaveform.vue`：Vue/UI 组件。
+- `apps/stage-pocket/src/components/DataGui/DualEndRange.vue`：Vue/UI 组件。
+- `apps/stage-pocket/src/components/IconAnimation.vue`：Vue/UI 组件。
+- `apps/stage-pocket/src/components/onboarding/step-permissions.vue`：Vue/UI 组件。
+- `apps/stage-pocket/src/components/websocket-status-button.vue`：Vue/UI 组件。
+- `apps/stage-pocket/src/composables/audio-input.ts`：Vue composable 复用逻辑。
+- `apps/stage-pocket/src/composables/audio-record.ts`：Vue composable 复用逻辑。
+- `apps/stage-pocket/src/composables/icon-animation.ts`：Vue composable 复用逻辑。
+- `apps/stage-pocket/src/main.ts`：TypeScript 源码。
+- `apps/stage-pocket/src/modules/i18n.ts`：TypeScript 源码。
+- `apps/stage-pocket/src/modules/pwa.ts`：TypeScript 源码。
+- `apps/stage-pocket/src/modules/server-channel-qr-probe.ts`：TypeScript 源码。
+- `apps/stage-pocket/src/modules/websocket-bridge.ts`：TypeScript 源码。
+- `apps/stage-pocket/src/pages/[...all].vue`：页面路由组件。
+- `apps/stage-pocket/src/pages/devtools/audio-record.vue`：页面路由组件。
+- `apps/stage-pocket/src/pages/devtools/background-gradient-blending.vue`：页面路由组件。
+- `apps/stage-pocket/src/pages/devtools/background-removal.vue`：页面路由组件。
+- `apps/stage-pocket/src/pages/devtools/gesture-circle.vue`：页面路由组件。
+- `apps/stage-pocket/src/pages/devtools/notifications.vue`：页面路由组件。
+- `apps/stage-pocket/src/pages/devtools/performance-playground.vue`：页面路由组件。
+- `apps/stage-pocket/src/pages/devtools/polaroid.vue`：页面路由组件。
+- `apps/stage-pocket/src/pages/devtools/use-magic-keys.vue`：页面路由组件。
+- `apps/stage-pocket/src/pages/index.vue`：模块入口文件。
+- `apps/stage-pocket/src/pages/settings/connection/index.vue`：模块入口文件。
+- `apps/stage-pocket/src/pages/settings/connection/server-channel-qr-scanner.vue`：页面路由组件。
+- `apps/stage-pocket/src/pages/settings/system/developer.vue`：页面路由组件。
+- `apps/stage-pocket/src/pages/settings/system/index.vue`：模块入口文件。
+- `apps/stage-pocket/src/stores/background.ts`：Pinia store 或状态管理逻辑。
+- `apps/stage-pocket/src/styles/main.css`：样式文件。
+- `apps/stage-pocket/src/styles/transitions.css`：样式文件。
+- `apps/stage-pocket/src/styles/vue-transitions.css`：样式文件。
+- `apps/stage-pocket/src/workers/vad/index.ts`：模块入口文件。
+- `apps/stage-pocket/src/workers/vad/manager.ts`：TypeScript 源码。
+- `apps/stage-pocket/src/workers/vad/process.worklet.ts`：TypeScript 源码。
+- `apps/stage-pocket/src/workers/vad/vad.ts`：TypeScript 源码。
+- `apps/stage-pocket/tsconfig.json`：TypeScript 配置。
+- `apps/stage-pocket/uno.config.ts`：工具配置文件。
+- `apps/stage-pocket/vite-env.d.ts`：类型声明。
+- `apps/stage-pocket/vite.config-env.d.ts`：类型声明。
+- `apps/stage-pocket/vite.config.ts`：工具配置文件。
+- `apps/stage-tamagotchi/ai.moeru.airi.desktop`：项目文件。
+- `apps/stage-tamagotchi/ai.moeru.airi.flatpak.yml`：YAML 配置文件。
+- `apps/stage-tamagotchi/dev-app-update.yml`：YAML 配置文件。
+- `apps/stage-tamagotchi/electron-builder.config.ts`：工具配置文件。
+- `apps/stage-tamagotchi/electron.vite.config.ts`：工具配置文件。
+- `apps/stage-tamagotchi/package.json`：包清单，定义包名、脚本、依赖和发布信息。
+- `apps/stage-tamagotchi/resources/icon-512.png`：静态资源或媒体文件。
+- `apps/stage-tamagotchi/resources/icon.png`：静态资源或媒体文件。
+- `apps/stage-tamagotchi/resources/icon.svg`：静态资源或媒体文件。
+- `apps/stage-tamagotchi/resources/tray-icon-macos.png`：静态资源或媒体文件。
+- `apps/stage-tamagotchi/scripts/artifacts-metadata.ts`：脚本文件。
+- `apps/stage-tamagotchi/scripts/merge-latest-mac.ts`：脚本文件。
+- `apps/stage-tamagotchi/scripts/regenerate-windows-latest.test.ts`：自动化测试。
+- `apps/stage-tamagotchi/scripts/regenerate-windows-latest.ts`：脚本文件。
+- `apps/stage-tamagotchi/scripts/rename-artifacts.ts`：脚本文件。
+- `apps/stage-tamagotchi/scripts/update-readme-download-links.ts`：脚本文件。
+- `apps/stage-tamagotchi/scripts/update-test/fixtures/server/stable/AIRI-9.9.9-update-test.1-darwin-arm64.dmg`：脚本文件。
+- `apps/stage-tamagotchi/scripts/update-test/fixtures/server/stable/AIRI-9.9.9-update-test.1-windows-x64-setup.exe`：脚本文件。
+- `apps/stage-tamagotchi/scripts/update-test/fixtures/server/stable/latest-arm64-mac.yml`：脚本文件。
+- `apps/stage-tamagotchi/scripts/update-test/fixtures/server/stable/latest-x64.yml`：脚本文件。
+- `apps/stage-tamagotchi/scripts/update-test/generate-manifest.test.ts`：自动化测试。
+- `apps/stage-tamagotchi/scripts/update-test/generate-manifest.ts`：脚本文件。
+- `apps/stage-tamagotchi/scripts/update-test/run-matrix.sh`：脚本文件。
+- `apps/stage-tamagotchi/scripts/update-test/run-test.sh`：脚本文件。
+- `apps/stage-tamagotchi/scripts/update-test/setup.sh`：脚本文件。
+- `apps/stage-tamagotchi/scripts/update-test/start-server.ts`：脚本文件。
+- `apps/stage-tamagotchi/scripts/utils.ts`：脚本文件。
+- `apps/stage-tamagotchi/src/main/app/debugger.ts`：Electron 主进程源码。
+- `apps/stage-tamagotchi/src/main/app/file-logger.ts`：Electron 主进程源码。
+- `apps/stage-tamagotchi/src/main/configs/artistry.ts`：Electron 主进程源码。
+- `apps/stage-tamagotchi/src/main/configs/global.ts`：Electron 主进程源码。
+- `apps/stage-tamagotchi/src/main/index.ts`：模块入口文件。
+- `apps/stage-tamagotchi/src/main/libs/bootkit/lifecycle.ts`：Electron 主进程源码。
+- `apps/stage-tamagotchi/src/main/libs/electron/location.test.ts`：Electron 主进程源码。
+- `apps/stage-tamagotchi/src/main/libs/electron/location.ts`：Electron 主进程源码。
+- `apps/stage-tamagotchi/src/main/libs/electron/persistence.test.ts`：Electron 主进程源码。
+- `apps/stage-tamagotchi/src/main/libs/electron/persistence.ts`：Electron 主进程源码。
+- `apps/stage-tamagotchi/src/main/libs/electron/window-manager/index.ts`：模块入口文件。
+- `apps/stage-tamagotchi/src/main/libs/electron/window-manager/reusable.ts`：Electron 主进程源码。
+- `apps/stage-tamagotchi/src/main/libs/i18n/index.ts`：模块入口文件。
+- `apps/stage-tamagotchi/src/main/services/airi/auth.ts`：Electron 主进程源码。
+- `apps/stage-tamagotchi/src/main/services/airi/channel-server/config.test.ts`：Electron 主进程源码。
+- `apps/stage-tamagotchi/src/main/services/airi/channel-server/config.ts`：Electron 主进程源码。
+- `apps/stage-tamagotchi/src/main/services/airi/channel-server/index.ts`：模块入口文件。
+- `apps/stage-tamagotchi/src/main/services/airi/godot-stage/index.test.ts`：Electron 主进程源码。
+- `apps/stage-tamagotchi/src/main/services/airi/godot-stage/index.ts`：模块入口文件。
+- `apps/stage-tamagotchi/src/main/services/airi/http-server/errors/index.ts`：模块入口文件。
+- `apps/stage-tamagotchi/src/main/services/airi/http-server/http/auth/index.test.ts`：Electron 主进程源码。
+- `apps/stage-tamagotchi/src/main/services/airi/http-server/http/auth/index.ts`：模块入口文件。
+- `apps/stage-tamagotchi/src/main/services/airi/http-server/http/extension-static-assets/index.test.ts`：Electron 主进程源码。
+- `apps/stage-tamagotchi/src/main/services/airi/http-server/http/extension-static-assets/index.ts`：模块入口文件。
+- `apps/stage-tamagotchi/src/main/services/airi/http-server/http/extension-static-assets/route.test.ts`：Electron 主进程源码。
+- `apps/stage-tamagotchi/src/main/services/airi/http-server/http/extension-static-assets/route.ts`：Electron 主进程源码。
+- `apps/stage-tamagotchi/src/main/services/airi/http-server/http/extension-static-assets/token-store.test.ts`：Electron 主进程源码。
+- `apps/stage-tamagotchi/src/main/services/airi/http-server/http/extension-static-assets/token-store.ts`：Electron 主进程源码。
+- `apps/stage-tamagotchi/src/main/services/airi/http-server/http/extension-static-assets/types.ts`：Electron 主进程源码。
+- `apps/stage-tamagotchi/src/main/services/airi/http-server/index.test.ts`：Electron 主进程源码。
+- `apps/stage-tamagotchi/src/main/services/airi/http-server/index.ts`：模块入口文件。
+- `apps/stage-tamagotchi/src/main/services/airi/http-server/server-manager/index.test.ts`：Electron 主进程源码。
+- `apps/stage-tamagotchi/src/main/services/airi/http-server/server-manager/index.ts`：模块入口文件。
+- `apps/stage-tamagotchi/src/main/services/airi/http-server/server-manager/types.ts`：Electron 主进程源码。
+- `apps/stage-tamagotchi/src/main/services/airi/http-server/server.ts`：Electron 主进程源码。
+- `apps/stage-tamagotchi/src/main/services/airi/i18n/index.ts`：模块入口文件。
+- `apps/stage-tamagotchi/src/main/services/airi/mcp-servers/index.ts`：模块入口文件。
+- `apps/stage-tamagotchi/src/main/services/airi/onboarding/index.ts`：模块入口文件。
+- `apps/stage-tamagotchi/src/main/services/airi/plugins/asset-mount.test.ts`：Electron 主进程源码。
+- `apps/stage-tamagotchi/src/main/services/airi/plugins/asset-mount.ts`：Electron 主进程源码。
+- `apps/stage-tamagotchi/src/main/services/airi/plugins/assets/index.ts`：模块入口文件。
+- `apps/stage-tamagotchi/src/main/services/airi/plugins/examples/devtools-sample-plugin/devtools-sample-plugin.mjs`：Electron 主进程源码。
+- `apps/stage-tamagotchi/src/main/services/airi/plugins/examples/devtools-sample-plugin/plugin.airi.json`：Electron 主进程源码。
+- `apps/stage-tamagotchi/src/main/services/airi/plugins/features/auto-reload/index.ts`：模块入口文件。
+- `apps/stage-tamagotchi/src/main/services/airi/plugins/host/config.ts`：Electron 主进程源码。
+- `apps/stage-tamagotchi/src/main/services/airi/plugins/host/debug.ts`：Electron 主进程源码。
+- `apps/stage-tamagotchi/src/main/services/airi/plugins/host/index.ts`：模块入口文件。
+- `apps/stage-tamagotchi/src/main/services/airi/plugins/host/registry.ts`：Electron 主进程源码。
+- `apps/stage-tamagotchi/src/main/services/airi/plugins/index.test.ts`：Electron 主进程源码。
+- `apps/stage-tamagotchi/src/main/services/airi/plugins/index.ts`：模块入口文件。
+- `apps/stage-tamagotchi/src/main/services/airi/plugins/kits/gamelet/gamelet-widget-state.ts`：Electron 主进程源码。
+- `apps/stage-tamagotchi/src/main/services/airi/plugins/kits/gamelet/index.ts`：模块入口文件。
+- `apps/stage-tamagotchi/src/main/services/airi/plugins/kits/index.ts`：模块入口文件。
+- `apps/stage-tamagotchi/src/main/services/airi/plugins/kits/widget/asset-url.ts`：Electron 主进程源码。
+- `apps/stage-tamagotchi/src/main/services/airi/plugins/kits/widget/index.ts`：模块入口文件。
+- `apps/stage-tamagotchi/src/main/services/airi/plugins/types.ts`：Electron 主进程源码。
+- `apps/stage-tamagotchi/src/main/services/airi/widgets/artistry-bridge.ts`：Electron 主进程源码。
+- `apps/stage-tamagotchi/src/main/services/airi/widgets/index.ts`：模块入口文件。
+- `apps/stage-tamagotchi/src/main/services/airi/widgets/providers/base.ts`：Electron 主进程源码。
+- `apps/stage-tamagotchi/src/main/services/airi/widgets/providers/comfyui.ts`：Electron 主进程源码。
+- `apps/stage-tamagotchi/src/main/services/airi/widgets/providers/nanobanana.ts`：Electron 主进程源码。
+- `apps/stage-tamagotchi/src/main/services/airi/widgets/providers/replicate.ts`：Electron 主进程源码。
+- `apps/stage-tamagotchi/src/main/services/airi/widgets/validation.test.ts`：Electron 主进程源码。
+- `apps/stage-tamagotchi/src/main/services/airi/widgets/validation.ts`：Electron 主进程源码。
+- `apps/stage-tamagotchi/src/main/services/electron/app.test.ts`：Electron 主进程源码。
+- `apps/stage-tamagotchi/src/main/services/electron/app.ts`：Electron 主进程源码。
+- `apps/stage-tamagotchi/src/main/services/electron/auto-updater.test.ts`：Electron 主进程源码。
+- `apps/stage-tamagotchi/src/main/services/electron/auto-updater.ts`：Electron 主进程源码。
+- `apps/stage-tamagotchi/src/main/services/electron/index.ts`：模块入口文件。
+- `apps/stage-tamagotchi/src/main/services/electron/mock-auto-updater.ts`：Electron 主进程源码。
+- `apps/stage-tamagotchi/src/main/services/electron/powerMonitor.ts`：Electron 主进程源码。
+- `apps/stage-tamagotchi/src/main/services/electron/screen.ts`：Electron 主进程源码。
+- `apps/stage-tamagotchi/src/main/services/electron/system-preferences.ts`：Electron 主进程源码。
+- `apps/stage-tamagotchi/src/main/services/electron/window.ts`：Electron 主进程源码。
+- `apps/stage-tamagotchi/src/main/tray/index.ts`：模块入口文件。
+- `apps/stage-tamagotchi/src/main/windows/about/index.ts`：模块入口文件。
+- `apps/stage-tamagotchi/src/main/windows/about/rpc/index.electron.ts`：Electron 主进程源码。
+- `apps/stage-tamagotchi/src/main/windows/beat-sync/index.ts`：模块入口文件。
+- `apps/stage-tamagotchi/src/main/windows/caption/index.ts`：模块入口文件。
+- `apps/stage-tamagotchi/src/main/windows/chat/index.ts`：模块入口文件。
+- `apps/stage-tamagotchi/src/main/windows/chat/rpc/index.electron.ts`：Electron 主进程源码。
+- `apps/stage-tamagotchi/src/main/windows/dashboard/index.ts`：模块入口文件。
+- `apps/stage-tamagotchi/src/main/windows/dashboard/rpc/index.electron.ts`：Electron 主进程源码。
+- `apps/stage-tamagotchi/src/main/windows/desktop-overlay/index.ts`：模块入口文件。
+- `apps/stage-tamagotchi/src/main/windows/desktop-overlay/rpc/contracts.ts`：Electron 主进程源码。
+- `apps/stage-tamagotchi/src/main/windows/desktop-overlay/rpc/index.electron.ts`：Electron 主进程源码。
+- `apps/stage-tamagotchi/src/main/windows/devtools/index.ts`：模块入口文件。
+- `apps/stage-tamagotchi/src/main/windows/inlay/index.ts`：模块入口文件。
+- `apps/stage-tamagotchi/src/main/windows/inlay/rpc/index.electron.ts`：Electron 主进程源码。
+- `apps/stage-tamagotchi/src/main/windows/main/index.ts`：模块入口文件。
+- `apps/stage-tamagotchi/src/main/windows/main/rpc/index.electron.ts`：Electron 主进程源码。
+- `apps/stage-tamagotchi/src/main/windows/notice/index.ts`：模块入口文件。
+- `apps/stage-tamagotchi/src/main/windows/onboarding/index.ts`：模块入口文件。
+- `apps/stage-tamagotchi/src/main/windows/settings/index.ts`：模块入口文件。
+- `apps/stage-tamagotchi/src/main/windows/settings/rpc/index.electron.ts`：Electron 主进程源码。
+- `apps/stage-tamagotchi/src/main/windows/shared/display.test.ts`：Electron 主进程源码。
+- `apps/stage-tamagotchi/src/main/windows/shared/display.ts`：Electron 主进程源码。
+- `apps/stage-tamagotchi/src/main/windows/shared/index.ts`：模块入口文件。
+- `apps/stage-tamagotchi/src/main/windows/shared/persistence.ts`：Electron 主进程源码。
+- `apps/stage-tamagotchi/src/main/windows/shared/referenced-window.ts`：Electron 主进程源码。
+- `apps/stage-tamagotchi/src/main/windows/shared/window.ts`：Electron 主进程源码。
+- `apps/stage-tamagotchi/src/main/windows/widgets/index.test.ts`：Electron 主进程源码。
+- `apps/stage-tamagotchi/src/main/windows/widgets/index.ts`：模块入口文件。
+- `apps/stage-tamagotchi/src/main/windows/widgets/rpc/index.electron.ts`：Electron 主进程源码。
+- `apps/stage-tamagotchi/src/preload/beat-sync.ts`：TypeScript 源码。
+- `apps/stage-tamagotchi/src/preload/index.ts`：模块入口文件。
+- `apps/stage-tamagotchi/src/preload/shared.ts`：TypeScript 源码。
+- `apps/stage-tamagotchi/src/renderer/App.vue`：Electron 渲染进程源码。
+- `apps/stage-tamagotchi/src/renderer/assets/videos/tutorial/tutorial-fade-on-hover.dark.mp4`：Electron 渲染进程源码。
+- `apps/stage-tamagotchi/src/renderer/assets/videos/tutorial/tutorial-fade-on-hover.light.mp4`：Electron 渲染进程源码。
+- `apps/stage-tamagotchi/src/renderer/beat-sync.html`：Electron 渲染进程源码。
+- `apps/stage-tamagotchi/src/renderer/beat-sync.main.ts`：Electron 渲染进程源码。
+- `apps/stage-tamagotchi/src/renderer/bridges/electron-auth-callback.ts`：Electron 渲染进程源码。
+- `apps/stage-tamagotchi/src/renderer/bridges/stage-three-runtime-trace.ts`：Electron 渲染进程源码。
+- `apps/stage-tamagotchi/src/renderer/components/IconAnimation.vue`：Electron 渲染进程源码。
+- `apps/stage-tamagotchi/src/renderer/components/InteractiveArea.vue`：Electron 渲染进程源码。
+- `apps/stage-tamagotchi/src/renderer/components/ResizeHandler.vue`：Electron 渲染进程源码。
+- `apps/stage-tamagotchi/src/renderer/components/stage-islands/controls-island/control-button-tooltip.vue`：Electron 渲染进程源码。
+- `apps/stage-tamagotchi/src/renderer/components/stage-islands/controls-island/control-button.vue`：Electron 渲染进程源码。
+- `apps/stage-tamagotchi/src/renderer/components/stage-islands/controls-island/controls-island-auth-button.vue`：Electron 渲染进程源码。
+- `apps/stage-tamagotchi/src/renderer/components/stage-islands/controls-island/controls-island-fade-on-hover.vue`：Electron 渲染进程源码。
+- `apps/stage-tamagotchi/src/renderer/components/stage-islands/controls-island/controls-island-hearing-config.vue`：Electron 渲染进程源码。
+- `apps/stage-tamagotchi/src/renderer/components/stage-islands/controls-island/controls-island-profile-picker.vue`：Electron 渲染进程源码。
+- `apps/stage-tamagotchi/src/renderer/components/stage-islands/controls-island/index.vue`：模块入口文件。
+- `apps/stage-tamagotchi/src/renderer/components/stage-islands/controls-island/indicator-mic-volume.vue`：Electron 渲染进程源码。
+- `apps/stage-tamagotchi/src/renderer/components/stage-islands/resource-status-island/index.vue`：模块入口文件。
+- `apps/stage-tamagotchi/src/renderer/components/stage-islands/resource-status-island/loading-component-detail.vue`：Electron 渲染进程源码。
+- `apps/stage-tamagotchi/src/renderer/components/stage-islands/resource-status-island/loading-component.vue`：Electron 渲染进程源码。
+- `apps/stage-tamagotchi/src/renderer/components/stage-islands/resource-status-island/loading-modules.vue`：Electron 渲染进程源码。
+- `apps/stage-tamagotchi/src/renderer/components/stage-islands/status-island/index.vue`：模块入口文件。
+- `apps/stage-tamagotchi/src/renderer/components/Window/TitleBar.vue`：Electron 渲染进程源码。
+- `apps/stage-tamagotchi/src/renderer/components/WindowRouterLink.vue`：Electron 渲染进程源码。
+- `apps/stage-tamagotchi/src/renderer/components/WithScreenCapture.vue`：Electron 渲染进程源码。
+- `apps/stage-tamagotchi/src/renderer/composables/icon-animation.ts`：Electron 渲染进程源码。
+- `apps/stage-tamagotchi/src/renderer/composables/model-settings-runtime-snapshot.ts`：Electron 渲染进程源码。
+- `apps/stage-tamagotchi/src/renderer/composables/runtime.ts`：Electron 渲染进程源码。
+- `apps/stage-tamagotchi/src/renderer/composables/use-restore-scroll.ts`：Electron 渲染进程源码。
+- `apps/stage-tamagotchi/src/renderer/composables/use-vision-screen-capture.ts`：Electron 渲染进程源码。
+- `apps/stage-tamagotchi/src/renderer/index.html`：Electron 渲染进程源码。
+- `apps/stage-tamagotchi/src/renderer/layouts/default.vue`：Electron 渲染进程源码。
+- `apps/stage-tamagotchi/src/renderer/layouts/settings.vue`：Electron 渲染进程源码。
+- `apps/stage-tamagotchi/src/renderer/layouts/stage.vue`：Electron 渲染进程源码。
+- `apps/stage-tamagotchi/src/renderer/main.ts`：Electron 渲染进程源码。
+- `apps/stage-tamagotchi/src/renderer/modules/i18n.ts`：Electron 渲染进程源码。
+- `apps/stage-tamagotchi/src/renderer/pages/about.vue`：Electron 渲染进程源码。
+- `apps/stage-tamagotchi/src/renderer/pages/caption.vue`：Electron 渲染进程源码。
+- `apps/stage-tamagotchi/src/renderer/pages/chat.vue`：Electron 渲染进程源码。
+- `apps/stage-tamagotchi/src/renderer/pages/dashboard/index.vue`：模块入口文件。
+- `apps/stage-tamagotchi/src/renderer/pages/desktop-overlay-coordinates.test.ts`：Electron 渲染进程源码。
+- `apps/stage-tamagotchi/src/renderer/pages/desktop-overlay-coordinates.ts`：Electron 渲染进程源码。
+- `apps/stage-tamagotchi/src/renderer/pages/desktop-overlay-polling.test.ts`：Electron 渲染进程源码。
+- `apps/stage-tamagotchi/src/renderer/pages/desktop-overlay-polling.ts`：Electron 渲染进程源码。
+- `apps/stage-tamagotchi/src/renderer/pages/desktop-overlay.vue`：Electron 渲染进程源码。
+- `apps/stage-tamagotchi/src/renderer/pages/devtools/index.vue`：模块入口文件。
+- `apps/stage-tamagotchi/src/renderer/pages/devtools/performance-visualizer.vue`：Electron 渲染进程源码。
+- `apps/stage-tamagotchi/src/renderer/pages/devtools/screen-capture.vue`：Electron 渲染进程源码。
+- `apps/stage-tamagotchi/src/renderer/pages/devtools/updater.vue`：Electron 渲染进程源码。
+- `apps/stage-tamagotchi/src/renderer/pages/devtools/use-electron-all-displays.vue`：Electron 渲染进程源码。
+- `apps/stage-tamagotchi/src/renderer/pages/devtools/use-electron-relative-mouse.vue`：Electron 渲染进程源码。
+- `apps/stage-tamagotchi/src/renderer/pages/devtools/use-magic-keys.vue`：Electron 渲染进程源码。
+- `apps/stage-tamagotchi/src/renderer/pages/devtools/use-window-mouse.vue`：Electron 渲染进程源码。
+- `apps/stage-tamagotchi/src/renderer/pages/devtools/vision.vue`：Electron 渲染进程源码。
+- `apps/stage-tamagotchi/src/renderer/pages/devtools/widgets-calling.vue`：Electron 渲染进程源码。
+- `apps/stage-tamagotchi/src/renderer/pages/index.vue`：模块入口文件。
+- `apps/stage-tamagotchi/src/renderer/pages/inlay/index.vue`：模块入口文件。
+- `apps/stage-tamagotchi/src/renderer/pages/notice/fade-on-hover.vue`：Electron 渲染进程源码。
+- `apps/stage-tamagotchi/src/renderer/pages/notice/index.vue`：模块入口文件。
+- `apps/stage-tamagotchi/src/renderer/pages/onboarding.vue`：Electron 渲染进程源码。
+- `apps/stage-tamagotchi/src/renderer/pages/settings/account/index.vue`：模块入口文件。
+- `apps/stage-tamagotchi/src/renderer/pages/settings/connection/index.vue`：模块入口文件。
+- `apps/stage-tamagotchi/src/renderer/pages/settings/connection/server-channel-qr-card.vue`：Electron 渲染进程源码。
+- `apps/stage-tamagotchi/src/renderer/pages/settings/data/components/desktop-folder-section.vue`：Electron 渲染进程源码。
+- `apps/stage-tamagotchi/src/renderer/pages/settings/data/components/desktop-reset-section.vue`：Electron 渲染进程源码。
+- `apps/stage-tamagotchi/src/renderer/pages/settings/data/index.vue`：模块入口文件。
+- `apps/stage-tamagotchi/src/renderer/pages/settings/index.vue`：模块入口文件。
+- `apps/stage-tamagotchi/src/renderer/pages/settings/models/index.vue`：模块入口文件。
+- `apps/stage-tamagotchi/src/renderer/pages/settings/modules/mcp.vue`：Electron 渲染进程源码。
+- `apps/stage-tamagotchi/src/renderer/pages/settings/system/developer.vue`：Electron 渲染进程源码。
+- `apps/stage-tamagotchi/src/renderer/pages/settings/system/general.vue`：Electron 渲染进程源码。
+- `apps/stage-tamagotchi/src/renderer/pages/settings/system/index.vue`：模块入口文件。
+- `apps/stage-tamagotchi/src/renderer/pages/settings/system/window-shortcuts.vue`：Electron 渲染进程源码。
+- `apps/stage-tamagotchi/src/renderer/pages/widgets.vue`：Electron 渲染进程源码。
+- `apps/stage-tamagotchi/src/renderer/public/assets/js/CubismSdkForWeb-5-r.3/Core/live2dcubismcore.min.js`：Electron 渲染进程源码。
+- `apps/stage-tamagotchi/src/renderer/public/assets/vrm/animations/idle_loop.vrma`：Electron 渲染进程源码。
+- `apps/stage-tamagotchi/src/renderer/stores/chat-sync.test.ts`：Electron 渲染进程源码。
+- `apps/stage-tamagotchi/src/renderer/stores/chat-sync.ts`：Electron 渲染进程源码。
+- `apps/stage-tamagotchi/src/renderer/stores/controls-island.ts`：Electron 渲染进程源码。
+- `apps/stage-tamagotchi/src/renderer/stores/mcp-tools.test.ts`：Electron 渲染进程源码。
+- `apps/stage-tamagotchi/src/renderer/stores/mcp-tools.ts`：Electron 渲染进程源码。
+- `apps/stage-tamagotchi/src/renderer/stores/plugin-tools.test.ts`：Electron 渲染进程源码。
+- `apps/stage-tamagotchi/src/renderer/stores/plugin-tools.ts`：Electron 渲染进程源码。
+- `apps/stage-tamagotchi/src/renderer/stores/resources.ts`：Electron 渲染进程源码。
+- `apps/stage-tamagotchi/src/renderer/stores/settings/server-channel-options.test.ts`：Electron 渲染进程源码。
+- `apps/stage-tamagotchi/src/renderer/stores/settings/server-channel-options.ts`：Electron 渲染进程源码。
+- `apps/stage-tamagotchi/src/renderer/stores/settings/server-channel.test.ts`：Electron 渲染进程源码。
+- `apps/stage-tamagotchi/src/renderer/stores/settings/server-channel.ts`：Electron 渲染进程源码。
+- `apps/stage-tamagotchi/src/renderer/stores/stage-three-runtime-diagnostics.test.ts`：Electron 渲染进程源码。
+- `apps/stage-tamagotchi/src/renderer/stores/stage-three-runtime-diagnostics.ts`：Electron 渲染进程源码。
+- `apps/stage-tamagotchi/src/renderer/stores/stage-window-lifecycle.test.ts`：Electron 渲染进程源码。
+- `apps/stage-tamagotchi/src/renderer/stores/stage-window-lifecycle.ts`：Electron 渲染进程源码。
+- `apps/stage-tamagotchi/src/renderer/stores/tools/builtin/image-journal.test.ts`：Electron 渲染进程源码。
+- `apps/stage-tamagotchi/src/renderer/stores/tools/builtin/image-journal.ts`：Electron 渲染进程源码。
+- `apps/stage-tamagotchi/src/renderer/stores/tools/builtin/weather-api.ts`：Electron 渲染进程源码。
+- `apps/stage-tamagotchi/src/renderer/stores/tools/builtin/weather.test.ts`：Electron 渲染进程源码。
+- `apps/stage-tamagotchi/src/renderer/stores/tools/builtin/weather.ts`：Electron 渲染进程源码。
+- `apps/stage-tamagotchi/src/renderer/stores/tools/builtin/widgets.test.ts`：Electron 渲染进程源码。
+- `apps/stage-tamagotchi/src/renderer/stores/tools/builtin/widgets.ts`：Electron 渲染进程源码。
+- `apps/stage-tamagotchi/src/renderer/stores/window.ts`：Electron 渲染进程源码。
+- `apps/stage-tamagotchi/src/renderer/styles/main.css`：Electron 渲染进程源码。
+- `apps/stage-tamagotchi/src/renderer/styles/transitions.css`：Electron 渲染进程源码。
+- `apps/stage-tamagotchi/src/renderer/typed-router.d.ts`：Electron 渲染进程源码。
+- `apps/stage-tamagotchi/src/renderer/utils/stage-three-transparency.ts`：Electron 渲染进程源码。
+- `apps/stage-tamagotchi/src/renderer/utils/windows.ts`：Electron 渲染进程源码。
+- `apps/stage-tamagotchi/src/renderer/widgets/artistry/components/Comfy.vue`：Electron 渲染进程源码。
+- `apps/stage-tamagotchi/src/renderer/widgets/artistry/index.ts`：模块入口文件。
+- `apps/stage-tamagotchi/src/renderer/widgets/extension-ui/components/extension-ui-host.vue`：Electron 渲染进程源码。
+- `apps/stage-tamagotchi/src/renderer/widgets/extension-ui/components/index.ts`：模块入口文件。
+- `apps/stage-tamagotchi/src/renderer/widgets/extension-ui/composables/use-extension-ui-for-module.ts`：Electron 渲染进程源码。
+- `apps/stage-tamagotchi/src/renderer/widgets/extension-ui/composables/use-iframe-message-port.ts`：Electron 渲染进程源码。
+- `apps/stage-tamagotchi/src/renderer/widgets/extension-ui/host.ts`：Electron 渲染进程源码。
+- `apps/stage-tamagotchi/src/renderer/widgets/extension-ui/index.ts`：模块入口文件。
+- `apps/stage-tamagotchi/src/renderer/widgets/extension-ui/shared/eventa-runtime.test.ts`：Electron 渲染进程源码。
+- `apps/stage-tamagotchi/src/renderer/widgets/map/components/Map.vue`：Electron 渲染进程源码。
+- `apps/stage-tamagotchi/src/renderer/widgets/map/index.ts`：模块入口文件。
+- `apps/stage-tamagotchi/src/renderer/widgets/weather/assets/clear-day.svg`：Electron 渲染进程源码。
+- `apps/stage-tamagotchi/src/renderer/widgets/weather/components/Skeleton.vue`：Electron 渲染进程源码。
+- `apps/stage-tamagotchi/src/renderer/widgets/weather/components/Weather.vue`：Electron 渲染进程源码。
+- `apps/stage-tamagotchi/src/renderer/widgets/weather/index.ts`：模块入口文件。
+- `apps/stage-tamagotchi/src/shared/eventa/index.ts`：模块入口文件。
+- `apps/stage-tamagotchi/src/shared/eventa/plugin/assets.ts`：跨进程/跨端共享源码。
+- `apps/stage-tamagotchi/src/shared/eventa/plugin/capabilities.ts`：跨进程/跨端共享源码。
+- `apps/stage-tamagotchi/src/shared/eventa/plugin/domains.test.ts`：跨进程/跨端共享源码。
+- `apps/stage-tamagotchi/src/shared/eventa/plugin/host.ts`：跨进程/跨端共享源码。
+- `apps/stage-tamagotchi/src/shared/eventa/plugin/tools.ts`：跨进程/跨端共享源码。
+- `apps/stage-tamagotchi/src/shared/model-settings-runtime.ts`：跨进程/跨端共享源码。
+- `apps/stage-tamagotchi/src/shared/utils/electron/windows/window-size.ts`：跨进程/跨端共享源码。
+- `apps/stage-tamagotchi/tsconfig.json`：TypeScript 配置。
+- `apps/stage-tamagotchi/uno.config.ts`：工具配置文件。
+- `apps/stage-tamagotchi/vite-env.d.ts`：类型声明。
+- `apps/stage-tamagotchi/vitest.config.ts`：工具配置文件。
+- `apps/stage-web/.dockerignore`：项目文件。
+- `apps/stage-web/Dockerfile`：项目文件。
+- `apps/stage-web/index.html`：项目文件。
+- `apps/stage-web/netlify.toml`：项目文件。
+- `apps/stage-web/package.json`：包清单，定义包名、脚本、依赖和发布信息。
+- `apps/stage-web/public/.assetsignore`：项目文件。
+- `apps/stage-web/public/_headers`：项目文件。
+- `apps/stage-web/public/_redirects`：项目文件。
+- `apps/stage-web/public/apple-touch-icon.png`：静态资源或媒体文件。
+- `apps/stage-web/public/favicon.ico`：静态资源或媒体文件。
+- `apps/stage-web/public/favicon.svg`：静态资源或媒体文件。
+- `apps/stage-web/public/maskable_icon_x192.png`：静态资源或媒体文件。
+- `apps/stage-web/public/maskable_icon_x512.png`：静态资源或媒体文件。
+- `apps/stage-web/public/open-graph.png`：静态资源或媒体文件。
+- `apps/stage-web/public/web-app-manifest-192x192.png`：静态资源或媒体文件。
+- `apps/stage-web/public/web-app-manifest-512x512.png`：静态资源或媒体文件。
+- `apps/stage-web/src/App.vue`：Vue 单文件组件。
+- `apps/stage-web/src/assets/backgrounds/fairy-forest.e17cbc2774.ko-fi.com.avif`：静态资源或媒体文件。
+- `apps/stage-web/src/assets/icons/modules/games/factorio.png`：静态资源或媒体文件。
+- `apps/stage-web/src/assets/live2d/models/hiyori_free_zh/avatar.png`：静态资源或媒体文件。
+- `apps/stage-web/src/assets/logo-dark.svg`：静态资源或媒体文件。
+- `apps/stage-web/src/assets/logo.svg`：静态资源或媒体文件。
+- `apps/stage-web/src/components/AudioWaveform.vue`：Vue/UI 组件。
+- `apps/stage-web/src/components/DataGui/DualEndRange.vue`：Vue/UI 组件。
+- `apps/stage-web/src/components/Devtools/PerformanceOverlay.vue`：Vue/UI 组件。
+- `apps/stage-web/src/components/IconAnimation.vue`：Vue/UI 组件。
+- `apps/stage-web/src/composables/audio-input.ts`：Vue composable 复用逻辑。
+- `apps/stage-web/src/composables/audio-record.ts`：Vue composable 复用逻辑。
+- `apps/stage-web/src/composables/icon-animation.ts`：Vue composable 复用逻辑。
+- `apps/stage-web/src/composables/perf/register-lag-sampler.ts`：Vue composable 复用逻辑。
+- `apps/stage-web/src/main.ts`：TypeScript 源码。
+- `apps/stage-web/src/modules/i18n.ts`：TypeScript 源码。
+- `apps/stage-web/src/modules/pwa.ts`：TypeScript 源码。
+- `apps/stage-web/src/pages/[...all].vue`：页面路由组件。
+- `apps/stage-web/src/pages/auth/callback.vue`：页面路由组件。
+- `apps/stage-web/src/pages/auth/index.vue`：模块入口文件。
+- `apps/stage-web/src/pages/devtools/audio-record.vue`：页面路由组件。
+- `apps/stage-web/src/pages/devtools/background-gradient-blending.vue`：页面路由组件。
+- `apps/stage-web/src/pages/devtools/background-removal.vue`：页面路由组件。
+- `apps/stage-web/src/pages/devtools/gesture-circle.vue`：页面路由组件。
+- `apps/stage-web/src/pages/devtools/model-driver-mediapipe.vue`：页面路由组件。
+- `apps/stage-web/src/pages/devtools/performance-playground.vue`：页面路由组件。
+- `apps/stage-web/src/pages/devtools/performance-visualizer.vue`：页面路由组件。
+- `apps/stage-web/src/pages/devtools/polaroid.vue`：页面路由组件。
+- `apps/stage-web/src/pages/devtools/use-magic-keys.vue`：页面路由组件。
+- `apps/stage-web/src/pages/devtools/web-haptics.vue`：页面路由组件。
+- `apps/stage-web/src/pages/index.vue`：模块入口文件。
+- `apps/stage-web/src/pages/settings/account/index.vue`：模块入口文件。
+- `apps/stage-web/src/pages/settings/characters/components/CharacterCreate.vue`：Vue/UI 组件。
+- `apps/stage-web/src/pages/settings/characters/components/CharacterDialog.vue`：Vue/UI 组件。
+- `apps/stage-web/src/pages/settings/characters/components/CharacterItem.vue`：Vue/UI 组件。
+- `apps/stage-web/src/pages/settings/characters/index.vue`：模块入口文件。
+- `apps/stage-web/src/pages/settings/system/developer.vue`：页面路由组件。
+- `apps/stage-web/src/pages/settings/system/index.vue`：模块入口文件。
+- `apps/stage-web/src/stores/background.ts`：Pinia store 或状态管理逻辑。
+- `apps/stage-web/src/stores/devtools-lag.ts`：Pinia store 或状态管理逻辑。
+- `apps/stage-web/src/stores/pwa.ts`：Pinia store 或状态管理逻辑。
+- `apps/stage-web/src/styles/main.css`：样式文件。
+- `apps/stage-web/src/styles/transitions.css`：样式文件。
+- `apps/stage-web/src/styles/vue-transitions.css`：样式文件。
+- `apps/stage-web/src/workers/vad/index.ts`：模块入口文件。
+- `apps/stage-web/src/workers/vad/manager.ts`：TypeScript 源码。
+- `apps/stage-web/src/workers/vad/process.worklet.ts`：TypeScript 源码。
+- `apps/stage-web/src/workers/vad/vad.ts`：TypeScript 源码。
+- `apps/stage-web/tsconfig.json`：TypeScript 配置。
+- `apps/stage-web/uno.config.ts`：工具配置文件。
+- `apps/stage-web/vite-env.d.ts`：类型声明。
+- `apps/stage-web/vite.config.ts`：工具配置文件。
+- `apps/stage-web/wrangler.toml`：项目文件。
+- `apps/ui-server-auth/Dockerfile`：项目文件。
+- `apps/ui-server-auth/index.html`：项目文件。
+- `apps/ui-server-auth/package.json`：包清单，定义包名、脚本、依赖和发布信息。
+- `apps/ui-server-auth/public/.assetsignore`：项目文件。
+- `apps/ui-server-auth/public/_headers`：项目文件。
+- `apps/ui-server-auth/public/apple-touch-icon.png`：静态资源或媒体文件。
+- `apps/ui-server-auth/public/favicon.ico`：静态资源或媒体文件。
+- `apps/ui-server-auth/public/favicon.svg`：静态资源或媒体文件。
+- `apps/ui-server-auth/public/maskable_icon_x192.png`：静态资源或媒体文件。
+- `apps/ui-server-auth/public/maskable_icon_x512.png`：静态资源或媒体文件。
+- `apps/ui-server-auth/public/open-graph.png`：静态资源或媒体文件。
+- `apps/ui-server-auth/public/web-app-manifest-192x192.png`：静态资源或媒体文件。
+- `apps/ui-server-auth/public/web-app-manifest-512x512.png`：静态资源或媒体文件。
+- `apps/ui-server-auth/src/App.vue`：Vue 单文件组件。
+- `apps/ui-server-auth/src/components/auth-notice.vue`：Vue/UI 组件。
+- `apps/ui-server-auth/src/composables/electron-callback.shared.ts`：Vue composable 复用逻辑。
+- `apps/ui-server-auth/src/composables/electron-callback.test.ts`：Vue composable 复用逻辑。
+- `apps/ui-server-auth/src/main.ts`：TypeScript 源码。
+- `apps/ui-server-auth/src/modules/auth-fetch.ts`：TypeScript 源码。
+- `apps/ui-server-auth/src/modules/email-password.ts`：TypeScript 源码。
+- `apps/ui-server-auth/src/modules/i18n.ts`：TypeScript 源码。
+- `apps/ui-server-auth/src/modules/profile.test.ts`：自动化测试。
+- `apps/ui-server-auth/src/modules/profile.ts`：TypeScript 源码。
+- `apps/ui-server-auth/src/modules/server-auth-context.ts`：TypeScript 源码。
+- `apps/ui-server-auth/src/modules/sign-in.test.ts`：自动化测试。
+- `apps/ui-server-auth/src/modules/sign-in.ts`：TypeScript 源码。
+- `apps/ui-server-auth/src/pages/electron-callback.vue`：页面路由组件。
+- `apps/ui-server-auth/src/pages/forgot-password.vue`：页面路由组件。
+- `apps/ui-server-auth/src/pages/index.vue`：模块入口文件。
+- `apps/ui-server-auth/src/pages/profile.vue`：页面路由组件。
+- `apps/ui-server-auth/src/pages/reset-password.vue`：页面路由组件。
+- `apps/ui-server-auth/src/pages/sign-in.vue`：页面路由组件。
+- `apps/ui-server-auth/src/pages/verify-email.vue`：页面路由组件。
+- `apps/ui-server-auth/src/styles/main.css`：样式文件。
+- `apps/ui-server-auth/src/styles/transitions.css`：样式文件。
+- `apps/ui-server-auth/src/styles/vue-transitions.css`：样式文件。
+- `apps/ui-server-auth/tsconfig.json`：TypeScript 配置。
+- `apps/ui-server-auth/uno.config.ts`：工具配置文件。
+- `apps/ui-server-auth/vite-env.d.ts`：类型声明。
+- `apps/ui-server-auth/vite.config.ts`：工具配置文件。
+- `apps/ui-server-auth/vitest.config.ts`：工具配置文件。
+### bucket
+
+- `bucket/airi.json`：JSON 配置或数据文件。
+### 根目录文件
+
+- `bump.config.ts`：版本发布/变更 bump 配置。
+- `CLAUDE.md`：Claude/AI agent 使用的项目上下文说明。
+- `crowdin.yml`：Crowdin 翻译同步配置。
+- `cspell.config.yaml`：拼写检查配置。
+- `default.nix`：Nix 默认入口。
+### docs
+
+- `docs/.vitepress/assets/home-cover-2025-07-23.avif`：静态资源或媒体文件。
+- `docs/.vitepress/assets/home-cover-2025-10-29-bg.avif`：静态资源或媒体文件。
+- `docs/.vitepress/assets/home-cover-2025-10-29.avif`：静态资源或媒体文件。
+- `docs/.vitepress/assets/home-cover-2025-12-24-bg.avif`：静态资源或媒体文件。
+- `docs/.vitepress/assets/home-cover-2025-12-24.avif`：静态资源或媒体文件。
+- `docs/.vitepress/assets/home-patterns-ghost.svg`：静态资源或媒体文件。
+- `docs/.vitepress/assets/home-patterns-lollipop.svg`：静态资源或媒体文件。
+- `docs/.vitepress/components/Banner.vue`：Vue/UI 组件。
+- `docs/.vitepress/components/BlogPosts.vue`：Vue/UI 组件。
+- `docs/.vitepress/components/Button.vue`：Vue/UI 组件。
+- `docs/.vitepress/components/CardLink.vue`：Vue/UI 组件。
+- `docs/.vitepress/components/Chip.vue`：Vue/UI 组件。
+- `docs/.vitepress/components/Chronicles.vue`：Vue/UI 组件。
+- `docs/.vitepress/components/Contributors.vue`：Vue/UI 组件。
+- `docs/.vitepress/components/DocCarbonAds.vue`：Vue/UI 组件。
+- `docs/.vitepress/components/DocCommunity.vue`：Vue/UI 组件。
+- `docs/.vitepress/components/DocFooter.vue`：Vue/UI 组件。
+- `docs/.vitepress/components/DocFooterLastUpdated.vue`：Vue/UI 组件。
+- `docs/.vitepress/components/DocOutline.vue`：Vue/UI 组件。
+- `docs/.vitepress/components/DocOutlineItem.vue`：Vue/UI 组件。
+- `docs/.vitepress/components/DocSidebar.vue`：Vue/UI 组件。
+- `docs/.vitepress/components/DocSidebarItem.vue`：Vue/UI 组件。
+- `docs/.vitepress/components/DocTopbar.vue`：Vue/UI 组件。
+- `docs/.vitepress/components/DropdownMenu.vue`：Vue/UI 组件。
+- `docs/.vitepress/components/Home.vue`：Vue/UI 组件。
+- `docs/.vitepress/components/HomeButton.vue`：Vue/UI 组件。
+- `docs/.vitepress/components/HomeButtonSet.vue`：Vue/UI 组件。
+- `docs/.vitepress/components/MotionToggle.vue`：Vue/UI 组件。
+- `docs/.vitepress/components/Navbar.vue`：Vue/UI 组件。
+- `docs/.vitepress/components/NavbarLanguage.vue`：Vue/UI 组件。
+- `docs/.vitepress/components/NavbarLanguageSubMenu.vue`：Vue/UI 组件。
+- `docs/.vitepress/components/ParallaxCover.vue`：Vue/UI 组件。
+- `docs/.vitepress/components/ParallaxCoverChristmas20251224.vue`：Vue/UI 组件。
+- `docs/.vitepress/components/ParallaxCoverHalloween20251029.vue`：Vue/UI 组件。
+- `docs/.vitepress/components/ReleaseDownloads.vue`：Vue/UI 组件。
+- `docs/.vitepress/components/ReleasesList.vue`：Vue/UI 组件。
+- `docs/.vitepress/components/SearchCommandBox.vue`：Vue/UI 组件。
+- `docs/.vitepress/components/SearchTrigger.vue`：Vue/UI 组件。
+- `docs/.vitepress/components/Snowfall.vue`：Vue/UI 组件。
+- `docs/.vitepress/components/Spinner.vue`：Vue/UI 组件。
+- `docs/.vitepress/components/ThemedVideo.vue`：Vue/UI 组件。
+- `docs/.vitepress/components/ThemeToggle.vue`：Vue/UI 组件。
+- `docs/.vitepress/composables/date.ts`：Vue composable 复用逻辑。
+- `docs/.vitepress/composables/edit-link.ts`：Vue composable 复用逻辑。
+- `docs/.vitepress/composables/outline.ts`：Vue composable 复用逻辑。
+- `docs/.vitepress/composables/prev-next.ts`：Vue composable 复用逻辑。
+- `docs/.vitepress/composables/sidebar.ts`：Vue composable 复用逻辑。
+- `docs/.vitepress/composables/theme-color.ts`：Vue composable 复用逻辑。
+- `docs/.vitepress/config.ts`：TypeScript 源码。
+- `docs/.vitepress/constants.ts`：TypeScript 源码。
+- `docs/.vitepress/contributor-names.json`：JSON 配置或数据文件。
+- `docs/.vitepress/contributors.ts`：TypeScript 源码。
+- `docs/.vitepress/custom/Docs.vue`：Vue 单文件组件。
+- `docs/.vitepress/custom/Layout.vue`：Vue 单文件组件。
+- `docs/.vitepress/custom/Showcase.vue`：Vue 单文件组件。
+- `docs/.vitepress/data/releases.data.ts`：TypeScript 源码。
+- `docs/.vitepress/functions/all-documents.data.ts`：TypeScript 源码。
+- `docs/.vitepress/functions/blog.data.ts`：TypeScript 源码。
+- `docs/.vitepress/functions/chronicles.data.ts`：TypeScript 源码。
+- `docs/.vitepress/meta.ts`：TypeScript 源码。
+- `docs/.vitepress/modules/posthog.ts`：TypeScript 源码。
+- `docs/.vitepress/plugins/vite-frontmatter-assets.ts`：TypeScript 源码。
+- `docs/.vitepress/theme/config.ts`：TypeScript 源码。
+- `docs/.vitepress/theme/custom-nixie.css`：样式文件。
+- `docs/.vitepress/theme/index.ts`：模块入口文件。
+- `docs/.vitepress/theme/style.css`：样式文件。
+- `docs/.vitepress/theme/theme-animations.css`：样式文件。
+- `docs/.vitepress/theme/theme-kbd.css`：样式文件。
+- `docs/.vitepress/theme/theme-markdown.css`：样式文件。
+- `docs/.vitepress/theme/theme-media.css`：样式文件。
+- `docs/.vitepress/theme/theme-vitepress.css`：样式文件。
+- `docs/.vitepress/utils/cache.ts`：工具函数。
+- `docs/.vitepress/utils/flatten.ts`：工具函数。
+- `docs/.vitepress/utils/utils.ts`：工具函数。
+- `docs/ai/context/ui-components.md`：Markdown 文档。
+- `docs/content/en/about/privacy.md`：Markdown 文档。
+- `docs/content/en/about/terms.md`：Markdown 文档。
+- `docs/content/en/blog/DevLog-2025.03.05/assets/airi-build-dark.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.03.05/assets/airi-build-light.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.03.05/assets/airi-logo-v2-dark.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.03.05/assets/airi-logo-v2.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.03.05/assets/airi-logos-final.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.03.05/assets/airi-logos-v1.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.03.05/assets/airi-logos-v2.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.03.05/assets/airi-logos-v3.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.03.05/assets/airi-logos-v4.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.03.05/assets/airi-logos-v5.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.03.05/assets/animation-transitions.gif`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.03.05/assets/customizable-theme-colors.mp4`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.03.05/index.md`：Markdown 文档。
+- `docs/content/en/blog/DevLog-2025.03.06/assets/animation-transitions.gif`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.03.06/assets/live-stream-layout-update.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.03.06/index.md`：Markdown 文档。
+- `docs/content/en/blog/DevLog-2025.03.10/assets/customizable-theme-colors.mp4`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.03.10/assets/new-ui-v1-dark.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.03.10/assets/new-ui-v1.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.03.10/assets/new-ui-v2.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.03.10/assets/new-ui-v3-dark.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.03.10/assets/new-ui-v3.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.03.10/index.md`：Markdown 文档。
+- `docs/content/en/blog/DevLog-2025.03.20/assets/airi-demo.mp4`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.03.20/assets/ashley-pitch-test.mp3`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.03.20/assets/elevenlabs-api-key.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.03.20/assets/elevenlabs.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.03.20/assets/histoire-color-slider-dark.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.03.20/assets/histoire-color-slider.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.03.20/assets/histoire-first-look.mp4`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.03.20/assets/histoire-logo-dark.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.03.20/assets/histoire-logo.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.03.20/assets/modules-i18n.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.03.20/assets/new-ui-v4-speech-dark.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.03.20/assets/new-ui-v4-speech.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.03.20/assets/settings-i18n.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.03.20/assets/steins-gate-gelnana-from-elpsycongrooblog.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.03.20/assets/steins-gate-mayori.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.03.20/index.md`：Markdown 文档。
+- `docs/content/en/blog/DevLog-2025.04.06/assets/awesome-ai-vtuber-logo-light.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.04.06/assets/character-card-detail.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.04.06/assets/character-card.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.04.06/assets/memory-decay.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.04.06/assets/memory-retrieval.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.04.06/assets/more-theme-colors.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.04.06/assets/relu-sticker-wow.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.04.06/index.md`：Markdown 文档。
+- `docs/content/en/blog/DevLog-2025.04.14/assets/memory-controler.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.04.14/assets/memory-decay.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.04.14/assets/memory-driver.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.04.14/assets/memory-emotional-model.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.04.14/assets/memory-emotional-score.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.04.14/assets/memory-emotional-simulator.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.04.14/assets/memory-retrieval.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.04.14/assets/review-1.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.04.14/assets/review-2.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.04.14/index.md`：Markdown 文档。
+- `docs/content/en/blog/DevLog-2025.04.22/assets/cursor-open-settings.mp4`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.04.22/assets/develop-with-cursor.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.04.22/index.md`：Markdown 文档。
+- `docs/content/en/blog/DevLog-2025.04.28/assets/airi-mcp-arch.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.04.28/assets/airi-mcp-input-text.mp4`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.04.28/assets/airi-mcp-settings.mp4`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.04.28/index.md`：Markdown 文档。
+- `docs/content/en/blog/DevLog-2025.05.16/assets/character-card-menu-dark.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.05.16/assets/character-card-menu-light.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.05.16/assets/character-card-settings-dark.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.05.16/assets/character-card-settings-light.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.05.16/assets/character-card-showcase-dark.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.05.16/assets/character-card-showcase-light.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.05.16/assets/demo-day-hangzhou-1.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.05.16/assets/demo-day-hangzhou-2.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.05.16/assets/demo-day-hangzhou-3.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.05.16/assets/velin-dark.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.05.16/assets/velin-light.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.05.16/assets/velin-playground-dark.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.05.16/assets/velin-playground-light.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.05.16/assets/webai-examples-demo.MP4`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.05.16/index.md`：Markdown 文档。
+- `docs/content/en/blog/DevLog-2025.06.08/assets/250608-dark.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.06.08/assets/250608-light.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.06.08/assets/airi-tamagotchi-focus.gif`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.06.08/assets/screen.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.06.08/index.md`：Markdown 文档。
+- `docs/content/en/blog/DevLog-2025.07.18/assets/factorio-belt.gif`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.07.18/assets/structure-after.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.07.18/assets/structure-before.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.07.18/index.md`：Markdown 文档。
+- `docs/content/en/blog/DevLog-2025.08.01/assets/animated-chat-bubble.mp4`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.08.01/assets/cover-dark.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.08.01/assets/cover-light.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.08.01/CharacterMatcher.vue`：Vue 单文件组件。
+- `docs/content/en/blog/DevLog-2025.08.01/CharacterShowcase.vue`：Vue 单文件组件。
+- `docs/content/en/blog/DevLog-2025.08.01/GraphemeClusterAssembler.vue`：Vue 单文件组件。
+- `docs/content/en/blog/DevLog-2025.08.01/GraphemeClusterInspector.vue`：Vue 单文件组件。
+- `docs/content/en/blog/DevLog-2025.08.01/index.md`：Markdown 文档。
+- `docs/content/en/blog/DevLog-2025.08.01/RollingText.vue`：Vue 单文件组件。
+- `docs/content/en/blog/DevLog-2025.08.05/assets/airi-demo-clustr-dark.mp4`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.08.05/assets/airi-demo-clustr-light.mp4`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.08.05/assets/airi-demo-fade-on-hover.mp4`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.08.05/assets/airi-demo-move.mp4`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.08.05/assets/airi-demo-onboarding-dark.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.08.05/assets/airi-demo-onboarding-dark.mp4`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.08.05/assets/airi-demo-onboarding-light.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.08.05/assets/airi-demo-onboarding-light.mp4`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.08.05/assets/airi-demo-onboarding-mobile-dark.mp4`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.08.05/assets/airi-demo-onboarding-mobile-light.mp4`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.08.05/assets/airi-demo-quick-editor-mobile-dark.mp4`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.08.05/assets/airi-demo-quick-editor-mobile-light.mp4`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.08.05/assets/airi-demo-resize.mp4`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.08.05/assets/airi-demo-resource-island.mp4`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.08.05/assets/airi-demo-settings-hearing.mp4`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.08.05/assets/airi-demo-vrm-dark.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.08.05/assets/airi-demo-vrm-light.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.08.05/assets/airi-docs-blogs-dark.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.08.05/assets/airi-docs-blogs-light.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.08.05/assets/airi-docs-dark.mp4`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.08.05/assets/airi-docs-light.mp4`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.08.05/assets/airi-packages-i18n-dark.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.08.05/assets/airi-packages-i18n-light.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.08.05/assets/airi-ui-level-meter-dark.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.08.05/assets/airi-ui-level-meter-light.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.08.05/assets/airi-ui-time-series-chart-dark.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.08.05/assets/airi-ui-time-series-chart-light.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.08.05/assets/airi-vrm.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.08.05/assets/cover-dark.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.08.05/assets/cover-light.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.08.05/assets/relu-sticker-thinks.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.08.05/index.md`：Markdown 文档。
+- `docs/content/en/blog/DevLog-2025.08.26/assets/airi-factorio-yolo-v0-playground-vnc.mp4`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.08.26/assets/factorio-ultralytics-hub-preview.jpg`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.08.26/components/nms-iou.vue`：Vue/UI 组件。
+- `docs/content/en/blog/DevLog-2025.08.26/index.md`：Markdown 文档。
+- `docs/content/en/blog/DevLog-2025.10.20/assets/airi.mp4`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.10.20/assets/control-island.png`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.10.20/assets/electron.png`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.10.20/assets/moeru.png`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.10.20/assets/project-airi.png`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.10.20/assets/rust-tts.png`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.10.20/assets/three-mmd.png`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.10.20/assets/velin.png`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2025.10.20/index.md`：Markdown 文档。
+- `docs/content/en/blog/DevLog-2026.01.01/assets/airi-notification-capability.mp4`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2026.01.01/assets/cover-dark.png`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2026.01.01/assets/cover-light.png`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2026.01.01/assets/flow-chat-basic-memory.mp4`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2026.01.01/assets/helldiver-laughing.png`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2026.01.01/index.md`：Markdown 文档。
+- `docs/content/en/blog/DevLog-2026.02.16/assets/add-button-to-menu.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2026.02.16/assets/some-collected-data.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2026.02.16/index.md`：Markdown 文档。
+- `docs/content/en/blog/DevLog-2026.03.14/assets/cover-dark.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2026.03.14/assets/cover-light.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2026.03.14/assets/ThreeScene-after.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2026.03.14/assets/ThreeScene-before.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2026.03.14/index.md`：Markdown 文档。
+- `docs/content/en/blog/DevLog-2026.03.23/assets/cover-dark.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2026.03.23/assets/cover-light.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2026.03.23/assets/Live2D-android-renderer.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2026.03.23/assets/Live2D-threejs.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2026.03.23/assets/Live2D-webgl.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2026.03.23/assets/Screenshot-AIRI-Live2D.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2026.03.23/assets/Screenshot-AIRI-VRM.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2026.03.23/assets/Unity-android-export.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2026.03.23/assets/Unity-web-export.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2026.03.23/assets/VRM-airi.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2026.03.23/assets/VRM-android-renderer.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2026.03.23/assets/VRM-webgl.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/DevLog-2026.03.23/index.md`：Markdown 文档。
+- `docs/content/en/blog/DreamLog-0x1/assets/airi-demo-first-day.mp4`：静态资源或媒体文件。
+- `docs/content/en/blog/DreamLog-0x1/assets/airis-screenshot-1.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/DreamLog-0x1/assets/banner-dark-1280x640.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/DreamLog-0x1/assets/banner-light-1280x640.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/DreamLog-0x1/assets/building-a-virtual-machine-inside-image-1.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/DreamLog-0x1/assets/dreamlog1-dark.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/DreamLog-0x1/assets/dreamlog1-light.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/DreamLog-0x1/assets/emosys-logo.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/DreamLog-0x1/assets/live2d-inc-hiyori.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/DreamLog-0x1/assets/relu-sticker-wow.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/DreamLog-0x1/assets/steins-gate-sticker-1.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/DreamLog-0x1/assets/world.execute(me); (Mili)／DAZBEE COVER.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/DreamLog-0x1/index.md`：Markdown 文档。
+- `docs/content/en/blog/happy-halloween-2025/assets/halloween-airi.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/happy-halloween-2025/index.md`：Markdown 文档。
+- `docs/content/en/blog/index.md`：Markdown 文档。
+- `docs/content/en/blog/merry-christmas-2025/assets/merry-christmas-iru.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/merry-christmas-2025/assets/neuro-sama-happy-birthday-live.avif`：静态资源或媒体文件。
+- `docs/content/en/blog/merry-christmas-2025/index.md`：Markdown 文档。
+- `docs/content/en/docs/chronicles/version-v0.0.1/index.md`：Markdown 文档。
+- `docs/content/en/docs/chronicles/version-v0.1.0/index.md`：Markdown 文档。
+- `docs/content/en/docs/contributing/design-guidelines/index.md`：Markdown 文档。
+- `docs/content/en/docs/contributing/design-guidelines/resources.md`：Markdown 文档。
+- `docs/content/en/docs/contributing/design-guidelines/tools.md`：Markdown 文档。
+- `docs/content/en/docs/contributing/docs.md`：Markdown 文档。
+- `docs/content/en/docs/contributing/index.md`：Markdown 文档。
+- `docs/content/en/docs/contributing/services/discord.md`：Markdown 文档。
+- `docs/content/en/docs/contributing/services/minecraft.md`：Markdown 文档。
+- `docs/content/en/docs/contributing/services/satori.md`：Markdown 文档。
+- `docs/content/en/docs/contributing/services/telegram.md`：Markdown 文档。
+- `docs/content/en/docs/contributing/tamagotchi.md`：Markdown 文档。
+- `docs/content/en/docs/contributing/webui.md`：Markdown 文档。
+- `docs/content/en/docs/manual/config/index.md`：Markdown 文档。
+- `docs/content/en/docs/manual/tamagotchi/index.md`：Markdown 文档。
+- `docs/content/en/docs/manual/tamagotchi/setup-and-use/assets/manual-airi-card.avif`：静态资源或媒体文件。
+- `docs/content/en/docs/manual/tamagotchi/setup-and-use/assets/manual-chat-window.avif`：静态资源或媒体文件。
+- `docs/content/en/docs/manual/tamagotchi/setup-and-use/assets/manual-consciousness.avif`：静态资源或媒体文件。
+- `docs/content/en/docs/manual/tamagotchi/setup-and-use/assets/manual-controls-island-expanded.avif`：静态资源或媒体文件。
+- `docs/content/en/docs/manual/tamagotchi/setup-and-use/assets/manual-data-settings.avif`：静态资源或媒体文件。
+- `docs/content/en/docs/manual/tamagotchi/setup-and-use/assets/manual-devtools-beat-sync.avif`：静态资源或媒体文件。
+- `docs/content/en/docs/manual/tamagotchi/setup-and-use/assets/manual-devtools-context-flow.avif`：静态资源或媒体文件。
+- `docs/content/en/docs/manual/tamagotchi/setup-and-use/assets/manual-devtools-displays.avif`：静态资源或媒体文件。
+- `docs/content/en/docs/manual/tamagotchi/setup-and-use/assets/manual-devtools-plugin-host.avif`：静态资源或媒体文件。
+- `docs/content/en/docs/manual/tamagotchi/setup-and-use/assets/manual-devtools-relative-mouse.avif`：静态资源或媒体文件。
+- `docs/content/en/docs/manual/tamagotchi/setup-and-use/assets/manual-devtools-screen-capture.avif`：静态资源或媒体文件。
+- `docs/content/en/docs/manual/tamagotchi/setup-and-use/assets/manual-devtools-use-window-mouse.avif`：静态资源或媒体文件。
+- `docs/content/en/docs/manual/tamagotchi/setup-and-use/assets/manual-devtools-vision-capture.avif`：静态资源或媒体文件。
+- `docs/content/en/docs/manual/tamagotchi/setup-and-use/assets/manual-devtools-websocket-inspector.avif`：静态资源或媒体文件。
+- `docs/content/en/docs/manual/tamagotchi/setup-and-use/assets/manual-devtools-widgets-calling.avif`：静态资源或媒体文件。
+- `docs/content/en/docs/manual/tamagotchi/setup-and-use/assets/manual-hearing.avif`：静态资源或媒体文件。
+- `docs/content/en/docs/manual/tamagotchi/setup-and-use/assets/manual-main-window.avif`：静态资源或媒体文件。
+- `docs/content/en/docs/manual/tamagotchi/setup-and-use/assets/manual-models.avif`：静态资源或媒体文件。
+- `docs/content/en/docs/manual/tamagotchi/setup-and-use/assets/manual-modules.avif`：静态资源或媒体文件。
+- `docs/content/en/docs/manual/tamagotchi/setup-and-use/assets/manual-providers.avif`：静态资源或媒体文件。
+- `docs/content/en/docs/manual/tamagotchi/setup-and-use/assets/manual-settings-window.avif`：静态资源或媒体文件。
+- `docs/content/en/docs/manual/tamagotchi/setup-and-use/assets/manual-speech.avif`：静态资源或媒体文件。
+- `docs/content/en/docs/manual/tamagotchi/setup-and-use/assets/manual-system-color-scheme.avif`：静态资源或媒体文件。
+- `docs/content/en/docs/manual/tamagotchi/setup-and-use/assets/manual-system-developer.avif`：静态资源或媒体文件。
+- `docs/content/en/docs/manual/tamagotchi/setup-and-use/assets/manual-system-general.avif`：静态资源或媒体文件。
+- `docs/content/en/docs/manual/tamagotchi/setup-and-use/assets/manual-vision.avif`：静态资源或媒体文件。
+- `docs/content/en/docs/manual/tamagotchi/setup-and-use/assets/manual-websocket-settings.avif`：静态资源或媒体文件。
+- `docs/content/en/docs/manual/tamagotchi/setup-and-use/index.md`：Markdown 文档。
+- `docs/content/en/docs/manual/web/index.md`：Markdown 文档。
+- `docs/content/en/docs/overview/about-ai-vtuber.md`：Markdown 文档。
+- `docs/content/en/docs/overview/about-neuro-sama.md`：Markdown 文档。
+- `docs/content/en/docs/overview/index.md`：Markdown 文档。
+- `docs/content/en/docs/overview/other-similar-projects.md`：Markdown 文档。
+- `docs/content/en/docs/overview/versions.md`：Markdown 文档。
+- `docs/content/en/index.md`：Markdown 文档。
+- `docs/content/en/references/research/gaming/minecraft.md`：Markdown 文档。
+- `docs/content/en/references/research/lipsync.md`：Markdown 文档。
+- `docs/content/en/references/research/mocap.md`：Markdown 文档。
+- `docs/content/en/references/research/text-to-motion.md`：Markdown 文档。
+- `docs/content/en/references/research/tts.md`：Markdown 文档。
+- `docs/content/ja/about/privacy.md`：Markdown 文档。
+- `docs/content/ja/about/terms.md`：Markdown 文档。
+- `docs/content/ja/blog/DevLog-2025.03.05/index.md`：Markdown 文档。
+- `docs/content/ja/blog/DevLog-2025.03.06/index.md`：Markdown 文档。
+- `docs/content/ja/blog/DevLog-2025.03.10/index.md`：Markdown 文档。
+- `docs/content/ja/blog/DevLog-2025.03.20/index.md`：Markdown 文档。
+- `docs/content/ja/blog/DevLog-2025.04.06/index.md`：Markdown 文档。
+- `docs/content/ja/blog/DevLog-2025.04.14/index.md`：Markdown 文档。
+- `docs/content/ja/blog/DevLog-2025.04.22/index.md`：Markdown 文档。
+- `docs/content/ja/blog/DevLog-2025.04.28/index.md`：Markdown 文档。
+- `docs/content/ja/blog/DevLog-2025.05.16/index.md`：Markdown 文档。
+- `docs/content/ja/blog/DevLog-2025.06.08/index.md`：Markdown 文档。
+- `docs/content/ja/blog/DevLog-2025.07.18/index.md`：Markdown 文档。
+- `docs/content/ja/blog/DevLog-2025.08.01/index.md`：Markdown 文档。
+- `docs/content/ja/blog/DevLog-2025.08.05/index.md`：Markdown 文档。
+- `docs/content/ja/blog/DevLog-2025.08.26/index.md`：Markdown 文档。
+- `docs/content/ja/blog/Devlog-2025.10.20/index.md`：Markdown 文档。
+- `docs/content/ja/blog/DreamLog-0x1/index.md`：Markdown 文档。
+- `docs/content/ja/blog/happy-halloween-2025/index.md`：Markdown 文档。
+- `docs/content/ja/blog/index.md`：Markdown 文档。
+- `docs/content/ja/blog/merry-christmas-2025/index.md`：Markdown 文档。
+- `docs/content/ja/docs/chronicles/version-v0.0.1/index.md`：Markdown 文档。
+- `docs/content/ja/docs/chronicles/version-v0.1.0/index.md`：Markdown 文档。
+- `docs/content/ja/docs/contributing/design-guidelines/index.md`：Markdown 文档。
+- `docs/content/ja/docs/contributing/design-guidelines/resources.md`：Markdown 文档。
+- `docs/content/ja/docs/contributing/design-guidelines/tools.md`：Markdown 文档。
+- `docs/content/ja/docs/contributing/docs.md`：Markdown 文档。
+- `docs/content/ja/docs/contributing/index.md`：Markdown 文档。
+- `docs/content/ja/docs/contributing/services/discord.md`：Markdown 文档。
+- `docs/content/ja/docs/contributing/services/minecraft.md`：Markdown 文档。
+- `docs/content/ja/docs/contributing/services/satori.md`：Markdown 文档。
+- `docs/content/ja/docs/contributing/services/telegram.md`：Markdown 文档。
+- `docs/content/ja/docs/contributing/tamagotchi.md`：Markdown 文档。
+- `docs/content/ja/docs/contributing/webui.md`：Markdown 文档。
+- `docs/content/ja/docs/manual/config/index.md`：Markdown 文档。
+- `docs/content/ja/docs/manual/tamagotchi/index.md`：Markdown 文档。
+- `docs/content/ja/docs/manual/web/index.md`：Markdown 文档。
+- `docs/content/ja/docs/overview/about-ai-vtuber.md`：Markdown 文档。
+- `docs/content/ja/docs/overview/about-neuro-sama.md`：Markdown 文档。
+- `docs/content/ja/docs/overview/index.md`：Markdown 文档。
+- `docs/content/ja/docs/overview/other-similar-projects.md`：Markdown 文档。
+- `docs/content/ja/docs/overview/versions.md`：Markdown 文档。
+- `docs/content/ja/index.md`：Markdown 文档。
+- `docs/content/privacy.md`：Markdown 文档。
+- `docs/content/public/_redirects`：项目文件。
+- `docs/content/public/app-dark.svg`：静态资源或媒体文件。
+- `docs/content/public/app-light.svg`：静态资源或媒体文件。
+- `docs/content/public/assets/download-buttons/download-buttons.browser.dark.en-US.png`：静态资源或媒体文件。
+- `docs/content/public/assets/download-buttons/download-buttons.browser.dark.zh-Hans.png`：静态资源或媒体文件。
+- `docs/content/public/assets/download-buttons/download-buttons.browser.light.en-US.png`：静态资源或媒体文件。
+- `docs/content/public/assets/download-buttons/download-buttons.browser.light.zh-Hans.png`：静态资源或媒体文件。
+- `docs/content/public/assets/download-buttons/download-buttons.linux.dark.en-US.avif`：静态资源或媒体文件。
+- `docs/content/public/assets/download-buttons/download-buttons.linux.dark.zh-Hans.avif`：静态资源或媒体文件。
+- `docs/content/public/assets/download-buttons/download-buttons.linux.light.en-US.avif`：静态资源或媒体文件。
+- `docs/content/public/assets/download-buttons/download-buttons.linux.light.zh-Hans.avif`：静态资源或媒体文件。
+- `docs/content/public/assets/download-buttons/download-buttons.macos.dark.en-US.avif`：静态资源或媒体文件。
+- `docs/content/public/assets/download-buttons/download-buttons.macos.dark.zh-Hans.avif`：静态资源或媒体文件。
+- `docs/content/public/assets/download-buttons/download-buttons.macos.light.en-US.avif`：静态资源或媒体文件。
+- `docs/content/public/assets/download-buttons/download-buttons.macos.light.zh-Hans.avif`：静态资源或媒体文件。
+- `docs/content/public/assets/download-buttons/download-buttons.mobile.dark.en-US.avif`：静态资源或媒体文件。
+- `docs/content/public/assets/download-buttons/download-buttons.mobile.dark.zh-Hans.avif`：静态资源或媒体文件。
+- `docs/content/public/assets/download-buttons/download-buttons.mobile.light.en-US.avif`：静态资源或媒体文件。
+- `docs/content/public/assets/download-buttons/download-buttons.mobile.light.zh-Hans.avif`：静态资源或媒体文件。
+- `docs/content/public/assets/download-buttons/download-buttons.windows.dark.en-US.avif`：静态资源或媒体文件。
+- `docs/content/public/assets/download-buttons/download-buttons.windows.dark.zh-Hans.avif`：静态资源或媒体文件。
+- `docs/content/public/assets/download-buttons/download-buttons.windows.light.en-US.avif`：静态资源或媒体文件。
+- `docs/content/public/assets/download-buttons/download-buttons.windows.light.zh-Hans.avif`：静态资源或媒体文件。
+- `docs/content/public/assets/QR code button/section.cards.qrcode.dark.en-US.png`：静态资源或媒体文件。
+- `docs/content/public/assets/QR code button/section.cards.qrcode.dark.ja-JP.png`：静态资源或媒体文件。
+- `docs/content/public/assets/QR code button/section.cards.qrcode.dark.kr-KR.png`：静态资源或媒体文件。
+- `docs/content/public/assets/QR code button/section.cards.qrcode.dark.ru-RU.png`：静态资源或媒体文件。
+- `docs/content/public/assets/QR code button/section.cards.qrcode.dark.zh-Hans.png`：静态资源或媒体文件。
+- `docs/content/public/assets/QR code button/section.cards.qrcode.light.en-US.png`：静态资源或媒体文件。
+- `docs/content/public/assets/QR code button/section.cards.qrcode.light.ja-JP.png`：静态资源或媒体文件。
+- `docs/content/public/assets/QR code button/section.cards.qrcode.light.kr-KR.png`：静态资源或媒体文件。
+- `docs/content/public/assets/QR code button/section.cards.qrcode.light.ru-RU.png`：静态资源或媒体文件。
+- `docs/content/public/assets/QR code button/section.cards.qrcode.light.zh-Hans.png`：静态资源或媒体文件。
+- `docs/content/public/assets/screenshot-api-example.avif`：静态资源或媒体文件。
+- `docs/content/public/assets/screenshot-chat.avif`：静态资源或媒体文件。
+- `docs/content/public/assets/screenshot-system-tray.avif`：静态资源或媒体文件。
+- `docs/content/public/assets/screenshot-ui.avif`：静态资源或媒体文件。
+- `docs/content/public/assets/screenshot-window-mode.avif`：静态资源或媒体文件。
+- `docs/content/public/assets/Sponsor's avatar/ミカ.jpg`：静态资源或媒体文件。
+- `docs/content/public/assets/sponsors/kofi-supporters.json`：静态资源或媒体文件。
+- `docs/content/public/assets/sponsors/sponsors.json`：静态资源或媒体文件。
+- `docs/content/public/assets/sponsors/sponsors.svg`：静态资源或媒体文件。
+- `docs/content/public/assets/tutorial-basic-disable-fade-on-hover.mp4`：静态资源或媒体文件。
+- `docs/content/public/assets/tutorial-basic-fade-on-hover.mp4`：静态资源或媒体文件。
+- `docs/content/public/assets/tutorial-basic-move.mp4`：静态资源或媒体文件。
+- `docs/content/public/assets/tutorial-basic-open-chat.mp4`：静态资源或媒体文件。
+- `docs/content/public/assets/tutorial-basic-open-settings.mp4`：静态资源或媒体文件。
+- `docs/content/public/assets/tutorial-basic-resize.mp4`：静态资源或媒体文件。
+- `docs/content/public/assets/tutorial-basic-setup-providers.mp4`：静态资源或媒体文件。
+- `docs/content/public/assets/tutorial-demo-browsing-crunchy-roll.mp4`：静态资源或媒体文件。
+- `docs/content/public/assets/tutorial-demo-browsing-steam.mp4`：静态资源或媒体文件。
+- `docs/content/public/assets/tutorial-settings-change-model.mp4`：静态资源或媒体文件。
+- `docs/content/public/assets/version-v0.0.1/screenshot-1.avif`：静态资源或媒体文件。
+- `docs/content/public/assets/version-v0.0.1/screenshot-2.avif`：静态资源或媒体文件。
+- `docs/content/public/assets/version-v0.0.1/screenshot-3.avif`：静态资源或媒体文件。
+- `docs/content/public/banner-dark-1280x640.avif`：静态资源或媒体文件。
+- `docs/content/public/banner-dark.avif`：静态资源或媒体文件。
+- `docs/content/public/banner-light-1280x640.avif`：静态资源或媒体文件。
+- `docs/content/public/banner-light.avif`：静态资源或媒体文件。
+- `docs/content/public/bekuto3d-dark.svg`：静态资源或媒体文件。
+- `docs/content/public/bekuto3d-light.svg`：静态资源或媒体文件。
+- `docs/content/public/favicon.svg`：静态资源或媒体文件。
+- `docs/content/public/fonts/Geist[wght].ttf`：项目文件。
+- `docs/content/public/fonts/GeistMono[wght].ttf`：项目文件。
+- `docs/content/public/logo-dark.avif`：静态资源或媒体文件。
+- `docs/content/public/logo-light.avif`：静态资源或媒体文件。
+- `docs/content/public/maskable_icon_x192.avif`：静态资源或媒体文件。
+- `docs/content/public/maskable_icon_x512.avif`：静态资源或媒体文件。
+- `docs/content/public/new-bg-halloween.avif`：静态资源或媒体文件。
+- `docs/content/public/new-bg-halloween.png`：静态资源或媒体文件。
+- `docs/content/public/new-bg.avif`：静态资源或媒体文件。
+- `docs/content/public/open-graph.png`：静态资源或媒体文件。
+- `docs/content/public/web-app-manifest-192x192.avif`：静态资源或媒体文件。
+- `docs/content/public/web-app-manifest-512x512.avif`：静态资源或媒体文件。
+- `docs/content/public/wechat-qr.png`：静态资源或媒体文件。
+- `docs/content/terms-of-use.md`：Markdown 文档。
+- `docs/content/zh-Hans/about/privacy.md`：Markdown 文档。
+- `docs/content/zh-Hans/about/terms.md`：Markdown 文档。
+- `docs/content/zh-Hans/blog/DevLog-2025.03.05/assets/airi-build-dark.avif`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2025.03.05/assets/airi-build-light.avif`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2025.03.05/assets/airi-logo-v2-dark.avif`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2025.03.05/assets/airi-logo-v2.avif`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2025.03.05/assets/airi-logos-final.avif`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2025.03.05/assets/airi-logos-v1.avif`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2025.03.05/assets/airi-logos-v2.avif`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2025.03.05/assets/airi-logos-v3.avif`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2025.03.05/assets/airi-logos-v4.avif`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2025.03.05/assets/airi-logos-v5.avif`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2025.03.05/assets/animation-transitions.gif`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2025.03.05/assets/customizable-theme-colors.mp4`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2025.03.05/index.md`：Markdown 文档。
+- `docs/content/zh-Hans/blog/DevLog-2025.03.06/assets/animation-transitions.gif`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2025.03.06/assets/live-stream-layout-update.avif`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2025.03.06/index.md`：Markdown 文档。
+- `docs/content/zh-Hans/blog/DevLog-2025.03.10/assets/customizable-theme-colors.mp4`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2025.03.10/assets/new-ui-v1-dark.avif`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2025.03.10/assets/new-ui-v1.avif`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2025.03.10/assets/new-ui-v2.avif`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2025.03.10/assets/new-ui-v3-dark.avif`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2025.03.10/assets/new-ui-v3.avif`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2025.03.10/index.md`：Markdown 文档。
+- `docs/content/zh-Hans/blog/DevLog-2025.03.20/assets/airi-demo.mp4`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2025.03.20/assets/ashley-pitch-test.mp3`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2025.03.20/assets/elevenlabs-api-key.avif`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2025.03.20/assets/elevenlabs.avif`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2025.03.20/assets/histoire-color-slider-dark.avif`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2025.03.20/assets/histoire-color-slider.avif`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2025.03.20/assets/histoire-first-look.mp4`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2025.03.20/assets/histoire-logo-dark.avif`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2025.03.20/assets/histoire-logo.avif`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2025.03.20/assets/modules-i18n.avif`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2025.03.20/assets/new-ui-v4-speech-dark.avif`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2025.03.20/assets/new-ui-v4-speech.avif`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2025.03.20/assets/settings-i18n.avif`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2025.03.20/assets/steins-gate-gelnana-from-elpsycongrooblog.avif`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2025.03.20/assets/steins-gate-mayori.avif`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2025.03.20/index.md`：Markdown 文档。
+- `docs/content/zh-Hans/blog/DevLog-2025.04.06/assets/awesome-ai-vtuber-logo-light.avif`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2025.04.06/assets/character-card-detail.avif`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2025.04.06/assets/character-card.avif`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2025.04.06/assets/memory-decay.avif`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2025.04.06/assets/memory-retrieval.avif`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2025.04.06/assets/more-theme-colors.avif`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2025.04.06/assets/relu-sticker-wow.avif`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2025.04.06/index.md`：Markdown 文档。
+- `docs/content/zh-Hans/blog/DevLog-2025.04.14/assets/memory-controler.avif`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2025.04.14/assets/memory-decay.avif`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2025.04.14/assets/memory-driver.avif`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2025.04.14/assets/memory-emotional-model.avif`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2025.04.14/assets/memory-emotional-score.avif`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2025.04.14/assets/memory-emotional-simulator.avif`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2025.04.14/assets/memory-retrieval.avif`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2025.04.14/assets/review-1.avif`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2025.04.14/assets/review-2.avif`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2025.04.14/index.md`：Markdown 文档。
+- `docs/content/zh-Hans/blog/DevLog-2025.04.22/assets/cursor-open-settings.mp4`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2025.04.22/assets/develop-with-cursor.avif`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2025.04.22/index.md`：Markdown 文档。
+- `docs/content/zh-Hans/blog/DevLog-2025.04.28/assets/airi-mcp-arch.avif`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2025.04.28/assets/airi-mcp-input-text.mp4`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2025.04.28/assets/airi-mcp-settings.mp4`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2025.04.28/index.md`：Markdown 文档。
+- `docs/content/zh-Hans/blog/DevLog-2025.05.16/assets/character-card-menu-dark.avif`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2025.05.16/assets/character-card-menu-light.avif`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2025.05.16/assets/character-card-settings-dark.avif`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2025.05.16/assets/character-card-settings-light.avif`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2025.05.16/assets/character-card-showcase-dark.avif`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2025.05.16/assets/character-card-showcase-light.avif`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2025.05.16/assets/demo-day-hangzhou-1.avif`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2025.05.16/assets/demo-day-hangzhou-2.avif`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2025.05.16/assets/demo-day-hangzhou-3.avif`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2025.05.16/assets/velin-dark.avif`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2025.05.16/assets/velin-light.avif`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2025.05.16/assets/velin-playground-dark.avif`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2025.05.16/assets/velin-playground-light.avif`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2025.05.16/assets/webai-examples-demo.MP4`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2025.05.16/index.md`：Markdown 文档。
+- `docs/content/zh-Hans/blog/DevLog-2025.06.08/assets/250608-dark.avif`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2025.06.08/assets/250608-light.avif`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2025.06.08/assets/airi-tamagotchi-focus.gif`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2025.06.08/assets/screen.avif`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2025.06.08/index.md`：Markdown 文档。
+- `docs/content/zh-Hans/blog/DevLog-2025.07.18/assets/structure-after.avif`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2025.07.18/assets/structure-before.avif`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2025.07.18/index.md`：Markdown 文档。
+- `docs/content/zh-Hans/blog/DevLog-2025.08.01/index.md`：Markdown 文档。
+- `docs/content/zh-Hans/blog/DevLog-2025.08.05/assets/airi-demo-clustr-dark.mp4`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2025.08.05/assets/airi-demo-clustr-light.mp4`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2025.08.05/assets/airi-demo-fade-on-hover.mp4`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2025.08.05/assets/airi-demo-move.mp4`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2025.08.05/assets/airi-demo-onboarding-dark.avif`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2025.08.05/assets/airi-demo-onboarding-dark.mp4`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2025.08.05/assets/airi-demo-onboarding-light.avif`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2025.08.05/assets/airi-demo-onboarding-light.mp4`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2025.08.05/assets/airi-demo-onboarding-mobile-dark.mp4`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2025.08.05/assets/airi-demo-onboarding-mobile-light.mp4`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2025.08.05/assets/airi-demo-quick-editor-mobile-dark.mp4`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2025.08.05/assets/airi-demo-quick-editor-mobile-light.mp4`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2025.08.05/assets/airi-demo-resize.mp4`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2025.08.05/assets/airi-demo-resource-island.mp4`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2025.08.05/assets/airi-demo-settings-hearing.mp4`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2025.08.05/assets/airi-demo-vrm-dark.avif`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2025.08.05/assets/airi-demo-vrm-light.avif`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2025.08.05/assets/airi-docs-blogs-dark.avif`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2025.08.05/assets/airi-docs-blogs-light.avif`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2025.08.05/assets/airi-docs-dark.mp4`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2025.08.05/assets/airi-docs-light.mp4`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2025.08.05/assets/airi-packages-i18n-dark.avif`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2025.08.05/assets/airi-packages-i18n-light.avif`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2025.08.05/assets/airi-ui-level-meter-dark.avif`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2025.08.05/assets/airi-ui-level-meter-light.avif`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2025.08.05/assets/airi-ui-time-series-chart-dark.avif`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2025.08.05/assets/airi-ui-time-series-chart-light.avif`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2025.08.05/assets/airi-vrm.avif`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2025.08.05/assets/cover-dark.avif`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2025.08.05/assets/cover-light.avif`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2025.08.05/assets/relu-sticker-thinks.avif`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2025.08.05/index.md`：Markdown 文档。
+- `docs/content/zh-Hans/blog/DevLog-2025.08.26/assets/airi-factorio-yolo-v0-playground-vnc.mp4`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2025.08.26/assets/factorio-ultralytics-hub-preview.jpg`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2025.08.26/components/nms-iou.vue`：Vue/UI 组件。
+- `docs/content/zh-Hans/blog/DevLog-2025.08.26/index.md`：Markdown 文档。
+- `docs/content/zh-Hans/blog/Devlog-2025.10.20/assets/airi.mp4`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/Devlog-2025.10.20/assets/control-island.png`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/Devlog-2025.10.20/assets/electron.png`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/Devlog-2025.10.20/assets/moeru.png`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/Devlog-2025.10.20/assets/project-airi.png`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/Devlog-2025.10.20/assets/rust-tts.png`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/Devlog-2025.10.20/assets/three-mmd.png`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/Devlog-2025.10.20/assets/velin.png`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/Devlog-2025.10.20/index.md`：Markdown 文档。
+- `docs/content/zh-Hans/blog/DevLog-2026.01.01/assets/airi-notification-capability.mp4`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2026.01.01/assets/cover-dark.png`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2026.01.01/assets/cover-light.png`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2026.01.01/assets/flow-chat-basic-memory.mp4`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2026.01.01/assets/helldiver-laughing.png`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2026.01.01/index.md`：Markdown 文档。
+- `docs/content/zh-Hans/blog/DevLog-2026.02.16/assets/add-button-to-menu.png`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2026.02.16/assets/some-collected-data.png`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2026.02.16/index.md`：Markdown 文档。
+- `docs/content/zh-Hans/blog/DevLog-2026.03.29/assets/airi-pocket-android-godot-vrm-bg.mp4`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2026.03.29/assets/cover-dark.avif`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2026.03.29/assets/cover-light.avif`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/DevLog-2026.03.29/index.md`：Markdown 文档。
+- `docs/content/zh-Hans/blog/DreamLog-0x1/index.md`：Markdown 文档。
+- `docs/content/zh-Hans/blog/happy-halloween-2025/assets/halloween-airi.avif`：静态资源或媒体文件。
+- `docs/content/zh-Hans/blog/happy-halloween-2025/index.md`：Markdown 文档。
+- `docs/content/zh-Hans/blog/index.md`：Markdown 文档。
+- `docs/content/zh-Hans/blog/merry-christmas-2025/index.md`：Markdown 文档。
+- `docs/content/zh-Hans/docs/chronicles/version-v0.0.1/index.md`：Markdown 文档。
+- `docs/content/zh-Hans/docs/chronicles/version-v0.1.0/index.md`：Markdown 文档。
+- `docs/content/zh-Hans/docs/contributing/design-guidelines/index.md`：Markdown 文档。
+- `docs/content/zh-Hans/docs/contributing/design-guidelines/resources.md`：Markdown 文档。
+- `docs/content/zh-Hans/docs/contributing/design-guidelines/tools.md`：Markdown 文档。
+- `docs/content/zh-Hans/docs/contributing/docs.md`：Markdown 文档。
+- `docs/content/zh-Hans/docs/contributing/index.md`：Markdown 文档。
+- `docs/content/zh-Hans/docs/contributing/services/discord.md`：Markdown 文档。
+- `docs/content/zh-Hans/docs/contributing/services/minecraft.md`：Markdown 文档。
+- `docs/content/zh-Hans/docs/contributing/services/satori.md`：Markdown 文档。
+- `docs/content/zh-Hans/docs/contributing/services/telegram.md`：Markdown 文档。
+- `docs/content/zh-Hans/docs/contributing/tamagotchi.md`：Markdown 文档。
+- `docs/content/zh-Hans/docs/contributing/webui.md`：Markdown 文档。
+- `docs/content/zh-Hans/docs/manual/config/index.md`：Markdown 文档。
+- `docs/content/zh-Hans/docs/manual/tamagotchi/index.md`：Markdown 文档。
+- `docs/content/zh-Hans/docs/manual/tamagotchi/setup-and-use/assets/manual-airi-card.avif`：静态资源或媒体文件。
+- `docs/content/zh-Hans/docs/manual/tamagotchi/setup-and-use/assets/manual-chat-window.avif`：静态资源或媒体文件。
+- `docs/content/zh-Hans/docs/manual/tamagotchi/setup-and-use/assets/manual-consciousness.avif`：静态资源或媒体文件。
+- `docs/content/zh-Hans/docs/manual/tamagotchi/setup-and-use/assets/manual-controls-island-expanded.avif`：静态资源或媒体文件。
+- `docs/content/zh-Hans/docs/manual/tamagotchi/setup-and-use/assets/manual-data-settings.avif`：静态资源或媒体文件。
+- `docs/content/zh-Hans/docs/manual/tamagotchi/setup-and-use/assets/manual-devtools-beat-sync.avif`：静态资源或媒体文件。
+- `docs/content/zh-Hans/docs/manual/tamagotchi/setup-and-use/assets/manual-devtools-context-flow.avif`：静态资源或媒体文件。
+- `docs/content/zh-Hans/docs/manual/tamagotchi/setup-and-use/assets/manual-devtools-displays.avif`：静态资源或媒体文件。
+- `docs/content/zh-Hans/docs/manual/tamagotchi/setup-and-use/assets/manual-devtools-plugin-host.avif`：静态资源或媒体文件。
+- `docs/content/zh-Hans/docs/manual/tamagotchi/setup-and-use/assets/manual-devtools-relative-mouse.avif`：静态资源或媒体文件。
+- `docs/content/zh-Hans/docs/manual/tamagotchi/setup-and-use/assets/manual-devtools-screen-capture.avif`：静态资源或媒体文件。
+- `docs/content/zh-Hans/docs/manual/tamagotchi/setup-and-use/assets/manual-devtools-use-window-mouse.avif`：静态资源或媒体文件。
+- `docs/content/zh-Hans/docs/manual/tamagotchi/setup-and-use/assets/manual-devtools-vision-capture.avif`：静态资源或媒体文件。
+- `docs/content/zh-Hans/docs/manual/tamagotchi/setup-and-use/assets/manual-devtools-websocket-inspector.avif`：静态资源或媒体文件。
+- `docs/content/zh-Hans/docs/manual/tamagotchi/setup-and-use/assets/manual-devtools-widgets-calling.avif`：静态资源或媒体文件。
+- `docs/content/zh-Hans/docs/manual/tamagotchi/setup-and-use/assets/manual-hearing.avif`：静态资源或媒体文件。
+- `docs/content/zh-Hans/docs/manual/tamagotchi/setup-and-use/assets/manual-main-window.avif`：静态资源或媒体文件。
+- `docs/content/zh-Hans/docs/manual/tamagotchi/setup-and-use/assets/manual-models.avif`：静态资源或媒体文件。
+- `docs/content/zh-Hans/docs/manual/tamagotchi/setup-and-use/assets/manual-modules.avif`：静态资源或媒体文件。
+- `docs/content/zh-Hans/docs/manual/tamagotchi/setup-and-use/assets/manual-providers.avif`：静态资源或媒体文件。
+- `docs/content/zh-Hans/docs/manual/tamagotchi/setup-and-use/assets/manual-settings-window.avif`：静态资源或媒体文件。
+- `docs/content/zh-Hans/docs/manual/tamagotchi/setup-and-use/assets/manual-speech.avif`：静态资源或媒体文件。
+- `docs/content/zh-Hans/docs/manual/tamagotchi/setup-and-use/assets/manual-system-color-scheme.avif`：静态资源或媒体文件。
+- `docs/content/zh-Hans/docs/manual/tamagotchi/setup-and-use/assets/manual-system-developer.avif`：静态资源或媒体文件。
+- `docs/content/zh-Hans/docs/manual/tamagotchi/setup-and-use/assets/manual-system-general.avif`：静态资源或媒体文件。
+- `docs/content/zh-Hans/docs/manual/tamagotchi/setup-and-use/assets/manual-vision.avif`：静态资源或媒体文件。
+- `docs/content/zh-Hans/docs/manual/tamagotchi/setup-and-use/assets/manual-websocket-settings.avif`：静态资源或媒体文件。
+- `docs/content/zh-Hans/docs/manual/tamagotchi/setup-and-use/index.md`：Markdown 文档。
+- `docs/content/zh-Hans/docs/manual/web/index.md`：Markdown 文档。
+- `docs/content/zh-Hans/docs/overview/about-ai-vtuber.md`：Markdown 文档。
+- `docs/content/zh-Hans/docs/overview/about-neuro-sama.md`：Markdown 文档。
+- `docs/content/zh-Hans/docs/overview/index.md`：Markdown 文档。
+- `docs/content/zh-Hans/docs/overview/other-similar-projects.md`：Markdown 文档。
+- `docs/content/zh-Hans/docs/overview/versions.md`：Markdown 文档。
+- `docs/content/zh-Hans/index.md`：Markdown 文档。
+- `docs/content/zh-Hans/references/research/gaming/minecraft.md`：Markdown 文档。
+- `docs/content/zh-Hans/references/research/lipsync.md`：Markdown 文档。
+- `docs/content/zh-Hans/references/research/mocap.md`：Markdown 文档。
+- `docs/content/zh-Hans/references/research/text-to-motion.md`：Markdown 文档。
+- `docs/content/zh-Hans/references/research/tts.md`：Markdown 文档。
+- `docs/desktop-lane-status.md`：Markdown 文档。
+- `docs/netlify.toml`：项目文件。
+- `docs/package.json`：包清单，定义包名、脚本、依赖和发布信息。
+- `docs/README.zh-CN.md`：Markdown 文档。
+- `docs/scripts/avif.ts`：脚本文件。
+- `docs/scripts/update-contributors.ts`：脚本文件。
+- `docs/scripts/utils.ts`：脚本文件。
+- `docs/tsconfig.json`：TypeScript 配置。
+- `docs/uno.config.ts`：工具配置文件。
+- `docs/vite-env.d.ts`：类型声明。
+- `docs/wechat.md`：Markdown 文档。
+### engines
+
+- `engines/stage-tamagotchi-godot/.editorconfig`：项目文件。
+- `engines/stage-tamagotchi-godot/.gitattributes`：项目文件。
+- `engines/stage-tamagotchi-godot/.gitignore`：项目文件。
+- `engines/stage-tamagotchi-godot/addons/.gitkeep`：项目文件。
+- `engines/stage-tamagotchi-godot/assets/.gitkeep`：静态资源或媒体文件。
+- `engines/stage-tamagotchi-godot/docs/csharp-development-method.md`：Markdown 文档。
+- `engines/stage-tamagotchi-godot/docs/csharp-style.md`：Markdown 文档。
+- `engines/stage-tamagotchi-godot/export_presets.cfg`：项目文件。
+- `engines/stage-tamagotchi-godot/icon.svg`：静态资源或媒体文件。
+- `engines/stage-tamagotchi-godot/icon.svg.import`：项目文件。
+- `engines/stage-tamagotchi-godot/package.json`：包清单，定义包名、脚本、依赖和发布信息。
+- `engines/stage-tamagotchi-godot/project.godot`：项目文件。
+- `engines/stage-tamagotchi-godot/scenes/stage-root.tscn`：项目文件。
+- `engines/stage-tamagotchi-godot/scripts/StageRoot.cs`：脚本文件。
+- `engines/stage-tamagotchi-godot/scripts/StageRoot.cs.uid`：脚本文件。
+- `engines/stage-tamagotchi-godot/stage-tamagotchi-godot.csproj`：项目文件。
+- `engines/stage-tamagotchi-godot/stage-tamagotchi-godot.sln`：项目文件。
+### 根目录文件
+
+- `eslint.config.js`：ESLint 根配置。
+- `flake.lock`：Nix flake 锁文件。
+- `flake.nix`：Nix flake 配置。
+### integrations
+
+- `integrations/vscode/airi-plugin-vscode/package.json`：包清单，定义包名、脚本、依赖和发布信息。
+- `integrations/vscode/airi-plugin-vscode/src/index.ts`：模块入口文件。
+- `integrations/vscode/airi-plugin-vscode/tsconfig.json`：TypeScript 配置。
+- `integrations/vscode/airi-plugin-vscode/tsdown.config.ts`：工具配置文件。
+- `integrations/vscode/vscode-airi/.vscodeignore`：项目文件。
+- `integrations/vscode/vscode-airi/LICENSE`：项目文件。
+- `integrations/vscode/vscode-airi/package.json`：包清单，定义包名、脚本、依赖和发布信息。
+- `integrations/vscode/vscode-airi/res/logo.jpg`：静态资源或媒体文件。
+- `integrations/vscode/vscode-airi/scripts/dev.ts`：脚本文件。
+- `integrations/vscode/vscode-airi/scripts/publish.ts`：脚本文件。
+- `integrations/vscode/vscode-airi/scripts/shared.ts`：脚本文件。
+- `integrations/vscode/vscode-airi/scripts/vscode-ext-gen.ts`：脚本文件。
+- `integrations/vscode/vscode-airi/src/airi.ts`：TypeScript 源码。
+- `integrations/vscode/vscode-airi/src/context-collector.ts`：TypeScript 源码。
+- `integrations/vscode/vscode-airi/src/extension.ts`：TypeScript 源码。
+- `integrations/vscode/vscode-airi/src/generated/meta.ts`：TypeScript 源码。
+- `integrations/vscode/vscode-airi/src/types.ts`：TypeScript 源码。
+- `integrations/vscode/vscode-airi/tsconfig.json`：TypeScript 配置。
+- `integrations/vscode/vscode-airi/tsdown.config.ts`：工具配置文件。
+### 根目录文件
+
+- `knip.json`：Knip 未使用代码/依赖检查配置。
+- `LICENSE`：项目许可证。
+### nix
+
+- `nix/assets-hash.txt`：项目文件。
+- `nix/common.nix`：Nix 配置文件。
+- `nix/package.nix`：Nix 配置文件。
+- `nix/pnpm-deps-hash.txt`：项目文件。
+- `nix/update-assets-hash.sh`：项目文件。
+- `nix/update-pnpm-deps-hash.sh`：项目文件。
+### 根目录文件
+
+- `package.json`：根 workspace 清单，定义 pnpm 版本、脚本和 monorepo 元信息。
+### packages
+
+- `packages/audio-pipelines-transcribe/package.json`：包清单，定义包名、脚本、依赖和发布信息。
+- `packages/audio-pipelines-transcribe/src/utils/index.ts`：模块入口文件。
+- `packages/audio-pipelines-transcribe/tsconfig.json`：TypeScript 配置。
+- `packages/audio-pipelines-transcribe/vitest.config.ts`：工具配置文件。
+- `packages/audio/package.json`：包清单，定义包名、脚本、依赖和发布信息。
+- `packages/audio/src/audio-context/index.ts`：模块入口文件。
+- `packages/audio/src/audio-context/processor.worklet.ts`：TypeScript 源码。
+- `packages/audio/src/encoding/index.ts`：模块入口文件。
+- `packages/audio/src/encoding/wav.ts`：TypeScript 源码。
+- `packages/audio/src/index.ts`：模块入口文件。
+- `packages/audio/tsconfig.json`：TypeScript 配置。
+- `packages/audio/tsdown.config.ts`：工具配置文件。
+- `packages/cap-vite/package.json`：包清单，定义包名、脚本、依赖和发布信息。
+- `packages/cap-vite/src/bin/run.ts`：TypeScript 源码。
+- `packages/cap-vite/src/cli.test.ts`：自动化测试。
+- `packages/cap-vite/src/cli.ts`：TypeScript 源码。
+- `packages/cap-vite/src/index.test.ts`：自动化测试。
+- `packages/cap-vite/src/index.ts`：模块入口文件。
+- `packages/cap-vite/src/native.test.ts`：自动化测试。
+- `packages/cap-vite/src/native.ts`：TypeScript 源码。
+- `packages/cap-vite/src/vite-plugin.test.ts`：自动化测试。
+- `packages/cap-vite/src/vite-plugin.ts`：TypeScript 源码。
+- `packages/cap-vite/src/vite-wrapper-config.test.ts`：自动化测试。
+- `packages/cap-vite/src/vite-wrapper-config.ts`：TypeScript 源码。
+- `packages/cap-vite/tsconfig.json`：TypeScript 配置。
+- `packages/cap-vite/tsdown.config.ts`：工具配置文件。
+- `packages/cap-vite/vitest.config.ts`：工具配置文件。
+- `packages/ccc/LICENSE`：项目文件。
+- `packages/ccc/package.json`：包清单，定义包名、脚本、依赖和发布信息。
+- `packages/ccc/src/define/card.ts`：TypeScript 源码。
+- `packages/ccc/src/define/ext.ts`：TypeScript 源码。
+- `packages/ccc/src/define/index.ts`：模块入口文件。
+- `packages/ccc/src/define/types/mes_example.ts`：TypeScript 源码。
+- `packages/ccc/src/export/apng.ts`：TypeScript 源码。
+- `packages/ccc/src/export/index.ts`：模块入口文件。
+- `packages/ccc/src/export/json.ts`：TypeScript 源码。
+- `packages/ccc/src/export/md.ts`：TypeScript 源码。
+- `packages/ccc/src/export/png.ts`：TypeScript 源码。
+- `packages/ccc/src/export/types/assets.ts`：TypeScript 源码。
+- `packages/ccc/src/export/types/character_book.ts`：TypeScript 源码。
+- `packages/ccc/src/export/types/character_card_v3.ts`：TypeScript 源码。
+- `packages/ccc/src/export/types/data.ts`：TypeScript 源码。
+- `packages/ccc/src/export/types/extensions.ts`：TypeScript 源码。
+- `packages/ccc/src/export/types/index.ts`：模块入口文件。
+- `packages/ccc/src/index.ts`：模块入口文件。
+- `packages/ccc/src/utils/chat.ts`：工具函数。
+- `packages/ccc/src/utils/index.ts`：模块入口文件。
+- `packages/ccc/src/utils/markdown.ts`：工具函数。
+- `packages/ccc/test/fixture/seraphina.ts`：TypeScript 源码。
+- `packages/ccc/tsconfig.json`：TypeScript 配置。
+- `packages/core-agent/package.json`：包清单，定义包名、脚本、依赖和发布信息。
+- `packages/core-agent/src/agents/spark-notify/event-source.ts`：TypeScript 源码。
+- `packages/core-agent/src/agents/spark-notify/handler.test.ts`：自动化测试。
+- `packages/core-agent/src/agents/spark-notify/handler.ts`：TypeScript 源码。
+- `packages/core-agent/src/agents/spark-notify/index.ts`：模块入口文件。
+- `packages/core-agent/src/agents/spark-notify/schema.ts`：TypeScript 源码。
+- `packages/core-agent/src/agents/spark-notify/tools.ts`：TypeScript 源码。
+- `packages/core-agent/src/agents/spark-notify/types.ts`：TypeScript 源码。
+- `packages/core-agent/src/contracts/context-port.ts`：TypeScript 源码。
+- `packages/core-agent/src/contracts/hook-types.ts`：TypeScript 源码。
+- `packages/core-agent/src/contracts/llm-port.ts`：TypeScript 源码。
+- `packages/core-agent/src/contracts/session-port.ts`：TypeScript 源码。
+- `packages/core-agent/src/contracts/stream-port.ts`：TypeScript 源码。
+- `packages/core-agent/src/index.ts`：模块入口文件。
+- `packages/core-agent/src/messages/compaction.test.ts`：自动化测试。
+- `packages/core-agent/src/messages/compaction.ts`：TypeScript 源码。
+- `packages/core-agent/src/messages/index.ts`：模块入口文件。
+- `packages/core-agent/src/messages/projection.test.ts`：自动化测试。
+- `packages/core-agent/src/messages/projection.ts`：TypeScript 源码。
+- `packages/core-agent/src/messages/render-provider-chat.test.ts`：自动化测试。
+- `packages/core-agent/src/messages/render-provider-chat.ts`：TypeScript 源码。
+- `packages/core-agent/src/messages/types.test.ts`：自动化测试。
+- `packages/core-agent/src/messages/types.ts`：TypeScript 源码。
+- `packages/core-agent/src/runtime/agent-hooks.ts`：TypeScript 源码。
+- `packages/core-agent/src/runtime/context-registry.ts`：TypeScript 源码。
+- `packages/core-agent/src/runtime/llm-service.ts`：TypeScript 源码。
+- `packages/core-agent/src/session/merge-loaded-session-messages.ts`：TypeScript 源码。
+- `packages/core-agent/src/types/chat.ts`：类型声明。
+- `packages/core-agent/src/types/llm.ts`：类型声明。
+- `packages/core-agent/tsconfig.json`：TypeScript 配置。
+- `packages/core-agent/tsdown.config.ts`：工具配置文件。
+- `packages/core-agent/vieval.config.ts`：工具配置文件。
+- `packages/core-character/package.json`：包清单，定义包名、脚本、依赖和发布信息。
+- `packages/core-character/src/index.ts`：模块入口文件。
+- `packages/core-character/tsconfig.json`：TypeScript 配置。
+- `packages/core-character/tsdown.config.ts`：工具配置文件。
+- `packages/electron-eventa/package.json`：包清单，定义包名、脚本、依赖和发布信息。
+- `packages/electron-eventa/src/electron-updater/index.ts`：模块入口文件。
+- `packages/electron-eventa/src/electron/app.ts`：TypeScript 源码。
+- `packages/electron-eventa/src/electron/index.ts`：模块入口文件。
+- `packages/electron-eventa/src/electron/powerMonitor.ts`：TypeScript 源码。
+- `packages/electron-eventa/src/electron/screen.ts`：TypeScript 源码。
+- `packages/electron-eventa/src/electron/system-preferences.ts`：TypeScript 源码。
+- `packages/electron-eventa/src/electron/window.ts`：TypeScript 源码。
+- `packages/electron-eventa/src/index.ts`：模块入口文件。
+- `packages/electron-eventa/tsconfig.json`：TypeScript 配置。
+- `packages/electron-eventa/tsdown.config.ts`：工具配置文件。
+- `packages/electron-screen-capture/package.json`：包清单，定义包名、脚本、依赖和发布信息。
+- `packages/electron-screen-capture/src/index.ts`：模块入口文件。
+- `packages/electron-screen-capture/src/main/index.ts`：模块入口文件。
+- `packages/electron-screen-capture/src/main/utils.ts`：Electron 主进程源码。
+- `packages/electron-screen-capture/src/renderer.ts`：TypeScript 源码。
+- `packages/electron-screen-capture/src/vue/index.ts`：模块入口文件。
+- `packages/electron-screen-capture/src/vue/use-electron-screen-capture.ts`：TypeScript 源码。
+- `packages/electron-screen-capture/tsconfig.json`：TypeScript 配置。
+- `packages/electron-screen-capture/tsdown.config.ts`：工具配置文件。
+- `packages/electron-vueuse/package.json`：包清单，定义包名、脚本、依赖和发布信息。
+- `packages/electron-vueuse/src/composables/use-electron-all-displays.ts`：Vue composable 复用逻辑。
+- `packages/electron-vueuse/src/composables/use-electron-auto-updater.ts`：Vue composable 复用逻辑。
+- `packages/electron-vueuse/src/composables/use-electron-eventa-context.ts`：Vue composable 复用逻辑。
+- `packages/electron-vueuse/src/composables/use-electron-mouse-around-window-border.ts`：Vue composable 复用逻辑。
+- `packages/electron-vueuse/src/composables/use-electron-mouse-in-element.ts`：Vue composable 复用逻辑。
+- `packages/electron-vueuse/src/composables/use-electron-mouse-in-window.ts`：Vue composable 复用逻辑。
+- `packages/electron-vueuse/src/composables/use-electron-mouse.ts`：Vue composable 复用逻辑。
+- `packages/electron-vueuse/src/composables/use-electron-relative-mouse.ts`：Vue composable 复用逻辑。
+- `packages/electron-vueuse/src/composables/use-electron-window-bounds.ts`：Vue composable 复用逻辑。
+- `packages/electron-vueuse/src/composables/use-electron-window-resize.ts`：Vue composable 复用逻辑。
+- `packages/electron-vueuse/src/index.ts`：模块入口文件。
+- `packages/electron-vueuse/src/main/index.ts`：模块入口文件。
+- `packages/electron-vueuse/src/main/loop.ts`：Electron 主进程源码。
+- `packages/electron-vueuse/src/main/renderer-loop.ts`：Electron 主进程源码。
+- `packages/electron-vueuse/tsconfig.json`：TypeScript 配置。
+- `packages/electron-vueuse/tsdown.config.ts`：工具配置文件。
+- `packages/font-chillroundm/LICENSE`：项目文件。
+- `packages/font-chillroundm/package.json`：包清单，定义包名、脚本、依赖和发布信息。
+- `packages/font-chillroundm/src/files/ChillRoundM.otf`：项目文件。
+- `packages/font-chillroundm/src/files/ChillRoundM.ttf`：项目文件。
+- `packages/font-chillroundm/src/index.css`：样式文件。
+- `packages/font-chillroundm/src/index.ts`：模块入口文件。
+- `packages/font-chillroundm/tsconfig.json`：TypeScript 配置。
+- `packages/font-chillroundm/tsdown.config.ts`：工具配置文件。
+- `packages/font-cjkfonts-allseto/license.txt`：项目文件。
+- `packages/font-cjkfonts-allseto/package.json`：包清单，定义包名、脚本、依赖和发布信息。
+- `packages/font-cjkfonts-allseto/src/files/cjkFonts_allseto_v1.11.ttf`：项目文件。
+- `packages/font-cjkfonts-allseto/src/index.css`：样式文件。
+- `packages/font-cjkfonts-allseto/src/index.ts`：模块入口文件。
+- `packages/font-cjkfonts-allseto/tsconfig.json`：TypeScript 配置。
+- `packages/font-cjkfonts-allseto/tsdown.config.ts`：工具配置文件。
+- `packages/font-departure-mono/LICENSE`：项目文件。
+- `packages/font-departure-mono/package.json`：包清单，定义包名、脚本、依赖和发布信息。
+- `packages/font-departure-mono/src/files/DepartureMono-Regular.otf`：项目文件。
+- `packages/font-departure-mono/src/files/DepartureMono-Regular.woff`：项目文件。
+- `packages/font-departure-mono/src/files/DepartureMono-Regular.woff2`：项目文件。
+- `packages/font-departure-mono/src/index.css`：样式文件。
+- `packages/font-departure-mono/src/index.ts`：模块入口文件。
+- `packages/font-departure-mono/tsconfig.json`：TypeScript 配置。
+- `packages/font-departure-mono/tsdown.config.ts`：工具配置文件。
+- `packages/font-xiaolai/package.json`：包清单，定义包名、脚本、依赖和发布信息。
+- `packages/font-xiaolai/src/files/XiaolaiSC-Regular.ttf`：项目文件。
+- `packages/font-xiaolai/src/index.css`：样式文件。
+- `packages/font-xiaolai/src/index.ts`：模块入口文件。
+- `packages/font-xiaolai/tsconfig.json`：TypeScript 配置。
+- `packages/font-xiaolai/tsdown.config.ts`：工具配置文件。
+- `packages/i18n/package.json`：包清单，定义包名、脚本、依赖和发布信息。
+- `packages/i18n/src/index.ts`：模块入口文件。
+- `packages/i18n/src/locales/en/base.yaml`：YAML 配置文件。
+- `packages/i18n/src/locales/en/docs/index.ts`：模块入口文件。
+- `packages/i18n/src/locales/en/docs/theme.yaml`：YAML 配置文件。
+- `packages/i18n/src/locales/en/docs/versions.yaml`：YAML 配置文件。
+- `packages/i18n/src/locales/en/index.ts`：模块入口文件。
+- `packages/i18n/src/locales/en/server/auth.yaml`：YAML 配置文件。
+- `packages/i18n/src/locales/en/server/index.ts`：模块入口文件。
+- `packages/i18n/src/locales/en/settings.yaml`：YAML 配置文件。
+- `packages/i18n/src/locales/en/stage.yaml`：YAML 配置文件。
+- `packages/i18n/src/locales/en/tamagotchi/electron/index.ts`：模块入口文件。
+- `packages/i18n/src/locales/en/tamagotchi/electron/tray.yaml`：YAML 配置文件。
+- `packages/i18n/src/locales/en/tamagotchi/index.ts`：模块入口文件。
+- `packages/i18n/src/locales/en/tamagotchi/settings.yaml`：YAML 配置文件。
+- `packages/i18n/src/locales/en/tamagotchi/stage.yaml`：YAML 配置文件。
+- `packages/i18n/src/locales/es/base.yaml`：YAML 配置文件。
+- `packages/i18n/src/locales/es/docs/index.ts`：模块入口文件。
+- `packages/i18n/src/locales/es/docs/theme.yaml`：YAML 配置文件。
+- `packages/i18n/src/locales/es/docs/versions.yaml`：YAML 配置文件。
+- `packages/i18n/src/locales/es/index.ts`：模块入口文件。
+- `packages/i18n/src/locales/es/server/auth.yaml`：YAML 配置文件。
+- `packages/i18n/src/locales/es/settings.yaml`：YAML 配置文件。
+- `packages/i18n/src/locales/es/stage.yaml`：YAML 配置文件。
+- `packages/i18n/src/locales/es/tamagotchi/electron/index.ts`：模块入口文件。
+- `packages/i18n/src/locales/es/tamagotchi/electron/tray.yaml`：YAML 配置文件。
+- `packages/i18n/src/locales/es/tamagotchi/index.ts`：模块入口文件。
+- `packages/i18n/src/locales/es/tamagotchi/settings.yaml`：YAML 配置文件。
+- `packages/i18n/src/locales/es/tamagotchi/stage.yaml`：YAML 配置文件。
+- `packages/i18n/src/locales/fr/base.yaml`：YAML 配置文件。
+- `packages/i18n/src/locales/fr/docs/index.ts`：模块入口文件。
+- `packages/i18n/src/locales/fr/docs/theme.yaml`：YAML 配置文件。
+- `packages/i18n/src/locales/fr/docs/versions.yaml`：YAML 配置文件。
+- `packages/i18n/src/locales/fr/index.ts`：模块入口文件。
+- `packages/i18n/src/locales/fr/server/auth.yaml`：YAML 配置文件。
+- `packages/i18n/src/locales/fr/settings.yaml`：YAML 配置文件。
+- `packages/i18n/src/locales/fr/stage.yaml`：YAML 配置文件。
+- `packages/i18n/src/locales/fr/tamagotchi/electron/index.ts`：模块入口文件。
+- `packages/i18n/src/locales/fr/tamagotchi/electron/tray.yaml`：YAML 配置文件。
+- `packages/i18n/src/locales/fr/tamagotchi/index.ts`：模块入口文件。
+- `packages/i18n/src/locales/fr/tamagotchi/settings.yaml`：YAML 配置文件。
+- `packages/i18n/src/locales/fr/tamagotchi/stage.yaml`：YAML 配置文件。
+- `packages/i18n/src/locales/index.ts`：模块入口文件。
+- `packages/i18n/src/locales/ja/base.yaml`：YAML 配置文件。
+- `packages/i18n/src/locales/ja/docs/index.ts`：模块入口文件。
+- `packages/i18n/src/locales/ja/docs/theme.yaml`：YAML 配置文件。
+- `packages/i18n/src/locales/ja/docs/versions.yaml`：YAML 配置文件。
+- `packages/i18n/src/locales/ja/index.ts`：模块入口文件。
+- `packages/i18n/src/locales/ja/server/auth.yaml`：YAML 配置文件。
+- `packages/i18n/src/locales/ja/settings.yaml`：YAML 配置文件。
+- `packages/i18n/src/locales/ja/stage.yaml`：YAML 配置文件。
+- `packages/i18n/src/locales/ja/tamagotchi/electron/index.ts`：模块入口文件。
+- `packages/i18n/src/locales/ja/tamagotchi/electron/tray.yaml`：YAML 配置文件。
+- `packages/i18n/src/locales/ja/tamagotchi/index.ts`：模块入口文件。
+- `packages/i18n/src/locales/ja/tamagotchi/settings.yaml`：YAML 配置文件。
+- `packages/i18n/src/locales/ja/tamagotchi/stage.yaml`：YAML 配置文件。
+- `packages/i18n/src/locales/ko/base.yaml`：YAML 配置文件。
+- `packages/i18n/src/locales/ko/docs/index.ts`：模块入口文件。
+- `packages/i18n/src/locales/ko/docs/theme.yaml`：YAML 配置文件。
+- `packages/i18n/src/locales/ko/docs/versions.yaml`：YAML 配置文件。
+- `packages/i18n/src/locales/ko/index.ts`：模块入口文件。
+- `packages/i18n/src/locales/ko/server/auth.yaml`：YAML 配置文件。
+- `packages/i18n/src/locales/ko/settings.yaml`：YAML 配置文件。
+- `packages/i18n/src/locales/ko/stage.yaml`：YAML 配置文件。
+- `packages/i18n/src/locales/ko/tamagotchi/electron/index.ts`：模块入口文件。
+- `packages/i18n/src/locales/ko/tamagotchi/electron/tray.yaml`：YAML 配置文件。
+- `packages/i18n/src/locales/ko/tamagotchi/index.ts`：模块入口文件。
+- `packages/i18n/src/locales/ko/tamagotchi/settings.yaml`：YAML 配置文件。
+- `packages/i18n/src/locales/ko/tamagotchi/stage.yaml`：YAML 配置文件。
+- `packages/i18n/src/locales/ru/base.yaml`：YAML 配置文件。
+- `packages/i18n/src/locales/ru/docs/index.ts`：模块入口文件。
+- `packages/i18n/src/locales/ru/docs/theme.yaml`：YAML 配置文件。
+- `packages/i18n/src/locales/ru/docs/versions.yaml`：YAML 配置文件。
+- `packages/i18n/src/locales/ru/index.ts`：模块入口文件。
+- `packages/i18n/src/locales/ru/server/auth.yaml`：YAML 配置文件。
+- `packages/i18n/src/locales/ru/settings.yaml`：YAML 配置文件。
+- `packages/i18n/src/locales/ru/stage.yaml`：YAML 配置文件。
+- `packages/i18n/src/locales/ru/tamagotchi/electron/index.ts`：模块入口文件。
+- `packages/i18n/src/locales/ru/tamagotchi/electron/tray.yaml`：YAML 配置文件。
+- `packages/i18n/src/locales/ru/tamagotchi/index.ts`：模块入口文件。
+- `packages/i18n/src/locales/ru/tamagotchi/settings.yaml`：YAML 配置文件。
+- `packages/i18n/src/locales/ru/tamagotchi/stage.yaml`：YAML 配置文件。
+- `packages/i18n/src/locales/vi/base.yaml`：YAML 配置文件。
+- `packages/i18n/src/locales/vi/docs/index.ts`：模块入口文件。
+- `packages/i18n/src/locales/vi/docs/theme.yaml`：YAML 配置文件。
+- `packages/i18n/src/locales/vi/docs/versions.yaml`：YAML 配置文件。
+- `packages/i18n/src/locales/vi/index.ts`：模块入口文件。
+- `packages/i18n/src/locales/vi/server/auth.yaml`：YAML 配置文件。
+- `packages/i18n/src/locales/vi/settings.yaml`：YAML 配置文件。
+- `packages/i18n/src/locales/vi/stage.yaml`：YAML 配置文件。
+- `packages/i18n/src/locales/vi/tamagotchi/electron/index.ts`：模块入口文件。
+- `packages/i18n/src/locales/vi/tamagotchi/electron/tray.yaml`：YAML 配置文件。
+- `packages/i18n/src/locales/vi/tamagotchi/index.ts`：模块入口文件。
+- `packages/i18n/src/locales/vi/tamagotchi/settings.yaml`：YAML 配置文件。
+- `packages/i18n/src/locales/vi/tamagotchi/stage.yaml`：YAML 配置文件。
+- `packages/i18n/src/locales/zh-Hans/base.yaml`：YAML 配置文件。
+- `packages/i18n/src/locales/zh-Hans/docs/index.ts`：模块入口文件。
+- `packages/i18n/src/locales/zh-Hans/docs/theme.yaml`：YAML 配置文件。
+- `packages/i18n/src/locales/zh-Hans/docs/versions.yaml`：YAML 配置文件。
+- `packages/i18n/src/locales/zh-Hans/index.ts`：模块入口文件。
+- `packages/i18n/src/locales/zh-Hans/server/auth.yaml`：YAML 配置文件。
+- `packages/i18n/src/locales/zh-Hans/settings.yaml`：YAML 配置文件。
+- `packages/i18n/src/locales/zh-Hans/stage.yaml`：YAML 配置文件。
+- `packages/i18n/src/locales/zh-Hans/tamagotchi/electron/index.ts`：模块入口文件。
+- `packages/i18n/src/locales/zh-Hans/tamagotchi/electron/tray.yaml`：YAML 配置文件。
+- `packages/i18n/src/locales/zh-Hans/tamagotchi/index.ts`：模块入口文件。
+- `packages/i18n/src/locales/zh-Hans/tamagotchi/settings.yaml`：YAML 配置文件。
+- `packages/i18n/src/locales/zh-Hans/tamagotchi/stage.yaml`：YAML 配置文件。
+- `packages/i18n/src/locales/zh-Hant/base.yaml`：YAML 配置文件。
+- `packages/i18n/src/locales/zh-Hant/docs/index.ts`：模块入口文件。
+- `packages/i18n/src/locales/zh-Hant/docs/theme.yaml`：YAML 配置文件。
+- `packages/i18n/src/locales/zh-Hant/docs/versions.yaml`：YAML 配置文件。
+- `packages/i18n/src/locales/zh-Hant/index.ts`：模块入口文件。
+- `packages/i18n/src/locales/zh-Hant/server/auth.yaml`：YAML 配置文件。
+- `packages/i18n/src/locales/zh-Hant/settings.yaml`：YAML 配置文件。
+- `packages/i18n/src/locales/zh-Hant/stage.yaml`：YAML 配置文件。
+- `packages/i18n/src/locales/zh-Hant/tamagotchi/electron/index.ts`：模块入口文件。
+- `packages/i18n/src/locales/zh-Hant/tamagotchi/electron/tray.yaml`：YAML 配置文件。
+- `packages/i18n/src/locales/zh-Hant/tamagotchi/index.ts`：模块入口文件。
+- `packages/i18n/src/locales/zh-Hant/tamagotchi/settings.yaml`：YAML 配置文件。
+- `packages/i18n/src/locales/zh-Hant/tamagotchi/stage.yaml`：YAML 配置文件。
+- `packages/i18n/tsconfig.json`：TypeScript 配置。
+- `packages/i18n/tsdown.config.ts`：工具配置文件。
+- `packages/memory-pgvector/package.json`：包清单，定义包名、脚本、依赖和发布信息。
+- `packages/memory-pgvector/src/index.ts`：模块入口文件。
+- `packages/memory-pgvector/tsconfig.json`：TypeScript 配置。
+- `packages/model-driver-lipsync/package.json`：包清单，定义包名、脚本、依赖和发布信息。
+- `packages/model-driver-lipsync/src/index.ts`：模块入口文件。
+- `packages/model-driver-lipsync/src/live2d/index.ts`：模块入口文件。
+- `packages/model-driver-lipsync/src/shared/wlipsync/index.ts`：模块入口文件。
+- `packages/model-driver-lipsync/src/shared/wlipsync/profile.json`：跨进程/跨端共享源码。
+- `packages/model-driver-lipsync/tsconfig.json`：TypeScript 配置。
+- `packages/model-driver-mediapipe/AGENTS.md`：Markdown 文档。
+- `packages/model-driver-mediapipe/package.json`：包清单，定义包名、脚本、依赖和发布信息。
+- `packages/model-driver-mediapipe/references/tasks-vision-api.md`：Markdown 文档。
+- `packages/model-driver-mediapipe/src/backends/mediapipe.ts`：TypeScript 源码。
+- `packages/model-driver-mediapipe/src/engine.ts`：TypeScript 源码。
+- `packages/model-driver-mediapipe/src/index.ts`：模块入口文件。
+- `packages/model-driver-mediapipe/src/three/apply-pose-to-vrm.ts`：TypeScript 源码。
+- `packages/model-driver-mediapipe/src/three/index.ts`：模块入口文件。
+- `packages/model-driver-mediapipe/src/three/pose-to-vrm.ts`：TypeScript 源码。
+- `packages/model-driver-mediapipe/src/types.ts`：TypeScript 源码。
+- `packages/model-driver-mediapipe/src/utils/overlay.ts`：工具函数。
+- `packages/model-driver-mediapipe/tasks/assets/face_landmarker.task`：静态资源或媒体文件。
+- `packages/model-driver-mediapipe/tasks/assets/hand_landmarker.task`：静态资源或媒体文件。
+- `packages/model-driver-mediapipe/tasks/assets/pose_landmarker_lite.task`：静态资源或媒体文件。
+- `packages/model-driver-mediapipe/tasks/assets/wasm/vision_wasm_internal.js`：静态资源或媒体文件。
+- `packages/model-driver-mediapipe/tasks/assets/wasm/vision_wasm_internal.wasm`：静态资源或媒体文件。
+- `packages/model-driver-mediapipe/tasks/assets/wasm/vision_wasm_module_internal.js`：静态资源或媒体文件。
+- `packages/model-driver-mediapipe/tasks/assets/wasm/vision_wasm_module_internal.wasm`：静态资源或媒体文件。
+- `packages/model-driver-mediapipe/tasks/assets/wasm/vision_wasm_nosimd_internal.js`：静态资源或媒体文件。
+- `packages/model-driver-mediapipe/tasks/assets/wasm/vision_wasm_nosimd_internal.wasm`：静态资源或媒体文件。
+- `packages/model-driver-mediapipe/tasks/prepare-tasks.ts`：TypeScript 源码。
+- `packages/model-driver-mediapipe/tasks/tasks.ts`：TypeScript 源码。
+- `packages/model-driver-mediapipe/tsconfig.json`：TypeScript 配置。
+- `packages/pipelines-audio/package.json`：包清单，定义包名、脚本、依赖和发布信息。
+- `packages/pipelines-audio/src/eventa.ts`：TypeScript 源码。
+- `packages/pipelines-audio/src/index.ts`：模块入口文件。
+- `packages/pipelines-audio/src/managers/playback-manager.ts`：TypeScript 源码。
+- `packages/pipelines-audio/src/priority.ts`：TypeScript 源码。
+- `packages/pipelines-audio/src/processors/tts-chunker.test.ts`：自动化测试。
+- `packages/pipelines-audio/src/processors/tts-chunker.ts`：TypeScript 源码。
+- `packages/pipelines-audio/src/speech-pipeline.test.ts`：自动化测试。
+- `packages/pipelines-audio/src/speech-pipeline.ts`：TypeScript 源码。
+- `packages/pipelines-audio/src/stream.ts`：TypeScript 源码。
+- `packages/pipelines-audio/src/types.ts`：TypeScript 源码。
+- `packages/pipelines-audio/tsconfig.json`：TypeScript 配置。
+- `packages/pipelines-audio/tsdown.config.ts`：工具配置文件。
+- `packages/pipelines-audio/vitest.config.ts`：工具配置文件。
+- `packages/plugin-protocol/package.json`：包清单，定义包名、脚本、依赖和发布信息。
+- `packages/plugin-protocol/src/index.ts`：模块入口文件。
+- `packages/plugin-protocol/src/types/events.ts`：类型声明。
+- `packages/plugin-protocol/src/types/index.ts`：模块入口文件。
+- `packages/plugin-protocol/tsconfig.json`：TypeScript 配置。
+- `packages/plugin-protocol/tsdown.config.ts`：工具配置文件。
+- `packages/plugin-sdk-tamagotchi/package.json`：包清单，定义包名、脚本、依赖和发布信息。
+- `packages/plugin-sdk-tamagotchi/src/gamelet/index.ts`：模块入口文件。
+- `packages/plugin-sdk-tamagotchi/src/index.test.ts`：自动化测试。
+- `packages/plugin-sdk-tamagotchi/src/index.ts`：模块入口文件。
+- `packages/plugin-sdk-tamagotchi/src/tools/index.ts`：模块入口文件。
+- `packages/plugin-sdk-tamagotchi/src/widgets/index.ts`：模块入口文件。
+- `packages/plugin-sdk-tamagotchi/tsconfig.json`：TypeScript 配置。
+- `packages/plugin-sdk-tamagotchi/tsdown.config.ts`：工具配置文件。
+- `packages/plugin-sdk-tamagotchi/vitest.config.ts`：工具配置文件。
+- `packages/plugin-sdk/docs/design/_template.md`：Markdown 文档。
+- `packages/plugin-sdk/docs/design/architecture.md`：Markdown 文档。
+- `packages/plugin-sdk/docs/design/capability-orchestration.md`：Markdown 文档。
+- `packages/plugin-sdk/docs/design/multi-transport.md`：Markdown 文档。
+- `packages/plugin-sdk/package.json`：包清单，定义包名、脚本、依赖和发布信息。
+- `packages/plugin-sdk/src/channels/index.ts`：模块入口文件。
+- `packages/plugin-sdk/src/channels/local/event-target/index.ts`：模块入口文件。
+- `packages/plugin-sdk/src/channels/remote/websocket/index.ts`：模块入口文件。
+- `packages/plugin-sdk/src/channels/shared.ts`：TypeScript 源码。
+- `packages/plugin-sdk/src/index.ts`：模块入口文件。
+- `packages/plugin-sdk/src/plugin-host/core.test.ts`：自动化测试。
+- `packages/plugin-sdk/src/plugin-host/core.ts`：TypeScript 源码。
+- `packages/plugin-sdk/src/plugin-host/index.ts`：模块入口文件。
+- `packages/plugin-sdk/src/plugin-host/runtimes/node/index.ts`：模块入口文件。
+- `packages/plugin-sdk/src/plugin-host/runtimes/node/loaders/fs.ts`：TypeScript 源码。
+- `packages/plugin-sdk/src/plugin-host/runtimes/node/loaders/index.ts`：模块入口文件。
+- `packages/plugin-sdk/src/plugin-host/runtimes/shared/index.ts`：模块入口文件。
+- `packages/plugin-sdk/src/plugin-host/runtimes/shared/services/bindings.test.ts`：自动化测试。
+- `packages/plugin-sdk/src/plugin-host/runtimes/shared/services/bindings.ts`：TypeScript 源码。
+- `packages/plugin-sdk/src/plugin-host/runtimes/shared/services/dependencies.test.ts`：自动化测试。
+- `packages/plugin-sdk/src/plugin-host/runtimes/shared/services/dependencies.ts`：TypeScript 源码。
+- `packages/plugin-sdk/src/plugin-host/runtimes/shared/services/index.ts`：模块入口文件。
+- `packages/plugin-sdk/src/plugin-host/runtimes/shared/services/kits.test.ts`：自动化测试。
+- `packages/plugin-sdk/src/plugin-host/runtimes/shared/services/kits.ts`：TypeScript 源码。
+- `packages/plugin-sdk/src/plugin-host/runtimes/shared/services/permissions.test.ts`：自动化测试。
+- `packages/plugin-sdk/src/plugin-host/runtimes/shared/services/permissions.ts`：TypeScript 源码。
+- `packages/plugin-sdk/src/plugin-host/runtimes/shared/services/resources.test.ts`：自动化测试。
+- `packages/plugin-sdk/src/plugin-host/runtimes/shared/services/resources.ts`：TypeScript 源码。
+- `packages/plugin-sdk/src/plugin-host/runtimes/shared/services/sessions.test.ts`：自动化测试。
+- `packages/plugin-sdk/src/plugin-host/runtimes/shared/services/sessions.ts`：TypeScript 源码。
+- `packages/plugin-sdk/src/plugin-host/runtimes/shared/services/tools.ts`：TypeScript 源码。
+- `packages/plugin-sdk/src/plugin-host/runtimes/web/index.ts`：模块入口文件。
+- `packages/plugin-sdk/src/plugin-host/shared/bindings.test.ts`：自动化测试。
+- `packages/plugin-sdk/src/plugin-host/shared/bindings.ts`：TypeScript 源码。
+- `packages/plugin-sdk/src/plugin-host/shared/index.ts`：模块入口文件。
+- `packages/plugin-sdk/src/plugin-host/shared/kits.test.ts`：自动化测试。
+- `packages/plugin-sdk/src/plugin-host/shared/kits.ts`：TypeScript 源码。
+- `packages/plugin-sdk/src/plugin-host/shared/tools.ts`：TypeScript 源码。
+- `packages/plugin-sdk/src/plugin-host/shared/types.ts`：TypeScript 源码。
+- `packages/plugin-sdk/src/plugin-host/testdata/test-error-plugin.ts`：TypeScript 源码。
+- `packages/plugin-sdk/src/plugin-host/testdata/test-injected-host-apis-plugin.ts`：TypeScript 源码。
+- `packages/plugin-sdk/src/plugin-host/testdata/test-no-connect-plugin.ts`：TypeScript 源码。
+- `packages/plugin-sdk/src/plugin-host/testdata/test-normal-plugin.ts`：TypeScript 源码。
+- `packages/plugin-sdk/src/plugin-host/transports/index.ts`：模块入口文件。
+- `packages/plugin-sdk/src/plugin/apis/client/bindings/index.ts`：模块入口文件。
+- `packages/plugin-sdk/src/plugin/apis/client/index.ts`：模块入口文件。
+- `packages/plugin-sdk/src/plugin/apis/client/kits/index.ts`：模块入口文件。
+- `packages/plugin-sdk/src/plugin/apis/client/resources/index.ts`：模块入口文件。
+- `packages/plugin-sdk/src/plugin/apis/client/resources/providers/index.ts`：模块入口文件。
+- `packages/plugin-sdk/src/plugin/apis/client/tools/index.ts`：模块入口文件。
+- `packages/plugin-sdk/src/plugin/apis/index.ts`：模块入口文件。
+- `packages/plugin-sdk/src/plugin/apis/protocol/capabilities/index.ts`：模块入口文件。
+- `packages/plugin-sdk/src/plugin/apis/protocol/index.ts`：模块入口文件。
+- `packages/plugin-sdk/src/plugin/apis/protocol/resources/index.ts`：模块入口文件。
+- `packages/plugin-sdk/src/plugin/apis/protocol/resources/providers/index.ts`：模块入口文件。
+- `packages/plugin-sdk/src/plugin/define.ts`：TypeScript 源码。
+- `packages/plugin-sdk/src/plugin/index.ts`：模块入口文件。
+- `packages/plugin-sdk/src/plugin/local.ts`：TypeScript 源码。
+- `packages/plugin-sdk/src/plugin/local/index.ts`：模块入口文件。
+- `packages/plugin-sdk/src/plugin/remote.ts`：TypeScript 源码。
+- `packages/plugin-sdk/src/plugin/remote/index.ts`：模块入口文件。
+- `packages/plugin-sdk/src/plugin/shared.ts`：TypeScript 源码。
+- `packages/plugin-sdk/tsconfig.json`：TypeScript 配置。
+- `packages/plugin-sdk/tsdown.config.ts`：工具配置文件。
+- `packages/plugin-sdk/vitest.config.ts`：工具配置文件。
+- `packages/scenarios-stage-tamagotchi-browser/artifacts/raw/00-stage-tamagotchi.avif`：静态资源或媒体文件。
+- `packages/scenarios-stage-tamagotchi-browser/artifacts/raw/01-controls-island-expanded.avif`：静态资源或媒体文件。
+- `packages/scenarios-stage-tamagotchi-browser/artifacts/raw/02-settings-window.avif`：静态资源或媒体文件。
+- `packages/scenarios-stage-tamagotchi-browser/artifacts/raw/03-websocket-settings.avif`：静态资源或媒体文件。
+- `packages/scenarios-stage-tamagotchi-browser/artifacts/raw/04-chat-window.avif`：静态资源或媒体文件。
+- `packages/scenarios-stage-tamagotchi-browser/artifacts/raw/05-airi-card.avif`：静态资源或媒体文件。
+- `packages/scenarios-stage-tamagotchi-browser/artifacts/raw/06-providers.avif`：静态资源或媒体文件。
+- `packages/scenarios-stage-tamagotchi-browser/artifacts/raw/07-data.avif`：静态资源或媒体文件。
+- `packages/scenarios-stage-tamagotchi-browser/artifacts/raw/08-system-general.avif`：静态资源或媒体文件。
+- `packages/scenarios-stage-tamagotchi-browser/artifacts/raw/09-system-color-scheme.avif`：静态资源或媒体文件。
+- `packages/scenarios-stage-tamagotchi-browser/artifacts/raw/10-models.avif`：静态资源或媒体文件。
+- `packages/scenarios-stage-tamagotchi-browser/artifacts/raw/11-modules.avif`：静态资源或媒体文件。
+- `packages/scenarios-stage-tamagotchi-browser/artifacts/raw/12-hearing.avif`：静态资源或媒体文件。
+- `packages/scenarios-stage-tamagotchi-browser/artifacts/raw/13-system-developer.avif`：静态资源或媒体文件。
+- `packages/scenarios-stage-tamagotchi-browser/artifacts/raw/14-consciousness.avif`：静态资源或媒体文件。
+- `packages/scenarios-stage-tamagotchi-browser/artifacts/raw/15-speech.avif`：静态资源或媒体文件。
+- `packages/scenarios-stage-tamagotchi-browser/artifacts/raw/16-vision.avif`：静态资源或媒体文件。
+- `packages/scenarios-stage-tamagotchi-browser/artifacts/raw/17-devtools-use-window-mouse.avif`：静态资源或媒体文件。
+- `packages/scenarios-stage-tamagotchi-browser/artifacts/raw/18-devtools-displays.avif`：静态资源或媒体文件。
+- `packages/scenarios-stage-tamagotchi-browser/artifacts/raw/19-devtools-widgets-calling.avif`：静态资源或媒体文件。
+- `packages/scenarios-stage-tamagotchi-browser/artifacts/raw/20-devtools-context-flow.avif`：静态资源或媒体文件。
+- `packages/scenarios-stage-tamagotchi-browser/artifacts/raw/21-devtools-relative-mouse.avif`：静态资源或媒体文件。
+- `packages/scenarios-stage-tamagotchi-browser/artifacts/raw/22-devtools-beat-sync.avif`：静态资源或媒体文件。
+- `packages/scenarios-stage-tamagotchi-browser/artifacts/raw/23-devtools-websocket-inspector.avif`：静态资源或媒体文件。
+- `packages/scenarios-stage-tamagotchi-browser/artifacts/raw/24-devtools-plugin-host.avif`：静态资源或媒体文件。
+- `packages/scenarios-stage-tamagotchi-browser/artifacts/raw/25-devtools-screen-capture.avif`：静态资源或媒体文件。
+- `packages/scenarios-stage-tamagotchi-browser/artifacts/raw/26-devtools-vision-capture.avif`：静态资源或媒体文件。
+- `packages/scenarios-stage-tamagotchi-browser/index.html`：项目文件。
+- `packages/scenarios-stage-tamagotchi-browser/package.json`：包清单，定义包名、脚本、依赖和发布信息。
+- `packages/scenarios-stage-tamagotchi-browser/scripts/capture.ts`：脚本文件。
+- `packages/scenarios-stage-tamagotchi-browser/src/App.vue`：Vue 单文件组件。
+- `packages/scenarios-stage-tamagotchi-browser/src/assets/icon.png`：静态资源或媒体文件。
+- `packages/scenarios-stage-tamagotchi-browser/src/assets/wallpaper-2025-08-12.jpg`：静态资源或媒体文件。
+- `packages/scenarios-stage-tamagotchi-browser/src/components/icon.vue`：Vue/UI 组件。
+- `packages/scenarios-stage-tamagotchi-browser/src/components/platforms/macos-26/constants.ts`：Vue/UI 组件。
+- `packages/scenarios-stage-tamagotchi-browser/src/components/platforms/macos-26/containers/dock/Application.vue`：Vue/UI 组件。
+- `packages/scenarios-stage-tamagotchi-browser/src/components/platforms/macos-26/containers/dock/constants.ts`：Vue/UI 组件。
+- `packages/scenarios-stage-tamagotchi-browser/src/components/platforms/macos-26/containers/dock/Divider.vue`：Vue/UI 组件。
+- `packages/scenarios-stage-tamagotchi-browser/src/components/platforms/macos-26/containers/dock/DockRoot.vue`：Vue/UI 组件。
+- `packages/scenarios-stage-tamagotchi-browser/src/components/platforms/macos-26/containers/dock/index.ts`：模块入口文件。
+- `packages/scenarios-stage-tamagotchi-browser/src/components/platforms/macos-26/containers/window/index.ts`：模块入口文件。
+- `packages/scenarios-stage-tamagotchi-browser/src/components/platforms/macos-26/containers/window/window-anchor.test.ts`：Vue/UI 组件。
+- `packages/scenarios-stage-tamagotchi-browser/src/components/platforms/macos-26/containers/window/window-anchor.ts`：Vue/UI 组件。
+- `packages/scenarios-stage-tamagotchi-browser/src/components/platforms/macos-26/containers/window/WindowRoot.test.ts`：Vue/UI 组件。
+- `packages/scenarios-stage-tamagotchi-browser/src/components/platforms/macos-26/containers/window/WindowRoot.vue`：Vue/UI 组件。
+- `packages/scenarios-stage-tamagotchi-browser/src/components/platforms/macos-26/graphics/index.ts`：模块入口文件。
+- `packages/scenarios-stage-tamagotchi-browser/src/components/platforms/macos-26/graphics/liquid-glass/components/composite-parts.vue`：Vue/UI 组件。
+- `packages/scenarios-stage-tamagotchi-browser/src/components/platforms/macos-26/graphics/liquid-glass/components/filter.vue`：Vue/UI 组件。
+- `packages/scenarios-stage-tamagotchi-browser/src/components/platforms/macos-26/graphics/liquid-glass/helpers/image-data-to-url.ts`：Vue/UI 组件。
+- `packages/scenarios-stage-tamagotchi-browser/src/components/platforms/macos-26/graphics/liquid-glass/helpers/split-imagedata-to-parts.ts`：Vue/UI 组件。
+- `packages/scenarios-stage-tamagotchi-browser/src/components/platforms/macos-26/graphics/liquid-glass/helpers/surface-equations.ts`：Vue/UI 组件。
+- `packages/scenarios-stage-tamagotchi-browser/src/components/platforms/macos-26/graphics/liquid-glass/hoc/refractive.vue`：Vue/UI 组件。
+- `packages/scenarios-stage-tamagotchi-browser/src/components/platforms/macos-26/graphics/liquid-glass/index.ts`：模块入口文件。
+- `packages/scenarios-stage-tamagotchi-browser/src/components/platforms/macos-26/graphics/liquid-glass/maps/calculate-circle-map.ts`：Vue/UI 组件。
+- `packages/scenarios-stage-tamagotchi-browser/src/components/platforms/macos-26/graphics/liquid-glass/maps/calculate-rounded-square-map.ts`：Vue/UI 组件。
+- `packages/scenarios-stage-tamagotchi-browser/src/components/platforms/macos-26/graphics/liquid-glass/maps/displacement-map.ts`：Vue/UI 组件。
+- `packages/scenarios-stage-tamagotchi-browser/src/components/platforms/macos-26/graphics/liquid-glass/maps/process-pixel.type.ts`：Vue/UI 组件。
+- `packages/scenarios-stage-tamagotchi-browser/src/components/platforms/macos-26/graphics/liquid-glass/maps/specular.ts`：Vue/UI 组件。
+- `packages/scenarios-stage-tamagotchi-browser/src/components/platforms/macos-26/icons/applications/Apps.vue`：Vue/UI 组件。
+- `packages/scenarios-stage-tamagotchi-browser/src/components/platforms/macos-26/icons/applications/assets/apps.png`：Vue/UI 组件。
+- `packages/scenarios-stage-tamagotchi-browser/src/components/platforms/macos-26/icons/applications/assets/finder.png`：Vue/UI 组件。
+- `packages/scenarios-stage-tamagotchi-browser/src/components/platforms/macos-26/icons/applications/assets/trash-full.png`：Vue/UI 组件。
+- `packages/scenarios-stage-tamagotchi-browser/src/components/platforms/macos-26/icons/applications/Finder.vue`：Vue/UI 组件。
+- `packages/scenarios-stage-tamagotchi-browser/src/components/platforms/macos-26/icons/applications/index.ts`：模块入口文件。
+- `packages/scenarios-stage-tamagotchi-browser/src/components/platforms/macos-26/icons/applications/TrashFull.vue`：Vue/UI 组件。
+- `packages/scenarios-stage-tamagotchi-browser/src/components/platforms/macos-26/icons/sf-symbol-like/Apple.vue`：Vue/UI 组件。
+- `packages/scenarios-stage-tamagotchi-browser/src/components/platforms/macos-26/icons/sf-symbol-like/index.ts`：模块入口文件。
+- `packages/scenarios-stage-tamagotchi-browser/src/components/platforms/macos-26/icons/sf-symbol-like/Switch2.0.vue`：Vue/UI 组件。
+- `packages/scenarios-stage-tamagotchi-browser/src/components/platforms/macos-26/icons/sf-symbol-like/Wifi.vue`：Vue/UI 组件。
+- `packages/scenarios-stage-tamagotchi-browser/src/components/platforms/macos-26/icons/system/assets/folder-common.png`：Vue/UI 组件。
+- `packages/scenarios-stage-tamagotchi-browser/src/components/platforms/macos-26/icons/system/Folder.vue`：Vue/UI 组件。
+- `packages/scenarios-stage-tamagotchi-browser/src/components/platforms/macos-26/icons/system/index.ts`：模块入口文件。
+- `packages/scenarios-stage-tamagotchi-browser/src/components/platforms/macos-26/index.ts`：模块入口文件。
+- `packages/scenarios-stage-tamagotchi-browser/src/components/platforms/macos-26/PlatformRoot.test.ts`：Vue/UI 组件。
+- `packages/scenarios-stage-tamagotchi-browser/src/components/platforms/macos-26/PlatformRoot.vue`：Vue/UI 组件。
+- `packages/scenarios-stage-tamagotchi-browser/src/components/platforms/macos-26/texts/index.ts`：模块入口文件。
+- `packages/scenarios-stage-tamagotchi-browser/src/components/platforms/macos-26/ui/display/appearance.test.ts`：Vue/UI 组件。
+- `packages/scenarios-stage-tamagotchi-browser/src/components/platforms/macos-26/ui/display/appearance.vue`：Vue/UI 组件。
+- `packages/scenarios-stage-tamagotchi-browser/src/components/platforms/macos-26/ui/dock/dock.vue`：Vue/UI 组件。
+- `packages/scenarios-stage-tamagotchi-browser/src/components/platforms/macos-26/ui/index.ts`：模块入口文件。
+- `packages/scenarios-stage-tamagotchi-browser/src/components/platforms/macos-26/ui/menu-bar/menu-bar.vue`：Vue/UI 组件。
+- `packages/scenarios-stage-tamagotchi-browser/src/components/platforms/windows-11/index.ts`：模块入口文件。
+- `packages/scenarios-stage-tamagotchi-browser/src/components/platforms/windows-11/PlatformRoot.vue`：Vue/UI 组件。
+- `packages/scenarios-stage-tamagotchi-browser/src/main.ts`：TypeScript 源码。
+- `packages/scenarios-stage-tamagotchi-browser/src/scenes/docs/setup-and-use/components/scene-capture-layout.vue`：Vue/UI 组件。
+- `packages/scenarios-stage-tamagotchi-browser/src/scenes/docs/setup-and-use/index.vue`：模块入口文件。
+- `packages/scenarios-stage-tamagotchi-browser/src/scenes/docs/setup-and-use/intro-chat.vue`：Vue 单文件组件。
+- `packages/scenarios-stage-tamagotchi-browser/src/scenes/docs/setup-and-use/intro-websocket.vue`：Vue 单文件组件。
+- `packages/scenarios-stage-tamagotchi-browser/src/scenes/docs/setup-and-use/main-window.vue`：Vue 单文件组件。
+- `packages/scenarios-stage-tamagotchi-browser/src/scenes/docs/setup-and-use/settings.vue`：Vue 单文件组件。
+- `packages/scenarios-stage-tamagotchi-browser/tsconfig.json`：TypeScript 配置。
+- `packages/scenarios-stage-tamagotchi-browser/uno.config.ts`：工具配置文件。
+- `packages/scenarios-stage-tamagotchi-browser/vite.config.ts`：工具配置文件。
+- `packages/scenarios-stage-tamagotchi-browser/vitest.config.ts`：工具配置文件。
+- `packages/scenarios-stage-tamagotchi-electron/package.json`：包清单，定义包名、脚本、依赖和发布信息。
+- `packages/scenarios-stage-tamagotchi-electron/src/index.ts`：模块入口文件。
+- `packages/scenarios-stage-tamagotchi-electron/src/scenarios/demo-controls-settings-chat-websocket/index.ts`：模块入口文件。
+- `packages/scenarios-stage-tamagotchi-electron/src/scenarios/demo-controls-settings-chat-websocket/manifest.ts`：TypeScript 源码。
+- `packages/scenarios-stage-tamagotchi-electron/src/scenarios/demo-controls-settings-chat-websocket/sections/devtools.ts`：TypeScript 源码。
+- `packages/scenarios-stage-tamagotchi-electron/src/scenarios/demo-controls-settings-chat-websocket/sections/overview.ts`：TypeScript 源码。
+- `packages/scenarios-stage-tamagotchi-electron/src/scenarios/demo-controls-settings-chat-websocket/sections/settings.ts`：TypeScript 源码。
+- `packages/scenarios-stage-tamagotchi-electron/src/scenarios/demo-controls-settings-chat-websocket/shared/constants.ts`：TypeScript 源码。
+- `packages/scenarios-stage-tamagotchi-electron/src/scenarios/demo-controls-settings-chat-websocket/shared/output.ts`：TypeScript 源码。
+- `packages/scenarios-stage-tamagotchi-electron/src/scenarios/demo-controls-settings-chat-websocket/shared/runtime.ts`：TypeScript 源码。
+- `packages/scenarios-stage-tamagotchi-electron/src/scenarios/demo-controls-settings-chat-websocket/shared/steps.ts`：TypeScript 源码。
+- `packages/scenarios-stage-tamagotchi-electron/src/scenarios/demo-controls-settings-chat-websocket/shared/types.ts`：TypeScript 源码。
+- `packages/scenarios-stage-tamagotchi-electron/src/scenarios/demo-dismiss-surfaces.ts`：TypeScript 源码。
+- `packages/scenarios-stage-tamagotchi-electron/src/scenarios/demo-hearing-dialog.ts`：TypeScript 源码。
+- `packages/scenarios-stage-tamagotchi-electron/src/scenarios/settings-connection.ts`：TypeScript 源码。
+- `packages/scenarios-stage-tamagotchi-electron/tsconfig.json`：TypeScript 配置。
+- `packages/server-runtime/package.json`：包清单，定义包名、脚本、依赖和发布信息。
+- `packages/server-runtime/src/bin/run.ts`：TypeScript 源码。
+- `packages/server-runtime/src/config/config.ts`：TypeScript 源码。
+- `packages/server-runtime/src/config/env.ts`：TypeScript 源码。
+- `packages/server-runtime/src/config/index.ts`：模块入口文件。
+- `packages/server-runtime/src/index.test.ts`：自动化测试。
+- `packages/server-runtime/src/index.ts`：模块入口文件。
+- `packages/server-runtime/src/middlewares/index.ts`：模块入口文件。
+- `packages/server-runtime/src/middlewares/route.test.ts`：自动化测试。
+- `packages/server-runtime/src/middlewares/route.ts`：TypeScript 源码。
+- `packages/server-runtime/src/middlewares/route/match-expression.ts`：TypeScript 源码。
+- `packages/server-runtime/src/server.test.ts`：自动化测试。
+- `packages/server-runtime/src/server/index.ts`：模块入口文件。
+- `packages/server-runtime/src/types/conn.ts`：类型声明。
+- `packages/server-runtime/src/types/index.ts`：模块入口文件。
+- `packages/server-runtime/tsconfig.json`：TypeScript 配置。
+- `packages/server-runtime/tsdown.config.ts`：工具配置文件。
+- `packages/server-runtime/vitest.config.ts`：工具配置文件。
+- `packages/server-schema/package.json`：包清单，定义包名、脚本、依赖和发布信息。
+- `packages/server-schema/src/index.ts`：模块入口文件。
+- `packages/server-schema/tsconfig.json`：TypeScript 配置。
+- `packages/server-schema/tsdown.config.ts`：工具配置文件。
+- `packages/server-schema/vitest.config.ts`：工具配置文件。
+- `packages/server-sdk-shared/package.json`：包清单，定义包名、脚本、依赖和发布信息。
+- `packages/server-sdk-shared/src/index.ts`：模块入口文件。
+- `packages/server-sdk-shared/tsconfig.json`：TypeScript 配置。
+- `packages/server-sdk-shared/tsdown.config.ts`：工具配置文件。
+- `packages/server-sdk/package.json`：包清单，定义包名、脚本、依赖和发布信息。
+- `packages/server-sdk/src/client.ts`：TypeScript 源码。
+- `packages/server-sdk/src/index.ts`：模块入口文件。
+- `packages/server-sdk/src/utils/node/index.ts`：模块入口文件。
+- `packages/server-sdk/src/utils/node/process.ts`：工具函数。
+- `packages/server-sdk/src/websocket-like.ts`：TypeScript 源码。
+- `packages/server-sdk/test/client.test.ts`：自动化测试。
+- `packages/server-sdk/tsconfig.json`：TypeScript 配置。
+- `packages/server-sdk/tsdown.config.ts`：工具配置文件。
+- `packages/server-sdk/vitest.config.ts`：工具配置文件。
+- `packages/server-shared/package.json`：包清单，定义包名、脚本、依赖和发布信息。
+- `packages/server-shared/src/errors.ts`：TypeScript 源码。
+- `packages/server-shared/src/index.ts`：模块入口文件。
+- `packages/server-shared/src/types/index.ts`：模块入口文件。
+- `packages/server-shared/src/types/websocket/events.ts`：类型声明。
+- `packages/server-shared/src/types/websocket/index.ts`：模块入口文件。
+- `packages/server-shared/tsconfig.json`：TypeScript 配置。
+- `packages/server-shared/tsdown.config.ts`：工具配置文件。
+- `packages/stage-layouts/package.json`：包清单，定义包名、脚本、依赖和发布信息。
+- `packages/stage-layouts/src/assets/logo-dark.svg`：静态资源或媒体文件。
+- `packages/stage-layouts/src/assets/logo.svg`：静态资源或媒体文件。
+- `packages/stage-layouts/src/components/Backgrounds/default/index.ts`：模块入口文件。
+- `packages/stage-layouts/src/components/Backgrounds/default/index.vue`：模块入口文件。
+- `packages/stage-layouts/src/components/Backgrounds/default/part-animated-wave.vue`：Vue/UI 组件。
+- `packages/stage-layouts/src/components/Backgrounds/default/pattern-cross.vue`：Vue/UI 组件。
+- `packages/stage-layouts/src/components/Backgrounds/default/preview.vue`：Vue/UI 组件。
+- `packages/stage-layouts/src/components/Backgrounds/default/transparent-preview.vue`：Vue/UI 组件。
+- `packages/stage-layouts/src/components/Backgrounds/DialogPicker.vue`：Vue/UI 组件。
+- `packages/stage-layouts/src/components/Backgrounds/index.ts`：模块入口文件。
+- `packages/stage-layouts/src/components/Backgrounds/Line1.vue`：Vue/UI 组件。
+- `packages/stage-layouts/src/components/Backgrounds/Provider.vue`：Vue/UI 组件。
+- `packages/stage-layouts/src/components/Backgrounds/SakuraPetal.vue`：Vue/UI 组件。
+- `packages/stage-layouts/src/components/Backgrounds/TicTacToe.vue`：Vue/UI 组件。
+- `packages/stage-layouts/src/components/Layouts/Header.vue`：Vue/UI 组件。
+- `packages/stage-layouts/src/components/Layouts/HeaderAvatar.vue`：Vue/UI 组件。
+- `packages/stage-layouts/src/components/Layouts/HeaderLink.vue`：Vue/UI 组件。
+- `packages/stage-layouts/src/components/Layouts/InteractiveArea.vue`：Vue/UI 组件。
+- `packages/stage-layouts/src/components/Layouts/InteractiveArea/Actions/About.vue`：Vue/UI 组件。
+- `packages/stage-layouts/src/components/Layouts/InteractiveArea/Actions/ViewControls.vue`：Vue/UI 组件。
+- `packages/stage-layouts/src/components/Layouts/MobileHeader.vue`：Vue/UI 组件。
+- `packages/stage-layouts/src/components/Layouts/MobileHeaderLink.vue`：Vue/UI 组件。
+- `packages/stage-layouts/src/components/Layouts/MobileInteractiveArea.vue`：Vue/UI 组件。
+- `packages/stage-layouts/src/components/Layouts/ViewControls/Inputs.vue`：Vue/UI 组件。
+- `packages/stage-layouts/src/components/Widgets/ChatActionButtons.vue`：Vue/UI 组件。
+- `packages/stage-layouts/src/components/Widgets/ChatArea.vue`：Vue/UI 组件。
+- `packages/stage-layouts/src/components/Widgets/ChatContainer.vue`：Vue/UI 组件。
+- `packages/stage-layouts/src/components/Widgets/IndicatorMicVolume.vue`：Vue/UI 组件。
+- `packages/stage-layouts/src/composables/theme-color.ts`：Vue composable 复用逻辑。
+- `packages/stage-layouts/src/index.ts`：模块入口文件。
+- `packages/stage-layouts/src/layouts/default.vue`：Vue 单文件组件。
+- `packages/stage-layouts/src/layouts/home.vue`：Vue 单文件组件。
+- `packages/stage-layouts/src/layouts/plain.vue`：Vue 单文件组件。
+- `packages/stage-layouts/src/layouts/settings.vue`：Vue 单文件组件。
+- `packages/stage-layouts/src/layouts/stage.vue`：Vue 单文件组件。
+- `packages/stage-layouts/src/stores/background.ts`：Pinia store 或状态管理逻辑。
+- `packages/stage-layouts/tsconfig.json`：TypeScript 配置。
+- `packages/stage-pages/package.json`：包清单，定义包名、脚本、依赖和发布信息。
+- `packages/stage-pages/src/components/settings-general-fields.vue`：Vue/UI 组件。
+- `packages/stage-pages/src/index.ts`：模块入口文件。
+- `packages/stage-pages/src/pages/devtools/beat-sync.vue`：页面路由组件。
+- `packages/stage-pages/src/pages/devtools/context-flow/components/context-flow-actions.vue`：Vue/UI 组件。
+- `packages/stage-pages/src/pages/devtools/context-flow/components/context-flow-active-contexts.vue`：Vue/UI 组件。
+- `packages/stage-pages/src/pages/devtools/context-flow/components/context-flow-entry-card.vue`：Vue/UI 组件。
+- `packages/stage-pages/src/pages/devtools/context-flow/components/context-flow-filters.vue`：Vue/UI 组件。
+- `packages/stage-pages/src/pages/devtools/context-flow/components/context-flow-lifecycle.vue`：Vue/UI 组件。
+- `packages/stage-pages/src/pages/devtools/context-flow/components/context-flow-preview.vue`：Vue/UI 组件。
+- `packages/stage-pages/src/pages/devtools/context-flow/components/context-flow-prompt-projection.vue`：Vue/UI 组件。
+- `packages/stage-pages/src/pages/devtools/context-flow/components/context-flow-runtime.vue`：Vue/UI 组件。
+- `packages/stage-pages/src/pages/devtools/context-flow/components/context-flow-spark-notify.vue`：Vue/UI 组件。
+- `packages/stage-pages/src/pages/devtools/context-flow/components/context-flow-stream.vue`：Vue/UI 组件。
+- `packages/stage-pages/src/pages/devtools/context-flow/composables/use-context-flow-formatters.test.ts`：Vue composable 复用逻辑。
+- `packages/stage-pages/src/pages/devtools/context-flow/composables/use-context-flow-formatters.ts`：Vue composable 复用逻辑。
+- `packages/stage-pages/src/pages/devtools/context-flow/context-flow-types.ts`：页面路由组件。
+- `packages/stage-pages/src/pages/devtools/context-flow/index.vue`：模块入口文件。
+- `packages/stage-pages/src/pages/devtools/image.vue`：页面路由组件。
+- `packages/stage-pages/src/pages/devtools/index.vue`：模块入口文件。
+- `packages/stage-pages/src/pages/devtools/io-tracer/components/io-tracer-chart.vue`：Vue/UI 组件。
+- `packages/stage-pages/src/pages/devtools/io-tracer/components/io-tracer-controls.vue`：Vue/UI 组件。
+- `packages/stage-pages/src/pages/devtools/io-tracer/components/io-tracer-detail.vue`：Vue/UI 组件。
+- `packages/stage-pages/src/pages/devtools/io-tracer/components/io-tracer-metrics.vue`：Vue/UI 组件。
+- `packages/stage-pages/src/pages/devtools/io-tracer/components/io-tracer-turn-list.vue`：Vue/UI 组件。
+- `packages/stage-pages/src/pages/devtools/io-tracer/index.vue`：模块入口文件。
+- `packages/stage-pages/src/pages/devtools/io-tracer/io-tracer-types.ts`：页面路由组件。
+- `packages/stage-pages/src/pages/devtools/markdown-stress.vue`：页面路由组件。
+- `packages/stage-pages/src/pages/devtools/plugin-host.vue`：页面路由组件。
+- `packages/stage-pages/src/pages/devtools/providers-transcription-realtime-aliyun-nls.vue`：页面路由组件。
+- `packages/stage-pages/src/pages/devtools/vibrant.vue`：页面路由组件。
+- `packages/stage-pages/src/pages/devtools/websocket-inspector.vue`：页面路由组件。
+- `packages/stage-pages/src/pages/settings/account/account-settings-page.vue`：页面路由组件。
+- `packages/stage-pages/src/pages/settings/airi-card/components/CardCreate.vue`：Vue/UI 组件。
+- `packages/stage-pages/src/pages/settings/airi-card/components/CardCreationDialog.vue`：Vue/UI 组件。
+- `packages/stage-pages/src/pages/settings/airi-card/components/CardDetailDialog.vue`：Vue/UI 组件。
+- `packages/stage-pages/src/pages/settings/airi-card/components/CardListItem.vue`：Vue/UI 组件。
+- `packages/stage-pages/src/pages/settings/airi-card/components/DeleteCardDialog.vue`：Vue/UI 组件。
+- `packages/stage-pages/src/pages/settings/airi-card/components/tabs/CardCreationTabArtistry.vue`：Vue/UI 组件。
+- `packages/stage-pages/src/pages/settings/airi-card/index.vue`：模块入口文件。
+- `packages/stage-pages/src/pages/settings/connection/index.vue`：模块入口文件。
+- `packages/stage-pages/src/pages/settings/data/components/chats-section.vue`：Vue/UI 组件。
+- `packages/stage-pages/src/pages/settings/data/components/danger-section.vue`：Vue/UI 组件。
+- `packages/stage-pages/src/pages/settings/data/components/models-modules-section.vue`：Vue/UI 组件。
+- `packages/stage-pages/src/pages/settings/data/components/status-banner.vue`：Vue/UI 组件。
+- `packages/stage-pages/src/pages/settings/data/index.vue`：模块入口文件。
+- `packages/stage-pages/src/pages/settings/data/status.ts`：页面路由组件。
+- `packages/stage-pages/src/pages/settings/flux.vue`：页面路由组件。
+- `packages/stage-pages/src/pages/settings/index.vue`：模块入口文件。
+- `packages/stage-pages/src/pages/settings/memory/index.vue`：模块入口文件。
+- `packages/stage-pages/src/pages/settings/models/index.vue`：模块入口文件。
+- `packages/stage-pages/src/pages/settings/modules/artistry.vue`：页面路由组件。
+- `packages/stage-pages/src/pages/settings/modules/beat-sync.vue`：页面路由组件。
+- `packages/stage-pages/src/pages/settings/modules/consciousness.vue`：页面路由组件。
+- `packages/stage-pages/src/pages/settings/modules/gaming-factorio.vue`：页面路由组件。
+- `packages/stage-pages/src/pages/settings/modules/gaming-minecraft.vue`：页面路由组件。
+- `packages/stage-pages/src/pages/settings/modules/hearing.vue`：页面路由组件。
+- `packages/stage-pages/src/pages/settings/modules/index.vue`：模块入口文件。
+- `packages/stage-pages/src/pages/settings/modules/mcp.vue`：页面路由组件。
+- `packages/stage-pages/src/pages/settings/modules/memory-long-term.vue`：页面路由组件。
+- `packages/stage-pages/src/pages/settings/modules/memory-short-term.vue`：页面路由组件。
+- `packages/stage-pages/src/pages/settings/modules/messaging-discord.vue`：页面路由组件。
+- `packages/stage-pages/src/pages/settings/modules/speech.vue`：页面路由组件。
+- `packages/stage-pages/src/pages/settings/modules/vision.vue`：页面路由组件。
+- `packages/stage-pages/src/pages/settings/modules/x.vue`：页面路由组件。
+- `packages/stage-pages/src/pages/settings/providers/artistry/comfyui.vue`：页面路由组件。
+- `packages/stage-pages/src/pages/settings/providers/artistry/nanobanana.vue`：页面路由组件。
+- `packages/stage-pages/src/pages/settings/providers/artistry/replicate.vue`：页面路由组件。
+- `packages/stage-pages/src/pages/settings/providers/chat/[providerId].vue`：页面路由组件。
+- `packages/stage-pages/src/pages/settings/providers/chat/amazon-bedrock.vue`：页面路由组件。
+- `packages/stage-pages/src/pages/settings/providers/chat/azure-ai-foundry.vue`：页面路由组件。
+- `packages/stage-pages/src/pages/settings/providers/chat/cloudflare-workers-ai.vue`：页面路由组件。
+- `packages/stage-pages/src/pages/settings/providers/chat/lm-studio.vue`：页面路由组件。
+- `packages/stage-pages/src/pages/settings/providers/chat/official-provider.vue`：页面路由组件。
+- `packages/stage-pages/src/pages/settings/providers/chat/ollama.vue`：页面路由组件。
+- `packages/stage-pages/src/pages/settings/providers/index.vue`：模块入口文件。
+- `packages/stage-pages/src/pages/settings/providers/speech/alibaba-cloud-model-studio.vue`：页面路由组件。
+- `packages/stage-pages/src/pages/settings/providers/speech/comet-api-speech.vue`：页面路由组件。
+- `packages/stage-pages/src/pages/settings/providers/speech/deepgram-tts.vue`：页面路由组件。
+- `packages/stage-pages/src/pages/settings/providers/speech/elevenlabs.vue`：页面路由组件。
+- `packages/stage-pages/src/pages/settings/providers/speech/index-tts-vllm.vue`：页面路由组件。
+- `packages/stage-pages/src/pages/settings/providers/speech/kokoro-local.vue`：页面路由组件。
+- `packages/stage-pages/src/pages/settings/providers/speech/microsoft-speech.vue`：页面路由组件。
+- `packages/stage-pages/src/pages/settings/providers/speech/official-provider-speech.vue`：页面路由组件。
+- `packages/stage-pages/src/pages/settings/providers/speech/openai-audio-speech.vue`：页面路由组件。
+- `packages/stage-pages/src/pages/settings/providers/speech/openai-compatible-audio-speech.vue`：页面路由组件。
+- `packages/stage-pages/src/pages/settings/providers/speech/openrouter-audio-speech.vue`：页面路由组件。
+- `packages/stage-pages/src/pages/settings/providers/speech/player2-speech.vue`：页面路由组件。
+- `packages/stage-pages/src/pages/settings/providers/speech/volcengine.vue`：页面路由组件。
+- `packages/stage-pages/src/pages/settings/providers/transcription/aliyun-nls-transcription.vue`：页面路由组件。
+- `packages/stage-pages/src/pages/settings/providers/transcription/browser-web-speech-api.vue`：页面路由组件。
+- `packages/stage-pages/src/pages/settings/providers/transcription/comet-api-transcription.vue`：页面路由组件。
+- `packages/stage-pages/src/pages/settings/providers/transcription/openai-audio-transcription.vue`：页面路由组件。
+- `packages/stage-pages/src/pages/settings/providers/transcription/openai-compatible-audio-transcription.vue`：页面路由组件。
+- `packages/stage-pages/src/pages/settings/scene/index.vue`：模块入口文件。
+- `packages/stage-pages/src/pages/settings/system/color-presets.json`：页面路由组件。
+- `packages/stage-pages/src/pages/settings/system/color-scheme.vue`：页面路由组件。
+- `packages/stage-pages/src/pages/settings/system/general.vue`：页面路由组件。
+- `packages/stage-pages/src/pages/v2/index.vue`：模块入口文件。
+- `packages/stage-pages/src/pages/v2/settings.vue`：页面路由组件。
+- `packages/stage-pages/src/pages/v2/settings/index.vue`：模块入口文件。
+- `packages/stage-pages/src/pages/v2/settings/providers.vue`：页面路由组件。
+- `packages/stage-pages/src/pages/v2/settings/providers/edit.vue`：页面路由组件。
+- `packages/stage-pages/src/pages/v2/settings/providers/edit/[providerId]/index.vue`：模块入口文件。
+- `packages/stage-pages/src/pages/v2/settings/providers/index.vue`：模块入口文件。
+- `packages/stage-pages/tsconfig.json`：TypeScript 配置。
+- `packages/stage-shared/package.json`：包清单，定义包名、脚本、依赖和发布信息。
+- `packages/stage-shared/src/artistry.ts`：TypeScript 源码。
+- `packages/stage-shared/src/auth/index.ts`：模块入口文件。
+- `packages/stage-shared/src/auth/pkce.test.ts`：自动化测试。
+- `packages/stage-shared/src/auth/pkce.ts`：TypeScript 源码。
+- `packages/stage-shared/src/beat-sync/detector.ts`：TypeScript 源码。
+- `packages/stage-shared/src/beat-sync/eventa.ts`：TypeScript 源码。
+- `packages/stage-shared/src/beat-sync/index.ts`：模块入口文件。
+- `packages/stage-shared/src/beat-sync/settings.ts`：TypeScript 源码。
+- `packages/stage-shared/src/beat-sync/types.ts`：TypeScript 源码。
+- `packages/stage-shared/src/composables/index.ts`：模块入口文件。
+- `packages/stage-shared/src/composables/use-local-storage-manual-reset/index.ts`：模块入口文件。
+- `packages/stage-shared/src/composables/use-versioned-local-storage-manual-reset/index.ts`：模块入口文件。
+- `packages/stage-shared/src/composables/use-versioned-local-storage/index.ts`：模块入口文件。
+- `packages/stage-shared/src/electron-renderer.d.ts`：类型声明。
+- `packages/stage-shared/src/env-vars.ts`：TypeScript 源码。
+- `packages/stage-shared/src/environment.ts`：TypeScript 源码。
+- `packages/stage-shared/src/error-message.ts`：TypeScript 源码。
+- `packages/stage-shared/src/export-csv.ts`：TypeScript 源码。
+- `packages/stage-shared/src/global-shortcut/accelerators.test.ts`：自动化测试。
+- `packages/stage-shared/src/global-shortcut/accelerators.ts`：TypeScript 源码。
+- `packages/stage-shared/src/global-shortcut/index.ts`：模块入口文件。
+- `packages/stage-shared/src/global-shortcut/types.ts`：TypeScript 源码。
+- `packages/stage-shared/src/index.ts`：模块入口文件。
+- `packages/stage-shared/src/perf/io-trace.ts`：TypeScript 源码。
+- `packages/stage-shared/src/perf/tracer.ts`：TypeScript 源码。
+- `packages/stage-shared/src/server-channel-qr.ts`：TypeScript 源码。
+- `packages/stage-shared/src/url.ts`：TypeScript 源码。
+- `packages/stage-shared/src/webgpu/detect.test.ts`：自动化测试。
+- `packages/stage-shared/src/webgpu/detect.ts`：TypeScript 源码。
+- `packages/stage-shared/src/webgpu/index.ts`：模块入口文件。
+- `packages/stage-shared/src/window.ts`：TypeScript 源码。
+- `packages/stage-shared/tsconfig.json`：TypeScript 配置。
+- `packages/stage-shared/vitest.config.ts`：工具配置文件。
+- `packages/stage-ui-live2d/package.json`：包清单，定义包名、脚本、依赖和发布信息。
+- `packages/stage-ui-live2d/src/components/index.ts`：模块入口文件。
+- `packages/stage-ui-live2d/src/components/scenes/index.ts`：模块入口文件。
+- `packages/stage-ui-live2d/src/components/scenes/Live2D.vue`：Vue/UI 组件。
+- `packages/stage-ui-live2d/src/components/scenes/live2d/Canvas.vue`：Vue/UI 组件。
+- `packages/stage-ui-live2d/src/components/scenes/live2d/index.ts`：模块入口文件。
+- `packages/stage-ui-live2d/src/components/scenes/live2d/Model.vue`：Vue/UI 组件。
+- `packages/stage-ui-live2d/src/composables/live2d/animation.ts`：Vue composable 复用逻辑。
+- `packages/stage-ui-live2d/src/composables/live2d/beat-sync.ts`：Vue composable 复用逻辑。
+- `packages/stage-ui-live2d/src/composables/live2d/expression-controller.ts`：Vue composable 复用逻辑。
+- `packages/stage-ui-live2d/src/composables/live2d/index.ts`：模块入口文件。
+- `packages/stage-ui-live2d/src/composables/live2d/motion-manager.ts`：Vue composable 复用逻辑。
+- `packages/stage-ui-live2d/src/constants/emotions.ts`：TypeScript 源码。
+- `packages/stage-ui-live2d/src/index.ts`：模块入口文件。
+- `packages/stage-ui-live2d/src/stores/expression-store.ts`：Pinia store 或状态管理逻辑。
+- `packages/stage-ui-live2d/src/stores/index.ts`：模块入口文件。
+- `packages/stage-ui-live2d/src/stores/live2d.ts`：Pinia store 或状态管理逻辑。
+- `packages/stage-ui-live2d/src/tools/expression-tools.ts`：TypeScript 源码。
+- `packages/stage-ui-live2d/src/utils/eye-motions.ts`：工具函数。
+- `packages/stage-ui-live2d/src/utils/index.ts`：模块入口文件。
+- `packages/stage-ui-live2d/src/utils/live2d-opfs-registration.ts`：工具函数。
+- `packages/stage-ui-live2d/src/utils/live2d-preview.ts`：工具函数。
+- `packages/stage-ui-live2d/src/utils/live2d-uri-encode-filenames.ts`：工具函数。
+- `packages/stage-ui-live2d/src/utils/live2d-zip-loader.ts`：工具函数。
+- `packages/stage-ui-live2d/src/utils/opfs-loader.ts`：工具函数。
+- `packages/stage-ui-live2d/tsconfig.json`：TypeScript 配置。
+- `packages/stage-ui-three/package.json`：包清单，定义包名、脚本、依赖和发布信息。
+- `packages/stage-ui-three/src/assets/lip-sync-profile.json`：静态资源或媒体文件。
+- `packages/stage-ui-three/src/assets/vrm/animations/idle_loop.vrma`：静态资源或媒体文件。
+- `packages/stage-ui-three/src/assets/vrm/animations/index.ts`：模块入口文件。
+- `packages/stage-ui-three/src/assets/vrm/index.ts`：模块入口文件。
+- `packages/stage-ui-three/src/components/Controls/index.ts`：模块入口文件。
+- `packages/stage-ui-three/src/components/Controls/OrbitControls.vue`：Vue/UI 组件。
+- `packages/stage-ui-three/src/components/Environment/assets/sky_linekotsi_23_HDRI.hdr`：Vue/UI 组件。
+- `packages/stage-ui-three/src/components/Environment/index.ts`：模块入口文件。
+- `packages/stage-ui-three/src/components/Environment/SkyBox.vue`：Vue/UI 组件。
+- `packages/stage-ui-three/src/components/Model/index.ts`：模块入口文件。
+- `packages/stage-ui-three/src/components/Model/vrm-instance-cache.ts`：Vue/UI 组件。
+- `packages/stage-ui-three/src/components/Model/VRMModel.vue`：Vue/UI 组件。
+- `packages/stage-ui-three/src/components/ThreeScene.vue`：Vue/UI 组件。
+- `packages/stage-ui-three/src/composables/hit-test.ts`：Vue composable 复用逻辑。
+- `packages/stage-ui-three/src/composables/index.ts`：模块入口文件。
+- `packages/stage-ui-three/src/composables/render-target.ts`：Vue composable 复用逻辑。
+- `packages/stage-ui-three/src/composables/shader/ibl.ts`：Vue composable 复用逻辑。
+- `packages/stage-ui-three/src/composables/shader/index.ts`：模块入口文件。
+- `packages/stage-ui-three/src/composables/vrm/animation.ts`：Vue composable 复用逻辑。
+- `packages/stage-ui-three/src/composables/vrm/core.ts`：Vue composable 复用逻辑。
+- `packages/stage-ui-three/src/composables/vrm/expression.ts`：Vue composable 复用逻辑。
+- `packages/stage-ui-three/src/composables/vrm/hooks.ts`：Vue composable 复用逻辑。
+- `packages/stage-ui-three/src/composables/vrm/index.ts`：模块入口文件。
+- `packages/stage-ui-three/src/composables/vrm/internal-hooks.ts`：Vue composable 复用逻辑。
+- `packages/stage-ui-three/src/composables/vrm/lip-sync.ts`：Vue composable 复用逻辑。
+- `packages/stage-ui-three/src/composables/vrm/loader.ts`：Vue composable 复用逻辑。
+- `packages/stage-ui-three/src/composables/vrm/outline.ts`：Vue composable 复用逻辑。
+- `packages/stage-ui-three/src/composables/vrm/utils/eye-motions.ts`：Vue composable 复用逻辑。
+- `packages/stage-ui-three/src/composables/vrm/utils/index.ts`：模块入口文件。
+- `packages/stage-ui-three/src/index.ts`：模块入口文件。
+- `packages/stage-ui-three/src/stores/model-store.ts`：Pinia store 或状态管理逻辑。
+- `packages/stage-ui-three/src/trace/context.test.ts`：自动化测试。
+- `packages/stage-ui-three/src/trace/context.ts`：TypeScript 源码。
+- `packages/stage-ui-three/src/trace/eventa.ts`：TypeScript 源码。
+- `packages/stage-ui-three/src/trace/index.ts`：模块入口文件。
+- `packages/stage-ui-three/src/trace/snapshots.test.ts`：自动化测试。
+- `packages/stage-ui-three/src/trace/snapshots.ts`：TypeScript 源码。
+- `packages/stage-ui-three/src/trace/types.ts`：TypeScript 源码。
+- `packages/stage-ui-three/src/utils/vrm-preview.ts`：工具函数。
+- `packages/stage-ui-three/tsconfig.json`：TypeScript 配置。
+- `packages/stage-ui/.env`：项目文件。
+- `packages/stage-ui/env.d.ts`：类型声明。
+- `packages/stage-ui/histoire.config.ts`：工具配置文件。
+- `packages/stage-ui/package.json`：包清单，定义包名、脚本、依赖和发布信息。
+- `packages/stage-ui/public/apple-touch-icon.avif`：静态资源或媒体文件。
+- `packages/stage-ui/public/favicon.ico`：静态资源或媒体文件。
+- `packages/stage-ui/public/favicon.svg`：静态资源或媒体文件。
+- `packages/stage-ui/public/logo-dark.svg`：静态资源或媒体文件。
+- `packages/stage-ui/public/logo.svg`：静态资源或媒体文件。
+- `packages/stage-ui/public/maskable_icon_x192.avif`：静态资源或媒体文件。
+- `packages/stage-ui/public/maskable_icon_x512.avif`：静态资源或媒体文件。
+- `packages/stage-ui/public/web-app-manifest-192x192.avif`：静态资源或媒体文件。
+- `packages/stage-ui/public/web-app-manifest-512x512.avif`：静态资源或媒体文件。
+- `packages/stage-ui/src/assets/backgrounds/cozy-tea-corner-in-pastel-hues.avif`：静态资源或媒体文件。
+- `packages/stage-ui/src/assets/backgrounds/cute-streaming-room-with-pastel-decor.avif`：静态资源或媒体文件。
+- `packages/stage-ui/src/assets/factorio-simple.png`：静态资源或媒体文件。
+- `packages/stage-ui/src/assets/live2d/models/hiyori/preview.png`：静态资源或媒体文件。
+- `packages/stage-ui/src/assets/live2d/models/hiyori_free_zh.zip`：静态资源或媒体文件。
+- `packages/stage-ui/src/assets/live2d/models/hiyori_pro_zh.zip`：静态资源或媒体文件。
+- `packages/stage-ui/src/assets/onboarding.avif`：静态资源或媒体文件。
+- `packages/stage-ui/src/assets/vrm/models/AvatarSample-A/AvatarSample_A.vrm`：静态资源或媒体文件。
+- `packages/stage-ui/src/assets/vrm/models/AvatarSample-A/preview.png`：静态资源或媒体文件。
+- `packages/stage-ui/src/assets/vrm/models/AvatarSample-B/AvatarSample_B.vrm`：静态资源或媒体文件。
+- `packages/stage-ui/src/assets/vrm/models/AvatarSample-B/preview.png`：静态资源或媒体文件。
+- `packages/stage-ui/src/components/animations/Replayable.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/animations/use-replayable.ts`：Vue/UI 组件。
+- `packages/stage-ui/src/components/auth/index.ts`：模块入口文件。
+- `packages/stage-ui/src/components/auth/providers.ts`：Vue/UI 组件。
+- `packages/stage-ui/src/components/auth/SignInPanel.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/data-pane/color-picker.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/data-pane/container.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/data-pane/index.story.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/data-pane/index.ts`：模块入口文件。
+- `packages/stage-ui/src/components/data-pane/pane.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/data-pane/property-color.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/data-pane/property-number.story.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/data-pane/property-number.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/data-pane/property-point.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/form/checkbox/checkbox.story.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/form/combobox-select/combobox-select.story.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/form/field/field-checkbox.story.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/form/field/field-combobox-select.story.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/form/field/field-input-file.story.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/form/field/field-input-text.story.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/form/field/field-key-values.story.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/form/field/field-range.story.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/form/field/field-select.story.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/form/input/input-file-card.story.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/form/input/input-file.story.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/form/input/input-key-value.story.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/form/input/input.story.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/form/range/color-hue-range.story.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/form/range/range.story.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/form/range/round-range.story.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/form/select/select.story.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/form/textarea/basic.story.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/form/textarea/textarea.story.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/gadgets/audio-spectrum-visualizer.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/gadgets/audio-spectrum.story.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/gadgets/audio-spectrum.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/gadgets/chat-bubble-minimalism.story.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/gadgets/chat-bubble-minimalism.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/gadgets/index.ts`：模块入口文件。
+- `packages/stage-ui/src/components/gadgets/level-meter.story.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/gadgets/level-meter.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/gadgets/processing-meter.story.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/gadgets/processing-meter.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/gadgets/test-dummy-marker-flat.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/gadgets/test-dummy-marker.story.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/gadgets/test-dummy-marker.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/gadgets/threshold-meter.story.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/gadgets/threshold-meter.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/gadgets/time-series-chart.story.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/gadgets/time-series-chart.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/graphics/index.ts`：模块入口文件。
+- `packages/stage-ui/src/components/graphics/volumed.story.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/graphics/volumed.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/index.ts`：模块入口文件。
+- `packages/stage-ui/src/components/layouts/backgrounds/background-gradient-overlay.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/layouts/backgrounds/index.ts`：模块入口文件。
+- `packages/stage-ui/src/components/layouts/callout.story.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/layouts/index.ts`：模块入口文件。
+- `packages/stage-ui/src/components/layouts/page-header.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/layouts/ripple-grid/index.story.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/layouts/ripple-grid/index.ts`：模块入口文件。
+- `packages/stage-ui/src/components/layouts/ripple-grid/index.vue`：模块入口文件。
+- `packages/stage-ui/src/components/layouts/ripple-grid/use-grid-ripple.ts`：Vue/UI 组件。
+- `packages/stage-ui/src/components/layouts/section.story.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/layouts/section.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/layouts/splitpanes/index.ts`：模块入口文件。
+- `packages/stage-ui/src/components/layouts/splitpanes/pane-area.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/markdown/index.ts`：模块入口文件。
+- `packages/stage-ui/src/components/markdown/markdown-renderer.story.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/markdown/markdown-renderer.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/menu/character-card.story.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/menu/character-card.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/menu/icon-item.story.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/menu/icon-item.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/menu/icon-status-item.story.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/menu/icon-status-item.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/menu/index.ts`：模块入口文件。
+- `packages/stage-ui/src/components/menu/radio-card-detail.story.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/menu/radio-card-detail.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/menu/radio-card-many-select.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/menu/radio-card-simple.story.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/menu/radio-card-simple.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/menu/relu.avif`：Vue/UI 组件。
+- `packages/stage-ui/src/components/menu/voice-card-many-select.story.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/menu/voice-card-many-select.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/menu/voice-card.story.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/menu/voice-card.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/misc/alert.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/misc/button.story.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/misc/ccreen.story.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/misc/container-error.story.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/misc/double-check-button.story.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/misc/error-container.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/misc/index.ts`：模块入口文件。
+- `packages/stage-ui/src/components/misc/profile-switcher-popover.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/misc/progress.story.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/misc/select-tab.story.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/misc/skeleton.story.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/misc/steppers/index.ts`：模块入口文件。
+- `packages/stage-ui/src/components/misc/steppers/steppers.story.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/misc/steppers/steppers.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/misc/steps/steps.story.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/misc/wip.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/modules/GamingFactorio.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/modules/GamingMinecraft.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/modules/GamingModuleSettings.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/modules/index.ts`：模块入口文件。
+- `packages/stage-ui/src/components/modules/MessagingDiscord.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/modules/X.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/physics/cursor-floating.story.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/physics/cursor-floating.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/physics/cursor-momentum.story.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/physics/cursor-momentum.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/physics/index.ts`：模块入口文件。
+- `packages/stage-ui/src/components/scenarios/about/about-content.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/scenarios/about/index.ts`：模块入口文件。
+- `packages/stage-ui/src/components/scenarios/about/types.ts`：Vue/UI 组件。
+- `packages/stage-ui/src/components/scenarios/chat/components/action-menu/index.test.ts`：Vue/UI 组件。
+- `packages/stage-ui/src/components/scenarios/chat/components/action-menu/index.ts`：模块入口文件。
+- `packages/stage-ui/src/components/scenarios/chat/components/action-menu/index.vue`：模块入口文件。
+- `packages/stage-ui/src/components/scenarios/chat/components/action-menu/menu-items.ts`：Vue/UI 组件。
+- `packages/stage-ui/src/components/scenarios/chat/components/assistant-item.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/scenarios/chat/components/error-item.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/scenarios/chat/components/history.browser.test.ts`：Vue/UI 组件。
+- `packages/stage-ui/src/components/scenarios/chat/components/history.story.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/scenarios/chat/components/history.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/scenarios/chat/components/response-part.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/scenarios/chat/components/tool-call-block.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/scenarios/chat/components/user-item.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/scenarios/chat/composables/use-chat-history-scroll.test.ts`：Vue/UI 组件。
+- `packages/stage-ui/src/components/scenarios/chat/composables/use-chat-history-scroll.ts`：Vue/UI 组件。
+- `packages/stage-ui/src/components/scenarios/chat/composables/use-element-scroll-visualize.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/scenarios/chat/composables/use-element-scroll.ts`：Vue/UI 组件。
+- `packages/stage-ui/src/components/scenarios/chat/constants.ts`：Vue/UI 组件。
+- `packages/stage-ui/src/components/scenarios/chat/index.ts`：模块入口文件。
+- `packages/stage-ui/src/components/scenarios/chat/JournalPreviewModal.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/scenarios/chat/utils.test.ts`：Vue/UI 组件。
+- `packages/stage-ui/src/components/scenarios/chat/utils.ts`：Vue/UI 组件。
+- `packages/stage-ui/src/components/scenarios/connection/index.ts`：模块入口文件。
+- `packages/stage-ui/src/components/scenarios/connection/settings/index.ts`：模块入口文件。
+- `packages/stage-ui/src/components/scenarios/connection/settings/index.vue`：模块入口文件。
+- `packages/stage-ui/src/components/scenarios/dialogs/about.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/scenarios/dialogs/about/about-dialog.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/scenarios/dialogs/about/index.ts`：模块入口文件。
+- `packages/stage-ui/src/components/scenarios/dialogs/audio-input/hearing-config-dialog.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/scenarios/dialogs/audio-input/hearing-config.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/scenarios/dialogs/audio-input/index.ts`：模块入口文件。
+- `packages/stage-ui/src/components/scenarios/dialogs/background-picker/background-picker-dialog.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/scenarios/dialogs/background-picker/background-picker.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/scenarios/dialogs/background-picker/index.ts`：模块入口文件。
+- `packages/stage-ui/src/components/scenarios/dialogs/background-picker/types.ts`：Vue/UI 组件。
+- `packages/stage-ui/src/components/scenarios/dialogs/bug-report/bug-report-dialog.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/scenarios/dialogs/bug-report/bug-report-form.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/scenarios/dialogs/bug-report/bug-report-payload.test.ts`：Vue/UI 组件。
+- `packages/stage-ui/src/components/scenarios/dialogs/bug-report/bug-report-payload.ts`：Vue/UI 组件。
+- `packages/stage-ui/src/components/scenarios/dialogs/bug-report/bug-report-trigger.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/scenarios/dialogs/bug-report/bug-report.story.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/scenarios/dialogs/bug-report/index.ts`：模块入口文件。
+- `packages/stage-ui/src/components/scenarios/dialogs/bug-report/types.ts`：Vue/UI 组件。
+- `packages/stage-ui/src/components/scenarios/dialogs/index.ts`：模块入口文件。
+- `packages/stage-ui/src/components/scenarios/dialogs/model-selector/index.ts`：模块入口文件。
+- `packages/stage-ui/src/components/scenarios/dialogs/model-selector/model-selector-dialog.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/scenarios/dialogs/model-selector/model-selector.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/scenarios/dialogs/onboarding/index.ts`：模块入口文件。
+- `packages/stage-ui/src/components/scenarios/dialogs/onboarding/onboarding-dialog.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/scenarios/dialogs/onboarding/onboarding.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/scenarios/dialogs/onboarding/step-analytics-notice.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/scenarios/dialogs/onboarding/step-model-selection.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/scenarios/dialogs/onboarding/step-provider-configuration.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/scenarios/dialogs/onboarding/step-provider-selection.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/scenarios/dialogs/onboarding/step-welcome.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/scenarios/dialogs/onboarding/types.ts`：Vue/UI 组件。
+- `packages/stage-ui/src/components/scenarios/dialogs/validation-details/index.ts`：模块入口文件。
+- `packages/stage-ui/src/components/scenarios/dialogs/validation-details/provider-validation-details-dialog.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/scenarios/hologram/holo-coupon.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/scenarios/hologram/index.ts`：模块入口文件。
+- `packages/stage-ui/src/components/scenarios/hologram/promo-banner.test.ts`：Vue/UI 组件。
+- `packages/stage-ui/src/components/scenarios/hologram/promo-banner.ts`：Vue/UI 组件。
+- `packages/stage-ui/src/components/scenarios/hologram/use-promo-banner-layout.ts`：Vue/UI 组件。
+- `packages/stage-ui/src/components/scenarios/index.ts`：模块入口文件。
+- `packages/stage-ui/src/components/scenarios/providers/index.ts`：模块入口文件。
+- `packages/stage-ui/src/components/scenarios/providers/provider-account-id-input.story.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/scenarios/providers/provider-account-id-input.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/scenarios/providers/provider-advanced-settings.story.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/scenarios/providers/provider-advanced-settings.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/scenarios/providers/provider-api-key-input.story.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/scenarios/providers/provider-api-key-input.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/scenarios/providers/provider-base-url-input.story.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/scenarios/providers/provider-base-url-input.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/scenarios/providers/provider-basic-settings.story.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/scenarios/providers/provider-basic-settings.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/scenarios/providers/provider-settings-container.story.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/scenarios/providers/provider-settings-container.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/scenarios/providers/provider-settings-layout.story.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/scenarios/providers/provider-settings-layout.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/scenarios/providers/provider-validation-alerts.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/scenarios/providers/speech-playground-openai-compatible.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/scenarios/providers/speech-playground.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/scenarios/providers/speech-provider-settings.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/scenarios/providers/speech-streaming-playground.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/scenarios/providers/transcription-playground.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/scenarios/providers/transcription-provider-settings.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/scenarios/settings/bar.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/scenarios/settings/button-bar.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/scenarios/settings/check-bar.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/scenarios/settings/index.ts`：模块入口文件。
+- `packages/stage-ui/src/components/scenarios/settings/model-settings/godot.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/scenarios/settings/model-settings/index.ts`：模块入口文件。
+- `packages/stage-ui/src/components/scenarios/settings/model-settings/index.vue`：模块入口文件。
+- `packages/stage-ui/src/components/scenarios/settings/model-settings/live2d.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/scenarios/settings/model-settings/panel.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/scenarios/settings/model-settings/preview-stage.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/scenarios/settings/model-settings/runtime.ts`：Vue/UI 组件。
+- `packages/stage-ui/src/components/scenarios/settings/model-settings/vrm.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/scenarios/settings/ModelCacheManager.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/scenarios/toasters/constants.ts`：Vue/UI 组件。
+- `packages/stage-ui/src/components/scenarios/toasters/index.ts`：模块入口文件。
+- `packages/stage-ui/src/components/scenarios/toasters/toaster-pwa-update-ready.story.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/scenarios/toasters/toaster-pwa-update-ready.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/scenarios/toasters/toaster-root.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/scenes/index.ts`：模块入口文件。
+- `packages/stage-ui/src/components/scenes/runtime.test.ts`：Vue/UI 组件。
+- `packages/stage-ui/src/components/scenes/runtime.ts`：Vue/UI 组件。
+- `packages/stage-ui/src/components/scenes/Stage.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/widgets/ColorPalette.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/widgets/index.ts`：模块入口文件。
+- `packages/stage-ui/src/components/widgets/poppin-text/animators/fade.ts`：Vue/UI 组件。
+- `packages/stage-ui/src/components/widgets/poppin-text/animators/float.ts`：Vue/UI 组件。
+- `packages/stage-ui/src/components/widgets/poppin-text/animators/index.ts`：模块入口文件。
+- `packages/stage-ui/src/components/widgets/poppin-text/animators/popup.ts`：Vue/UI 组件。
+- `packages/stage-ui/src/components/widgets/poppin-text/animators/scale-popup.ts`：Vue/UI 组件。
+- `packages/stage-ui/src/components/widgets/poppin-text/animators/stack.ts`：Vue/UI 组件。
+- `packages/stage-ui/src/components/widgets/poppin-text/PoppinText.web.story.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/widgets/poppin-text/PoppinText.web.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/widgets/PoppingSubtitles.web.story.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/components/widgets/PoppingSubtitles.web.vue`：Vue/UI 组件。
+- `packages/stage-ui/src/composables/api.ts`：Vue composable 复用逻辑。
+- `packages/stage-ui/src/composables/audio/audio-analyzer.ts`：Vue composable 复用逻辑。
+- `packages/stage-ui/src/composables/audio/audio-context.ts`：Vue composable 复用逻辑。
+- `packages/stage-ui/src/composables/audio/audio-device.ts`：Vue composable 复用逻辑。
+- `packages/stage-ui/src/composables/audio/audio-recorder.ts`：Vue composable 复用逻辑。
+- `packages/stage-ui/src/composables/audio/index.ts`：模块入口文件。
+- `packages/stage-ui/src/composables/canvas-alpha-use-pixel.test.ts`：Vue composable 复用逻辑。
+- `packages/stage-ui/src/composables/canvas-alpha.test.ts`：Vue composable 复用逻辑。
+- `packages/stage-ui/src/composables/canvas-alpha.ts`：Vue composable 复用逻辑。
+- `packages/stage-ui/src/composables/download.ts`：Vue composable 复用逻辑。
+- `packages/stage-ui/src/composables/index.ts`：模块入口文件。
+- `packages/stage-ui/src/composables/llm-marker-parser.test.ts`：Vue composable 复用逻辑。
+- `packages/stage-ui/src/composables/llm-marker-parser.ts`：Vue composable 复用逻辑。
+- `packages/stage-ui/src/composables/markdown.ts`：Vue composable 复用逻辑。
+- `packages/stage-ui/src/composables/queues.ts`：Vue composable 复用逻辑。
+- `packages/stage-ui/src/composables/response-categoriser.test.ts`：Vue composable 复用逻辑。
+- `packages/stage-ui/src/composables/response-categoriser.ts`：Vue composable 复用逻辑。
+- `packages/stage-ui/src/composables/use-analytics.ts`：Vue composable 复用逻辑。
+- `packages/stage-ui/src/composables/use-async-state.ts`：Vue composable 复用逻辑。
+- `packages/stage-ui/src/composables/use-auth-provider-sync.ts`：Vue composable 复用逻辑。
+- `packages/stage-ui/src/composables/use-breakpoints.ts`：Vue composable 复用逻辑。
+- `packages/stage-ui/src/composables/use-build-info.ts`：Vue composable 复用逻辑。
+- `packages/stage-ui/src/composables/use-chat-session/summary.ts`：Vue composable 复用逻辑。
+- `packages/stage-ui/src/composables/use-data-maintenance.ts`：Vue composable 复用逻辑。
+- `packages/stage-ui/src/composables/use-duck-db.test.ts`：Vue composable 复用逻辑。
+- `packages/stage-ui/src/composables/use-duck-db.ts`：Vue composable 复用逻辑。
+- `packages/stage-ui/src/composables/use-inference-preload.ts`：Vue composable 复用逻辑。
+- `packages/stage-ui/src/composables/use-inference-status.ts`：Vue composable 复用逻辑。
+- `packages/stage-ui/src/composables/use-io-trace-bridge.ts`：Vue composable 复用逻辑。
+- `packages/stage-ui/src/composables/use-io-tracer.ts`：Vue composable 复用逻辑。
+- `packages/stage-ui/src/composables/use-lamp-flicker-animation.ts`：Vue composable 复用逻辑。
+- `packages/stage-ui/src/composables/use-local-first.ts`：Vue composable 复用逻辑。
+- `packages/stage-ui/src/composables/use-model-preload.ts`：Vue composable 复用逻辑。
+- `packages/stage-ui/src/composables/use-modules-list.ts`：Vue composable 复用逻辑。
+- `packages/stage-ui/src/composables/use-number-string.ts`：Vue composable 复用逻辑。
+- `packages/stage-ui/src/composables/use-optimistic.test.ts`：Vue composable 复用逻辑。
+- `packages/stage-ui/src/composables/use-optimistic.ts`：Vue composable 复用逻辑。
+- `packages/stage-ui/src/composables/use-provider-validation.ts`：Vue composable 复用逻辑。
+- `packages/stage-ui/src/composables/use-ripple-grid-state.ts`：Vue composable 复用逻辑。
+- `packages/stage-ui/src/composables/use-scroll-to-hash.ts`：Vue composable 复用逻辑。
+- `packages/stage-ui/src/composables/vision/index.ts`：模块入口文件。
+- `packages/stage-ui/src/composables/vision/use-vision-inference.test.ts`：Vue composable 复用逻辑。
+- `packages/stage-ui/src/composables/vision/use-vision-inference.ts`：Vue composable 复用逻辑。
+- `packages/stage-ui/src/composables/vision/use-vision-workloads.ts`：Vue composable 复用逻辑。
+- `packages/stage-ui/src/composables/whisper.ts`：Vue composable 复用逻辑。
+- `packages/stage-ui/src/constants/emotions.ts`：TypeScript 源码。
+- `packages/stage-ui/src/constants/index.ts`：模块入口文件。
+- `packages/stage-ui/src/constants/inject.ts`：TypeScript 源码。
+- `packages/stage-ui/src/constants/prompts/artistry-instruction.ts`：TypeScript 源码。
+- `packages/stage-ui/src/constants/prompts/character-defaults.ts`：TypeScript 源码。
+- `packages/stage-ui/src/constants/prompts/system-v2.ts`：TypeScript 源码。
+- `packages/stage-ui/src/constants/theme.ts`：TypeScript 源码。
+- `packages/stage-ui/src/database/repos/characters.repo.ts`：TypeScript 源码。
+- `packages/stage-ui/src/database/repos/chat-sessions.repo.ts`：TypeScript 源码。
+- `packages/stage-ui/src/database/repos/providers.repo.ts`：TypeScript 源码。
+- `packages/stage-ui/src/database/storage.ts`：TypeScript 源码。
+- `packages/stage-ui/src/libs/audio/manager.ts`：TypeScript 源码。
+- `packages/stage-ui/src/libs/audio/vad.ts`：TypeScript 源码。
+- `packages/stage-ui/src/libs/auth-config.ts`：TypeScript 源码。
+- `packages/stage-ui/src/libs/auth-fetch.ts`：TypeScript 源码。
+- `packages/stage-ui/src/libs/auth-oidc.ts`：TypeScript 源码。
+- `packages/stage-ui/src/libs/auth.ts`：TypeScript 源码。
+- `packages/stage-ui/src/libs/color-from-element.ts`：TypeScript 源码。
+- `packages/stage-ui/src/libs/index.ts`：模块入口文件。
+- `packages/stage-ui/src/libs/inference/adapters/background-removal.ts`：TypeScript 源码。
+- `packages/stage-ui/src/libs/inference/adapters/kokoro.test.ts`：自动化测试。
+- `packages/stage-ui/src/libs/inference/adapters/kokoro.ts`：TypeScript 源码。
+- `packages/stage-ui/src/libs/inference/adapters/whisper.ts`：TypeScript 源码。
+- `packages/stage-ui/src/libs/inference/cache-utils.ts`：TypeScript 源码。
+- `packages/stage-ui/src/libs/inference/constants.ts`：TypeScript 源码。
+- `packages/stage-ui/src/libs/inference/coordinator.ts`：TypeScript 源码。
+- `packages/stage-ui/src/libs/inference/gpu-resource-coordinator.test.ts`：自动化测试。
+- `packages/stage-ui/src/libs/inference/gpu-resource-coordinator.ts`：TypeScript 源码。
+- `packages/stage-ui/src/libs/inference/index.ts`：模块入口文件。
+- `packages/stage-ui/src/libs/inference/load-queue.test.ts`：自动化测试。
+- `packages/stage-ui/src/libs/inference/load-queue.ts`：TypeScript 源码。
+- `packages/stage-ui/src/libs/inference/protocol.test.ts`：自动化测试。
+- `packages/stage-ui/src/libs/inference/protocol.ts`：TypeScript 源码。
+- `packages/stage-ui/src/libs/inference/worker-manager.ts`：TypeScript 源码。
+- `packages/stage-ui/src/libs/providers/index.ts`：模块入口文件。
+- `packages/stage-ui/src/libs/providers/providers/302-ai/index.ts`：模块入口文件。
+- `packages/stage-ui/src/libs/providers/providers/aihubmix/index.ts`：模块入口文件。
+- `packages/stage-ui/src/libs/providers/providers/amazon-bedrock/index.test.ts`：自动化测试。
+- `packages/stage-ui/src/libs/providers/providers/amazon-bedrock/index.ts`：模块入口文件。
+- `packages/stage-ui/src/libs/providers/providers/anthropic/index.ts`：模块入口文件。
+- `packages/stage-ui/src/libs/providers/providers/azure-ai-foundry/index.ts`：模块入口文件。
+- `packages/stage-ui/src/libs/providers/providers/azure-openai/index.ts`：模块入口文件。
+- `packages/stage-ui/src/libs/providers/providers/cerebras-ai/index.ts`：模块入口文件。
+- `packages/stage-ui/src/libs/providers/providers/cloudflare-workers-ai/index.ts`：模块入口文件。
+- `packages/stage-ui/src/libs/providers/providers/comet-api/index.ts`：模块入口文件。
+- `packages/stage-ui/src/libs/providers/providers/deepseek/index.ts`：模块入口文件。
+- `packages/stage-ui/src/libs/providers/providers/featherless-ai/index.ts`：模块入口文件。
+- `packages/stage-ui/src/libs/providers/providers/fireworks-ai/index.ts`：模块入口文件。
+- `packages/stage-ui/src/libs/providers/providers/google-generative-ai/index.ts`：模块入口文件。
+- `packages/stage-ui/src/libs/providers/providers/groq/index.ts`：模块入口文件。
+- `packages/stage-ui/src/libs/providers/providers/index.ts`：模块入口文件。
+- `packages/stage-ui/src/libs/providers/providers/lm-studio/index.ts`：模块入口文件。
+- `packages/stage-ui/src/libs/providers/providers/minimax/index.ts`：模块入口文件。
+- `packages/stage-ui/src/libs/providers/providers/mistral-ai/index.ts`：模块入口文件。
+- `packages/stage-ui/src/libs/providers/providers/modelscope/index.ts`：模块入口文件。
+- `packages/stage-ui/src/libs/providers/providers/moonshot-ai/index.ts`：模块入口文件。
+- `packages/stage-ui/src/libs/providers/providers/n1n/index.ts`：模块入口文件。
+- `packages/stage-ui/src/libs/providers/providers/novita-ai/index.ts`：模块入口文件。
+- `packages/stage-ui/src/libs/providers/providers/nvidia/index.ts`：模块入口文件。
+- `packages/stage-ui/src/libs/providers/providers/official/index.ts`：模块入口文件。
+- `packages/stage-ui/src/libs/providers/providers/official/shared.ts`：TypeScript 源码。
+- `packages/stage-ui/src/libs/providers/providers/ollama/index.test.ts`：自动化测试。
+- `packages/stage-ui/src/libs/providers/providers/ollama/index.ts`：模块入口文件。
+- `packages/stage-ui/src/libs/providers/providers/openai-compatible/index.ts`：模块入口文件。
+- `packages/stage-ui/src/libs/providers/providers/openai/index.ts`：模块入口文件。
+- `packages/stage-ui/src/libs/providers/providers/openrouter-ai/index.ts`：模块入口文件。
+- `packages/stage-ui/src/libs/providers/providers/perplexity-ai/index.ts`：模块入口文件。
+- `packages/stage-ui/src/libs/providers/providers/registry.ts`：TypeScript 源码。
+- `packages/stage-ui/src/libs/providers/providers/together-ai/index.ts`：模块入口文件。
+- `packages/stage-ui/src/libs/providers/providers/xai/index.ts`：模块入口文件。
+- `packages/stage-ui/src/libs/providers/providers/zai/index.ts`：模块入口文件。
+- `packages/stage-ui/src/libs/providers/types.ts`：TypeScript 源码。
+- `packages/stage-ui/src/libs/providers/validators/index.ts`：模块入口文件。
+- `packages/stage-ui/src/libs/providers/validators/openai-compatible.test.ts`：自动化测试。
+- `packages/stage-ui/src/libs/providers/validators/openai-compatible.ts`：TypeScript 源码。
+- `packages/stage-ui/src/libs/providers/validators/run.ts`：TypeScript 源码。
+- `packages/stage-ui/src/libs/server.ts`：TypeScript 源码。
+- `packages/stage-ui/src/libs/workers/worker.ts`：TypeScript 源码。
+- `packages/stage-ui/src/libs/zod/index.ts`：模块入口文件。
+- `packages/stage-ui/src/services/speech/bus.ts`：服务端或应用业务服务。
+- `packages/stage-ui/src/services/speech/pipeline-runtime.ts`：服务端或应用业务服务。
+- `packages/stage-ui/src/stores/ai/models/vad.ts`：Pinia store 或状态管理逻辑。
+- `packages/stage-ui/src/stores/analytics/index.ts`：模块入口文件。
+- `packages/stage-ui/src/stores/analytics/posthog.ts`：Pinia store 或状态管理逻辑。
+- `packages/stage-ui/src/stores/analytics/privacy-policy.ts`：Pinia store 或状态管理逻辑。
+- `packages/stage-ui/src/stores/audio.ts`：Pinia store 或状态管理逻辑。
+- `packages/stage-ui/src/stores/auth.ts`：Pinia store 或状态管理逻辑。
+- `packages/stage-ui/src/stores/background.ts`：Pinia store 或状态管理逻辑。
+- `packages/stage-ui/src/stores/character.test.ts`：Pinia store 或状态管理逻辑。
+- `packages/stage-ui/src/stores/character/index.ts`：模块入口文件。
+- `packages/stage-ui/src/stores/character/notebook.ts`：Pinia store 或状态管理逻辑。
+- `packages/stage-ui/src/stores/character/orchestrator/index.test.ts`：Pinia store 或状态管理逻辑。
+- `packages/stage-ui/src/stores/character/orchestrator/index.ts`：模块入口文件。
+- `packages/stage-ui/src/stores/character/orchestrator/spark-notify-agent.ts`：Pinia store 或状态管理逻辑。
+- `packages/stage-ui/src/stores/character/orchestrator/store.ts`：Pinia store 或状态管理逻辑。
+- `packages/stage-ui/src/stores/characters.ts`：Pinia store 或状态管理逻辑。
+- `packages/stage-ui/src/stores/chat.contract.test.ts`：Pinia store 或状态管理逻辑。
+- `packages/stage-ui/src/stores/chat.ts`：Pinia store 或状态管理逻辑。
+- `packages/stage-ui/src/stores/chat/constants.ts`：Pinia store 或状态管理逻辑。
+- `packages/stage-ui/src/stores/chat/context-prompt.test.ts`：Pinia store 或状态管理逻辑。
+- `packages/stage-ui/src/stores/chat/context-prompt.ts`：Pinia store 或状态管理逻辑。
+- `packages/stage-ui/src/stores/chat/context-providers/index.ts`：模块入口文件。
+- `packages/stage-ui/src/stores/chat/context-providers/minecraft.ts`：Pinia store 或状态管理逻辑。
+- `packages/stage-ui/src/stores/chat/context-store.ts`：Pinia store 或状态管理逻辑。
+- `packages/stage-ui/src/stores/chat/data-store.ts`：Pinia store 或状态管理逻辑。
+- `packages/stage-ui/src/stores/chat/datetime-prefix.test.ts`：Pinia store 或状态管理逻辑。
+- `packages/stage-ui/src/stores/chat/datetime-prefix.ts`：Pinia store 或状态管理逻辑。
+- `packages/stage-ui/src/stores/chat/hooks.ts`：Pinia store 或状态管理逻辑。
+- `packages/stage-ui/src/stores/chat/maintenance.ts`：Pinia store 或状态管理逻辑。
+- `packages/stage-ui/src/stores/chat/session-message-merge.test.ts`：Pinia store 或状态管理逻辑。
+- `packages/stage-ui/src/stores/chat/session-message-merge.ts`：Pinia store 或状态管理逻辑。
+- `packages/stage-ui/src/stores/chat/session-store.ts`：Pinia store 或状态管理逻辑。
+- `packages/stage-ui/src/stores/chat/state.ts`：Pinia store 或状态管理逻辑。
+- `packages/stage-ui/src/stores/chat/stream-store.ts`：Pinia store 或状态管理逻辑。
+- `packages/stage-ui/src/stores/configurator.ts`：Pinia store 或状态管理逻辑。
+- `packages/stage-ui/src/stores/devtools/context-observability.ts`：Pinia store 或状态管理逻辑。
+- `packages/stage-ui/src/stores/devtools/io-tracer.ts`：Pinia store 或状态管理逻辑。
+- `packages/stage-ui/src/stores/devtools/plugin-host-debug.ts`：Pinia store 或状态管理逻辑。
+- `packages/stage-ui/src/stores/devtools/websocket-inspector.ts`：Pinia store 或状态管理逻辑。
+- `packages/stage-ui/src/stores/display-models.ts`：Pinia store 或状态管理逻辑。
+- `packages/stage-ui/src/stores/execute-tool.test.ts`：Pinia store 或状态管理逻辑。
+- `packages/stage-ui/src/stores/exports.contract.test.ts`：Pinia store 或状态管理逻辑。
+- `packages/stage-ui/src/stores/index.ts`：模块入口文件。
+- `packages/stage-ui/src/stores/journal-preview.ts`：Pinia store 或状态管理逻辑。
+- `packages/stage-ui/src/stores/live2d.ts`：Pinia store 或状态管理逻辑。
+- `packages/stage-ui/src/stores/llm-tools.test.ts`：Pinia store 或状态管理逻辑。
+- `packages/stage-ui/src/stores/llm-tools.ts`：Pinia store 或状态管理逻辑。
+- `packages/stage-ui/src/stores/llm.test.ts`：Pinia store 或状态管理逻辑。
+- `packages/stage-ui/src/stores/llm.ts`：Pinia store 或状态管理逻辑。
+- `packages/stage-ui/src/stores/markdown-stress.ts`：Pinia store 或状态管理逻辑。
+- `packages/stage-ui/src/stores/mcp-tool-bridge.ts`：Pinia store 或状态管理逻辑。
+- `packages/stage-ui/src/stores/mcp.ts`：Pinia store 或状态管理逻辑。
+- `packages/stage-ui/src/stores/mods/api/channel-gateway.ts`：Pinia store 或状态管理逻辑。
+- `packages/stage-ui/src/stores/mods/api/channel-server.test.ts`：Pinia store 或状态管理逻辑。
+- `packages/stage-ui/src/stores/mods/api/channel-server.ts`：Pinia store 或状态管理逻辑。
+- `packages/stage-ui/src/stores/mods/api/context-bridge.contract.test.ts`：Pinia store 或状态管理逻辑。
+- `packages/stage-ui/src/stores/mods/api/context-bridge.ts`：Pinia store 或状态管理逻辑。
+- `packages/stage-ui/src/stores/mods/api/events.ts`：Pinia store 或状态管理逻辑。
+- `packages/stage-ui/src/stores/modules/airi-card.ts`：Pinia store 或状态管理逻辑。
+- `packages/stage-ui/src/stores/modules/artistry-autonomous.ts`：Pinia store 或状态管理逻辑。
+- `packages/stage-ui/src/stores/modules/artistry.ts`：Pinia store 或状态管理逻辑。
+- `packages/stage-ui/src/stores/modules/consciousness.ts`：Pinia store 或状态管理逻辑。
+- `packages/stage-ui/src/stores/modules/discord.ts`：Pinia store 或状态管理逻辑。
+- `packages/stage-ui/src/stores/modules/gaming-factorio.ts`：Pinia store 或状态管理逻辑。
+- `packages/stage-ui/src/stores/modules/gaming-minecraft.ts`：Pinia store 或状态管理逻辑。
+- `packages/stage-ui/src/stores/modules/gaming-module-factory.ts`：Pinia store 或状态管理逻辑。
+- `packages/stage-ui/src/stores/modules/hearing.test.ts`：Pinia store 或状态管理逻辑。
+- `packages/stage-ui/src/stores/modules/hearing.ts`：Pinia store 或状态管理逻辑。
+- `packages/stage-ui/src/stores/modules/index.ts`：模块入口文件。
+- `packages/stage-ui/src/stores/modules/speech.test.ts`：Pinia store 或状态管理逻辑。
+- `packages/stage-ui/src/stores/modules/speech.ts`：Pinia store 或状态管理逻辑。
+- `packages/stage-ui/src/stores/modules/twitter.ts`：Pinia store 或状态管理逻辑。
+- `packages/stage-ui/src/stores/modules/vision/agents/index.ts`：模块入口文件。
+- `packages/stage-ui/src/stores/modules/vision/index.ts`：模块入口文件。
+- `packages/stage-ui/src/stores/modules/vision/orchestrator.test.ts`：Pinia store 或状态管理逻辑。
+- `packages/stage-ui/src/stores/modules/vision/orchestrator.ts`：Pinia store 或状态管理逻辑。
+- `packages/stage-ui/src/stores/modules/vision/processing-store.ts`：Pinia store 或状态管理逻辑。
+- `packages/stage-ui/src/stores/modules/vision/store.ts`：Pinia store 或状态管理逻辑。
+- `packages/stage-ui/src/stores/onboarding.ts`：Pinia store 或状态管理逻辑。
+- `packages/stage-ui/src/stores/perf-tracer-bridge.ts`：Pinia store 或状态管理逻辑。
+- `packages/stage-ui/src/stores/plugin-host-capabilities.ts`：Pinia store 或状态管理逻辑。
+- `packages/stage-ui/src/stores/provider-catalog.test.ts`：Pinia store 或状态管理逻辑。
+- `packages/stage-ui/src/stores/provider-catalog.ts`：Pinia store 或状态管理逻辑。
+- `packages/stage-ui/src/stores/providers.ts`：Pinia store 或状态管理逻辑。
+- `packages/stage-ui/src/stores/providers/aliyun/index.ts`：模块入口文件。
+- `packages/stage-ui/src/stores/providers/aliyun/stream-transcription.ts`：Pinia store 或状态管理逻辑。
+- `packages/stage-ui/src/stores/providers/aliyun/token.test.ts`：Pinia store 或状态管理逻辑。
+- `packages/stage-ui/src/stores/providers/aliyun/token.ts`：Pinia store 或状态管理逻辑。
+- `packages/stage-ui/src/stores/providers/aliyun/utils.ts`：Pinia store 或状态管理逻辑。
+- `packages/stage-ui/src/stores/providers/converters.test.ts`：Pinia store 或状态管理逻辑。
+- `packages/stage-ui/src/stores/providers/converters.ts`：Pinia store 或状态管理逻辑。
+- `packages/stage-ui/src/stores/providers/elevenlabs/list-models.ts`：Pinia store 或状态管理逻辑。
+- `packages/stage-ui/src/stores/providers/openai-compatible-builder.ts`：Pinia store 或状态管理逻辑。
+- `packages/stage-ui/src/stores/providers/openrouter/audio-speech.ts`：Pinia store 或状态管理逻辑。
+- `packages/stage-ui/src/stores/providers/web-speech-api/index.ts`：模块入口文件。
+- `packages/stage-ui/src/stores/settings/analytics.ts`：Pinia store 或状态管理逻辑。
+- `packages/stage-ui/src/stores/settings/audio-device.ts`：Pinia store 或状态管理逻辑。
+- `packages/stage-ui/src/stores/settings/beat-sync.ts`：Pinia store 或状态管理逻辑。
+- `packages/stage-ui/src/stores/settings/controls-island.ts`：Pinia store 或状态管理逻辑。
+- `packages/stage-ui/src/stores/settings/developer.ts`：Pinia store 或状态管理逻辑。
+- `packages/stage-ui/src/stores/settings/general.ts`：Pinia store 或状态管理逻辑。
+- `packages/stage-ui/src/stores/settings/index.ts`：模块入口文件。
+- `packages/stage-ui/src/stores/settings/live2d.ts`：Pinia store 或状态管理逻辑。
+- `packages/stage-ui/src/stores/settings/stage-model.ts`：Pinia store 或状态管理逻辑。
+- `packages/stage-ui/src/stores/settings/theme.ts`：Pinia store 或状态管理逻辑。
+- `packages/stage-ui/src/stores/speech-runtime.ts`：Pinia store 或状态管理逻辑。
+- `packages/stage-ui/src/tools/character/index.ts`：模块入口文件。
+- `packages/stage-ui/src/tools/character/orchestrator/index.ts`：模块入口文件。
+- `packages/stage-ui/src/tools/character/orchestrator/spark-command-shared.ts`：TypeScript 源码。
+- `packages/stage-ui/src/tools/character/orchestrator/spark-command.test.ts`：自动化测试。
+- `packages/stage-ui/src/tools/character/orchestrator/spark-command.ts`：TypeScript 源码。
+- `packages/stage-ui/src/tools/character/orchestrator/spark-notify.test.ts`：自动化测试。
+- `packages/stage-ui/src/tools/character/orchestrator/spark-notify.ts`：TypeScript 源码。
+- `packages/stage-ui/src/tools/debug.ts`：TypeScript 源码。
+- `packages/stage-ui/src/tools/index.ts`：模块入口文件。
+- `packages/stage-ui/src/tools/mcp.test.ts`：自动化测试。
+- `packages/stage-ui/src/tools/mcp.ts`：TypeScript 源码。
+- `packages/stage-ui/src/types/character.ts`：类型声明。
+- `packages/stage-ui/src/types/chat-session.ts`：类型声明。
+- `packages/stage-ui/src/types/chat.ts`：类型声明。
+- `packages/stage-ui/src/types/index.ts`：模块入口文件。
+- `packages/stage-ui/src/utils/event-source.ts`：工具函数。
+- `packages/stage-ui/src/utils/index.ts`：模块入口文件。
+- `packages/stage-ui/src/utils/relative-time.ts`：工具函数。
+- `packages/stage-ui/src/utils/stream.ts`：工具函数。
+- `packages/stage-ui/src/utils/tts.ts`：工具函数。
+- `packages/stage-ui/src/workers/background-removal/worker.ts`：TypeScript 源码。
+- `packages/stage-ui/src/workers/index.ts`：模块入口文件。
+- `packages/stage-ui/src/workers/kokoro/constants.ts`：TypeScript 源码。
+- `packages/stage-ui/src/workers/kokoro/types.ts`：TypeScript 源码。
+- `packages/stage-ui/src/workers/kokoro/worker.ts`：TypeScript 源码。
+- `packages/stage-ui/src/workers/vad/index.ts`：模块入口文件。
+- `packages/stage-ui/src/workers/vad/manager.ts`：TypeScript 源码。
+- `packages/stage-ui/src/workers/vad/process.worklet.ts`：TypeScript 源码。
+- `packages/stage-ui/src/workers/vad/vad.ts`：TypeScript 源码。
+- `packages/stage-ui/stories/components/CharacterCardColorControls.vue`：Vue/UI 组件。
+- `packages/stage-ui/stories/components/ColorPickerControl.vue`：Vue/UI 组件。
+- `packages/stage-ui/stories/components/Colors.story.vue`：Vue/UI 组件。
+- `packages/stage-ui/stories/components/ThemeColorsHueControl.vue`：Vue/UI 组件。
+- `packages/stage-ui/stories/components/TypographyMono.story.vue`：Vue/UI 组件。
+- `packages/stage-ui/stories/components/TypographySans.story.vue`：Vue/UI 组件。
+- `packages/stage-ui/stories/modules/i18n.ts`：TypeScript 源码。
+- `packages/stage-ui/stories/setup.server.ts`：TypeScript 源码。
+- `packages/stage-ui/stories/setup.ts`：TypeScript 源码。
+- `packages/stage-ui/stories/styles/main.css`：样式文件。
+- `packages/stage-ui/stories/styles/transitions.css`：样式文件。
+- `packages/stage-ui/tsconfig.json`：TypeScript 配置。
+- `packages/stage-ui/uno.config.ts`：工具配置文件。
+- `packages/stage-ui/vite.config.ts`：工具配置文件。
+- `packages/stage-ui/vitest.config.ts`：工具配置文件。
+- `packages/stream-kit/package.json`：包清单，定义包名、脚本、依赖和发布信息。
+- `packages/stream-kit/src/index.ts`：模块入口文件。
+- `packages/stream-kit/src/queue.ts`：TypeScript 源码。
+- `packages/stream-kit/tsconfig.json`：TypeScript 配置。
+- `packages/stream-kit/tsdown.config.ts`：工具配置文件。
+- `packages/ui-loading-screens/index.html`：项目文件。
+- `packages/ui-loading-screens/netlify.toml`：项目文件。
+- `packages/ui-loading-screens/package.json`：包清单，定义包名、脚本、依赖和发布信息。
+- `packages/ui-loading-screens/playground/public/apple-touch-icon.avif`：静态资源或媒体文件。
+- `packages/ui-loading-screens/playground/public/favicon.ico`：静态资源或媒体文件。
+- `packages/ui-loading-screens/playground/public/favicon.svg`：静态资源或媒体文件。
+- `packages/ui-loading-screens/playground/public/maskable_icon_x192.avif`：静态资源或媒体文件。
+- `packages/ui-loading-screens/playground/public/maskable_icon_x512.avif`：静态资源或媒体文件。
+- `packages/ui-loading-screens/playground/public/web-app-manifest-192x192.avif`：静态资源或媒体文件。
+- `packages/ui-loading-screens/playground/public/web-app-manifest-512x512.avif`：静态资源或媒体文件。
+- `packages/ui-loading-screens/playground/src/App.vue`：Vue 单文件组件。
+- `packages/ui-loading-screens/playground/src/main.ts`：TypeScript 源码。
+- `packages/ui-loading-screens/playground/src/pages/index.vue`：模块入口文件。
+- `packages/ui-loading-screens/playground/src/pages/scifi-circle.vue`：页面路由组件。
+- `packages/ui-loading-screens/src/components/index.ts`：模块入口文件。
+- `packages/ui-loading-screens/src/components/LoadingLogoWithBar.vue`：Vue/UI 组件。
+- `packages/ui-loading-screens/src/components/LoadingSciFiCircle/assets/barrel_distortion_map.avif`：Vue/UI 组件。
+- `packages/ui-loading-screens/src/components/LoadingSciFiCircle/assets/Circle Blink In - Loading (@proj-airi).rev`：Vue/UI 组件。
+- `packages/ui-loading-screens/src/components/LoadingSciFiCircle/assets/circle_blink_in_-_loading_(@proj-airi).riv`：Vue/UI 组件。
+- `packages/ui-loading-screens/src/components/LoadingSciFiCircle/CRT.vue`：Vue/UI 组件。
+- `packages/ui-loading-screens/src/components/LoadingSciFiCircle/CRTLine.vue`：Vue/UI 组件。
+- `packages/ui-loading-screens/src/components/LoadingSciFiCircle/index.vue`：模块入口文件。
+- `packages/ui-loading-screens/src/env.d.ts`：类型声明。
+- `packages/ui-loading-screens/src/index.ts`：模块入口文件。
+- `packages/ui-loading-screens/tsconfig.json`：TypeScript 配置。
+- `packages/ui-loading-screens/uno.config.ts`：工具配置文件。
+- `packages/ui-loading-screens/vite.config.ts`：工具配置文件。
+- `packages/ui-transitions/index.html`：项目文件。
+- `packages/ui-transitions/netlify.toml`：项目文件。
+- `packages/ui-transitions/package.json`：包清单，定义包名、脚本、依赖和发布信息。
+- `packages/ui-transitions/playground/public/apple-touch-icon.avif`：静态资源或媒体文件。
+- `packages/ui-transitions/playground/public/favicon.ico`：静态资源或媒体文件。
+- `packages/ui-transitions/playground/public/favicon.svg`：静态资源或媒体文件。
+- `packages/ui-transitions/playground/public/maskable_icon_x192.avif`：静态资源或媒体文件。
+- `packages/ui-transitions/playground/public/maskable_icon_x512.avif`：静态资源或媒体文件。
+- `packages/ui-transitions/playground/public/web-app-manifest-192x192.avif`：静态资源或媒体文件。
+- `packages/ui-transitions/playground/public/web-app-manifest-512x512.avif`：静态资源或媒体文件。
+- `packages/ui-transitions/playground/src/App.vue`：Vue 单文件组件。
+- `packages/ui-transitions/playground/src/components/Buttons.vue`：Vue/UI 组件。
+- `packages/ui-transitions/playground/src/main.ts`：TypeScript 源码。
+- `packages/ui-transitions/playground/src/pages/index.vue`：模块入口文件。
+- `packages/ui-transitions/playground/src/pages/transition-2.vue`：页面路由组件。
+- `packages/ui-transitions/playground/src/pages/transition-3.vue`：页面路由组件。
+- `packages/ui-transitions/playground/src/pages/transition-4.vue`：页面路由组件。
+- `packages/ui-transitions/playground/src/pages/transition-5.vue`：页面路由组件。
+- `packages/ui-transitions/playground/src/pages/transition-6.vue`：页面路由组件。
+- `packages/ui-transitions/playground/src/pages/transition-7.vue`：页面路由组件。
+- `packages/ui-transitions/src/components/ArrowTransition.vue`：Vue/UI 组件。
+- `packages/ui-transitions/src/components/BubbleWaveOutTransition.vue`：Vue/UI 组件。
+- `packages/ui-transitions/src/components/FantasyFallTransition.vue`：Vue/UI 组件。
+- `packages/ui-transitions/src/components/index.ts`：模块入口文件。
+- `packages/ui-transitions/src/components/MultipleBlocksRevealTransition.vue`：Vue/UI 组件。
+- `packages/ui-transitions/src/components/RectanglesRotateTransition.vue`：Vue/UI 组件。
+- `packages/ui-transitions/src/components/SlideTransition.vue`：Vue/UI 组件。
+- `packages/ui-transitions/src/components/SlopeSlideTransition.vue`：Vue/UI 组件。
+- `packages/ui-transitions/src/components/StageTransitionGroup.vue`：Vue/UI 组件。
+- `packages/ui-transitions/src/index.ts`：模块入口文件。
+- `packages/ui-transitions/tsconfig.json`：TypeScript 配置。
+- `packages/ui-transitions/uno.config.ts`：工具配置文件。
+- `packages/ui-transitions/vite.config.ts`：工具配置文件。
+- `packages/ui/package.json`：包清单，定义包名、脚本、依赖和发布信息。
+- `packages/ui/src/components/animations/index.ts`：模块入口文件。
+- `packages/ui/src/components/animations/transition-bidirectional.vue`：Vue/UI 组件。
+- `packages/ui/src/components/animations/transition-horizontal.vue`：Vue/UI 组件。
+- `packages/ui/src/components/animations/transition-vertical.vue`：Vue/UI 组件。
+- `packages/ui/src/components/form/checkbox/checkbox.vue`：Vue/UI 组件。
+- `packages/ui/src/components/form/checkbox/index.ts`：模块入口文件。
+- `packages/ui/src/components/form/combobox-select/combobox-option.vue`：Vue/UI 组件。
+- `packages/ui/src/components/form/combobox-select/combobox-select.vue`：Vue/UI 组件。
+- `packages/ui/src/components/form/combobox-select/index.ts`：模块入口文件。
+- `packages/ui/src/components/form/combobox/combobox.vue`：Vue/UI 组件。
+- `packages/ui/src/components/form/combobox/index.ts`：模块入口文件。
+- `packages/ui/src/components/form/field/field-checkbox.vue`：Vue/UI 组件。
+- `packages/ui/src/components/form/field/field-combobox-select.vue`：Vue/UI 组件。
+- `packages/ui/src/components/form/field/field-input-file.vue`：Vue/UI 组件。
+- `packages/ui/src/components/form/field/field-input.vue`：Vue/UI 组件。
+- `packages/ui/src/components/form/field/field-key-values.vue`：Vue/UI 组件。
+- `packages/ui/src/components/form/field/field-range.vue`：Vue/UI 组件。
+- `packages/ui/src/components/form/field/field-select.vue`：Vue/UI 组件。
+- `packages/ui/src/components/form/field/field-text-area.vue`：Vue/UI 组件。
+- `packages/ui/src/components/form/field/field-values.vue`：Vue/UI 组件。
+- `packages/ui/src/components/form/field/index.ts`：模块入口文件。
+- `packages/ui/src/components/form/index.ts`：模块入口文件。
+- `packages/ui/src/components/form/input/basic-input-file.vue`：Vue/UI 组件。
+- `packages/ui/src/components/form/input/index.ts`：模块入口文件。
+- `packages/ui/src/components/form/input/input-file-card.vue`：Vue/UI 组件。
+- `packages/ui/src/components/form/input/input-file.vue`：Vue/UI 组件。
+- `packages/ui/src/components/form/input/input-key-value.vue`：Vue/UI 组件。
+- `packages/ui/src/components/form/input/input.vue`：Vue/UI 组件。
+- `packages/ui/src/components/form/radio/index.ts`：模块入口文件。
+- `packages/ui/src/components/form/radio/radio.vue`：Vue/UI 组件。
+- `packages/ui/src/components/form/range/color-hue-range.vue`：Vue/UI 组件。
+- `packages/ui/src/components/form/range/index.ts`：模块入口文件。
+- `packages/ui/src/components/form/range/range.vue`：Vue/UI 组件。
+- `packages/ui/src/components/form/range/round-range.vue`：Vue/UI 组件。
+- `packages/ui/src/components/form/select-tab/index.ts`：模块入口文件。
+- `packages/ui/src/components/form/select-tab/select-tab.vue`：Vue/UI 组件。
+- `packages/ui/src/components/form/select/index.ts`：模块入口文件。
+- `packages/ui/src/components/form/select/select-option.vue`：Vue/UI 组件。
+- `packages/ui/src/components/form/select/select.vue`：Vue/UI 组件。
+- `packages/ui/src/components/form/textarea/basic-text-area.vue`：Vue/UI 组件。
+- `packages/ui/src/components/form/textarea/index.ts`：模块入口文件。
+- `packages/ui/src/components/form/textarea/textarea.vue`：Vue/UI 组件。
+- `packages/ui/src/components/layouts/collapsible.vue`：Vue/UI 组件。
+- `packages/ui/src/components/layouts/index.ts`：模块入口文件。
+- `packages/ui/src/components/layouts/screen.vue`：Vue/UI 组件。
+- `packages/ui/src/components/layouts/skeleton.vue`：Vue/UI 组件。
+- `packages/ui/src/components/misc/button.vue`：Vue/UI 组件。
+- `packages/ui/src/components/misc/callout.vue`：Vue/UI 组件。
+- `packages/ui/src/components/misc/container-error.vue`：Vue/UI 组件。
+- `packages/ui/src/components/misc/double-check-button.vue`：Vue/UI 组件。
+- `packages/ui/src/components/misc/error-boundary.vue`：Vue/UI 组件。
+- `packages/ui/src/components/misc/index.ts`：模块入口文件。
+- `packages/ui/src/components/misc/progress.vue`：Vue/UI 组件。
+- `packages/ui/src/composables/use-deferred-mount.ts`：Vue composable 复用逻辑。
+- `packages/ui/src/composables/use-theme.ts`：Vue composable 复用逻辑。
+- `packages/ui/src/constants/lamp-flicker-animation.ts`：TypeScript 源码。
+- `packages/ui/src/fallback.css`：样式文件。
+- `packages/ui/src/index.ts`：模块入口文件。
+- `packages/ui/src/lamp-flicker.css`：样式文件。
+- `packages/ui/src/main.css`：样式文件。
+- `packages/ui/src/utils/index.ts`：模块入口文件。
+- `packages/ui/src/utils/shim/index.ts`：模块入口文件。
+- `packages/ui/src/utils/shim/local-storage.ts`：工具函数。
+- `packages/ui/tsconfig.json`：TypeScript 配置。
+- `packages/unocss-preset-fonts/package.json`：包清单，定义包名、脚本、依赖和发布信息。
+- `packages/unocss-preset-fonts/src/index.ts`：模块入口文件。
+- `packages/unocss-preset-fonts/tsconfig.json`：TypeScript 配置。
+- `packages/unocss-preset-fonts/tsdown.config.ts`：工具配置文件。
+- `packages/vishot-runner-browser/package.json`：包清单，定义包名、脚本、依赖和发布信息。
+- `packages/vishot-runner-browser/src/cli/capture.test.ts`：自动化测试。
+- `packages/vishot-runner-browser/src/cli/capture.ts`：TypeScript 源码。
+- `packages/vishot-runner-browser/src/index.ts`：模块入口文件。
+- `packages/vishot-runner-browser/src/runtime/artifacts.test.ts`：自动化测试。
+- `packages/vishot-runner-browser/src/runtime/artifacts.ts`：TypeScript 源码。
+- `packages/vishot-runner-browser/src/runtime/capture.test.ts`：自动化测试。
+- `packages/vishot-runner-browser/src/runtime/capture.ts`：TypeScript 源码。
+- `packages/vishot-runner-browser/src/runtime/files.ts`：TypeScript 源码。
+- `packages/vishot-runner-browser/src/runtime/integration.test.ts`：自动化测试。
+- `packages/vishot-runner-browser/src/runtime/selectors.ts`：TypeScript 源码。
+- `packages/vishot-runner-browser/src/runtime/types.ts`：TypeScript 源码。
+- `packages/vishot-runner-browser/src/runtime/vite-server.ts`：TypeScript 源码。
+- `packages/vishot-runner-browser/tsconfig.json`：TypeScript 配置。
+- `packages/vishot-runner-browser/vitest.config.ts`：工具配置文件。
+- `packages/vishot-runner-electron/package.json`：包清单，定义包名、脚本、依赖和发布信息。
+- `packages/vishot-runner-electron/src/cli/capture.test.ts`：自动化测试。
+- `packages/vishot-runner-electron/src/cli/capture.ts`：TypeScript 源码。
+- `packages/vishot-runner-electron/src/index.ts`：模块入口文件。
+- `packages/vishot-runner-electron/src/runtime/artifacts.test.ts`：自动化测试。
+- `packages/vishot-runner-electron/src/runtime/artifacts.ts`：TypeScript 源码。
+- `packages/vishot-runner-electron/src/runtime/capture.ts`：TypeScript 源码。
+- `packages/vishot-runner-electron/src/runtime/context.test.ts`：自动化测试。
+- `packages/vishot-runner-electron/src/runtime/context.ts`：TypeScript 源码。
+- `packages/vishot-runner-electron/src/runtime/define-scenario.ts`：TypeScript 源码。
+- `packages/vishot-runner-electron/src/runtime/load-scenario.ts`：TypeScript 源码。
+- `packages/vishot-runner-electron/src/runtime/types.ts`：TypeScript 源码。
+- `packages/vishot-runner-electron/src/utils/app-path.ts`：工具函数。
+- `packages/vishot-runner-electron/src/utils/overlays.ts`：工具函数。
+- `packages/vishot-runner-electron/src/utils/selectors.ts`：工具函数。
+- `packages/vishot-runner-electron/src/utils/settings.ts`：工具函数。
+- `packages/vishot-runner-electron/src/utils/windows.ts`：工具函数。
+- `packages/vishot-runner-electron/tsconfig.json`：TypeScript 配置。
+- `packages/vishot-runner-electron/vitest.config.ts`：工具配置文件。
+- `packages/vishot-runtime/package.json`：包清单，定义包名、脚本、依赖和发布信息。
+- `packages/vishot-runtime/src/env.d.ts`：类型声明。
+- `packages/vishot-runtime/src/index.ts`：模块入口文件。
+- `packages/vishot-runtime/src/runtime/ready.test.ts`：自动化测试。
+- `packages/vishot-runtime/src/runtime/ready.ts`：TypeScript 源码。
+- `packages/vishot-runtime/src/runtime/scene-canvas.test.ts`：自动化测试。
+- `packages/vishot-runtime/src/runtime/scene-canvas.ts`：TypeScript 源码。
+- `packages/vishot-runtime/src/runtime/types.ts`：TypeScript 源码。
+- `packages/vishot-runtime/src/vue/components/scenario-canvas.vue`：Vue/UI 组件。
+- `packages/vishot-runtime/src/vue/components/scenario-capture-root.vue`：Vue/UI 组件。
+- `packages/vishot-runtime/src/vue/components/screen-marups/index.ts`：模块入口文件。
+- `packages/vishot-runtime/src/vue/components/screen-marups/screen-focus-mask.vue`：Vue/UI 组件。
+- `packages/vishot-runtime/src/vue/components/screen-marups/screen-highlight-region.vue`：Vue/UI 组件。
+- `packages/vishot-runtime/src/vue/components/screen-marups/screen-marups-provider.vue`：Vue/UI 组件。
+- `packages/vishot-runtime/src/vue/components/screen-marups/screen-outline-region.vue`：Vue/UI 组件。
+- `packages/vishot-runtime/src/vue/components/screen-navigator/index.ts`：模块入口文件。
+- `packages/vishot-runtime/src/vue/components/screen-navigator/screen-navigator.test.ts`：Vue/UI 组件。
+- `packages/vishot-runtime/src/vue/components/screen-navigator/screen-navigator.vue`：Vue/UI 组件。
+- `packages/vishot-runtime/src/vue/components/screen-router/context.ts`：Vue/UI 组件。
+- `packages/vishot-runtime/src/vue/components/screen-router/index.ts`：模块入口文件。
+- `packages/vishot-runtime/src/vue/components/screen-router/screen-router-capture-root.vue`：Vue/UI 组件。
+- `packages/vishot-runtime/src/vue/components/screen-router/screen-router-provider.test.ts`：Vue/UI 组件。
+- `packages/vishot-runtime/src/vue/components/screen-router/screen-router-provider.vue`：Vue/UI 组件。
+- `packages/vishot-runtime/src/vue/composables/screen-navigation/use-screen-navigation.test.ts`：Vue composable 复用逻辑。
+- `packages/vishot-runtime/src/vue/composables/screen-navigation/use-screen-navigation.ts`：Vue composable 复用逻辑。
+- `packages/vishot-runtime/src/vue/index.ts`：模块入口文件。
+- `packages/vishot-runtime/src/vue/use-scene-ready.test.ts`：自动化测试。
+- `packages/vishot-runtime/src/vue/use-scene-ready.ts`：TypeScript 源码。
+- `packages/vishot-runtime/tsconfig.json`：TypeScript 配置。
+- `packages/vishot-runtime/vite.config.ts`：工具配置文件。
+- `packages/vishot-runtime/vitest.config.ts`：工具配置文件。
+- `packages/vite-plugin-warpdrive/package.json`：包清单，定义包名、脚本、依赖和发布信息。
+- `packages/vite-plugin-warpdrive/src/index.ts`：模块入口文件。
+- `packages/vite-plugin-warpdrive/src/providers/s3.test.ts`：自动化测试。
+- `packages/vite-plugin-warpdrive/src/providers/s3.ts`：TypeScript 源码。
+- `packages/vite-plugin-warpdrive/src/providers/types.ts`：TypeScript 源码。
+- `packages/vite-plugin-warpdrive/tsconfig.json`：TypeScript 配置。
+- `packages/vite-plugin-warpdrive/tsdown.config.ts`：工具配置文件。
+- `packages/vite-plugin-warpdrive/vitest.config.ts`：工具配置文件。
+### patches
+
+- `patches/@mediapipe__tasks-vision.patch`：第三方依赖补丁。
+- `patches/@xsai__generate-text@0.5.0-beta.2.patch`：第三方依赖补丁。
+- `patches/@xsai__shared-chat@0.5.0-beta.2.patch`：第三方依赖补丁。
+- `patches/@xsai__stream-text@0.5.0-beta.2.patch`：第三方依赖补丁。
+- `patches/mineflayer-pathfinder.patch`：第三方依赖补丁。
+- `patches/mineflayer@4.37.0.patch`：第三方依赖补丁。
+- `patches/pixi-live2d-display.patch`：第三方依赖补丁。
+### plugins
+
+- `plugins/airi-plugin-bilibili-laplace/package.json`：包清单，定义包名、脚本、依赖和发布信息。
+- `plugins/airi-plugin-bilibili-laplace/src/index.ts`：模块入口文件。
+- `plugins/airi-plugin-bilibili-laplace/tsconfig.json`：TypeScript 配置。
+- `plugins/airi-plugin-bilibili-laplace/tsdown.config.ts`：工具配置文件。
+- `plugins/airi-plugin-claude-code/package.json`：包清单，定义包名、脚本、依赖和发布信息。
+- `plugins/airi-plugin-claude-code/src/cli.ts`：TypeScript 源码。
+- `plugins/airi-plugin-claude-code/src/run.ts`：TypeScript 源码。
+- `plugins/airi-plugin-claude-code/src/utils/general.ts`：工具函数。
+- `plugins/airi-plugin-claude-code/tsdown.config.ts`：工具配置文件。
+- `plugins/airi-plugin-game-chess/package.json`：包清单，定义包名、脚本、依赖和发布信息。
+- `plugins/airi-plugin-homeassistant/package.json`：包清单，定义包名、脚本、依赖和发布信息。
+- `plugins/airi-plugin-homeassistant/src/index.ts`：模块入口文件。
+- `plugins/airi-plugin-homeassistant/tsconfig.json`：TypeScript 配置。
+- `plugins/airi-plugin-homeassistant/tsdown.config.ts`：工具配置文件。
+- `plugins/airi-plugin-web-extension/.wxt/eslint-auto-imports.mjs`：JavaScript 脚本或配置。
+- `plugins/airi-plugin-web-extension/.wxt/tsconfig.json`：TypeScript 配置。
+- `plugins/airi-plugin-web-extension/.wxt/types/globals.d.ts`：类型声明。
+- `plugins/airi-plugin-web-extension/.wxt/types/i18n.d.ts`：类型声明。
+- `plugins/airi-plugin-web-extension/.wxt/types/imports-module.d.ts`：类型声明。
+- `plugins/airi-plugin-web-extension/.wxt/types/imports.d.ts`：类型声明。
+- `plugins/airi-plugin-web-extension/.wxt/types/paths.d.ts`：类型声明。
+- `plugins/airi-plugin-web-extension/.wxt/wxt.d.ts`：类型声明。
+- `plugins/airi-plugin-web-extension/assets/vue.svg`：静态资源或媒体文件。
+- `plugins/airi-plugin-web-extension/components/HelloWorld.vue`：Vue/UI 组件。
+- `plugins/airi-plugin-web-extension/entrypoints/background.ts`：TypeScript 源码。
+- `plugins/airi-plugin-web-extension/entrypoints/content.ts`：TypeScript 源码。
+- `plugins/airi-plugin-web-extension/entrypoints/popup/App.vue`：Vue 单文件组件。
+- `plugins/airi-plugin-web-extension/entrypoints/popup/components/header/index.ts`：模块入口文件。
+- `plugins/airi-plugin-web-extension/entrypoints/popup/components/header/popup.vue`：Vue/UI 组件。
+- `plugins/airi-plugin-web-extension/entrypoints/popup/components/index.ts`：模块入口文件。
+- `plugins/airi-plugin-web-extension/entrypoints/popup/components/sections/index.ts`：模块入口文件。
+- `plugins/airi-plugin-web-extension/entrypoints/popup/components/sections/settings/connection.vue`：Vue/UI 组件。
+- `plugins/airi-plugin-web-extension/entrypoints/popup/components/sections/settings/preference-capture.vue`：Vue/UI 组件。
+- `plugins/airi-plugin-web-extension/entrypoints/popup/components/sections/visualize-live-vision.vue`：Vue/UI 组件。
+- `plugins/airi-plugin-web-extension/entrypoints/popup/index.html`：项目文件。
+- `plugins/airi-plugin-web-extension/entrypoints/popup/main.ts`：TypeScript 源码。
+- `plugins/airi-plugin-web-extension/entrypoints/popup/stores/index.ts`：模块入口文件。
+- `plugins/airi-plugin-web-extension/entrypoints/popup/stores/popup.ts`：Pinia store 或状态管理逻辑。
+- `plugins/airi-plugin-web-extension/entrypoints/popup/style.css`：样式文件。
+- `plugins/airi-plugin-web-extension/package.json`：包清单，定义包名、脚本、依赖和发布信息。
+- `plugins/airi-plugin-web-extension/public/icon/128.png`：静态资源或媒体文件。
+- `plugins/airi-plugin-web-extension/public/icon/16.png`：静态资源或媒体文件。
+- `plugins/airi-plugin-web-extension/public/icon/32.png`：静态资源或媒体文件。
+- `plugins/airi-plugin-web-extension/public/icon/48.png`：静态资源或媒体文件。
+- `plugins/airi-plugin-web-extension/public/icon/96.png`：静态资源或媒体文件。
+- `plugins/airi-plugin-web-extension/public/wxt.svg`：静态资源或媒体文件。
+- `plugins/airi-plugin-web-extension/src/background/client.ts`：TypeScript 源码。
+- `plugins/airi-plugin-web-extension/src/background/storage.ts`：TypeScript 源码。
+- `plugins/airi-plugin-web-extension/src/content/index.ts`：模块入口文件。
+- `plugins/airi-plugin-web-extension/src/popup/bridge.ts`：TypeScript 源码。
+- `plugins/airi-plugin-web-extension/src/shared/constants.ts`：跨进程/跨端共享源码。
+- `plugins/airi-plugin-web-extension/src/shared/eventa-runtime.ts`：跨进程/跨端共享源码。
+- `plugins/airi-plugin-web-extension/src/shared/eventa.ts`：跨进程/跨端共享源码。
+- `plugins/airi-plugin-web-extension/src/shared/sites.ts`：跨进程/跨端共享源码。
+- `plugins/airi-plugin-web-extension/src/shared/types.ts`：跨进程/跨端共享源码。
+- `plugins/airi-plugin-web-extension/tsconfig.json`：TypeScript 配置。
+- `plugins/airi-plugin-web-extension/uno.config.ts`：工具配置文件。
+- `plugins/airi-plugin-web-extension/wxt.config.ts`：工具配置文件。
+### 根目录文件
+
+- `pnpm-lock.yaml`：pnpm 锁文件，固定依赖解析结果。
+- `pnpm-workspace.yaml`：pnpm workspace 范围、catalog、overrides 和 patch 配置。
+- `posthog.config.ts`：PostHog 相关配置。
+- `README.md`：项目中文入口说明，介绍 AuVirtual 和快速开始。
+- `rustfmt.toml`：Rust 格式化配置。
+### scripts
+
+- `scripts/list-module-loc.mjs`：JavaScript 脚本或配置。
+### services
+
+- `services/computer-use-mcp/AGENTS.md`：Markdown 文档。
+- `services/computer-use-mcp/chrome-extension/background.js`：JavaScript 脚本或配置。
+- `services/computer-use-mcp/chrome-extension/content.js`：JavaScript 脚本或配置。
+- `services/computer-use-mcp/chrome-extension/icon128.png`：静态资源或媒体文件。
+- `services/computer-use-mcp/chrome-extension/icon16.png`：静态资源或媒体文件。
+- `services/computer-use-mcp/chrome-extension/icon48.png`：静态资源或媒体文件。
+- `services/computer-use-mcp/chrome-extension/manifest.json`：JSON 配置或数据文件。
+- `services/computer-use-mcp/chrome-extension/msg_bridge.js`：JavaScript 脚本或配置。
+- `services/computer-use-mcp/FEASIBILITY.md`：Markdown 文档。
+- `services/computer-use-mcp/fixtures/fake-runner.mjs`：JavaScript 脚本或配置。
+- `services/computer-use-mcp/fixtures/interactive-echo.mjs`：JavaScript 脚本或配置。
+- `services/computer-use-mcp/fixtures/text-target.html`：项目文件。
+- `services/computer-use-mcp/package.json`：包清单，定义包名、脚本、依赖和发布信息。
+- `services/computer-use-mcp/src/accessibility/ax-tree.test.ts`：自动化测试。
+- `services/computer-use-mcp/src/accessibility/ax-tree.ts`：TypeScript 源码。
+- `services/computer-use-mcp/src/accessibility/index.ts`：模块入口文件。
+- `services/computer-use-mcp/src/accessibility/types.ts`：TypeScript 源码。
+- `services/computer-use-mcp/src/app-aliases.test.ts`：自动化测试。
+- `services/computer-use-mcp/src/app-aliases.ts`：TypeScript 源码。
+- `services/computer-use-mcp/src/bin/bootstrap-remote.ts`：TypeScript 源码。
+- `services/computer-use-mcp/src/bin/demo-hello-world.ts`：TypeScript 源码。
+- `services/computer-use-mcp/src/bin/e2e-airi-chat-observable.ts`：TypeScript 源码。
+- `services/computer-use-mcp/src/bin/e2e-airi-chat-terminal-self-acquire.ts`：TypeScript 源码。
+- `services/computer-use-mcp/src/bin/e2e-airi-discord-agentic.ts`：TypeScript 源码。
+- `services/computer-use-mcp/src/bin/e2e-airi-discord-observable.ts`：TypeScript 源码。
+- `services/computer-use-mcp/src/bin/e2e-browser-reroute.ts`：TypeScript 源码。
+- `services/computer-use-mcp/src/bin/e2e-developer-workflow.ts`：TypeScript 源码。
+- `services/computer-use-mcp/src/bin/e2e-terminal-exec.ts`：TypeScript 源码。
+- `services/computer-use-mcp/src/bin/e2e-terminal-pty.ts`：TypeScript 源码。
+- `services/computer-use-mcp/src/bin/e2e-terminal-self-acquire.ts`：TypeScript 源码。
+- `services/computer-use-mcp/src/bin/run.ts`：TypeScript 源码。
+- `services/computer-use-mcp/src/bin/runner.ts`：TypeScript 源码。
+- `services/computer-use-mcp/src/bin/smoke-macos.ts`：TypeScript 源码。
+- `services/computer-use-mcp/src/bin/smoke-remote.ts`：TypeScript 源码。
+- `services/computer-use-mcp/src/bin/smoke-stdio.ts`：TypeScript 源码。
+- `services/computer-use-mcp/src/bin/smoke-workflow.ts`：TypeScript 源码。
+- `services/computer-use-mcp/src/browser-action-router.test.ts`：自动化测试。
+- `services/computer-use-mcp/src/browser-action-router.ts`：TypeScript 源码。
+- `services/computer-use-mcp/src/browser-dom/capabilities.ts`：TypeScript 源码。
+- `services/computer-use-mcp/src/browser-dom/cdp-bridge.test.ts`：自动化测试。
+- `services/computer-use-mcp/src/browser-dom/cdp-bridge.ts`：TypeScript 源码。
+- `services/computer-use-mcp/src/browser-dom/extension-bridge.test.ts`：自动化测试。
+- `services/computer-use-mcp/src/browser-dom/extension-bridge.ts`：TypeScript 源码。
+- `services/computer-use-mcp/src/chrome-semantic-adapter.test.ts`：自动化测试。
+- `services/computer-use-mcp/src/chrome-semantic-adapter.ts`：TypeScript 源码。
+- `services/computer-use-mcp/src/chrome-session-manager.test.ts`：自动化测试。
+- `services/computer-use-mcp/src/chrome-session-manager.ts`：TypeScript 源码。
+- `services/computer-use-mcp/src/config.test.ts`：自动化测试。
+- `services/computer-use-mcp/src/config.ts`：TypeScript 源码。
+- `services/computer-use-mcp/src/desktop-grounding-types.ts`：TypeScript 源码。
+- `services/computer-use-mcp/src/desktop-grounding.test.ts`：自动化测试。
+- `services/computer-use-mcp/src/desktop-grounding.ts`：TypeScript 源码。
+- `services/computer-use-mcp/src/desktop-session.test.ts`：自动化测试。
+- `services/computer-use-mcp/src/desktop-session.ts`：TypeScript 源码。
+- `services/computer-use-mcp/src/display/display.test.ts`：自动化测试。
+- `services/computer-use-mcp/src/display/enumerate.ts`：TypeScript 源码。
+- `services/computer-use-mcp/src/display/index.ts`：模块入口文件。
+- `services/computer-use-mcp/src/display/types.ts`：TypeScript 源码。
+- `services/computer-use-mcp/src/e2e/chat-turn.test.ts`：自动化测试。
+- `services/computer-use-mcp/src/e2e/chat-turn.ts`：TypeScript 源码。
+- `services/computer-use-mcp/src/e2e/debug-targets.test.ts`：自动化测试。
+- `services/computer-use-mcp/src/e2e/debug-targets.ts`：TypeScript 源码。
+- `services/computer-use-mcp/src/e2e/provider-bootstrap.test.ts`：自动化测试。
+- `services/computer-use-mcp/src/e2e/provider-bootstrap.ts`：TypeScript 源码。
+- `services/computer-use-mcp/src/executors/dry-run.ts`：TypeScript 源码。
+- `services/computer-use-mcp/src/executors/linux-x11.ts`：TypeScript 源码。
+- `services/computer-use-mcp/src/executors/macos-local.ts`：TypeScript 源码。
+- `services/computer-use-mcp/src/index.ts`：模块入口文件。
+- `services/computer-use-mcp/src/policy.test.ts`：自动化测试。
+- `services/computer-use-mcp/src/policy.ts`：TypeScript 源码。
+- `services/computer-use-mcp/src/preflight.test.ts`：自动化测试。
+- `services/computer-use-mcp/src/preflight.ts`：TypeScript 源码。
+- `services/computer-use-mcp/src/remote/ssh.ts`：TypeScript 源码。
+- `services/computer-use-mcp/src/reroute-contract.ts`：TypeScript 源码。
+- `services/computer-use-mcp/src/runner/client.test.ts`：自动化测试。
+- `services/computer-use-mcp/src/runner/client.ts`：TypeScript 源码。
+- `services/computer-use-mcp/src/runner/protocol.ts`：TypeScript 源码。
+- `services/computer-use-mcp/src/runner/service.ts`：TypeScript 源码。
+- `services/computer-use-mcp/src/runtime-probes.test.ts`：自动化测试。
+- `services/computer-use-mcp/src/runtime-probes.ts`：TypeScript 源码。
+- `services/computer-use-mcp/src/server.ts`：TypeScript 源码。
+- `services/computer-use-mcp/src/server/action-executor.test.ts`：自动化测试。
+- `services/computer-use-mcp/src/server/action-executor.ts`：TypeScript 源码。
+- `services/computer-use-mcp/src/server/browser-agent.ts`：TypeScript 源码。
+- `services/computer-use-mcp/src/server/browser-surface.ts`：TypeScript 源码。
+- `services/computer-use-mcp/src/server/cdp-manager.ts`：TypeScript 源码。
+- `services/computer-use-mcp/src/server/content.ts`：TypeScript 源码。
+- `services/computer-use-mcp/src/server/desktop-grounding-actions.ts`：TypeScript 源码。
+- `services/computer-use-mcp/src/server/formatters.ts`：TypeScript 源码。
+- `services/computer-use-mcp/src/server/refresh-run-state.ts`：TypeScript 源码。
+- `services/computer-use-mcp/src/server/register-accessibility.ts`：TypeScript 源码。
+- `services/computer-use-mcp/src/server/register-cdp.ts`：TypeScript 源码。
+- `services/computer-use-mcp/src/server/register-chrome-session.test.ts`：自动化测试。
+- `services/computer-use-mcp/src/server/register-chrome-session.ts`：TypeScript 源码。
+- `services/computer-use-mcp/src/server/register-desktop-grounding-tools.test.ts`：自动化测试。
+- `services/computer-use-mcp/src/server/register-desktop-grounding.test.ts`：自动化测试。
+- `services/computer-use-mcp/src/server/register-desktop-grounding.ts`：TypeScript 源码。
+- `services/computer-use-mcp/src/server/register-display.ts`：TypeScript 源码。
+- `services/computer-use-mcp/src/server/register-pty-terminal-lane.test.ts`：自动化测试。
+- `services/computer-use-mcp/src/server/register-pty.test.ts`：自动化测试。
+- `services/computer-use-mcp/src/server/register-pty.ts`：TypeScript 源码。
+- `services/computer-use-mcp/src/server/register-task-memory.ts`：TypeScript 源码。
+- `services/computer-use-mcp/src/server/register-tools-pty-approval.test.ts`：自动化测试。
+- `services/computer-use-mcp/src/server/register-tools.ts`：TypeScript 源码。
+- `services/computer-use-mcp/src/server/register-vscode.test.ts`：自动化测试。
+- `services/computer-use-mcp/src/server/register-vscode.ts`：TypeScript 源码。
+- `services/computer-use-mcp/src/server/responses.ts`：TypeScript 源码。
+- `services/computer-use-mcp/src/server/runtime.ts`：TypeScript 源码。
+- `services/computer-use-mcp/src/server/tool-descriptors/accessibility.ts`：TypeScript 源码。
+- `services/computer-use-mcp/src/server/tool-descriptors/all.ts`：TypeScript 源码。
+- `services/computer-use-mcp/src/server/tool-descriptors/cdp.ts`：TypeScript 源码。
+- `services/computer-use-mcp/src/server/tool-descriptors/coding.ts`：TypeScript 源码。
+- `services/computer-use-mcp/src/server/tool-descriptors/desktop.ts`：TypeScript 源码。
+- `services/computer-use-mcp/src/server/tool-descriptors/display.ts`：TypeScript 源码。
+- `services/computer-use-mcp/src/server/tool-descriptors/index.ts`：模块入口文件。
+- `services/computer-use-mcp/src/server/tool-descriptors/pty.ts`：TypeScript 源码。
+- `services/computer-use-mcp/src/server/tool-descriptors/register-helper.ts`：TypeScript 源码。
+- `services/computer-use-mcp/src/server/tool-descriptors/registry.test.ts`：自动化测试。
+- `services/computer-use-mcp/src/server/tool-descriptors/registry.ts`：TypeScript 源码。
+- `services/computer-use-mcp/src/server/tool-descriptors/task-memory.ts`：TypeScript 源码。
+- `services/computer-use-mcp/src/server/tool-descriptors/types.ts`：TypeScript 源码。
+- `services/computer-use-mcp/src/server/tool-descriptors/vscode.ts`：TypeScript 源码。
+- `services/computer-use-mcp/src/server/workflow-formatter.test.ts`：自动化测试。
+- `services/computer-use-mcp/src/server/workflow-formatter.ts`：TypeScript 源码。
+- `services/computer-use-mcp/src/server/workflow-prep-tools.test.ts`：自动化测试。
+- `services/computer-use-mcp/src/server/workflow-prep-tools.ts`：TypeScript 源码。
+- `services/computer-use-mcp/src/session.ts`：TypeScript 源码。
+- `services/computer-use-mcp/src/snap-resolver.test.ts`：自动化测试。
+- `services/computer-use-mcp/src/snap-resolver.ts`：TypeScript 源码。
+- `services/computer-use-mcp/src/state.test.ts`：自动化测试。
+- `services/computer-use-mcp/src/state.ts`：TypeScript 源码。
+- `services/computer-use-mcp/src/strategy.test.ts`：自动化测试。
+- `services/computer-use-mcp/src/strategy.ts`：TypeScript 源码。
+- `services/computer-use-mcp/src/support-matrix.test.ts`：自动化测试。
+- `services/computer-use-mcp/src/support-matrix.ts`：TypeScript 源码。
+- `services/computer-use-mcp/src/task-memory/index.ts`：模块入口文件。
+- `services/computer-use-mcp/src/task-memory/manager.ts`：TypeScript 源码。
+- `services/computer-use-mcp/src/task-memory/merge.ts`：TypeScript 源码。
+- `services/computer-use-mcp/src/task-memory/task-memory.test.ts`：自动化测试。
+- `services/computer-use-mcp/src/task-memory/types.ts`：TypeScript 源码。
+- `services/computer-use-mcp/src/terminal-lane.test.ts`：自动化测试。
+- `services/computer-use-mcp/src/terminal-release-gates.test.ts`：自动化测试。
+- `services/computer-use-mcp/src/terminal/interactive-patterns.test.ts`：自动化测试。
+- `services/computer-use-mcp/src/terminal/interactive-patterns.ts`：TypeScript 源码。
+- `services/computer-use-mcp/src/terminal/pty-runner.ts`：TypeScript 源码。
+- `services/computer-use-mcp/src/terminal/runner.test.ts`：自动化测试。
+- `services/computer-use-mcp/src/terminal/runner.ts`：TypeScript 源码。
+- `services/computer-use-mcp/src/test-fixtures.ts`：TypeScript 源码。
+- `services/computer-use-mcp/src/trace.test.ts`：自动化测试。
+- `services/computer-use-mcp/src/trace.ts`：TypeScript 源码。
+- `services/computer-use-mcp/src/transcript/block-parser.ts`：TypeScript 源码。
+- `services/computer-use-mcp/src/transcript/compactor.ts`：TypeScript 源码。
+- `services/computer-use-mcp/src/transcript/index.ts`：模块入口文件。
+- `services/computer-use-mcp/src/transcript/projector.ts`：TypeScript 源码。
+- `services/computer-use-mcp/src/transcript/store.ts`：TypeScript 源码。
+- `services/computer-use-mcp/src/transcript/transcript.test.ts`：自动化测试。
+- `services/computer-use-mcp/src/transcript/types.ts`：TypeScript 源码。
+- `services/computer-use-mcp/src/transparency.ts`：TypeScript 源码。
+- `services/computer-use-mcp/src/types.ts`：TypeScript 源码。
+- `services/computer-use-mcp/src/utils/clipboard.ts`：工具函数。
+- `services/computer-use-mcp/src/utils/env-file.test.ts`：工具函数。
+- `services/computer-use-mcp/src/utils/env-file.ts`：工具函数。
+- `services/computer-use-mcp/src/utils/process.ts`：工具函数。
+- `services/computer-use-mcp/src/utils/screenshot.ts`：工具函数。
+- `services/computer-use-mcp/src/utils/sleep.ts`：工具函数。
+- `services/computer-use-mcp/src/utils/swift.ts`：工具函数。
+- `services/computer-use-mcp/src/workflows/app-browse-and-act.ts`：TypeScript 源码。
+- `services/computer-use-mcp/src/workflows/dev-inspect-failure.ts`：TypeScript 源码。
+- `services/computer-use-mcp/src/workflows/dev-open-workspace.test.ts`：自动化测试。
+- `services/computer-use-mcp/src/workflows/dev-open-workspace.ts`：TypeScript 源码。
+- `services/computer-use-mcp/src/workflows/dev-run-tests.ts`：TypeScript 源码。
+- `services/computer-use-mcp/src/workflows/dev-validate-workspace.test.ts`：自动化测试。
+- `services/computer-use-mcp/src/workflows/dev-validate-workspace.ts`：TypeScript 源码。
+- `services/computer-use-mcp/src/workflows/engine.test.ts`：自动化测试。
+- `services/computer-use-mcp/src/workflows/engine.ts`：TypeScript 源码。
+- `services/computer-use-mcp/src/workflows/index.ts`：模块入口文件。
+- `services/computer-use-mcp/src/workflows/surface-resolver.test.ts`：自动化测试。
+- `services/computer-use-mcp/src/workflows/surface-resolver.ts`：TypeScript 源码。
+- `services/computer-use-mcp/src/workflows/types.ts`：TypeScript 源码。
+- `services/computer-use-mcp/tsconfig.json`：TypeScript 配置。
+- `services/computer-use-mcp/tsdown.config.ts`：工具配置文件。
+- `services/computer-use-mcp/vitest.config.ts`：工具配置文件。
+- `services/discord-bot/.env`：项目文件。
+- `services/discord-bot/package.json`：包清单，定义包名、脚本、依赖和发布信息。
+- `services/discord-bot/src/adapters/airi-adapter.ts`：TypeScript 源码。
+- `services/discord-bot/src/bots/discord/commands/index.ts`：模块入口文件。
+- `services/discord-bot/src/bots/discord/commands/ping.ts`：TypeScript 源码。
+- `services/discord-bot/src/bots/discord/commands/summon.ts`：TypeScript 源码。
+- `services/discord-bot/src/constants/audio.ts`：TypeScript 源码。
+- `services/discord-bot/src/index.ts`：模块入口文件。
+- `services/discord-bot/src/pipelines/tts.ts`：TypeScript 源码。
+- `services/discord-bot/src/utils/audio-monitor.ts`：工具函数。
+- `services/discord-bot/src/utils/audio.ts`：工具函数。
+- `services/discord-bot/src/utils/opus.ts`：工具函数。
+- `services/discord-bot/tsconfig.json`：TypeScript 配置。
+- `services/minecraft/.env`：项目文件。
+- `services/minecraft/.gitignore`：项目文件。
+- `services/minecraft/.vscode/launch.json`：JSON 配置或数据文件。
+- `services/minecraft/codex-skills/minecraft-debug-mcp/agents/openai.yaml`：YAML 配置文件。
+- `services/minecraft/codex-skills/minecraft-debug-mcp/references/mcp-surface.md`：Markdown 文档。
+- `services/minecraft/codex-skills/minecraft-debug-mcp/SKILL.md`：Markdown 文档。
+- `services/minecraft/docs/preview.avif`：静态资源或媒体文件。
+- `services/minecraft/package.json`：包清单，定义包名、脚本、依赖和发布信息。
+- `services/minecraft/src/airi/airi-bridge.ts`：TypeScript 源码。
+- `services/minecraft/src/airi/minecraft-context-service.ts`：TypeScript 源码。
+- `services/minecraft/src/airi/start-background-client.ts`：TypeScript 源码。
+- `services/minecraft/src/cognitive/action/action-registry.ts`：TypeScript 源码。
+- `services/minecraft/src/cognitive/action/llm-actions.test.ts`：自动化测试。
+- `services/minecraft/src/cognitive/action/llm-actions.ts`：TypeScript 源码。
+- `services/minecraft/src/cognitive/action/task-executor.ts`：TypeScript 源码。
+- `services/minecraft/src/cognitive/action/types.ts`：TypeScript 源码。
+- `services/minecraft/src/cognitive/action/types/index.ts`：模块入口文件。
+- `services/minecraft/src/cognitive/conscious/brain.test.ts`：自动化测试。
+- `services/minecraft/src/cognitive/conscious/brain.ts`：TypeScript 源码。
+- `services/minecraft/src/cognitive/conscious/context-view.ts`：TypeScript 源码。
+- `services/minecraft/src/cognitive/conscious/history-query.ts`：TypeScript 源码。
+- `services/minecraft/src/cognitive/conscious/js-planner-sandbox-protocol.ts`：TypeScript 源码。
+- `services/minecraft/src/cognitive/conscious/js-planner-sandbox-runner.ts`：TypeScript 源码。
+- `services/minecraft/src/cognitive/conscious/js-planner-worker.ts`：TypeScript 源码。
+- `services/minecraft/src/cognitive/conscious/js-planner.test.ts`：自动化测试。
+- `services/minecraft/src/cognitive/conscious/js-planner.ts`：TypeScript 源码。
+- `services/minecraft/src/cognitive/conscious/llm-agent.ts`：TypeScript 源码。
+- `services/minecraft/src/cognitive/conscious/llm-log.test.ts`：自动化测试。
+- `services/minecraft/src/cognitive/conscious/llm-log.ts`：TypeScript 源码。
+- `services/minecraft/src/cognitive/conscious/llmlogic.ts`：TypeScript 源码。
+- `services/minecraft/src/cognitive/conscious/map-renderer.test.ts`：自动化测试。
+- `services/minecraft/src/cognitive/conscious/map-renderer.ts`：TypeScript 源码。
+- `services/minecraft/src/cognitive/conscious/patterns/catalog.ts`：TypeScript 源码。
+- `services/minecraft/src/cognitive/conscious/patterns/runtime.test.ts`：自动化测试。
+- `services/minecraft/src/cognitive/conscious/patterns/runtime.ts`：TypeScript 源码。
+- `services/minecraft/src/cognitive/conscious/patterns/types.ts`：TypeScript 源码。
+- `services/minecraft/src/cognitive/conscious/prompts/brain-prompt.md`：Markdown 文档。
+- `services/minecraft/src/cognitive/conscious/prompts/brain-prompt.test.ts`：自动化测试。
+- `services/minecraft/src/cognitive/conscious/prompts/brain-prompt.ts`：TypeScript 源码。
+- `services/minecraft/src/cognitive/conscious/query-dsl.test.ts`：自动化测试。
+- `services/minecraft/src/cognitive/conscious/query-dsl.ts`：TypeScript 源码。
+- `services/minecraft/src/cognitive/conscious/repl-code-normalizer.test.ts`：自动化测试。
+- `services/minecraft/src/cognitive/conscious/repl-code-normalizer.ts`：TypeScript 源码。
+- `services/minecraft/src/cognitive/conscious/task-state.ts`：TypeScript 源码。
+- `services/minecraft/src/cognitive/container.ts`：TypeScript 源码。
+- `services/minecraft/src/cognitive/event-bus.test.ts`：自动化测试。
+- `services/minecraft/src/cognitive/event-bus.ts`：TypeScript 源码。
+- `services/minecraft/src/cognitive/index.ts`：模块入口文件。
+- `services/minecraft/src/cognitive/perception/events/definitions/arm-swing.ts`：TypeScript 源码。
+- `services/minecraft/src/cognitive/perception/events/definitions/damage-taken.ts`：TypeScript 源码。
+- `services/minecraft/src/cognitive/perception/events/definitions/entity-moved.ts`：TypeScript 源码。
+- `services/minecraft/src/cognitive/perception/events/definitions/index.ts`：模块入口文件。
+- `services/minecraft/src/cognitive/perception/events/definitions/sneak-toggle.ts`：TypeScript 源码。
+- `services/minecraft/src/cognitive/perception/events/definitions/system-message.ts`：TypeScript 源码。
+- `services/minecraft/src/cognitive/perception/events/index.ts`：模块入口文件。
+- `services/minecraft/src/cognitive/perception/events/types.ts`：TypeScript 源码。
+- `services/minecraft/src/cognitive/perception/gaze.test.ts`：自动化测试。
+- `services/minecraft/src/cognitive/perception/gaze.ts`：TypeScript 源码。
+- `services/minecraft/src/cognitive/perception/pipeline.ts`：TypeScript 源码。
+- `services/minecraft/src/cognitive/perception/rules/attention/movement.yaml`：YAML 配置文件。
+- `services/minecraft/src/cognitive/perception/rules/attention/punch.yaml`：YAML 配置文件。
+- `services/minecraft/src/cognitive/perception/rules/danger/damage.yaml`：YAML 配置文件。
+- `services/minecraft/src/cognitive/perception/rules/engine.ts`：TypeScript 源码。
+- `services/minecraft/src/cognitive/perception/rules/index.ts`：模块入口文件。
+- `services/minecraft/src/cognitive/perception/rules/loader.ts`：TypeScript 源码。
+- `services/minecraft/src/cognitive/perception/rules/matcher.ts`：TypeScript 源码。
+- `services/minecraft/src/cognitive/perception/rules/rules.test.ts`：自动化测试。
+- `services/minecraft/src/cognitive/perception/rules/social/teabag.yaml`：YAML 配置文件。
+- `services/minecraft/src/cognitive/perception/rules/system-message.yaml`：YAML 配置文件。
+- `services/minecraft/src/cognitive/perception/rules/temporal-detector.ts`：TypeScript 源码。
+- `services/minecraft/src/cognitive/perception/rules/types.ts`：TypeScript 源码。
+- `services/minecraft/src/cognitive/perception/types/raw-events.ts`：TypeScript 源码。
+- `services/minecraft/src/cognitive/perception/types/signals.ts`：TypeScript 源码。
+- `services/minecraft/src/cognitive/reflex/behaviors/idle-gaze.ts`：TypeScript 源码。
+- `services/minecraft/src/cognitive/reflex/context.ts`：TypeScript 源码。
+- `services/minecraft/src/cognitive/reflex/modes.ts`：TypeScript 源码。
+- `services/minecraft/src/cognitive/reflex/reflex-manager.ts`：TypeScript 源码。
+- `services/minecraft/src/cognitive/reflex/runtime.test.ts`：自动化测试。
+- `services/minecraft/src/cognitive/reflex/runtime.ts`：TypeScript 源码。
+- `services/minecraft/src/cognitive/reflex/types/behavior.ts`：TypeScript 源码。
+- `services/minecraft/src/cognitive/types.ts`：TypeScript 源码。
+- `services/minecraft/src/cognitive/types/index.ts`：模块入口文件。
+- `services/minecraft/src/composables/bot.ts`：Vue composable 复用逻辑。
+- `services/minecraft/src/composables/config.ts`：Vue composable 复用逻辑。
+- `services/minecraft/src/composables/runtime-config.ts`：Vue composable 复用逻辑。
+- `services/minecraft/src/debug/debug-service.ts`：TypeScript 源码。
+- `services/minecraft/src/debug/index.ts`：模块入口文件。
+- `services/minecraft/src/debug/mcp-repl-server.test.ts`：自动化测试。
+- `services/minecraft/src/debug/mcp-repl-server.ts`：TypeScript 源码。
+- `services/minecraft/src/debug/mineflayer-viewer.ts`：TypeScript 源码。
+- `services/minecraft/src/debug/server.ts`：TypeScript 源码。
+- `services/minecraft/src/debug/tool-executor.ts`：TypeScript 源码。
+- `services/minecraft/src/debug/types.ts`：TypeScript 源码。
+- `services/minecraft/src/debug/web/app.js`：JavaScript 脚本或配置。
+- `services/minecraft/src/debug/web/conversation.css`：样式文件。
+- `services/minecraft/src/debug/web/index.html`：项目文件。
+- `services/minecraft/src/debug/web/styles.css`：样式文件。
+- `services/minecraft/src/debug/web/tools.css`：样式文件。
+- `services/minecraft/src/libs/mineflayer/action.ts`：TypeScript 源码。
+- `services/minecraft/src/libs/mineflayer/base-agent.ts`：TypeScript 源码。
+- `services/minecraft/src/libs/mineflayer/command.ts`：TypeScript 源码。
+- `services/minecraft/src/libs/mineflayer/components.ts`：TypeScript 源码。
+- `services/minecraft/src/libs/mineflayer/connection-supervisor.ts`：TypeScript 源码。
+- `services/minecraft/src/libs/mineflayer/core.ts`：TypeScript 源码。
+- `services/minecraft/src/libs/mineflayer/health.ts`：TypeScript 源码。
+- `services/minecraft/src/libs/mineflayer/index.ts`：模块入口文件。
+- `services/minecraft/src/libs/mineflayer/memory.ts`：TypeScript 源码。
+- `services/minecraft/src/libs/mineflayer/message.ts`：TypeScript 源码。
+- `services/minecraft/src/libs/mineflayer/plugin-runtime.ts`：TypeScript 源码。
+- `services/minecraft/src/libs/mineflayer/plugin.ts`：TypeScript 源码。
+- `services/minecraft/src/libs/mineflayer/status.ts`：TypeScript 源码。
+- `services/minecraft/src/libs/mineflayer/ticker.ts`：TypeScript 源码。
+- `services/minecraft/src/libs/mineflayer/types.ts`：TypeScript 源码。
+- `services/minecraft/src/main.ts`：TypeScript 源码。
+- `services/minecraft/src/minecraft-bot-runtime.ts`：TypeScript 源码。
+- `services/minecraft/src/plugins/echo.ts`：TypeScript 源码。
+- `services/minecraft/src/plugins/follow.ts`：TypeScript 源码。
+- `services/minecraft/src/plugins/pathfinder.ts`：TypeScript 源码。
+- `services/minecraft/src/plugins/status.ts`：TypeScript 源码。
+- `services/minecraft/src/skills/actions/block-type-normalizer.test.ts`：自动化测试。
+- `services/minecraft/src/skills/actions/block-type-normalizer.ts`：TypeScript 源码。
+- `services/minecraft/src/skills/actions/collect-block.ts`：TypeScript 源码。
+- `services/minecraft/src/skills/actions/ensure.ts`：TypeScript 源码。
+- `services/minecraft/src/skills/actions/gather-wood.ts`：TypeScript 源码。
+- `services/minecraft/src/skills/actions/inventory.ts`：TypeScript 源码。
+- `services/minecraft/src/skills/actions/world-interactions.ts`：TypeScript 源码。
+- `services/minecraft/src/skills/base.ts`：TypeScript 源码。
+- `services/minecraft/src/skills/blocks.ts`：TypeScript 源码。
+- `services/minecraft/src/skills/combat.ts`：TypeScript 源码。
+- `services/minecraft/src/skills/containers.ts`：TypeScript 源码。
+- `services/minecraft/src/skills/crafting.test.ts`：自动化测试。
+- `services/minecraft/src/skills/crafting.ts`：TypeScript 源码。
+- `services/minecraft/src/skills/index.ts`：模块入口文件。
+- `services/minecraft/src/skills/inventory.ts`：TypeScript 源码。
+- `services/minecraft/src/skills/movement.test.ts`：自动化测试。
+- `services/minecraft/src/skills/movement.ts`：TypeScript 源码。
+- `services/minecraft/src/skills/patched-goto.test.ts`：自动化测试。
+- `services/minecraft/src/skills/patched-goto.ts`：TypeScript 源码。
+- `services/minecraft/src/skills/world.ts`：TypeScript 源码。
+- `services/minecraft/src/utils/errors.ts`：工具函数。
+- `services/minecraft/src/utils/logger.ts`：工具函数。
+- `services/minecraft/src/utils/mcdata.ts`：工具函数。
+- `services/minecraft/src/utils/recipe-planner.ts`：工具函数。
+- `services/minecraft/tsconfig.json`：TypeScript 配置。
+- `services/minecraft/vitest.config.ts`：工具配置文件。
+- `services/satori-bot/.env`：项目文件。
+- `services/satori-bot/.gitignore`：项目文件。
+- `services/satori-bot/data/.gitkeep`：项目文件。
+- `services/satori-bot/data/db.json`：JSON 配置或数据文件。
+- `services/satori-bot/docs/EVENT.md`：Markdown 文档。
+- `services/satori-bot/docs/HANDLER.md`：Markdown 文档。
+- `services/satori-bot/docs/PERSISTENCE.md`：Markdown 文档。
+- `services/satori-bot/docs/PROMPTS.md`：Markdown 文档。
+- `services/satori-bot/drizzle.config.ts`：工具配置文件。
+- `services/satori-bot/drizzle/0000_cooing_captain_flint.sql`：项目文件。
+- `services/satori-bot/drizzle/meta/0000_snapshot.json`：JSON 配置或数据文件。
+- `services/satori-bot/drizzle/meta/_journal.json`：JSON 配置或数据文件。
+- `services/satori-bot/package.json`：包清单，定义包名、脚本、依赖和发布信息。
+- `services/satori-bot/src/adapter/satori/api.ts`：TypeScript 源码。
+- `services/satori-bot/src/adapter/satori/client.ts`：TypeScript 源码。
+- `services/satori-bot/src/adapter/satori/schema.ts`：TypeScript 源码。
+- `services/satori-bot/src/adapter/satori/types.ts`：TypeScript 源码。
+- `services/satori-bot/src/capabilities/actions/read-messages.ts`：TypeScript 源码。
+- `services/satori-bot/src/capabilities/actions/send-message.ts`：TypeScript 源码。
+- `services/satori-bot/src/capabilities/actions/system.ts`：TypeScript 源码。
+- `services/satori-bot/src/capabilities/definition.ts`：TypeScript 源码。
+- `services/satori-bot/src/capabilities/registry.ts`：TypeScript 源码。
+- `services/satori-bot/src/config.ts`：TypeScript 源码。
+- `services/satori-bot/src/core/constants.ts`：TypeScript 源码。
+- `services/satori-bot/src/core/dispatcher.ts`：TypeScript 源码。
+- `services/satori-bot/src/core/index.ts`：模块入口文件。
+- `services/satori-bot/src/core/loop/queue.ts`：TypeScript 源码。
+- `services/satori-bot/src/core/loop/scheduler.ts`：TypeScript 源码。
+- `services/satori-bot/src/core/planner/llm-client.ts`：TypeScript 源码。
+- `services/satori-bot/src/core/planner/prompts/index.ts`：模块入口文件。
+- `services/satori-bot/src/core/planner/prompts/path.ts`：TypeScript 源码。
+- `services/satori-bot/src/core/planner/prompts/personality-v1.velin.md`：Markdown 文档。
+- `services/satori-bot/src/core/planner/prompts/system-action-gen-v1.velin.md`：Markdown 文档。
+- `services/satori-bot/src/core/planner/prompts/velin.ts`：TypeScript 源码。
+- `services/satori-bot/src/core/session/context.ts`：TypeScript 源码。
+- `services/satori-bot/src/core/types.ts`：TypeScript 源码。
+- `services/satori-bot/src/core/utils.ts`：TypeScript 源码。
+- `services/satori-bot/src/index.ts`：模块入口文件。
+- `services/satori-bot/src/lib/db.ts`：TypeScript 源码。
+- `services/satori-bot/src/lib/schema.ts`：TypeScript 源码。
+- `services/satori-bot/todolist.md`：Markdown 文档。
+- `services/satori-bot/tsconfig.json`：TypeScript 配置。
+- `services/telegram-bot/.env`：项目文件。
+- `services/telegram-bot/deploy/grafana/dashboards/.gitkeep`：项目文件。
+- `services/telegram-bot/deploy/grafana/datasources/.gitkeep`：项目文件。
+- `services/telegram-bot/deploy/grafana/datasources/datasource-prometheus.yaml`：YAML 配置文件。
+- `services/telegram-bot/deploy/grafana/datasources/datasource-tempo.yaml`：YAML 配置文件。
+- `services/telegram-bot/deploy/otel-collector/collector-config.yaml`：YAML 配置文件。
+- `services/telegram-bot/deploy/prometheus/prometheus.yml`：YAML 配置文件。
+- `services/telegram-bot/deploy/tempo/tempo.yaml`：YAML 配置文件。
+- `services/telegram-bot/docker-compose.yaml`：YAML 配置文件。
+- `services/telegram-bot/drizzle.config.ts`：工具配置文件。
+- `services/telegram-bot/drizzle/0000_harsh_king_cobra.sql`：项目文件。
+- `services/telegram-bot/drizzle/0001_next_talkback.sql`：项目文件。
+- `services/telegram-bot/drizzle/0002_calm_magdalene.sql`：项目文件。
+- `services/telegram-bot/drizzle/0003_black_warbird.sql`：项目文件。
+- `services/telegram-bot/drizzle/0004_complete_gravity.sql`：项目文件。
+- `services/telegram-bot/drizzle/0005_workable_shockwave.sql`：项目文件。
+- `services/telegram-bot/drizzle/meta/0000_snapshot.json`：JSON 配置或数据文件。
+- `services/telegram-bot/drizzle/meta/0001_snapshot.json`：JSON 配置或数据文件。
+- `services/telegram-bot/drizzle/meta/0002_snapshot.json`：JSON 配置或数据文件。
+- `services/telegram-bot/drizzle/meta/0003_snapshot.json`：JSON 配置或数据文件。
+- `services/telegram-bot/drizzle/meta/0004_snapshot.json`：JSON 配置或数据文件。
+- `services/telegram-bot/drizzle/meta/0005_snapshot.json`：JSON 配置或数据文件。
+- `services/telegram-bot/drizzle/meta/_journal.json`：JSON 配置或数据文件。
+- `services/telegram-bot/package.json`：包清单，定义包名、脚本、依赖和发布信息。
+- `services/telegram-bot/scripts/embed-all-chat-messages.ts`：脚本文件。
+- `services/telegram-bot/sql/init.sql`：项目文件。
+- `services/telegram-bot/src/bots/telegram/agent/actions/read-message.ts`：TypeScript 源码。
+- `services/telegram-bot/src/bots/telegram/agent/actions/send-message.test.ts`：自动化测试。
+- `services/telegram-bot/src/bots/telegram/agent/actions/send-message.ts`：TypeScript 源码。
+- `services/telegram-bot/src/bots/telegram/agent/attention-handler.ts`：TypeScript 源码。
+- `services/telegram-bot/src/bots/telegram/agent/interruption.ts`：TypeScript 源码。
+- `services/telegram-bot/src/bots/telegram/index.ts`：模块入口文件。
+- `services/telegram-bot/src/db/index.ts`：模块入口文件。
+- `services/telegram-bot/src/db/schema.ts`：TypeScript 源码。
+- `services/telegram-bot/src/index.ts`：模块入口文件。
+- `services/telegram-bot/src/llm/actions.ts`：TypeScript 源码。
+- `services/telegram-bot/src/llm/animated-sticker.ts`：TypeScript 源码。
+- `services/telegram-bot/src/llm/image.ts`：TypeScript 源码。
+- `services/telegram-bot/src/llm/index.ts`：模块入口文件。
+- `services/telegram-bot/src/llm/photo.ts`：TypeScript 源码。
+- `services/telegram-bot/src/llm/sticker.ts`：TypeScript 源码。
+- `services/telegram-bot/src/models/chat-completions-history.ts`：TypeScript 源码。
+- `services/telegram-bot/src/models/chat-message.ts`：TypeScript 源码。
+- `services/telegram-bot/src/models/chats.ts`：TypeScript 源码。
+- `services/telegram-bot/src/models/common.ts`：TypeScript 源码。
+- `services/telegram-bot/src/models/index.ts`：模块入口文件。
+- `services/telegram-bot/src/models/photos.ts`：TypeScript 源码。
+- `services/telegram-bot/src/models/sticker-packs.ts`：TypeScript 源码。
+- `services/telegram-bot/src/models/stickers.ts`：TypeScript 源码。
+- `services/telegram-bot/src/prompts/action-gen.velin.md`：Markdown 文档。
+- `services/telegram-bot/src/prompts/action-read-messages.velin.md`：Markdown 文档。
+- `services/telegram-bot/src/prompts/index.ts`：模块入口文件。
+- `services/telegram-bot/src/prompts/message-split-v1.velin.md`：Markdown 文档。
+- `services/telegram-bot/src/prompts/personality-v1.velin.md`：Markdown 文档。
+- `services/telegram-bot/src/prompts/system-ticking-v1.velin.md`：Markdown 文档。
+- `services/telegram-bot/src/prompts/utils.ts`：TypeScript 源码。
+- `services/telegram-bot/src/types.ts`：TypeScript 源码。
+- `services/telegram-bot/src/utils/path.ts`：工具函数。
+- `services/telegram-bot/src/utils/promise.ts`：工具函数。
+- `services/telegram-bot/src/utils/velin.ts`：工具函数。
+- `services/telegram-bot/tsconfig.json`：TypeScript 配置。
+- `services/telegram-bot/vitest.config.ts`：工具配置文件。
+- `services/twitter-services/.env.example`：项目文件。
+- `services/twitter-services/docs/architecture-20250304.md`：Markdown 文档。
+- `services/twitter-services/package.json`：包清单，定义包名、脚本、依赖和发布信息。
+- `services/twitter-services/src/adapters/adapter.ts`：TypeScript 源码。
+- `services/twitter-services/src/adapters/airi-adapter.ts`：TypeScript 源码。
+- `services/twitter-services/src/adapters/mcp-adapter.ts`：TypeScript 源码。
+- `services/twitter-services/src/config/index.ts`：模块入口文件。
+- `services/twitter-services/src/config/types.ts`：TypeScript 源码。
+- `services/twitter-services/src/constants.ts`：TypeScript 源码。
+- `services/twitter-services/src/core/browser/context.ts`：TypeScript 源码。
+- `services/twitter-services/src/core/services/auth.ts`：TypeScript 源码。
+- `services/twitter-services/src/core/services/timeline.ts`：TypeScript 源码。
+- `services/twitter-services/src/core/services/tweet.ts`：TypeScript 源码。
+- `services/twitter-services/src/core/services/user.ts`：TypeScript 源码。
+- `services/twitter-services/src/core/utils/scroll-helper.ts`：工具函数。
+- `services/twitter-services/src/main.ts`：TypeScript 源码。
+- `services/twitter-services/src/parsers/command-parser.test.ts`：自动化测试。
+- `services/twitter-services/src/parsers/command-parser.ts`：TypeScript 源码。
+- `services/twitter-services/src/parsers/profile-parser.ts`：TypeScript 源码。
+- `services/twitter-services/src/parsers/selectors.ts`：TypeScript 源码。
+- `services/twitter-services/src/parsers/tweet-parser.ts`：TypeScript 源码。
+- `services/twitter-services/src/types/browser.ts`：类型声明。
+- `services/twitter-services/src/types/services.ts`：类型声明。
+- `services/twitter-services/src/types/twitter.ts`：类型声明。
+- `services/twitter-services/src/utils/error.ts`：工具函数。
+- `services/twitter-services/src/utils/logger.ts`：工具函数。
+- `services/twitter-services/tsconfig.json`：TypeScript 配置。
+### 根目录文件
+
+- `skills-lock.json`：AI skills 锁定信息。
+- `sponsorkit.config.js`：SponsorKit 赞助者资源生成配置。
+- `tsconfig.json`：TypeScript 根配置。
+- `turbo.json`：Turborepo 任务流水线配置。
+- `uno.config.ts`：UnoCSS 根配置。
+- `vite-env.d.ts`：Vite 全局类型声明。
+- `vitest.config.ts`：Vitest 根测试配置。
+- `操作文档.md`：本地操作手册，记录 Git 重建、上传、启动、构建和检查命令。
