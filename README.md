@@ -5,7 +5,7 @@
 项目由三个主要子系统组成：
 
 1. `xiaomiao`：Python QQ 机器人，基于 NapCat、OneBot 和 Hyper Bot，负责 QQ 消息接入、命令处理、AI 对话、图片能力和群管理。
-2. `AuBot`：Project AIRI 桌面端/多端虚拟角色工程，基于 Electron、Vue、TypeScript、Live2D、VRM、TTS 和口型同步能力。
+2. `AuBot`：`xiaomiaoVirtual` 的 Web/桌面 Vtuber 表现层，基于 Electron、Vue、TypeScript、Live2D、VRM、TTS 和口型同步能力。
 3. `nanobot`：轻量 Python Agent 框架，提供 Agent Loop、多平台 Channels、工具调用、记忆、会话管理、OpenAI 兼容 API 和 WebUI 能力。
 
 当前已打通统一 Agent 链路：`AuBot stage-web` 的网页输入、`xiaomiao` 桌面 bridge 和 QQ 群/私聊普通 AI 回复都会进入同一个 `nanobot` Agent 能力层。`xiaomiao` 在本机暴露 OpenAI 兼容 bridge，`stage-web` 通过 bridge 发消息，QQ 自然语言回复也通过同一个 `agent_backend` 调用 `nanobot`。
@@ -47,7 +47,7 @@ AuBot stage-tamagotchi 桌面端
 ```text
 xiaomiaoVirtual/
 ├── xiaomiao/       # QQ 机器人主体
-├── AuBot/          # AIRI / Vtuber 桌面端与多端 monorepo
+├── AuBot/          # xiaomiaoVirtual Web/桌面 Vtuber 表现层
 ├── nanobot/        # 轻量 Agent 框架与 WebUI
 ├── docs/           # 项目文档、启动说明和融合计划
 ├── test/           # 项目统一测试目录
@@ -57,14 +57,14 @@ xiaomiaoVirtual/
 
 ## 快速启动
 
-### 1. 启动 nanobot Agent API
+### 1. 启动 xiaomiaoAgent API
 
 `stage-web`、桌面 bridge 和 QQ 普通 AI 回复都依赖该 API：
 
 ```powershell
 cd F:\xiaomiaoVirtual
 conda activate xiaomiao
-nanobot serve --config F:\xiaomiaoVirtual\nanobot\.nanobot\config.json
+xiaomiao serve --config F:\xiaomiaoVirtual\nanobot\.nanobot\config.json
 ```
 
 默认监听：
@@ -152,7 +152,7 @@ pnpm dev:tamagotchi
 - `packages/stage-ui-live2d`：Live2D 组件与状态管理。
 - `packages/model-driver-lipsync`：口型同步模型驱动。
 
-`nanobot`：
+`nanobot` / `xiaomiaoAgent`：
 
 - `nanobot/agent/loop.py`：Agent 主循环，负责上下文构建和 turn 协调。
 - `nanobot/agent/runner.py`：LLM 对话循环、工具调用和流式响应执行器。
@@ -161,9 +161,9 @@ pnpm dev:tamagotchi
 - `nanobot/agent/memory.py`：会话记忆和 Dream 两阶段记忆整理。
 - `nanobot/webui/`：React/Vite WebUI，通过 gateway 与后端通信。
 
-## nanobot 接入状态
+## xiaomiaoAgent 接入状态
 
-`nanobot` 当前通过 OpenAI 兼容 API 接入，不直接由 `xiaomiao` import AgentLoop。模型、provider 和中转站 API 配置统一写在主目录 `config.json` 的 `nanobot` 段：
+`nanobot` 代码包当前以用户可见品牌 `xiaomiaoAgent` 运行，通过 OpenAI 兼容 API 接入，不直接由 `xiaomiao` import AgentLoop。模型、provider 和中转站 API 配置统一写在主目录 `config.json` 的 `nanobot` 段：
 
 ```json
 {
@@ -180,7 +180,7 @@ pnpm dev:tamagotchi
   "nanobot_agent": {
     "enabled": true,
     "base_url": "http://127.0.0.1:8900/v1/chat/completions",
-    "model": null,
+    "model": "",
     "session_id": "xiaomiao-unified",
     "timeout_seconds": 30
   }
@@ -236,9 +236,9 @@ nanobot → 第三方 OpenAI-compatible 中转站
 - `TECHNICAL.md`：完整技术结构、运行链路、桥接协议、风险和演进建议。
 - `docs/STARTUP.md`：本地启动步骤、端口、验证和常见问题。
 - `docs/xiaomiao/README.md`：QQ 机器人部署和功能说明。
-- `docs/AuBot/README.md`：AIRI monorepo 启动和模块说明。
+- `docs/AuBot/README.md`：AuBot / xiaomiaoVirtual 表现层启动和模块说明。
 - `docs/plans/2026-05-12-xiaomiao-console-fusion.md`：小喵控制台与 nanobot 融合路线计划。
 
 ## 安全注意
 
-不要把真实 API Key、机器人账号凭据或生产配置提交到仓库。当前项目配置应优先迁移到本地私有配置或环境变量中。
+不要把真实 API Key、机器人账号凭据或生产配置提交到仓库。主目录 `config.json` 是本地私有配置；仓库内只保留 `config.example.json` 作为结构示例。
