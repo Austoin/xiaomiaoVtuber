@@ -4,14 +4,14 @@
   "private": true,
   "description": "Shared Layouts",
   "author": {
-    "name": "Moeru AI Project AIRI Team",
-    "email": "airi@moeru.ai",
-    "url": "https://github.com/moeru-ai"
+    "name": "xiaomiaoVirtual Team",
+    "email": "xiaomiaoVirtual@example.com",
+    "url": "https://github.com"
   },
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/moeru-ai/airi.git",
+    "url": "https://github.com",
     "directory": "packages/stage-layouts"
   },
   "exports": {

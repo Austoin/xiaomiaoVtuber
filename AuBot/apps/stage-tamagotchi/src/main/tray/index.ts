@@ -250,7 +250,7 @@ export function setupTray(params: TraySetupParams): void {
       rebuildContextMenu()
     })
 
-    appTray.setToolTip('Project AIRI')
+    appTray.setToolTip('xiaomiaoVirtual')
     appTray.addListener('click', () => toggleWindowShow(params.mainWindow))
 
     // On macOS, there's a special double-click event

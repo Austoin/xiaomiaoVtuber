@@ -1,5 +1,7 @@
 import json
+import os
 import sys
+import tempfile
 import threading
 import time
 import unittest
@@ -9,15 +11,29 @@ from urllib import error, request
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "xiaomiao"))
 
-from desktop_bridge import extract_last_user_text, start_desktop_bridge_server
+from desktop_bridge import (
+    extract_last_user_text,
+    publish_bridge_exchange,
+    reset_bridge_state,
+    start_desktop_bridge_server,
+)
 from agent_backend import (
     NanobotAgentConfig,
     NanobotAgentRequest,
     reply_with_nanobot_agent,
 )
 
+DEFAULT_USER_ID = 3554978979
+MODEL_NAME = "deepseek-chat"
+
 
 class DesktopBridgeTests(unittest.TestCase):
+    def setUp(self):
+        reset_bridge_state()
+
+    def tearDown(self):
+        os.environ.pop("XIAOMIAO_UNIFIED_CONFIG", None)
+
     def test_extract_last_user_text_prefers_latest_user_message(self):
         payload = [
             {"role": "system", "content": "ignore"},
@@ -28,74 +44,77 @@ class DesktopBridgeTests(unittest.TestCase):
 
         self.assertEqual(extract_last_user_text(payload), "最后一句")
 
-    def test_openai_compatible_routes_return_models_and_reply(self):
-        server = start_desktop_bridge_server(
-            host="127.0.0.1",
-            port=0,
-            default_user_id=3554978979,
-            model_name="deepseek-chat",
-            reply_callback=lambda user_id, text: f"{user_id}:{text}",
+    def test_openai_compatible_routes_return_models_reply_state_and_events(self):
+        with _bridge_server(lambda user_id, text: f"{user_id}:{text}") as port:
+            models_json = _json_get(f"http://127.0.0.1:{port}/v1/models")
+            self.assertEqual(models_json["data"][0]["id"], MODEL_NAME)
+
+            chat_json = _json_post(
+                f"http://127.0.0.1:{port}/v1/chat/completions",
+                {"model": MODEL_NAME, "messages": [{"role": "user", "content": "你好"}]},
+            )
+            self.assertEqual(chat_json["choices"][0]["message"]["content"], "3554978979:你好")
+
+            state_json = _json_get(
+                f"http://127.0.0.1:{port}/v1/xiaomiao/state?user_id={DEFAULT_USER_ID}"
+            )
+            self.assertEqual(state_json["reply_text"], "3554978979:你好")
+
+            events_json = _json_get(
+                f"http://127.0.0.1:{port}/v1/xiaomiao/events?user_id={DEFAULT_USER_ID}"
+            )
+            self.assertEqual([item["role"] for item in events_json["events"]], ["user", "assistant"])
+            self.assertEqual(events_json["events"][0]["source"], "web")
+            self.assertEqual(events_json["events"][0]["content"], "你好")
+            self.assertEqual(events_json["events"][1]["content"], "3554978979:你好")
+
+    def test_qq_exchange_can_be_read_from_bridge_events(self):
+        publish_bridge_exchange(
+            source="qq-group",
+            channel="qq-group",
+            chat_id="10001",
+            user_id=42,
+            user_text="群里问一句",
+            assistant_text="群里答一句",
         )
 
-        thread = threading.Thread(target=server.serve_forever, daemon=True)
-        thread.start()
+        with _bridge_server() as port:
+            body = _json_get(f"http://127.0.0.1:{port}/v1/xiaomiao/events?user_id=42")
 
-        try:
-            time.sleep(0.1)
-            port = server.server_address[1]
+        self.assertEqual(body["last_id"], 2)
+        self.assertEqual([item["content"] for item in body["events"]], ["群里问一句", "群里答一句"])
+        self.assertEqual(body["events"][0]["chat_id"], "10001")
 
-            models_response = request.urlopen(f"http://127.0.0.1:{port}/v1/models")
-            models_json = json.loads(models_response.read().decode("utf-8"))
-            self.assertEqual(models_json["data"][0]["id"], "deepseek-chat")
+    def test_events_after_cursor_returns_only_newer_events(self):
+        publish_bridge_exchange(
+            source="qq-private",
+            channel="qq-private",
+            chat_id="42",
+            user_id=42,
+            user_text="旧问题",
+            assistant_text="旧回答",
+        )
+        publish_bridge_exchange(
+            source="qq-private",
+            channel="qq-private",
+            chat_id="42",
+            user_id=42,
+            user_text="新问题",
+            assistant_text="新回答",
+        )
 
-            body = json.dumps(
-                {
-                    "model": "deepseek-chat",
-                    "messages": [{"role": "user", "content": "你好"}],
-                }
-            ).encode("utf-8")
-            chat_request = request.Request(
-                f"http://127.0.0.1:{port}/v1/chat/completions",
-                data=body,
-                headers={"Content-Type": "application/json"},
-                method="POST",
+        with _bridge_server() as port:
+            body = _json_get(
+                f"http://127.0.0.1:{port}/v1/xiaomiao/events?user_id=42&after=2"
             )
-            chat_response = request.urlopen(chat_request)
-            chat_json = json.loads(chat_response.read().decode("utf-8"))
 
-            self.assertEqual(
-                chat_json["choices"][0]["message"]["content"],
-                "3554978979:你好",
-            )
-
-            state_response = request.urlopen(
-                f"http://127.0.0.1:{port}/v1/xiaomiao/state?user_id=3554978979"
-            )
-            state_json = json.loads(state_response.read().decode("utf-8"))
-            self.assertEqual(state_json["reply_text"], "3554978979:你好")
-        finally:
-            server.shutdown()
-            server.server_close()
-            thread.join(timeout=1)
+        self.assertEqual(body["last_id"], 4)
+        self.assertEqual([item["content"] for item in body["events"]], ["新问题", "新回答"])
 
     def test_bridge_supports_cors_preflight_and_headers(self):
-        server = start_desktop_bridge_server(
-            host="127.0.0.1",
-            port=0,
-            default_user_id=3554978979,
-            model_name="deepseek-chat",
-            reply_callback=lambda user_id, text: text,
-        )
-
-        thread = threading.Thread(target=server.serve_forever, daemon=True)
-        thread.start()
-
-        try:
-            time.sleep(0.1)
-            port = server.server_address[1]
-
+        with _bridge_server() as port:
             preflight = request.Request(
-                f"http://127.0.0.1:{port}/v1/xiaomiao/state?user_id=3554978979",
+                f"http://127.0.0.1:{port}/v1/xiaomiao/state?user_id={DEFAULT_USER_ID}",
                 method="OPTIONS",
                 headers={
                     "Origin": "http://localhost:5173",
@@ -105,63 +124,103 @@ class DesktopBridgeTests(unittest.TestCase):
                 },
             )
             response = request.urlopen(preflight)
-
-            self.assertEqual(response.status, 204)
-            self.assertEqual(response.headers.get("Access-Control-Allow-Origin"), "*")
-            self.assertIn(
-                "GET", response.headers.get("Access-Control-Allow-Methods", "")
-            )
-            self.assertIn(
-                "X-XiaoMiao-User-Id",
-                response.headers.get("Access-Control-Allow-Headers", ""),
-            )
-            self.assertEqual(
-                response.headers.get("Access-Control-Allow-Private-Network"), "true"
-            )
-
             models_response = request.urlopen(f"http://127.0.0.1:{port}/v1/models")
-            self.assertEqual(
-                models_response.headers.get("Access-Control-Allow-Origin"), "*"
-            )
-        finally:
-            server.shutdown()
-            server.server_close()
-            thread.join(timeout=1)
+
+        self.assertEqual(response.status, 204)
+        self.assertEqual(response.headers.get("Access-Control-Allow-Origin"), "*")
+        self.assertIn("GET", response.headers.get("Access-Control-Allow-Methods", ""))
+        self.assertIn("X-XiaoMiao-User-Id", response.headers.get("Access-Control-Allow-Headers", ""))
+        self.assertEqual(response.headers.get("Access-Control-Allow-Private-Network"), "true")
+        self.assertEqual(models_response.headers.get("Access-Control-Allow-Origin"), "*")
 
     def test_status_route_returns_bridge_runtime_state(self):
-        server = start_desktop_bridge_server(
-            host="127.0.0.1",
-            port=0,
-            default_user_id=3554978979,
-            model_name="deepseek-chat",
-            reply_callback=lambda user_id, text: text,
+        with _bridge_server() as port:
+            status_json = _json_get(f"http://127.0.0.1:{port}/v1/xiaomiao/status")
+
+        self.assertEqual(
+            status_json,
+            {
+                "ok": True,
+                "service": "xiaomiao-desktop-bridge",
+                "model": MODEL_NAME,
+                "default_user_id": DEFAULT_USER_ID,
+            },
         )
 
-        thread = threading.Thread(target=server.serve_forever, daemon=True)
-        thread.start()
+    def test_config_route_reports_missing_root_config(self):
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            os.environ["XIAOMIAO_UNIFIED_CONFIG"] = str(Path(tmp_dir) / "config.json")
+            with _bridge_server() as port:
+                body = _json_get(f"http://127.0.0.1:{port}/v1/xiaomiao/config")
 
-        try:
-            time.sleep(0.1)
-            port = server.server_address[1]
+        self.assertFalse(body["configured"])
+        self.assertFalse(body["hasApiKey"])
+        self.assertEqual(body["provider"], "")
+        self.assertNotIn("apiKey", body)
 
-            status_response = request.urlopen(
-                f"http://127.0.0.1:{port}/v1/xiaomiao/status"
+    def test_config_route_reads_custom_root_config_without_exposing_secret(self):
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            config_path = Path(tmp_dir) / "config.json"
+            config_path.write_text(
+                json.dumps(
+                    {
+                        "nanobot": {
+                            "provider": "custom",
+                            "model": "deepseek-v4-flash",
+                            "providers": {
+                                "custom": {
+                                    "apiKey": "secret-key",
+                                    "baseUrl": "https://relay.example.com/v1",
+                                }
+                            },
+                        }
+                    }
+                ),
+                encoding="utf-8",
             )
-            status_json = json.loads(status_response.read().decode("utf-8"))
+            os.environ["XIAOMIAO_UNIFIED_CONFIG"] = str(config_path)
+            with _bridge_server() as port:
+                body = _json_get(f"http://127.0.0.1:{port}/v1/xiaomiao/config")
 
-            self.assertEqual(
-                status_json,
-                {
-                    "ok": True,
-                    "service": "xiaomiao-desktop-bridge",
-                    "model": "deepseek-chat",
-                    "default_user_id": 3554978979,
-                },
-            )
-        finally:
-            server.shutdown()
-            server.server_close()
-            thread.join(timeout=1)
+        self.assertTrue(body["configured"])
+        self.assertTrue(body["hasApiKey"])
+        self.assertEqual(body["provider"], "custom")
+        self.assertEqual(body["model"], "deepseek-v4-flash")
+        self.assertEqual(body["baseUrl"], "https://relay.example.com/v1")
+        self.assertNotIn("apiKey", body)
+
+    def test_config_route_writes_custom_root_config(self):
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            config_path = Path(tmp_dir) / "config.json"
+            os.environ["XIAOMIAO_UNIFIED_CONFIG"] = str(config_path)
+            with _bridge_server() as port:
+                body = _json_post(
+                    f"http://127.0.0.1:{port}/v1/xiaomiao/config",
+                    {
+                        "apiKey": "secret-key",
+                        "baseUrl": "https://relay.example.com/v1",
+                        "model": "deepseek-v4-flash",
+                    },
+                )
+            saved = json.loads(config_path.read_text(encoding="utf-8"))
+
+        self.assertTrue(body["configured"])
+        self.assertEqual(saved["nanobot"]["provider"], "custom")
+        self.assertEqual(saved["nanobot"]["model"], "deepseek-v4-flash")
+        self.assertEqual(saved["nanobot"]["providers"]["custom"]["apiKey"], "secret-key")
+        self.assertEqual(saved["nanobot"]["providers"]["custom"]["baseUrl"], "https://relay.example.com/v1")
+
+    def test_config_route_rejects_incomplete_payload(self):
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            os.environ["XIAOMIAO_UNIFIED_CONFIG"] = str(Path(tmp_dir) / "config.json")
+            with _bridge_server() as port:
+                with self.assertRaises(error.HTTPError) as raised:
+                    _json_post(
+                        f"http://127.0.0.1:{port}/v1/xiaomiao/config",
+                        {"apiKey": "secret-key", "baseUrl": "https://relay.example.com/v1"},
+                    )
+
+        self.assertEqual(raised.exception.code, 400)
 
     def test_bridge_callback_can_use_nanobot_agent_backend(self):
         agent_server = _LocalAgentServer()
@@ -176,90 +235,56 @@ class DesktopBridgeTests(unittest.TestCase):
                     session_id="xiaomiao-unified",
                     timeout_seconds=1.0,
                 ),
-                NanobotAgentRequest(
-                    user_id=user_id,
-                    channel="web",
-                    chat_id="stage-web",
-                    text=text,
-                ),
+                NanobotAgentRequest(user_id=user_id, channel="web", chat_id="stage-web", text=text),
             )
-
-        server = start_desktop_bridge_server(
-            host="127.0.0.1",
-            port=0,
-            default_user_id=3554978979,
-            model_name="deepseek-chat",
-            reply_callback=reply_with_agent,
-        )
-        thread = threading.Thread(target=server.serve_forever, daemon=True)
-        thread.start()
 
         try:
-            time.sleep(0.1)
-            port = server.server_address[1]
-            body = json.dumps(
-                {
-                    "model": "deepseek-chat",
-                    "messages": [{"role": "user", "content": "你好"}],
-                }
-            ).encode("utf-8")
-            chat_request = request.Request(
-                f"http://127.0.0.1:{port}/v1/chat/completions",
-                data=body,
-                headers={"Content-Type": "application/json"},
-                method="POST",
-            )
-            chat_response = request.urlopen(chat_request)
-            chat_json = json.loads(chat_response.read().decode("utf-8"))
+            with _bridge_server(reply_with_agent) as port:
+                chat_json = _json_post(
+                    f"http://127.0.0.1:{port}/v1/chat/completions",
+                    {"model": MODEL_NAME, "messages": [{"role": "user", "content": "你好"}]},
+                )
 
-            self.assertEqual(
-                chat_json["choices"][0]["message"]["content"],
-                "nanobot:你好",
-            )
-            self.assertEqual(
-                _AgentHandler.last_body["session_id"],
-                "xiaomiao-unified",
-            )
+            self.assertEqual(chat_json["choices"][0]["message"]["content"], "nanobot:你好")
+            self.assertEqual(_AgentHandler.last_body["session_id"], "xiaomiao-unified")
         finally:
-            server.shutdown()
-            server.server_close()
             agent_server.stop()
-            thread.join(timeout=1)
 
     def test_bridge_callback_error_returns_visible_502(self):
-        server = start_desktop_bridge_server(
+        def raise_error(_user_id, _text):
+            raise RuntimeError("agent down")
+
+        with _bridge_server(raise_error) as port:
+            with self.assertRaises(error.HTTPError) as raised:
+                _json_post(
+                    f"http://127.0.0.1:{port}/v1/chat/completions",
+                    {"model": MODEL_NAME, "messages": [{"role": "user", "content": "你好"}]},
+                )
+
+        self.assertEqual(raised.exception.code, 502)
+
+
+class _BridgeServer:
+    def __init__(self, reply_callback=None):
+        callback = reply_callback or (lambda _user_id, text: text)
+        self.server = start_desktop_bridge_server(
             host="127.0.0.1",
             port=0,
-            default_user_id=3554978979,
-            model_name="deepseek-chat",
-            reply_callback=lambda _user_id, _text: (_ for _ in ()).throw(RuntimeError("agent down")),
+            default_user_id=DEFAULT_USER_ID,
+            model_name=MODEL_NAME,
+            reply_callback=callback,
         )
-        thread = threading.Thread(target=server.serve_forever, daemon=True)
-        thread.start()
+        self.thread = threading.Thread(target=self.server.serve_forever, daemon=True)
 
-        try:
-            time.sleep(0.1)
-            port = server.server_address[1]
-            body = json.dumps(
-                {
-                    "model": "deepseek-chat",
-                    "messages": [{"role": "user", "content": "你好"}],
-                }
-            ).encode("utf-8")
-            chat_request = request.Request(
-                f"http://127.0.0.1:{port}/v1/chat/completions",
-                data=body,
-                headers={"Content-Type": "application/json"},
-                method="POST",
-            )
+    def __enter__(self):
+        self.thread.start()
+        time.sleep(0.1)
+        return self.server.server_address[1]
 
-            with self.assertRaises(error.HTTPError) as raised:
-                request.urlopen(chat_request)
-            self.assertEqual(raised.exception.code, 502)
-        finally:
-            server.shutdown()
-            server.server_close()
-            thread.join(timeout=1)
+    def __exit__(self, *_args):
+        self.server.shutdown()
+        self.server.server_close()
+        self.thread.join(timeout=1)
 
 
 class _LocalAgentServer:
@@ -295,6 +320,27 @@ class _AgentHandler(BaseHTTPRequestHandler):
 
     def log_message(self, *_args):
         return
+
+
+def _bridge_server(reply_callback=None):
+    return _BridgeServer(reply_callback)
+
+
+def _json_get(url: str) -> dict:
+    response = request.urlopen(url)
+    return json.loads(response.read().decode("utf-8"))
+
+
+def _json_post(url: str, payload: dict) -> dict:
+    body = json.dumps(payload).encode("utf-8")
+    http_request = request.Request(
+        url,
+        data=body,
+        headers={"Content-Type": "application/json"},
+        method="POST",
+    )
+    response = request.urlopen(http_request)
+    return json.loads(response.read().decode("utf-8"))
 
 
 if __name__ == "__main__":

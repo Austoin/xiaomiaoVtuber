@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { OnboardingDialog, OnboardingStepAnalyticsNotice, ToasterRoot } from '@proj-airi/stage-ui/components'
+import type { XiaomiaoBridgeConfigUpdate } from '@proj-airi/stage-layouts/xiaomiao-bridge'
+import { requestXiaomiaoBridgeConfigStatus, saveXiaomiaoBridgeConfig } from '@proj-airi/stage-layouts/xiaomiao-bridge'
 import { useInferencePreload } from '@proj-airi/stage-ui/composables'
 import { isPosthogAvailableInBuild, useSharedAnalyticsStore } from '@proj-airi/stage-ui/stores/analytics'
 import { useCharacterOrchestratorStore } from '@proj-airi/stage-ui/stores/character'
@@ -13,7 +15,7 @@ import { useSettings, useSettingsAudioDevice } from '@proj-airi/stage-ui/stores/
 import { ErrorBoundary, useTheme } from '@proj-airi/ui'
 import { StageTransitionGroup } from '@proj-airi/ui-transitions'
 import { storeToRefs } from 'pinia'
-import { computed, onMounted, onUnmounted, watch } from 'vue'
+import { computed, onMounted, onUnmounted, provide, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { RouterView } from 'vue-router'
 import { toast, Toaster } from 'vue-sonner'
@@ -39,6 +41,9 @@ const { isDark } = useTheme()
 const cardStore = useAiriCardStore()
 const analyticsStore = useSharedAnalyticsStore()
 const inferencePreload = useInferencePreload()
+type RootConfigSyncPayload = Pick<XiaomiaoBridgeConfigUpdate, 'apiKey' | 'baseUrl' | 'model'>
+
+provide('xiaomiaoRootConfigSync', syncXiaomiaoRootConfig)
 
 const primaryColor = computed(() => {
   return isDark.value
@@ -85,6 +90,7 @@ onMounted(async () => {
   analyticsStore.initialize()
   await displayModelsStore.initialize()
   cardStore.initialize()
+  await initializeXiaomiaoRootConfig()
 
   if (onboardingStore.needsOnboarding) {
     onboardingStore.showingSetup = true
@@ -114,6 +120,26 @@ function handleSetupConfigured() {
 
 function handleSetupSkipped() {
   onboardingStore.markSetupSkipped()
+}
+
+async function initializeXiaomiaoRootConfig() {
+  try {
+    const configStatus = await requestXiaomiaoBridgeConfigStatus()
+    if (configStatus.configured) {
+      onboardingStore.markRootConfigConfigured()
+    }
+  }
+  catch (err) {
+    console.error('[xiaomiao config] Failed to read root config:', err)
+  }
+}
+
+async function syncXiaomiaoRootConfig(payload: RootConfigSyncPayload) {
+  const configStatus = await saveXiaomiaoBridgeConfig(payload)
+  if (!configStatus.configured) {
+    throw new Error('XiaoMiao bridge saved config but it is still incomplete')
+  }
+  onboardingStore.markRootConfigConfigured()
 }
 </script>
 

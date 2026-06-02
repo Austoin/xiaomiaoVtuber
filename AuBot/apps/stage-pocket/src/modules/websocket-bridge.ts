@@ -47,7 +47,7 @@ function postBridgeMessage(command: HostBridgeCommand) {
     return
   }
 
-  throw new Error('AIRI host websocket bridge is unavailable')
+  throw new Error('xiaomiaoVirtual host websocket bridge is unavailable')
 }
 
 function dispatchNativeEvent(payload: string) {

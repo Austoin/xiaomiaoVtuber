@@ -58,7 +58,7 @@ export const OIDC_CLIENT_ID_ELECTRON = 'airi-stage-electron'
 export const OIDC_CLIENT_ID_POCKET = 'airi-stage-pocket'
 
 const DEFAULT_WEB_REDIRECT_URIS = [
-  'https://airi.moeru.ai/auth/callback',
+  'http://127.0.0.1:5173/auth/callback',
   'http://localhost:5173/auth/callback',
   'http://localhost:4173/auth/callback',
 ]
@@ -128,7 +128,7 @@ function buildTrustedClientSeeds(env: Env): TrustedClientSeed[] {
   const clients: TrustedClientSeed[] = []
   clients.push({
     clientId: OIDC_CLIENT_ID_WEB,
-    name: 'AIRI Stage Web',
+    name: 'xiaomiaoVirtual Stage Web',
     type: 'web',
     public: true,
     redirectUris: buildWebRedirectUris(env),
@@ -146,7 +146,7 @@ function buildTrustedClientSeeds(env: Env): TrustedClientSeed[] {
   // obfuscation, not a meaningful confidentiality boundary.
   clients.push({
     clientId: OIDC_CLIENT_ID_ELECTRON,
-    name: 'AIRI Stage Desktop',
+    name: 'xiaomiaoVirtual Stage Desktop',
     type: 'native',
     public: true,
     redirectUris: [
@@ -165,7 +165,7 @@ function buildTrustedClientSeeds(env: Env): TrustedClientSeed[] {
   // Same reasoning as Web: native WebView cannot safely store secrets.
   clients.push({
     clientId: OIDC_CLIENT_ID_POCKET,
-    name: 'AIRI Stage Mobile',
+    name: 'xiaomiaoVirtual Stage Mobile',
     type: 'native',
     public: true,
     redirectUris: [

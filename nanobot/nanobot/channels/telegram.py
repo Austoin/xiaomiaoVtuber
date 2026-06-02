@@ -307,7 +307,7 @@ class TelegramChannel(BaseChannel):
 
     @staticmethod
     def _normalize_telegram_command(content: str) -> str:
-        """Map Telegram-safe command aliases back to canonical nanobot commands."""
+        """Map Telegram-safe command aliases back to canonical xiaomiaoAgent commands."""
         if not content.startswith("/"):
             return content
         if content == "/dream_log" or content.startswith("/dream_log "):

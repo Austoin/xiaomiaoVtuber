@@ -22,6 +22,7 @@ export const useOnboardingStore = defineStore('onboarding', () => {
 
   // Track if we should show the setup dialog
   const showingSetup = ref(false)
+  const hasRootConfigConfigured = ref(false)
 
   // Check if any essential provider is configured
   const hasEssentialProviderConfigured = computed(() => {
@@ -49,6 +50,7 @@ export const useOnboardingStore = defineStore('onboarding', () => {
     && !authStore.token
     && !hasSkippedSetup.value
     && !hasCompletedSetup.value
+    && !hasRootConfigConfigured.value
     && !skipOnboardingPath.includes(document.location.pathname),
   )
 
@@ -67,6 +69,11 @@ export const useOnboardingStore = defineStore('onboarding', () => {
     showingSetup.value = false
   }
 
+  function markRootConfigConfigured() {
+    hasRootConfigConfigured.value = true
+    showingSetup.value = false
+  }
+
   // Mark setup as skipped
   function markSetupSkipped() {
     hasSkippedSetup.value = true
@@ -77,6 +84,7 @@ export const useOnboardingStore = defineStore('onboarding', () => {
   function resetSetupState() {
     hasCompletedSetup.value = false
     hasSkippedSetup.value = false
+    hasRootConfigConfigured.value = false
     showingSetup.value = false
   }
 
@@ -88,12 +96,14 @@ export const useOnboardingStore = defineStore('onboarding', () => {
   return {
     hasCompletedSetup,
     hasSkippedSetup,
+    hasRootConfigConfigured,
     showingSetup,
     hasEssentialProviderConfigured,
     hasEssentialProviderCredentialConfigured,
     needsOnboarding,
 
     markSetupCompleted,
+    markRootConfigConfigured,
     markSetupSkipped,
     resetSetupState,
     forceShowSetup,

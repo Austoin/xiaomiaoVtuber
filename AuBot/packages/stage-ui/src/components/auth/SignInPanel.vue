@@ -14,7 +14,7 @@ const props = withDefaults(defineProps<{
   pendingProvider?: OAuthProvider | null
   error?: string | null
 }>(), {
-  title: 'Sign in to AIRI',
+  title: 'Sign in to xiaomiaoVirtual',
   subtitle: 'Choose a provider to continue your authorization flow.',
   pendingProvider: null,
   error: null,
@@ -24,8 +24,8 @@ const emit = defineEmits<{
   select: [provider: OAuthProvider]
 }>()
 
-const termsHref = 'https://airi.moeru.ai/docs/en/about/terms'
-const privacyHref = 'https://airi.moeru.ai/docs/en/about/privacy'
+const termsHref = '/docs/en/about/terms'
+const privacyHref = '/docs/en/about/privacy'
 
 const hasProviders = computed(() => props.providers.length > 0)
 

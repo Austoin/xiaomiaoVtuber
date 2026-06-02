@@ -1,5 +1,7 @@
 import json
+import os
 import sys
+import tempfile
 import threading
 import time
 import unittest
@@ -19,6 +21,9 @@ from agent_backend import (  # noqa: E402
 
 
 class AgentBackendTests(unittest.TestCase):
+    def tearDown(self):
+        os.environ.pop("XIAOMIAO_UNIFIED_CONFIG", None)
+
     def test_load_config_uses_enabled_defaults(self):
         config = load_nanobot_agent_config({})
 
@@ -26,6 +31,49 @@ class AgentBackendTests(unittest.TestCase):
         self.assertEqual(config.base_url, DEFAULT_NANOBOT_BASE_URL)
         self.assertIsNone(config.model)
         self.assertEqual(config.session_id, DEFAULT_NANOBOT_SESSION_ID)
+
+    def test_root_config_overrides_nanobot_agent_section(self):
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            config_path = Path(tmp_dir) / "config.json"
+            config_path.write_text(
+                json.dumps(
+                    {
+                        "nanobot_agent": {
+                            "base_url": "http://127.0.0.1:9999/v1/chat/completions",
+                            "model": "root-model",
+                            "session_id": "root-session",
+                            "timeout_seconds": 12,
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            os.environ["XIAOMIAO_UNIFIED_CONFIG"] = str(config_path)
+
+            config = load_nanobot_agent_config(
+                {"nanobot_agent": {"model": "local-model"}}
+            )
+
+        self.assertEqual(config.base_url, "http://127.0.0.1:9999/v1/chat/completions")
+        self.assertEqual(config.model, "root-model")
+        self.assertEqual(config.session_id, "root-session")
+        self.assertEqual(config.timeout_seconds, 12)
+
+    def test_empty_root_config_values_do_not_override_local_values(self):
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            config_path = Path(tmp_dir) / "config.json"
+            config_path.write_text(
+                json.dumps({"nanobot_agent": {"model": "", "session_id": None}}),
+                encoding="utf-8",
+            )
+            os.environ["XIAOMIAO_UNIFIED_CONFIG"] = str(config_path)
+
+            config = load_nanobot_agent_config(
+                {"nanobot_agent": {"model": "local-model", "session_id": "local-session"}}
+            )
+
+        self.assertEqual(config.model, "local-model")
+        self.assertEqual(config.session_id, "local-session")
 
     def test_disabled_config_raises_without_request(self):
         config = NanobotAgentConfig(

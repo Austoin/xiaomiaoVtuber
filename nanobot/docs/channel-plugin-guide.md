@@ -6,7 +6,7 @@
 
 ## 工作原理
 
-nanobot 通过 Python [entry points](https://packaging.python.org/en/latest/specifications/entry-points/) 发现通道插件。`nanobot gateway` 启动时会扫描：
+nanobot 通过 Python [entry points](https://packaging.python.org/en/latest/specifications/entry-points/) 发现通道插件。`xiaomiao gateway` 启动时会扫描：
 
 1. `nanobot/channels/` 中的内置通道。
 2. 注册到 `nanobot.channels` entry point group 下的外部包。
@@ -174,7 +174,7 @@ nanobot onboard           # 自动为检测到的插件添加默认配置
 ### 4. 运行并测试
 
 ```bash
-nanobot gateway
+xiaomiao gateway
 ```
 
 在另一个终端中：
@@ -426,7 +426,7 @@ git clone https://github.com/you/nanobot-channel-webhook
 cd nanobot-channel-webhook
 pip install -e .
 nanobot plugins list    # 应显示 "Webhook" 为 "plugin"
-nanobot gateway         # 端到端测试
+xiaomiao gateway         # 端到端测试
 ```
 
 ## 验证

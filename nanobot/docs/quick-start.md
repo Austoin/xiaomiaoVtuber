@@ -104,7 +104,7 @@ nanobot onboard --wizard
 **3. 开始聊天**
 
 ```bash
-nanobot agent
+xiaomiao agent
 ```
 
 完成。现在你已经在 2 分钟内启动了一个可用的 AI Agent。

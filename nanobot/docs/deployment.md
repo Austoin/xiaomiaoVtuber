@@ -37,10 +37,10 @@ docker run -v ~/.nanobot:/home/nanobot/.nanobot --rm nanobot onboard
 vim ~/.nanobot/config.json
 
 # 运行 gateway（连接已启用通道，例如 Telegram/Discord/Mochat）
-docker run -v ~/.nanobot:/home/nanobot/.nanobot -p 18790:18790 nanobot gateway
+docker run -v ~/.nanobot:/home/nanobot/.nanobot -p 18790:18790 xiaomiao gateway
 
 # 或运行单条命令
-docker run -v ~/.nanobot:/home/nanobot/.nanobot --rm nanobot agent -m "Hello!"
+docker run -v ~/.nanobot:/home/nanobot/.nanobot --rm xiaomiao agent -m "Hello!"
 docker run -v ~/.nanobot:/home/nanobot/.nanobot --rm nanobot status
 ```
 
@@ -63,7 +63,7 @@ After=network.target
 
 [Service]
 Type=simple
-ExecStart=%h/.local/bin/nanobot gateway
+ExecStart=%h/.local/bin/xiaomiao gateway
 Restart=always
 RestartSec=10
 NoNewPrivileges=yes
@@ -99,7 +99,7 @@ journalctl --user -u nanobot-gateway -f        # 跟随日志
 
 ## macOS LaunchAgent
 
-如果希望 `nanobot gateway` 在你登录后保持在线，同时不需要开着终端，可以使用 LaunchAgent。
+如果希望 `xiaomiao gateway` 在你登录后保持在线，同时不需要开着终端，可以使用 LaunchAgent。
 
 **1. 获取 `nanobot` 的绝对路径：**
 
@@ -167,4 +167,4 @@ launchctl bootout gui/$(id -u) ~/Library/LaunchAgents/ai.nanobot.gateway.plist
 
 编辑 plist 后，请再次运行 `launchctl bootout ...` 和 `launchctl bootstrap ...`。
 
-> **注意：** 如果启动失败并提示 “address already in use”，请先停止手动启动的 `nanobot gateway` 进程。
+> **注意：** 如果启动失败并提示 “address already in use”，请先停止手动启动的 `xiaomiao gateway` 进程。

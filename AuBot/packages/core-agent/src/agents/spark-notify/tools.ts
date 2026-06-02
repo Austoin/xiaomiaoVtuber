@@ -158,7 +158,7 @@ export async function createSparkNotifyTools(options: CreateSparkNotifyToolsOpti
           responseMode: 'no-response',
         },
       } satisfies SparkTraceEvent)
-      return 'AIRI System: Acknowledged, no response or action will be processed.'
+      return 'xiaomiaoVirtual System: Acknowledged, no response or action will be processed.'
     },
   })
   if (allowNoResponse)
@@ -201,10 +201,10 @@ export async function createSparkNotifyTools(options: CreateSparkNotifyToolsOpti
             error: errorMessageFrom(error),
           },
         } satisfies SparkTraceEvent)
-        return `AIRI System: Error - invalid spark_command parameters: ${errorMessageFrom(error)}`
+        return `xiaomiaoVirtual System: Error - invalid spark_command parameters: ${errorMessageFrom(error)}`
       }
 
-      return 'AIRI System: Acknowledged, command fired.'
+      return 'xiaomiaoVirtual System: Acknowledged, command fired.'
     },
   })
   if (allowSparkCommand)
@@ -226,10 +226,10 @@ export async function createSparkNotifyTools(options: CreateSparkNotifyToolsOpti
           options.onCommands(validated.commands.map(normalizeSparkNotifyCommand))
         }
         catch (error) {
-          return `AIRI System: Error - invalid spark_command parameters: ${errorMessageFrom(error)}`
+          return `xiaomiaoVirtual System: Error - invalid spark_command parameters: ${errorMessageFrom(error)}`
         }
 
-        return 'AIRI System: Acknowledged, command fired.'
+        return 'xiaomiaoVirtual System: Acknowledged, command fired.'
       },
     }))
   }

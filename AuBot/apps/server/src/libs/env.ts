@@ -58,9 +58,9 @@ const EnvSchema = object({
   // boots without it but those flows will throw at send-time.
   RESEND_API_KEY: optional(string(), ''),
   // From address must be a verified Resend sender (e.g. `noreply@your-domain`).
-  RESEND_FROM_EMAIL: optional(string(), 'noreply@airi.moeru.ai'),
+  RESEND_FROM_EMAIL: optional(string(), 'noreply@example.com'),
   // Optional friendly name; rendered as `Name <email>` per Resend's RFC 5322 display-name format.
-  RESEND_FROM_NAME: optional(string(), 'Project AIRI'),
+  RESEND_FROM_NAME: optional(string(), 'xiaomiaoVirtual'),
 
   STRIPE_SECRET_KEY: optional(string()),
   STRIPE_WEBHOOK_SECRET: optional(string()),

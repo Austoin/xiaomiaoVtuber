@@ -163,19 +163,66 @@ pnpm dev:tamagotchi
 
 ## nanobot 接入状态
 
-`nanobot` 当前通过 OpenAI 兼容 API 接入，不直接由 `xiaomiao` import AgentLoop。默认配置读取 `xiaomiao/config.json` 的 `Others.nanobot_agent`：
+`nanobot` 当前通过 OpenAI 兼容 API 接入，不直接由 `xiaomiao` import AgentLoop。模型、provider 和中转站 API 配置统一写在主目录 `config.json` 的 `nanobot` 段：
 
 ```json
 {
+  "nanobot": {
+    "provider": "custom",
+    "model": "deepseek-v4-flash",
+    "providers": {
+      "custom": {
+        "apiKey": "你的中转站密钥",
+        "baseUrl": "https://你的中转站地址/v1"
+      }
+    }
+  },
   "nanobot_agent": {
     "enabled": true,
     "base_url": "http://127.0.0.1:8900/v1/chat/completions",
-    "model": "deepseek-chat",
+    "model": null,
     "session_id": "xiaomiao-unified",
     "timeout_seconds": 30
   }
 }
 ```
+
+统一请求链路：
+
+```text
+AuBot stage-web 文本/语音输入
+    ↓ HTTP POST http://127.0.0.1:5519/v1/chat/completions
+xiaomiao desktop_bridge.py
+    ↓
+xiaomiao agent_backend.py
+    ↓ HTTP POST http://127.0.0.1:8900/v1/chat/completions
+nanobot OpenAI-compatible API
+    ↓ provider=custom, model=nanobot.model
+第三方 OpenAI-compatible 中转站
+    ↓
+nanobot Agent 回复
+    ↓
+xiaomiao bridge state / stage-web 聊天历史 / 桌面字幕与 TTS
+
+QQ 群/私聊普通 AI 回复
+    ↓
+NapCat OneBot WebSocket :5004
+    ↓
+xiaomiao/main.py
+    ↓
+xiaomiao agent_backend.py
+    ↓ HTTP POST http://127.0.0.1:8900/v1/chat/completions
+nanobot → 第三方 OpenAI-compatible 中转站
+```
+
+配置规则：
+
+1. `nanobot.model` 是最终生效并返回给调用方的模型名。
+2. `nanobot.provider` 使用 `custom`，表示任意第三方 OpenAI-compatible 中转站。
+3. `nanobot.providers.custom.baseUrl` 填中转站 `/v1` 地址，不要填 `/v1/chat/completions`。
+4. `nanobot_agent.base_url` 是 `xiaomiao` 访问本机 nanobot 的地址，必须保持本机 `8900`。
+5. `nanobot_agent.model` 保持 `null` 或空值，避免 `xiaomiao` 请求时覆盖 `nanobot.model`。
+6. 修改 `config.json` 后需要重启 `nanobot` 和 `xiaomiao`，web、QQ、桌面端才会加载新配置。
 
 当前边界：
 

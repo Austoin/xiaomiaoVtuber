@@ -1,17 +1,17 @@
 electronCallback:
   title:
     loading: Завершение авторизации
-    openingAiri: Открытие AIRI
+    openingAiri: Открытие xiaomiaoVirtual
     signedIn: Вы вошли в систему
     signInFailed: Не удалось войти
-    finishSignInInAiri: Завершение входа в AIRI
-    openAiriToContinue: Откройте AIRI, чтобы продолжить
+    finishSignInInAiri: Завершение входа в xiaomiaoVirtual
+    openAiriToContinue: Откройте xiaomiaoVirtual, чтобы продолжить
   message:
-    checkingResponse: Проверка ответа на вход и подготовка передачи в AIRI.
-    passingToAiri: Передавайте данные для входа обратно в AIRI. Эта страница должна закрыться через мгновение.
-    syncedAndSafeToClose: Мы уведомили клиента AIRI, с которого вы зарегистрировались.
+    checkingResponse: Проверка ответа на вход и подготовка передачи в xiaomiaoVirtual.
+    passingToAiri: Передавайте данные для входа обратно в xiaomiaoVirtual. Эта страница должна закрыться через мгновение.
+    syncedAndSafeToClose: Мы уведомили клиента xiaomiaoVirtual, с которого вы зарегистрировались.
     invalidResponse: Мы не смогли использовать ответ на вход.
-    loopbackUnreachable: Браузеру не удалось подключиться к AIRI через локальный порт обратного вызова.
+    loopbackUnreachable: Браузеру не удалось подключиться к xiaomiaoVirtual через локальный порт обратного вызова.
     tryOpenDirectly: Мы постараемся открыть локальную передачу напрямую. Если это не удалось, воспользуйтесь кнопкой ниже.
     automaticHandoffFailed: Автоматическая передача не завершилась в этой сессии браузера.
   label:
@@ -19,7 +19,7 @@ electronCallback:
     safeToClose: Закрыть эту вкладку теперь безопасно.
     whyStillHere: Почему эта вкладка всё ещё здесь?
   action:
-    openAiriManually: Открыть AIRI вручную
+    openAiriManually: Открыть xiaomiaoVirtual вручную
   hint:
     closeTabManually: Некоторые браузеры не позволяют закрыть эту страницу автоматически. Вы можете закрыть ее вручную.
 signIn:
@@ -42,6 +42,6 @@ webCallback:
     missingCodeOrState: Отсутствует код авторизации или состояние
     missingFlowState: Отсутствует состояние потока OIDC - попробуйте войти снова
     tokenExchangeFailed: Обмен токенов не удался
-    finalizing: Завершение аутентификации с AIRI.
+    finalizing: Завершение аутентификации с xiaomiaoVirtual.
   action:
     tryAgain: Попробовать снова

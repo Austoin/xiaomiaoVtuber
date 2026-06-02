@@ -1,6 +1,6 @@
-# nanobot webui
+# xiaomiaoAgent webui
 
-The browser front-end for the nanobot gateway. It is built with Vite + React 18 +
+The browser front-end for the xiaomiaoAgent gateway. It is built with Vite + React 18 +
 TypeScript + Tailwind 3 + shadcn/ui, talks to the gateway over the WebSocket
 multiplex protocol, and reads session metadata from the embedded REST surface
 on the same port.
@@ -27,7 +27,7 @@ nanobot/web/dist/      build output served by the gateway
 
 ## Develop from source
 
-### 1. Install nanobot from source
+### 1. Install xiaomiaoAgent from source
 
 From the repository root:
 
@@ -48,7 +48,7 @@ In `~/.nanobot/config.json`:
 In one terminal:
 
 ```bash
-nanobot gateway
+xiaomiao gateway
 ```
 
 ### 4. Start the WebUI dev server
@@ -101,7 +101,7 @@ bun run build
 ```
 
 This writes the production assets to `../nanobot/web/dist`, which is the
-directory served by `nanobot gateway` and bundled into the Python wheel.
+directory served by `xiaomiao gateway` and bundled into the Python wheel.
 
 If you are cutting a release, run the build before packaging so the published
 wheel contains the current WebUI assets.

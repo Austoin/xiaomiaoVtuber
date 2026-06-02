@@ -163,10 +163,10 @@ export async function buildApp(deps: AppDeps) {
      * the actual product UI instead of the framework's default "404 Not Found".
      */
     .on('GET', '/', c => c.json({
-      service: 'airi-api',
-      message: 'This is the Project AIRI API server. Visit https://airi.moeru.ai to use the product, or see the docs at https://airi.moeru.ai/docs.',
-      docs: 'https://airi.moeru.ai/docs',
-      ui: 'https://airi.moeru.ai',
+      service: 'xiaomiaoVirtual-api',
+      message: 'This is the xiaomiaoVirtual API server. Visit / to use the product, or see the docs at /docs.',
+      docs: '/docs',
+      ui: '/',
     }))
 
     /**
@@ -217,8 +217,8 @@ export async function buildApp(deps: AppDeps) {
      */
     .notFound(c => c.json({
       error: 'NOT_FOUND',
-      message: `No route matched ${c.req.method} ${new URL(c.req.url).pathname}. This is the airi-api server; the product UI lives at https://airi.moeru.ai.`,
-      ui: 'https://airi.moeru.ai',
+      message: `No route matched ${c.req.method} ${new URL(c.req.url).pathname}. This is the xiaomiaoVirtual API server; the product UI lives at /.`,
+      ui: '/',
     }, 404))
 
   return { app: builtApp, injectWebSocket }

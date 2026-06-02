@@ -4,7 +4,7 @@ import Header from '@proj-airi/stage-layouts/components/Layouts/Header.vue'
 import InteractiveArea from '@proj-airi/stage-layouts/components/Layouts/InteractiveArea.vue'
 import MobileHeader from '@proj-airi/stage-layouts/components/Layouts/MobileHeader.vue'
 import MobileInteractiveArea from '@proj-airi/stage-layouts/components/Layouts/MobileInteractiveArea.vue'
-import { appendXiaomiaoBridgeError, appendXiaomiaoBridgeExchange, requestXiaomiaoBridgeReply } from '@proj-airi/stage-layouts/xiaomiao-bridge'
+import { appendXiaomiaoBridgeError, appendXiaomiaoBridgeEvents, appendXiaomiaoBridgeExchange, requestXiaomiaoBridgeEvents, requestXiaomiaoBridgeReply } from '@proj-airi/stage-layouts/xiaomiao-bridge'
 import workletUrl from '@proj-airi/stage-ui/workers/vad/process.worklet?worker&url'
 
 import { BackgroundProvider } from '@proj-airi/stage-layouts/components/Backgrounds'
@@ -22,6 +22,8 @@ import { breakpointsTailwind, useBreakpoints, useMouse } from '@vueuse/core'
 import { storeToRefs } from 'pinia'
 import { computed, onMounted, onUnmounted, ref, useTemplateRef, watch } from 'vue'
 
+const BRIDGE_EVENTS_POLL_INTERVAL_MS = 1500
+
 const paused = ref(false)
 
 function handleSettingsOpen(open: boolean) {
@@ -38,7 +40,6 @@ const { selectedOption, sampledColor } = storeToRefs(backgroundStore)
 const backgroundSurface = useTemplateRef<InstanceType<typeof BackgroundProvider>>('backgroundSurface')
 
 const { syncBackgroundTheme } = useBackgroundThemeColor({ backgroundSurface, selectedOption, sampledColor })
-onMounted(() => syncBackgroundTheme())
 
 // Audio + transcription pipeline (mirrors stage-tamagotchi)
 const settingsAudioDeviceStore = useSettingsAudioDevice()
@@ -63,6 +64,9 @@ const {
 })
 
 let stopOnStopRecord: (() => void) | undefined
+let bridgeEventsCursor = 0
+let bridgeEventsPolling = false
+let bridgeEventsTimer: ReturnType<typeof setInterval> | undefined
 
 function activeMessages() {
   return chatSession.getSessionMessages(chatSession.activeSessionId)
@@ -81,6 +85,43 @@ async function sendViaXiaomiaoBridge(text: string) {
     chatSession.activeSessionId,
     appendXiaomiaoBridgeExchange(activeMessages(), text, replyText),
   )
+}
+
+async function pollXiaomiaoBridgeEvents() {
+  if (bridgeEventsPolling)
+    return
+
+  bridgeEventsPolling = true
+  try {
+    const result = await requestXiaomiaoBridgeEvents({ after: bridgeEventsCursor })
+    bridgeEventsCursor = Math.max(bridgeEventsCursor, result.lastId)
+
+    const currentMessages = activeMessages()
+    const nextMessages = appendXiaomiaoBridgeEvents(currentMessages, result.events)
+    if (nextMessages !== currentMessages)
+      chatSession.setSessionMessages(chatSession.activeSessionId, nextMessages)
+  }
+  catch (error) {
+    console.error('Failed to poll XiaoMiao bridge events:', error)
+  }
+  finally {
+    bridgeEventsPolling = false
+  }
+}
+
+function startBridgeEventPolling() {
+  void pollXiaomiaoBridgeEvents()
+  bridgeEventsTimer = setInterval(() => {
+    void pollXiaomiaoBridgeEvents()
+  }, BRIDGE_EVENTS_POLL_INTERVAL_MS)
+}
+
+function stopBridgeEventPolling() {
+  if (!bridgeEventsTimer)
+    return
+
+  clearInterval(bridgeEventsTimer)
+  bridgeEventsTimer = undefined
 }
 
 async function startAudioInteraction() {
@@ -146,7 +187,13 @@ watch(enabled, async (val) => {
   }
 }, { immediate: true })
 
+onMounted(() => {
+  syncBackgroundTheme()
+  startBridgeEventPolling()
+})
+
 onUnmounted(() => {
+  stopBridgeEventPolling()
   stopAudioInteraction()
 })
 

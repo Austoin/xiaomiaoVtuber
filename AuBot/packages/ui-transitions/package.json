@@ -2,16 +2,16 @@
   "name": "@proj-airi/ui-transitions",
   "type": "module",
   "private": true,
-  "description": "A collection of transition animations that used by Project AIRI",
+  "description": "A collection of transition animations that used by xiaomiaoVirtual",
   "author": {
-    "name": "Moeru AI Project AIRI Team",
-    "email": "airi@moeru.ai",
+    "name": "xiaomiaoVirtual Team",
+    "email": "xiaomiaoVirtual@example.com",
     "url": "https://github.com/moeru-ai"
   },
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/moeru-ai/airi.git",
+    "url": "https://github.com",
     "directory": "packages/ui-transitions"
   },
   "exports": {

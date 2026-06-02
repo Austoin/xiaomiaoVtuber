@@ -30,4 +30,4 @@ gateway 每 30 分钟唤醒一次，并检查工作区中的 `HEARTBEAT.md`（`~
 
 agent 也可以自行管理这个文件。你可以让它“添加一个周期任务”，它会替你更新 `HEARTBEAT.md`。
 
-> **注意：** gateway 必须正在运行（`nanobot gateway`），并且你至少与 Bot 聊过一次，这样它才知道结果要投递到哪个通道。
+> **注意：** gateway 必须正在运行（`xiaomiao gateway`），并且你至少与 Bot 聊过一次，这样它才知道结果要投递到哪个通道。

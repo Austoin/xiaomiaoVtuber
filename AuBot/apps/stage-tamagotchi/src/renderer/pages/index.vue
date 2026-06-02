@@ -20,6 +20,7 @@ import {
   createEmptyModelSettingsRuntimeSnapshot,
   resolveComponentStateToRuntimePhase,
 } from '@proj-airi/stage-ui/components/scenarios/settings/model-settings/runtime'
+import { appendXiaomiaoBridgeEvents, requestXiaomiaoBridgeEvents } from '@proj-airi/stage-layouts/xiaomiao-bridge'
 import { WidgetStage } from '@proj-airi/stage-ui/components/scenes'
 import { useAudioRecorder } from '@proj-airi/stage-ui/composables/audio/audio-recorder'
 import { useCanvasPixelIsTransparentAtPoint } from '@proj-airi/stage-ui/composables/canvas-alpha'
@@ -47,7 +48,6 @@ import { useControlsIslandStore } from '../stores/controls-island'
 import { useStageWindowLifecycleStore } from '../stores/stage-window-lifecycle'
 import { useWindowStore } from '../stores/window'
 import { shouldSampleStageTransparency } from '../utils/stage-three-transparency'
-import { appendBridgeAssistantReply } from './xiaomiao-bridge-chat'
 import { applyXiaomiaoBridgeReaction, ensureBridgeSpeechReady as ensureBridgeSpeechReadyForStores } from './xiaomiao-bridge-reaction'
 import { readXiaomiaoBridgeState } from './xiaomiao-bridge'
 
@@ -296,6 +296,9 @@ const { post: postCaption } = useBroadcastChannel<CaptionChannelEvent, CaptionCh
 const lastBridgeAssistantCaption = ref('')
 const lastBridgeAssistantTimestamp = ref(0)
 let bridgeCaptionTimer: ReturnType<typeof setInterval> | undefined
+let bridgeEventsCursor = 0
+let bridgeEventsPolling = false
+let bridgeEventsTimer: ReturnType<typeof setInterval> | undefined
 
 // NOTICE:
 // The current QQ ↔ desktop integration is bound to the active XiaoMiao owner QQ.
@@ -316,14 +319,7 @@ async function pollXiaomiaoBridgeCaption() {
       currentText: lastBridgeAssistantCaption.value,
       bridgeState,
       postCaption: text => postCaption({ type: 'caption-assistant', text }),
-      syncChatHistory: (text, createdAtMs) => {
-        const sessionId = chatSession.activeSessionId
-        const currentMessages = chatSession.getSessionMessages(sessionId)
-        const nextMessages = appendBridgeAssistantReply(currentMessages, text, createdAtMs)
-        if (nextMessages !== currentMessages) {
-          chatSession.setSessionMessages(sessionId, nextMessages)
-        }
-      },
+      syncChatHistory: () => {},
       ensureSpeechReady: ensureBridgeSpeechReady,
       speakReply: async text => await characterStore.emitTextOutput(text),
     })
@@ -337,6 +333,29 @@ async function pollXiaomiaoBridgeCaption() {
   }
   catch {
     // Ignore local bridge polling errors so the stage keeps rendering normally.
+  }
+}
+
+async function pollXiaomiaoBridgeEvents() {
+  if (bridgeEventsPolling)
+    return
+
+  bridgeEventsPolling = true
+  try {
+    const result = await requestXiaomiaoBridgeEvents({ after: bridgeEventsCursor })
+    bridgeEventsCursor = Math.max(bridgeEventsCursor, result.lastId)
+
+    const sessionId = chatSession.activeSessionId
+    const currentMessages = chatSession.getSessionMessages(sessionId)
+    const nextMessages = appendXiaomiaoBridgeEvents(currentMessages, result.events, { includeWeb: true })
+    if (nextMessages !== currentMessages)
+      chatSession.setSessionMessages(sessionId, nextMessages)
+  }
+  catch {
+    // Ignore local bridge event polling errors so the stage keeps rendering normally.
+  }
+  finally {
+    bridgeEventsPolling = false
   }
 }
 
@@ -500,6 +519,10 @@ onMounted(() => {
   bridgeCaptionTimer = setInterval(() => {
     void pollXiaomiaoBridgeCaption()
   }, 1500)
+  void pollXiaomiaoBridgeEvents()
+  bridgeEventsTimer = setInterval(() => {
+    void pollXiaomiaoBridgeEvents()
+  }, 1500)
   if (onboardingStore.needsOnboarding) {
     openOnboarding()
   }
@@ -509,6 +532,10 @@ onUnmounted(() => {
   if (bridgeCaptionTimer) {
     clearInterval(bridgeCaptionTimer)
     bridgeCaptionTimer = undefined
+  }
+  if (bridgeEventsTimer) {
+    clearInterval(bridgeEventsTimer)
+    bridgeEventsTimer = undefined
   }
   postModelSettingsRuntimeChannelEvent({
     type: 'owner-gone',

@@ -19,6 +19,6 @@ if (!("randomUUID" in globalThis.crypto)) {
 beforeEach(async () => {
   await i18n.changeLanguage("en");
   document.documentElement.lang = "en";
-  document.title = "nanobot";
+  document.title = "xiaomiaoAgent";
   localStorage.setItem("nanobot.locale", "en");
 });

@@ -9,7 +9,7 @@ import type {
 } from './types'
 
 import { storeToRefs } from 'pinia'
-import { computed, nextTick, ref } from 'vue'
+import { computed, inject, nextTick, ref } from 'vue'
 
 import StepModelSelection from './step-model-selection.vue'
 import StepProviderConfiguration from './step-provider-configuration.vue'
@@ -33,13 +33,27 @@ const emit = defineEmits<Emits>()
 const step = ref(0)
 const direction = ref<'next' | 'previous'>('next')
 const pendingProviderConfig = ref<ProviderConfigData | null>(null)
+const savedProviderConfig = ref<ProviderConfigData | null>(null)
+const rootConfigSyncError = ref('')
+const isSavingRootConfig = ref(false)
 
 const providersStore = useProvidersStore()
 const { providers, allChatProvidersMetadata } = storeToRefs(providersStore)
 const consciousnessStore = useConsciousnessStore()
 const {
   activeProvider,
+  activeModel,
 } = storeToRefs(consciousnessStore)
+
+interface RootConfigSyncPayload {
+  apiKey: string
+  baseUrl: string
+  model: string
+}
+
+type RootConfigSync = (payload: RootConfigSyncPayload) => Promise<void>
+
+const syncRootConfig = inject<RootConfigSync | null>('xiaomiaoRootConfigSync', null)
 
 // Popular providers for first-time setup
 const popularProviders = computed(() => {
@@ -96,6 +110,8 @@ async function saveProviderConfiguration(data: ProviderConfigData) {
   }
 
   activeProvider.value = selectedProvider.value.id
+  savedProviderConfig.value = data
+  rootConfigSyncError.value = ''
 
   await nextTick()
 
@@ -108,7 +124,49 @@ async function saveProviderConfiguration(data: ProviderConfigData) {
 }
 
 async function handleSave() {
+  if (!syncRootConfig) {
+    emit('configured')
+    return
+  }
+  if (isSavingRootConfig.value)
+    return
+
+  const rootConfigPayload = buildRootConfigPayload()
+  if (!rootConfigPayload) {
+    rootConfigSyncError.value = '请填写 API key、Base URL，并选择模型后再保存。'
+    return
+  }
+
+  isSavingRootConfig.value = true
+  rootConfigSyncError.value = ''
+  try {
+    await syncRootConfig(rootConfigPayload)
+  }
+  catch (err) {
+    rootConfigSyncError.value = getErrorMessage(err)
+    return
+  }
+  finally {
+    isSavingRootConfig.value = false
+  }
+
   emit('configured')
+}
+
+function buildRootConfigPayload(): RootConfigSyncPayload | null {
+  const config = savedProviderConfig.value
+  const apiKey = config?.apiKey.trim()
+  const baseUrl = config?.baseUrl.trim()
+  const model = activeModel.value?.trim()
+  if (!apiKey || !baseUrl || !model)
+    return null
+  return { apiKey, baseUrl, model }
+}
+
+function getErrorMessage(err: unknown): string {
+  if (err instanceof Error)
+    return err.message
+  return String(err)
 }
 
 const allSteps = computed<OnboardingStep[]>(() => {
@@ -198,6 +256,14 @@ async function navigatePrevious() {
 
 <template>
   <div class="onboarding-step-container" min-h-0 w-full flex flex-1 flex-col overflow-hidden>
+    <div
+      v-if="rootConfigSyncError"
+      mb-3 rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700
+      role="alert"
+      dark:bg-red-950 dark:text-red-200
+    >
+      {{ rootConfigSyncError }}
+    </div>
     <Transition :name="direction === 'next' ? 'slide-next' : 'slide-prev'" mode="out-in">
       <component
         :is="currentStep.component"

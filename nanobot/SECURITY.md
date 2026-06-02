@@ -163,7 +163,7 @@ npm audit fix
 
    ```bash
    sudo useradd -m -s /bin/bash nanobot
-   sudo -u nanobot nanobot gateway
+   sudo -u nanobot xiaomiao gateway
    ```
 
 3. **设置正确权限**

@@ -5,8 +5,8 @@
   "private": true,
   "description": "Playwright-driven Electron capture runner for stage-tamagotchi",
   "author": {
-    "name": "Moeru AI Project AIRI Team",
-    "email": "airi@moeru.ai",
+    "name": "xiaomiaoVirtual Team",
+    "email": "xiaomiaoVirtual@example.com",
     "url": "https://github.com/moeru-ai"
   },
   "license": "MIT",

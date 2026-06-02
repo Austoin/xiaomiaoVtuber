@@ -140,7 +140,7 @@ def test_response_renderable_preserves_normal_markdown_rendering():
 
 
 def test_response_renderable_without_metadata_keeps_markdown_path():
-    help_text = "🐈 nanobot commands:\n/status — Show bot status\n/help — Show available commands"
+    help_text = "🐈 xiaomiaoAgent commands:\n/status — Show bot status\n/help — Show available commands"
 
     renderable = commands._response_renderable(help_text, render_markdown=True)
 

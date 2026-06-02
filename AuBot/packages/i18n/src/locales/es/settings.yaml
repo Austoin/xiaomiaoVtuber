@@ -9,7 +9,7 @@ animations:
     title: Usar Transiciones Específicas de Página
 dialogs:
   onboarding:
-    title: '¡Bienvenido a AIRI!'
+    title: '¡Bienvenido a xiaomiaoVirtual!'
     description: Configuremos tu primer proveedor de IA para comenzar.
     selectProvider: Elige un Proveedor de IA
     configureProvider: Configurar {provider}
@@ -33,13 +33,13 @@ dialogs:
     retry: Volver a intentar
     credentialsSafeLabel: '¡Mantén tus claves y credenciales API a salvo!'
     credentialsSafeLocal: >-
-      AIRI se está ejecutando localmente en su PC, y nunca robaremos sus credenciales para proveedores de IA / LLM. Pero tenga en cuenta que sus claves API son información confidencial. Asegúrese de mantenerlas seguras y no compartirlas con nadie.
+      xiaomiaoVirtual se está ejecutando localmente en su PC, y nunca robaremos sus credenciales para proveedores de IA / LLM. Pero tenga en cuenta que sus claves API son información confidencial. Asegúrese de mantenerlas seguras y no compartirlas con nadie.
     credentialsSafeOpenSource: >-
-      AIRI es de código abierto en {github}, si desea comprobar cómo manejamos sus credenciales, no dude en inspeccionar nuestro código.
+      xiaomiaoVirtual es de código abierto en {github}, si desea comprobar cómo manejamos sus credenciales, no dude en inspeccionar nuestro código.
     enableChatCheck: >-
       Permitir a airi enviar un mensaje "ping" al primer modelo de chat disponible para comprobar la disponibilidad
     start: '¡Hagámoslo!'
-    loginPrompt: Inicia sesión para utilizar el proveedor oficial de AIRI para obtener la mejor experiencia.
+    loginPrompt: Inicia sesión para utilizar el proveedor oficial de xiaomiaoVirtual para obtener la mejor experiencia.
     loginAction: Iniciar sesión
     setupWithoutSigningIn: Configurar con su proveedor
     flux: Flujo
@@ -93,7 +93,7 @@ analytics:
   notice:
     title: Análisis de uso
     description: >-
-      AIRI recopila análisis de uso anónimo para ayudarnos a entender cómo se utiliza la aplicación y mejorar la estabilidad. No se recogen datos personales.
+      xiaomiaoVirtual recopila análisis de uso anónimo para ayudarnos a entender cómo se utiliza la aplicación y mejorar la estabilidad. No se recogen datos personales.
     privacyPrefix: Leer el
     privacyLink: Política de privacidad
     onboardingHint: Puedes desactivar las analíticas más tarde en Configuración > Sistema > General.
@@ -170,7 +170,7 @@ pages:
     delete: Eliminar
     delete_card: Eliminar Tarjeta
     delete_confirmation: '¿Estás seguro de que quieres eliminar esta tarjeta?'
-    description: Usar presets de tarjeta de personaje AIRI
+    description: Usar presets de tarjeta de personaje xiaomiaoVirtual
     description_label: Descripción
     drop_here: Suelta para subir
     create_card: Crear una nueva Tarjeta
@@ -239,7 +239,7 @@ pages:
       model: Habla / Modelo
       voice: Habla / Voz
     systemprompt: Prompt del Sistema
-    title: Tarjeta AIRI
+    title: Tarjeta xiaomiaoVirtual
     try_different_search: Prueba un término de búsqueda diferente
     upload: Subir
     upload_desc: Haz clic o arrastra el archivo para subir
@@ -248,7 +248,7 @@ pages:
     title: Memoria
   data:
     title: Datos
-    description: Administrar, exportar y restablecer los datos de AIRI
+    description: Administrar, exportar y restablecer los datos de xiaomiaoVirtual
     sections:
       chats:
         title: Conversaciones
@@ -277,11 +277,11 @@ pages:
         delete: Eliminar todos los datos
       desktop-folder:
         title: Abrir carpeta de datos de la aplicación
-        description: Abrir carpeta de datos de AIRI en tu explorador de archivos.
+        description: Abrir carpeta de datos de xiaomiaoVirtual en tu explorador de archivos.
         open: Abrir carpeta
       desktop:
         title: Restablecer ajustes de escritorio y estados
-        description: Limpiar ajustes de escritorio y estado de ejecución de AIRI.
+        description: Limpiar ajustes de escritorio y estado de ejecución de xiaomiaoVirtual.
         reset: Restablecer datos de escritorio
     confirmations:
       tooltip: '¿Estás seguro?'
@@ -376,7 +376,7 @@ pages:
           name: Nano Banana (Preview)
           description: Use Google AI Studio for image preview and reactions.
       card:
-        description: Configure how AIRI generates images and visual content.
+        description: Configure how xiaomiaoVirtual generates images and visual content.
         comfyui_empty: No ComfyUI workflows configured. Go to Settings → Providers → ComfyUI to upload a workflow template.
         exposed_fields: '{count} exposed fields'
         open_on_replicate: Open on Replicate
@@ -452,7 +452,7 @@ pages:
       description: '¡Jugando Factorio!'
       title: Factorio
       enable: Habilitar integración con Factorio
-      enable-description: Permitir que AIRI interactúe con el juego Factorio
+      enable-description: Permitir que xiaomiaoVirtual interactúe con el juego Factorio
       server-address: Dirección del servidor
       server-address-description: La dirección IP o nombre de host del servidor de Factorio
       server-address-placeholder: Ingrese la dirección del servidor (por ejemplo, localhost o 192.168.1.100)
@@ -519,7 +519,7 @@ pages:
       description: Chat y chat de voz por Discord
       title: Discord
       enable: Habilitar integración con Discord
-      enable-description: Permitir que AIRI interactúe a través de Discord
+      enable-description: Permitir que xiaomiaoVirtual interactúe a través de Discord
       token: Token del bot
       token-description: Su token de bot de Discord
       token-placeholder: Ingrese su token de bot de Discord
@@ -552,7 +552,7 @@ pages:
             search_voices_results: Encontradas {count} de {total} voces
             unsupported_voice_warning_title: No hay voces compatibles
             unsupported_voice_warning_content: >-
-              Prueba un modelo o proveedor diferente. Estamos trabajando en dar soporte a toda la voz para este modelo lo antes posible. Si lo necesita urgentemente, por favor háganoslo saber en GitHub en https://github.com/moeru-ai/airi/issues.
+              Prueba un modelo o proveedor diferente. Estamos trabajando en dar soporte a toda la voz para este modelo lo antes posible. Si lo necesita urgentemente, por favor háganoslo saber en GitHub en https://github.com.
             show_less: Mostrar menos
             show_more: Mostrar más
             title: Proveedor
@@ -571,7 +571,7 @@ pages:
       description: Navegación y uso de X / Twitter
       title: X / Twitter
       enable: Habilitar integración con X / Twitter
-      enable-description: Permitir que AIRI interactúe con X / Twitter
+      enable-description: Permitir que xiaomiaoVirtual interactúe con X / Twitter
       api-key: Clave API
       api-key-description: Su clave API de X / Twitter
       api-key-placeholder: Ingrese su clave API de X / Twitter
@@ -696,7 +696,7 @@ pages:
                   openai-compatible-check-connectivity:
                     label: Configuración adicional necesaria para Ollama
                     content: >-
-                      Lamentamos escuchar que la conexion con Ollama falló. No te preocupes, para las instancias de Ollama, es necesaria una configuración extra para que pase por Ollama. Debe establecer <code>OLLAMA_HOST</code> explícitamente al iniciar la aplicación Ollama o el servidor CLI de Ollama, para obtener información detallada, consulte la guía <a href="https://airi.moeru.ai/docs/en/docs/manual/integrations/providers/chat/ollama">de integración Ollama</a>.
+                      Lamentamos escuchar que la conexion con Ollama falló. No te preocupes, para las instancias de Ollama, es necesaria una configuración extra para que pase por Ollama. Debe establecer <code>OLLAMA_HOST</code> explícitamente al iniciar la aplicación Ollama o el servidor CLI de Ollama, para obtener información detallada, consulte la guía <a href="/docs/en/docs/manual/integrations/providers/chat/ollama">de integración Ollama</a>.
     common:
       continueAnyway: Continuar de todas formas
       goToModelSelection: Seleccionar Modelo →
@@ -756,7 +756,7 @@ pages:
     helpinfo:
       title: '¿Primera vez aquí?'
       description: >
-        AIRI requiere que al menos un proveedor de {chat} esté configurado para pensar y comportarse correctamente. Podrías pensarlo como el cerebro de los personajes que viven en el sistema AIRI.
+        xiaomiaoVirtual requiere que al menos un proveedor de {chat} esté configurado para pensar y comportarse correctamente. Podrías pensarlo como el cerebro de los personajes que viven en el sistema xiaomiaoVirtual.
     explained:
       chat: Proveedores de modelos de generación de texto. ej. OpenRouter, OpenAI, Ollama.
       Speech: Proveedores de modelos de habla (texto a voz). ej. ElevenLabs, Azure Speech.
@@ -867,7 +867,7 @@ pages:
               placeholder: http://localhost:8188
           cors:
             title: CORS Block Detected
-            description: ComfyUI blocks requests from other applications by default. To allow AIRI to connect, you must start ComfyUI with the `--enable-cors-header "*"` flag.
+            description: ComfyUI blocks requests from other applications by default. To allow xiaomiaoVirtual to connect, you must start ComfyUI with the `--enable-cors-header "*"` flag.
             command: python main.py --enable-cors-header "*"
           workflows:
             title: Workflow Templates
@@ -879,7 +879,7 @@ pages:
             remove: Remove
             config_snippet: Artistry Config Snippet
             copy_json: Copy JSON
-            paste_hint: Paste this into your AIRI Card artistry config to override these nodes.
+            paste_hint: Paste this into your xiaomiaoVirtual Card artistry config to override these nodes.
           upload:
             prompt: Drop or select a workflow_api.json file
             invalid_json: Invalid JSON
@@ -1115,11 +1115,11 @@ pages:
         title: Web Speech API
       official:
         title: Official Provider
-        description: Official AI provider by AIRI.
+        description: Official AI provider by xiaomiaoVirtual.
         speech-title: Official Speech Provider
-        speech-description: Official text-to-speech provider by AIRI.
+        speech-description: Official text-to-speech provider by xiaomiaoVirtual.
         transcription-title: Official Transcription Provider
-        transcription-description: Official speech-to-text provider by AIRI.
+        transcription-description: Official speech-to-text provider by xiaomiaoVirtual.
       transcriptions:
         playground:
           title: Playground de Transcripción
@@ -1137,7 +1137,7 @@ pages:
     server-hostname:
       label: Expose On Network
       description: >-
-        Choose whether the AIRI gateway only listens on this device or can be reached from your local network.
+        Choose whether the xiaomiaoVirtual gateway only listens on this device or can be reached from your local network.
       advanced-label: Bind Hostname
       advanced-description: >-
         Use a specific hostname or IP address when you need manual network binding.
@@ -1148,14 +1148,14 @@ pages:
     server-auth-token:
       label: Auth Token
       description: >-
-        Security token required by remote clients that connect to this gateway. When left empty, AIRI generates a new token automatically.
+        Security token required by remote clients that connect to this gateway. When left empty, xiaomiaoVirtual generates a new token automatically.
       placeholder: Auto-generate
     qr:
       title: Connect from Stage Pocket
       description: >-
         Scan this QR code from Stage Pocket to try all reachable local network addresses and save the first working one.
       refresh: Refresh
-      image-alt: AIRI server channel connection QR code
+      image-alt: xiaomiaoVirtual server channel connection QR code
       candidates: Candidate addresses
       token-hint: >-
         The QR code includes the auth token so Stage Pocket can authenticate after connecting. Do not share it publicly.
@@ -1165,7 +1165,7 @@ pages:
     qr-scan:
       title: Quick Connect
       description: Scan the QR code from Tamagotchi to quick connect
-      instructions: Point the camera at the AIRI connection QR code.
+      instructions: Point the camera at the xiaomiaoVirtual connection QR code.
       action: Scan
       success:
         title: Connected address saved
@@ -1248,8 +1248,8 @@ pages:
           presets:
             default:
               colors:
-                color-1: Verde AIRI
-              description: '¡El color de tema verdoso predeterminado, traído por AIRI para ti!'
+                color-1: Verde xiaomiaoVirtual
+              description: '¡El color de tema verdoso predeterminado, traído por xiaomiaoVirtual para ti!'
               title: Color Predeterminado
             morandi:
               colors:
@@ -1350,7 +1350,7 @@ sections:
 theme:
   title: Tema
   description: |
-    Cambiar el tema base de AIRI, modo Claro o modo Oscuro.
+    Cambiar el tema base de xiaomiaoVirtual, modo Claro o modo Oscuro.
 title: Configuración
 voices: Voz
 vrm:

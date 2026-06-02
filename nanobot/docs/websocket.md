@@ -37,7 +37,7 @@ Nanobot 可以作为 WebSocket 服务端运行，让外部客户端（Web 应用
 ### 2. 启动 nanobot
 
 ```bash
-nanobot gateway
+xiaomiao gateway
 ```
 
 你应该看到：

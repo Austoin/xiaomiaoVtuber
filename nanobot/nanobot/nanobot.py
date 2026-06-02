@@ -20,7 +20,7 @@ class RunResult:
 
 
 class Nanobot:
-    """Programmatic facade for running the nanobot agent.
+    """Programmatic facade for running the xiaomiao agent.
 
     Usage::
 

@@ -2,16 +2,16 @@
   "name": "@proj-airi/telegram-bot",
   "type": "module",
   "private": true,
-  "description": "Telegram bot for AIRI",
+  "description": "Telegram bot for xiaomiaoVirtual",
   "author": {
-    "name": "Moeru AI Project AIRI Team",
-    "email": "airi@moeru.ai",
+    "name": "xiaomiaoVirtual Team",
+    "email": "xiaomiaoVirtual@example.com",
     "url": "https://github.com/moeru-ai"
   },
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/moeru-ai/airi.git",
+    "url": "https://github.com",
     "directory": "services/telegram-bot"
   },
   "scripts": {

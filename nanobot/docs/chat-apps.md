@@ -46,7 +46,7 @@
 **3. 运行**
 
 ```bash
-nanobot gateway
+xiaomiao gateway
 ```
 
 </details>
@@ -69,7 +69,7 @@ nanobot 会自动注册、配置 `~/.nanobot/config.json` 并连接 Mochat。
 **2. 重启 gateway**
 
 ```bash
-nanobot gateway
+xiaomiao gateway
 ```
 
 如果希望手动配置，请在 `~/.nanobot/config.json` 中添加：
@@ -147,7 +147,7 @@ nanobot gateway
 **6. 运行**
 
 ```bash
-nanobot gateway
+xiaomiao gateway
 ```
 
 </details>
@@ -208,7 +208,7 @@ pip install nanobot-ai[matrix]
 **4. 运行**
 
 ```bash
-nanobot gateway
+xiaomiao gateway
 ```
 
 </details>
@@ -245,7 +245,7 @@ nanobot channels login whatsapp
 nanobot channels login whatsapp
 
 # Terminal 2
-nanobot gateway
+xiaomiao gateway
 ```
 
 WhatsApp bridge 更新不会自动应用到已有安装。升级 nanobot 后，请重建本地 bridge：
@@ -301,7 +301,7 @@ rm -rf ~/.nanobot/bridge && nanobot channels login whatsapp
 **3. 运行**
 
 ```bash
-nanobot gateway
+xiaomiao gateway
 ```
 
 > [!TIP]
@@ -349,7 +349,7 @@ nanobot gateway
 **4. 运行**
 
 ```bash
-nanobot gateway
+xiaomiao gateway
 ```
 
 </details>
@@ -388,7 +388,7 @@ nanobot gateway
 **3. 运行**
 
 ```bash
-nanobot gateway
+xiaomiao gateway
 ```
 
 </details>
@@ -432,7 +432,7 @@ nanobot gateway
 **4. 运行**
 
 ```bash
-nanobot gateway
+xiaomiao gateway
 ```
 
 你可以直接 DM Bot，或在频道中 @ 它。
@@ -481,7 +481,7 @@ nanobot gateway
 **3. 运行**
 
 ```bash
-nanobot gateway
+xiaomiao gateway
 ```
 
 </details>
@@ -527,7 +527,7 @@ nanobot channels login weixin --force
 **4. 运行**
 
 ```bash
-nanobot gateway
+xiaomiao gateway
 ```
 
 </details>
@@ -565,7 +565,7 @@ pip install nanobot-ai[wecom]
 **4. 运行**
 
 ```bash
-nanobot gateway
+xiaomiao gateway
 ```
 
 </details>
@@ -618,7 +618,7 @@ pip install nanobot-ai[msteams]
 **4. 运行**
 
 ```bash
-nanobot gateway
+xiaomiao gateway
 ```
 
 </details>

@@ -3,16 +3,16 @@
   "type": "module",
   "version": "0.9.0",
   "private": true,
-  "description": "Stream utilities for AIRI (queues, streams)",
+  "description": "Stream utilities for xiaomiaoVirtual (queues, streams)",
   "author": {
-    "name": "Moeru AI Project AIRI Team",
-    "email": "airi@moeru.ai",
+    "name": "xiaomiaoVirtual Team",
+    "email": "xiaomiaoVirtual@example.com",
     "url": "https://github.com/moeru-ai"
   },
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/moeru-ai/airi.git",
+    "url": "https://github.com",
     "directory": "packages/stream-kit"
   },
   "exports": {

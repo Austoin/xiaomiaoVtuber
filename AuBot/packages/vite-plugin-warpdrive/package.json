@@ -5,8 +5,8 @@
   "private": true,
   "description": "Vite plugin to rewrite and upload heavy build assets to remote object storage",
   "author": {
-    "name": "Moeru AI Project AIRI Team",
-    "email": "airi@moeru.ai",
+    "name": "xiaomiaoVirtual Team",
+    "email": "xiaomiaoVirtual@example.com",
     "url": "https://github.com/moeru-ai"
   },
   "license": "MIT",

@@ -2,16 +2,16 @@
   "name": "@proj-airi/satori-bot",
   "type": "module",
   "private": true,
-  "description": "Satori protocol adapter for AIRI - Connect to multiple chat platforms via Satori",
+  "description": "Satori protocol adapter for xiaomiaoVirtual - Connect to multiple chat platforms via Satori",
   "author": {
-    "name": "Moeru AI Project AIRI Team",
-    "email": "airi@moeru.ai",
+    "name": "xiaomiaoVirtual Team",
+    "email": "xiaomiaoVirtual@example.com",
     "url": "https://github.com/moeru-ai"
   },
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/moeru-ai/airi.git",
+    "url": "https://github.com",
     "directory": "services/satori-bot"
   },
   "scripts": {

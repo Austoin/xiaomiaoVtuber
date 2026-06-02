@@ -8,7 +8,7 @@ import { getHostWebSocketConstructor } from './websocket-bridge'
 export async function probeServerChannelQrPayload(payload: ServerChannelQrPayload) {
   const websocketConstructor = getHostWebSocketConstructor()
   if (!websocketConstructor) {
-    throw new Error('AIRI host websocket bridge is unavailable')
+    throw new Error('xiaomiaoVirtual host websocket bridge is unavailable')
   }
 
   const errors: string[] = []

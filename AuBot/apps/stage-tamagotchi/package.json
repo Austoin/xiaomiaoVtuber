@@ -5,11 +5,11 @@
   "private": true,
   "description": "LLM powered virtual character",
   "author": {
-    "name": "Moeru AI",
-    "email": "airi@moeru.ai",
-    "url": "https://github.com/moeru-ai"
+    "name": "xiaomiaoVirtual Team",
+    "email": "xiaomiaoVirtual@example.com",
+    "url": "https://github.com"
   },
-  "homepage": "https://airi.moeru.ai/docs/",
+  "homepage": "/docs/",
   "main": "./out/main/index.js",
   "scripts": {
     "lint": "eslint --cache .",

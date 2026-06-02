@@ -366,7 +366,7 @@ export const useChatOrchestratorStore = defineStore('chat-orchestrator', () => {
         // messages forbidden by some providers (e.g. Anthropic → 400 error).
         // Appending at the end keeps the static history prefix stable for
         // LLM KV-cache reuse.
-        // See: https://github.com/moeru-ai/airi/issues/1539
+        // See the context prompt design note for the rationale.
         const lastMessage = newMessages.at(-1)
         if (lastMessage && lastMessage.role === 'user') {
           // Append context after the user's content, separated by a newline.

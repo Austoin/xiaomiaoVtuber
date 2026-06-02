@@ -192,7 +192,7 @@ Configure these **two parts** in your config (other options have defaults). Add 
 **3. Chat**
 
 ```bash
-nanobot agent
+xiaomiao agent
 ```
 
 
@@ -218,7 +218,7 @@ nanobot agent
 **2. Start the gateway**
 
 ```bash
-nanobot gateway
+xiaomiao gateway
 ```
 
 **3. Start the webui dev server**

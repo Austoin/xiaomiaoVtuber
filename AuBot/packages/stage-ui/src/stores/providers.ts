@@ -312,7 +312,7 @@ export const useProvidersStore = defineStore('providers', () => {
           if (!config.baseUrl) {
             return {
               errors: [new Error('Base URL is required.')],
-              reason: 'Base URL is required. This is likely a bug, report to developers on https://github.com/moeru-ai/airi/issues.',
+              reason: 'Base URL is required. This is likely a bug, report to developers.',
               valid: false,
             }
           }
@@ -343,7 +343,7 @@ export const useProvidersStore = defineStore('providers', () => {
           if (!config.baseUrl) {
             return {
               errors: [new Error('Base URL is required.')],
-              reason: 'Base URL is required. This is likely a bug, report to developers on https://github.com/moeru-ai/airi/issues.',
+              reason: 'Base URL is required. This is likely a bug, report to developers.',
               valid: false,
             }
           }
@@ -374,7 +374,7 @@ export const useProvidersStore = defineStore('providers', () => {
           if (!config.baseUrl) {
             return {
               errors: [new Error('Base URL is required.')],
-              reason: 'Base URL is required. This is likely a bug, report to developers on https://github.com/moeru-ai/airi/issues.',
+              reason: 'Base URL is required. This is likely a bug, report to developers.',
               valid: false,
             }
           }
@@ -405,7 +405,7 @@ export const useProvidersStore = defineStore('providers', () => {
           if (!config.baseUrl) {
             return {
               errors: [new Error('Base URL is required.')],
-              reason: 'Base URL is required. This is likely a bug, report to developers on https://github.com/moeru-ai/airi/issues.',
+              reason: 'Base URL is required. This is likely a bug, report to developers.',
               valid: false,
             }
           }

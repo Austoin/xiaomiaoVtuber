@@ -4,6 +4,8 @@ from dataclasses import dataclass
 from typing import Any
 from urllib import error, request
 
+from unified_config import merge_unified_config_section
+
 
 DEFAULT_NANOBOT_BASE_URL = "http://127.0.0.1:8900/v1/chat/completions"
 DEFAULT_NANOBOT_SESSION_ID = "xiaomiao-unified"
@@ -29,11 +31,10 @@ class NanobotAgentRequest:
 
 
 def load_nanobot_agent_config(others: dict[str, Any]) -> NanobotAgentConfig:
-    raw_config = others.get("nanobot_agent", {})
-    if raw_config is None:
-        raw_config = {}
-    if not isinstance(raw_config, dict):
-        raise ValueError("Others.nanobot_agent must be an object")
+    raw_config = merge_unified_config_section(
+        "nanobot_agent",
+        others.get("nanobot_agent", {}),
+    )
 
     return NanobotAgentConfig(
         enabled=bool(raw_config.get("enabled", True)),

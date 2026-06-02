@@ -23,13 +23,13 @@ nanobot onboard --config ~/.nanobot-feishu/config.json --workspace ~/.nanobot-fe
 
 ```bash
 # 实例 A - Telegram bot
-nanobot gateway --config ~/.nanobot-telegram/config.json
+xiaomiao gateway --config ~/.nanobot-telegram/config.json
 
 # 实例 B - Discord bot
-nanobot gateway --config ~/.nanobot-discord/config.json
+xiaomiao gateway --config ~/.nanobot-discord/config.json
 
 # 实例 C - 使用自定义端口的飞书 bot
-nanobot gateway --config ~/.nanobot-feishu/config.json --port 18792
+xiaomiao gateway --config ~/.nanobot-feishu/config.json --port 18792
 ```
 
 ## 路径解析
@@ -39,14 +39,14 @@ nanobot gateway --config ~/.nanobot-feishu/config.json --port 18792
 如果要在本地打开指向某个实例的 CLI 会话：
 
 ```bash
-nanobot agent -c ~/.nanobot-telegram/config.json -m "Hello from Telegram instance"
-nanobot agent -c ~/.nanobot-discord/config.json -m "Hello from Discord instance"
+xiaomiao agent -c ~/.nanobot-telegram/config.json -m "Hello from Telegram instance"
+xiaomiao agent -c ~/.nanobot-discord/config.json -m "Hello from Discord instance"
 
 # 可选的一次性工作区覆盖
-nanobot agent -c ~/.nanobot-telegram/config.json -w /tmp/nanobot-telegram-test
+xiaomiao agent -c ~/.nanobot-telegram/config.json -w /tmp/nanobot-telegram-test
 ```
 
-> `nanobot agent` 会使用所选工作区和配置启动本地 CLI agent。它不会附加到已经运行的 `nanobot gateway` 进程，也不会通过该进程代理。
+> `xiaomiao agent` 会使用所选工作区和配置启动本地 CLI agent。它不会附加到已经运行的 `xiaomiao gateway` 进程，也不会通过该进程代理。
 
 | 组件 | 解析来源 | 示例 |
 |-----------|---------------|---------|
@@ -93,8 +93,8 @@ nanobot agent -c ~/.nanobot-telegram/config.json -w /tmp/nanobot-telegram-test
 启动独立实例：
 
 ```bash
-nanobot gateway --config ~/.nanobot-telegram/config.json
-nanobot gateway --config ~/.nanobot-discord/config.json
+xiaomiao gateway --config ~/.nanobot-telegram/config.json
+xiaomiao gateway --config ~/.nanobot-discord/config.json
 ```
 
 每个 gateway 实例还会在 `gateway.host:gateway.port` 暴露一个轻量 HTTP 健康检查端点。默认情况下，gateway 绑定到 `127.0.0.1`，所以端点会保持本地访问，除非你显式将 `gateway.host` 设置为公网或局域网地址。
@@ -105,7 +105,7 @@ nanobot gateway --config ~/.nanobot-discord/config.json
 需要时，可以为一次性运行覆盖工作区：
 
 ```bash
-nanobot gateway --config ~/.nanobot-telegram/config.json --workspace /tmp/nanobot-telegram-test
+xiaomiao gateway --config ~/.nanobot-telegram/config.json --workspace /tmp/nanobot-telegram-test
 ```
 
 ## 常见使用场景

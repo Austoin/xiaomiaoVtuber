@@ -222,7 +222,7 @@ describe("App layout", () => {
     fireEvent.click(within(sidebar).getByRole("button", { name: "Settings" }));
 
     expect(await screen.findByRole("heading", { name: "General" })).toBeInTheDocument();
-    expect(document.title).toBe("Settings · nanobot");
+    expect(document.title).toBe("Settings · xiaomiaoAgent");
     expect(screen.queryByRole("navigation", { name: "Sidebar navigation" })).not.toBeInTheDocument();
     const settingsNav = screen.getByRole("navigation", { name: "Settings sections" });
     expect(within(settingsNav).getByRole("button", { name: "General" })).toHaveAttribute(
@@ -323,16 +323,16 @@ describe("App layout", () => {
     await waitFor(() => expect(connectSpy).toHaveBeenCalled());
     const sidebar = screen.getByRole("navigation", { name: "Sidebar navigation" });
     fireEvent.click(within(sidebar).getByRole("button", { name: "New chat" }));
-    await waitFor(() => expect(document.title).toBe("nanobot"));
+    await waitFor(() => expect(document.title).toBe("xiaomiaoAgent"));
 
     fireEvent.click(within(sidebar).getByRole("button", { name: "Settings" }));
     expect(await screen.findByRole("heading", { name: "General" })).toBeInTheDocument();
     fireEvent.click(screen.getByRole("button", { name: "Back to chat" }));
 
-    await waitFor(() => expect(document.title).toBe("First chat · nanobot"));
+    await waitFor(() => expect(document.title).toBe("First chat · xiaomiaoAgent"));
     const restoredSidebar = screen.getByRole("navigation", { name: "Sidebar navigation" });
     fireEvent.click(within(restoredSidebar).getByRole("button", { name: /^Second chat$/ }));
-    await waitFor(() => expect(document.title).toBe("Second chat · nanobot"));
+    await waitFor(() => expect(document.title).toBe("Second chat · xiaomiaoAgent"));
   });
 
   it("filters sidebar sessions through the lightweight search row", async () => {

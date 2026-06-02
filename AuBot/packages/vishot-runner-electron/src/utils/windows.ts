@@ -35,13 +35,13 @@ async function classifyWindow(page: Page): Promise<StageWindowSnapshot | null> {
     return { name: 'settings', page, title, route }
   }
 
-  if (route.startsWith('/onboarding') || title === 'Welcome to AIRI') {
+  if (route.startsWith('/onboarding') || title === 'Welcome to xiaomiaoVirtual') {
     return null
   }
 
   const mainControlsVisible = await page.locator(mainWindowReadyIconSelector).first().isVisible().catch(() => false)
 
-  if ((route === '/' || title === 'AIRI') && mainControlsVisible) {
+  if ((route === '/' || title === 'xiaomiaoVirtual') && mainControlsVisible) {
     return { name: 'main', page, title, route }
   }
 

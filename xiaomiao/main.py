@@ -31,7 +31,7 @@ from agent_backend import (
     load_nanobot_agent_config,
     reply_with_nanobot_agent,
 )
-from desktop_bridge import publish_desktop_state, start_desktop_bridge_server
+from desktop_bridge import publish_bridge_exchange, start_desktop_bridge_server
 
 # import framework
 Configurator.cm = Configurator.ConfigManager(
@@ -47,7 +47,6 @@ from Hyper.Events import *
 from GoogleAI import genai, Context, Parts, Roles
 
 # from google.generativeai.types import FunctonDeclaration
-from SearchOnline import network_gpt as SearchOnline
 from prerequisites import prerequisite, select_role, update_role_lists
 import Quote
 
@@ -192,9 +191,7 @@ def select_persona_prompt(user_id: int, event_user: str) -> str:
 
 def generate_desktop_reply(user_id: int, text: str) -> str:
     with bridge_lock:
-        result = generate_agent_reply(user_id, "web", "stage-web", text)
-        publish_desktop_state(user_id, result)
-        return result
+        return generate_agent_reply(user_id, "web", "stage-web", text)
 
 
 def generate_agent_reply(user_id: int, channel: str, chat_id: str, text: str) -> str:
@@ -2210,33 +2207,13 @@ Memory Usage：{str(system_info["memory_usage_percentage"]) + "%"}"""
                                 order or user_message,
                             )
 
-                        case "Normal":
-                            search = SearchOnline(
-                                sys_prompt,
-                                order,
-                                user_lists,
+                        case "Normal" | "Net":
+                            result = generate_agent_reply(
                                 event.user_id,
-                                fallback_model,
-                                bot_name,
-                                Configurator.cm.get_cfg().others["openai_key"],
-                                Configurator.cm.get_cfg().others.get("openai_base_url"),
+                                "qq-group",
+                                str(event.group_id),
+                                order or user_message,
                             )
-                            ulist, result = search.Response()
-                            user_lists = ulist
-
-                        case "Net":
-                            search = SearchOnline(
-                                sys_prompt,
-                                order,
-                                user_lists,
-                                event.user_id,
-                                fallback_model,
-                                bot_name,
-                                Configurator.cm.get_cfg().others["openai_key"],
-                                Configurator.cm.get_cfg().others.get("openai_base_url"),
-                            )
-                            ulist, result = search.Response()
-                            user_lists = ulist
 
                     await actions.send(
                         group_id=event.group_id,
@@ -2244,7 +2221,14 @@ Memory Usage：{str(system_info["memory_usage_percentage"]) + "%"}"""
                             Segments.Reply(event.message_id), Segments.Text(result)
                         ),
                     )
-                    publish_desktop_state(event.user_id, result)
+                    publish_bridge_exchange(
+                        source="qq-group",
+                        channel="qq-group",
+                        chat_id=str(event.group_id),
+                        user_id=event.user_id,
+                        user_text=order or user_message,
+                        assistant_text=result,
+                    )
 
                 except UnboundLocalError:
                     await actions.send(
@@ -2803,24 +2787,25 @@ Made by SR Studio
                         )
 
                     case "Normal" | "Net":
-                        search = SearchOnline(
-                            sys_prompt,
-                            order,
-                            user_lists,
+                        result = generate_agent_reply(
                             event.user_id,
-                            fallback_model,
-                            bot_name,
-                            Configurator.cm.get_cfg().others["openai_key"],
-                            Configurator.cm.get_cfg().others.get("openai_base_url"),
+                            "qq-private",
+                            str(event.user_id),
+                            order or user_message,
                         )
-                        ulist, result = search.Response()
-                        user_lists = ulist
 
                 await actions.send(
                     user_id=event.user_id,
                     message=Manager.Message(Segments.Text(result)),
                 )
-                publish_desktop_state(event.user_id, result)
+                publish_bridge_exchange(
+                    source="qq-private",
+                    channel="qq-private",
+                    chat_id=str(event.user_id),
+                    user_id=event.user_id,
+                    user_text=order or user_message,
+                    assistant_text=result,
+                )
 
             except UnboundLocalError:
                 await actions.send(

@@ -1,17 +1,17 @@
 electronCallback:
   title:
     loading: 登录中
-    openingAiri: 正在打开AIRI
+    openingAiri: 正在打开xiaomiaoVirtual
     signedIn: 登录成功
     signInFailed: 登录失败
     finishSignInInAiri: 登录完成
-    openAiriToContinue: 打开AIRI以继续
+    openAiriToContinue: 打开xiaomiaoVirtual以继续
   message:
-    checkingResponse: Checking your sign-in response and preparing the handoff to AIRI.
-    passingToAiri: Passing your sign-in back to AIRI now. This page should close in a moment.
-    syncedAndSafeToClose: We notified AIRI client you signed from.
+    checkingResponse: Checking your sign-in response and preparing the handoff to xiaomiaoVirtual.
+    passingToAiri: Passing your sign-in back to xiaomiaoVirtual now. This page should close in a moment.
+    syncedAndSafeToClose: We notified xiaomiaoVirtual client you signed from.
     invalidResponse: We could not use this sign-in response.
-    loopbackUnreachable: The browser could not reach AIRI through the local callback port.
+    loopbackUnreachable: The browser could not reach xiaomiaoVirtual through the local callback port.
     tryOpenDirectly: We will try opening the local handoff directly. If that still fails, use the button below.
     automaticHandoffFailed: Automatic handoff did not finish in this browser session.
   label:
@@ -19,7 +19,7 @@ electronCallback:
     safeToClose: It is safe to close this tab now.
     whyStillHere: 这个窗口还在吗？
   action:
-    openAiriManually: 手动打开AIRI
+    openAiriManually: 手动打开xiaomiaoVirtual
   hint:
     closeTabManually: 一些浏览器不允许自动关闭这个页面，你可以手动关掉它。
 signIn:
@@ -115,6 +115,6 @@ webCallback:
     missingCodeOrState: Missing authorization code or state
     missingFlowState: Missing OIDC flow state - please try logging in again
     tokenExchangeFailed: 令牌交换失败
-    finalizing: AIRI登录完成
+    finalizing: xiaomiaoVirtual登录完成
   action:
     tryAgain: 重试

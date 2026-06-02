@@ -19,6 +19,7 @@
 *.cer
 *.p12
 credentials.json
+/config.json
 cert*/
 twitter-session.json
 

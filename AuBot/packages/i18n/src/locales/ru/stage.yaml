@@ -3,7 +3,7 @@ chat:
     retry: Повторить
   message:
     character-name:
-      airi: AIRI
+      airi: xiaomiaoVirtual
       core-system: Core система
       you: Ты
   reasoning: Причина

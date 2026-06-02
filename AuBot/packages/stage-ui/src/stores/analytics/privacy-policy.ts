@@ -14,5 +14,5 @@ export function getAnalyticsPrivacyPolicyUrl(locale?: string): string {
     ? normalizedLocale
     : 'en'
 
-  return `https://airi.moeru.ai/docs/${docsLocale}/about/privacy`
+  return `/docs/${docsLocale}/about/privacy`
 }

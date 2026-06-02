@@ -20,7 +20,7 @@ cd webui && bun run build
 cd webui && bun run test
 
 # Gateway
-nanobot gateway
+xiaomiao gateway
 ```
 
 ## High-Level Architecture

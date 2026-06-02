@@ -8,7 +8,7 @@ const appId = argv.includes('android') ? 'ai.moeru.airi_pocket' : 'ai.moeru.airi
 
 const config: CapacitorConfig = {
   appId,
-  appName: 'AIRI',
+  appName: 'xiaomiaoVirtual',
   webDir: 'dist',
   server: serverURL
     ? {

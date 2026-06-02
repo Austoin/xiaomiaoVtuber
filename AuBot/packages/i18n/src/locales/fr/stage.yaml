@@ -3,7 +3,7 @@ chat:
     retry: Retry
   message:
     character-name:
-      airi: AIRI
+      airi: xiaomiaoVirtual
       core-system: Système central
       you: Vous
   reasoning: Raisonnement

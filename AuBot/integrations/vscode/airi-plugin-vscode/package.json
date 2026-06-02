@@ -3,10 +3,10 @@
   "type": "module",
   "version": "0.9.0",
   "private": true,
-  "description": "AIRI host plugin that bridges VS Code context and UI",
+  "description": "xiaomiaoVirtual host plugin that bridges VS Code context and UI",
   "repository": {
     "type": "git",
-    "url": "https://github.com/moeru-ai/airi.git",
+    "url": "https://github.com",
     "directory": "integrations/vscode/airi-plugin-vscode"
   },
   "exports": {

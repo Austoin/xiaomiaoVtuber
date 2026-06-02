@@ -79,29 +79,29 @@ const narrowAsciiArt = computed(() => (`
         /
 `))
 
-const projectAIRIAsciiArt = computed(() => {
+const xiaomiaoVirtualAsciiArt = computed(() => {
   if (isDeviceSm.value)
     return narrowAsciiArt.value
   return wideAsciiArt.value
 })
 
-const projectAIRIMetadata = `
-Project AIRI team from Moeru AI (https://moeru.ai) and other contributors
-Open sourced on https://github.com/moeru-ai/airi
+const xiaomiaoVirtualMetadata = `
+xiaomiaoVirtual team and other contributors
+Open sourced for xiaomiaoVirtual
 `
 
 const bootMessages = computed<BootMessage[]>(() => [
-  ...projectAIRIAsciiArt.value.split('\n').map(line => ({
+  ...xiaomiaoVirtualAsciiArt.value.split('\n').map(line => ({
     template: line,
     typingSpeed: 1,
     withoutTimestamp: true,
   })),
   {
-    template: `Project AIRI version ${import.meta.env.VITE_AIRI_VERSION || '1.0.0'} @ ${import.meta.env.VITE_AIRI_COMMIT || '0240602'} build`,
+    template: `xiaomiaoVirtual version ${import.meta.env.VITE_XIAOMIAO_VERSION || '1.0.0'} @ ${import.meta.env.VITE_XIAOMIAO_COMMIT || '0240602'} build`,
     typingSpeed: 5,
     withoutTimestamp: true,
   },
-  ...projectAIRIMetadata.trim().split('\n').map(line => ({
+  ...xiaomiaoVirtualMetadata.trim().split('\n').map(line => ({
     template: line,
     typingSpeed: 1,
     withoutTimestamp: true,
@@ -117,7 +117,7 @@ const bootMessages = computed<BootMessage[]>(() => [
     withoutTimestamp: true,
   },
   {
-    template: 'Command line: BOOT_IMAGE=/boot/airi.moeru.ai root=UUID=io.github.moeru-ai.airi',
+    template: 'Command line: BOOT_IMAGE=/boot/xiaomiaoVirtual root=UUID=local.xiaomiaoVirtual',
     typingSpeed: 1,
   },
   {
@@ -125,7 +125,7 @@ const bootMessages = computed<BootMessage[]>(() => [
     typingSpeed: 1,
   },
   {
-    template: 'Initializing AIRI subsystems...',
+    template: 'Initializing xiaomiaoVirtual subsystems...',
     typingSpeed: 1,
     pending: true,
     onPendingCheck: () => {
@@ -160,7 +160,7 @@ const bootMessages = computed<BootMessage[]>(() => [
     },
   },
   {
-    template: 'AIRI core services initialized',
+    template: 'xiaomiaoVirtual core services initialized',
     typingSpeed: 1,
   },
   {
@@ -236,7 +236,7 @@ const bootMessages = computed<BootMessage[]>(() => [
     typingSpeed: 1,
   },
   {
-    template: 'AIRI ready',
+    template: 'xiaomiaoVirtual ready',
     typingSpeed: 1,
   },
 ])

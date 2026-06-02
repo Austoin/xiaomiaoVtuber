@@ -62,7 +62,7 @@ export async function setupDesktopOverlayWindow(params: {
   const { x, y, width, height } = primaryDisplay.bounds
 
   overlayWindow = new BrowserWindow({
-    title: 'AIRI Desktop Overlay',
+    title: 'xiaomiaoVirtual Desktop Overlay',
     width,
     height,
     x,

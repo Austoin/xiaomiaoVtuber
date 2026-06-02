@@ -11,6 +11,10 @@ from loguru import logger
 from pydantic import BaseModel
 
 from nanobot.config.schema import Config
+from nanobot.config.unified_root import (
+    UNIFIED_CONFIG_ENV,
+    apply_unified_config_overrides,
+)
 
 # Global variable to store current config path (for multi-instance support)
 _current_config_path: Path | None = None
@@ -41,17 +45,19 @@ def load_config(config_path: Path | None = None) -> Config:
     """
     path = config_path or get_config_path()
 
-    config = Config()
+    data: dict[str, Any] = {}
     if path.exists():
         try:
             with open(path, encoding="utf-8") as f:
                 data = json.load(f)
             data = _migrate_config(data)
-            config = Config.model_validate(data)
+            Config.model_validate(data)
         except (json.JSONDecodeError, ValueError, pydantic.ValidationError) as e:
             logger.warning("Failed to load config from {}: {}", path, e)
             logger.warning("Using default configuration.")
 
+    data = apply_unified_config_overrides(data, path)
+    config = Config.model_validate(data)
     _apply_ssrf_whitelist(config)
     return config
 

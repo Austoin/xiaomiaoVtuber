@@ -48,7 +48,7 @@ BUILTIN_COMMAND_SPECS: tuple[BuiltinCommandSpec, ...] = (
     ),
     BuiltinCommandSpec(
         "/restart",
-        "Restart nanobot",
+        "Restart xiaomiaoAgent",
         "Restart the bot process in place.",
         "rotate-cw",
     ),
@@ -461,7 +461,7 @@ async def cmd_help(ctx: CommandContext) -> OutboundMessage:
 
 def build_help_text() -> str:
     """Build canonical help text shared across channels."""
-    lines = ["🐈 nanobot commands:"]
+    lines = ["🐈 xiaomiaoAgent commands:"]
     for spec in BUILTIN_COMMAND_SPECS:
         command = spec.command
         if spec.arg_hint:

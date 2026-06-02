@@ -2,16 +2,16 @@
   "name": "@proj-airi/i18n",
   "type": "module",
   "private": true,
-  "description": "Internationalization (i18n) locales and utilities for Project AIRI",
+  "description": "Internationalization (i18n) locales and utilities for xiaomiaoVirtual",
   "author": {
-    "name": "Moeru AI Project AIRI Team",
-    "email": "airi@moeru.ai",
+    "name": "xiaomiaoVirtual Team",
+    "email": "xiaomiaoVirtual@example.com",
     "url": "https://github.com/moeru-ai"
   },
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/moeru-ai/airi.git",
+    "url": "https://github.com",
     "directory": "packages/i18n"
   },
   "exports": {

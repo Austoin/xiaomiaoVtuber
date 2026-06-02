@@ -207,7 +207,7 @@ describe("ThreadShell", () => {
           client,
           <ThreadShell
             session={null}
-            title="nanobot"
+            title="xiaomiaoAgent"
             onToggleSidebar={() => {}}
             onGoHome={() => {}}
             onNewChat={onNewChat}
@@ -232,7 +232,7 @@ describe("ThreadShell", () => {
         client,
         <ThreadShell
           session={null}
-          title="nanobot"
+          title="xiaomiaoAgent"
           onToggleSidebar={() => {}}
           onGoHome={() => {}}
           onNewChat={onNewChat}
@@ -267,7 +267,7 @@ describe("ThreadShell", () => {
         client,
         <ThreadShell
           session={null}
-          title="nanobot"
+          title="xiaomiaoAgent"
           onToggleSidebar={() => {}}
           onCreateChat={onCreateChat}
         />,
@@ -544,7 +544,7 @@ describe("ThreadShell", () => {
           client,
           <ThreadShell
             session={null}
-            title="nanobot"
+            title="xiaomiaoAgent"
             onToggleSidebar={() => {}}
             onNewChat={() => {}}
           />,
@@ -603,7 +603,7 @@ describe("ThreadShell", () => {
         client,
         <ThreadShell
           session={null}
-          title="nanobot"
+          title="xiaomiaoAgent"
           onToggleSidebar={() => {}}
           onNewChat={() => {}}
         />,
@@ -631,7 +631,7 @@ describe("ThreadShell", () => {
         client,
         <ThreadShell
           session={null}
-          title="nanobot"
+          title="xiaomiaoAgent"
           onToggleSidebar={() => {}}
           onNewChat={() => {}}
         />,

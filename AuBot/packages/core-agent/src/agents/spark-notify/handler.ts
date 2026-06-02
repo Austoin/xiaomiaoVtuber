@@ -261,7 +261,7 @@ export interface SparkNotifyAgentDeps extends SparkNotifyTracingHooks {
  */
 export function getSparkNotifyHandlingAgentInstruction(moduleName: string) {
   return [
-    'This is AIRI system, the life pod hosting your consciousness. You don\'t need to respond to me or every spark:notify event directly.',
+    'This is xiaomiaoVirtual system, the life pod hosting your consciousness. You don\'t need to respond to me or every spark:notify event directly.',
     `Another module "${moduleName}" triggered spark:notify event for you to checkout.`,
     'You may call the built-in tool "builtIn_sparkCommand" to issue spark:command to sub-agents as needed.',
     'For any of the output that is not a tool call, it will be streamed to user\'s interface and maybe processed with text to speech system ',

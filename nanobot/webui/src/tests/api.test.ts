@@ -123,7 +123,7 @@ describe("webui API helpers", () => {
           },
           {
             command: "/restart",
-            title: "Restart nanobot",
+            title: "Restart xiaomiaoAgent",
             description: "Restart the bot process.",
             icon: "rotate-cw",
           },

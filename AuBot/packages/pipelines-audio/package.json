@@ -3,16 +3,16 @@
   "type": "module",
   "version": "0.9.0",
   "private": true,
-  "description": "Audio pipeline orchestration for AIRI (capture, VAD, encode, stream)",
+  "description": "Audio pipeline orchestration for xiaomiaoVirtual (capture, VAD, encode, stream)",
   "author": {
-    "name": "Moeru AI Project AIRI Team",
-    "email": "airi@moeru.ai",
+    "name": "xiaomiaoVirtual Team",
+    "email": "xiaomiaoVirtual@example.com",
     "url": "https://github.com/moeru-ai"
   },
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/moeru-ai/airi.git",
+    "url": "https://github.com",
     "directory": "packages/pipelines-audio"
   },
   "exports": {
