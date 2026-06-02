@@ -1,5 +1,7 @@
 # 小喵 QQ Bot 控制台融合 Implementation Plan
 
+> 状态提示：这是 2026-05-12 的历史计划文档。当前项目已在 2026-06-02 完成 `stage-web`、桌面 bridge、QQ 普通 AI 回复到 nanobot Agent 的统一接入。当前启动方式以 `docs/STARTUP.md`、`README.md` 和 `TECHNICAL.md` 为准。
+
 > **For Claude:** REQUIRED SUB-SKILL: Use superpowers:executing-plans to implement this plan task-by-task.
 
 **Goal:** 在 AuBot Electron 桌面端中新增“小喵 QQ Bot 控制台”，用于只读展示 QQ 机器人状态、桥接状态、最近事件、基础运行信息，并为后续接入 nanobot Agent/WebUI/工具/记忆能力预留演进路径。

@@ -2,6 +2,8 @@
 import type { ChatHistoryItem } from '@proj-airi/stage-ui/types/chat'
 import type { ChatProvider } from '@xsai-ext/providers/utils'
 
+import { errorMessageFrom } from '@moeru/std'
+import { isStageWeb } from '@proj-airi/stage-shared'
 import { ChatHistory, HearingConfigDialog } from '@proj-airi/stage-ui/components'
 import { useAudioAnalyzer } from '@proj-airi/stage-ui/composables'
 import { useAudioContext } from '@proj-airi/stage-ui/stores/audio'
@@ -20,6 +22,7 @@ import { useI18n } from 'vue-i18n'
 import { RouterLink } from 'vue-router'
 
 import IndicatorMicVolume from '../Widgets/IndicatorMicVolume.vue'
+import { appendXiaomiaoBridgeError, appendXiaomiaoBridgeExchange, requestXiaomiaoBridgeReply } from '../../xiaomiao-bridge'
 import ActionAbout from './InteractiveArea/Actions/About.vue'
 import ActionViewControls from './InteractiveArea/Actions/ViewControls.vue'
 import ViewControlInputs from './ViewControls/Inputs.vue'
@@ -62,6 +65,38 @@ const { audioContext } = useAudioContext()
 const { startAnalyzer, stopAnalyzer, volumeLevel } = useAudioAnalyzer()
 let analyzerSource: MediaStreamAudioSourceNode | undefined
 
+function activeMessages() {
+  return chatSession.getSessionMessages(chatSession.activeSessionId)
+}
+
+function appendBridgeError(text: string, error: unknown) {
+  chatSession.setSessionMessages(
+    chatSession.activeSessionId,
+    appendXiaomiaoBridgeError(activeMessages(), text, errorMessageFrom(error) ?? 'XiaoMiao bridge request failed'),
+  )
+}
+
+async function sendChatText(text: string) {
+  if (isStageWeb()) {
+    const replyText = await requestXiaomiaoBridgeReply({
+      text,
+      model: activeModel.value,
+    })
+    chatSession.setSessionMessages(
+      chatSession.activeSessionId,
+      appendXiaomiaoBridgeExchange(activeMessages(), text, replyText),
+    )
+    return
+  }
+
+  const providerConfig = providersStore.getProviderConfig(activeProvider.value)
+  await ingest(text, {
+    chatProvider: await providersStore.getProviderInstance(activeProvider.value) as ChatProvider,
+    model: activeModel.value,
+    providerConfig,
+  })
+}
+
 function isMobileDevice() {
   return /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
 }
@@ -81,21 +116,11 @@ async function handleSend() {
   messageInput.value = ''
 
   try {
-    const providerConfig = providersStore.getProviderConfig(activeProvider.value)
-
-    await ingest(textToSend, {
-      chatProvider: await providersStore.getProviderInstance(activeProvider.value) as ChatProvider,
-      model: activeModel.value,
-      providerConfig,
-    })
+    await sendChatText(textToSend)
   }
   catch (error) {
     messageInput.value = textToSend
-    messages.value.pop()
-    messages.value.push({
-      role: 'error',
-      content: (error as Error).message,
-    })
+    appendBridgeError(textToSend, error)
   }
 }
 

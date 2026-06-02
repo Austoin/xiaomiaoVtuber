@@ -9,6 +9,46 @@ nanobot serve
 
 默认情况下，API 绑定到 `127.0.0.1:8900`。你可以在 `config.json` 中修改。
 
+## xiaomiaoVirtual 集成
+
+在 `xiaomiaoVirtual` 中，该端点是网页、桌面 bridge 和 QQ 普通 AI 回复的统一 Agent 能力层。推荐从仓库根目录启动项目内配置：
+
+```powershell
+cd F:\xiaomiaoVirtual
+conda activate xiaomiao
+nanobot serve --config F:\xiaomiaoVirtual\nanobot\.nanobot\config.json
+```
+
+集成链路：
+
+```text
+AuBot stage-web
+    ↓ POST http://127.0.0.1:5519/v1/chat/completions
+xiaomiao desktop_bridge.py
+    ↓
+xiaomiao agent_backend.py
+    ↓ POST http://127.0.0.1:8900/v1/chat/completions
+nanobot OpenAI-compatible API
+
+QQ 群/私聊普通 AI 回复
+    ↓
+xiaomiao generate_agent_reply()
+    ↓ POST http://127.0.0.1:8900/v1/chat/completions
+nanobot OpenAI-compatible API
+```
+
+`xiaomiao` 默认使用统一 session：
+
+```json
+{
+  "session_id": "xiaomiao-unified"
+}
+```
+
+这会让网页、桌面 bridge 和 QQ 普通 AI 回复共享同一个 Agent 上下文。命令型 QQ 功能、权限管理、生图、撤回和配置类命令仍由 `xiaomiao` 本地逻辑处理。
+
+如果 `nanobot serve` 未启动，`xiaomiao` bridge 会返回明确 HTTP 502 错误；`stage-web` 会把错误写入聊天历史，不会静默回退到 AuBot provider。
+
 ## 行为
 
 - 会话隔离：在请求体中传入 `"session_id"` 可隔离对话；省略时使用共享默认会话（`api:default`）。

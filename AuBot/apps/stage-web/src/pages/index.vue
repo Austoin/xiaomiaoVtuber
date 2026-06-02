@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import type { ChatProvider } from '@xsai-ext/providers/utils'
-
+import { errorMessageFrom } from '@moeru/std'
 import Header from '@proj-airi/stage-layouts/components/Layouts/Header.vue'
 import InteractiveArea from '@proj-airi/stage-layouts/components/Layouts/InteractiveArea.vue'
 import MobileHeader from '@proj-airi/stage-layouts/components/Layouts/MobileHeader.vue'
 import MobileInteractiveArea from '@proj-airi/stage-layouts/components/Layouts/MobileInteractiveArea.vue'
+import { appendXiaomiaoBridgeError, appendXiaomiaoBridgeExchange, requestXiaomiaoBridgeReply } from '@proj-airi/stage-layouts/xiaomiao-bridge'
 import workletUrl from '@proj-airi/stage-ui/workers/vad/process.worklet?worker&url'
 
 import { BackgroundProvider } from '@proj-airi/stage-layouts/components/Backgrounds'
@@ -14,11 +14,9 @@ import { HoloCoupon } from '@proj-airi/stage-ui/components'
 import { WidgetStage } from '@proj-airi/stage-ui/components/scenes'
 import { useAudioRecorder } from '@proj-airi/stage-ui/composables/audio/audio-recorder'
 import { useVAD } from '@proj-airi/stage-ui/stores/ai/models/vad'
-import { useChatOrchestratorStore } from '@proj-airi/stage-ui/stores/chat'
+import { useChatSessionStore } from '@proj-airi/stage-ui/stores/chat/session-store'
 import { useLive2d } from '@proj-airi/stage-ui/stores/live2d'
-import { useConsciousnessStore } from '@proj-airi/stage-ui/stores/modules/consciousness'
 import { useHearingSpeechInputPipeline } from '@proj-airi/stage-ui/stores/modules/hearing'
-import { useProvidersStore } from '@proj-airi/stage-ui/stores/providers'
 import { useSettingsAudioDevice } from '@proj-airi/stage-ui/stores/settings'
 import { breakpointsTailwind, useBreakpoints, useMouse } from '@vueuse/core'
 import { storeToRefs } from 'pinia'
@@ -49,10 +47,7 @@ const { startRecord, stopRecord, onStopRecord } = useAudioRecorder(stream)
 const hearingPipeline = useHearingSpeechInputPipeline()
 const { transcribeForRecording } = hearingPipeline
 const { supportsStreamInput } = storeToRefs(hearingPipeline)
-const providersStore = useProvidersStore()
-const consciousnessStore = useConsciousnessStore()
-const { activeProvider: activeChatProvider, activeModel: activeChatModel } = storeToRefs(consciousnessStore)
-const chatStore = useChatOrchestratorStore()
+const chatSession = useChatSessionStore()
 
 const shouldUseStreamInput = computed(() => supportsStreamInput.value && !!stream.value)
 
@@ -69,6 +64,25 @@ const {
 
 let stopOnStopRecord: (() => void) | undefined
 
+function activeMessages() {
+  return chatSession.getSessionMessages(chatSession.activeSessionId)
+}
+
+function appendBridgeError(text: string, error: unknown) {
+  chatSession.setSessionMessages(
+    chatSession.activeSessionId,
+    appendXiaomiaoBridgeError(activeMessages(), text, errorMessageFrom(error) ?? 'XiaoMiao bridge request failed'),
+  )
+}
+
+async function sendViaXiaomiaoBridge(text: string) {
+  const replyText = await requestXiaomiaoBridgeReply({ text })
+  chatSession.setSessionMessages(
+    chatSession.activeSessionId,
+    appendXiaomiaoBridgeExchange(activeMessages(), text, replyText),
+  )
+}
+
 async function startAudioInteraction() {
   try {
     await initVAD()
@@ -82,14 +96,11 @@ async function startAudioInteraction() {
         return
 
       try {
-        const provider = await providersStore.getProviderInstance(activeChatProvider.value)
-        if (!provider || !activeChatModel.value)
-          return
-
-        await chatStore.ingest(text, { model: activeChatModel.value, chatProvider: provider as ChatProvider })
+        await sendViaXiaomiaoBridge(text)
       }
       catch (err) {
         console.error('Failed to send chat from voice:', err)
+        appendBridgeError(text, err)
       }
     })
   }

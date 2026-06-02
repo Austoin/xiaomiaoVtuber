@@ -125,7 +125,17 @@ def start_desktop_bridge_server(
             payload = json.loads(self.rfile.read(content_length) or b"{}")
             user_id = int(self.headers.get("X-XiaoMiao-User-Id", str(default_user_id)))
             message_text = extract_last_user_text(payload.get("messages", []))
-            reply_text = reply_callback(user_id, message_text)
+            try:
+                reply_text = reply_callback(user_id, message_text)
+            except Exception as exc:
+                self._write_json(
+                    502,
+                    {
+                        "error": "reply_failed",
+                        "message": str(exc),
+                    },
+                )
+                return
             publish_desktop_state(user_id, reply_text)
             self._write_json(
                 200, build_chat_response(payload.get("model") or model_name, reply_text)

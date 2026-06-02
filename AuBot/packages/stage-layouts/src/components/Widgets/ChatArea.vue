@@ -2,7 +2,7 @@
 import type { ChatProvider } from '@xsai-ext/providers/utils'
 
 import { errorMessageFrom } from '@moeru/std'
-import { isStageTamagotchi } from '@proj-airi/stage-shared'
+import { isStageTamagotchi, isStageWeb } from '@proj-airi/stage-shared'
 import { useAudioAnalyzer } from '@proj-airi/stage-ui/composables'
 import { useAudioContext } from '@proj-airi/stage-ui/stores/audio'
 import { useChatOrchestratorStore } from '@proj-airi/stage-ui/stores/chat'
@@ -18,6 +18,7 @@ import { DropdownMenuContent, DropdownMenuItem, DropdownMenuPortal, DropdownMenu
 import { computed, nextTick, onUnmounted, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 
+import { appendXiaomiaoBridgeError, appendXiaomiaoBridgeExchange, requestXiaomiaoBridgeReply } from '../../xiaomiao-bridge'
 import IndicatorMicVolume from './IndicatorMicVolume.vue'
 
 const messageInput = ref('')
@@ -40,7 +41,6 @@ const { enabled, selectedAudioInput, stream, audioInputs } = storeToRefs(useSett
 const chatOrchestrator = useChatOrchestratorStore()
 const chatSession = useChatSessionStore()
 const { ingest, onAfterMessageComposed } = chatOrchestrator
-const { messages } = storeToRefs(chatSession)
 const { audioContext } = useAudioContext()
 const { t } = useI18n()
 const sendModeLabels = computed<Record<SendMode, string>>(() => ({
@@ -48,6 +48,38 @@ const sendModeLabels = computed<Record<SendMode, string>>(() => ({
   'ctrl-enter': t('stage.send-mode.ctrl-enter'),
   'double-enter': t('stage.send-mode.double-enter'),
 }))
+
+function activeMessages() {
+  return chatSession.getSessionMessages(chatSession.activeSessionId)
+}
+
+function appendBridgeError(text: string, error: unknown) {
+  chatSession.setSessionMessages(
+    chatSession.activeSessionId,
+    appendXiaomiaoBridgeError(activeMessages(), text, errorMessageFrom(error) ?? 'XiaoMiao bridge request failed'),
+  )
+}
+
+async function sendChatText(text: string) {
+  if (isStageWeb()) {
+    const replyText = await requestXiaomiaoBridgeReply({
+      text,
+      model: activeModel.value,
+    })
+    chatSession.setSessionMessages(
+      chatSession.activeSessionId,
+      appendXiaomiaoBridgeExchange(activeMessages(), text, replyText),
+    )
+    return
+  }
+
+  const providerConfig = providersStore.getProviderConfig(activeProvider.value)
+  await ingest(text, {
+    chatProvider: await providersStore.getProviderInstance(activeProvider.value) as ChatProvider,
+    model: activeModel.value,
+    providerConfig,
+  })
+}
 
 // Transcription pipeline
 const hearingStore = useHearingStore()
@@ -99,15 +131,11 @@ async function debouncedAutoSend(text: string) {
         // the next SentenceEnd during streaming does not append to the message we already committed.
         messageInput.value = ''
         pendingAutoSendText.value = ''
-        const providerConfig = providersStore.getProviderConfig(activeProvider.value)
-        await ingest(textToSend, {
-          chatProvider: await providersStore.getProviderInstance(activeProvider.value) as ChatProvider,
-          model: activeModel.value,
-          providerConfig,
-        })
+        await sendChatText(textToSend)
       }
       catch (err) {
         console.error('[ChatArea] Auto-send error:', err)
+        appendBridgeError(textToSend, err)
         // Preserve any transcription that arrived while ingest was in flight (see PR review).
         messageInput.value = [textToSend, messageInput.value.trim()].filter(Boolean).join(' ')
         pendingAutoSendText.value = [textToSend, pendingAutoSendText.value.trim()].filter(Boolean).join(' ')
@@ -126,23 +154,11 @@ async function handleSend() {
   messageInput.value = ''
 
   try {
-    const providerConfig = providersStore.getProviderConfig(activeProvider.value)
-
-    await ingest(textToSend, {
-      chatProvider: await providersStore.getProviderInstance(activeProvider.value) as ChatProvider,
-      model: activeModel.value,
-      providerConfig,
-    })
+    await sendChatText(textToSend)
   }
   catch (error) {
     messageInput.value = textToSend
-    chatSession.setSessionMessages(chatSession.activeSessionId, [
-      ...messages.value.slice(0, -1),
-      {
-        role: 'error',
-        content: errorMessageFrom(error) ?? 'Failed to send message',
-      },
-    ])
+    appendBridgeError(textToSend, error)
   }
 }
 
@@ -392,16 +408,12 @@ async function stopListening() {
       const textToSend = pendingAutoSendText.value.trim()
       pendingAutoSendText.value = ''
       try {
-        const providerConfig = providersStore.getProviderConfig(activeProvider.value)
-        await ingest(textToSend, {
-          chatProvider: await providersStore.getProviderInstance(activeProvider.value) as ChatProvider,
-          model: activeModel.value,
-          providerConfig,
-        })
+        await sendChatText(textToSend)
         messageInput.value = ''
       }
       catch (err) {
         console.error('[ChatArea] Auto-send error on stop:', err)
+        appendBridgeError(textToSend, err)
       }
     }
 

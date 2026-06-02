@@ -26,6 +26,11 @@ import io
 import threading
 import paramiko
 from console_output import configure_console_output
+from agent_backend import (
+    NanobotAgentRequest,
+    load_nanobot_agent_config,
+    reply_with_nanobot_agent,
+)
 from desktop_bridge import publish_desktop_state, start_desktop_bridge_server
 
 # import framework
@@ -186,41 +191,23 @@ def select_persona_prompt(user_id: int, event_user: str) -> str:
 
 
 def generate_desktop_reply(user_id: int, text: str) -> str:
-    global model
-    global sys_prompt
-
-    desktop_user_name = f"桌面用户{user_id}"
-    sys_prompt = select_persona_prompt(user_id, desktop_user_name)
-
     with bridge_lock:
-        model = genai.GenerativeModel(
-            model_name=default_model,
-            generation_config=generation_config,
-            system_instruction=sys_prompt or None,
-        )
-        message = Roles.User(Parts.Text(text))
-        try:
-            result = cmc.get_context(user_id, 0).gen_content(message).rstrip("\n")
-            publish_desktop_state(user_id, result)
-            return result
-        except Exception as primary_error:
-            print(f"[桌面桥接][主模型失败] {default_model}: {primary_error}")
-            genai.configure(api_key=fallback_key, base_url=gemini_base_url)
-            model = genai.GenerativeModel(
-                model_name=fallback_model,
-                generation_config=generation_config,
-                system_instruction=sys_prompt or None,
-            )
-            cmc.groups.clear()
-            result = cmc.get_context(user_id, 0).gen_content(message).rstrip("\n")
-            genai.configure(api_key=key, base_url=gemini_base_url)
-            model = genai.GenerativeModel(
-                model_name=default_model,
-                generation_config=generation_config,
-                system_instruction=sys_prompt or None,
-            )
-            publish_desktop_state(user_id, result)
-            return result
+        result = generate_agent_reply(user_id, "web", "stage-web", text)
+        publish_desktop_state(user_id, result)
+        return result
+
+
+def generate_agent_reply(user_id: int, channel: str, chat_id: str, text: str) -> str:
+    agent_config = load_nanobot_agent_config(Configurator.cm.get_cfg().others)
+    return reply_with_nanobot_agent(
+        agent_config,
+        NanobotAgentRequest(
+            user_id=user_id,
+            channel=channel,
+            chat_id=chat_id,
+            text=text,
+        ),
+    ).rstrip("\n")
 
 
 def start_desktop_bridge() -> None:
@@ -2216,32 +2203,12 @@ Memory Usage：{str(system_info["memory_usage_percentage"]) + "%"}"""
                                         new.append(Parts.Text("[表情包下载失败]"))
 
                             new = Roles.User(*new)
-                            try:
-                                result = (
-                                    cmc.get_context(event.user_id, event.group_id)
-                                    .gen_content(new)
-                                    .rstrip("\n")
-                                )
-                            except Exception as primary_error:
-                                print(f"[主模型失败] {default_model}: {primary_error}")
-                                print(f"[切换候补模型] {fallback_model}")
-                                # 使用候补模型重试
-                                genai.configure(
-                                    api_key=fallback_key, base_url=gemini_base_url
-                                )
-                                model = genai.GenerativeModel(
-                                    model_name=fallback_model,
-                                    generation_config=generation_config,
-                                    system_instruction=sys_prompt or None,
-                                )
-                                cmc.groups.clear()  # 清空上下文重新创建
-                                result = (
-                                    cmc.get_context(event.user_id, event.group_id)
-                                    .gen_content(new)
-                                    .rstrip("\n")
-                                )
-                                # 恢复主模型配置
-                                genai.configure(api_key=key, base_url=gemini_base_url)
+                            result = generate_agent_reply(
+                                event.user_id,
+                                "qq-group",
+                                str(event.group_id),
+                                order or user_message,
+                            )
 
                         case "Normal":
                             search = SearchOnline(
@@ -2828,32 +2795,12 @@ Made by SR Studio
                                     new.append(Parts.Text("[表情包下载失败]"))
 
                         new = Roles.User(*new)
-                        try:
-                            result = (
-                                cmc.get_context(event.user_id, 0)
-                                .gen_content(new)
-                                .rstrip("\n")
-                            )
-                        except Exception as primary_error:
-                            print(
-                                f"[私聊][主模型失败] {default_model}: {primary_error}"
-                            )
-                            print(f"[私聊][切换候补模型] {fallback_model}")
-                            genai.configure(
-                                api_key=fallback_key, base_url=gemini_base_url
-                            )
-                            model = genai.GenerativeModel(
-                                model_name=fallback_model,
-                                generation_config=generation_config,
-                                system_instruction=sys_prompt or None,
-                            )
-                            cmc.groups.clear()
-                            result = (
-                                cmc.get_context(event.user_id, 0)
-                                .gen_content(new)
-                                .rstrip("\n")
-                            )
-                            genai.configure(api_key=key, base_url=gemini_base_url)
+                        result = generate_agent_reply(
+                            event.user_id,
+                            "qq-private",
+                            str(event.user_id),
+                            order or user_message,
+                        )
 
                     case "Normal" | "Net":
                         search = SearchOnline(

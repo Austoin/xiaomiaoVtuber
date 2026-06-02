@@ -1,12 +1,12 @@
 # xiaomiaoVirtual 启动指南
 
-本文说明如何在本机启动 `xiaomiaoVirtual` 的三个核心部分：
+本文说明如何在本机启动 `xiaomiaoVirtual` 的三个核心部分，并跑通网页、桌面端和 QQ 普通 AI 回复的统一 Agent 链路：
 
 1. `xiaomiao`：QQ Bot 主体。
 2. `AuBot`：Vtuber 桌面端。
 3. `nanobot`：独立 Agent 框架，可提供 CLI、gateway、OpenAI 兼容 API 和 WebUI。
 
-推荐启动顺序：先启动 NapCat 和 `xiaomiao`，再启动 `AuBot` 桌面端；如需 Agent 能力，再单独启动 `nanobot`。
+推荐启动顺序：先启动 `nanobot serve`，再启动 NapCat 和 `xiaomiao`，最后启动 `AuBot` Web 或桌面端。
 
 ## 运行前准备
 
@@ -85,6 +85,114 @@ bun install
 
 这些文件已被根 `.gitignore` 忽略，不应提交到仓库。
 
+`xiaomiao/config.json` 的 `Others.nanobot_agent` 用于控制统一 Agent backend。推荐本地配置形态如下，真实配置以你的本机文件为准：
+
+```json
+{
+  "nanobot_agent": {
+    "enabled": true,
+    "base_url": "http://127.0.0.1:8900/v1/chat/completions",
+    "model": "deepseek-chat",
+    "session_id": "xiaomiao-unified",
+    "timeout_seconds": 30
+  }
+}
+```
+
+如果缺省该对象，代码默认启用 `http://127.0.0.1:8900/v1/chat/completions` 和 `xiaomiao-unified` session。
+
+## 完整联动启动顺序
+
+完整链路如下：
+
+```text
+stage-web 输入
+    ↓
+xiaomiao bridge :5519
+    ↓
+nanobot API :8900
+    ↓
+nanobot Agent
+    ↓
+stage-web 聊天历史
+
+QQ 群/私聊普通 AI 回复
+    ↓
+xiaomiao main.py
+    ↓
+agent_backend.py
+    ↓
+nanobot API :8900
+    ↓
+QQ 回复 + bridge state
+```
+
+需要同时打开 3 到 4 个终端。
+
+### 终端一：启动 nanobot OpenAI 兼容 API
+
+```powershell
+cd F:\xiaomiaoVirtual
+conda activate xiaomiao
+nanobot serve --config F:\xiaomiaoVirtual\nanobot\.nanobot\config.json
+```
+
+验证：
+
+```text
+http://127.0.0.1:8900/health
+```
+
+### 终端二：启动 NapCat
+
+启动 NapCat 后，确认 OneBot WebSocket 监听在：
+
+```text
+127.0.0.1:5004
+```
+
+如果使用本地一键包，可以按 `docs/xiaomiao/README.md` 中的 NapCat 启动方式执行。
+
+### 终端三：启动 xiaomiao
+
+```powershell
+cd F:\xiaomiaoVirtual\xiaomiao
+conda activate xiaomiao
+python main.py
+```
+
+看到下面输出表示本地 bridge 已先启动：
+
+```text
+[桌面桥接] 已启动: http://127.0.0.1:5519/v1/chat/completions
+```
+
+注意：`main.py` 会在启动 bridge 后继续执行 `Listener.run()` 连接 OneBot。如果 NapCat 未启动、端口不一致或 WebSocket 被关闭，会出现 `WebSocketConnectionClosedException`，此时主进程退出，bridge 也会随进程结束。这是完整 QQ 联动入口的预期依赖关系，不是 nanobot 或 stage-web 本身报错。
+
+### 终端四：启动 AuBot Web 或桌面端
+
+Web 版：
+
+```powershell
+cd F:\xiaomiaoVirtual\AuBot
+pnpm dev:web
+```
+
+浏览器打开 Vite 输出的地址，通常是：
+
+```text
+http://127.0.0.1:5173/
+```
+
+Electron 桌面端：
+
+```powershell
+cd F:\xiaomiaoVirtual\AuBot
+pnpm dev:tamagotchi
+```
+
+第一次打开 `stage-web` 如果出现 AIRI 欢迎弹窗，先关闭或跳过弹窗，再输入消息验证 bridge。
+
 ## 启动 xiaomiao QQ Bot
 
 进入 `xiaomiao`：
@@ -108,6 +216,8 @@ conda activate xiaomiao
 python main.py
 ```
 
+如果只看到 bridge 启动行，随后出现 OneBot WebSocket 断开错误，说明 NapCat 侧未保持连接。请先修正 NapCat 登录状态和 `config.json` 的 `Connection.host` / `Connection.port`，再重新运行。
+
 ### 方式二：使用脚本启动
 
 如果本地存在 NapCat 一键包，可直接运行：
@@ -122,7 +232,7 @@ start.bat
 python main.py
 ```
 
-## 启动 AuBot 桌面端
+## 启动 AuBot Web / 桌面端
 
 新开一个 PowerShell 窗口，进入 `AuBot`：
 
@@ -130,13 +240,21 @@ python main.py
 cd F:\xiaomiaoVirtual\AuBot
 ```
 
+启动 Web 版：
+
+```powershell
+pnpm dev:web
+```
+
+`stage-web` 的文本输入、移动端输入和页面级录音转文字入口都会发送到 `xiaomiao` bridge。bridge 不可用时，聊天历史中会出现明确 error 消息，不会静默回退到 AuBot provider。
+
 启动桌面端：
 
 ```powershell
 pnpm dev:tamagotchi
 ```
 
-该命令会启动 `apps/stage-tamagotchi` 的 Electron 开发模式。
+该命令会启动 `apps/stage-tamagotchi` 的 Electron 开发模式。桌面端会读取 `xiaomiao` bridge state，将回复同步到字幕、聊天历史、TTS 和 Live2D 口型。
 
 ## 启动 nanobot
 
@@ -269,7 +387,7 @@ nanobot status
 
 ### 4. 启动 gateway
 
-如果需要聊天通道、WebSocket、OpenAI 兼容 API 或 WebUI 接入，启动 gateway：
+如果需要聊天通道、WebSocket 或 WebUI 接入，启动 gateway：
 
 ```powershell
 conda activate xiaomiao
@@ -288,14 +406,15 @@ cd F:\xiaomiaoVirtual\nanobot\webui
 bun run dev
 ```
 
-如需使用 OpenAI 兼容 API，可安装 API extra 后运行：
+当前联动链路需要使用 OpenAI 兼容 API，运行：
 
 ```powershell
 conda activate xiaomiao
 cd F:\xiaomiaoVirtual\nanobot
-pip install "nanobot-ai[api]"
 nanobot serve --config F:\xiaomiaoVirtual\nanobot\.nanobot\config.json
 ```
+
+如果 `nanobot` 命令来自源码安装，通常不需要重复执行 `pip install "nanobot-ai[api]"`；缺少 API extra 时再安装。
 
 ## 默认端口
 
@@ -327,7 +446,7 @@ conda run -n xiaomiao python -m unittest discover -s test/xiaomiao -p "test_*.py
 预期结果：
 
 ```text
-Ran 12 tests
+Ran 20 tests
 OK
 ```
 
@@ -357,10 +476,26 @@ http://127.0.0.1:5519/v1/xiaomiao/status
 ```powershell
 cd F:\xiaomiaoVirtual\nanobot
 conda activate xiaomiao
-nanobot agent -m "你好，用一句话回复我。" --config F:\xiaomiaoVirtual\nanobot\.nanobot\config.json
+nanobot serve --config F:\xiaomiaoVirtual\nanobot\.nanobot\config.json
 ```
 
-如果需要验证 gateway，可运行：
+然后访问：
+
+```text
+http://127.0.0.1:8900/health
+```
+
+也可以请求 OpenAI 兼容聊天接口：
+
+```powershell
+Invoke-RestMethod `
+  -Uri http://127.0.0.1:8900/v1/chat/completions `
+  -Method Post `
+  -ContentType 'application/json' `
+  -Body '{"messages":[{"role":"user","content":"你好，用一句话回复我。"}],"session_id":"xiaomiao-unified"}'
+```
+
+如果需要验证 gateway，可另行运行：
 
 ```powershell
 conda activate xiaomiao
@@ -381,15 +516,40 @@ nanobot gateway --config F:\xiaomiaoVirtual\nanobot\.nanobot\config.json
 
 同时检查 `xiaomiao/config.json` 中的连接配置是否指向该地址。
 
+如果控制台先输出了：
+
+```text
+[桌面桥接] 已启动: http://127.0.0.1:5519/v1/chat/completions
+```
+
+随后报：
+
+```text
+WebSocketConnectionClosedException: Connection to remote host was lost.
+```
+
+说明 `python main.py` 已启动 bridge，但后续连接 OneBot 失败。先启动或修复 NapCat，再重新运行 `python main.py`。
+
 ### AuBot 无法同步小喵回复
 
-先确认 `xiaomiao` 已启动，并检查桥接状态接口：
+先确认 `nanobot serve` 和 `xiaomiao` 都已启动，并检查桥接状态接口：
 
 ```text
 http://127.0.0.1:5519/v1/xiaomiao/status
 ```
 
-如果接口不可访问，优先检查 `python main.py` 是否正常运行。
+如果接口不可访问，优先检查 `python main.py` 是否仍在运行。如果接口可访问但聊天返回 error，再检查 `http://127.0.0.1:8900/health`。
+
+### stage-web 发送后出现 bridge 错误
+
+`stage-web` 当前必须走 `xiaomiao` bridge。常见原因：
+
+- `python main.py` 因 NapCat 连接失败退出，导致 `5519` 不存在。
+- `nanobot serve` 未启动，导致 bridge callback 返回 HTTP 502。
+- `Others.nanobot_agent.base_url` 与实际 nanobot API 地址不一致。
+- nanobot 模型回复超过 `timeout_seconds`。
+
+该路径不会静默回退到 AuBot provider，错误会显示在聊天历史中。
 
 ### pnpm install 很慢或失败
 
@@ -443,12 +603,29 @@ nanobot gateway --config F:\xiaomiaoVirtual\nanobot\.nanobot\config.json
 终端一：
 
 ```powershell
+cd F:\xiaomiaoVirtual
+conda activate xiaomiao
+nanobot serve --config F:\xiaomiaoVirtual\nanobot\.nanobot\config.json
+```
+
+终端二：启动 NapCat，确认 OneBot WebSocket 是 `127.0.0.1:5004`。
+
+终端三：
+
+```powershell
 cd F:\xiaomiaoVirtual\xiaomiao
 conda activate xiaomiao
 python main.py
 ```
 
-终端二：
+终端四，Web 版：
+
+```powershell
+cd F:\xiaomiaoVirtual\AuBot
+pnpm dev:web
+```
+
+或终端四，桌面端：
 
 ```powershell
 cd F:\xiaomiaoVirtual\AuBot

@@ -59,6 +59,55 @@ cd /d F:\xiaomiaoVirtual\xiaomiao\NapCat.Shell.Windows.OneKey\NapCat.44498.Shell
 python main.py
 ```
 
+启动成功后会先看到本地 bridge：
+
+```text
+[桌面桥接] 已启动: http://127.0.0.1:5519/v1/chat/completions
+```
+
+随后 `main.py` 会继续连接 NapCat / OneBot。如果 NapCat 未启动、端口不一致或 WebSocket 被关闭，程序会报 `WebSocketConnectionClosedException` 并退出，bridge 也会随进程结束。出现这种情况时，先修复 NapCat 登录状态和 OneBot WebSocket，再重新运行 `python main.py`。
+
+### 与 nanobot / AuBot 联动启动
+
+当前 QQ 群/私聊普通 AI 回复、`AuBot stage-web` 输入和桌面 bridge 都统一进入 nanobot Agent。完整联动需要按顺序启动：
+
+1. 启动 nanobot OpenAI 兼容 API：
+
+   ```powershell
+   cd F:\xiaomiaoVirtual
+   conda activate xiaomiao
+   nanobot serve --config F:\xiaomiaoVirtual\nanobot\.nanobot\config.json
+   ```
+
+2. 启动 NapCat，并确认 OneBot WebSocket 是 `127.0.0.1:5004`。
+
+3. 启动小喵：
+
+   ```powershell
+   cd F:\xiaomiaoVirtual\xiaomiao
+   conda activate xiaomiao
+   python main.py
+   ```
+
+4. 启动 AuBot Web 或桌面端：
+
+   ```powershell
+   cd F:\xiaomiaoVirtual\AuBot
+   pnpm dev:web
+   # 或
+   pnpm dev:tamagotchi
+   ```
+
+联动端口：
+
+```text
+5004  NapCat OneBot WebSocket
+5519  xiaomiao desktop bridge
+8900  nanobot OpenAI-compatible API
+```
+
+`stage-web` 必须走 `xiaomiao` bridge。bridge 或 nanobot 不可用时，网页聊天历史会显示明确错误，不会静默回退到 AuBot provider。
+
 ---
 
 ## Linux 服务器部署
@@ -455,6 +504,36 @@ class prerequisite:
 }
 ```
 
+### nanobot Agent backend
+
+普通 AI 回复主路径现在通过 `Others.nanobot_agent` 接入 nanobot：
+
+```json
+{
+    "Others": {
+        "nanobot_agent": {
+            "enabled": true,
+            "base_url": "http://127.0.0.1:8900/v1/chat/completions",
+            "model": "deepseek-chat",
+            "session_id": "xiaomiao-unified",
+            "timeout_seconds": 30
+        }
+    }
+}
+```
+
+字段说明：
+
+| 配置项 | 说明 |
+|--------|------|
+| `enabled` | 是否启用统一 Agent backend，默认启用 |
+| `base_url` | nanobot OpenAI 兼容聊天接口 |
+| `model` | 可选模型名，为空时由 nanobot 默认模型决定 |
+| `session_id` | 统一会话 ID，默认 `xiaomiao-unified` |
+| `timeout_seconds` | 请求超时时间，默认 `30` |
+
+命令型功能、权限管理、生图、撤回、配置类命令和 `SearchOnline(...)` 分支仍保留原逻辑。
+
 **模型配置说明：**
 
 | 配置项 | 说明 |
@@ -688,13 +767,22 @@ WebSocket 服务器配置示例：
 - 检查 Python 程序是否正常运行
 - 确认 `config.json` 中的端口与 NapCat 配置一致
 
+如果控制台先输出 bridge 地址后报 `WebSocketConnectionClosedException`，说明本地 bridge 已启动过，但 `Listener.run()` 连接 OneBot 失败。修复 NapCat 后重新运行即可。
+
 ### 2. API 调用失败
 
 - 检查 API Key 是否正确
 - 检查 API 地址是否可访问
 - 查看控制台错误信息
 
-### 3. 权限不足
+### 3. nanobot Agent 调用失败
+
+- 检查 `nanobot serve --config F:\xiaomiaoVirtual\nanobot\.nanobot\config.json` 是否正在运行
+- 检查 `http://127.0.0.1:8900/health`
+- 检查 `Others.nanobot_agent.base_url` 是否指向 `http://127.0.0.1:8900/v1/chat/completions`
+- 如果返回 HTTP 502，查看错误内容；当前实现会显式暴露 nanobot HTTP 错误、空回复和超时
+
+### 4. 权限不足
 
 - 将 QQ 号添加到 `runtime/Super_User.ini` 或 `runtime/Manage_User.ini`
 - 确保机器人在群内有管理员权限（群管理功能）

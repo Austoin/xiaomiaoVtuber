@@ -18,7 +18,7 @@
 | 多实例 | [`multiple-instances.md`](./multiple-instances.md) | 使用独立配置和工作区运行多个 Bot |
 | CLI 参考 | [`cli-reference.md`](./cli-reference.md) | 核心 CLI 命令和常用入口 |
 | 聊天内命令 | [`chat-commands.md`](./chat-commands.md) | Slash 命令和周期任务行为 |
-| OpenAI 兼容 API | [`openai-api.md`](./openai-api.md) | 本地 API 端点、请求格式和文件上传 |
+| OpenAI 兼容 API | [`openai-api.md`](./openai-api.md) | 本地 API 端点、请求格式、文件上传和 xiaomiaoVirtual 集成 |
 | 部署 | [`deployment.md`](./deployment.md) | Docker、Linux service 和 macOS LaunchAgent 配置 |
 
 ## 高级文档
