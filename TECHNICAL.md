@@ -192,10 +192,11 @@ AuBot Vtuber 表现层
 http://127.0.0.1:5519
 ```
 
-提供三个接口：
+提供四个接口：
 
 ```text
 GET  /v1/models
+GET  /v1/xiaomiao/status
 GET  /v1/xiaomiao/state?user_id=<qq>
 POST /v1/chat/completions
 ```
@@ -203,6 +204,7 @@ POST /v1/chat/completions
 接口作用：
 
 - `/v1/models`：返回当前桥接模型名称。
+- `/v1/xiaomiao/status`：返回桥接服务运行状态、模型名称和默认用户 ID。
 - `/v1/xiaomiao/state`：返回某个用户最近一次机器人回复。
 - `/v1/chat/completions`：OpenAI 兼容聊天接口，让 AuBot 可主动向小喵发送文本并获得回复。
 
