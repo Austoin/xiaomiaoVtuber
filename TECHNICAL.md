@@ -5,7 +5,7 @@
 `xiaomiaoVirtual` 是一个 QQ 机器人、Vtuber 桌面角色和轻量 Agent 框架的融合项目。当前由三个子系统组成：
 
 1. `xiaomiao`：Python QQ 机器人，负责 QQ 消息、命令、人设、模型调用、图片能力、群管理和本地桥接。
-2. `AuBot`：Project AIRI 风格的 Electron/Vue Vtuber 工程，负责桌面角色、Live2D/VRM、字幕、TTS 和口型同步。
+2. `AuBot`：`xiaomiaoVirtual` 的 Electron/Vue Vtuber 表现层，负责 Web/桌面角色、Live2D/VRM、字幕、TTS 和口型同步。
 3. `nanobot`：Python Agent 框架，负责 Agent Loop、通道抽象、工具调用、记忆、会话管理、OpenAI 兼容 API 和 WebUI。
 
 当前项目已经打通统一 Agent 闭环：`AuBot stage-web`、`xiaomiao` 桌面 bridge 和 QQ 群/私聊普通 AI 回复都会进入同一个 `nanobot` Agent 能力层。命令型 QQ 功能仍由 `xiaomiao` 本地处理，AuBot 继续承担 Web/桌面 Vtuber 表现层。
@@ -74,7 +74,7 @@ xiaomiao/
 
 ## 4. AuBot 子系统
 
-`AuBot` 是多端 Vtuber/AIRI monorepo。当前与小喵联动的主要入口包括 `apps/stage-web` 和 `apps/stage-tamagotchi`。
+`AuBot` 是多端 Vtuber monorepo。当前用户可见品牌为 `xiaomiaoVirtual`；内部包名、目录和 `@proj-airi/*` 标识保留兼容。当前与小喵联动的主要入口包括 `apps/stage-web` 和 `apps/stage-tamagotchi`。
 
 主要职责：
 
@@ -226,12 +226,15 @@ bridge 不可用、HTTP 非 2xx 或空回复时，stage-web 会把 user/error �
 http://127.0.0.1:5519
 ```
 
-提供四个接口：
+提供核心接口：
 
 ```text
 GET  /v1/models
 GET  /v1/xiaomiao/status
+GET  /v1/xiaomiao/config
 GET  /v1/xiaomiao/state?user_id=<qq>
+GET  /v1/xiaomiao/events?after=<id>&user_id=<qq>
+POST /v1/xiaomiao/config
 POST /v1/chat/completions
 ```
 
@@ -239,7 +242,9 @@ POST /v1/chat/completions
 
 - `/v1/models`：返回当前桥接模型名称。
 - `/v1/xiaomiao/status`：返回桥接服务运行状态、模型名称和默认用户 ID。
+- `/v1/xiaomiao/config`：读取或更新主目录 `config.json` 的 `nanobot.providers.custom` 配置；GET 不返回明文 API Key。
 - `/v1/xiaomiao/state`：返回某个用户最近一次机器人回复。
+- `/v1/xiaomiao/events`：返回 bridge 记录的 user/assistant 事件，供 Web/桌面端同步聊天历史。
 - `/v1/chat/completions`：OpenAI 兼容聊天接口，让 AuBot 可主动向小喵发送文本并获得回复。
 
 状态保存方式目前是内存全局字典：
@@ -289,23 +294,27 @@ bridge reply
 
 ## 9. 配置与端口
 
-主配置文件：
+统一模型配置文件：
 
 ```text
-xiaomiao/config.json
+F:\xiaomiaoVirtual\config.json
 ```
 
 关键配置：
 
+- `nanobot.provider`：当前统一使用 `custom`。
+- `nanobot.model`：最终生效并返回给调用方的模型名。
+- `nanobot.providers.custom.apiKey`：第三方 OpenAI-compatible 中转站密钥。
+- `nanobot.providers.custom.baseUrl`：第三方中转站 `/v1` 地址。
+- `nanobot_agent.enabled`：是否启用统一 nanobot Agent backend。
+- `nanobot_agent.base_url`：默认 `http://127.0.0.1:8900/v1/chat/completions`。
+- `nanobot_agent.model`：可选请求模型；默认留空，由 `nanobot.model` 决定。
+- `nanobot_agent.session_id`：默认 `xiaomiao-unified`。
+- `nanobot_agent.timeout_seconds`：默认 `30`。
+
+`xiaomiao/config.json` 仍用于 QQ Bot 本地运行配置：
+
 - `Connection.host` / `Connection.port`：NapCat OneBot 地址。
-- `Others.default_model`：默认模型。
-- `Others.fallback_model`：主模型失败后的备用模型。
-- `Others.gemini_base_url` / `Others.openai_base_url`：OpenAI 兼容 API 地址。
-- `Others.nanobot_agent.enabled`：是否启用统一 nanobot Agent backend。
-- `Others.nanobot_agent.base_url`：默认 `http://127.0.0.1:8900/v1/chat/completions`。
-- `Others.nanobot_agent.model`：可选模型名；为空时由 nanobot API 默认模型决定。
-- `Others.nanobot_agent.session_id`：默认 `xiaomiao-unified`。
-- `Others.nanobot_agent.timeout_seconds`：默认 `30`。
 - `Others.bot_name`：机器人中文名。
 - `Others.ROOT_User`：超级用户。
 - `Others.personas`：人设提示词。
@@ -332,20 +341,22 @@ pnpm typecheck        # 类型检查
 pnpm lint             # Lint 检查
 ```
 
-nanobot 常用命令：
+xiaomiaoAgent 常用命令：
 
 ```text
-nanobot onboard       # 初始化配置
-nanobot gateway       # 启动 gateway
-nanobot serve         # 启动 OpenAI 兼容 API，默认 127.0.0.1:8900
+xiaomiao onboard      # 初始化配置
+xiaomiao gateway      # 启动 gateway
+xiaomiao serve        # 启动 OpenAI 兼容 API，默认 127.0.0.1:8900
 cd webui && bun run dev
 ```
+
+旧 `nanobot` 命令入口仍保留兼容；新文档和用户提示统一使用 `xiaomiao`。
 
 ## 10. 工程风险
 
 ### 10.1 明文密钥
 
-`xiaomiao/config.json` 当前承担模型配置。真实 API Key 不应保存在可提交源码配置中，应迁移到 `.env`、本机私有配置或系统环境变量。
+主目录 `config.json` 当前承担统一模型配置，属于本机私有配置；仓库只保留 `config.example.json`。真实 API Key 不应写入可提交源码文件。
 
 ### 10.2 主程序职责过重
 
@@ -395,7 +406,7 @@ nanobot/webui/src/tests/
 后续融合测试应覆盖三类边界：
 
 - `xiaomiao` 调用 nanobot 工具或记忆服务时的失败隔离。
-- nanobot gateway/WebUI 离线时，小喵 QQ Bot 不受影响。
+- xiaomiaoAgent gateway/WebUI 离线时，小喵 QQ Bot 不受影响。
 - AuBot 能区分并展示来自 `xiaomiao` 和 nanobot 的统一事件。
 
 ## 12. 演进路线
