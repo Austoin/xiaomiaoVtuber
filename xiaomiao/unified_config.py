@@ -6,7 +6,7 @@ from urllib.parse import urlparse
 
 
 UNIFIED_CONFIG_ENV = "XIAOMIAO_UNIFIED_CONFIG"
-NANOBOT_SECTION = "nanobot"
+XIAOMIAO_AGENT_SECTION = "xiaomiaoAgent"
 CUSTOM_PROVIDER = "custom"
 
 
@@ -45,41 +45,41 @@ def merge_unified_config_section(
     return _merge_non_empty_values(local_config, root_config)
 
 
-def load_nanobot_config_status() -> dict[str, Any]:
+def load_xiaomiao_agent_config_status() -> dict[str, Any]:
     config = _load_config_or_empty(resolve_unified_config_path())
-    return _build_nanobot_config_status(config)
+    return _build_xiaomiao_agent_config_status(config)
 
 
-def save_nanobot_custom_config(update: dict[str, Any]) -> dict[str, Any]:
+def save_xiaomiao_agent_custom_config(update: dict[str, Any]) -> dict[str, Any]:
     api_key = _require_non_empty_text(update, "apiKey")
     base_url = _require_url_text(update, "baseUrl")
     model = _require_non_empty_text(update, "model")
     config_path = resolve_unified_config_path()
     config = _load_config_or_empty(config_path)
 
-    nanobot_config = _section_to_dict(
-        config.get(NANOBOT_SECTION, {}),
-        "config.json.nanobot",
+    xiaomiao_agent_config = _section_to_dict(
+        config.get(XIAOMIAO_AGENT_SECTION, {}),
+        "config.json.xiaomiaoAgent",
     )
     providers = _section_to_dict(
-        nanobot_config.get("providers", {}),
-        "config.json.nanobot.providers",
+        xiaomiao_agent_config.get("providers", {}),
+        "config.json.xiaomiaoAgent.providers",
     )
     custom_provider = _section_to_dict(
         providers.get(CUSTOM_PROVIDER, {}),
-        "config.json.nanobot.providers.custom",
+        "config.json.xiaomiaoAgent.providers.custom",
     )
 
     custom_provider["apiKey"] = api_key
     custom_provider["baseUrl"] = base_url
     providers[CUSTOM_PROVIDER] = custom_provider
-    nanobot_config["provider"] = CUSTOM_PROVIDER
-    nanobot_config["model"] = model
-    nanobot_config["providers"] = providers
-    config[NANOBOT_SECTION] = nanobot_config
+    xiaomiao_agent_config["provider"] = CUSTOM_PROVIDER
+    xiaomiao_agent_config["model"] = model
+    xiaomiao_agent_config["providers"] = providers
+    config[XIAOMIAO_AGENT_SECTION] = xiaomiao_agent_config
 
     _save_unified_config(config_path, config)
-    return _build_nanobot_config_status(config)
+    return _build_xiaomiao_agent_config_status(config)
 
 
 def _section_to_dict(value: Any, name: str) -> dict[str, Any]:
@@ -108,21 +108,21 @@ def _save_unified_config(config_path: Path, config: dict[str, Any]) -> None:
     config_path.write_text(f"{content}\n", encoding="utf-8")
 
 
-def _build_nanobot_config_status(config: dict[str, Any]) -> dict[str, Any]:
-    nanobot_config = _section_to_dict(
-        config.get(NANOBOT_SECTION, {}),
-        "config.json.nanobot",
+def _build_xiaomiao_agent_config_status(config: dict[str, Any]) -> dict[str, Any]:
+    xiaomiao_agent_config = _section_to_dict(
+        config.get(XIAOMIAO_AGENT_SECTION, {}),
+        "config.json.xiaomiaoAgent",
     )
-    provider = _text_or_empty(nanobot_config.get("provider"))
+    provider = _text_or_empty(xiaomiao_agent_config.get("provider"))
     providers = _section_to_dict(
-        nanobot_config.get("providers", {}),
-        "config.json.nanobot.providers",
+        xiaomiao_agent_config.get("providers", {}),
+        "config.json.xiaomiaoAgent.providers",
     )
     provider_config = _section_to_dict(
         providers.get(CUSTOM_PROVIDER, {}),
-        "config.json.nanobot.providers.custom",
+        "config.json.xiaomiaoAgent.providers.custom",
     )
-    model = _text_or_empty(nanobot_config.get("model"))
+    model = _text_or_empty(xiaomiao_agent_config.get("model"))
     base_url = _text_or_empty(provider_config.get("baseUrl"))
     has_api_key = _has_non_empty_text(provider_config.get("apiKey"))
 

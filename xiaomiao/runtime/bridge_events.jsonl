@@ -1,0 +1,46 @@
+{"id":1,"source":"web","channel":"web","chat_id":"stage-web","user_id":3554978979,"role":"user","content":"ping test: reply with exactly pong","timestamp":1780559316}
+{"id":2,"source":"web","channel":"web","chat_id":"stage-web","user_id":3554978979,"role":"assistant","content":"pong","timestamp":1780559316}
+{"id":3,"source":"web","channel":"web","chat_id":"stage-web","user_id":3554978979,"role":"user","content":"ping test: reply with exactly pong","timestamp":1780559838}
+{"id":4,"source":"web","channel":"web","chat_id":"stage-web","user_id":3554978979,"role":"assistant","content":"pong","timestamp":1780559838}
+{"id":5,"source":"web","channel":"web","chat_id":"stage-web","user_id":3554978979,"role":"user","content":"ping: bridge chain check","timestamp":1780560342}
+{"id":6,"source":"web","channel":"web","chat_id":"stage-web","user_id":3554978979,"role":"assistant","content":"pong","timestamp":1780560342}
+{"id":7,"source":"web","channel":"web","chat_id":"stage-web","user_id":3554978979,"role":"user","content":"ping test from bridge: reply with exactly pong","timestamp":1780561037}
+{"id":8,"source":"web","channel":"web","chat_id":"stage-web","user_id":3554978979,"role":"assistant","content":"pong","timestamp":1780561037}
+{"id":9,"source":"web","channel":"web","chat_id":"stage-web","user_id":3554978979,"role":"user","content":"请必须调用 write_file 工具创建这个文件：F:\\xiaomiaoVirtual\\xiaomiaoAgent\\.nanobot\\workspace\\three_end_tool_check_20260604_161841.txt\n文件内容必须完全等于：xiao-miao-tool-ok-20260604_161841\n工具调用成功后，只回复 TOOL_DONE。","timestamp":1780561125}
+{"id":10,"source":"web","channel":"web","chat_id":"stage-web","user_id":3554978979,"role":"assistant","content":"TOOL_DONE","timestamp":1780561125}
+{"id":11,"source":"agent-webui","channel":"agent-webui","chat_id":"xiaomiao-unified","user_id":3554978979,"role":"user","content":"websocket ping test: reply exactly WEB_PONG","timestamp":1780561193}
+{"id":12,"source":"agent-webui","channel":"agent-webui","chat_id":"xiaomiao-unified","user_id":3554978979,"role":"assistant","content":"WEB_PONG","timestamp":1780561197}
+{"id":13,"source":"agent-webui","channel":"agent-webui","chat_id":"xiaomiao-unified","user_id":3554978979,"role":"user","content":"请必须调用 write_file 工具创建这个文件：F:\\xiaomiaoVirtual\\xiaomiaoAgent\\.nanobot\\workspace\\three_end_web_tool_check_20260604_162246.txt\n文件内容必须完全等于：xiao-miao-web-tool-ok-20260604_162246\n工具调用成功后，只回复 WEB_TOOL_DONE。","timestamp":1780561366}
+{"id":14,"source":"agent-webui","channel":"agent-webui","chat_id":"xiaomiao-unified","user_id":3554978979,"role":"assistant","content":"WEB_TOOL_DONE","timestamp":1780561370}
+{"id":15,"source":"qq-private","channel":"qq-private","chat_id":"3554978979","user_id":3554978979,"role":"user","content":"请只回复 QQ_AGENT_PONG","timestamp":1780561902}
+{"id":16,"source":"qq-private","channel":"qq-private","chat_id":"3554978979","user_id":3554978979,"role":"assistant","content":"QQ_AGENT_PONG","timestamp":1780561902}
+{"id":15,"source":"qq-private","channel":"qq-private","chat_id":"3554978979","user_id":3554978979,"role":"user","content":"请只回复 QQ_AGENT_PONG","timestamp":1780561905}
+{"id":16,"source":"qq-private","channel":"qq-private","chat_id":"3554978979","user_id":3554978979,"role":"assistant","content":"QQ_AGENT_PONG","timestamp":1780561905}
+{"id":17,"source":"agent-webui","channel":"agent-webui","chat_id":"xiaomiao-unified","user_id":3554978979,"role":"user","content":"请只回复 WEB_SYNC_20260604_170019","timestamp":1780563622}
+{"id":18,"source":"agent-webui","channel":"agent-webui","chat_id":"xiaomiao-unified","user_id":3554978979,"role":"assistant","content":"WEB_SYNC_20260604_170019","timestamp":1780563627}
+{"id":19,"source":"web","channel":"web","chat_id":"stage-web","user_id":3554978979,"role":"user","content":"请只回复 BRIDGE_SYNC_20260604_170019","timestamp":1780563631}
+{"id":20,"source":"web","channel":"web","chat_id":"stage-web","user_id":3554978979,"role":"assistant","content":"BRIDGE_SYNC_20260604_170019","timestamp":1780563631}
+{"id":21,"source":"agent-webui","channel":"agent-webui","chat_id":"xiaomiao-unified","user_id":3554978979,"role":"user","content":"请必须调用 write_file 工具创建这个文件：F:\\xiaomiaoVirtual\\xiaomiaoAgent\\.nanobot\\workspace\\runtime_websocket_tool_check_20260604_170209.txt\n文件内容必须完全等于：websocket-tool-ok-20260604_170209\n工具调用成功后，只回复 WEB_TOOL_DONE_20260604_170209。","timestamp":1780563733}
+{"id":22,"source":"agent-webui","channel":"agent-webui","chat_id":"xiaomiao-unified","user_id":3554978979,"role":"assistant","content":"WEB_TOOL_DONE_20260604_170209","timestamp":1780563736}
+{"id":23,"source":"web","channel":"web","chat_id":"stage-web","user_id":3554978979,"role":"user","content":"请必须调用 write_file 工具创建这个文件：F:\\xiaomiaoVirtual\\xiaomiaoAgent\\.nanobot\\workspace\\runtime_bridge_tool_check_20260604_170209.txt\n文件内容必须完全等于：bridge-tool-ok-20260604_170209\n工具调用成功后，只回复 BRIDGE_TOOL_DONE_20260604_170209。","timestamp":1780563741}
+{"id":24,"source":"web","channel":"web","chat_id":"stage-web","user_id":3554978979,"role":"assistant","content":"BRIDGE_TOOL_DONE_20260604_170209","timestamp":1780563741}
+{"id":25,"source":"qq-private","channel":"qq-private","chat_id":"3554978979","user_id":3554978979,"role":"user","content":"请只回复 QQ_AGENT_PONG","timestamp":1780564534}
+{"id":26,"source":"qq-private","channel":"qq-private","chat_id":"3554978979","user_id":3554978979,"role":"assistant","content":"QQ_AGENT_PONG","timestamp":1780564534}
+{"id":25,"source":"qq-private","channel":"qq-private","chat_id":"3554978979","user_id":3554978979,"role":"user","content":"请只回复 QQ_AGENT_PONG","timestamp":1780564536}
+{"id":26,"source":"qq-private","channel":"qq-private","chat_id":"3554978979","user_id":3554978979,"role":"assistant","content":"QQ_AGENT_PONG","timestamp":1780564536}
+{"id":27,"source":"qq-private","channel":"qq-private","chat_id":"3554978979","user_id":3554978979,"role":"user","content":"请必须调用 write_file 工具创建这个文件：F:\\xiaomiaoVirtual\\xiaomiaoAgent\\.nanobot\\workspace\\runtime_qq_tool_check_20260604_1705.txt\n文件内容必须完全等于：qq-tool-ok-20260604_1705\n工具调用成功后，只回复 QQ_TOOL_DONE_20260604_1705。","timestamp":1780564567}
+{"id":28,"source":"qq-private","channel":"qq-private","chat_id":"3554978979","user_id":3554978979,"role":"assistant","content":"QQ_TOOL_DONE_20260604_1705","timestamp":1780564567}
+{"id":27,"source":"qq-private","channel":"qq-private","chat_id":"3554978979","user_id":3554978979,"role":"user","content":"请必须调用 write_file 工具创建这个文件：F:\\xiaomiaoVirtual\\xiaomiaoAgent\\.nanobot\\workspace\\runtime_qq_tool_check_20260604_1705.txt\n文件内容必须完全等于：qq-tool-ok-20260604_1705\n工具调用成功后，只回复 QQ_TOOL_DONE_20260604_1705。","timestamp":1780564573}
+{"id":28,"source":"qq-private","channel":"qq-private","chat_id":"3554978979","user_id":3554978979,"role":"assistant","content":"QQ_TOOL_DONE_20260604_1705","timestamp":1780564573}
+{"id":29,"source":"web","channel":"web","chat_id":"stage-web","user_id":3554978979,"role":"user","content":"请只回复 OK","timestamp":1780573523}
+{"id":30,"source":"web","channel":"web","chat_id":"stage-web","user_id":3554978979,"role":"assistant","content":"OK","timestamp":1780573523}
+{"id":31,"source":"web","channel":"web","chat_id":"stage-web","user_id":3554978979,"role":"user","content":"请只回复 OK","timestamp":1780574628}
+{"id":32,"source":"web","channel":"web","chat_id":"stage-web","user_id":3554978979,"role":"assistant","content":"OK","timestamp":1780574628}
+{"id":33,"source":"web","channel":"web","chat_id":"stage-web","user_id":3554978979,"role":"user","content":"请必须调用 write_file 工具创建这个文件：F:\\xiaomiaoVirtual\\xiaomiaoAgent\\.nanobot\\workspace\\runtime_verify_bridge_tool_after_restart.txt\n文件内容必须完全等于：bridge-tool-ok-after-restart\n工具调用成功后，只回复 BRIDGE_TOOL_DONE_AFTER_RESTART。","timestamp":1780574728}
+{"id":34,"source":"web","channel":"web","chat_id":"stage-web","user_id":3554978979,"role":"assistant","content":"BRIDGE_TOOL_DONE_AFTER_RESTART","timestamp":1780574728}
+{"id":35,"source":"qq-private","channel":"qq-private","chat_id":"3554978979","user_id":3554978979,"role":"user","content":"hi","timestamp":1780576279}
+{"id":36,"source":"qq-private","channel":"qq-private","chat_id":"3554978979","user_id":3554978979,"role":"assistant","content":"Hi! 有什么可以帮你的吗？😊","timestamp":1780576279}
+{"id":37,"source":"qq-private","channel":"qq-private","chat_id":"3554978979","user_id":3554978979,"role":"user","content":"确认测试2","timestamp":1780576311}
+{"id":38,"source":"qq-private","channel":"qq-private","chat_id":"3554978979","user_id":3554978979,"role":"assistant","content":"确认测试2通过 ✅","timestamp":1780576311}
+{"id":39,"source":"web","channel":"web","chat_id":"stage-web","user_id":3554978979,"role":"user","content":"请只回复 CURRENT_BRIDGE_OK","timestamp":1780576473}
+{"id":40,"source":"web","channel":"web","chat_id":"stage-web","user_id":3554978979,"role":"assistant","content":"CURRENT_BRIDGE_OK","timestamp":1780576473}

@@ -55,12 +55,12 @@ conda run -n xiaomiao python -m py_compile xiaomiao/main.py xiaomiao/agent_backe
 尝试后台启动：
 
 ```powershell
-conda run -n xiaomiao nanobot serve --config F:\xiaomiaoVirtual\nanobot\.nanobot\config.json
+conda run -n xiaomiao python -m xiaomiao_agent serve --config F:\xiaomiaoVirtual\xiaomiaoAgent\.nanobot\config.json
 ```
 
 状态：旧尝试未完成。
 
-原因：后台启动 `nanobot serve` 的提权请求被自动审查拒绝，原因是系统内存超过阈值。未绕过该限制继续强行启动服务。
+原因：后台启动 Agent API 的提权请求被自动审查拒绝，原因是系统内存超过阈值。未绕过该限制继续强行启动服务。
 
 随后仅做端口探测，未启动新进程：
 

@@ -27,9 +27,9 @@ import threading
 import paramiko
 from console_output import configure_console_output
 from agent_backend import (
-    NanobotAgentRequest,
-    load_nanobot_agent_config,
-    reply_with_nanobot_agent,
+    XiaomiaoAgentRequest,
+    load_xiaomiao_agent_config,
+    reply_with_xiaomiao_agent,
 )
 from desktop_bridge import publish_bridge_exchange, start_desktop_bridge_server
 
@@ -195,10 +195,10 @@ def generate_desktop_reply(user_id: int, text: str) -> str:
 
 
 def generate_agent_reply(user_id: int, channel: str, chat_id: str, text: str) -> str:
-    agent_config = load_nanobot_agent_config(Configurator.cm.get_cfg().others)
-    return reply_with_nanobot_agent(
+    agent_config = load_xiaomiao_agent_config(Configurator.cm.get_cfg().others)
+    return reply_with_xiaomiao_agent(
         agent_config,
-        NanobotAgentRequest(
+        XiaomiaoAgentRequest(
             user_id=user_id,
             channel=channel,
             chat_id=chat_id,

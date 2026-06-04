@@ -88,7 +88,7 @@ apps/stage-tamagotchi/
 
 - `apps/stage-web/src/pages/index.vue`：页面级录音转文字入口，Web 模式发送到 `xiaomiao` bridge。
 - `packages/stage-layouts/src/xiaomiao-bridge.ts`：固定请求 `http://127.0.0.1:5519/v1/chat/completions`。
-- `ChatArea.vue`：桌面布局文本输入，Web 模式不走 AuBot provider，而是走 bridge。
+- `ChatArea.vue`：桌面布局文本输入，Web 模式不走 xiaomiaobot provider，而是走 bridge。
 - `MobileInteractiveArea.vue`：移动布局文本输入，Web 模式同样走 bridge。
 - `apps/stage-tamagotchi/`：Electron 桌面端，读取小喵 bridge state 并驱动 Vtuber 表现层。
 

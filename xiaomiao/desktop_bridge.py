@@ -5,13 +5,16 @@ from threading import RLock
 from typing import Callable
 from urllib.parse import parse_qs, urlparse
 
-from unified_config import load_nanobot_config_status, save_nanobot_custom_config
+from bridge_event_store import append_bridge_event, load_bridge_events
+from unified_config import load_xiaomiao_agent_config_status, save_xiaomiao_agent_custom_config
 
 
 LATEST_STATE_BY_USER = {}
 BRIDGE_EVENTS = []
 NEXT_EVENT_ID = 1
 BRIDGE_LOCK = RLock()
+FIRST_EVENT_ID = 1
+VALID_EVENT_ROLES = {"user", "assistant"}
 
 
 def reset_bridge_state() -> None:
@@ -19,7 +22,35 @@ def reset_bridge_state() -> None:
     with BRIDGE_LOCK:
         LATEST_STATE_BY_USER.clear()
         BRIDGE_EVENTS.clear()
-        NEXT_EVENT_ID = 1
+        NEXT_EVENT_ID = FIRST_EVENT_ID
+
+
+def load_persisted_bridge_events() -> None:
+    global NEXT_EVENT_ID
+    with BRIDGE_LOCK:
+        if BRIDGE_EVENTS:
+            return
+        events = load_bridge_events()
+        BRIDGE_EVENTS.extend(events)
+        _rebuild_latest_state(events)
+        NEXT_EVENT_ID = _next_event_id(events)
+
+
+def _next_event_id(events: list[dict]) -> int:
+    if not events:
+        return FIRST_EVENT_ID
+    return max(event["id"] for event in events) + 1
+
+
+def _rebuild_latest_state(events: list[dict]) -> None:
+    for event in events:
+        if event["role"] != "assistant":
+            continue
+        LATEST_STATE_BY_USER[event["user_id"]] = {
+            "user_id": event["user_id"],
+            "reply_text": event["content"],
+            "timestamp": event["timestamp"],
+        }
 
 
 def extract_last_user_text(messages) -> str:
@@ -100,6 +131,7 @@ def publish_bridge_event(
             "content": str(content or ""),
             "timestamp": int(time.time()),
         }
+        append_bridge_event(event)
         NEXT_EVENT_ID += 1
         BRIDGE_EVENTS.append(event)
         return dict(event)
@@ -134,6 +166,45 @@ def publish_bridge_exchange(
     ]
     publish_desktop_state(user_id, assistant_text)
     return events
+
+
+def publish_local_bridge_event(payload: dict, default_user_id: int) -> dict:
+    role = required_payload_text(payload, "role")
+    if role not in VALID_EVENT_ROLES:
+        raise ValueError("role must be user or assistant")
+    return publish_bridge_event(
+        source=optional_payload_text(payload, "source", "agent-webui"),
+        channel=optional_payload_text(payload, "channel", "agent-webui"),
+        chat_id=optional_payload_text(payload, "chat_id", "xiaomiao-unified"),
+        user_id=parse_payload_int(payload, "user_id", default_user_id),
+        role=role,
+        content=required_payload_text(payload, "content"),
+    )
+
+
+def required_payload_text(payload: dict, name: str) -> str:
+    value = payload.get(name)
+    if not isinstance(value, str) or not value.strip():
+        raise ValueError(f"{name} must be a non-empty string")
+    return value.strip()
+
+
+def optional_payload_text(payload: dict, name: str, default: str) -> str:
+    value = payload.get(name)
+    if value is None:
+        return default
+    if not isinstance(value, str) or not value.strip():
+        raise ValueError(f"{name} must be a non-empty string")
+    return value.strip()
+
+
+def parse_payload_int(payload: dict, name: str, default: int) -> int:
+    if name not in payload:
+        return default
+    try:
+        return int(payload[name])
+    except (TypeError, ValueError) as exc:
+        raise ValueError(f"{name} must be an integer") from exc
 
 
 def query_bridge_events(*, after: int = 0, user_id: int | None = None) -> list[dict]:
@@ -174,6 +245,8 @@ def start_desktop_bridge_server(
     model_name: str,
     reply_callback: Callable[[int, str], str],
 ) -> ThreadingHTTPServer:
+    load_persisted_bridge_events()
+
     class DesktopBridgeHandler(BaseHTTPRequestHandler):
         def _set_cors_headers(self):
             self.send_header("Access-Control-Allow-Origin", "*")
@@ -243,6 +316,9 @@ def start_desktop_bridge_server(
             if parsed_path == "/v1/xiaomiao/config":
                 self._write_config_update()
                 return
+            if parsed_path == "/v1/xiaomiao/events":
+                self._write_event_create()
+                return
             if parsed_path != "/v1/chat/completions":
                 self._write_json(404, {"error": "not_found"})
                 return
@@ -258,18 +334,28 @@ def start_desktop_bridge_server(
 
         def _write_config_status(self):
             try:
-                self._write_json(200, load_nanobot_config_status())
+                self._write_json(200, load_xiaomiao_agent_config_status())
             except Exception as exc:
                 self._write_json(500, {"error": "config_read_failed", "message": str(exc)})
 
         def _write_config_update(self):
             try:
                 payload = self._read_json_payload()
-                self._write_json(200, save_nanobot_custom_config(payload))
+                self._write_json(200, save_xiaomiao_agent_custom_config(payload))
             except ValueError as exc:
                 self._write_json(400, {"error": "bad_request", "message": str(exc)})
             except Exception as exc:
                 self._write_json(500, {"error": "config_write_failed", "message": str(exc)})
+
+        def _write_event_create(self):
+            try:
+                payload = self._read_json_payload()
+                event = publish_local_bridge_event(payload, default_user_id)
+                self._write_json(200, {"event": event})
+            except ValueError as exc:
+                self._write_json(400, {"error": "bad_request", "message": str(exc)})
+            except Exception as exc:
+                self._write_json(500, {"error": "event_write_failed", "message": str(exc)})
 
         def _write_chat_completion(self):
             try:

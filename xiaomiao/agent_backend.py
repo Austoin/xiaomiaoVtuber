@@ -7,13 +7,13 @@ from urllib import error, request
 from unified_config import merge_unified_config_section
 
 
-DEFAULT_NANOBOT_BASE_URL = "http://127.0.0.1:8900/v1/chat/completions"
-DEFAULT_NANOBOT_SESSION_ID = "xiaomiao-unified"
-DEFAULT_NANOBOT_TIMEOUT_SECONDS = 30.0
+DEFAULT_XIAOMIAO_AGENT_BASE_URL = "http://127.0.0.1:8900/v1/chat/completions"
+DEFAULT_XIAOMIAO_AGENT_SESSION_ID = "xiaomiao-unified"
+DEFAULT_XIAOMIAO_AGENT_TIMEOUT_SECONDS = 30.0
 
 
 @dataclass(frozen=True)
-class NanobotAgentConfig:
+class XiaomiaoAgentConfig:
     enabled: bool
     base_url: str
     model: str | None
@@ -22,7 +22,7 @@ class NanobotAgentConfig:
 
 
 @dataclass(frozen=True)
-class NanobotAgentRequest:
+class XiaomiaoAgentRequest:
     user_id: int
     channel: str
     chat_id: str
@@ -30,29 +30,29 @@ class NanobotAgentRequest:
     media: tuple[str, ...] = ()
 
 
-def load_nanobot_agent_config(others: dict[str, Any]) -> NanobotAgentConfig:
+def load_xiaomiao_agent_config(others: dict[str, Any]) -> XiaomiaoAgentConfig:
     raw_config = merge_unified_config_section(
-        "nanobot_agent",
-        others.get("nanobot_agent", {}),
+        "xiaomiao_agent",
+        others.get("xiaomiao_agent", {}),
     )
 
-    return NanobotAgentConfig(
+    return XiaomiaoAgentConfig(
         enabled=bool(raw_config.get("enabled", True)),
-        base_url=str(raw_config.get("base_url") or DEFAULT_NANOBOT_BASE_URL),
+        base_url=str(raw_config.get("base_url") or DEFAULT_XIAOMIAO_AGENT_BASE_URL),
         model=_optional_text(raw_config.get("model")),
-        session_id=str(raw_config.get("session_id") or DEFAULT_NANOBOT_SESSION_ID),
-        timeout_seconds=float(raw_config.get("timeout_seconds") or DEFAULT_NANOBOT_TIMEOUT_SECONDS),
+        session_id=str(raw_config.get("session_id") or DEFAULT_XIAOMIAO_AGENT_SESSION_ID),
+        timeout_seconds=float(raw_config.get("timeout_seconds") or DEFAULT_XIAOMIAO_AGENT_TIMEOUT_SECONDS),
     )
 
 
-def reply_with_nanobot_agent(
-    config: NanobotAgentConfig,
-    payload: NanobotAgentRequest,
+def reply_with_xiaomiao_agent(
+    config: XiaomiaoAgentConfig,
+    payload: XiaomiaoAgentRequest,
 ) -> str:
     if not config.enabled:
-        raise RuntimeError("Nanobot Agent backend is disabled")
+        raise RuntimeError("xiaomiaoAgent backend is disabled")
     if not payload.text.strip():
-        raise RuntimeError("Nanobot Agent backend requires non-empty text")
+        raise RuntimeError("xiaomiaoAgent backend requires non-empty text")
 
     body = _build_request_body(config, payload)
     raw_response = _post_json(config.base_url, body, config.timeout_seconds)
@@ -67,8 +67,8 @@ def _optional_text(value: Any) -> str | None:
 
 
 def _build_request_body(
-    config: NanobotAgentConfig,
-    payload: NanobotAgentRequest,
+    config: XiaomiaoAgentConfig,
+    payload: XiaomiaoAgentRequest,
 ) -> dict[str, Any]:
     body: dict[str, Any] = {
         "messages": [{"role": "user", "content": payload.text}],
@@ -92,18 +92,18 @@ def _post_json(url: str, body: dict[str, Any], timeout_seconds: float) -> dict[s
             return json.loads(response.read().decode("utf-8"))
     except error.HTTPError as exc:
         detail = exc.read().decode("utf-8", errors="replace")
-        raise RuntimeError(f"Nanobot Agent HTTP {exc.code}: {detail}") from exc
+        raise RuntimeError(f"xiaomiaoAgent HTTP {exc.code}: {detail}") from exc
     except (error.URLError, socket.timeout, TimeoutError) as exc:
-        raise RuntimeError(f"Nanobot Agent request failed: {exc}") from exc
+        raise RuntimeError(f"xiaomiaoAgent request failed: {exc}") from exc
 
 
 def _extract_assistant_text(response: dict[str, Any]) -> str:
     choices = response.get("choices")
     if not isinstance(choices, list) or not choices:
-        raise RuntimeError("Nanobot Agent response missing choices")
+        raise RuntimeError("xiaomiaoAgent response missing choices")
 
     message = choices[0].get("message") if isinstance(choices[0], dict) else None
     content = message.get("content") if isinstance(message, dict) else None
     if not isinstance(content, str) or not content.strip():
-        raise RuntimeError("Nanobot Agent returned an empty reply")
+        raise RuntimeError("xiaomiaoAgent returned an empty reply")
     return content.strip()

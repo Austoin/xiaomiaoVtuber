@@ -1,12 +1,12 @@
 {
-  "nanobot_agent": {
+  "xiaomiao_agent": {
     "enabled": true,
     "base_url": "http://127.0.0.1:8900/v1/chat/completions",
     "model": "",
     "session_id": "xiaomiao-unified",
     "timeout_seconds": 30
   },
-  "nanobot": {
+  "xiaomiaoAgent": {
     "model": "xxx(例如:deepseek-v4-flash)",
     "providers": {
       "custom": {

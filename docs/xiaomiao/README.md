@@ -48,7 +48,7 @@
 **方式二：手动启动**
 ```bash
 # 1. 启动 NapCat（在 NapCat 目录下）
-napcat.quick.bat <QQ号> 
+napcat.quick.bat <QQ号>
 
 也就是：
 cd /d F:\xiaomiaoVirtual\xiaomiao\NapCat.Shell.Windows.OneKey\NapCat.44498.Shell
@@ -67,21 +67,44 @@ python main.py
 
 随后 `main.py` 会继续连接 NapCat / OneBot。如果 NapCat 未启动、端口不一致或 WebSocket 被关闭，程序会报 `WebSocketConnectionClosedException` 并退出，bridge 也会随进程结束。出现这种情况时，先修复 NapCat 登录状态和 OneBot WebSocket，再重新运行 `python main.py`。
 
-### 与 xiaomiaoAgent / AuBot 联动启动
+### 与 xiaomiaoAgent / xiaomiaobot 联动启动
 
-当前 QQ 群/私聊普通 AI 回复、`AuBot stage-web` 输入和桌面 bridge 都统一进入 xiaomiaoAgent。完整联动需要按顺序启动：
+当前 QQ 群/私聊普通 AI 回复、`xiaomiaobot stage-web` 输入、桌面 bridge 和 xiaomiaoAgent WebUI 都统一进入 xiaomiaoAgent。推荐直接使用根目录 `start-all.cmd`：
+
+```powershell
+cd F:\xiaomiaoVirtual
+start-all.cmd
+```
+
+只检查路径、端口占用和健康状态，不打开窗口：
+
+```powershell
+start-all.cmd --check
+```
+
+脚本会按真实健康状态串行启动。前一步未就绪时，后续终端不会打开；QQ 协议端会复用已登录并监听 `5004` 的现有 NapCat/QQ 进程；其他端口已被旧进程占用时会显示 PID 并停止，不会跳过到后续服务。这样可以保证每个新启动的服务都有自己的可见终端。脚本也会设置 `NO_PROXY=127.0.0.1,localhost,::1`，避免本机代理影响 `main.py` 直连 NapCat。
+
+手动联动启动时按下面顺序执行：
 
 1. 启动 xiaomiaoAgent OpenAI 兼容 API：
 
    ```powershell
-   cd F:\xiaomiaoVirtual
+   cd F:\xiaomiaoVirtual\xiaomiaoAgent
    conda activate xiaomiao
-   xiaomiao serve --config F:\xiaomiaoVirtual\nanobot\.nanobot\config.json
+   python -m xiaomiao_agent serve --config F:\xiaomiaoVirtual\xiaomiaoAgent\.nanobot\config.json
    ```
 
-2. 启动 NapCat，并确认 OneBot WebSocket 是 `127.0.0.1:5004`。
+2. 启动 xiaomiaoAgent gateway：
 
-3. 启动小喵：
+   ```powershell
+   cd F:\xiaomiaoVirtual\xiaomiaoAgent
+   conda activate xiaomiao
+   python -m xiaomiao_agent gateway --config F:\xiaomiaoVirtual\xiaomiaoAgent\.nanobot\config.json
+   ```
+
+3. 启动 NapCat，并确认 OneBot WebSocket 是 `127.0.0.1:5004`。
+
+4. 启动小喵：
 
    ```powershell
    cd F:\xiaomiaoVirtual\xiaomiao
@@ -89,13 +112,21 @@ python main.py
    python main.py
    ```
 
-4. 启动 AuBot Web 或桌面端：
+5. 启动 xiaomiaobot Web 或桌面端：
 
    ```powershell
-   cd F:\xiaomiaoVirtual\AuBot
-   pnpm dev:web
+   cd F:\xiaomiaoVirtual\xiaomiaobot\apps\stage-web
+   pnpm exec vite --host 127.0.0.1 --port 5175
    # 或
+   cd F:\xiaomiaoVirtual\xiaomiaobot
    pnpm dev:tamagotchi
+   ```
+
+6. 启动 xiaomiaoAgent WebUI：
+
+   ```powershell
+   cd F:\xiaomiaoVirtual\xiaomiaoAgent\webui
+   npm run dev -- --host 127.0.0.1 --port 5174
    ```
 
 联动端口：
@@ -103,10 +134,13 @@ python main.py
 ```text
 5004  NapCat OneBot WebSocket
 5519  xiaomiao desktop bridge
+8765  xiaomiaoAgent gateway
 8900  xiaomiaoAgent OpenAI-compatible API
+5174  xiaomiaoAgent WebUI
+5175  xiaomiaobot stage-web
 ```
 
-`stage-web` 必须走 `xiaomiao` bridge。bridge 或 xiaomiaoAgent 不可用时，网页聊天历史会显示明确错误，不会静默回退到 AuBot provider。
+`stage-web` 必须走 `xiaomiao` bridge。bridge 或 xiaomiaoAgent 不可用时，网页聊天历史会显示明确错误，不会静默回退到 xiaomiaobot provider。
 
 ---
 
@@ -464,10 +498,10 @@ class prerequisite:
     def __init__(self, bot_name: str, event_user: str):
         self.bot_name = bot_name
         self.event_user = event_user
-        
+
     def girl_friend(self) -> str:
         return f"""你叫{self.bot_name}，是一个温柔可爱的少女...
-        
+
         # 在这里修改人设提示词
         # {self.bot_name} 会被替换为机器人名称
         # {self.event_user} 会被替换为用户昵称
@@ -785,7 +819,7 @@ WebSocket 服务器配置示例：
 
 ### 3. xiaomiaoAgent 调用失败
 
-- 检查 `xiaomiao serve --config F:\xiaomiaoVirtual\nanobot\.nanobot\config.json` 是否正在运行
+- 检查 `python -m xiaomiao_agent serve --config F:\xiaomiaoVirtual\xiaomiaoAgent\.nanobot\config.json` 是否正在运行
 - 检查 `http://127.0.0.1:8900/health`
 - 检查主目录 `config.json` 的 `nanobot_agent.base_url` 是否指向 `http://127.0.0.1:8900/v1/chat/completions`
 - 如果返回 HTTP 502，查看错误内容；当前实现会显式暴露 xiaomiaoAgent HTTP 错误、空回复和超时

@@ -5,17 +5,17 @@
 `xiaomiaoVirtual` 是一个 QQ 机器人、Vtuber 桌面角色和轻量 Agent 框架的融合项目。当前由三个子系统组成：
 
 1. `xiaomiao`：Python QQ 机器人，负责 QQ 消息、命令、人设、模型调用、图片能力、群管理和本地桥接。
-2. `AuBot`：`xiaomiaoVirtual` 的 Electron/Vue Vtuber 表现层，负责 Web/桌面角色、Live2D/VRM、字幕、TTS 和口型同步。
-3. `nanobot`：Python Agent 框架，负责 Agent Loop、通道抽象、工具调用、记忆、会话管理、OpenAI 兼容 API 和 WebUI。
+2. `xiaomiaobot`：`xiaomiaoVirtual` 的 Electron/Vue Vtuber 表现层，负责 Web/桌面角色、Live2D/VRM、字幕、TTS 和口型同步。内部包名保留 `@proj-airi/*` 兼容标识。
+3. `xiaomiaoAgent`：Python Agent 框架，内部包名仍是 `nanobot`，负责 Agent Loop、通道抽象、工具调用、记忆、会话管理、OpenAI 兼容 API、Gateway 和 WebUI。
 
-当前项目已经打通统一 Agent 闭环：`AuBot stage-web`、`xiaomiao` 桌面 bridge 和 QQ 群/私聊普通 AI 回复都会进入同一个 `xiaomiaoAgent` 能力层。命令型 QQ 功能仍由 `xiaomiao` 本地处理，AuBot 继续承担 Web/桌面 Vtuber 表现层。
+当前项目已经打通统一 Agent 闭环：`xiaomiaobot stage-web`、`xiaomiao` 桌面 bridge、QQ 群/私聊普通 AI 回复和 `xiaomiaoAgent WebUI` 都会进入同一个 `xiaomiaoAgent` 能力层。命令型 QQ 功能仍由 `xiaomiao` 本地处理，`xiaomiaobot` 继续承担 Web/桌面 Vtuber 表现层。
 
 当前目标不再是“后续引入 Agent”，而是维护清楚的边界：外部入口统一到 `xiaomiao` bridge / `agent_backend`，Agent 能力由 `xiaomiaoAgent` OpenAI 兼容 API 提供，确定性命令继续留在 `xiaomiao`。
 
 ## 2. 总体架构
 
 ```text
-[AuBot stage-web 文本/语音]
+[xiaomiaobot stage-web 文本/语音]
     ↓ HTTP :5519
 [xiaomiao desktop_bridge.py]
     ↓
@@ -27,6 +27,14 @@
     ↓
 [stage-web chat session]
 
+[xiaomiaoAgent WebUI :5174]
+    ↓ WebSocket
+[xiaomiaoAgent gateway :8765]
+    ↓ chat_id=xiaomiao-unified
+[xiaomiaoAgent Session / Tools / Memory]
+    ↓ mirror
+[xiaomiao bridge events :5519]
+
 [QQ 用户]
     ↓
 [NapCat / OneBot WebSocket :5004]
@@ -35,7 +43,7 @@
     ├── 命令型分支：权限 / 生图 / 撤回 / 配置 / 搜索保留原逻辑
     └── 普通 AI 回复：agent_backend.py → xiaomiaoAgent API :8900
 
-[AuBot stage-tamagotchi]
+[xiaomiaobot stage-tamagotchi]
     ↓
 [xiaomiao bridge state / 本地 bridge 回复]
     ↓
@@ -54,7 +62,7 @@
 - 根据用户角色选择人设提示词。
 - 普通自然语言回复调用 `agent_backend.py`，再转发到 xiaomiaoAgent OpenAI 兼容 API。
 - 支持图片识别、图片获取、名言图片、系统状态和群管理。
-- 启动本地桌面桥接服务供 AuBot 消费。
+- 启动本地桌面桥接服务供 xiaomiaobot 消费。
 
 关键文件：
 
@@ -72,9 +80,9 @@ xiaomiao/
 └── runtime/             # 权限、角色、定时消息和黑名单配置
 ```
 
-## 4. AuBot 子系统
+## 4. xiaomiaobot 子系统
 
-`AuBot` 是多端 Vtuber monorepo。当前用户可见品牌为 `xiaomiaoVirtual`；内部包名、目录和 `@proj-airi/*` 标识保留兼容。当前与小喵联动的主要入口包括 `apps/stage-web` 和 `apps/stage-tamagotchi`。
+`xiaomiaobot` 是多端 Vtuber monorepo。当前用户可见品牌为 `xiaomiaoVirtual`；内部包名、目录和 `@proj-airi/*` 标识保留兼容。当前与小喵联动的主要入口包括 `apps/stage-web` 和 `apps/stage-tamagotchi`。
 
 主要职责：
 
@@ -88,7 +96,7 @@ xiaomiao/
 关键目录：
 
 ```text
-AuBot/
+xiaomiaobot/
 ├── apps/stage-tamagotchi/         # Electron 桌面 Vtuber 入口
 ├── apps/stage-web/                # Web 版 Vtuber 入口
 ├── packages/stage-layouts/        # stage-web 文本/移动输入和 bridge helper
@@ -100,9 +108,9 @@ AuBot/
 └── services/                      # 其他机器人和平台适配
 ```
 
-## 5. nanobot 子系统
+## 5. xiaomiaoAgent 子系统
 
-`nanobot` 是一个轻量 Agent 框架，核心入口包括 `nanobot/cli/commands.py`、`nanobot/nanobot.py` 和 gateway/WebUI 相关模块。
+`xiaomiaoAgent` 是一个轻量 Agent 框架，内部 Python 包名仍是 `nanobot`，核心入口包括 `nanobot/cli/commands.py`、`nanobot/nanobot.py` 和 gateway/WebUI 相关模块。
 
 主要职责：
 
@@ -117,7 +125,7 @@ AuBot/
 关键目录：
 
 ```text
-nanobot/
+xiaomiaoAgent/
 ├── nanobot/agent/loop.py       # Agent turn 协调
 ├── nanobot/agent/runner.py     # LLM + tool 调用循环
 ├── nanobot/agent/tools/        # 工具系统
@@ -131,7 +139,7 @@ nanobot/
 
 ### 5.1 与现有系统的融合边界
 
-`nanobot` 当前通过 HTTP API 接入，不直接由 `xiaomiao` import `AgentLoop`。当前融合边界是：
+`xiaomiaoAgent` 当前通过 HTTP API 接入，不直接由 `xiaomiao` import `AgentLoop`。当前融合边界是：
 
 ```text
 stage-web / QQ 普通 AI 回复 / desktop bridge
@@ -143,6 +151,14 @@ xiaomiaoAgent OpenAI-compatible API
 统一 session: xiaomiao-unified
     ↓
 Agent 回复
+
+xiaomiaoAgent WebUI
+    ↓ gateway WebSocket :8765
+chat_id=xiaomiao-unified
+    ↓
+session api:xiaomiao-unified
+    ↓
+mirror 到 xiaomiao bridge events
 ```
 
 `xiaomiao` 继续负责 QQ Bot 的稳定运行、命令分支和权限管理。`xiaomiaoAgent` 负责普通自然语言 Agent 回复、工具、记忆和统一 session。长期再评估是否把 QQ 原生接入迁移到 `nanobot/channels/qq.py` 或统一 MessageBus。
@@ -216,7 +232,7 @@ xiaomiaoAgent
 stage-web 当前 chat session 追加 user/assistant
 ```
 
-bridge 不可用、HTTP 非 2xx 或空回复时，stage-web 会把 user/error 消息写入聊天历史，不静默回退到 AuBot provider。
+bridge 不可用、HTTP 非 2xx 或空回复时，stage-web 会把 user/error 消息写入聊天历史，不静默回退到 xiaomiaobot provider。
 
 ## 7. 桌面桥接协议
 
@@ -245,7 +261,8 @@ POST /v1/chat/completions
 - `/v1/xiaomiao/config`：读取或更新主目录 `config.json` 的 `nanobot.providers.custom` 配置；GET 不返回明文 API Key。
 - `/v1/xiaomiao/state`：返回某个用户最近一次机器人回复。
 - `/v1/xiaomiao/events`：返回 bridge 记录的 user/assistant 事件，供 Web/桌面端同步聊天历史。
-- `/v1/chat/completions`：OpenAI 兼容聊天接口，让 AuBot 可主动向小喵发送文本并获得回复。
+- `/v1/chat/completions`：OpenAI 兼容聊天接口，让 xiaomiaobot 可主动向小喵发送文本并获得回复。
+- `POST /v1/xiaomiao/events`：允许 xiaomiaoAgent WebUI 镜像 user/assistant 事件，不触发模型回复。
 
 状态保存方式目前是内存全局字典：
 
@@ -255,7 +272,7 @@ LATEST_STATE_BY_USER[user_id] = reply_text + timestamp
 
 当前 `POST /v1/chat/completions` 会调用启动时注入的 `reply_callback`。在 `main.py` 中该 callback 是 `generate_desktop_reply()`，最终进入 `generate_agent_reply()` 和 xiaomiaoAgent API。
 
-AuBot 侧的小喵桥接模块：
+xiaomiaobot 侧的小喵桥接模块：
 
 - `packages/stage-layouts/src/xiaomiao-bridge.ts`：stage-web bridge client。
 - `apps/stage-tamagotchi/src/renderer/pages/xiaomiao-bridge.ts`：读取 `/v1/xiaomiao/state`。
@@ -266,7 +283,7 @@ AuBot 侧的小喵桥接模块：
 
 ## 8. Vtuber 表现链路
 
-桥接回复进入 AuBot 后，会被同步到三个表现面：
+桥接回复进入 xiaomiaobot 后，会被同步到三个表现面：
 
 ```text
 bridge reply
@@ -325,15 +342,21 @@ F:\xiaomiaoVirtual\config.json
 5004  NapCat OneBot WebSocket
 5003  Hyper listener port
 5519  xiaomiao desktop bridge
+8765  xiaomiaoAgent gateway
 8900  xiaomiaoAgent OpenAI-compatible API
+5174  xiaomiaoAgent WebUI
+5175  xiaomiaobot stage-web
 6099  NapCat WebUI，可选
 3000  NapCat HTTP API，可选
 ```
 
-AuBot 常用脚本：
+xiaomiaobot 常用脚本：
 
 ```text
-pnpm dev:web          # Web 版
+cd F:\xiaomiaoVirtual\xiaomiaobot\apps\stage-web
+pnpm exec vite --host 127.0.0.1 --port 5175
+
+cd F:\xiaomiaoVirtual\xiaomiaobot
 pnpm dev:tamagotchi   # Electron 桌面版
 pnpm dev:docs         # 文档站
 pnpm build:tamagotchi # 构建桌面版
@@ -344,13 +367,15 @@ pnpm lint             # Lint 检查
 xiaomiaoAgent 常用命令：
 
 ```text
-xiaomiao onboard      # 初始化配置
-xiaomiao gateway      # 启动 gateway
-xiaomiao serve        # 启动 OpenAI 兼容 API，默认 127.0.0.1:8900
-cd webui && bun run dev
+python -m xiaomiao_agent serve --config F:\xiaomiaoVirtual\xiaomiaoAgent\.nanobot\config.json
+python -m xiaomiao_agent gateway --config F:\xiaomiaoVirtual\xiaomiaoAgent\.nanobot\config.json
+cd F:\xiaomiaoVirtual\xiaomiaoAgent\webui
+npm run dev -- --host 127.0.0.1 --port 5174
 ```
 
 旧 `nanobot` 命令入口仍保留兼容；新文档和用户提示统一使用 `xiaomiao`。
+
+根目录 `start-all.cmd` 是当前推荐启动入口。它按 `5004 → 8900 → 8765 → 5519 → 5175 → 5174` 串行启动，并对 API、gateway、bridge、WebUI 做健康检查；前一步未就绪时停止，不打开后续终端。QQ 协议端可复用已登录的现有 NapCat/QQ 进程；其他服务遇到已占用端口会显示 PID 并停止，不再把端口监听误判为可用服务；`--check` 只检查当前状态，不启动窗口。脚本会设置 `NO_PROXY=127.0.0.1,localhost,::1`，避免本机代理影响 QQ OneBot 直连。
 
 ## 10. 工程风险
 
@@ -364,7 +389,7 @@ cd webui && bun run dev
 
 ### 10.3 桥接配置硬编码
 
-AuBot 中桥接地址和绑定用户仍是原型硬编码：`http://127.0.0.1:5519` 和 `BOUND_XIAOMIAO_USER_ID`。这会限制多用户、多账号、多机器人实例场景。
+xiaomiaobot 中桥接地址和绑定用户仍是原型硬编码：`http://127.0.0.1:5519` 和 `BOUND_XIAOMIAO_USER_ID`。这会限制多用户、多账号、多机器人实例场景。
 
 ### 10.4 桥接协议缺少鉴权
 
@@ -389,25 +414,25 @@ AuBot 中桥接地址和绑定用户仍是原型硬编码：`http://127.0.0.1:55
 ```text
 test/xiaomiao/test_desktop_bridge.py
 test/xiaomiao/test_agent_backend.py
-AuBot/apps/stage-tamagotchi/src/renderer/pages/xiaomiao-bridge.test.ts
-AuBot/apps/stage-tamagotchi/src/renderer/pages/xiaomiao-bridge-chat.test.ts
-AuBot/apps/stage-tamagotchi/src/renderer/pages/xiaomiao-bridge-reaction.test.ts
+xiaomiaobot/apps/stage-tamagotchi/src/renderer/pages/xiaomiao-bridge.test.ts
+xiaomiaobot/apps/stage-tamagotchi/src/renderer/pages/xiaomiao-bridge-chat.test.ts
+xiaomiaobot/apps/stage-tamagotchi/src/renderer/pages/xiaomiao-bridge-reaction.test.ts
 ```
 
 覆盖范围包括 OpenAI 兼容路由、CORS preflight、读取桥接状态、bridge callback 调用 Agent backend、HTTP 错误、空回复、超时、禁用配置、桥接回复去重、字幕/历史/语音同步，以及 Kokoro 中文语音 provider 自动选择。
 
-nanobot 自身测试位于：
+xiaomiaoAgent 自身测试位于：
 
 ```text
-nanobot/tests/
-nanobot/webui/src/tests/
+xiaomiaoAgent/tests/
+xiaomiaoAgent/webui/src/tests/
 ```
 
 后续融合测试应覆盖三类边界：
 
 - `xiaomiao` 调用 xiaomiaoAgent 工具或记忆服务时的失败隔离。
 - xiaomiaoAgent gateway/WebUI 离线时，小喵 QQ Bot 不受影响；`xiaomiao serve` 离线时，普通 AI 回复和 stage-web bridge 会显式报错。
-- AuBot 能区分并展示来自 `xiaomiao` 和 xiaomiaoAgent 的统一事件。
+- xiaomiaobot 能区分并展示来自 `xiaomiao` 和 xiaomiaoAgent 的统一事件。
 
 ## 12. 演进路线
 
@@ -418,7 +443,7 @@ nanobot/webui/src/tests/
 5. Vtuber 增强：支持 QQ 用户到桌面会话映射，并根据回复情绪驱动 Live2D 表情。
 6. xiaomiaoAgent 状态观测：在小喵控制台展示 `serve :8900`、WebUI/gateway、session 和工具状态。
 7. xiaomiaoAgent 能力深化：逐步把图片理解、`SearchOnline(...)`、Web 搜索、Cron 和更多工具迁移到 xiaomiaoAgent。
-8. 统一事件总线：定义跨 `xiaomiao`、`xiaomiaoAgent`、`AuBot` 的消息事件结构。
+8. 统一事件总线：定义跨 `xiaomiao`、`xiaomiaoAgent`、`xiaomiaobot` 的消息事件结构。
 9. 渐进迁移：在现有 QQ Bot 可运行的前提下，评估是否启用 xiaomiaoAgent 原生 QQ/channel。
 
 ## 13. 当前结论

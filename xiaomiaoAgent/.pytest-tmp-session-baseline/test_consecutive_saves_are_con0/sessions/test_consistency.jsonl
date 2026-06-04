@@ -1,0 +1,6 @@
+{"_type": "metadata", "key": "test:consistency", "created_at": "2026-06-04T16:39:49.576714", "updated_at": "2026-06-04T16:39:49.580560", "metadata": {}, "last_consolidated": 0}
+{"role": "user", "content": "msg0", "timestamp": "2026-06-04T16:39:49.576722"}
+{"role": "user", "content": "msg1", "timestamp": "2026-06-04T16:39:49.578198"}
+{"role": "user", "content": "msg2", "timestamp": "2026-06-04T16:39:49.579023"}
+{"role": "user", "content": "msg3", "timestamp": "2026-06-04T16:39:49.579786"}
+{"role": "user", "content": "msg4", "timestamp": "2026-06-04T16:39:49.580555"}

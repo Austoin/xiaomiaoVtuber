@@ -29,10 +29,17 @@ MODEL_NAME = "deepseek-chat"
 
 class DesktopBridgeTests(unittest.TestCase):
     def setUp(self):
+        self.event_store_tmp = tempfile.TemporaryDirectory()
+        os.environ["XIAOMIAO_BRIDGE_EVENT_STORE"] = str(
+            Path(self.event_store_tmp.name) / "bridge_events.jsonl"
+        )
         reset_bridge_state()
 
     def tearDown(self):
+        reset_bridge_state()
+        os.environ.pop("XIAOMIAO_BRIDGE_EVENT_STORE", None)
         os.environ.pop("XIAOMIAO_UNIFIED_CONFIG", None)
+        self.event_store_tmp.cleanup()
 
     def test_extract_last_user_text_prefers_latest_user_message(self):
         payload = [

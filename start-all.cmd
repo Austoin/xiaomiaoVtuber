@@ -4,17 +4,29 @@ setlocal EnableExtensions
 
 set "ROOT_DIR=%~dp0"
 set "XIAOMIAO_DIR=%ROOT_DIR%xiaomiao"
-set "AUBOT_DIR=%ROOT_DIR%AuBot"
-set "NANOBOT_CONFIG=%ROOT_DIR%nanobot\.nanobot\config.json"
+set "XIAOMIAOBOT_DIR=%ROOT_DIR%xiaomiaobot"
+set "XIAOMIAO_AGENT_DIR=%ROOT_DIR%xiaomiaoAgent"
+set "XIAOMIAO_AGENT_WEBUI_DIR=%XIAOMIAO_AGENT_DIR%\webui"
+set "XIAOMIAO_AGENT_CONFIG=%XIAOMIAO_AGENT_DIR%\.nanobot\config.json"
+set "XIAOMIAOBOT_STAGE_WEB_DIR=%XIAOMIAOBOT_DIR%\apps\stage-web"
 set "NAPCAT_DIR=%XIAOMIAO_DIR%\NapCat.Shell.Windows.OneKey\NapCat.44498.Shell"
 set "LAGRANGE_EXE=%XIAOMIAO_DIR%\Lagrange.OneBot.exe"
+set "HEALTH_PS=%ROOT_DIR%scripts\start-all-health.ps1"
 set "QQ_ACCOUNT=3994383071"
-set "PROTOCOL_WAIT_SECONDS=10"
+set "XIAOMIAOBOT_STAGE_WEB_PORT=5175"
+set "WAIT_TIMEOUT_SECONDS=180"
 set "CHECK_ONLY=0"
+set "CHECK_FAILED=0"
+set "NO_PROXY=127.0.0.1,localhost,::1"
+set "no_proxy=127.0.0.1,localhost,::1"
 
-if /I "%~1"=="--check" (
-    set "CHECK_ONLY=1"
-)
+set "CMD_AGENT_API=conda run --no-capture-output -n xiaomiao python -m xiaomiao_agent serve --config %XIAOMIAO_AGENT_CONFIG%"
+set "CMD_AGENT_GATEWAY=conda run --no-capture-output -n xiaomiao python -m xiaomiao_agent gateway --config %XIAOMIAO_AGENT_CONFIG%"
+set "CMD_XIAOMIAO_MAIN=conda run --no-capture-output -n xiaomiao python main.py"
+set "CMD_XIAOMIAOBOT_WEB=pnpm exec vite --host 127.0.0.1 --port %XIAOMIAOBOT_STAGE_WEB_PORT%"
+set "CMD_AGENT_WEBUI=npm run dev -- --host 127.0.0.1 --port 5174"
+
+if /I "%~1"=="--check" set "CHECK_ONLY=1"
 
 echo ========================================
 echo   XiaoMiao unified launcher
@@ -22,75 +34,215 @@ echo ========================================
 echo Root: %ROOT_DIR%
 echo.
 
+call :preflight
+if errorlevel 1 exit /b 1
+
+if "%CHECK_ONLY%"=="1" goto check_services
+
+call :start_qq
+if errorlevel 1 goto launch_failed
+
+call :start_agent_api
+if errorlevel 1 goto launch_failed
+
+call :start_agent_gateway
+if errorlevel 1 goto launch_failed
+
+call :start_xiaomiao_main
+if errorlevel 1 goto launch_failed
+
+call :start_xiaomiaobot_web
+if errorlevel 1 goto launch_failed
+
+call :start_agent_webui
+if errorlevel 1 goto launch_failed
+
+goto launch_success
+
+:preflight
+if not exist "%HEALTH_PS%" (
+    echo [Error] Missing health helper: %HEALTH_PS%
+    pause
+    exit /b 1
+)
 if not exist "%XIAOMIAO_DIR%\main.py" (
     echo [Error] Missing xiaomiao main.py: %XIAOMIAO_DIR%\main.py
     pause
     exit /b 1
 )
-
-if not exist "%NANOBOT_CONFIG%" (
-    echo [Error] Missing nanobot config: %NANOBOT_CONFIG%
+if not exist "%XIAOMIAO_AGENT_CONFIG%" (
+    echo [Error] Missing xiaomiaoAgent config: %XIAOMIAO_AGENT_CONFIG%
     pause
     exit /b 1
 )
-
-if not exist "%AUBOT_DIR%\package.json" (
-    echo [Error] Missing AuBot package.json: %AUBOT_DIR%\package.json
+if not exist "%XIAOMIAOBOT_DIR%\package.json" (
+    echo [Error] Missing xiaomiaobot package.json: %XIAOMIAOBOT_DIR%\package.json
     pause
     exit /b 1
 )
-
-echo [1/4] Starting QQ protocol...
-if exist "%NAPCAT_DIR%\napcat.quick.bat" (
-    if "%CHECK_ONLY%"=="0" start "QQ Protocol - NapCat" /D "%NAPCAT_DIR%" cmd /k "call napcat.quick.bat %QQ_ACCOUNT%"
-    if "%CHECK_ONLY%"=="1" (
-        echo       NapCat found.
-    ) else (
-        echo       NapCat launched. Please finish login if it asks for QR scan.
-    )
-) else if exist "%LAGRANGE_EXE%" (
-    if "%CHECK_ONLY%"=="0" start "QQ Protocol - Lagrange" /D "%XIAOMIAO_DIR%" cmd /k "Lagrange.OneBot.exe"
-    if "%CHECK_ONLY%"=="1" (
-        echo       Lagrange found.
-    ) else (
-        echo       Lagrange launched. Please finish login if it asks for QR scan.
-    )
-) else (
+if not exist "%XIAOMIAO_AGENT_WEBUI_DIR%\package.json" (
+    echo [Error] Missing xiaomiaoAgent webui package.json: %XIAOMIAO_AGENT_WEBUI_DIR%\package.json
+    pause
+    exit /b 1
+)
+if not exist "%NAPCAT_DIR%\napcat.quick.bat" if not exist "%LAGRANGE_EXE%" (
     echo [Error] No QQ protocol found.
     echo         Expected NapCat: %NAPCAT_DIR%\napcat.quick.bat
     echo         Expected Lagrange: %LAGRANGE_EXE%
     pause
     exit /b 1
 )
+exit /b 0
 
+:check_services
+echo [Check] Current service state. No windows will be started.
 echo.
-echo Waiting %PROTOCOL_WAIT_SECONDS%s for QQ protocol startup...
-if "%CHECK_ONLY%"=="0" timeout /t %PROTOCOL_WAIT_SECONDS% /nobreak >nul
-
-echo [2/4] Starting nanobot Agent API...
-if "%CHECK_ONLY%"=="0" start "nanobot Agent API" /D "%ROOT_DIR%" cmd /k call conda activate xiaomiao ^&^& python -m nanobot serve --config "%NANOBOT_CONFIG%"
-
-echo [3/4] Starting xiaomiao main.py and bridge...
-if "%CHECK_ONLY%"=="0" start "xiaomiao main.py" /D "%XIAOMIAO_DIR%" cmd /k call conda activate xiaomiao ^&^& python main.py
-
-echo [4/4] Starting AuBot stage-web...
-if "%CHECK_ONLY%"=="0" start "AuBot stage-web" /D "%AUBOT_DIR%" cmd /k "pnpm dev:web"
-
+call :check_port "QQ OneBot WebSocket" 5004
+call :check_http "xiaomiaoAgent API" 8900 "http://127.0.0.1:8900/health" "status"
+echo [xiaomiaoAgent gateway]
+powershell -NoProfile -ExecutionPolicy Bypass -File "%HEALTH_PS%" check -Kind Gateway -Name "xiaomiaoAgent gateway" -Port 8765 -BaseUrl "http://127.0.0.1:8765"
+if errorlevel 1 set "CHECK_FAILED=1"
+echo.
+call :check_xiaomiao "xiaomiao main.py, bridge, and QQ listener" 5519 "http://127.0.0.1:5519/v1/xiaomiao/status" "xiaomiao-desktop-bridge"
+call :check_http "xiaomiaobot web" %XIAOMIAOBOT_STAGE_WEB_PORT% "http://127.0.0.1:%XIAOMIAOBOT_STAGE_WEB_PORT%/" "xiaomiao"
+call :check_http "xiaomiaoAgent WebUI" 5174 "http://127.0.0.1:5174/" "xiaomiaoAgent"
 echo.
 echo ========================================
-if "%CHECK_ONLY%"=="1" (
-    echo Check passed. No windows were started.
-) else (
-    echo Started launch windows.
+if "%CHECK_FAILED%"=="1" (
+    echo Check failed. See the failed health check above.
+    echo ========================================
+    exit /b 1
 )
+echo Check passed. No windows were started.
+echo ========================================
+exit /b 0
+
+:check_port
+echo [%~1]
+powershell -NoProfile -ExecutionPolicy Bypass -File "%HEALTH_PS%" check -Kind Port -Name "%~1" -Port %~2
+if errorlevel 1 set "CHECK_FAILED=1"
+echo.
+exit /b 0
+
+:check_http
+echo [%~1]
+powershell -NoProfile -ExecutionPolicy Bypass -File "%HEALTH_PS%" check -Kind Http -Name "%~1" -Port %~2 -Url "%~3" -Needle "%~4"
+if errorlevel 1 set "CHECK_FAILED=1"
+echo.
+exit /b 0
+
+:check_xiaomiao
+echo [%~1]
+powershell -NoProfile -ExecutionPolicy Bypass -File "%HEALTH_PS%" check -Kind Xiaomiao -Name "%~1" -Port %~2 -Url "%~3" -Needle "%~4"
+if errorlevel 1 set "CHECK_FAILED=1"
+echo.
+exit /b 0
+
+:assert_free
+powershell -NoProfile -ExecutionPolicy Bypass -File "%HEALTH_PS%" assert-free -Name "%~1" -Port %~2
+exit /b %errorlevel%
+
+:wait_port
+powershell -NoProfile -ExecutionPolicy Bypass -File "%HEALTH_PS%" wait -Kind Port -Name "%~1" -Port %~2 -TimeoutSeconds %WAIT_TIMEOUT_SECONDS%
+exit /b %errorlevel%
+
+:wait_http
+powershell -NoProfile -ExecutionPolicy Bypass -File "%HEALTH_PS%" wait -Kind Http -Name "%~1" -Port %~2 -Url "%~3" -Needle "%~4" -TimeoutSeconds %WAIT_TIMEOUT_SECONDS%
+exit /b %errorlevel%
+
+:wait_xiaomiao
+powershell -NoProfile -ExecutionPolicy Bypass -File "%HEALTH_PS%" wait -Kind Xiaomiao -Name "%~1" -Port %~2 -Url "%~3" -Needle "%~4" -TimeoutSeconds %WAIT_TIMEOUT_SECONDS%
+exit /b %errorlevel%
+
+:wait_gateway
+powershell -NoProfile -ExecutionPolicy Bypass -File "%HEALTH_PS%" wait -Kind Gateway -Name "%~1" -Port %~2 -BaseUrl "%~3" -TimeoutSeconds %WAIT_TIMEOUT_SECONDS%
+exit /b %errorlevel%
+
+:start_qq
+echo [1/6] Starting QQ protocol...
+powershell -NoProfile -ExecutionPolicy Bypass -File "%HEALTH_PS%" is-open -Port 5004 >nul 2>nul
+if not errorlevel 1 (
+    echo       QQ OneBot WebSocket already listening on 127.0.0.1:5004.
+    echo       Reusing the existing QQ protocol process.
+    echo       Close QQ/NapCat first if you need a fresh visible QQ terminal.
+    powershell -NoProfile -ExecutionPolicy Bypass -File "%HEALTH_PS%" check -Kind Port -Name "QQ OneBot WebSocket" -Port 5004
+    exit /b %errorlevel%
+)
+if exist "%NAPCAT_DIR%\napcat.quick.bat" (
+    start "QQ Protocol - NapCat" /D "%NAPCAT_DIR%" cmd /k "call napcat.quick.bat %QQ_ACCOUNT%"
+) else (
+    start "QQ Protocol - Lagrange" /D "%XIAOMIAO_DIR%" cmd /k "Lagrange.OneBot.exe"
+)
+call :wait_port "QQ OneBot WebSocket" 5004
+exit /b %errorlevel%
+
+:start_agent_api
+echo.
+echo [2/6] Starting xiaomiaoAgent API...
+call :assert_free "xiaomiaoAgent API" 8900
+if errorlevel 1 exit /b 1
+start "xiaomiaoAgent API" /D "%XIAOMIAO_AGENT_DIR%" cmd /k "%CMD_AGENT_API%"
+call :wait_http "xiaomiaoAgent API" 8900 "http://127.0.0.1:8900/health" "status"
+exit /b %errorlevel%
+
+:start_agent_gateway
+echo.
+echo [3/6] Starting xiaomiaoAgent gateway...
+call :assert_free "xiaomiaoAgent gateway" 8765
+if errorlevel 1 exit /b 1
+start "xiaomiaoAgent gateway" /D "%XIAOMIAO_AGENT_DIR%" cmd /k "%CMD_AGENT_GATEWAY%"
+call :wait_gateway "xiaomiaoAgent gateway" 8765 "http://127.0.0.1:8765"
+exit /b %errorlevel%
+
+:start_xiaomiao_main
+echo.
+echo [4/6] Starting xiaomiao main.py and bridge...
+call :assert_free "xiaomiao main.py and bridge" 5519
+if errorlevel 1 exit /b 1
+start "xiaomiao main.py" /D "%XIAOMIAO_DIR%" cmd /k "%CMD_XIAOMIAO_MAIN%"
+call :wait_xiaomiao "xiaomiao main.py, bridge, and QQ listener" 5519 "http://127.0.0.1:5519/v1/xiaomiao/status" "xiaomiao-desktop-bridge"
+exit /b %errorlevel%
+
+:start_xiaomiaobot_web
+echo.
+echo [5/6] Starting xiaomiaobot web...
+call :assert_free "xiaomiaobot web" %XIAOMIAOBOT_STAGE_WEB_PORT%
+if errorlevel 1 exit /b 1
+start "xiaomiaobot web" /D "%XIAOMIAOBOT_STAGE_WEB_DIR%" cmd /k "%CMD_XIAOMIAOBOT_WEB%"
+call :wait_http "xiaomiaobot web" %XIAOMIAOBOT_STAGE_WEB_PORT% "http://127.0.0.1:%XIAOMIAOBOT_STAGE_WEB_PORT%/" "xiaomiao"
+exit /b %errorlevel%
+
+:start_agent_webui
+echo.
+echo [6/6] Starting xiaomiaoAgent WebUI...
+call :assert_free "xiaomiaoAgent WebUI" 5174
+if errorlevel 1 exit /b 1
+start "xiaomiaoAgent WebUI" /D "%XIAOMIAO_AGENT_WEBUI_DIR%" cmd /k "%CMD_AGENT_WEBUI%"
+call :wait_http "xiaomiaoAgent WebUI" 5174 "http://127.0.0.1:5174/" "xiaomiaoAgent"
+exit /b %errorlevel%
+
+:launch_failed
+echo.
+echo ========================================
+echo Launch stopped. Later services were not opened.
+echo Fix the failed service above, then run start-all.cmd again.
+echo ========================================
+pause
+exit /b 1
+
+:launch_success
+echo.
+echo ========================================
+echo All required services were started in visible terminals.
 echo ========================================
 echo.
 echo Ports:
-echo   QQ OneBot WebSocket: 127.0.0.1:5004
-echo   xiaomiao bridge:     127.0.0.1:5519
-echo   nanobot Agent API:   127.0.0.1:8900
+echo   QQ OneBot WebSocket:   127.0.0.1:5004
+echo   xiaomiao bridge:       127.0.0.1:5519
+echo   xiaomiaoAgent API:     127.0.0.1:8900
+echo   xiaomiaoAgent gateway: 127.0.0.1:8765
+echo   xiaomiaoAgent WebUI:   http://127.0.0.1:5174
+echo   xiaomiaobot web:       http://127.0.0.1:%XIAOMIAOBOT_STAGE_WEB_PORT%
 echo.
-echo If xiaomiao exits because QQ protocol is not ready,
-echo finish QQ login first, then restart the "xiaomiao main.py" window.
-echo.
-if "%CHECK_ONLY%"=="0" pause
+pause
+exit /b 0
