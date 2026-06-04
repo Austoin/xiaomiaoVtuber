@@ -1,0 +1,709 @@
+{
+  "nodes": [
+    {
+      "id": "document:AuBot/docs/content/zh-Hans/docs/manual/web/index.md",
+      "type": "document",
+      "name": "index.md",
+      "filePath": "AuBot/docs/content/zh-Hans/docs/manual/web/index.md",
+      "summary": "文档 index.md 记录 AuBot\\docs\\content\\zh-Hans\\docs\\manual\\web 相关的说明、约定或使用信息，帮助理解该区域的项目上下文。",
+      "tags": [
+        "文档",
+        "说明",
+        "项目知识"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:AuBot/docs/content/zh-Hans/index.md",
+      "type": "document",
+      "name": "index.md",
+      "filePath": "AuBot/docs/content/zh-Hans/index.md",
+      "summary": "文档 index.md 记录 AuBot\\docs\\content\\zh-Hans 相关的说明、约定或使用信息，帮助理解该区域的项目上下文。",
+      "tags": [
+        "文档",
+        "说明",
+        "项目知识"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:AuBot/docs/content/zh-Hans/references/research/gaming/minecraft.md",
+      "type": "document",
+      "name": "minecraft.md",
+      "filePath": "AuBot/docs/content/zh-Hans/references/research/gaming/minecraft.md",
+      "summary": "文档 minecraft.md 记录 AuBot\\docs\\content\\zh-Hans\\references\\research\\gaming 相关的说明、约定或使用信息，帮助理解该区域的项目上下文。",
+      "tags": [
+        "文档",
+        "说明",
+        "项目知识"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/docs/scripts/avif.ts",
+      "type": "file",
+      "name": "avif.ts",
+      "filePath": "AuBot/docs/scripts/avif.ts",
+      "summary": "代码文件 avif.ts 位于 AuBot\\docs\\scripts，包含 2 个函数和 0 个类，承担该模块内的核心实现职责。",
+      "tags": [
+        "代码",
+        "模块",
+        "项目逻辑"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/docs/scripts/avif.ts:transform",
+      "type": "function",
+      "name": "transform",
+      "filePath": "AuBot/docs/scripts/avif.ts",
+      "lineRange": [
+        10,
+        28
+      ],
+      "summary": "函数 transform 实现 AuBot/docs/scripts/avif.ts 中的关键逻辑，参与该模块的主要行为。",
+      "tags": [
+        "函数",
+        "模块逻辑",
+        "内部实现"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/docs/scripts/avif.ts:main",
+      "type": "function",
+      "name": "main",
+      "filePath": "AuBot/docs/scripts/avif.ts",
+      "lineRange": [
+        30,
+        39
+      ],
+      "summary": "函数 main 实现 AuBot/docs/scripts/avif.ts 中的关键逻辑，参与该模块的主要行为。",
+      "tags": [
+        "函数",
+        "模块逻辑",
+        "内部实现"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/docs/scripts/update-contributors.ts",
+      "type": "file",
+      "name": "update-contributors.ts",
+      "filePath": "AuBot/docs/scripts/update-contributors.ts",
+      "summary": "代码文件 update-contributors.ts 位于 AuBot\\docs\\scripts，包含 2 个函数和 0 个类，承担该模块内的核心实现职责。",
+      "tags": [
+        "代码",
+        "模块",
+        "项目逻辑"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/docs/scripts/update-contributors.ts:fetchContributors",
+      "type": "function",
+      "name": "fetchContributors",
+      "filePath": "AuBot/docs/scripts/update-contributors.ts",
+      "lineRange": [
+        7,
+        27
+      ],
+      "summary": "函数 fetchContributors 实现 AuBot/docs/scripts/update-contributors.ts 中的关键逻辑，参与该模块的主要行为。",
+      "tags": [
+        "函数",
+        "模块逻辑",
+        "内部实现"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/docs/scripts/utils.ts",
+      "type": "file",
+      "name": "utils.ts",
+      "filePath": "AuBot/docs/scripts/utils.ts",
+      "summary": "代码文件 utils.ts 位于 AuBot\\docs\\scripts，包含 1 个函数和 0 个类，承担该模块内的核心实现职责。",
+      "tags": [
+        "工具函数",
+        "复用",
+        "辅助逻辑"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/docs/scripts/utils.ts:transformJSDocLinks",
+      "type": "function",
+      "name": "transformJSDocLinks",
+      "filePath": "AuBot/docs/scripts/utils.ts",
+      "lineRange": [
+        4,
+        28
+      ],
+      "summary": "函数 transformJSDocLinks 实现 AuBot/docs/scripts/utils.ts 中的关键逻辑，参与该模块的主要行为。",
+      "tags": [
+        "函数",
+        "模块逻辑",
+        "导出"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/docs/uno.config.ts",
+      "type": "file",
+      "name": "uno.config.ts",
+      "filePath": "AuBot/docs/uno.config.ts",
+      "summary": "代码文件 uno.config.ts 位于 AuBot\\docs，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "配置",
+        "运行时",
+        "设置"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:AuBot/docs/vite-env.d.ts",
+      "type": "file",
+      "name": "vite-env.d.ts",
+      "filePath": "AuBot/docs/vite-env.d.ts",
+      "summary": "代码文件 vite-env.d.ts 位于 AuBot\\docs，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "代码",
+        "模块",
+        "项目逻辑"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/engines/stage-tamagotchi-godot/.gitattributes",
+      "type": "file",
+      "name": ".gitattributes",
+      "filePath": "AuBot/engines/stage-tamagotchi-godot/.gitattributes",
+      "summary": "代码文件 .gitattributes 位于 AuBot\\engines\\stage-tamagotchi-godot，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "代码",
+        "模块",
+        "项目逻辑"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/engines/stage-tamagotchi-godot/addons/.gitkeep",
+      "type": "file",
+      "name": ".gitkeep",
+      "filePath": "AuBot/engines/stage-tamagotchi-godot/addons/.gitkeep",
+      "summary": "代码文件 .gitkeep 位于 AuBot\\engines\\stage-tamagotchi-godot\\addons，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "代码",
+        "模块",
+        "项目逻辑"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/engines/stage-tamagotchi-godot/assets/.gitkeep",
+      "type": "file",
+      "name": ".gitkeep",
+      "filePath": "AuBot/engines/stage-tamagotchi-godot/assets/.gitkeep",
+      "summary": "代码文件 .gitkeep 位于 AuBot\\engines\\stage-tamagotchi-godot\\assets，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "代码",
+        "模块",
+        "项目逻辑"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:AuBot/engines/stage-tamagotchi-godot/docs/csharp-development-method.md",
+      "type": "document",
+      "name": "csharp-development-method.md",
+      "filePath": "AuBot/engines/stage-tamagotchi-godot/docs/csharp-development-method.md",
+      "summary": "文档 csharp-development-method.md 记录 AuBot\\engines\\stage-tamagotchi-godot\\docs 相关的说明、约定或使用信息，帮助理解该区域的项目上下文。",
+      "tags": [
+        "文档",
+        "说明",
+        "项目知识"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:AuBot/engines/stage-tamagotchi-godot/docs/csharp-style.md",
+      "type": "document",
+      "name": "csharp-style.md",
+      "filePath": "AuBot/engines/stage-tamagotchi-godot/docs/csharp-style.md",
+      "summary": "文档 csharp-style.md 记录 AuBot\\engines\\stage-tamagotchi-godot\\docs 相关的说明、约定或使用信息，帮助理解该区域的项目上下文。",
+      "tags": [
+        "文档",
+        "说明",
+        "项目知识"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/engines/stage-tamagotchi-godot/icon.svg.import",
+      "type": "file",
+      "name": "icon.svg.import",
+      "filePath": "AuBot/engines/stage-tamagotchi-godot/icon.svg.import",
+      "summary": "代码文件 icon.svg.import 位于 AuBot\\engines\\stage-tamagotchi-godot，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "代码",
+        "模块",
+        "项目逻辑"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/engines/stage-tamagotchi-godot/project.godot",
+      "type": "file",
+      "name": "project.godot",
+      "filePath": "AuBot/engines/stage-tamagotchi-godot/project.godot",
+      "summary": "代码文件 project.godot 位于 AuBot\\engines\\stage-tamagotchi-godot，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "代码",
+        "模块",
+        "项目逻辑"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/engines/stage-tamagotchi-godot/scenes/stage-root.tscn",
+      "type": "file",
+      "name": "stage-root.tscn",
+      "filePath": "AuBot/engines/stage-tamagotchi-godot/scenes/stage-root.tscn",
+      "summary": "代码文件 stage-root.tscn 位于 AuBot\\engines\\stage-tamagotchi-godot\\scenes，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "代码",
+        "模块",
+        "项目逻辑"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/engines/stage-tamagotchi-godot/scripts/StageRoot.cs",
+      "type": "file",
+      "name": "StageRoot.cs",
+      "filePath": "AuBot/engines/stage-tamagotchi-godot/scripts/StageRoot.cs",
+      "summary": "代码文件 StageRoot.cs 位于 AuBot\\engines\\stage-tamagotchi-godot\\scripts，包含 8 个函数和 1 个类，承担该模块内的核心实现职责。",
+      "tags": [
+        "代码",
+        "模块",
+        "项目逻辑"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:AuBot/engines/stage-tamagotchi-godot/scripts/StageRoot.cs:_Ready",
+      "type": "function",
+      "name": "_Ready",
+      "filePath": "AuBot/engines/stage-tamagotchi-godot/scripts/StageRoot.cs",
+      "lineRange": [
+        21,
+        46
+      ],
+      "summary": "函数 _Ready 实现 AuBot/engines/stage-tamagotchi-godot/scripts/StageRoot.cs 中的关键逻辑，参与该模块的主要行为。",
+      "tags": [
+        "函数",
+        "模块逻辑",
+        "导出"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/engines/stage-tamagotchi-godot/scripts/StageRoot.cs:_Process",
+      "type": "function",
+      "name": "_Process",
+      "filePath": "AuBot/engines/stage-tamagotchi-godot/scripts/StageRoot.cs",
+      "lineRange": [
+        48,
+        80
+      ],
+      "summary": "函数 _Process 实现 AuBot/engines/stage-tamagotchi-godot/scripts/StageRoot.cs 中的关键逻辑，参与该模块的主要行为。",
+      "tags": [
+        "函数",
+        "模块逻辑",
+        "导出"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/engines/stage-tamagotchi-godot/scripts/StageRoot.cs:CreateStatusLabel",
+      "type": "function",
+      "name": "CreateStatusLabel",
+      "filePath": "AuBot/engines/stage-tamagotchi-godot/scripts/StageRoot.cs",
+      "lineRange": [
+        82,
+        93
+      ],
+      "summary": "函数 CreateStatusLabel 实现 AuBot/engines/stage-tamagotchi-godot/scripts/StageRoot.cs 中的关键逻辑，参与该模块的主要行为。",
+      "tags": [
+        "函数",
+        "模块逻辑",
+        "内部实现"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/engines/stage-tamagotchi-godot/scripts/StageRoot.cs:HandleMessage",
+      "type": "function",
+      "name": "HandleMessage",
+      "filePath": "AuBot/engines/stage-tamagotchi-godot/scripts/StageRoot.cs",
+      "lineRange": [
+        95,
+        126
+      ],
+      "summary": "函数 HandleMessage 实现 AuBot/engines/stage-tamagotchi-godot/scripts/StageRoot.cs 中的关键逻辑，参与该模块的主要行为。",
+      "tags": [
+        "函数",
+        "模块逻辑",
+        "内部实现"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/engines/stage-tamagotchi-godot/scripts/StageRoot.cs:ApplySceneInput",
+      "type": "function",
+      "name": "ApplySceneInput",
+      "filePath": "AuBot/engines/stage-tamagotchi-godot/scripts/StageRoot.cs",
+      "lineRange": [
+        128,
+        163
+      ],
+      "summary": "函数 ApplySceneInput 实现 AuBot/engines/stage-tamagotchi-godot/scripts/StageRoot.cs 中的关键逻辑，参与该模块的主要行为。",
+      "tags": [
+        "函数",
+        "模块逻辑",
+        "内部实现"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/engines/stage-tamagotchi-godot/scripts/StageRoot.cs:ResolveWebSocketUrl",
+      "type": "function",
+      "name": "ResolveWebSocketUrl",
+      "filePath": "AuBot/engines/stage-tamagotchi-godot/scripts/StageRoot.cs",
+      "lineRange": [
+        165,
+        176
+      ],
+      "summary": "函数 ResolveWebSocketUrl 实现 AuBot/engines/stage-tamagotchi-godot/scripts/StageRoot.cs 中的关键逻辑，参与该模块的主要行为。",
+      "tags": [
+        "函数",
+        "模块逻辑",
+        "内部实现"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/engines/stage-tamagotchi-godot/scripts/StageRoot.cs:SendEnvelope",
+      "type": "function",
+      "name": "SendEnvelope",
+      "filePath": "AuBot/engines/stage-tamagotchi-godot/scripts/StageRoot.cs",
+      "lineRange": [
+        178,
+        190
+      ],
+      "summary": "函数 SendEnvelope 实现 AuBot/engines/stage-tamagotchi-godot/scripts/StageRoot.cs 中的关键逻辑，参与该模块的主要行为。",
+      "tags": [
+        "函数",
+        "模块逻辑",
+        "内部实现"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:AuBot/engines/stage-tamagotchi-godot/scripts/StageRoot.cs:StageRoot",
+      "type": "class",
+      "name": "StageRoot",
+      "filePath": "AuBot/engines/stage-tamagotchi-godot/scripts/StageRoot.cs",
+      "lineRange": [
+        6,
+        205
+      ],
+      "summary": "类 StageRoot 封装 AuBot/engines/stage-tamagotchi-godot/scripts/StageRoot.cs 中的状态与行为，提供该模块的重要抽象。",
+      "tags": [
+        "类",
+        "抽象",
+        "导出"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:AuBot/engines/stage-tamagotchi-godot/scripts/StageRoot.cs.uid",
+      "type": "file",
+      "name": "StageRoot.cs.uid",
+      "filePath": "AuBot/engines/stage-tamagotchi-godot/scripts/StageRoot.cs.uid",
+      "summary": "代码文件 StageRoot.cs.uid 位于 AuBot\\engines\\stage-tamagotchi-godot\\scripts，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "代码",
+        "模块",
+        "项目逻辑"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/eslint.config.js",
+      "type": "file",
+      "name": "eslint.config.js",
+      "filePath": "AuBot/eslint.config.js",
+      "summary": "代码文件 eslint.config.js 位于 AuBot，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "配置",
+        "运行时",
+        "设置"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:AuBot/flake.nix",
+      "type": "file",
+      "name": "flake.nix",
+      "filePath": "AuBot/flake.nix",
+      "summary": "代码文件 flake.nix 位于 AuBot，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "代码",
+        "模块",
+        "项目逻辑"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:AuBot/integrations/vscode/airi-plugin-vscode/package.json",
+      "type": "config",
+      "name": "package.json",
+      "filePath": "AuBot/integrations/vscode/airi-plugin-vscode/package.json",
+      "summary": "配置文件 package.json 管理 AuBot\\integrations\\vscode\\airi-plugin-vscode 相关的工具链、构建或运行参数，是项目环境约定的一部分。",
+      "tags": [
+        "配置",
+        "项目设置",
+        "工具链"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/integrations/vscode/airi-plugin-vscode/src/index.ts",
+      "type": "file",
+      "name": "index.ts",
+      "filePath": "AuBot/integrations/vscode/airi-plugin-vscode/src/index.ts",
+      "summary": "代码文件 index.ts 位于 AuBot\\integrations\\vscode\\airi-plugin-vscode\\src，包含 2 个函数和 0 个类，承担该模块内的核心实现职责。",
+      "tags": [
+        "入口点",
+        "barrel",
+        "导出"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/integrations/vscode/airi-plugin-vscode/src/index.ts:activate",
+      "type": "function",
+      "name": "activate",
+      "filePath": "AuBot/integrations/vscode/airi-plugin-vscode/src/index.ts",
+      "lineRange": [
+        1,
+        3
+      ],
+      "summary": "函数 activate 实现 AuBot/integrations/vscode/airi-plugin-vscode/src/index.ts 中的关键逻辑，参与该模块的主要行为。",
+      "tags": [
+        "函数",
+        "模块逻辑",
+        "导出"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/integrations/vscode/airi-plugin-vscode/src/index.ts:deactivate",
+      "type": "function",
+      "name": "deactivate",
+      "filePath": "AuBot/integrations/vscode/airi-plugin-vscode/src/index.ts",
+      "lineRange": [
+        5,
+        7
+      ],
+      "summary": "函数 deactivate 实现 AuBot/integrations/vscode/airi-plugin-vscode/src/index.ts 中的关键逻辑，参与该模块的主要行为。",
+      "tags": [
+        "函数",
+        "模块逻辑",
+        "导出"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:AuBot/integrations/vscode/airi-plugin-vscode/tsconfig.json",
+      "type": "config",
+      "name": "tsconfig.json",
+      "filePath": "AuBot/integrations/vscode/airi-plugin-vscode/tsconfig.json",
+      "summary": "配置文件 tsconfig.json 管理 AuBot\\integrations\\vscode\\airi-plugin-vscode 相关的工具链、构建或运行参数，是项目环境约定的一部分。",
+      "tags": [
+        "配置",
+        "项目设置",
+        "工具链"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/integrations/vscode/airi-plugin-vscode/tsdown.config.ts",
+      "type": "file",
+      "name": "tsdown.config.ts",
+      "filePath": "AuBot/integrations/vscode/airi-plugin-vscode/tsdown.config.ts",
+      "summary": "代码文件 tsdown.config.ts 位于 AuBot\\integrations\\vscode\\airi-plugin-vscode，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "配置",
+        "运行时",
+        "设置"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/integrations/vscode/vscode-airi/.vscodeignore",
+      "type": "file",
+      "name": ".vscodeignore",
+      "filePath": "AuBot/integrations/vscode/vscode-airi/.vscodeignore",
+      "summary": "代码文件 .vscodeignore 位于 AuBot\\integrations\\vscode\\vscode-airi，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "代码",
+        "模块",
+        "项目逻辑"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:AuBot/docs/scripts/avif.ts",
+      "target": "function:AuBot/docs/scripts/avif.ts:transform",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:AuBot/docs/scripts/avif.ts",
+      "target": "function:AuBot/docs/scripts/avif.ts:main",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:AuBot/docs/scripts/update-contributors.ts",
+      "target": "function:AuBot/docs/scripts/update-contributors.ts:fetchContributors",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:AuBot/docs/scripts/utils.ts",
+      "target": "function:AuBot/docs/scripts/utils.ts:transformJSDocLinks",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:AuBot/docs/scripts/utils.ts",
+      "target": "function:AuBot/docs/scripts/utils.ts:transformJSDocLinks",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:AuBot/engines/stage-tamagotchi-godot/scripts/StageRoot.cs",
+      "target": "function:AuBot/engines/stage-tamagotchi-godot/scripts/StageRoot.cs:_Ready",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:AuBot/engines/stage-tamagotchi-godot/scripts/StageRoot.cs",
+      "target": "function:AuBot/engines/stage-tamagotchi-godot/scripts/StageRoot.cs:_Ready",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:AuBot/engines/stage-tamagotchi-godot/scripts/StageRoot.cs",
+      "target": "function:AuBot/engines/stage-tamagotchi-godot/scripts/StageRoot.cs:_Process",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:AuBot/engines/stage-tamagotchi-godot/scripts/StageRoot.cs",
+      "target": "function:AuBot/engines/stage-tamagotchi-godot/scripts/StageRoot.cs:_Process",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:AuBot/engines/stage-tamagotchi-godot/scripts/StageRoot.cs",
+      "target": "function:AuBot/engines/stage-tamagotchi-godot/scripts/StageRoot.cs:CreateStatusLabel",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:AuBot/engines/stage-tamagotchi-godot/scripts/StageRoot.cs",
+      "target": "function:AuBot/engines/stage-tamagotchi-godot/scripts/StageRoot.cs:HandleMessage",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:AuBot/engines/stage-tamagotchi-godot/scripts/StageRoot.cs",
+      "target": "function:AuBot/engines/stage-tamagotchi-godot/scripts/StageRoot.cs:ApplySceneInput",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:AuBot/engines/stage-tamagotchi-godot/scripts/StageRoot.cs",
+      "target": "function:AuBot/engines/stage-tamagotchi-godot/scripts/StageRoot.cs:ResolveWebSocketUrl",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:AuBot/engines/stage-tamagotchi-godot/scripts/StageRoot.cs",
+      "target": "function:AuBot/engines/stage-tamagotchi-godot/scripts/StageRoot.cs:SendEnvelope",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:AuBot/engines/stage-tamagotchi-godot/scripts/StageRoot.cs",
+      "target": "class:AuBot/engines/stage-tamagotchi-godot/scripts/StageRoot.cs:StageRoot",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:AuBot/engines/stage-tamagotchi-godot/scripts/StageRoot.cs",
+      "target": "class:AuBot/engines/stage-tamagotchi-godot/scripts/StageRoot.cs:StageRoot",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:AuBot/integrations/vscode/airi-plugin-vscode/src/index.ts",
+      "target": "function:AuBot/integrations/vscode/airi-plugin-vscode/src/index.ts:activate",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:AuBot/integrations/vscode/airi-plugin-vscode/src/index.ts",
+      "target": "function:AuBot/integrations/vscode/airi-plugin-vscode/src/index.ts:activate",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:AuBot/integrations/vscode/airi-plugin-vscode/src/index.ts",
+      "target": "function:AuBot/integrations/vscode/airi-plugin-vscode/src/index.ts:deactivate",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:AuBot/integrations/vscode/airi-plugin-vscode/src/index.ts",
+      "target": "function:AuBot/integrations/vscode/airi-plugin-vscode/src/index.ts:deactivate",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    }
+  ]
+}

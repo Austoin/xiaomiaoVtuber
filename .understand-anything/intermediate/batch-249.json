@@ -1,0 +1,462 @@
+{
+  "nodes": [
+    {
+      "id": "file:AuBot/packages/stage-pages/src/pages/settings/providers/transcription/aliyun-nls-transcription.vue",
+      "type": "file",
+      "name": "aliyun-nls-transcription.vue",
+      "filePath": "AuBot/packages/stage-pages/src/pages/settings/providers/transcription/aliyun-nls-transcription.vue",
+      "summary": "代码文件 aliyun-nls-transcription.vue 位于 AuBot\\packages\\stage-pages\\src\\pages\\settings\\providers\\transcription，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "配置",
+        "运行时",
+        "设置"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:AuBot/packages/stage-pages/src/pages/settings/providers/transcription/browser-web-speech-api.vue",
+      "type": "file",
+      "name": "browser-web-speech-api.vue",
+      "filePath": "AuBot/packages/stage-pages/src/pages/settings/providers/transcription/browser-web-speech-api.vue",
+      "summary": "代码文件 browser-web-speech-api.vue 位于 AuBot\\packages\\stage-pages\\src\\pages\\settings\\providers\\transcription，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "配置",
+        "运行时",
+        "设置"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:AuBot/packages/stage-pages/src/pages/settings/providers/transcription/comet-api-transcription.vue",
+      "type": "file",
+      "name": "comet-api-transcription.vue",
+      "filePath": "AuBot/packages/stage-pages/src/pages/settings/providers/transcription/comet-api-transcription.vue",
+      "summary": "代码文件 comet-api-transcription.vue 位于 AuBot\\packages\\stage-pages\\src\\pages\\settings\\providers\\transcription，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "配置",
+        "运行时",
+        "设置"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:AuBot/packages/stage-pages/src/pages/settings/providers/transcription/openai-audio-transcription.vue",
+      "type": "file",
+      "name": "openai-audio-transcription.vue",
+      "filePath": "AuBot/packages/stage-pages/src/pages/settings/providers/transcription/openai-audio-transcription.vue",
+      "summary": "代码文件 openai-audio-transcription.vue 位于 AuBot\\packages\\stage-pages\\src\\pages\\settings\\providers\\transcription，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "配置",
+        "运行时",
+        "设置"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:AuBot/packages/stage-pages/src/pages/settings/providers/transcription/openai-compatible-audio-transcription.vue",
+      "type": "file",
+      "name": "openai-compatible-audio-transcription.vue",
+      "filePath": "AuBot/packages/stage-pages/src/pages/settings/providers/transcription/openai-compatible-audio-transcription.vue",
+      "summary": "代码文件 openai-compatible-audio-transcription.vue 位于 AuBot\\packages\\stage-pages\\src\\pages\\settings\\providers\\transcription，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "配置",
+        "运行时",
+        "设置"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:AuBot/packages/stage-pages/src/pages/settings/scene/index.vue",
+      "type": "file",
+      "name": "index.vue",
+      "filePath": "AuBot/packages/stage-pages/src/pages/settings/scene/index.vue",
+      "summary": "代码文件 index.vue 位于 AuBot\\packages\\stage-pages\\src\\pages\\settings\\scene，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "入口点",
+        "barrel",
+        "导出"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "config:AuBot/packages/stage-pages/src/pages/settings/system/color-presets.json",
+      "type": "config",
+      "name": "color-presets.json",
+      "filePath": "AuBot/packages/stage-pages/src/pages/settings/system/color-presets.json",
+      "summary": "配置文件 color-presets.json 管理 AuBot\\packages\\stage-pages\\src\\pages\\settings\\system 相关的工具链、构建或运行参数，是项目环境约定的一部分。",
+      "tags": [
+        "配置",
+        "项目设置",
+        "工具链"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:AuBot/packages/stage-pages/src/pages/settings/system/color-scheme.vue",
+      "type": "file",
+      "name": "color-scheme.vue",
+      "filePath": "AuBot/packages/stage-pages/src/pages/settings/system/color-scheme.vue",
+      "summary": "代码文件 color-scheme.vue 位于 AuBot\\packages\\stage-pages\\src\\pages\\settings\\system，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "配置",
+        "运行时",
+        "设置"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:AuBot/packages/stage-pages/src/pages/settings/system/general.vue",
+      "type": "file",
+      "name": "general.vue",
+      "filePath": "AuBot/packages/stage-pages/src/pages/settings/system/general.vue",
+      "summary": "代码文件 general.vue 位于 AuBot\\packages\\stage-pages\\src\\pages\\settings\\system，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "配置",
+        "运行时",
+        "设置"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/stage-pages/src/pages/v2/index.vue",
+      "type": "file",
+      "name": "index.vue",
+      "filePath": "AuBot/packages/stage-pages/src/pages/v2/index.vue",
+      "summary": "代码文件 index.vue 位于 AuBot\\packages\\stage-pages\\src\\pages\\v2，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "入口点",
+        "barrel",
+        "导出"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:AuBot/packages/stage-pages/src/pages/v2/settings.vue",
+      "type": "file",
+      "name": "settings.vue",
+      "filePath": "AuBot/packages/stage-pages/src/pages/v2/settings.vue",
+      "summary": "代码文件 settings.vue 位于 AuBot\\packages\\stage-pages\\src\\pages\\v2，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "配置",
+        "运行时",
+        "设置"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/stage-pages/src/pages/v2/settings/index.vue",
+      "type": "file",
+      "name": "index.vue",
+      "filePath": "AuBot/packages/stage-pages/src/pages/v2/settings/index.vue",
+      "summary": "代码文件 index.vue 位于 AuBot\\packages\\stage-pages\\src\\pages\\v2\\settings，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "入口点",
+        "barrel",
+        "导出"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/stage-pages/src/pages/v2/settings/providers.vue",
+      "type": "file",
+      "name": "providers.vue",
+      "filePath": "AuBot/packages/stage-pages/src/pages/v2/settings/providers.vue",
+      "summary": "代码文件 providers.vue 位于 AuBot\\packages\\stage-pages\\src\\pages\\v2\\settings，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "配置",
+        "运行时",
+        "设置"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:AuBot/packages/stage-pages/src/pages/v2/settings/providers/edit.vue",
+      "type": "file",
+      "name": "edit.vue",
+      "filePath": "AuBot/packages/stage-pages/src/pages/v2/settings/providers/edit.vue",
+      "summary": "代码文件 edit.vue 位于 AuBot\\packages\\stage-pages\\src\\pages\\v2\\settings\\providers，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "配置",
+        "运行时",
+        "设置"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/stage-pages/src/pages/v2/settings/providers/edit/[providerId]/index.vue",
+      "type": "file",
+      "name": "index.vue",
+      "filePath": "AuBot/packages/stage-pages/src/pages/v2/settings/providers/edit/[providerId]/index.vue",
+      "summary": "代码文件 index.vue 位于 AuBot\\packages\\stage-pages\\src\\pages\\v2\\settings\\providers\\edit\\[providerId]，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "入口点",
+        "barrel",
+        "导出"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:AuBot/packages/stage-pages/src/pages/v2/settings/providers/index.vue",
+      "type": "file",
+      "name": "index.vue",
+      "filePath": "AuBot/packages/stage-pages/src/pages/v2/settings/providers/index.vue",
+      "summary": "代码文件 index.vue 位于 AuBot\\packages\\stage-pages\\src\\pages\\v2\\settings\\providers，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "入口点",
+        "barrel",
+        "导出"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:AuBot/packages/stage-pages/tsconfig.json",
+      "type": "config",
+      "name": "tsconfig.json",
+      "filePath": "AuBot/packages/stage-pages/tsconfig.json",
+      "summary": "配置文件 tsconfig.json 管理 AuBot\\packages\\stage-pages 相关的工具链、构建或运行参数，是项目环境约定的一部分。",
+      "tags": [
+        "配置",
+        "项目设置",
+        "工具链"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:AuBot/packages/stage-shared/package.json",
+      "type": "config",
+      "name": "package.json",
+      "filePath": "AuBot/packages/stage-shared/package.json",
+      "summary": "配置文件 package.json 管理 AuBot\\packages\\stage-shared 相关的工具链、构建或运行参数，是项目环境约定的一部分。",
+      "tags": [
+        "配置",
+        "项目设置",
+        "工具链"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/stage-shared/src/artistry.ts",
+      "type": "file",
+      "name": "artistry.ts",
+      "filePath": "AuBot/packages/stage-shared/src/artistry.ts",
+      "summary": "代码文件 artistry.ts 位于 AuBot\\packages\\stage-shared\\src，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "工具函数",
+        "复用",
+        "辅助逻辑"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:AuBot/packages/stage-shared/src/auth/index.ts",
+      "type": "file",
+      "name": "index.ts",
+      "filePath": "AuBot/packages/stage-shared/src/auth/index.ts",
+      "summary": "代码文件 index.ts 位于 AuBot\\packages\\stage-shared\\src\\auth，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "入口点",
+        "barrel",
+        "导出"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/stage-shared/src/auth/pkce.test.ts",
+      "type": "file",
+      "name": "pkce.test.ts",
+      "filePath": "AuBot/packages/stage-shared/src/auth/pkce.test.ts",
+      "summary": "代码文件 pkce.test.ts 位于 AuBot\\packages\\stage-shared\\src\\auth，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "测试",
+        "验证",
+        "回归"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/stage-shared/src/auth/pkce.ts",
+      "type": "file",
+      "name": "pkce.ts",
+      "filePath": "AuBot/packages/stage-shared/src/auth/pkce.ts",
+      "summary": "代码文件 pkce.ts 位于 AuBot\\packages\\stage-shared\\src\\auth，包含 4 个函数和 0 个类，承担该模块内的核心实现职责。",
+      "tags": [
+        "工具函数",
+        "复用",
+        "辅助逻辑"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/packages/stage-shared/src/auth/pkce.ts:base64UrlEncode",
+      "type": "function",
+      "name": "base64UrlEncode",
+      "filePath": "AuBot/packages/stage-shared/src/auth/pkce.ts",
+      "lineRange": [
+        9,
+        18
+      ],
+      "summary": "函数 base64UrlEncode 实现 AuBot/packages/stage-shared/src/auth/pkce.ts 中的关键逻辑，参与该模块的主要行为。",
+      "tags": [
+        "函数",
+        "模块逻辑",
+        "导出"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/packages/stage-shared/src/auth/pkce.ts:generateCodeVerifier",
+      "type": "function",
+      "name": "generateCodeVerifier",
+      "filePath": "AuBot/packages/stage-shared/src/auth/pkce.ts",
+      "lineRange": [
+        24,
+        28
+      ],
+      "summary": "函数 generateCodeVerifier 实现 AuBot/packages/stage-shared/src/auth/pkce.ts 中的关键逻辑，参与该模块的主要行为。",
+      "tags": [
+        "函数",
+        "模块逻辑",
+        "导出"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/packages/stage-shared/src/auth/pkce.ts:generateCodeChallenge",
+      "type": "function",
+      "name": "generateCodeChallenge",
+      "filePath": "AuBot/packages/stage-shared/src/auth/pkce.ts",
+      "lineRange": [
+        33,
+        37
+      ],
+      "summary": "函数 generateCodeChallenge 实现 AuBot/packages/stage-shared/src/auth/pkce.ts 中的关键逻辑，参与该模块的主要行为。",
+      "tags": [
+        "函数",
+        "模块逻辑",
+        "导出"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/packages/stage-shared/src/auth/pkce.ts:generateState",
+      "type": "function",
+      "name": "generateState",
+      "filePath": "AuBot/packages/stage-shared/src/auth/pkce.ts",
+      "lineRange": [
+        42,
+        46
+      ],
+      "summary": "函数 generateState 实现 AuBot/packages/stage-shared/src/auth/pkce.ts 中的关键逻辑，参与该模块的主要行为。",
+      "tags": [
+        "函数",
+        "模块逻辑",
+        "导出"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/stage-shared/src/beat-sync/index.ts",
+      "type": "file",
+      "name": "index.ts",
+      "filePath": "AuBot/packages/stage-shared/src/beat-sync/index.ts",
+      "summary": "代码文件 index.ts 位于 AuBot\\packages\\stage-shared\\src\\beat-sync，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "入口点",
+        "barrel",
+        "导出"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/stage-shared/src/beat-sync/settings.ts",
+      "type": "file",
+      "name": "settings.ts",
+      "filePath": "AuBot/packages/stage-shared/src/beat-sync/settings.ts",
+      "summary": "代码文件 settings.ts 位于 AuBot\\packages\\stage-shared\\src\\beat-sync，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "配置",
+        "运行时",
+        "设置"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/stage-shared/src/composables/index.ts",
+      "type": "file",
+      "name": "index.ts",
+      "filePath": "AuBot/packages/stage-shared/src/composables/index.ts",
+      "summary": "代码文件 index.ts 位于 AuBot\\packages\\stage-shared\\src\\composables，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "入口点",
+        "barrel",
+        "导出"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:AuBot/packages/stage-shared/src/auth/pkce.ts",
+      "target": "function:AuBot/packages/stage-shared/src/auth/pkce.ts:base64UrlEncode",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:AuBot/packages/stage-shared/src/auth/pkce.ts",
+      "target": "function:AuBot/packages/stage-shared/src/auth/pkce.ts:base64UrlEncode",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:AuBot/packages/stage-shared/src/auth/pkce.ts",
+      "target": "function:AuBot/packages/stage-shared/src/auth/pkce.ts:generateCodeVerifier",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:AuBot/packages/stage-shared/src/auth/pkce.ts",
+      "target": "function:AuBot/packages/stage-shared/src/auth/pkce.ts:generateCodeVerifier",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:AuBot/packages/stage-shared/src/auth/pkce.ts",
+      "target": "function:AuBot/packages/stage-shared/src/auth/pkce.ts:generateCodeChallenge",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:AuBot/packages/stage-shared/src/auth/pkce.ts",
+      "target": "function:AuBot/packages/stage-shared/src/auth/pkce.ts:generateCodeChallenge",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:AuBot/packages/stage-shared/src/auth/pkce.ts",
+      "target": "function:AuBot/packages/stage-shared/src/auth/pkce.ts:generateState",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:AuBot/packages/stage-shared/src/auth/pkce.ts",
+      "target": "function:AuBot/packages/stage-shared/src/auth/pkce.ts:generateState",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:AuBot/packages/stage-shared/src/auth/pkce.test.ts",
+      "target": "file:AuBot/packages/stage-shared/src/auth/pkce.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    }
+  ]
+}

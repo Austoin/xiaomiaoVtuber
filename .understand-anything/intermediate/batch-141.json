@@ -1,0 +1,64 @@
+{
+  "nodes": [
+    {
+      "id": "config:AuBot/apps/stage-pocket/.swiftlint.yml",
+      "type": "config",
+      "name": ".swiftlint.yml",
+      "filePath": "AuBot/apps/stage-pocket/.swiftlint.yml",
+      "summary": "配置 SwiftLint 规则开关，用于 stage-pocket iOS 相关代码的静态风格检查。",
+      "tags": [
+        "configuration",
+        "tooling",
+        "quality",
+        "static-analysis"
+      ],
+      "complexity": "simple",
+      "languageNotes": "结构提取识别到 1 个顶层配置项或文档章节。"
+    },
+    {
+      "id": "file:AuBot/apps/stage-pocket/index.html",
+      "type": "file",
+      "name": "index.html",
+      "filePath": "AuBot/apps/stage-pocket/index.html",
+      "summary": "提供 stage-pocket 前端应用的 HTML 入口模板，承载 Vite 挂载节点、基础 meta 信息和启动脚本。",
+      "tags": [
+        "entry-point",
+        "markup",
+        "frontend",
+        "vite"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:AuBot/apps/stage-pocket/package.json",
+      "type": "config",
+      "name": "package.json",
+      "filePath": "AuBot/apps/stage-pocket/package.json",
+      "summary": "定义 stage-pocket 的包元数据、脚本和依赖配置，是该工作区构建、测试与发布流程的入口。",
+      "tags": [
+        "configuration",
+        "package-manager",
+        "build-system",
+        "workspace"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "结构提取识别到 9 个顶层配置项或文档章节。"
+    },
+    {
+      "id": "config:AuBot/apps/stage-pocket/tsconfig.json",
+      "type": "config",
+      "name": "tsconfig.json",
+      "filePath": "AuBot/apps/stage-pocket/tsconfig.json",
+      "summary": "配置 stage-pocket 的 TypeScript 编译选项、路径解析和包含范围，支撑该工作区的类型检查。",
+      "tags": [
+        "configuration",
+        "typescript",
+        "type-checking",
+        "build-system"
+      ],
+      "complexity": "simple",
+      "languageNotes": "结构提取识别到 3 个顶层配置项或文档章节。"
+    }
+  ],
+  "edges": []
+}

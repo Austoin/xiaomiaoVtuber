@@ -8,7 +8,7 @@
 2. `AuBot`：`xiaomiaoVirtual` 的 Web/桌面 Vtuber 表现层，基于 Electron、Vue、TypeScript、Live2D、VRM、TTS 和口型同步能力。
 3. `nanobot`：轻量 Python Agent 框架，提供 Agent Loop、多平台 Channels、工具调用、记忆、会话管理、OpenAI 兼容 API 和 WebUI 能力。
 
-当前已打通统一 Agent 链路：`AuBot stage-web` 的网页输入、`xiaomiao` 桌面 bridge 和 QQ 群/私聊普通 AI 回复都会进入同一个 `nanobot` Agent 能力层。`xiaomiao` 在本机暴露 OpenAI 兼容 bridge，`stage-web` 通过 bridge 发消息，QQ 自然语言回复也通过同一个 `agent_backend` 调用 `nanobot`。
+当前已打通统一 Agent 链路：`AuBot stage-web` 的网页输入、`xiaomiao` 桌面 bridge 和 QQ 群/私聊普通 AI 回复都会进入同一个 `xiaomiaoAgent` 能力层。`xiaomiao` 在本机暴露 OpenAI 兼容 bridge，`stage-web` 通过 bridge 发消息，QQ 自然语言回复也通过同一个 `agent_backend` 调用 `xiaomiaoAgent` API。
 
 命令型 QQ 功能仍保留在 `xiaomiao` 中，包括权限管理、生图、撤回、配置类命令和部分搜索分支。`AuBot` 继续作为 Web/桌面 Vtuber 表现层，消费统一回复并同步聊天历史、字幕、语音和口型。
 
@@ -21,9 +21,9 @@ xiaomiao desktop_bridge.py
     ↓
 xiaomiao agent_backend.py
     ↓ HTTP :8900
-nanobot OpenAI-compatible API
+xiaomiaoAgent OpenAI-compatible API
     ↓
-nanobot Agent / Tools / Memory / Session
+xiaomiaoAgent Tools / Memory / Session
     ↓
 stage-web 聊天历史 / 错误消息
 
@@ -33,7 +33,7 @@ NapCat OneBot WebSocket :5004
     ↓
 xiaomiao/main.py
     ├── 命令型功能：仍由 xiaomiao 本地处理
-    └── 普通 AI 回复：agent_backend.py → nanobot API :8900
+    └── 普通 AI 回复：agent_backend.py → xiaomiaoAgent API :8900
 
 AuBot stage-tamagotchi 桌面端
     ↓
@@ -57,6 +57,21 @@ xiaomiaoVirtual/
 
 ## 快速启动
 
+### 0. 一键启动
+
+主目录提供统一启动脚本，会依次启动 QQ 协议端、`xiaomiao/main.py`、`xiaomiaoAgent` API 和 `AuBot stage-web`：
+
+```powershell
+cd F:\xiaomiaoVirtual
+start-all.cmd
+```
+
+只检查依赖路径，不启动窗口：
+
+```powershell
+start-all.cmd --check
+```
+
 ### 1. 启动 xiaomiaoAgent API
 
 `stage-web`、桌面 bridge 和 QQ 普通 AI 回复都依赖该 API：
@@ -69,7 +84,7 @@ xiaomiao serve --config F:\xiaomiaoVirtual\nanobot\.nanobot\config.json
 
 默认监听：
 
-- nanobot OpenAI 兼容 API：`127.0.0.1:8900`
+- xiaomiaoAgent OpenAI 兼容 API：`127.0.0.1:8900`
 
 ### 2. 启动 QQ / xiaomiao bridge
 
@@ -81,7 +96,7 @@ conda activate xiaomiao
 python main.py
 ```
 
-运行前需要先启动 NapCat，并确保 `config.json` 中的 OneBot 连接配置指向本机 NapCat WebSocket。`python main.py` 会先启动本地 bridge，然后继续连接 OneBot；如果 NapCat 未启动或 WebSocket 配置不一致，程序会在 `Listener.run()` 阶段退出，bridge 也会随进程结束。
+运行前需要先启动 NapCat，并确保 `xiaomiao/config.json` 中的 OneBot 连接配置指向本机 NapCat WebSocket。`python main.py` 会先启动本地 bridge，然后继续连接 OneBot；如果 NapCat 未启动或 WebSocket 配置不一致，程序会在 `Listener.run()` 阶段退出，bridge 也会随进程结束。
 
 默认关键端口：
 
@@ -110,21 +125,21 @@ pnpm dev:tamagotchi
 ## 核心能力
 
 - QQ 群聊与私聊消息接入。
-- QQ 普通 AI 对话统一进入 nanobot Agent。
+- QQ 普通 AI 对话统一进入 xiaomiaoAgent。
 - `stage-web` 文本输入和语音转文字入口统一进入 xiaomiao bridge。
 - 人设切换：女朋友、姐姐、妈妈、高级程序员。
 - 图片理解、图片生成、名言图片生成。
 - 群管理和定时消息。
 - 本地 OpenAI 兼容桥接接口。
-- nanobot OpenAI 兼容 API、统一 session 和记忆/工具能力层。
+- xiaomiaoAgent OpenAI 兼容 API、统一 session 和记忆/工具能力层。
 - Electron 桌面 Vtuber 展示。
 - Live2D / VRM 模型渲染。
 - TTS 语音播报。
 - Live2D 口型同步。
 - 字幕和聊天历史同步。
-- nanobot Agent Loop 与多轮任务执行能力。
-- nanobot 工具系统、MCP、Web 搜索、Cron 和记忆系统。
-- Web、桌面 bridge 和 QQ 普通 AI 回复已统一到 nanobot Agent。
+- xiaomiaoAgent Loop 与多轮任务执行能力。
+- xiaomiaoAgent 工具系统、MCP、Web 搜索、Cron 和记忆系统。
+- Web、桌面 bridge 和 QQ 普通 AI 回复已统一到 xiaomiaoAgent。
 
 ## 关键文件
 
@@ -132,11 +147,11 @@ pnpm dev:tamagotchi
 
 - `main.py`：QQ 机器人主入口，包含事件监听、命令解析、AI 回复和桥接启动。
 - `desktop_bridge.py`：本地 OpenAI 兼容桥接服务。
-- `agent_backend.py`：调用 nanobot OpenAI 兼容 API 的统一 Agent backend。
+- `agent_backend.py`：调用 xiaomiaoAgent OpenAI 兼容 API 的统一 Agent backend。
 - `GoogleAI.py`：OpenAI 兼容模型调用封装。
 - `SearchOnline.py`：备用模型调用封装。
 - `prerequisites.py`：人设提示词和角色选择。
-- `config.json`：机器人、模型和连接配置。
+- `config.json`：QQ Bot、OneBot、人设和本地命令配置；统一模型配置在主目录 `config.json`。
 
 `AuBot`：
 
@@ -196,11 +211,11 @@ xiaomiao desktop_bridge.py
     ↓
 xiaomiao agent_backend.py
     ↓ HTTP POST http://127.0.0.1:8900/v1/chat/completions
-nanobot OpenAI-compatible API
+xiaomiaoAgent OpenAI-compatible API
     ↓ provider=custom, model=nanobot.model
 第三方 OpenAI-compatible 中转站
     ↓
-nanobot Agent 回复
+xiaomiaoAgent 回复
     ↓
 xiaomiao bridge state / stage-web 聊天历史 / 桌面字幕与 TTS
 
@@ -212,7 +227,7 @@ xiaomiao/main.py
     ↓
 xiaomiao agent_backend.py
     ↓ HTTP POST http://127.0.0.1:8900/v1/chat/completions
-nanobot → 第三方 OpenAI-compatible 中转站
+xiaomiaoAgent → 第三方 OpenAI-compatible 中转站
 ```
 
 配置规则：
@@ -220,9 +235,9 @@ nanobot → 第三方 OpenAI-compatible 中转站
 1. `nanobot.model` 是最终生效并返回给调用方的模型名。
 2. `nanobot.provider` 使用 `custom`，表示任意第三方 OpenAI-compatible 中转站。
 3. `nanobot.providers.custom.baseUrl` 填中转站 `/v1` 地址，不要填 `/v1/chat/completions`。
-4. `nanobot_agent.base_url` 是 `xiaomiao` 访问本机 nanobot 的地址，必须保持本机 `8900`。
-5. `nanobot_agent.model` 保持 `null` 或空值，避免 `xiaomiao` 请求时覆盖 `nanobot.model`。
-6. 修改 `config.json` 后需要重启 `nanobot` 和 `xiaomiao`，web、QQ、桌面端才会加载新配置。
+4. `nanobot_agent.base_url` 是 `xiaomiao` 访问本机 xiaomiaoAgent API 的地址，必须保持本机 `8900`。
+5. `nanobot_agent.model` 保持空值，避免 `xiaomiao` 请求时覆盖 `nanobot.model`。
+6. 修改 `config.json` 后需要重启 `xiaomiaoAgent` 和 `xiaomiao`，web、QQ、桌面端才会加载新配置。
 
 当前边界：
 
@@ -237,7 +252,7 @@ nanobot → 第三方 OpenAI-compatible 中转站
 - `docs/STARTUP.md`：本地启动步骤、端口、验证和常见问题。
 - `docs/xiaomiao/README.md`：QQ 机器人部署和功能说明。
 - `docs/AuBot/README.md`：AuBot / xiaomiaoVirtual 表现层启动和模块说明。
-- `docs/plans/2026-05-12-xiaomiao-console-fusion.md`：小喵控制台与 nanobot 融合路线计划。
+- `docs/plans/2026-05-12-xiaomiao-console-fusion.md`：小喵控制台与 xiaomiaoAgent 融合路线计划。
 
 ## 安全注意
 

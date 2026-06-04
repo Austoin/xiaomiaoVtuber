@@ -1,7 +1,7 @@
 {
   "version": "1.0.0",
-  "gitCommitHash": "3a954df62744bb6f6bdb1ab49235ec427eff895b",
-  "generatedAt": "2026-06-02T07:15:34.690Z",
+  "gitCommitHash": "4880d7ef100ff61d2169386825eb11326cd8cac2",
+  "generatedAt": "2026-06-04T03:44:00.038Z",
   "files": {
     ".github/README.md": {
       "filePath": ".github/README.md",
@@ -3765,7 +3765,7 @@
     },
     "AuBot/apps/component-calling/package.json": {
       "filePath": "AuBot/apps/component-calling/package.json",
-      "contentHash": "90934c943a557d00629c7a07d4c10abbe45210d2970c7bc0f1bf212fa7acb85e",
+      "contentHash": "9e3c87a96ceb6ab899d5c41c9a78eeb4f1d64764f7c44046479afe8aff5365e4",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -3775,7 +3775,7 @@
     },
     "AuBot/apps/component-calling/src/App.vue": {
       "filePath": "AuBot/apps/component-calling/src/App.vue",
-      "contentHash": "8f139606be8c8a3e3a34434a41c0e0e3bbb5602e150e9b48fc68567a7c2cc12b",
+      "contentHash": "95fa66a84950eb0ed21c1299f7c448867eac45343363e8c4c213aaa4b1c80759",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -4658,7 +4658,7 @@
     },
     "AuBot/apps/server/src/app.ts": {
       "filePath": "AuBot/apps/server/src/app.ts",
-      "contentHash": "f3f8c1ad991ca1806f0c95316cae834e6366ba1c1958a4d0d691c6c0385642e8",
+      "contentHash": "efaf6024819217ee2642cd7b6b1e85217a67bf9f385a1eb554b41c320651126c",
       "functions": [
         {
           "name": "buildApp",
@@ -5263,7 +5263,7 @@
     },
     "AuBot/apps/server/src/libs/auth.ts": {
       "filePath": "AuBot/apps/server/src/libs/auth.ts",
-      "contentHash": "a2930218f9a4bfbbd3a546fe2b7d982b7f61bf5160fcbbd77e90fc77db13b144",
+      "contentHash": "5e7243ba812564c5af9e3e938123abfe0c30e137c8f29339895a7f186fc5f6ca",
       "functions": [
         {
           "name": "buildWebRedirectUris",
@@ -5571,7 +5571,7 @@
     },
     "AuBot/apps/server/src/libs/env.ts": {
       "filePath": "AuBot/apps/server/src/libs/env.ts",
-      "contentHash": "5de050b03f940e79bc451eb909edecfed330cbe89201083fb7cb1492f29633e1",
+      "contentHash": "1b5f80422078b650f9f8b118f2ae54f783f6dd0430bf49e202b91f533acb0799",
       "functions": [
         {
           "name": "optionalIntegerFromString",
@@ -9614,7 +9614,7 @@
     },
     "AuBot/apps/server/src/services/email.ts": {
       "filePath": "AuBot/apps/server/src/services/email.ts",
-      "contentHash": "a1cfccbcca15d234dabe4cc870f025a6115af7f731f65568ec1bc959d83d0eb0",
+      "contentHash": "1b59120a9b8643cbaafc92c8eaa0a852f29af382d19520c657e2454524864887",
       "functions": [
         {
           "name": "formatFrom",
@@ -11544,7 +11544,7 @@
     },
     "AuBot/apps/stage-pocket/capacitor.config.ts": {
       "filePath": "AuBot/apps/stage-pocket/capacitor.config.ts",
-      "contentHash": "a5fea0b8d54ff5d4d69e6a41bbefe1ce7dc67e82b25e4ae9aa137a3fe62e1398",
+      "contentHash": "67699fac027be373784b91010c7acce7f9f9186c40d4157e11474116140ee975",
       "functions": [],
       "classes": [],
       "imports": [
@@ -11788,7 +11788,7 @@
     },
     "AuBot/apps/stage-pocket/package.json": {
       "filePath": "AuBot/apps/stage-pocket/package.json",
-      "contentHash": "b85327275437b2ad304d853833a787822e1667953ba6b8e9585b12f856405a86",
+      "contentHash": "e8fdeff33c94c11d5dd0fb40b15516c51f3f0f4d69be5775f4e212a5f26dd6b5",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -12188,7 +12188,7 @@
     },
     "AuBot/apps/stage-pocket/src/modules/server-channel-qr-probe.ts": {
       "filePath": "AuBot/apps/stage-pocket/src/modules/server-channel-qr-probe.ts",
-      "contentHash": "d50aab591af21713e7821854dff4db474c41b0c75fde6e20e5c049df3eb1fb1e",
+      "contentHash": "123a64aab9241a56ab129e8de80027c24a43fba431aa51339f0420bfc3356563",
       "functions": [
         {
           "name": "probeServerChannelQrPayload",
@@ -12235,7 +12235,7 @@
     },
     "AuBot/apps/stage-pocket/src/modules/websocket-bridge.ts": {
       "filePath": "AuBot/apps/stage-pocket/src/modules/websocket-bridge.ts",
-      "contentHash": "d410e2b45f162268724f9d759b4122ce8239e330e8e1b95a74cdde398b05238e",
+      "contentHash": "2aea4f3123bfa7860f7e7d69c37ccf5ac970018492d466f63b2bf8029a890cfb",
       "functions": [
         {
           "name": "postBridgeMessage",
@@ -12364,7 +12364,7 @@
     },
     "AuBot/apps/stage-pocket/src/pages/devtools/performance-playground.vue": {
       "filePath": "AuBot/apps/stage-pocket/src/pages/devtools/performance-playground.vue",
-      "contentHash": "9a1f1cdc44edadcbb9a89992a46069beb1140ffa38299061a28d04601bbd3c9a",
+      "contentHash": "0a4472f7bf33e6c8a954c77329ace88399f849189f9b3542ff8ef2c7e9e35ef5",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -12835,7 +12835,7 @@
     },
     "AuBot/apps/stage-tamagotchi/electron-builder.config.ts": {
       "filePath": "AuBot/apps/stage-tamagotchi/electron-builder.config.ts",
-      "contentHash": "f18496fac6a8935bd192b32cf57fbfdac0493868625b277b4b7a2ef3bfb5958f",
+      "contentHash": "3856d7ed588bd8bf0b9d1ab12677c14a52465a7a7d69f2707c2c8b442751acae",
       "functions": [
         {
           "name": "hasXcode26OrAbove",
@@ -12973,7 +12973,7 @@
     },
     "AuBot/apps/stage-tamagotchi/package.json": {
       "filePath": "AuBot/apps/stage-tamagotchi/package.json",
-      "contentHash": "1b156aa4a5e3e7c1e82a5b70c7c5ee2287442265089f61472a698fcd05e05630",
+      "contentHash": "02545bf265cc6d76271048cf20827e3d7dd546637169690d5180132491c5180e",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -19275,7 +19275,7 @@
     },
     "AuBot/apps/stage-tamagotchi/src/main/tray/index.ts": {
       "filePath": "AuBot/apps/stage-tamagotchi/src/main/tray/index.ts",
-      "contentHash": "fac83f56e55c3f13576fae492505f6a44a353c1150684a6dcf509212c316cc4f",
+      "contentHash": "68f81d0a12a95743a4646b656787b71dd4f02d8dcdf4a0a1a0a414c3a93ca3c7",
       "functions": [
         {
           "name": "applyWindowSize",
@@ -19477,7 +19477,7 @@
     },
     "AuBot/apps/stage-tamagotchi/src/main/windows/about/index.ts": {
       "filePath": "AuBot/apps/stage-tamagotchi/src/main/windows/about/index.ts",
-      "contentHash": "ff29a6aa31e642feee6ddcea3e5842d642075ee1c16881ff7a0d54fbafc7b0e5",
+      "contentHash": "96ace1026db69fdd9bcbf715e36279045a1c221dbe5b49b800fd27f381426a51",
       "functions": [
         {
           "name": "setupAboutWindowReusable",
@@ -20059,7 +20059,7 @@
     },
     "AuBot/apps/stage-tamagotchi/src/main/windows/dashboard/index.ts": {
       "filePath": "AuBot/apps/stage-tamagotchi/src/main/windows/dashboard/index.ts",
-      "contentHash": "794eb011cb330368661eff08ddc72b981babb62d37c15e1a69446b77ad6a42c6",
+      "contentHash": "08828bcf4a4352b2cdc144d9ff456fc236287bceada9ceaeecaf565bdd81b570",
       "functions": [
         {
           "name": "setupDashboardWindow",
@@ -20321,7 +20321,7 @@
     },
     "AuBot/apps/stage-tamagotchi/src/main/windows/desktop-overlay/index.ts": {
       "filePath": "AuBot/apps/stage-tamagotchi/src/main/windows/desktop-overlay/index.ts",
-      "contentHash": "fa6fb7def5cdbb2e370bbee0c8a4c0f8f0b3eac36d76b7c175e04b97c772634c",
+      "contentHash": "327e7c021afe09f65206ec0575d63f86a85e6c5c91ebb1fca56709c0ff2edfb7",
       "functions": [
         {
           "name": "isDesktopOverlayEnabled",
@@ -20720,7 +20720,7 @@
     },
     "AuBot/apps/stage-tamagotchi/src/main/windows/main/index.ts": {
       "filePath": "AuBot/apps/stage-tamagotchi/src/main/windows/main/index.ts",
-      "contentHash": "7d13e72ba73cd11b439a8c711f48dc53e9b21a082450049083238985fdabecd6",
+      "contentHash": "cc326b71c76c6cfe5da63d82039533477707a6c5e94f9bea263a18b04e69ba97",
       "functions": [
         {
           "name": "setupMainWindow",
@@ -21209,7 +21209,7 @@
     },
     "AuBot/apps/stage-tamagotchi/src/main/windows/onboarding/index.ts": {
       "filePath": "AuBot/apps/stage-tamagotchi/src/main/windows/onboarding/index.ts",
-      "contentHash": "61b8d6774420d2bf2fe880ce481ae63e4a85695c3e5cfd0e4ba0d20acd782fec",
+      "contentHash": "f14891b033a441b93e3ecab0194da2cc21597715eac777136f1d5374ebc10f43",
       "functions": [
         {
           "name": "setupOnboardingWindowManager",
@@ -23249,7 +23249,7 @@
     },
     "AuBot/apps/stage-tamagotchi/src/renderer/pages/about.vue": {
       "filePath": "AuBot/apps/stage-tamagotchi/src/renderer/pages/about.vue",
-      "contentHash": "10e1066f4d49f331405b1ff97053735ffa65dc5e9105e9826c926986ffc177be",
+      "contentHash": "8265b63762dcc3e50f4c50a4d3f3201e068571b28f8291fabc77c00d9da8980c",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -23691,12 +23691,12 @@
     },
     "AuBot/apps/stage-tamagotchi/src/renderer/pages/index.vue": {
       "filePath": "AuBot/apps/stage-tamagotchi/src/renderer/pages/index.vue",
-      "contentHash": "e7ef9e25d4c05de5613433b3b8cdc6b9c4b9668bdf17e4754ab91127378c16ba",
+      "contentHash": "78745e554d9b7cb68c7b74e1af45238063343311a81d30dd832339786f132c96",
       "functions": [],
       "classes": [],
       "imports": [],
       "exports": [],
-      "totalLines": 689,
+      "totalLines": 716,
       "hasStructuralAnalysis": false
     },
     "AuBot/apps/stage-tamagotchi/src/renderer/pages/inlay/index.vue": {
@@ -26554,7 +26554,7 @@
     },
     "AuBot/apps/stage-web/package.json": {
       "filePath": "AuBot/apps/stage-web/package.json",
-      "contentHash": "e8402e30c7765e121130ede7f0d3e19eab402f36a8c95c57d5d7bcdee5fce057",
+      "contentHash": "d8daeae1fd4e6594070dee756f3c64db20beaceeddafc7ed38dc1697c09660c9",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -26594,12 +26594,12 @@
     },
     "AuBot/apps/stage-web/src/App.vue": {
       "filePath": "AuBot/apps/stage-web/src/App.vue",
-      "contentHash": "82b3b3526929b70b731b417657559987ff037568c6e3aaf90c6bf57608073862",
+      "contentHash": "a968bb71fdefb6b82edc1d318ff4b11ff98381787f6839acc1614aed0195de76",
       "functions": [],
       "classes": [],
       "imports": [],
       "exports": [],
-      "totalLines": 176,
+      "totalLines": 202,
       "hasStructuralAnalysis": false
     },
     "AuBot/apps/stage-web/src/assets/backgrounds/fairy-forest.e17cbc2774.ko-fi.com.avif": {
@@ -26982,7 +26982,7 @@
     },
     "AuBot/apps/stage-web/src/pages/auth/callback.vue": {
       "filePath": "AuBot/apps/stage-web/src/pages/auth/callback.vue",
-      "contentHash": "15e5ffb1616185a58a9f5d82e170f94ebc58582ed2009c8159ea7186262fb0fb",
+      "contentHash": "7dd7850f3092077a6b268cb216c0872cb2b1a76205a9fda167b99ea928caca92",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -27052,7 +27052,7 @@
     },
     "AuBot/apps/stage-web/src/pages/devtools/performance-playground.vue": {
       "filePath": "AuBot/apps/stage-web/src/pages/devtools/performance-playground.vue",
-      "contentHash": "d6a8e73f2e3bfcf52a431221ae48270d26792c2c7b4803af12a061c9b1c72477",
+      "contentHash": "f4aec2ac9031d8f4740254128b9ea72bf211fa61c83904d2fd707b52daa49d33",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -27102,12 +27102,12 @@
     },
     "AuBot/apps/stage-web/src/pages/index.vue": {
       "filePath": "AuBot/apps/stage-web/src/pages/index.vue",
-      "contentHash": "f55cb7b0352783081b6e4497d844510a1cdcae6e43f8c2224def0f4ff0cc58e8",
+      "contentHash": "040d789ef6f56302d76f13efc562a4821f95b96096cf48a5d5b57c5b54d52708",
       "functions": [],
       "classes": [],
       "imports": [],
       "exports": [],
-      "totalLines": 195,
+      "totalLines": 253,
       "hasStructuralAnalysis": false
     },
     "AuBot/apps/stage-web/src/pages/settings/account/index.vue": {
@@ -27537,7 +27537,7 @@
     },
     "AuBot/apps/stage-web/vite.config.ts": {
       "filePath": "AuBot/apps/stage-web/vite.config.ts",
-      "contentHash": "4b953a4a3bea1ffa4632c333df2eed0d3a179743b2117206d346447d70d4acbe",
+      "contentHash": "9b98997ef8f56085771b24c5c49b60e501eb94ab72789210284c0585bc7571a1",
       "functions": [
         {
           "name": "hasFlagEnableMkcert",
@@ -27717,7 +27717,7 @@
     },
     "AuBot/apps/ui-server-auth/package.json": {
       "filePath": "AuBot/apps/ui-server-auth/package.json",
-      "contentHash": "c2a7d17a55545fedef271f47ea9addeb8d9c79d2e9875d60354fbdd5eafceaae",
+      "contentHash": "714631b0f7b334b499cf76b8cf7e3cf1d08e5d91879cd84330cd22a1509f9dd6",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -27757,7 +27757,7 @@
     },
     "AuBot/apps/ui-server-auth/src/components/auth-notice.vue": {
       "filePath": "AuBot/apps/ui-server-auth/src/components/auth-notice.vue",
-      "contentHash": "4815d8b8521b6920dd53d61a5f2ecc0fdbe114f6cf793d186c997d40a64707da",
+      "contentHash": "4cd447eeec0936a7e0b2e70b0472dc0b02661605486e525240ddc2f6ecb03e27",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -28334,7 +28334,7 @@
     },
     "AuBot/apps/ui-server-auth/src/pages/electron-callback.vue": {
       "filePath": "AuBot/apps/ui-server-auth/src/pages/electron-callback.vue",
-      "contentHash": "98e7f12a520fa1686da8ec3ff4c44cb4106fbae9786fe9bc059ec3e65b803e49",
+      "contentHash": "547278fcafe3b7d1034a40abae6c3c74e357324c9c90e4ab8b23d4c73333fd67",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -28384,7 +28384,7 @@
     },
     "AuBot/apps/ui-server-auth/src/pages/sign-in.vue": {
       "filePath": "AuBot/apps/ui-server-auth/src/pages/sign-in.vue",
-      "contentHash": "5f8a5a3bc98904645d2abf1887e417c0789430be5e9741272a9066b653e814f7",
+      "contentHash": "e82cf6478f994055fa3307f27643c8952dca83de3f5aa9f5f2839d6c0aaf6a04",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -35165,7 +35165,7 @@
     },
     "AuBot/engines/stage-tamagotchi-godot/package.json": {
       "filePath": "AuBot/engines/stage-tamagotchi-godot/package.json",
-      "contentHash": "b98810b474ff9955a92a9bfa2ec8dcd34097b5a8b5083c2900b481f60db2b6ec",
+      "contentHash": "1b0573954d451ef295d3c91fbc5c71edebeed4722007ac06d0b2d75339a4d2fe",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -35383,7 +35383,7 @@
     },
     "AuBot/integrations/vscode/airi-plugin-vscode/package.json": {
       "filePath": "AuBot/integrations/vscode/airi-plugin-vscode/package.json",
-      "contentHash": "f30fffca10d4ee491b7015c8b77eb62a942d6454a0a5a1475daec8d3ba431df8",
+      "contentHash": "bc9288ac437d08a96221156346511c7fe0c3818a7c05192b8f26bd99deb4a419",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -35456,7 +35456,7 @@
     },
     "AuBot/integrations/vscode/vscode-airi/package.json": {
       "filePath": "AuBot/integrations/vscode/vscode-airi/package.json",
-      "contentHash": "6b731544d67bd3f3a2ee34b6ebba2a9ac08fa2f29a4b79f7b17f9398e15b4e3c",
+      "contentHash": "7e64c7b5628432889b65e8aa4a03ca882722188516ee91ca9de2d2434e6333f4",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -35982,7 +35982,7 @@
     },
     "AuBot/package.json": {
       "filePath": "AuBot/package.json",
-      "contentHash": "6b9265aefc3bc6abd0a5d6a46fd1eaec150fe85890f01705ac08bb3908368c7d",
+      "contentHash": "123ae2eb055fffae1067446202abb937539d203427481cce4054bb16813ad47f",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -36082,7 +36082,7 @@
     },
     "AuBot/packages/audio/package.json": {
       "filePath": "AuBot/packages/audio/package.json",
-      "contentHash": "b289279bb2c8b14f953655863c1f098f39c580e546f6bf2f66ebff6deefd21e2",
+      "contentHash": "28b51981135f2206f69007dd5f616a3e520ea7818193b1c7812f91471045e718",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -36420,7 +36420,7 @@
     },
     "AuBot/packages/cap-vite/package.json": {
       "filePath": "AuBot/packages/cap-vite/package.json",
-      "contentHash": "ae34cad0cbf14315bb85d135037a54e44ff987716d6db7a0b1860b96d178b9e6",
+      "contentHash": "f4511b7ee0e9ad5f0b9718940ca7808994a3043ebbb16b335ee11a55214965c0",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -37672,7 +37672,7 @@
     },
     "AuBot/packages/core-agent/package.json": {
       "filePath": "AuBot/packages/core-agent/package.json",
-      "contentHash": "9ba787467e9ece15cc01b9329319c451d1a5fe79f655e857be791dff97c91c13",
+      "contentHash": "a3757c8fbd390d7209a49e456283d7e29bc71bd5b2486e4627318c3679d115a9",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -37751,7 +37751,7 @@
     },
     "AuBot/packages/core-agent/src/agents/spark-notify/handler.ts": {
       "filePath": "AuBot/packages/core-agent/src/agents/spark-notify/handler.ts",
-      "contentHash": "947534457a1443739eb61c67c75725558f8ccb111a276fb75394296496f24349",
+      "contentHash": "e7c54da0cff0ac72995b4ffd5a595232a4b073aac5da772a7adca78b182cfdf2",
       "functions": [
         {
           "name": "renderSparkNotifyUserMessage",
@@ -37956,7 +37956,7 @@
     },
     "AuBot/packages/core-agent/src/agents/spark-notify/tools.ts": {
       "filePath": "AuBot/packages/core-agent/src/agents/spark-notify/tools.ts",
-      "contentHash": "5a61023743ca4455b2bab6c8446eb74faa46823119851b2321dd8f48a99570ec",
+      "contentHash": "771933bc6919d85b315e706b0c1dddf48f78c6b08e498633a8ff79dfaf44554c",
       "functions": [
         {
           "name": "normalizeSparkNotifyCommand",
@@ -38989,7 +38989,7 @@
     },
     "AuBot/packages/core-character/package.json": {
       "filePath": "AuBot/packages/core-character/package.json",
-      "contentHash": "378b7925e8891a8d6961edb3520f7dde9819fdfe489de9c5dbb9da0a8e0af884",
+      "contentHash": "d15088c59a8ca9c6c20c08dddadd5678874e381ed7b8912c9d94e2b87cfd363d",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -39036,7 +39036,7 @@
     },
     "AuBot/packages/electron-eventa/package.json": {
       "filePath": "AuBot/packages/electron-eventa/package.json",
-      "contentHash": "8fc761d8b7c8223344c6d21fb8e263386ef80702d9e2d9e3cb593d6860bc6a0d",
+      "contentHash": "f60a9131eef8f33b5349385c6f69f642a42ee23d0400589c11a5a54a50b78e36",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -39293,7 +39293,7 @@
     },
     "AuBot/packages/electron-screen-capture/package.json": {
       "filePath": "AuBot/packages/electron-screen-capture/package.json",
-      "contentHash": "66313cae2d62ee2cdd30f017ca1d053792a1d7b397bc85056cbf27d5c4724a8a",
+      "contentHash": "abba03203f6dd0350613a4c948a71f10e62f6e1b0d7a00dfec95cdc1494af8d1",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -39709,7 +39709,7 @@
     },
     "AuBot/packages/electron-vueuse/package.json": {
       "filePath": "AuBot/packages/electron-vueuse/package.json",
-      "contentHash": "41a9d54fd9fd5605d576b1ddf5d99684577c8b05a3f3424ebd53b63b17fec896",
+      "contentHash": "ef35730c795828a6ca1657510abd512e109f1cacdc0c7fe482b92937111e0bca",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -40417,7 +40417,7 @@
     },
     "AuBot/packages/font-chillroundm/package.json": {
       "filePath": "AuBot/packages/font-chillroundm/package.json",
-      "contentHash": "950d0f22a7bb305b2c4be9376a41071efef0dd7db8819f578fad72a5a16d663c",
+      "contentHash": "4f1b55407b7500700f0c64e736925a87e198ef4408a36f717d92c15d2f125980",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -40499,7 +40499,7 @@
     },
     "AuBot/packages/font-cjkfonts-allseto/package.json": {
       "filePath": "AuBot/packages/font-cjkfonts-allseto/package.json",
-      "contentHash": "c08bd20564635db177795f42a4f1ba13632a17fb7823ce99fae2106fae00c29a",
+      "contentHash": "79acaa7da785782bfcafe52cab0b3fe4a6265dc73bca3cdd95138f834fced84a",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -40561,7 +40561,7 @@
     },
     "AuBot/packages/font-departure-mono/package.json": {
       "filePath": "AuBot/packages/font-departure-mono/package.json",
-      "contentHash": "c2f9d844ba25d8d20a5c6b7496c8493a5f95c8f2b35536720b5e8d490aa7165c",
+      "contentHash": "cba5a8e26d5b008bbd5e4605903e3b4645be545cea804addb20c7e9e121865e9",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -40633,7 +40633,7 @@
     },
     "AuBot/packages/font-xiaolai/package.json": {
       "filePath": "AuBot/packages/font-xiaolai/package.json",
-      "contentHash": "9b8ac855eb821451e27ebe1d884ad871873e14f36a7f07950f3c322fc446c2ec",
+      "contentHash": "9da2ee12d583936b6d333a3453ed582ba76e3f1d7b4fa0750b945ba189b37221",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -40695,7 +40695,7 @@
     },
     "AuBot/packages/i18n/package.json": {
       "filePath": "AuBot/packages/i18n/package.json",
-      "contentHash": "234a38bf1340ab4ad3b8d3193a8b3f5d4d874fb5ea60c353a5449c2af86adc58",
+      "contentHash": "4fc50f3117bb8692b0ab9570aa6f04236271552c0f8ca6d81752e89bdae0d5f6",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -40731,7 +40731,7 @@
     },
     "AuBot/packages/i18n/src/locales/en/base.yaml": {
       "filePath": "AuBot/packages/i18n/src/locales/en/base.yaml",
-      "contentHash": "2ad7ba0e6a6cc6a8b5e8700b96a61f65eb975fda8326714e7e9d088a1cdc70bb",
+      "contentHash": "c9f5c0f107b2c1f1ad7cf14b88133bbeb96cde29c7a3f0938020881a0e6f76cb",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -40831,7 +40831,7 @@
     },
     "AuBot/packages/i18n/src/locales/en/server/auth.yaml": {
       "filePath": "AuBot/packages/i18n/src/locales/en/server/auth.yaml",
-      "contentHash": "3a3f6a3be062a10cbd831f44bc00b3c924f28a3a9c71fdfe0c55e86c03baece5",
+      "contentHash": "c6521aff7e03a1eba3a6524ce9663dcde8ea91096faf86a21e4a83c08858c25a",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -40858,7 +40858,7 @@
     },
     "AuBot/packages/i18n/src/locales/en/settings.yaml": {
       "filePath": "AuBot/packages/i18n/src/locales/en/settings.yaml",
-      "contentHash": "c90b0bbf6c6af23858783094a47b3d75189c78131fae63bb213f726e799d2896",
+      "contentHash": "c73129ca18db9af2dd65429d69cabe9b86ef4056b3d9dafd770114ed6931f310",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -40868,7 +40868,7 @@
     },
     "AuBot/packages/i18n/src/locales/en/stage.yaml": {
       "filePath": "AuBot/packages/i18n/src/locales/en/stage.yaml",
-      "contentHash": "bfceea57fc1b68eac02fb9f1c983afe89417e6217571f8a8557ce9c145666e88",
+      "contentHash": "18fd6a4fe3050d6d233bba45ac1acf93eb04376b0836e73ba515340e3089489a",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -40934,7 +40934,7 @@
     },
     "AuBot/packages/i18n/src/locales/en/tamagotchi/settings.yaml": {
       "filePath": "AuBot/packages/i18n/src/locales/en/tamagotchi/settings.yaml",
-      "contentHash": "70430d3f019fb5799d04dac6e5d2715a4db63efebe237887a5f6d25ff4c71130",
+      "contentHash": "ca199ef5aa12a071cf1f2c49162afda5b4a14732f81d57d753a4a1355a70ab13",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -40954,7 +40954,7 @@
     },
     "AuBot/packages/i18n/src/locales/es/base.yaml": {
       "filePath": "AuBot/packages/i18n/src/locales/es/base.yaml",
-      "contentHash": "b2da6a1f2ec4a49ff3b19feaa01ee83c30e04df474e8ba1cb3df870ba69092f9",
+      "contentHash": "6664a6593867518e300d42a57c1d4d1b92777fd3f8df393747a99b16289c4727",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -41042,7 +41042,7 @@
     },
     "AuBot/packages/i18n/src/locales/es/server/auth.yaml": {
       "filePath": "AuBot/packages/i18n/src/locales/es/server/auth.yaml",
-      "contentHash": "abcd8d359c2c96493754c842958ff406c1d6ea6586ee4688297846e185dd9dc1",
+      "contentHash": "d769afe87f494ba9cd423b61229f3a2249f5b4b543d2acada55d3b183634c11b",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -41052,7 +41052,7 @@
     },
     "AuBot/packages/i18n/src/locales/es/settings.yaml": {
       "filePath": "AuBot/packages/i18n/src/locales/es/settings.yaml",
-      "contentHash": "ada2a46f00f7cdda6a8107fbd3023c0c275b74c69c2cb4d807d35cd1747ef433",
+      "contentHash": "f68eea9a5c7fa1dc9f8bd27d63b82e959483114f6a6d653605fbebaff8cc42f2",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -41062,7 +41062,7 @@
     },
     "AuBot/packages/i18n/src/locales/es/stage.yaml": {
       "filePath": "AuBot/packages/i18n/src/locales/es/stage.yaml",
-      "contentHash": "87137669330f526787f5658580fbaad38bbd00373c6dc208aa6ef453ee6ab2dc",
+      "contentHash": "971f7321342430e1a70d85a721fcf489dd2599131b8eff8e9ad9980f9ba1a05f",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -41128,7 +41128,7 @@
     },
     "AuBot/packages/i18n/src/locales/es/tamagotchi/settings.yaml": {
       "filePath": "AuBot/packages/i18n/src/locales/es/tamagotchi/settings.yaml",
-      "contentHash": "279282e8a589e8b8b7524dfb4b54559cae160e435a51d65ed7aaa3d16b0c04a1",
+      "contentHash": "746920005a26a539a8e68063be3e96d750736e371ad6e25bdc7a40eca6ee2542",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -41148,7 +41148,7 @@
     },
     "AuBot/packages/i18n/src/locales/fr/base.yaml": {
       "filePath": "AuBot/packages/i18n/src/locales/fr/base.yaml",
-      "contentHash": "de56f0f33347e1850a3592a592ed5dd8dc9b6ae1e1e698a65d3ba3b393e15608",
+      "contentHash": "324f589f8554a67a6884ccf87ee2c0ef87c95a2b86499a3dd81427fab0c46e2f",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -41236,7 +41236,7 @@
     },
     "AuBot/packages/i18n/src/locales/fr/server/auth.yaml": {
       "filePath": "AuBot/packages/i18n/src/locales/fr/server/auth.yaml",
-      "contentHash": "abcd8d359c2c96493754c842958ff406c1d6ea6586ee4688297846e185dd9dc1",
+      "contentHash": "d769afe87f494ba9cd423b61229f3a2249f5b4b543d2acada55d3b183634c11b",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -41246,7 +41246,7 @@
     },
     "AuBot/packages/i18n/src/locales/fr/settings.yaml": {
       "filePath": "AuBot/packages/i18n/src/locales/fr/settings.yaml",
-      "contentHash": "53cba1b494b84f2c2ceafcc3a1ba81aa576ac3f2c2e3b0796057ce45a6cee2c0",
+      "contentHash": "b16d515da5c539ef68565a3b7243f47fcec52c78a0dbc330441defe87a9ca520",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -41256,7 +41256,7 @@
     },
     "AuBot/packages/i18n/src/locales/fr/stage.yaml": {
       "filePath": "AuBot/packages/i18n/src/locales/fr/stage.yaml",
-      "contentHash": "b231f6dbc67c33d2254b5b883dbd3452197c3b0cbc6270a6ae30bb911fd6b6d3",
+      "contentHash": "2c051c7c8fd8ddc58c4ff32fdf2323bae5ca91ef5dfb008847afab7a758b2a0e",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -41322,7 +41322,7 @@
     },
     "AuBot/packages/i18n/src/locales/fr/tamagotchi/settings.yaml": {
       "filePath": "AuBot/packages/i18n/src/locales/fr/tamagotchi/settings.yaml",
-      "contentHash": "447b37630877917d3eb4ee9728fc04186c18d584fb94150fefb0552458303a2a",
+      "contentHash": "3e1f2f06574be9165106af1022b925bf0d137fec30b1f417aa4ddcf10e79dcf3",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -41407,7 +41407,7 @@
     },
     "AuBot/packages/i18n/src/locales/ja/base.yaml": {
       "filePath": "AuBot/packages/i18n/src/locales/ja/base.yaml",
-      "contentHash": "3da8816b56409ef58de9ebfd6df1f9d0110358d486f54d593b2fc8381dbcb248",
+      "contentHash": "92fce1444ff432fbe286fa9782145f63194686b1838b18e2574850e2e2fbf5c4",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -41501,7 +41501,7 @@
     },
     "AuBot/packages/i18n/src/locales/ja/server/auth.yaml": {
       "filePath": "AuBot/packages/i18n/src/locales/ja/server/auth.yaml",
-      "contentHash": "abcd8d359c2c96493754c842958ff406c1d6ea6586ee4688297846e185dd9dc1",
+      "contentHash": "d769afe87f494ba9cd423b61229f3a2249f5b4b543d2acada55d3b183634c11b",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -41511,7 +41511,7 @@
     },
     "AuBot/packages/i18n/src/locales/ja/settings.yaml": {
       "filePath": "AuBot/packages/i18n/src/locales/ja/settings.yaml",
-      "contentHash": "08fc52025ade8a337b917193b27a0e2059b4d950d9af1993713fde1732076ea6",
+      "contentHash": "5879c903c16fc40f80f897946276e35dcd113830b993216b3fa290845c3349bb",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -41521,7 +41521,7 @@
     },
     "AuBot/packages/i18n/src/locales/ja/stage.yaml": {
       "filePath": "AuBot/packages/i18n/src/locales/ja/stage.yaml",
-      "contentHash": "6e7d74fedf93cfad93e29d562c003af55aa5ccb07eb7f9390e77391a8cd6d7f0",
+      "contentHash": "85aa5fda62d890ce31a10ac248b9b9abc87259b673ad9b2dd6e3462b9581d560",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -41587,7 +41587,7 @@
     },
     "AuBot/packages/i18n/src/locales/ja/tamagotchi/settings.yaml": {
       "filePath": "AuBot/packages/i18n/src/locales/ja/tamagotchi/settings.yaml",
-      "contentHash": "eeff3b177e719283c04cbb4addca5d2601803dc6db210bc358f1ae7ba87c6dca",
+      "contentHash": "12e8e24fac8390a67a18242594763f3a290fdbe092f4ae6132ffb1894cb82638",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -41607,7 +41607,7 @@
     },
     "AuBot/packages/i18n/src/locales/ko/base.yaml": {
       "filePath": "AuBot/packages/i18n/src/locales/ko/base.yaml",
-      "contentHash": "18c4e814067dfd11fc1d3f3ad91fe746e3cf213b87e3310f9d796e35c8992e62",
+      "contentHash": "50aa2adcbd67ebde4fc22dc99cf0593e1e434b5235b500e98c69ccf2d27c8919",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -41701,7 +41701,7 @@
     },
     "AuBot/packages/i18n/src/locales/ko/server/auth.yaml": {
       "filePath": "AuBot/packages/i18n/src/locales/ko/server/auth.yaml",
-      "contentHash": "eaa0845f295c3da912ab45cddf8e7c692f3b042bef5ad14f7aa9717e6de4833f",
+      "contentHash": "51922ac76fc7685461225c6ed84ad9ed23caa7da9053ce5744e67bf01fc4f14a",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -41711,7 +41711,7 @@
     },
     "AuBot/packages/i18n/src/locales/ko/settings.yaml": {
       "filePath": "AuBot/packages/i18n/src/locales/ko/settings.yaml",
-      "contentHash": "98a9f52afddc897f433f7309c628dc1b6807892ae471fc0c756f4561e4d28dec",
+      "contentHash": "a8fa06b18cc3e92524d1dea9b280376ea0fe8c6f2fdc7e8d2e9bfcfe6240634a",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -41721,7 +41721,7 @@
     },
     "AuBot/packages/i18n/src/locales/ko/stage.yaml": {
       "filePath": "AuBot/packages/i18n/src/locales/ko/stage.yaml",
-      "contentHash": "bd697983567377e2f51f1b5b2cd3c1553cfc4a2cb42fedd83319a33f832550f8",
+      "contentHash": "dc132d7d8b234d7758fdaf68d688ff7e276fdac39e6d5653ea24e8dc886e0d51",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -41787,7 +41787,7 @@
     },
     "AuBot/packages/i18n/src/locales/ko/tamagotchi/settings.yaml": {
       "filePath": "AuBot/packages/i18n/src/locales/ko/tamagotchi/settings.yaml",
-      "contentHash": "266db007d00463350c1f32edb19bacdb92f2dc77eaf86f77471c8dcc3eeeffdf",
+      "contentHash": "6364590a3447d26021377aa374280e0a551758b5714656d687a7bafaf1558c2d",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -41807,7 +41807,7 @@
     },
     "AuBot/packages/i18n/src/locales/ru/base.yaml": {
       "filePath": "AuBot/packages/i18n/src/locales/ru/base.yaml",
-      "contentHash": "501f1819316c5a5606df1f9dc041dc6d72edc41e9c68644c3e299a9e4709b361",
+      "contentHash": "098be1f62a37fb2814385c3221687c521ee6f5e4181559a63c5be2c78f3adde6",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -41895,7 +41895,7 @@
     },
     "AuBot/packages/i18n/src/locales/ru/server/auth.yaml": {
       "filePath": "AuBot/packages/i18n/src/locales/ru/server/auth.yaml",
-      "contentHash": "71925c63d7c776b68007ac915d99ffeb34d0e396193609fdc323c0e45dc75640",
+      "contentHash": "acc048dd19b83549e7db170c4b2abb823a862051f94036266dd6890c663a6742",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -41905,7 +41905,7 @@
     },
     "AuBot/packages/i18n/src/locales/ru/settings.yaml": {
       "filePath": "AuBot/packages/i18n/src/locales/ru/settings.yaml",
-      "contentHash": "f006bd0e6fd3c723d488ed463ec0a09205f54ee8a522b043d4b2791b0349b6f4",
+      "contentHash": "3ac29b872a4f13d5996c29ddb916b1b32df6f64e8b9e4b2fd25a806524544f3c",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -41915,7 +41915,7 @@
     },
     "AuBot/packages/i18n/src/locales/ru/stage.yaml": {
       "filePath": "AuBot/packages/i18n/src/locales/ru/stage.yaml",
-      "contentHash": "e3df3d2097699e31614cc4a6ab366eacd5e192a37152af22e1609c063ea9b063",
+      "contentHash": "8e788324074baa3a259ce828f73b6305aab43d854cae1fce38bcac98813665a8",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -41981,7 +41981,7 @@
     },
     "AuBot/packages/i18n/src/locales/ru/tamagotchi/settings.yaml": {
       "filePath": "AuBot/packages/i18n/src/locales/ru/tamagotchi/settings.yaml",
-      "contentHash": "7edd97a4f0945fd40a19914c18e9a1cf74c1f9e878ba8c817211c5566d4015f2",
+      "contentHash": "d643bc55953dcf908748d15dcc9a1611982ef374a97da79570da99c6f0685a2c",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -42001,7 +42001,7 @@
     },
     "AuBot/packages/i18n/src/locales/vi/base.yaml": {
       "filePath": "AuBot/packages/i18n/src/locales/vi/base.yaml",
-      "contentHash": "8a258989cc0c8105ee4e36cecb371729ddee79c8b5c74fa7495e8e705e2228a8",
+      "contentHash": "5b77f19f3231b940a007ccf35cf8d29abd75b6be10653e06f4d7fbf2abcbf4fa",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -42089,7 +42089,7 @@
     },
     "AuBot/packages/i18n/src/locales/vi/server/auth.yaml": {
       "filePath": "AuBot/packages/i18n/src/locales/vi/server/auth.yaml",
-      "contentHash": "1df9d748e931634f30d2f4466b3478999224b63713d5aa1cc82a554a67021dac",
+      "contentHash": "5ce5d83bbfef4bf1c2a0cf9b9bddcfb73d3a698c5021871fe9886497759403b0",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -42099,7 +42099,7 @@
     },
     "AuBot/packages/i18n/src/locales/vi/settings.yaml": {
       "filePath": "AuBot/packages/i18n/src/locales/vi/settings.yaml",
-      "contentHash": "cc5012531b230cb76ecaa63712506b0c3d01c0531a8435286e2af50429d0a8ea",
+      "contentHash": "76d7584ca6a2970c8f1220fa5f2b8b1749d62805b38ba604615de4663fc36759",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -42109,7 +42109,7 @@
     },
     "AuBot/packages/i18n/src/locales/vi/stage.yaml": {
       "filePath": "AuBot/packages/i18n/src/locales/vi/stage.yaml",
-      "contentHash": "f9ca4dbe9024eb19226326de87332d09f11ffa1b7aa90e883feb86b4e59c3204",
+      "contentHash": "f392f6db1ba3ae6e20c4b52b62b0d2f9334550c04042c8de0cc53446272c793a",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -42175,7 +42175,7 @@
     },
     "AuBot/packages/i18n/src/locales/vi/tamagotchi/settings.yaml": {
       "filePath": "AuBot/packages/i18n/src/locales/vi/tamagotchi/settings.yaml",
-      "contentHash": "3be5cbe4164779c7807d75e5bba5654f964d96e0f2501754ccc437c3d7810622",
+      "contentHash": "b63ce4691224f7d0ee9a47869c41b4d0f38d7afd6947ae6750e6b8e26cd13990",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -42195,7 +42195,7 @@
     },
     "AuBot/packages/i18n/src/locales/zh-Hans/base.yaml": {
       "filePath": "AuBot/packages/i18n/src/locales/zh-Hans/base.yaml",
-      "contentHash": "f3075ae4636871cafd1e9f3226f40b0ce78336751359cf121995c39d342b019e",
+      "contentHash": "b2451e6c97dd3b65603b59fb9c2990567402a01f808d80db67728ba43af528ed",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -42289,7 +42289,7 @@
     },
     "AuBot/packages/i18n/src/locales/zh-Hans/server/auth.yaml": {
       "filePath": "AuBot/packages/i18n/src/locales/zh-Hans/server/auth.yaml",
-      "contentHash": "0a0c214a78bb8849302dc8ab5e053a0065a45e351ce02ed2f585e901bf19107c",
+      "contentHash": "53f4730d2b0b4114fb5a523fead03347240c413a282089414c85c4da93b670f6",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -42299,7 +42299,7 @@
     },
     "AuBot/packages/i18n/src/locales/zh-Hans/settings.yaml": {
       "filePath": "AuBot/packages/i18n/src/locales/zh-Hans/settings.yaml",
-      "contentHash": "2edcc1331dd0b4541878864aee789838fd618f7fd66f80cdf388f5447eac786a",
+      "contentHash": "08469f123a10d7b827adbe6b99578277cc5c28df8b983b3e8896847c8777ed1e",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -42309,7 +42309,7 @@
     },
     "AuBot/packages/i18n/src/locales/zh-Hans/stage.yaml": {
       "filePath": "AuBot/packages/i18n/src/locales/zh-Hans/stage.yaml",
-      "contentHash": "66e55305dd93c86f046f0958c2f87843ac3afaa8e7dabf880b74190389c93c1c",
+      "contentHash": "9e7b524d7a683d19ec9596cc9d6d7b8961ef7cfb83171180bb8e4769dd80e81b",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -42375,7 +42375,7 @@
     },
     "AuBot/packages/i18n/src/locales/zh-Hans/tamagotchi/settings.yaml": {
       "filePath": "AuBot/packages/i18n/src/locales/zh-Hans/tamagotchi/settings.yaml",
-      "contentHash": "fb844478c9f015d0ed59f605de2341e7ec81e95dcff292df81c6591371432cbb",
+      "contentHash": "76c358a711dc67febed6cfb4a64a763f3ff31d2478f229738a93609c25fe481f",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -42395,7 +42395,7 @@
     },
     "AuBot/packages/i18n/src/locales/zh-Hant/base.yaml": {
       "filePath": "AuBot/packages/i18n/src/locales/zh-Hant/base.yaml",
-      "contentHash": "a7ddb8ce013a4b6de00062fa646466d81e0c616e4730465d8ee960949e757bc5",
+      "contentHash": "164ebb1e4cca8b0a35099c876963da6fe1731652bd96e4e27ed50db6f7681cb6",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -42489,7 +42489,7 @@
     },
     "AuBot/packages/i18n/src/locales/zh-Hant/server/auth.yaml": {
       "filePath": "AuBot/packages/i18n/src/locales/zh-Hant/server/auth.yaml",
-      "contentHash": "af1655a66d36774643a3712a6365bd1a9c7ee707b5a406dbd189f14056650fb4",
+      "contentHash": "642c3afbc0698be0f1b569b79de5eb6bc75d08dcfd3aa5d9e7414e5266307750",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -42499,7 +42499,7 @@
     },
     "AuBot/packages/i18n/src/locales/zh-Hant/settings.yaml": {
       "filePath": "AuBot/packages/i18n/src/locales/zh-Hant/settings.yaml",
-      "contentHash": "cfd6710ec880ff96dfca6509f36ff4a86abb2bd6da7c5bf7a69e61ff03ab498a",
+      "contentHash": "1d9610d937117df74aacebd958a31cdc5e4e0c6f46763daeb279244fdc11996c",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -42509,7 +42509,7 @@
     },
     "AuBot/packages/i18n/src/locales/zh-Hant/stage.yaml": {
       "filePath": "AuBot/packages/i18n/src/locales/zh-Hant/stage.yaml",
-      "contentHash": "5f7165a5fe148506c28dbbdb5fc754f223fa649337bfa1b799829d88327117ef",
+      "contentHash": "e2085d09287f003d698a05f578a1df67546d30ca7286f2212167a4e3517516f8",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -42575,7 +42575,7 @@
     },
     "AuBot/packages/i18n/src/locales/zh-Hant/tamagotchi/settings.yaml": {
       "filePath": "AuBot/packages/i18n/src/locales/zh-Hant/tamagotchi/settings.yaml",
-      "contentHash": "27c5c7a4fa1f879fb0329e3e78c6f7dfa965b441f76f5aaedd7bc396c47e7a22",
+      "contentHash": "c1f5cc5db1924cd0ffd3766b687ac03fc409ab2bfa358745db0422a76e8bf58b",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -42628,7 +42628,7 @@
     },
     "AuBot/packages/memory-pgvector/package.json": {
       "filePath": "AuBot/packages/memory-pgvector/package.json",
-      "contentHash": "12c222e72ac7e441360f9a1c55caa93c0c9c1ff5e4a307c12a6f4ce83c16300b",
+      "contentHash": "edf1fbbe3c53f7056e3d016ff307a69bbea101427c85ab349c154d5ffee82ac7",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -42792,7 +42792,7 @@
     },
     "AuBot/packages/model-driver-mediapipe/package.json": {
       "filePath": "AuBot/packages/model-driver-mediapipe/package.json",
-      "contentHash": "df6acb71e9f095c621522599dbf093f9c2f01e1393a8e8d72bf48e45da24c26a",
+      "contentHash": "56a0b886d825d7a9a7ed01cff8be14d21d635b0907d1178407a27c271c9f4ba6",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -43414,7 +43414,7 @@
     },
     "AuBot/packages/pipelines-audio/package.json": {
       "filePath": "AuBot/packages/pipelines-audio/package.json",
-      "contentHash": "2d3ef8487b36f0889e5ef4ff11f9e6ac2f0c248b1be450a6402dc68074e8b9d9",
+      "contentHash": "2345dce4217c2272e68b560f831c2db10a960ba88cf3774479a10f392fca8b70",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -43901,7 +43901,7 @@
     },
     "AuBot/packages/plugin-protocol/package.json": {
       "filePath": "AuBot/packages/plugin-protocol/package.json",
-      "contentHash": "cc7c4ee527a4683c32da0638ceb2095b5390642ad870850a52b253c67dd7b219",
+      "contentHash": "1f1b90e68b7ab2eee77f5e3c39192d820bd357f4a672a087cd48c0f455d37fbf",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -44070,7 +44070,7 @@
     },
     "AuBot/packages/plugin-sdk-tamagotchi/package.json": {
       "filePath": "AuBot/packages/plugin-sdk-tamagotchi/package.json",
-      "contentHash": "f0a93b51833d803c9a993a0d8715e0dfcd499617df923854ca2bf66b523686c8",
+      "contentHash": "fcd32edbfc0b3b9df3edc9ef51c904461e9659f7c89a0d1d95ff200b0b37bfdf",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -44419,7 +44419,7 @@
     },
     "AuBot/packages/plugin-sdk/package.json": {
       "filePath": "AuBot/packages/plugin-sdk/package.json",
-      "contentHash": "1478a38fb1b6c79dbe1f9d50fd07520086d1b0f8c0346729a9846d68c6898112",
+      "contentHash": "cdedbc9ae912d61ce19bcbccad759dc5ff1754be6314cf22b471c891b759c8e8",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -47121,7 +47121,7 @@
     },
     "AuBot/packages/scenarios-stage-tamagotchi-browser/package.json": {
       "filePath": "AuBot/packages/scenarios-stage-tamagotchi-browser/package.json",
-      "contentHash": "087b989e5eb50b7b8dcea591fa64110c30355c4294f21ce8ed27d726816e8604",
+      "contentHash": "4cee9aeae4e17e20b4459159c35ba601122e91970e7f6dae7436625a8b5d55f7",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -48023,7 +48023,7 @@
     },
     "AuBot/packages/scenarios-stage-tamagotchi-browser/src/components/platforms/macos-26/ui/menu-bar/menu-bar.vue": {
       "filePath": "AuBot/packages/scenarios-stage-tamagotchi-browser/src/components/platforms/macos-26/ui/menu-bar/menu-bar.vue",
-      "contentHash": "2f124d3e60c0e2bda6c78b25fa309372ef2de72c16893b60e0059ad102dff9f4",
+      "contentHash": "746640802f71d76ba8c686ceccb8a9ca69d27d9a1ead880fbd97da5a91ee8eb0",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -48262,7 +48262,7 @@
     },
     "AuBot/packages/scenarios-stage-tamagotchi-electron/package.json": {
       "filePath": "AuBot/packages/scenarios-stage-tamagotchi-electron/package.json",
-      "contentHash": "baf6f519d87e7cfe8e86abda6712c6f28b67db62aa0728ba6e8480d5f2cc4f5c",
+      "contentHash": "24f959d3a0b687ca516688bc2869d660775c1f1fee71d35f740636fb06580c4d",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -48714,7 +48714,7 @@
     },
     "AuBot/packages/server-runtime/package.json": {
       "filePath": "AuBot/packages/server-runtime/package.json",
-      "contentHash": "8edf8adef4e2b95d3a93fa2c03e0cc3d86d34ecb3f83d096aa6973b433aa257f",
+      "contentHash": "ceb3679a66ab06d8099b8955411768c9e0364f2616b5a81bbf30fc4c0aaf947b",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -49564,7 +49564,7 @@
     },
     "AuBot/packages/server-schema/package.json": {
       "filePath": "AuBot/packages/server-schema/package.json",
-      "contentHash": "ce310d413e61c400593d1eb1b7380af18a5161c0c506a8c334f14d14cb2d74ad",
+      "contentHash": "1adf67e1c7665bf1a9c3bf33297cff7be2f7c5500d2f150c1885502f17dd6557",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -49636,7 +49636,7 @@
     },
     "AuBot/packages/server-sdk-shared/package.json": {
       "filePath": "AuBot/packages/server-sdk-shared/package.json",
-      "contentHash": "cc109997dedeb4aed76963991440d5d5113950312ebe90819e526824c09e54c3",
+      "contentHash": "db6a14d8d20876ff104c67265e17a5a203792a299d4507406bb413cd23ee37ca",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -49695,7 +49695,7 @@
     },
     "AuBot/packages/server-sdk/package.json": {
       "filePath": "AuBot/packages/server-sdk/package.json",
-      "contentHash": "1893ea4a7645ea3f87214f71590d9656b67f633d6edca5947a2d16b33db34dea",
+      "contentHash": "54cb0fc51b7aac86944012b592446b4f4d4227cc27db98b05006b01179c605cb",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -50078,7 +50078,7 @@
     },
     "AuBot/packages/server-shared/package.json": {
       "filePath": "AuBot/packages/server-shared/package.json",
-      "contentHash": "4f7340cc2fd5ebd165956837e9ca5939f2e7e8dfe27f61a4582780068cb6e1ff",
+      "contentHash": "580564ea3d9c657eee6de235f64fa65383cd4db273eeac6169dd0b60a105a7ae",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -50215,7 +50215,7 @@
     },
     "AuBot/packages/stage-layouts/package.json": {
       "filePath": "AuBot/packages/stage-layouts/package.json",
-      "contentHash": "4be278a5fb00bddb46449f430e2ef92ac8e9553787739562b14193097e47ddb7",
+      "contentHash": "92b01a55db47ed4be40022fface0184cbb08edd3edab37f28891c1bf4e100f85",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -50374,7 +50374,7 @@
     },
     "AuBot/packages/stage-layouts/src/components/Layouts/HeaderLink.vue": {
       "filePath": "AuBot/packages/stage-layouts/src/components/Layouts/HeaderLink.vue",
-      "contentHash": "2d57a97190a2035c823a6c478b2f63f69f647dedb10337e37823804957507cf9",
+      "contentHash": "615421b5c9ea56d404acad1b23473fdadb696b8f68f50dcb36213aea7a0392d0",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -50394,7 +50394,7 @@
     },
     "AuBot/packages/stage-layouts/src/components/Layouts/InteractiveArea/Actions/About.vue": {
       "filePath": "AuBot/packages/stage-layouts/src/components/Layouts/InteractiveArea/Actions/About.vue",
-      "contentHash": "4d631989c4b06bba7e8b88ee06cf0a340a509479e357d210797f05dceaf18276",
+      "contentHash": "11063166c18db785b543c4967fd4cb20287a0c144a7e0d085f1f222a2bda68ff",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -50434,12 +50434,12 @@
     },
     "AuBot/packages/stage-layouts/src/components/Layouts/MobileInteractiveArea.vue": {
       "filePath": "AuBot/packages/stage-layouts/src/components/Layouts/MobileInteractiveArea.vue",
-      "contentHash": "b4f937565a925976fd7f0560eb8fef6443056d058fbf1d4d44a99239ec21c515",
+      "contentHash": "83da8a94c450b813aef3460cf12367b2d7d564ebb8661ee0e33ae1710af114a3",
       "functions": [],
       "classes": [],
       "imports": [],
       "exports": [],
-      "totalLines": 293,
+      "totalLines": 318,
       "hasStructuralAnalysis": false
     },
     "AuBot/packages/stage-layouts/src/components/Layouts/ViewControls/Inputs.vue": {
@@ -50464,12 +50464,12 @@
     },
     "AuBot/packages/stage-layouts/src/components/Widgets/ChatArea.vue": {
       "filePath": "AuBot/packages/stage-layouts/src/components/Widgets/ChatArea.vue",
-      "contentHash": "4cbcfc572eada1ec320b8a5c93b88709dd6f82265b0947d2703bb65360f8a664",
+      "contentHash": "22ebb031093c74d5908290b4789ef18215a34ded8c607c56dbb7ae24d394d1f0",
       "functions": [],
       "classes": [],
       "imports": [],
       "exports": [],
-      "totalLines": 600,
+      "totalLines": 612,
       "hasStructuralAnalysis": false
     },
     "AuBot/packages/stage-layouts/src/components/Widgets/ChatContainer.vue": {
@@ -50761,7 +50761,7 @@
     },
     "AuBot/packages/stage-pages/package.json": {
       "filePath": "AuBot/packages/stage-pages/package.json",
-      "contentHash": "08ba353fc648c50db17d8497f95eb331d289f36a4bad24f0e6c96a67552f5824",
+      "contentHash": "8e800fa9f3c808e0c1476bdec093bb8783e93717212a67f7c6fb2466c0fa900c",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -52033,7 +52033,7 @@
     },
     "AuBot/packages/stage-shared/package.json": {
       "filePath": "AuBot/packages/stage-shared/package.json",
-      "contentHash": "8f19eccb06fbb252b06d8c0d2f30a98529a6dcf7a73bfc8b9468a84179601711",
+      "contentHash": "9bb428435c18f03025a569a145a6af5cac6ca3db6d3ca404061a9a082eae9e51",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -53311,7 +53311,7 @@
     },
     "AuBot/packages/stage-ui-live2d/package.json": {
       "filePath": "AuBot/packages/stage-ui-live2d/package.json",
-      "contentHash": "c29e5cee3a519de447d0263f7a99e91b14b43198c0d547215570d41f1b319b2f",
+      "contentHash": "ffe56403b9857ce102185704e08ffdd2ffa940d126511ceae6180acd85c0cdd2",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -54101,7 +54101,7 @@
     },
     "AuBot/packages/stage-ui-three/package.json": {
       "filePath": "AuBot/packages/stage-ui-three/package.json",
-      "contentHash": "8236cbb6adb7b6662a29e1397e0da3082390e7635df04b647b735e4b3b4c1f2c",
+      "contentHash": "7c717f012c551c1856b79fe00c3fe279139658acb834a9f51c4b9439ace83ec7",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -55755,7 +55755,7 @@
     },
     "AuBot/packages/stage-ui/histoire.config.ts": {
       "filePath": "AuBot/packages/stage-ui/histoire.config.ts",
-      "contentHash": "451abab43bfec7f7df51722bb8fbe3bad8a4ce14150405e219d23df24060f25f",
+      "contentHash": "010e451cf0435d8b553eeca9d4ea0745b3fc9d771ce75ce375e6006a1511bafb",
       "functions": [],
       "classes": [],
       "imports": [
@@ -55784,7 +55784,7 @@
     },
     "AuBot/packages/stage-ui/package.json": {
       "filePath": "AuBot/packages/stage-ui/package.json",
-      "contentHash": "1c64f28267abd8c4a0598305e7b8b6ddfd76b3d5cde0f8799a907e1fe3799306",
+      "contentHash": "9e20ae7c2c1c0bb5569d61bc922e0952d8ddc2a1045d4741f776f3312f44e4c3",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -55944,7 +55944,7 @@
     },
     "AuBot/packages/stage-ui/src/components/auth/SignInPanel.vue": {
       "filePath": "AuBot/packages/stage-ui/src/components/auth/SignInPanel.vue",
-      "contentHash": "97b2bf185843bc319124ce0c2a63efa0bcaa856158115e92f2cbc899e6f31043",
+      "contentHash": "89161ea070a0f44d688c89e442ef1fb4cb95131c929b37733f4b024d183b643e",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -57121,7 +57121,7 @@
     },
     "AuBot/packages/stage-ui/src/components/scenarios/about/about-content.vue": {
       "filePath": "AuBot/packages/stage-ui/src/components/scenarios/about/about-content.vue",
-      "contentHash": "443c06d7d7ff59983980911fdf936f1005593b1fc1aa1fb51b4ae5c6dca88dab",
+      "contentHash": "ff6d435f83dd68a4e125b3b0afd202aa233520a3ad31417b4d290afc688cea9f",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -57742,7 +57742,7 @@
     },
     "AuBot/packages/stage-ui/src/components/scenarios/dialogs/about.vue": {
       "filePath": "AuBot/packages/stage-ui/src/components/scenarios/dialogs/about.vue",
-      "contentHash": "4e350faf9152d1260b81a027a01cd7bcba73650111de21acdc5953d153366ecc",
+      "contentHash": "1e707e2af0c8e85fb6132ce8d34f1046ca5a043b20ec850e905063e8cad6b75d",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -58055,12 +58055,12 @@
     },
     "AuBot/packages/stage-ui/src/components/scenarios/dialogs/onboarding/onboarding.vue": {
       "filePath": "AuBot/packages/stage-ui/src/components/scenarios/dialogs/onboarding/onboarding.vue",
-      "contentHash": "ba15b80d38966f6a1f0de20c7ab05669618350e68fbd10b8694fc8a8de067018",
+      "contentHash": "71201d0c44cc9c3fdbefe331d140d93623c48d6939f919c8a546dcbcbf282b6e",
       "functions": [],
       "classes": [],
       "imports": [],
       "exports": [],
-      "totalLines": 300,
+      "totalLines": 366,
       "hasStructuralAnalysis": false
     },
     "AuBot/packages/stage-ui/src/components/scenarios/dialogs/onboarding/step-analytics-notice.vue": {
@@ -58085,7 +58085,7 @@
     },
     "AuBot/packages/stage-ui/src/components/scenarios/dialogs/onboarding/step-provider-configuration.vue": {
       "filePath": "AuBot/packages/stage-ui/src/components/scenarios/dialogs/onboarding/step-provider-configuration.vue",
-      "contentHash": "b57558431bf474fc26eeb981d92e423b7ccd51f8fab12d0c43c1c08f076949b9",
+      "contentHash": "e1c7b4e09dd81e6b8c09e94c5a92cbace8f5de1cae0e22744656db09207f8a63",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -64045,7 +64045,7 @@
     },
     "AuBot/packages/stage-ui/src/libs/providers/providers/official/index.ts": {
       "filePath": "AuBot/packages/stage-ui/src/libs/providers/providers/official/index.ts",
-      "contentHash": "71efc00d7464ade80e2fd9e83639d16316e2c5a617465babf95c8ca7a2ad1c28",
+      "contentHash": "802340ebb5697a131d0f736130ddbdb11bd4e0a6842405d3fd598825510fa48a",
       "functions": [
         {
           "name": "authHeaders",
@@ -64230,7 +64230,7 @@
     },
     "AuBot/packages/stage-ui/src/libs/providers/providers/ollama/index.ts": {
       "filePath": "AuBot/packages/stage-ui/src/libs/providers/providers/ollama/index.ts",
-      "contentHash": "cebfc248fe17ec60b0e61679f96a6509477e2b5617f210c1c68218488e343edd",
+      "contentHash": "4062b5923e4e00dc9c4098a7b2f4dfaa0fda629a6b77a9a3259e24be45e95d8a",
       "functions": [
         {
           "name": "isGptOssModel",
@@ -64389,7 +64389,7 @@
     },
     "AuBot/packages/stage-ui/src/libs/providers/providers/openrouter-ai/index.ts": {
       "filePath": "AuBot/packages/stage-ui/src/libs/providers/providers/openrouter-ai/index.ts",
-      "contentHash": "d0b6624fe14439a1994c5810bf69b3fed83c829dda042ed7b777071ad86f1c01",
+      "contentHash": "da059065ebfdb9e17c1843ae4ad9fad391401c3838d826f6fcc1f2b627c60d39",
       "functions": [],
       "classes": [],
       "imports": [
@@ -65533,7 +65533,7 @@
     },
     "AuBot/packages/stage-ui/src/stores/analytics/privacy-policy.ts": {
       "filePath": "AuBot/packages/stage-ui/src/stores/analytics/privacy-policy.ts",
-      "contentHash": "cffdd3fc3f98034bf499852f02b19010cc597e762790bd98f81bb90058a8d087",
+      "contentHash": "3d6440b84ba1fa75bfc2065a4fb7b71fe70a353a44a525c35b6c64dc166b6643",
       "functions": [
         {
           "name": "getAnalyticsPrivacyPolicyUrl",
@@ -66309,7 +66309,7 @@
     },
     "AuBot/packages/stage-ui/src/stores/chat.ts": {
       "filePath": "AuBot/packages/stage-ui/src/stores/chat.ts",
-      "contentHash": "7b5d80833c44c147a0a4f78532fdea5926670bce7a47da2f00b3d8e9bb59bcab",
+      "contentHash": "1b4f383d2e1a075cc2cbed772274061c2cd4730a4607552891621a8f10c0fb66",
       "functions": [
         {
           "name": "prependTextToContent",
@@ -66575,7 +66575,7 @@
     },
     "AuBot/packages/stage-ui/src/stores/chat/context-prompt.ts": {
       "filePath": "AuBot/packages/stage-ui/src/stores/chat/context-prompt.ts",
-      "contentHash": "1ba6339b3e77cbc3bfea3bfd2c639bba02a2e006b5d9bc74d5996d24c933ddbf",
+      "contentHash": "e51731ddaaea08d873d69cd491e53f7e3f4f22c53c261d31e6775e22058f7c90",
       "functions": [
         {
           "name": "formatContextPromptText",
@@ -66631,7 +66631,7 @@
     },
     "AuBot/packages/stage-ui/src/stores/chat/context-providers/minecraft.ts": {
       "filePath": "AuBot/packages/stage-ui/src/stores/chat/context-providers/minecraft.ts",
-      "contentHash": "cbb001a931ab548598212b135fe432743eae52ed3de35b4a36c852fd0df4dee3",
+      "contentHash": "48aa768f32211bbc44186ce494d5b245e91bb6ca67d3039b3f2e24ae3ff8784f",
       "functions": [
         {
           "name": "createMinecraftContext",
@@ -67426,7 +67426,7 @@
     },
     "AuBot/packages/stage-ui/src/stores/journal-preview.ts": {
       "filePath": "AuBot/packages/stage-ui/src/stores/journal-preview.ts",
-      "contentHash": "178972522c5e24e2307f3f0eeac5d6db017b645d0ec50c0f882d9598a654cb95",
+      "contentHash": "1f9b83a57460c49c7eca18ab9f8067d3312bd66d25253fa301502f17187d0117",
       "functions": [],
       "classes": [],
       "imports": [
@@ -67935,7 +67935,7 @@
     },
     "AuBot/packages/stage-ui/src/stores/mods/api/channel-server.ts": {
       "filePath": "AuBot/packages/stage-ui/src/stores/mods/api/channel-server.ts",
-      "contentHash": "7a95ca91b7dfa44dba108de1dce2de48ee5fbbd6f5c32534dbc1af527a54ee38",
+      "contentHash": "10a09422b5e8009771e3c2aab045d3a58a067890ad1205b8f5fb4681177d7747",
       "functions": [
         {
           "name": "hasReconnectableWebSocketScheme",
@@ -68382,7 +68382,7 @@
     },
     "AuBot/packages/stage-ui/src/stores/modules/artistry-autonomous.ts": {
       "filePath": "AuBot/packages/stage-ui/src/stores/modules/artistry-autonomous.ts",
-      "contentHash": "c365a33a4c952524c7e757c92a88266c4d8a1d2957569b45ea627241df75647f",
+      "contentHash": "d729fc3647497509ac7a84d1eaa1c95662427ff37c8636a9520ec91103bcebbd",
       "functions": [],
       "classes": [],
       "imports": [
@@ -69349,7 +69349,7 @@
     },
     "AuBot/packages/stage-ui/src/stores/onboarding.ts": {
       "filePath": "AuBot/packages/stage-ui/src/stores/onboarding.ts",
-      "contentHash": "b7c89bb6692376e409328201fcaf82c7e1fa300b1a514cac9b56975714da7907",
+      "contentHash": "4b7be08ff86e41a04b1c13a2243cd40cbe05187b7dc8fbe603246734f028c9ce",
       "functions": [
         {
           "name": "hasNonEmptyText",
@@ -69399,7 +69399,7 @@
       "exports": [
         "useOnboardingStore"
       ],
-      "totalLines": 102,
+      "totalLines": 112,
       "hasStructuralAnalysis": true
     },
     "AuBot/packages/stage-ui/src/stores/perf-tracer-bridge.ts": {
@@ -69590,7 +69590,7 @@
     },
     "AuBot/packages/stage-ui/src/stores/providers.ts": {
       "filePath": "AuBot/packages/stage-ui/src/stores/providers.ts",
-      "contentHash": "c3e0b9806ceb64bbeb3491277a673cdd329ee741ef16913abf73446c906b1a20",
+      "contentHash": "c0c91f3b9680324a64cdbef48ed2bd933bd45537f4409ac8feaddf62bcde05ab",
       "functions": [],
       "classes": [],
       "imports": [
@@ -72596,7 +72596,7 @@
     },
     "AuBot/packages/stream-kit/package.json": {
       "filePath": "AuBot/packages/stream-kit/package.json",
-      "contentHash": "b667ab5e9bdbbfdf8d5b5ccda338279df79fd45e335ed3917f4253fe94f15f17",
+      "contentHash": "28851cc7ce9eb1d9b421184fa535febca86c19756c370086e7a9521a56916b29",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -72684,7 +72684,7 @@
     },
     "AuBot/packages/ui-loading-screens/package.json": {
       "filePath": "AuBot/packages/ui-loading-screens/package.json",
-      "contentHash": "f912f86d40e97c4656fbcf7f8dae5bae5e3f2d4298c41c13fa298d8b4a86b2aa",
+      "contentHash": "0cc589c9bc143e1856871d12c155600afcb22b47ac3130d9fc06122f0743d941",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -72901,7 +72901,7 @@
     },
     "AuBot/packages/ui-loading-screens/src/components/LoadingSciFiCircle/index.vue": {
       "filePath": "AuBot/packages/ui-loading-screens/src/components/LoadingSciFiCircle/index.vue",
-      "contentHash": "f92d772221fc3990696e341d60eddf0451eaeda71b3f05cf462e6cc6f0b81a1d",
+      "contentHash": "6b88c7c5e23b10f28c65f4b4cceaedb113d59d4ed2c503b85a0716c11101e1aa",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -73032,7 +73032,7 @@
     },
     "AuBot/packages/ui-transitions/package.json": {
       "filePath": "AuBot/packages/ui-transitions/package.json",
-      "contentHash": "ed5b9d7e9154c970fbe8c16edf28579f3c33a14127314637368774833e993500",
+      "contentHash": "755b6d5096befa813172a672169e20936a4110299ca276e35fc9692d2a454526",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -73421,7 +73421,7 @@
     },
     "AuBot/packages/ui/package.json": {
       "filePath": "AuBot/packages/ui/package.json",
-      "contentHash": "65640ed28705f61b45dedc06ea375d5d01814a7fe807e94b3f018c176972711c",
+      "contentHash": "a3061341c497e536760165312395e2adce43572cac93b9e6b917f02d18328e80",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -74191,7 +74191,7 @@
     },
     "AuBot/packages/unocss-preset-fonts/package.json": {
       "filePath": "AuBot/packages/unocss-preset-fonts/package.json",
-      "contentHash": "e2cf16a39e365780b779f441309e6d8c0b83d3090ee24fd0d6eeb03fe20a2b69",
+      "contentHash": "8067f1e40b4b41d08d3a05af80f66946da063461ad4fb914a1eefc40ec55e808",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -74252,7 +74252,7 @@
     },
     "AuBot/packages/vishot-runner-browser/package.json": {
       "filePath": "AuBot/packages/vishot-runner-browser/package.json",
-      "contentHash": "9d251cee574fcc1e6b56c008b5ade2716fb264885a7fbd739d049dcc3acf7fdc",
+      "contentHash": "0574c64e7b054e3429006b60e2fbf98818583a26eee1cc99d60844988b7acc10",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -74928,7 +74928,7 @@
     },
     "AuBot/packages/vishot-runner-electron/package.json": {
       "filePath": "AuBot/packages/vishot-runner-electron/package.json",
-      "contentHash": "c2c312c7b98ec12edc35f285b212d378f1cad16d9f4cc9b769fbf1966104918d",
+      "contentHash": "8d6a4d2f7f54ae8f12d27f261080772119ab3de9ed889e73c0b16bfd17701972",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -75841,7 +75841,7 @@
     },
     "AuBot/packages/vishot-runner-electron/src/utils/windows.ts": {
       "filePath": "AuBot/packages/vishot-runner-electron/src/utils/windows.ts",
-      "contentHash": "bed215c2e48249f5b069e04c29498588c7dfa3419ff73f9676f8b4cb391a7112",
+      "contentHash": "30a4ebbf78798bb9caebf505f6f048310f3660e1814fcdcf8dc1d849d7817c96",
       "functions": [
         {
           "name": "inferRoute",
@@ -75928,7 +75928,7 @@
     },
     "AuBot/packages/vishot-runtime/package.json": {
       "filePath": "AuBot/packages/vishot-runtime/package.json",
-      "contentHash": "be15c5f9256c4c383b7c9aec31d9760f64f795721adab5442cab94d843f6da65",
+      "contentHash": "360789d22587779a67f419b9742df70b3dac0140b516dd2a204a0ab7586b913b",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -76565,7 +76565,7 @@
     },
     "AuBot/packages/vite-plugin-warpdrive/package.json": {
       "filePath": "AuBot/packages/vite-plugin-warpdrive/package.json",
-      "contentHash": "0f3cf73c90e0ab86de7428c94cb365e01156924dd95b54e5520f774ba619faca",
+      "contentHash": "4dfcd9fc2ff9a4b902e884635ba036d21bf23edb7246e266ff7a1ee7a51cf682",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -76947,7 +76947,7 @@
     },
     "AuBot/plugins/airi-plugin-bilibili-laplace/package.json": {
       "filePath": "AuBot/plugins/airi-plugin-bilibili-laplace/package.json",
-      "contentHash": "c2a2e1eaced2f6a2e0ca9313964608719a45010d585a89b7924be8645354d425",
+      "contentHash": "eea427b428868f0362bf35f492d8e5ce3011910a12fd1c55c7202748dc278c6a",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -77211,7 +77211,7 @@
     },
     "AuBot/plugins/airi-plugin-game-chess/package.json": {
       "filePath": "AuBot/plugins/airi-plugin-game-chess/package.json",
-      "contentHash": "4a5a6748cebf43d6a34721349144a1f4ea694d43e845798aa065c655798b37e3",
+      "contentHash": "693fb4512c5ee905de17c983eb5f864c85321a67c84a141fef7f40693d1a1e84",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -77221,7 +77221,7 @@
     },
     "AuBot/plugins/airi-plugin-homeassistant/package.json": {
       "filePath": "AuBot/plugins/airi-plugin-homeassistant/package.json",
-      "contentHash": "7bfced39f821abb49018718de987fba1d94daaaecb49ff63dd267fceae707636",
+      "contentHash": "ee0e286bc44725fe88bbbd669b4bf03a89b716d513ed634c2f7b7d5f1c1cb663",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -78693,7 +78693,7 @@
     },
     "AuBot/services/computer-use-mcp/package.json": {
       "filePath": "AuBot/services/computer-use-mcp/package.json",
-      "contentHash": "c22f9ec71b9661d0c561463ae99d90450589b3392c71b616fd65f1d6b7d1d8d6",
+      "contentHash": "ca5666a4d7fbe205a049e8f26b9b8bd77fef8564f5289681fe175c0d5dc0b65d",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -91114,7 +91114,7 @@
     },
     "AuBot/services/discord-bot/package.json": {
       "filePath": "AuBot/services/discord-bot/package.json",
-      "contentHash": "970c526d4d4950f9ff5d3b45e039cfd5bb12cda26c9428f5144bd98e6595b663",
+      "contentHash": "09362284b8825d6a2e01b1cffd4f3ca2e204b1784e9c83889ec4f71cde7b6e74",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -91826,7 +91826,7 @@
     },
     "AuBot/services/minecraft/package.json": {
       "filePath": "AuBot/services/minecraft/package.json",
-      "contentHash": "90f18855111855696331ceb057ad30ac041d4307609f94688186ff1c1c7384a1",
+      "contentHash": "7885b215f2af5bdc19f42b0bc127aaced7ba548ae6c79697f704ef69c8bb25eb",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -101351,7 +101351,7 @@
     },
     "AuBot/services/satori-bot/package.json": {
       "filePath": "AuBot/services/satori-bot/package.json",
-      "contentHash": "6a8386fb8ca65a55496403411467f3cb9e4c12512c6d1b21ba9a59a04b36d5ed",
+      "contentHash": "15ffe1746ce4d3669359bf9294a42f8c2d76ca0c029be6837654b89ba1833220",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -103099,7 +103099,7 @@
     },
     "AuBot/services/telegram-bot/package.json": {
       "filePath": "AuBot/services/telegram-bot/package.json",
-      "contentHash": "7c78c083bb89746a0f3aca3cbc8e149a047d74da573bc9990a44a995f2e75971",
+      "contentHash": "29c9012a738fe504a47b3a51e6da3bf358bfab021a5e1710fd563e979af69f04",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -106678,52 +106678,52 @@
     },
     "docs/AuBot/操作文档.md": {
       "filePath": "docs/AuBot/操作文档.md",
-      "contentHash": "0b92034343de48f597ca8959b14c8f62ea4906427dbded4eb39af803adc2942c",
+      "contentHash": "505fb0abd5bd1edbeff82473444c9f172bc70e4724bb03eac142900f39831b2a",
       "functions": [],
       "classes": [],
       "imports": [],
       "exports": [],
-      "totalLines": 200,
+      "totalLines": 233,
       "hasStructuralAnalysis": true
     },
     "docs/AuBot/README.md": {
       "filePath": "docs/AuBot/README.md",
-      "contentHash": "6bc2c4504f302d12382fa8ff1a75bf80d57539ff12c51f2c9b4ef5c3d92d4b33",
+      "contentHash": "9b83c3c056bea63273c59100b927e2931f3f0fbe78cb06b11ac604032da1b80f",
       "functions": [],
       "classes": [],
       "imports": [],
       "exports": [],
-      "totalLines": 247,
+      "totalLines": 291,
       "hasStructuralAnalysis": true
     },
     "docs/AuBot/struct.md": {
       "filePath": "docs/AuBot/struct.md",
-      "contentHash": "3c3b048f594953277343c896c0b1fdd53adb928ae333038de308bf1a7f8df239",
+      "contentHash": "e3163be14100128cb8234d26bce7ae27db61758b19a70417936342fb59d3a85c",
       "functions": [],
       "classes": [],
       "imports": [],
       "exports": [],
-      "totalLines": 4141,
+      "totalLines": 4171,
       "hasStructuralAnalysis": true
     },
     "docs/plans/2026-05-12-xiaomiao-console-fusion.md": {
       "filePath": "docs/plans/2026-05-12-xiaomiao-console-fusion.md",
-      "contentHash": "a617146d416a75f20f48607b51bb39635fac7a89bd1bad9d540c373af8d85cba",
+      "contentHash": "6a688ddc41ebcecbf22d7cf5d42bc0c55d79d578b6a10557e05486a41fd5b59c",
       "functions": [],
       "classes": [],
       "imports": [],
       "exports": [],
-      "totalLines": 398,
+      "totalLines": 400,
       "hasStructuralAnalysis": true
     },
     "docs/STARTUP.md": {
       "filePath": "docs/STARTUP.md",
-      "contentHash": "5961f5f5503e15a25503129108bb52f59f22dcc0a10929f66d10e56cbe1d2af0",
+      "contentHash": "0112cbc69fc651867e7ac84cd7161330c1625e88e717180fc111dca049e16238",
       "functions": [],
       "classes": [],
       "imports": [],
       "exports": [],
-      "totalLines": 481,
+      "totalLines": 657,
       "hasStructuralAnalysis": true
     },
     "docs/xiaomiao/deploy/README_DEPLOY.md": {
@@ -106738,22 +106738,12 @@
     },
     "docs/xiaomiao/README.md": {
       "filePath": "docs/xiaomiao/README.md",
-      "contentHash": "1b02fcacaad6aba5bef9ff3f0070377b1370dd2897b7beeb80ab52e3dde3e338",
+      "contentHash": "8a82ece303ddd01ca5a8d32c584660bec75a2b720e19d36fa63d31bc143d9e28",
       "functions": [],
       "classes": [],
       "imports": [],
       "exports": [],
-      "totalLines": 781,
-      "hasStructuralAnalysis": true
-    },
-    "log/2026-06-02-Understand-Anything.md": {
-      "filePath": "log/2026-06-02-Understand-Anything.md",
-      "contentHash": "1d6f503d2b6d80febc5aabd6ec840ba22a9414ede96d307d587755e44535874b",
-      "functions": [],
-      "classes": [],
-      "imports": [],
-      "exports": [],
-      "totalLines": 57,
+      "totalLines": 877,
       "hasStructuralAnalysis": true
     },
     "nanobot/.agent/design.md": {
@@ -106808,12 +106798,12 @@
     },
     "nanobot/项目结构与操作说明.md": {
       "filePath": "nanobot/项目结构与操作说明.md",
-      "contentHash": "14a6572746aa9797ce97539683a3b6dba061ca256fbe2df1c0e5b7718822bd42",
+      "contentHash": "a52900ea385af81d20f69fce530c796c962273edb98698e314144004e4830f8e",
       "functions": [],
       "classes": [],
       "imports": [],
       "exports": [],
-      "totalLines": 361,
+      "totalLines": 397,
       "hasStructuralAnalysis": true
     },
     "nanobot/bridge/package.json": {
@@ -107017,7 +107007,7 @@
     },
     "nanobot/CLAUDE.md": {
       "filePath": "nanobot/CLAUDE.md",
-      "contentHash": "a7ff7bcaa919d98e3a25b8446d94480c84bd511235d2c731e78f6eff3f2b9431",
+      "contentHash": "ca26ad434347bc5daad020171711266bf5b079f26166b46e644a2565567a58da",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -107092,7 +107082,7 @@
     },
     "nanobot/docs/agent-social-network.md": {
       "filePath": "nanobot/docs/agent-social-network.md",
-      "contentHash": "937f40241ad235a48fcbbf05ed580de2492ff85c90625a0dd1fe3c7775f88084",
+      "contentHash": "a36bde46eef6a150f64baf3fb6eab525cb751c23bbf1395138c0528ce2ac2094",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -107102,7 +107092,7 @@
     },
     "nanobot/docs/channel-plugin-guide.md": {
       "filePath": "nanobot/docs/channel-plugin-guide.md",
-      "contentHash": "bd3cd0202f398ddc6b1b07c83a97285e1eef77aae7ea4dff8feb0bafd1639e34",
+      "contentHash": "9b5c452a574cb4a511afc6acdd589668409abbc55b7492785823211e5ea1a12f",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -107112,7 +107102,7 @@
     },
     "nanobot/docs/chat-apps.md": {
       "filePath": "nanobot/docs/chat-apps.md",
-      "contentHash": "1898be43dbc22a47696244d201bd7c68a25527151d6fb39105f8eaadda0a8c04",
+      "contentHash": "282a3c619ef8b9e8051bcca7f305cf01adc8ef6957b4642b9e06e68293b19552",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -107122,7 +107112,7 @@
     },
     "nanobot/docs/chat-commands.md": {
       "filePath": "nanobot/docs/chat-commands.md",
-      "contentHash": "baf2ba242843022ae2139217430f8528ec31153436abd00f1c339e289192467a",
+      "contentHash": "cf0cfd86901f9bb4637d79b6ab100292a36a1cdee0bcc5606125f05a66bb1b68",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -107132,17 +107122,17 @@
     },
     "nanobot/docs/cli-reference.md": {
       "filePath": "nanobot/docs/cli-reference.md",
-      "contentHash": "8b92d22d13e5d8fc1ae0d482998518558feed82dbc946054c1641af3494d6b5c",
+      "contentHash": "728c1e40928815d5f1a9eb3f53277845a16a93f439abd5856ba94b207a28c34f",
       "functions": [],
       "classes": [],
       "imports": [],
       "exports": [],
-      "totalLines": 22,
+      "totalLines": 24,
       "hasStructuralAnalysis": true
     },
     "nanobot/docs/configuration.md": {
       "filePath": "nanobot/docs/configuration.md",
-      "contentHash": "8340b61c2c3a7d9b20480f8c0b1c1ad8e7e9de8e2daaad2d9fc8e03151a2cb86",
+      "contentHash": "e53f4ff556cfae2977e1a17a70acb81689712fecd932db95b2970ed93be369fd",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -107152,7 +107142,7 @@
     },
     "nanobot/docs/deployment.md": {
       "filePath": "nanobot/docs/deployment.md",
-      "contentHash": "f956e2da85553948cc2e24e7910ae16d5e6a96128635124919ad49cf427f63e9",
+      "contentHash": "9acdb447a5c804b59989b14d1e9713907611172d6e17f515ec04442db0abe72c",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -107162,7 +107152,7 @@
     },
     "nanobot/docs/image-generation.md": {
       "filePath": "nanobot/docs/image-generation.md",
-      "contentHash": "c176755625eedc55474791d4bbef52c61db250fba8a5b86ace303e2b366367f0",
+      "contentHash": "c25526e0df366a5a2061c20a10c4d84cc7f2ed621255e61e8bbdcb0c285950dd",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -107172,7 +107162,7 @@
     },
     "nanobot/docs/memory.md": {
       "filePath": "nanobot/docs/memory.md",
-      "contentHash": "bfca8e602438bb120501ee247f5fd530cb33e6229a0e5d7615bfc5bcaf91ae00",
+      "contentHash": "10726fedc08efc64738989497a878725112d1b7319db9d42a869cce02d4d576d",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -107182,7 +107172,7 @@
     },
     "nanobot/docs/multiple-instances.md": {
       "filePath": "nanobot/docs/multiple-instances.md",
-      "contentHash": "1208f06afa6815eb2a70493b747693bc6f2c00f3f762a6a018b6206f3bf78241",
+      "contentHash": "f450a806d62dd34be18d4063d84625b1db04e9f33030d75471a7ed16dfb38e00",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -107192,7 +107182,7 @@
     },
     "nanobot/docs/my-tool.md": {
       "filePath": "nanobot/docs/my-tool.md",
-      "contentHash": "8dbcf055f61b9a2b2dbe8ceaa98daef53124b5f6364ff9a384044a7949528cfa",
+      "contentHash": "f2a644f8244dc3f4493c1ad3af389d64e7f05e049272ab750dfc0b66d61f8aae",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -107202,17 +107192,17 @@
     },
     "nanobot/docs/openai-api.md": {
       "filePath": "nanobot/docs/openai-api.md",
-      "contentHash": "9c2467c6a1f1bd30b10ee8bec6cd8f1508d7a7d5ec4d76a89ebc6051f00d8317",
+      "contentHash": "20f78be98137c367b99c416f0ab708815510b7da5543af60aeebfe8ad3061c7c",
       "functions": [],
       "classes": [],
       "imports": [],
       "exports": [],
-      "totalLines": 123,
+      "totalLines": 163,
       "hasStructuralAnalysis": true
     },
     "nanobot/docs/python-sdk.md": {
       "filePath": "nanobot/docs/python-sdk.md",
-      "contentHash": "ada420ca576883102ae91bf339212ce29311bffc507b71b5b3ce647e4a63519c",
+      "contentHash": "795ba173a83a2fb01244893d707f90ad8c326ae40a932f6e4f8c5ad2de6f7f6a",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -107222,7 +107212,7 @@
     },
     "nanobot/docs/quick-start.md": {
       "filePath": "nanobot/docs/quick-start.md",
-      "contentHash": "5ae243a60588418ac31e2b0d650e4e12ff3909519e6a0326fe621086d5ce40f7",
+      "contentHash": "b0117c1241c333a7c0cf4ddcda4fda09a487b3f2a91ccb7d1797fe8366a949ef",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -107232,17 +107222,17 @@
     },
     "nanobot/docs/README.md": {
       "filePath": "nanobot/docs/README.md",
-      "contentHash": "52a72324c359be7f82286ac44396811f6252c86fb5aca8bb70e8c1158753031b",
+      "contentHash": "a4eba2b54e05364fb22d9507283892583444df0822cc9163715d28cb06488afb",
       "functions": [],
       "classes": [],
       "imports": [],
       "exports": [],
-      "totalLines": 35,
+      "totalLines": 37,
       "hasStructuralAnalysis": true
     },
     "nanobot/docs/websocket.md": {
       "filePath": "nanobot/docs/websocket.md",
-      "contentHash": "4758351ca74f3d7147a27aa1a52e1005e2e031035fd728082e417cd4fd2412fb",
+      "contentHash": "0bc5bef1de7b9fe6a54de9ce3a69c4724e7ecdf1d20548025a0d97347d8b0feb",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -113991,7 +113981,7 @@
     },
     "nanobot/nanobot/channels/telegram.py": {
       "filePath": "nanobot/nanobot/channels/telegram.py",
-      "contentHash": "d1610a8db0fb03d8115532ff3dbfdf7c4d8f4768cb79230a07bf032408ec9a11",
+      "contentHash": "810b8a924d55ad741d339ebbe94a858ab66ec686cef83dca6ea81f2704b906f6",
       "functions": [
         {
           "name": "_escape_telegram_html",
@@ -115461,7 +115451,7 @@
     },
     "nanobot/nanobot/cli/commands.py": {
       "filePath": "nanobot/nanobot/cli/commands.py",
-      "contentHash": "2d020ee8e4a8d4732ad9ac5705366588e0f431d0ca1417d0ee341a5c8b5e4f05",
+      "contentHash": "ec2c47d972fd938eda3acf0c1c10a38fa7a8064a982b93c0493b69f5d6f98ee4",
       "functions": [
         {
           "name": "_sanitize_surrogates",
@@ -116137,7 +116127,7 @@
     },
     "nanobot/nanobot/cli/onboard.py": {
       "filePath": "nanobot/nanobot/cli/onboard.py",
-      "contentHash": "f67af5bb51440b1f6c0b0f31be7af2222ceb847284141b61bddf13ec8b874de5",
+      "contentHash": "ab38a4e50f395aaeb419b564ba68e7f27980eec9f4363860c027c1e016c5c46d",
       "functions": [
         {
           "name": "_get_questionary",
@@ -116688,7 +116678,7 @@
     },
     "nanobot/nanobot/cli/stream.py": {
       "filePath": "nanobot/nanobot/cli/stream.py",
-      "contentHash": "91d2f11fc7bc6f6927eebecdb791426e4f9a1a21228a8c23041ae30acb0a66e5",
+      "contentHash": "8fb8e3f002b0c9398b7aa57745a41cea47f9fc9930a9ba37d0e84be2aa33fb20",
       "functions": [
         {
           "name": "_make_console",
@@ -116801,7 +116791,7 @@
     },
     "nanobot/nanobot/command/builtin.py": {
       "filePath": "nanobot/nanobot/command/builtin.py",
-      "contentHash": "9e074ee3741a6d9e28a3f914a9267346616c8bbbf6361f8f03dfad85be474549",
+      "contentHash": "a63b16dc9e3be12b16072d94b8f8766bf8d91375da609570edde5ed5e4995e08",
       "functions": [
         {
           "name": "builtin_command_palette",
@@ -117160,7 +117150,7 @@
     },
     "nanobot/nanobot/config/loader.py": {
       "filePath": "nanobot/nanobot/config/loader.py",
-      "contentHash": "0c544ab5c352d54d0ca2db8a42b71686e8c77c776b7e52a2167f39d58afb7a86",
+      "contentHash": "3c66b031dd35650d28e75beed7fedc0713550c720456377e5df654640b80c2f6",
       "functions": [
         {
           "name": "set_config_path",
@@ -117185,7 +117175,7 @@
           ],
           "returnType": "Config",
           "exported": true,
-          "lineCount": 25
+          "lineCount": 27
         },
         {
           "name": "_apply_ssrf_whitelist",
@@ -117307,6 +117297,13 @@
           "specifiers": [
             "Config"
           ]
+        },
+        {
+          "source": "nanobot.config.unified_root",
+          "specifiers": [
+            "UNIFIED_CONFIG_ENV",
+            "apply_unified_config_overrides"
+          ]
         }
       ],
       "exports": [
@@ -117321,7 +117318,7 @@
         "_env_replace",
         "_migrate_config"
       ],
-      "totalLines": 173,
+      "totalLines": 179,
       "hasStructuralAnalysis": true
     },
     "nanobot/nanobot/config/paths.py": {
@@ -118134,7 +118131,7 @@
     },
     "nanobot/nanobot/nanobot.py": {
       "filePath": "nanobot/nanobot/nanobot.py",
-      "contentHash": "70f0c9efe59295b66b20e37b3ff52dba7240c48ee16633220dc848a9cefbcb23",
+      "contentHash": "4efa4aea3c12f7241252beb481a4e74d7af974043394262d70d8eed564d08e74",
       "functions": [],
       "classes": [
         {
@@ -120638,12 +120635,12 @@
     },
     "nanobot/nanobot/templates/__init__.py": {
       "filePath": "nanobot/nanobot/templates/__init__.py",
-      "contentHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "contentHash": "8473713531000762fae41d329615ce87746d0060fb048758652c976737f52c06",
       "functions": [],
       "classes": [],
       "imports": [],
       "exports": [],
-      "totalLines": 1,
+      "totalLines": 24,
       "hasStructuralAnalysis": true
     },
     "nanobot/nanobot/templates/agent/_snippets/untrusted_content.md": {
@@ -120768,7 +120765,7 @@
     },
     "nanobot/nanobot/templates/HEARTBEAT.md": {
       "filePath": "nanobot/nanobot/templates/HEARTBEAT.md",
-      "contentHash": "1949b47a610f39eb5321b65bb53069b6fa03baadda439fa414047d9c3e2199b1",
+      "contentHash": "3303263b070fffcd4eabaeef1a105c56c54b985397506698cf1d8c73f99c71cf",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -120778,12 +120775,12 @@
     },
     "nanobot/nanobot/templates/memory/__init__.py": {
       "filePath": "nanobot/nanobot/templates/memory/__init__.py",
-      "contentHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "contentHash": "cae82f2ec327198520299fcf8ef39c79dab65194898eeef2a0dd154a03136b3d",
       "functions": [],
       "classes": [],
       "imports": [],
       "exports": [],
-      "totalLines": 1,
+      "totalLines": 20,
       "hasStructuralAnalysis": true
     },
     "nanobot/nanobot/templates/memory/MEMORY.md": {
@@ -122556,27 +122553,27 @@
     },
     "nanobot/pyproject.toml": {
       "filePath": "nanobot/pyproject.toml",
-      "contentHash": "9d6940c53f269ee3249eb87314877ae5f950f276444d097f6f19651bd2716a96",
+      "contentHash": "9ebb46728c8f9a4bd67eac3e5de337a236ffdca8e25b0424891f25e9ca220aff",
       "functions": [],
       "classes": [],
       "imports": [],
       "exports": [],
-      "totalLines": 175,
+      "totalLines": 176,
       "hasStructuralAnalysis": true
     },
     "nanobot/README.md": {
       "filePath": "nanobot/README.md",
-      "contentHash": "3b105e1cceb632847701a45d3d3c60150b54777da9f895481c49f7f5c2172096",
+      "contentHash": "04a5221fddd2916efbe3d70265f085b57beda387995f2ab89169fa64336ed75e",
       "functions": [],
       "classes": [],
       "imports": [],
       "exports": [],
-      "totalLines": 319,
+      "totalLines": 320,
       "hasStructuralAnalysis": true
     },
     "nanobot/SECURITY.md": {
       "filePath": "nanobot/SECURITY.md",
-      "contentHash": "0f7786f7d9d37748d2795ee461a1bee0c7b3d8071b5b8d23688f44537eb4bec0",
+      "contentHash": "28a1664873a67be7634af1206ebf26acc10addb4ebebc9615909cb9eed5c2d67",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -122586,12 +122583,143 @@
     },
     "nanobot/tests/agent/__init__.py": {
       "filePath": "nanobot/tests/agent/__init__.py",
-      "contentHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "functions": [],
+      "contentHash": "ee1d2c46aa1fe0387858142913e4d8c98a244b091b56213a8db4e7f7c07c63fd",
+      "functions": [
+        {
+          "name": "test_subagent_exec_tool_receives_allowed_env_keys",
+          "params": [
+            "tmp_path"
+          ],
+          "exported": true,
+          "lineCount": 40
+        },
+        {
+          "name": "test_subagent_uses_configured_max_iterations",
+          "params": [
+            "tmp_path"
+          ],
+          "exported": true,
+          "lineCount": 36
+        },
+        {
+          "name": "test_spawn_tool_rejects_when_at_concurrency_limit",
+          "params": [
+            "tmp_path"
+          ],
+          "exported": true,
+          "lineCount": 49
+        },
+        {
+          "name": "test_subagent_default_max_concurrent_matches_agent_defaults",
+          "params": [
+            "tmp_path"
+          ],
+          "exported": true,
+          "lineCount": 17
+        },
+        {
+          "name": "test_subagent_default_max_iterations_matches_agent_defaults",
+          "params": [
+            "tmp_path"
+          ],
+          "exported": true,
+          "lineCount": 17
+        },
+        {
+          "name": "test_agent_loop_passes_max_iterations_to_subagents",
+          "params": [
+            "tmp_path"
+          ],
+          "exported": true,
+          "lineCount": 18
+        },
+        {
+          "name": "test_agent_loop_syncs_updated_max_iterations_before_run",
+          "params": [
+            "tmp_path"
+          ],
+          "exported": true,
+          "lineCount": 38
+        },
+        {
+          "name": "test_drain_pending_blocks_while_subagents_running",
+          "params": [
+            "tmp_path"
+          ],
+          "exported": true,
+          "lineCount": 89
+        },
+        {
+          "name": "test_drain_pending_no_block_when_no_subagents",
+          "params": [
+            "tmp_path"
+          ],
+          "exported": true,
+          "lineCount": 43
+        },
+        {
+          "name": "test_drain_pending_timeout",
+          "params": [
+            "tmp_path"
+          ],
+          "exported": true,
+          "lineCount": 62
+        }
+      ],
       "classes": [],
-      "imports": [],
-      "exports": [],
-      "totalLines": 1,
+      "imports": [
+        {
+          "source": "asyncio",
+          "specifiers": [
+            "asyncio"
+          ]
+        },
+        {
+          "source": "time",
+          "specifiers": [
+            "time"
+          ]
+        },
+        {
+          "source": "types",
+          "specifiers": [
+            "SimpleNamespace"
+          ]
+        },
+        {
+          "source": "unittest.mock",
+          "specifiers": [
+            "AsyncMock",
+            "MagicMock",
+            "patch"
+          ]
+        },
+        {
+          "source": "pytest",
+          "specifiers": [
+            "pytest"
+          ]
+        },
+        {
+          "source": "nanobot.config.schema",
+          "specifiers": [
+            "AgentDefaults"
+          ]
+        }
+      ],
+      "exports": [
+        "test_subagent_exec_tool_receives_allowed_env_keys",
+        "test_subagent_uses_configured_max_iterations",
+        "test_spawn_tool_rejects_when_at_concurrency_limit",
+        "test_subagent_default_max_concurrent_matches_agent_defaults",
+        "test_subagent_default_max_iterations_matches_agent_defaults",
+        "test_agent_loop_passes_max_iterations_to_subagents",
+        "test_agent_loop_syncs_updated_max_iterations_before_run",
+        "test_drain_pending_blocks_while_subagents_running",
+        "test_drain_pending_no_block_when_no_subagents",
+        "test_drain_pending_timeout"
+      ],
+      "totalLines": 449,
       "hasStructuralAnalysis": true
     },
     "nanobot/tests/agent/test_ask_user.py": {
@@ -128833,12 +128961,70 @@
     },
     "nanobot/tests/agent/tools/__init__.py": {
       "filePath": "nanobot/tests/agent/tools/__init__.py",
-      "contentHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "contentHash": "4efa4aea3c12f7241252beb481a4e74d7af974043394262d70d8eed564d08e74",
       "functions": [],
-      "classes": [],
-      "imports": [],
-      "exports": [],
-      "totalLines": 1,
+      "classes": [
+        {
+          "name": "RunResult",
+          "methods": [],
+          "properties": [
+            "content",
+            "tools_used",
+            "messages"
+          ],
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "Nanobot",
+          "methods": [
+            "__init__",
+            "from_config",
+            "run"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 83
+        }
+      ],
+      "imports": [
+        {
+          "source": "dataclasses",
+          "specifiers": [
+            "dataclass"
+          ]
+        },
+        {
+          "source": "pathlib",
+          "specifiers": [
+            "Path"
+          ]
+        },
+        {
+          "source": "typing",
+          "specifiers": [
+            "Any"
+          ]
+        },
+        {
+          "source": "nanobot.agent.hook",
+          "specifiers": [
+            "AgentHook",
+            "SDKCaptureHook"
+          ]
+        },
+        {
+          "source": "nanobot.agent.loop",
+          "specifiers": [
+            "AgentLoop"
+          ]
+        }
+      ],
+      "exports": [
+        "RunResult",
+        "Nanobot"
+      ],
+      "totalLines": 107,
       "hasStructuralAnalysis": true
     },
     "nanobot/tests/agent/tools/test_self_tool_runtime_sync.py": {
@@ -138133,7 +138319,7 @@
     },
     "nanobot/tests/cli/test_cli_input.py": {
       "filePath": "nanobot/tests/cli/test_cli_input.py",
-      "contentHash": "31978156f37c9d0cb927ee7604a69ec8052c4f10e1e7355fedf274e14ced20e8",
+      "contentHash": "48dce735c4c19bdab3609fef0cd629721adcee37cdc0570aca27a7e0ab218e32",
       "functions": [
         {
           "name": "mock_prompt_session",
@@ -138287,7 +138473,7 @@
     },
     "nanobot/tests/cli/test_commands.py": {
       "filePath": "nanobot/tests/cli/test_commands.py",
-      "contentHash": "92e4fb8d737d3c5cad1f9fe6ab7a60af42cd65add6cb05bc69ed693c8aafd326",
+      "contentHash": "710a1db62ba20cab947a8fe246946a4852b3da2d5fd0967318ca7d331f825004",
       "functions": [
         {
           "name": "_fake_provider",
@@ -144837,12 +145023,152 @@
     },
     "nanobot/tests/session/__init__.py": {
       "filePath": "nanobot/tests/session/__init__.py",
-      "contentHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "functions": [],
+      "contentHash": "8383597bf172bd10a690aa4b4fc5c220a5555dd3c10e14d074a7e2e5d78f0fc4",
+      "functions": [
+        {
+          "name": "_fake_resolve",
+          "params": [
+            "host",
+            "results"
+          ],
+          "exported": true,
+          "lineCount": 7
+        },
+        {
+          "name": "test_rejects_non_http_scheme",
+          "params": [],
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "test_rejects_missing_domain",
+          "params": [],
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "test_blocks_private_ipv4",
+          "params": [
+            "ip",
+            "label"
+          ],
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "test_blocks_ipv6_loopback",
+          "params": [],
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "test_allows_public_ip",
+          "params": [],
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "test_allows_normal_https",
+          "params": [],
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "test_detects_curl_metadata",
+          "params": [],
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "test_detects_wget_localhost",
+          "params": [],
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "test_allows_normal_curl",
+          "params": [],
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "test_no_urls_returns_false",
+          "params": [],
+          "exported": true,
+          "lineCount": 2
+        },
+        {
+          "name": "test_blocks_cgnat_by_default",
+          "params": [],
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "test_whitelist_allows_cgnat",
+          "params": [],
+          "exported": true,
+          "lineCount": 9
+        },
+        {
+          "name": "test_whitelist_does_not_affect_other_blocked",
+          "params": [],
+          "exported": true,
+          "lineCount": 9
+        },
+        {
+          "name": "test_whitelist_invalid_cidr_ignored",
+          "params": [],
+          "exported": true,
+          "lineCount": 9
+        }
+      ],
       "classes": [],
-      "imports": [],
-      "exports": [],
-      "totalLines": 1,
+      "imports": [
+        {
+          "source": "socket",
+          "specifiers": [
+            "socket"
+          ]
+        },
+        {
+          "source": "unittest.mock",
+          "specifiers": [
+            "patch"
+          ]
+        },
+        {
+          "source": "pytest",
+          "specifiers": [
+            "pytest"
+          ]
+        },
+        {
+          "source": "nanobot.security.network",
+          "specifiers": [
+            "configure_ssrf_whitelist",
+            "contains_internal_url",
+            "validate_url_target"
+          ]
+        }
+      ],
+      "exports": [
+        "_fake_resolve",
+        "test_rejects_non_http_scheme",
+        "test_rejects_missing_domain",
+        "test_blocks_private_ipv4",
+        "test_blocks_ipv6_loopback",
+        "test_allows_public_ip",
+        "test_allows_normal_https",
+        "test_detects_curl_metadata",
+        "test_detects_wget_localhost",
+        "test_allows_normal_curl",
+        "test_no_urls_returns_false",
+        "test_blocks_cgnat_by_default",
+        "test_whitelist_allows_cgnat",
+        "test_whitelist_does_not_affect_other_blocked",
+        "test_whitelist_invalid_cidr_ignored"
+      ],
+      "totalLines": 146,
       "hasStructuralAnalysis": true
     },
     "nanobot/tests/session/test_session_fsync.py": {
@@ -146797,12 +147123,92 @@
     },
     "nanobot/tests/tools/__init__.py": {
       "filePath": "nanobot/tests/tools/__init__.py",
-      "contentHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "functions": [],
-      "classes": [],
-      "imports": [],
-      "exports": [],
-      "totalLines": 1,
+      "contentHash": "8facaa1bbd8f29ee49e76cf75c9d4d167c603ba5644fb0fdb11a5a771511d1ba",
+      "functions": [
+        {
+          "name": "sessions_dir",
+          "params": [
+            "tmp_path"
+          ],
+          "returnType": "Path",
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "manager",
+          "params": [
+            "sessions_dir"
+          ],
+          "returnType": "SessionManager",
+          "exported": true,
+          "lineCount": 2
+        }
+      ],
+      "classes": [
+        {
+          "name": "TestSaveFsync",
+          "methods": [
+            "test_save_without_fsync_does_not_call_fsync",
+            "test_save_with_fsync_calls_fsync",
+            "test_save_default_no_fsync"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 29
+        },
+        {
+          "name": "TestFlushAll",
+          "methods": [
+            "test_flush_all_empty_cache",
+            "test_flush_all_saves_cached_sessions",
+            "test_flush_all_uses_fsync",
+            "test_flush_all_continues_on_error",
+            "test_flush_all_data_survives_reload"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 72
+        }
+      ],
+      "imports": [
+        {
+          "source": "sys",
+          "specifiers": [
+            "sys"
+          ]
+        },
+        {
+          "source": "pathlib",
+          "specifiers": [
+            "Path"
+          ]
+        },
+        {
+          "source": "unittest.mock",
+          "specifiers": [
+            "patch"
+          ]
+        },
+        {
+          "source": "pytest",
+          "specifiers": [
+            "pytest"
+          ]
+        },
+        {
+          "source": "nanobot.session.manager",
+          "specifiers": [
+            "SessionManager"
+          ]
+        }
+      ],
+      "exports": [
+        "sessions_dir",
+        "manager",
+        "TestSaveFsync",
+        "TestFlushAll"
+      ],
+      "totalLines": 131,
       "hasStructuralAnalysis": true
     },
     "nanobot/tests/tools/test_edit_advanced.py": {
@@ -151633,7 +152039,7 @@
     },
     "nanobot/webui/index.html": {
       "filePath": "nanobot/webui/index.html",
-      "contentHash": "d7d7921aac0aa3fe3b4b6036065c94c8bf6e6e77a7bc62185567606eb1551c71",
+      "contentHash": "83a697be7fa5625c4548bb5d4b4c55a121d34d9e67e52374ddf1611af1baa982",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -151673,7 +152079,7 @@
     },
     "nanobot/webui/README.md": {
       "filePath": "nanobot/webui/README.md",
-      "contentHash": "15c594d04029fab340dc88d99cf62188bc3bfe289eaa5a7e89f8654437b8906b",
+      "contentHash": "8d111cb2ad66a9b774e0cccb49de657cf9f82a754d31a81160c47cc8681f6c91",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -151920,7 +152326,7 @@
     },
     "nanobot/webui/src/components/ChatPane.tsx": {
       "filePath": "nanobot/webui/src/components/ChatPane.tsx",
-      "contentHash": "e20c2ccb5fa7a0356a9b735b3df5c2dff1d95c54231a48cd6d02ce9841a02b8f",
+      "contentHash": "b66bfc9050b8850a064644cd6c2adfdb1aaf98cdbc6b9d5e995020fa5ac09f55",
       "functions": [
         {
           "name": "ChatPane",
@@ -152203,7 +152609,7 @@
     },
     "nanobot/webui/src/components/EmptyState.tsx": {
       "filePath": "nanobot/webui/src/components/EmptyState.tsx",
-      "contentHash": "2e03d2338e04dfc7a989c1c0c4650fab2ebe4fdf5606b148960bff6849a21778",
+      "contentHash": "88c5a12dd9bf2304ff819068f7f5961dbb67629654bbe6ff487d7629a5d9d757",
       "functions": [
         {
           "name": "EmptyState",
@@ -152907,7 +153313,7 @@
     },
     "nanobot/webui/src/components/Sidebar.tsx": {
       "filePath": "nanobot/webui/src/components/Sidebar.tsx",
-      "contentHash": "b17598e1ef9eb7dcf8b7e1ee2548eec8f84cf0510972cc1f8a3cf8279a211564",
+      "contentHash": "61fffe89b81241ef258a5e505d9edf27271e053384292ffb1e0cb1ed8d7b7eb8",
       "functions": [
         {
           "name": "Sidebar",
@@ -154506,7 +154912,7 @@
     },
     "nanobot/webui/src/i18n/locales/en/common.json": {
       "filePath": "nanobot/webui/src/i18n/locales/en/common.json",
-      "contentHash": "f2b2478d1020ba8b3fd516d9261cc9e320d63c2fd9dfd2cb26f331b07ff5dd5b",
+      "contentHash": "a51712a71ff1e4d815d0f0b7551c64b55e870087e9ee8c22b1ef91cef93382ce",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -154516,7 +154922,7 @@
     },
     "nanobot/webui/src/i18n/locales/es/common.json": {
       "filePath": "nanobot/webui/src/i18n/locales/es/common.json",
-      "contentHash": "bd5f0c5efb0ab46b6b0529e19574cd0e1245c9ed89bf39098c0f0a7b1d46fb4b",
+      "contentHash": "b7fdc805b77299fa305eae42a25e25b0ef838739059ef7745237b37dc66efa23",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -154526,7 +154932,7 @@
     },
     "nanobot/webui/src/i18n/locales/fr/common.json": {
       "filePath": "nanobot/webui/src/i18n/locales/fr/common.json",
-      "contentHash": "f25b9156201b73e79dacb3a154b016037932fa6d869232c9e1b04577814d37f0",
+      "contentHash": "e877c66618657dccdfa5b729d3fc27d7fb2e2ab3a03d0e9c04ca07e61c1b062d",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -154536,7 +154942,7 @@
     },
     "nanobot/webui/src/i18n/locales/id/common.json": {
       "filePath": "nanobot/webui/src/i18n/locales/id/common.json",
-      "contentHash": "44cc93c90457cefe27560424d883078d7b7102d2720e1c016bedb25d0ecd5ff4",
+      "contentHash": "1510b219826e520841a25cd80665ae6b308da9c14e50207fa538a8fa53c60484",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -154546,7 +154952,7 @@
     },
     "nanobot/webui/src/i18n/locales/ja/common.json": {
       "filePath": "nanobot/webui/src/i18n/locales/ja/common.json",
-      "contentHash": "cebe2c042a4a4ca42e8d4db82a647da1fe6afb6ddb5af7bd846a550d009c5efb",
+      "contentHash": "0e9d9ffdf765694a2c30cc6bd9174f92cb863642578d7612ae511c55ee542f70",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -154556,7 +154962,7 @@
     },
     "nanobot/webui/src/i18n/locales/ko/common.json": {
       "filePath": "nanobot/webui/src/i18n/locales/ko/common.json",
-      "contentHash": "0be73114a38c701b44eadbeb5fe6be7db23afe3080460a49289b1f130c9efe68",
+      "contentHash": "2300bb00c2f1f3e6199e5b236af0e2f9e3f8a571b76caadd323a6a4d5f66dd85",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -154566,7 +154972,7 @@
     },
     "nanobot/webui/src/i18n/locales/vi/common.json": {
       "filePath": "nanobot/webui/src/i18n/locales/vi/common.json",
-      "contentHash": "ce4447ff436c0200bac449da39e0718a3a8da47c1b8fe999c95080c6df4e2dbb",
+      "contentHash": "bdb811934e152fabe81a32c7583dc6df5fa33764c95a62565ba68af51ec3c33e",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -154576,7 +154982,7 @@
     },
     "nanobot/webui/src/i18n/locales/zh-CN/common.json": {
       "filePath": "nanobot/webui/src/i18n/locales/zh-CN/common.json",
-      "contentHash": "a75462fd05eb7dfc74a0a66e154bccbd32dc42ecb167a3af0beebe2d2b75e6b4",
+      "contentHash": "19ee8b281fcbad8a8d2e7b604772f999504b5960a54eeff1c24eb777ae83a7d6",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -154586,7 +154992,7 @@
     },
     "nanobot/webui/src/i18n/locales/zh-TW/common.json": {
       "filePath": "nanobot/webui/src/i18n/locales/zh-TW/common.json",
-      "contentHash": "4eacc5e265fc4a92845dcb202d465908f4576487109811a97f3e0685c290352d",
+      "contentHash": "3c2b05bcab99fa824ef827a9a0ddc2d32c9e5f495911f58a6c5434da09090d2f",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -155213,7 +155619,7 @@
     },
     "nanobot/webui/src/tests/api.test.ts": {
       "filePath": "nanobot/webui/src/tests/api.test.ts",
-      "contentHash": "a2b10fad72dd51c591a9e34840745967b327273cd0cb39acb09b0483807722b0",
+      "contentHash": "689e35cb8a790b1db031e4781911ff4ce691c97deb726dca1d75e6eb241f6084",
       "functions": [],
       "classes": [],
       "imports": [
@@ -155246,7 +155652,7 @@
     },
     "nanobot/webui/src/tests/app-layout.test.tsx": {
       "filePath": "nanobot/webui/src/tests/app-layout.test.tsx",
-      "contentHash": "355674ba1bff2b6ea6b43c2b44c6e0d2ac04b769f5cde650affe026279a5dad0",
+      "contentHash": "30570211b84a623cf986a921c1acf9c1c0d56c0ebb7b012e6712a97a19ea8382",
       "functions": [],
       "classes": [],
       "imports": [
@@ -155504,7 +155910,7 @@
     },
     "nanobot/webui/src/tests/setup.ts": {
       "filePath": "nanobot/webui/src/tests/setup.ts",
-      "contentHash": "9f99d8ff7a231b645174d7873b0579ba66a61f4eb37cf54d493e3d8c66d183ce",
+      "contentHash": "399da3f6e0acc912a5a53317d1a06d9f192bfe5868a036e7fbb13be836c355d5",
       "functions": [],
       "classes": [],
       "imports": [
@@ -155633,7 +156039,7 @@
     },
     "nanobot/webui/src/tests/thread-shell.test.tsx": {
       "filePath": "nanobot/webui/src/tests/thread-shell.test.tsx",
-      "contentHash": "d20d1ee245d9a5dfe8a855b8b88795ca7e9860418e94be77a2721c0127faeb43",
+      "contentHash": "f2757f93b2b6e0689d7c13ca91fb34556bec787679364a7337cf16de0a66ccf0",
       "functions": [
         {
           "name": "makeClient",
@@ -155955,7 +156361,7 @@
     },
     "nanobot/webui/vite.config.ts": {
       "filePath": "nanobot/webui/vite.config.ts",
-      "contentHash": "1116e94130f2e4204988d43092dc541b0250148076df5642dc9e08259fa134ab",
+      "contentHash": "dafad62370eac92ab2bb9f13335c9b09025cc56b47ce86fa4b46e9da14c86c73",
       "functions": [],
       "classes": [],
       "imports": [
@@ -155985,22 +156391,22 @@
     },
     "README.md": {
       "filePath": "README.md",
-      "contentHash": "4313a352c92fd0e4ff5e321426cf1ac2363cbb4e0dae3f04faf9c2744dea8874",
+      "contentHash": "d234cf19cb533ac2f2869cd68e869abef307c21a628e6021145e007827faf0c2",
       "functions": [],
       "classes": [],
       "imports": [],
       "exports": [],
-      "totalLines": 152,
+      "totalLines": 260,
       "hasStructuralAnalysis": true
     },
     "TECHNICAL.md": {
       "filePath": "TECHNICAL.md",
-      "contentHash": "52260c1276e4dd0121ecd4bb63042198d0b8b470add796af9ea6d8fcaccde490",
+      "contentHash": "ad3b50f0dc4fc080f77a2da860a645e04ca912b211097638f436306493fbecd4",
       "functions": [],
       "classes": [],
       "imports": [],
       "exports": [],
-      "totalLines": 371,
+      "totalLines": 427,
       "hasStructuralAnalysis": true
     },
     "test/xiaomiao/test_console_output.py": {
@@ -156072,20 +156478,90 @@
     },
     "test/xiaomiao/test_desktop_bridge.py": {
       "filePath": "test/xiaomiao/test_desktop_bridge.py",
-      "contentHash": "2c0a6d5467a199b2e73639e51f870897cf0c0e78f986dc7a56234e3594a081cc",
-      "functions": [],
+      "contentHash": "a284d2a87c887b6ddc77d80920aa35279cbe23302fb8f33df23a653b1c34ae3d",
+      "functions": [
+        {
+          "name": "_bridge_server",
+          "params": [
+            "reply_callback"
+          ],
+          "exported": true,
+          "lineCount": 2
+        },
+        {
+          "name": "_json_get",
+          "params": [
+            "url"
+          ],
+          "returnType": "dict",
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "_json_post",
+          "params": [
+            "url",
+            "payload"
+          ],
+          "returnType": "dict",
+          "exported": true,
+          "lineCount": 10
+        }
+      ],
       "classes": [
         {
           "name": "DesktopBridgeTests",
           "methods": [
+            "setUp",
+            "tearDown",
             "test_extract_last_user_text_prefers_latest_user_message",
-            "test_openai_compatible_routes_return_models_and_reply",
+            "test_openai_compatible_routes_return_models_reply_state_and_events",
+            "test_qq_exchange_can_be_read_from_bridge_events",
+            "test_events_after_cursor_returns_only_newer_events",
             "test_bridge_supports_cors_preflight_and_headers",
-            "test_status_route_returns_bridge_runtime_state"
+            "test_status_route_returns_bridge_runtime_state",
+            "test_config_route_reports_missing_root_config",
+            "test_config_route_reads_custom_root_config_without_exposing_secret",
+            "test_config_route_writes_custom_root_config",
+            "test_config_route_rejects_incomplete_payload",
+            "test_bridge_callback_can_use_nanobot_agent_backend",
+            "test_bridge_callback_error_returns_visible_502"
           ],
           "properties": [],
           "exported": true,
-          "lineCount": 145
+          "lineCount": 235
+        },
+        {
+          "name": "_BridgeServer",
+          "methods": [
+            "__init__",
+            "__enter__",
+            "__exit__"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 21
+        },
+        {
+          "name": "_LocalAgentServer",
+          "methods": [
+            "__init__",
+            "start",
+            "stop"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 14
+        },
+        {
+          "name": "_AgentHandler",
+          "methods": [
+            "do_POST",
+            "log_message"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 17
         }
       ],
       "imports": [
@@ -156096,9 +156572,21 @@
           ]
         },
         {
+          "source": "os",
+          "specifiers": [
+            "os"
+          ]
+        },
+        {
           "source": "sys",
           "specifiers": [
             "sys"
+          ]
+        },
+        {
+          "source": "tempfile",
+          "specifiers": [
+            "tempfile"
           ]
         },
         {
@@ -156120,6 +156608,13 @@
           ]
         },
         {
+          "source": "http.server",
+          "specifiers": [
+            "BaseHTTPRequestHandler",
+            "ThreadingHTTPServer"
+          ]
+        },
+        {
           "source": "pathlib",
           "specifiers": [
             "Path"
@@ -156128,6 +156623,7 @@
         {
           "source": "urllib",
           "specifiers": [
+            "error",
             "request"
           ]
         },
@@ -156135,14 +156631,30 @@
           "source": "desktop_bridge",
           "specifiers": [
             "extract_last_user_text",
+            "publish_bridge_exchange",
+            "reset_bridge_state",
             "start_desktop_bridge_server"
+          ]
+        },
+        {
+          "source": "agent_backend",
+          "specifiers": [
+            "NanobotAgentConfig",
+            "NanobotAgentRequest",
+            "reply_with_nanobot_agent"
           ]
         }
       ],
       "exports": [
-        "DesktopBridgeTests"
+        "DesktopBridgeTests",
+        "_BridgeServer",
+        "_LocalAgentServer",
+        "_AgentHandler",
+        "_bridge_server",
+        "_json_get",
+        "_json_post"
       ],
-      "totalLines": 163,
+      "totalLines": 348,
       "hasStructuralAnalysis": true
     },
     "test/xiaomiao/test_mossia_api.py": {
@@ -156443,8 +156955,15 @@
     },
     "xiaomiao/desktop_bridge.py": {
       "filePath": "xiaomiao/desktop_bridge.py",
-      "contentHash": "bf98c8a803d8d4037692b9dcd4659133a99fc162e88367c7d14646812d099e7d",
+      "contentHash": "1a661ba2273239d2b260c656edff08c64b9c64c63410ecf9c73e6aacdf3575d9",
       "functions": [
+        {
+          "name": "reset_bridge_state",
+          "params": [],
+          "returnType": "None",
+          "exported": true,
+          "lineCount": 6
+        },
         {
           "name": "extract_last_user_text",
           "params": [
@@ -156491,7 +157010,76 @@
           ],
           "returnType": "None",
           "exported": true,
+          "lineCount": 7
+        },
+        {
+          "name": "publish_bridge_event",
+          "params": [
+            "source",
+            "channel",
+            "chat_id",
+            "user_id",
+            "role",
+            "content"
+          ],
+          "returnType": "dict",
+          "exported": true,
+          "lineCount": 24
+        },
+        {
+          "name": "publish_bridge_exchange",
+          "params": [
+            "source",
+            "channel",
+            "chat_id",
+            "user_id",
+            "user_text",
+            "assistant_text"
+          ],
+          "returnType": "list[dict]",
+          "exported": true,
+          "lineCount": 29
+        },
+        {
+          "name": "query_bridge_events",
+          "params": [
+            "after",
+            "user_id"
+          ],
+          "returnType": "list[dict]",
+          "exported": true,
+          "lineCount": 7
+        },
+        {
+          "name": "build_events_response",
+          "params": [
+            "after",
+            "user_id"
+          ],
+          "returnType": "dict",
+          "exported": true,
           "lineCount": 6
+        },
+        {
+          "name": "parse_int_query",
+          "params": [
+            "query",
+            "name",
+            "default"
+          ],
+          "returnType": "int",
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "parse_optional_int_query",
+          "params": [
+            "query",
+            "name"
+          ],
+          "returnType": "int | None",
+          "exported": true,
+          "lineCount": 4
         },
         {
           "name": "start_desktop_bridge_server",
@@ -156504,7 +157092,7 @@
           ],
           "returnType": "ThreadingHTTPServer",
           "exported": true,
-          "lineCount": 71
+          "lineCount": 143
         }
       ],
       "classes": [],
@@ -156529,6 +157117,12 @@
           ]
         },
         {
+          "source": "threading",
+          "specifiers": [
+            "RLock"
+          ]
+        },
+        {
           "source": "typing",
           "specifiers": [
             "Callable"
@@ -156540,17 +157134,31 @@
             "parse_qs",
             "urlparse"
           ]
+        },
+        {
+          "source": "unified_config",
+          "specifiers": [
+            "load_nanobot_config_status",
+            "save_nanobot_custom_config"
+          ]
         }
       ],
       "exports": [
+        "reset_bridge_state",
         "extract_last_user_text",
         "build_models_response",
         "build_status_response",
         "build_chat_response",
         "publish_desktop_state",
+        "publish_bridge_event",
+        "publish_bridge_exchange",
+        "query_bridge_events",
+        "build_events_response",
+        "parse_int_query",
+        "parse_optional_int_query",
         "start_desktop_bridge_server"
       ],
-      "totalLines": 138,
+      "totalLines": 313,
       "hasStructuralAnalysis": true
     },
     "xiaomiao/GoogleAI.py": {
@@ -156641,7 +157249,7 @@
     },
     "xiaomiao/main.py": {
       "filePath": "xiaomiao/main.py",
-      "contentHash": "4e2ec5345d1849b843ccb24cd2c015ef4e6c4a72d5e88ee6fac917ea4e6ee48f",
+      "contentHash": "6bfd9f8bd7d3d316aac37036dc0f3726427e64c1941a7bfabed95eac276b7487",
       "functions": [
         {
           "name": "load_blacklist",
@@ -156685,7 +157293,19 @@
           ],
           "returnType": "str",
           "exported": true,
-          "lineCount": 36
+          "lineCount": 3
+        },
+        {
+          "name": "generate_agent_reply",
+          "params": [
+            "user_id",
+            "channel",
+            "chat_id",
+            "text"
+          ],
+          "returnType": "str",
+          "exported": true,
+          "lineCount": 11
         },
         {
           "name": "start_desktop_bridge",
@@ -156736,7 +157356,7 @@
           ],
           "returnType": "None",
           "exported": true,
-          "lineCount": 2556
+          "lineCount": 2504
         },
         {
           "name": "seconds_to_hms",
@@ -156954,9 +157574,17 @@
           ]
         },
         {
+          "source": "agent_backend",
+          "specifiers": [
+            "NanobotAgentRequest",
+            "load_nanobot_agent_config",
+            "reply_with_nanobot_agent"
+          ]
+        },
+        {
           "source": "desktop_bridge",
           "specifiers": [
-            "publish_desktop_state",
+            "publish_bridge_exchange",
             "start_desktop_bridge_server"
           ]
         },
@@ -156992,12 +157620,6 @@
           ]
         },
         {
-          "source": "SearchOnline",
-          "specifiers": [
-            "SearchOnline"
-          ]
-        },
-        {
           "source": "prerequisites",
           "specifiers": [
             "prerequisite",
@@ -157020,6 +157642,7 @@
         "get_market_face_url",
         "select_persona_prompt",
         "generate_desktop_reply",
+        "generate_agent_reply",
         "start_desktop_bridge",
         "timing_message",
         "Read_Settings",
@@ -157032,7 +157655,7 @@
         "deal_image",
         "download_and_compress_image"
       ],
-      "totalLines": 3057,
+      "totalLines": 2989,
       "hasStructuralAnalysis": true
     },
     "xiaomiao/prerequisites.py": {

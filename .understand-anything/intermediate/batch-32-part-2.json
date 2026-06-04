@@ -1,0 +1,1184 @@
+{
+  "nodes": [
+    {
+      "id": "file:AuBot/apps/stage-tamagotchi/src/main/windows/shared/referenced-window.ts",
+      "type": "file",
+      "name": "referenced-window.ts",
+      "filePath": "AuBot/apps/stage-tamagotchi/src/main/windows/shared/referenced-window.ts",
+      "summary": "referenced-window.ts 是 code 文件，包含 1 个函数，引用 4 个内部或外部依赖，在项目路径 AuBot/apps/stage-tamagotchi/src/main/windows/shared/referenced-window.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:AuBot/apps/stage-tamagotchi/src/main/windows/shared/referenced-window.ts:createReferencedWindowManager",
+      "type": "function",
+      "name": "createReferencedWindowManager",
+      "filePath": "AuBot/apps/stage-tamagotchi/src/main/windows/shared/referenced-window.ts",
+      "lineRange": [
+        31,
+        100
+      ],
+      "summary": "函数 createReferencedWindowManager 位于 referenced-window.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:AuBot/apps/stage-tamagotchi/src/main/windows/shared/window.ts",
+      "type": "file",
+      "name": "window.ts",
+      "filePath": "AuBot/apps/stage-tamagotchi/src/main/windows/shared/window.ts",
+      "summary": "window.ts 是 code 文件，包含 6 个函数，引用 4 个内部或外部依赖，在项目路径 AuBot/apps/stage-tamagotchi/src/main/windows/shared/window.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:AuBot/apps/stage-tamagotchi/src/main/windows/shared/window.ts:toggleWindowShow",
+      "type": "function",
+      "name": "toggleWindowShow",
+      "filePath": "AuBot/apps/stage-tamagotchi/src/main/windows/shared/window.ts",
+      "lineRange": [
+        15,
+        29
+      ],
+      "summary": "函数 toggleWindowShow 位于 window.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/apps/stage-tamagotchi/src/main/windows/shared/window.ts:transparentWindowConfig",
+      "type": "function",
+      "name": "transparentWindowConfig",
+      "filePath": "AuBot/apps/stage-tamagotchi/src/main/windows/shared/window.ts",
+      "lineRange": [
+        31,
+        38
+      ],
+      "summary": "函数 transparentWindowConfig 位于 window.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/apps/stage-tamagotchi/src/main/windows/shared/window.ts:blurryWindowConfig",
+      "type": "function",
+      "name": "blurryWindowConfig",
+      "filePath": "AuBot/apps/stage-tamagotchi/src/main/windows/shared/window.ts",
+      "lineRange": [
+        40,
+        45
+      ],
+      "summary": "函数 blurryWindowConfig 位于 window.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/apps/stage-tamagotchi/src/main/windows/shared/window.ts:spotlightLikeWindowConfig",
+      "type": "function",
+      "name": "spotlightLikeWindowConfig",
+      "filePath": "AuBot/apps/stage-tamagotchi/src/main/windows/shared/window.ts",
+      "lineRange": [
+        47,
+        52
+      ],
+      "summary": "函数 spotlightLikeWindowConfig 位于 window.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/apps/stage-tamagotchi/src/main/windows/shared/window.ts:resizeWindowByDelta",
+      "type": "function",
+      "name": "resizeWindowByDelta",
+      "filePath": "AuBot/apps/stage-tamagotchi/src/main/windows/shared/window.ts",
+      "lineRange": [
+        54,
+        91
+      ],
+      "summary": "函数 resizeWindowByDelta 位于 window.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:AuBot/apps/stage-tamagotchi/src/main/windows/shared/window.ts:setupBaseWindowElectronInvokes",
+      "type": "function",
+      "name": "setupBaseWindowElectronInvokes",
+      "filePath": "AuBot/apps/stage-tamagotchi/src/main/windows/shared/window.ts",
+      "lineRange": [
+        93,
+        107
+      ],
+      "summary": "函数 setupBaseWindowElectronInvokes 位于 window.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/apps/stage-tamagotchi/src/main/windows/widgets/index.test.ts",
+      "type": "file",
+      "name": "index.test.ts",
+      "filePath": "AuBot/apps/stage-tamagotchi/src/main/windows/widgets/index.test.ts",
+      "summary": "index.test.ts 是 code 文件，引用 2 个内部或外部依赖，在项目路径 AuBot/apps/stage-tamagotchi/src/main/windows/widgets/index.test.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript",
+        "test"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/apps/stage-tamagotchi/src/main/windows/widgets/index.ts",
+      "type": "file",
+      "name": "index.ts",
+      "filePath": "AuBot/apps/stage-tamagotchi/src/main/windows/widgets/index.ts",
+      "summary": "index.ts 是 code 文件，包含 4 个函数，引用 10 个内部或外部依赖，在项目路径 AuBot/apps/stage-tamagotchi/src/main/windows/widgets/index.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:AuBot/apps/stage-tamagotchi/src/main/windows/widgets/index.ts:resolveWindowSizeFromPayload",
+      "type": "function",
+      "name": "resolveWindowSizeFromPayload",
+      "filePath": "AuBot/apps/stage-tamagotchi/src/main/windows/widgets/index.ts",
+      "lineRange": [
+        176,
+        186
+      ],
+      "summary": "函数 resolveWindowSizeFromPayload 位于 index.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/apps/stage-tamagotchi/src/main/windows/widgets/index.ts:createWidgetsWindow",
+      "type": "function",
+      "name": "createWidgetsWindow",
+      "filePath": "AuBot/apps/stage-tamagotchi/src/main/windows/widgets/index.ts",
+      "lineRange": [
+        188,
+        219
+      ],
+      "summary": "函数 createWidgetsWindow 位于 index.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:AuBot/apps/stage-tamagotchi/src/main/windows/widgets/index.ts:setupWidgetsWindowManager",
+      "type": "function",
+      "name": "setupWidgetsWindowManager",
+      "filePath": "AuBot/apps/stage-tamagotchi/src/main/windows/widgets/index.ts",
+      "lineRange": [
+        252,
+        679
+      ],
+      "summary": "函数 setupWidgetsWindowManager 位于 index.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:AuBot/apps/stage-tamagotchi/src/main/windows/widgets/rpc/index.electron.ts",
+      "type": "file",
+      "name": "index.electron.ts",
+      "filePath": "AuBot/apps/stage-tamagotchi/src/main/windows/widgets/rpc/index.electron.ts",
+      "summary": "index.electron.ts 是 code 文件，包含 1 个函数，引用 5 个内部或外部依赖，在项目路径 AuBot/apps/stage-tamagotchi/src/main/windows/widgets/rpc/index.electron.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/apps/stage-tamagotchi/src/main/windows/widgets/rpc/index.electron.ts:setupWidgetsWindowInvokes",
+      "type": "function",
+      "name": "setupWidgetsWindowInvokes",
+      "filePath": "AuBot/apps/stage-tamagotchi/src/main/windows/widgets/rpc/index.electron.ts",
+      "lineRange": [
+        13,
+        29
+      ],
+      "summary": "函数 setupWidgetsWindowInvokes 位于 index.electron.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/apps/stage-tamagotchi/src/renderer/bridges/stage-three-runtime-trace.ts",
+      "type": "file",
+      "name": "stage-three-runtime-trace.ts",
+      "filePath": "AuBot/apps/stage-tamagotchi/src/renderer/bridges/stage-three-runtime-trace.ts",
+      "summary": "stage-three-runtime-trace.ts 是 code 文件，包含 9 个函数，引用 1 个内部或外部依赖，在项目路径 AuBot/apps/stage-tamagotchi/src/renderer/bridges/stage-three-runtime-trace.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:AuBot/apps/stage-tamagotchi/src/renderer/bridges/stage-three-runtime-trace.ts:getStageThreeRuntimeTraceBroadcastContext",
+      "type": "function",
+      "name": "getStageThreeRuntimeTraceBroadcastContext",
+      "filePath": "AuBot/apps/stage-tamagotchi/src/renderer/bridges/stage-three-runtime-trace.ts",
+      "lineRange": [
+        52,
+        55
+      ],
+      "summary": "函数 getStageThreeRuntimeTraceBroadcastContext 位于 stage-three-runtime-trace.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/apps/stage-tamagotchi/src/renderer/bridges/stage-three-runtime-trace.ts:getStageThreeRuntimeTraceBroadcastOriginId",
+      "type": "function",
+      "name": "getStageThreeRuntimeTraceBroadcastOriginId",
+      "filePath": "AuBot/apps/stage-tamagotchi/src/renderer/bridges/stage-three-runtime-trace.ts",
+      "lineRange": [
+        57,
+        59
+      ],
+      "summary": "函数 getStageThreeRuntimeTraceBroadcastOriginId 位于 stage-three-runtime-trace.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/apps/stage-tamagotchi/src/renderer/bridges/stage-three-runtime-trace.ts:replayLatestTraceEnvelopes",
+      "type": "function",
+      "name": "replayLatestTraceEnvelopes",
+      "filePath": "AuBot/apps/stage-tamagotchi/src/renderer/bridges/stage-three-runtime-trace.ts",
+      "lineRange": [
+        79,
+        92
+      ],
+      "summary": "函数 replayLatestTraceEnvelopes 位于 stage-three-runtime-trace.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/apps/stage-tamagotchi/src/renderer/bridges/stage-three-runtime-trace.ts:setStageThreeRuntimeTraceRemoteSubscription",
+      "type": "function",
+      "name": "setStageThreeRuntimeTraceRemoteSubscription",
+      "filePath": "AuBot/apps/stage-tamagotchi/src/renderer/bridges/stage-three-runtime-trace.ts",
+      "lineRange": [
+        103,
+        106
+      ],
+      "summary": "函数 setStageThreeRuntimeTraceRemoteSubscription 位于 stage-three-runtime-trace.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/apps/stage-tamagotchi/src/renderer/bridges/stage-three-runtime-trace.ts:initializeStageThreeRuntimeTraceBridge",
+      "type": "function",
+      "name": "initializeStageThreeRuntimeTraceBridge",
+      "filePath": "AuBot/apps/stage-tamagotchi/src/renderer/bridges/stage-three-runtime-trace.ts",
+      "lineRange": [
+        108,
+        143
+      ],
+      "summary": "函数 initializeStageThreeRuntimeTraceBridge 位于 stage-three-runtime-trace.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:AuBot/apps/stage-tamagotchi/src/renderer/stores/settings/server-channel.ts",
+      "type": "file",
+      "name": "server-channel.ts",
+      "filePath": "AuBot/apps/stage-tamagotchi/src/renderer/stores/settings/server-channel.ts",
+      "summary": "server-channel.ts 是 code 文件，引用 1 个内部或外部依赖，在项目路径 AuBot/apps/stage-tamagotchi/src/renderer/stores/settings/server-channel.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:AuBot/apps/stage-tamagotchi/src/renderer/stores/stage-three-runtime-diagnostics.test.ts",
+      "type": "file",
+      "name": "stage-three-runtime-diagnostics.test.ts",
+      "filePath": "AuBot/apps/stage-tamagotchi/src/renderer/stores/stage-three-runtime-diagnostics.test.ts",
+      "summary": "stage-three-runtime-diagnostics.test.ts 是 code 文件，引用 1 个内部或外部依赖，在项目路径 AuBot/apps/stage-tamagotchi/src/renderer/stores/stage-three-runtime-diagnostics.test.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript",
+        "test"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:AuBot/apps/stage-tamagotchi/src/renderer/stores/stage-three-runtime-diagnostics.ts",
+      "type": "file",
+      "name": "stage-three-runtime-diagnostics.ts",
+      "filePath": "AuBot/apps/stage-tamagotchi/src/renderer/stores/stage-three-runtime-diagnostics.ts",
+      "summary": "stage-three-runtime-diagnostics.ts 是 code 文件，包含 16 个函数，引用 2 个内部或外部依赖，在项目路径 AuBot/apps/stage-tamagotchi/src/renderer/stores/stage-three-runtime-diagnostics.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:AuBot/apps/stage-tamagotchi/src/renderer/stores/stage-three-runtime-diagnostics.ts:createDefaultStageThreeRenderDiagnostics",
+      "type": "function",
+      "name": "createDefaultStageThreeRenderDiagnostics",
+      "filePath": "AuBot/apps/stage-tamagotchi/src/renderer/stores/stage-three-runtime-diagnostics.ts",
+      "lineRange": [
+        107,
+        118
+      ],
+      "summary": "函数 createDefaultStageThreeRenderDiagnostics 位于 stage-three-runtime-diagnostics.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/apps/stage-tamagotchi/src/renderer/stores/stage-three-runtime-diagnostics.ts:createDefaultStageVrmUpdateDiagnostics",
+      "type": "function",
+      "name": "createDefaultStageVrmUpdateDiagnostics",
+      "filePath": "AuBot/apps/stage-tamagotchi/src/renderer/stores/stage-three-runtime-diagnostics.ts",
+      "lineRange": [
+        120,
+        137
+      ],
+      "summary": "函数 createDefaultStageVrmUpdateDiagnostics 位于 stage-three-runtime-diagnostics.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/apps/stage-tamagotchi/src/renderer/stores/stage-three-runtime-diagnostics.ts:createDefaultStageHitTestDiagnostics",
+      "type": "function",
+      "name": "createDefaultStageHitTestDiagnostics",
+      "filePath": "AuBot/apps/stage-tamagotchi/src/renderer/stores/stage-three-runtime-diagnostics.ts",
+      "lineRange": [
+        139,
+        148
+      ],
+      "summary": "函数 createDefaultStageHitTestDiagnostics 位于 stage-three-runtime-diagnostics.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/apps/stage-tamagotchi/src/renderer/stores/stage-three-runtime-diagnostics.ts:createDefaultStageVrmLifecycleDiagnostics",
+      "type": "function",
+      "name": "createDefaultStageVrmLifecycleDiagnostics",
+      "filePath": "AuBot/apps/stage-tamagotchi/src/renderer/stores/stage-three-runtime-diagnostics.ts",
+      "lineRange": [
+        150,
+        161
+      ],
+      "summary": "函数 createDefaultStageVrmLifecycleDiagnostics 位于 stage-three-runtime-diagnostics.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/apps/stage-tamagotchi/src/renderer/stores/stage-three-runtime-diagnostics.ts:createDefaultStageResourceSnapshotDiagnostics",
+      "type": "function",
+      "name": "createDefaultStageResourceSnapshotDiagnostics",
+      "filePath": "AuBot/apps/stage-tamagotchi/src/renderer/stores/stage-three-runtime-diagnostics.ts",
+      "lineRange": [
+        163,
+        167
+      ],
+      "summary": "函数 createDefaultStageResourceSnapshotDiagnostics 位于 stage-three-runtime-diagnostics.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/apps/stage-tamagotchi/src/renderer/stores/stage-three-runtime-diagnostics.ts:pushTraceHistory",
+      "type": "function",
+      "name": "pushTraceHistory",
+      "filePath": "AuBot/apps/stage-tamagotchi/src/renderer/stores/stage-three-runtime-diagnostics.ts",
+      "lineRange": [
+        169,
+        175
+      ],
+      "summary": "函数 pushTraceHistory 位于 stage-three-runtime-diagnostics.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/apps/stage-tamagotchi/src/renderer/stores/stage-three-runtime-diagnostics.ts:applyThreeRenderTracePayload",
+      "type": "function",
+      "name": "applyThreeRenderTracePayload",
+      "filePath": "AuBot/apps/stage-tamagotchi/src/renderer/stores/stage-three-runtime-diagnostics.ts",
+      "lineRange": [
+        177,
+        191
+      ],
+      "summary": "函数 applyThreeRenderTracePayload 位于 stage-three-runtime-diagnostics.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/apps/stage-tamagotchi/src/renderer/stores/stage-three-runtime-diagnostics.ts:applyHitTestTracePayload",
+      "type": "function",
+      "name": "applyHitTestTracePayload",
+      "filePath": "AuBot/apps/stage-tamagotchi/src/renderer/stores/stage-three-runtime-diagnostics.ts",
+      "lineRange": [
+        193,
+        205
+      ],
+      "summary": "函数 applyHitTestTracePayload 位于 stage-three-runtime-diagnostics.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/apps/stage-tamagotchi/src/renderer/stores/stage-three-runtime-diagnostics.ts:applyVrmUpdateTracePayload",
+      "type": "function",
+      "name": "applyVrmUpdateTracePayload",
+      "filePath": "AuBot/apps/stage-tamagotchi/src/renderer/stores/stage-three-runtime-diagnostics.ts",
+      "lineRange": [
+        207,
+        227
+      ],
+      "summary": "函数 applyVrmUpdateTracePayload 位于 stage-three-runtime-diagnostics.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/apps/stage-tamagotchi/src/renderer/stores/stage-three-runtime-diagnostics.ts:applyLoadStartPayload",
+      "type": "function",
+      "name": "applyLoadStartPayload",
+      "filePath": "AuBot/apps/stage-tamagotchi/src/renderer/stores/stage-three-runtime-diagnostics.ts",
+      "lineRange": [
+        229,
+        240
+      ],
+      "summary": "函数 applyLoadStartPayload 位于 stage-three-runtime-diagnostics.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/apps/stage-tamagotchi/src/renderer/stores/stage-three-runtime-diagnostics.ts:applyLoadEndPayload",
+      "type": "function",
+      "name": "applyLoadEndPayload",
+      "filePath": "AuBot/apps/stage-tamagotchi/src/renderer/stores/stage-three-runtime-diagnostics.ts",
+      "lineRange": [
+        242,
+        254
+      ],
+      "summary": "函数 applyLoadEndPayload 位于 stage-three-runtime-diagnostics.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/apps/stage-tamagotchi/src/renderer/stores/stage-three-runtime-diagnostics.ts:applyLoadErrorPayload",
+      "type": "function",
+      "name": "applyLoadErrorPayload",
+      "filePath": "AuBot/apps/stage-tamagotchi/src/renderer/stores/stage-three-runtime-diagnostics.ts",
+      "lineRange": [
+        256,
+        266
+      ],
+      "summary": "函数 applyLoadErrorPayload 位于 stage-three-runtime-diagnostics.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/apps/stage-tamagotchi/src/renderer/stores/stage-three-runtime-diagnostics.ts:applyDisposeStartPayload",
+      "type": "function",
+      "name": "applyDisposeStartPayload",
+      "filePath": "AuBot/apps/stage-tamagotchi/src/renderer/stores/stage-three-runtime-diagnostics.ts",
+      "lineRange": [
+        268,
+        278
+      ],
+      "summary": "函数 applyDisposeStartPayload 位于 stage-three-runtime-diagnostics.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/apps/stage-tamagotchi/src/renderer/stores/stage-three-runtime-diagnostics.ts:applyDisposeEndPayload",
+      "type": "function",
+      "name": "applyDisposeEndPayload",
+      "filePath": "AuBot/apps/stage-tamagotchi/src/renderer/stores/stage-three-runtime-diagnostics.ts",
+      "lineRange": [
+        280,
+        291
+      ],
+      "summary": "函数 applyDisposeEndPayload 位于 stage-three-runtime-diagnostics.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/apps/stage-tamagotchi/src/renderer/stores/stage-three-runtime-diagnostics.ts:createSnapshotRecord",
+      "type": "function",
+      "name": "createSnapshotRecord",
+      "filePath": "AuBot/apps/stage-tamagotchi/src/renderer/stores/stage-three-runtime-diagnostics.ts",
+      "lineRange": [
+        293,
+        305
+      ],
+      "summary": "函数 createSnapshotRecord 位于 stage-three-runtime-diagnostics.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/apps/stage-tamagotchi/src/renderer/stores/stage-three-runtime-diagnostics.ts:applySnapshotRecord",
+      "type": "function",
+      "name": "applySnapshotRecord",
+      "filePath": "AuBot/apps/stage-tamagotchi/src/renderer/stores/stage-three-runtime-diagnostics.ts",
+      "lineRange": [
+        307,
+        324
+      ],
+      "summary": "函数 applySnapshotRecord 位于 stage-three-runtime-diagnostics.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/apps/stage-tamagotchi/src/shared/eventa/index.ts",
+      "type": "file",
+      "name": "index.ts",
+      "filePath": "AuBot/apps/stage-tamagotchi/src/shared/eventa/index.ts",
+      "summary": "index.ts 是 code 文件，包含 1 个函数，在项目路径 AuBot/apps/stage-tamagotchi/src/shared/eventa/index.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:AuBot/apps/stage-tamagotchi/src/shared/eventa/index.ts:createRequestWindowEventa",
+      "type": "function",
+      "name": "createRequestWindowEventa",
+      "filePath": "AuBot/apps/stage-tamagotchi/src/shared/eventa/index.ts",
+      "lineRange": [
+        80,
+        88
+      ],
+      "summary": "函数 createRequestWindowEventa 位于 index.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/apps/stage-tamagotchi/src/shared/utils/electron/windows/window-size.ts",
+      "type": "file",
+      "name": "window-size.ts",
+      "filePath": "AuBot/apps/stage-tamagotchi/src/shared/utils/electron/windows/window-size.ts",
+      "summary": "window-size.ts 是 code 文件，包含 1 个函数，引用 1 个内部或外部依赖，在项目路径 AuBot/apps/stage-tamagotchi/src/shared/utils/electron/windows/window-size.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/apps/stage-tamagotchi/src/shared/utils/electron/windows/window-size.ts:normalizeWidgetWindowSize",
+      "type": "function",
+      "name": "normalizeWidgetWindowSize",
+      "filePath": "AuBot/apps/stage-tamagotchi/src/shared/utils/electron/windows/window-size.ts",
+      "lineRange": [
+        24,
+        52
+      ],
+      "summary": "函数 normalizeWidgetWindowSize 位于 window-size.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/windows/shared/referenced-window.ts",
+      "target": "function:AuBot/apps/stage-tamagotchi/src/main/windows/shared/referenced-window.ts:createReferencedWindowManager",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/windows/shared/referenced-window.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/main/libs/i18n/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/windows/shared/referenced-window.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/main/services/airi/channel-server/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/windows/shared/referenced-window.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/main/windows/shared/window.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/windows/shared/referenced-window.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/shared/eventa/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/windows/shared/window.ts",
+      "target": "function:AuBot/apps/stage-tamagotchi/src/main/windows/shared/window.ts:toggleWindowShow",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/windows/shared/window.ts",
+      "target": "function:AuBot/apps/stage-tamagotchi/src/main/windows/shared/window.ts:transparentWindowConfig",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/windows/shared/window.ts",
+      "target": "function:AuBot/apps/stage-tamagotchi/src/main/windows/shared/window.ts:blurryWindowConfig",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/windows/shared/window.ts",
+      "target": "function:AuBot/apps/stage-tamagotchi/src/main/windows/shared/window.ts:spotlightLikeWindowConfig",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/windows/shared/window.ts",
+      "target": "function:AuBot/apps/stage-tamagotchi/src/main/windows/shared/window.ts:resizeWindowByDelta",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/windows/shared/window.ts",
+      "target": "function:AuBot/apps/stage-tamagotchi/src/main/windows/shared/window.ts:setupBaseWindowElectronInvokes",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/windows/shared/window.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/main/libs/i18n/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/windows/shared/window.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/main/services/airi/channel-server/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/windows/shared/window.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/main/services/airi/i18n/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/windows/shared/window.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/main/services/electron/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/windows/widgets/index.test.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/shared/eventa/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/windows/widgets/index.test.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/shared/utils/electron/windows/window-size.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/windows/widgets/index.ts",
+      "target": "function:AuBot/apps/stage-tamagotchi/src/main/windows/widgets/index.ts:resolveWindowSizeFromPayload",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/windows/widgets/index.ts",
+      "target": "function:AuBot/apps/stage-tamagotchi/src/main/windows/widgets/index.ts:createWidgetsWindow",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/windows/widgets/index.ts",
+      "target": "function:AuBot/apps/stage-tamagotchi/src/main/windows/widgets/index.ts:setupWidgetsWindowManager",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/windows/widgets/index.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/main/libs/electron/location.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/windows/widgets/index.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/main/libs/electron/persistence.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/windows/widgets/index.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/main/libs/electron/window-manager/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/windows/widgets/index.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/main/libs/i18n/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/windows/widgets/index.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/main/services/airi/channel-server/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/windows/widgets/index.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/main/windows/shared/window.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/windows/widgets/index.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/main/windows/widgets/rpc/index.electron.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/windows/widgets/index.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/shared/eventa/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/windows/widgets/index.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/shared/eventa/plugin/host.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/windows/widgets/index.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/shared/utils/electron/windows/window-size.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/windows/widgets/rpc/index.electron.ts",
+      "target": "function:AuBot/apps/stage-tamagotchi/src/main/windows/widgets/rpc/index.electron.ts:setupWidgetsWindowInvokes",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/windows/widgets/rpc/index.electron.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/main/libs/i18n/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/windows/widgets/rpc/index.electron.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/main/services/airi/channel-server/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/windows/widgets/rpc/index.electron.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/main/services/airi/widgets/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/windows/widgets/rpc/index.electron.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/main/windows/shared/window.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/windows/widgets/rpc/index.electron.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/main/windows/widgets/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/renderer/bridges/stage-three-runtime-trace.ts",
+      "target": "function:AuBot/apps/stage-tamagotchi/src/renderer/bridges/stage-three-runtime-trace.ts:getStageThreeRuntimeTraceBroadcastContext",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/renderer/bridges/stage-three-runtime-trace.ts",
+      "target": "function:AuBot/apps/stage-tamagotchi/src/renderer/bridges/stage-three-runtime-trace.ts:getStageThreeRuntimeTraceBroadcastOriginId",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/renderer/bridges/stage-three-runtime-trace.ts",
+      "target": "function:AuBot/apps/stage-tamagotchi/src/renderer/bridges/stage-three-runtime-trace.ts:replayLatestTraceEnvelopes",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/renderer/bridges/stage-three-runtime-trace.ts",
+      "target": "function:AuBot/apps/stage-tamagotchi/src/renderer/bridges/stage-three-runtime-trace.ts:setStageThreeRuntimeTraceRemoteSubscription",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/renderer/bridges/stage-three-runtime-trace.ts",
+      "target": "function:AuBot/apps/stage-tamagotchi/src/renderer/bridges/stage-three-runtime-trace.ts:initializeStageThreeRuntimeTraceBridge",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/renderer/bridges/stage-three-runtime-trace.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/shared/eventa/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/renderer/stores/settings/server-channel.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/shared/eventa/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/renderer/stores/stage-three-runtime-diagnostics.test.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/renderer/stores/stage-three-runtime-diagnostics.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/renderer/stores/stage-three-runtime-diagnostics.ts",
+      "target": "function:AuBot/apps/stage-tamagotchi/src/renderer/stores/stage-three-runtime-diagnostics.ts:createDefaultStageThreeRenderDiagnostics",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/renderer/stores/stage-three-runtime-diagnostics.ts",
+      "target": "function:AuBot/apps/stage-tamagotchi/src/renderer/stores/stage-three-runtime-diagnostics.ts:createDefaultStageVrmUpdateDiagnostics",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/renderer/stores/stage-three-runtime-diagnostics.ts",
+      "target": "function:AuBot/apps/stage-tamagotchi/src/renderer/stores/stage-three-runtime-diagnostics.ts:createDefaultStageHitTestDiagnostics",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/renderer/stores/stage-three-runtime-diagnostics.ts",
+      "target": "function:AuBot/apps/stage-tamagotchi/src/renderer/stores/stage-three-runtime-diagnostics.ts:createDefaultStageVrmLifecycleDiagnostics",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/renderer/stores/stage-three-runtime-diagnostics.ts",
+      "target": "function:AuBot/apps/stage-tamagotchi/src/renderer/stores/stage-three-runtime-diagnostics.ts:createDefaultStageResourceSnapshotDiagnostics",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/renderer/stores/stage-three-runtime-diagnostics.ts",
+      "target": "function:AuBot/apps/stage-tamagotchi/src/renderer/stores/stage-three-runtime-diagnostics.ts:pushTraceHistory",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/renderer/stores/stage-three-runtime-diagnostics.ts",
+      "target": "function:AuBot/apps/stage-tamagotchi/src/renderer/stores/stage-three-runtime-diagnostics.ts:applyThreeRenderTracePayload",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/renderer/stores/stage-three-runtime-diagnostics.ts",
+      "target": "function:AuBot/apps/stage-tamagotchi/src/renderer/stores/stage-three-runtime-diagnostics.ts:applyHitTestTracePayload",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/renderer/stores/stage-three-runtime-diagnostics.ts",
+      "target": "function:AuBot/apps/stage-tamagotchi/src/renderer/stores/stage-three-runtime-diagnostics.ts:applyVrmUpdateTracePayload",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/renderer/stores/stage-three-runtime-diagnostics.ts",
+      "target": "function:AuBot/apps/stage-tamagotchi/src/renderer/stores/stage-three-runtime-diagnostics.ts:applyLoadStartPayload",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/renderer/stores/stage-three-runtime-diagnostics.ts",
+      "target": "function:AuBot/apps/stage-tamagotchi/src/renderer/stores/stage-three-runtime-diagnostics.ts:applyLoadEndPayload",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/renderer/stores/stage-three-runtime-diagnostics.ts",
+      "target": "function:AuBot/apps/stage-tamagotchi/src/renderer/stores/stage-three-runtime-diagnostics.ts:applyLoadErrorPayload",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/renderer/stores/stage-three-runtime-diagnostics.ts",
+      "target": "function:AuBot/apps/stage-tamagotchi/src/renderer/stores/stage-three-runtime-diagnostics.ts:applyDisposeStartPayload",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/renderer/stores/stage-three-runtime-diagnostics.ts",
+      "target": "function:AuBot/apps/stage-tamagotchi/src/renderer/stores/stage-three-runtime-diagnostics.ts:applyDisposeEndPayload",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/renderer/stores/stage-three-runtime-diagnostics.ts",
+      "target": "function:AuBot/apps/stage-tamagotchi/src/renderer/stores/stage-three-runtime-diagnostics.ts:createSnapshotRecord",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/renderer/stores/stage-three-runtime-diagnostics.ts",
+      "target": "function:AuBot/apps/stage-tamagotchi/src/renderer/stores/stage-three-runtime-diagnostics.ts:applySnapshotRecord",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/renderer/stores/stage-three-runtime-diagnostics.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/renderer/bridges/stage-three-runtime-trace.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/renderer/stores/stage-three-runtime-diagnostics.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/shared/eventa/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/shared/eventa/index.ts",
+      "target": "function:AuBot/apps/stage-tamagotchi/src/shared/eventa/index.ts:createRequestWindowEventa",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/shared/utils/electron/windows/window-size.ts",
+      "target": "function:AuBot/apps/stage-tamagotchi/src/shared/utils/electron/windows/window-size.ts:normalizeWidgetWindowSize",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/shared/utils/electron/windows/window-size.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/shared/eventa/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    }
+  ]
+}

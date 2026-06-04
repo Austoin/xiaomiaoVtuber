@@ -1,0 +1,806 @@
+{
+  "nodes": [
+    {
+      "id": "file:AuBot/services/computer-use-mcp/src/task-memory/index.ts",
+      "type": "file",
+      "name": "index.ts",
+      "filePath": "AuBot/services/computer-use-mcp/src/task-memory/index.ts",
+      "summary": "index.ts 作为 AuBot/services/computer-use-mcp/src/task-memory 的模块入口，汇总或转发该目录的公共导出。",
+      "tags": [
+        "入口点",
+        "barrel",
+        "模块导出"
+      ],
+      "complexity": "simple",
+      "languageNotes": "typescript 文件按提取结果识别导出、函数和类结构。"
+    },
+    {
+      "id": "file:AuBot/services/computer-use-mcp/src/transcript/index.ts",
+      "type": "file",
+      "name": "index.ts",
+      "filePath": "AuBot/services/computer-use-mcp/src/transcript/index.ts",
+      "summary": "index.ts 作为 AuBot/services/computer-use-mcp/src/transcript 的模块入口，汇总或转发该目录的公共导出。",
+      "tags": [
+        "入口点",
+        "barrel",
+        "模块导出"
+      ],
+      "complexity": "simple",
+      "languageNotes": "typescript 文件按提取结果识别导出、函数和类结构。"
+    },
+    {
+      "id": "file:AuBot/services/computer-use-mcp/tsdown.config.ts",
+      "type": "file",
+      "name": "tsdown.config.ts",
+      "filePath": "AuBot/services/computer-use-mcp/tsdown.config.ts",
+      "summary": "tsdown.config.ts 是 AuBot/services/computer-use-mcp 下的代码模块，参与该功能区域的类型、配置或前端逻辑组织。",
+      "tags": [
+        "代码",
+        "模块",
+        "前端逻辑"
+      ],
+      "complexity": "simple",
+      "languageNotes": "typescript 文件按提取结果识别导出、函数和类结构。"
+    },
+    {
+      "id": "file:AuBot/services/computer-use-mcp/vitest.config.ts",
+      "type": "file",
+      "name": "vitest.config.ts",
+      "filePath": "AuBot/services/computer-use-mcp/vitest.config.ts",
+      "summary": "vitest.config.ts 是 AuBot/services/computer-use-mcp 下的代码模块，参与该功能区域的类型、配置或前端逻辑组织。",
+      "tags": [
+        "代码",
+        "模块",
+        "前端逻辑"
+      ],
+      "complexity": "simple",
+      "languageNotes": "typescript 文件按提取结果识别导出、函数和类结构。"
+    },
+    {
+      "id": "config:AuBot/services/discord-bot/package.json",
+      "type": "config",
+      "name": "package.json",
+      "filePath": "AuBot/services/discord-bot/package.json",
+      "summary": "AuBot/services/discord-bot/package.json 定义该包的依赖、脚本与发布元数据，支撑本模块的构建、测试和运行约定。",
+      "tags": [
+        "配置",
+        "依赖管理",
+        "构建系统"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/services/discord-bot/src/bots/discord/commands/ping.ts",
+      "type": "file",
+      "name": "ping.ts",
+      "filePath": "AuBot/services/discord-bot/src/bots/discord/commands/ping.ts",
+      "summary": "ping.ts 提供 AuBot/services/discord-bot/src/bots/discord/commands 下的代码实现，包含 1 个函数和 0 个类/组件结构。",
+      "tags": [
+        "代码",
+        "模块",
+        "前端逻辑"
+      ],
+      "complexity": "simple",
+      "languageNotes": "typescript 文件按提取结果识别导出、函数和类结构。"
+    },
+    {
+      "id": "function:AuBot/services/discord-bot/src/bots/discord/commands/ping.ts:handlePing",
+      "type": "function",
+      "name": "handlePing",
+      "filePath": "AuBot/services/discord-bot/src/bots/discord/commands/ping.ts",
+      "lineRange": [
+        3,
+        5
+      ],
+      "summary": "handlePing 封装 ping.ts 中的核心逻辑，负责该模块对外暴露或内部复用的一段明确行为。",
+      "tags": [
+        "函数",
+        "业务逻辑",
+        "模块能力"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:AuBot/services/discord-bot/tsconfig.json",
+      "type": "config",
+      "name": "tsconfig.json",
+      "filePath": "AuBot/services/discord-bot/tsconfig.json",
+      "summary": "AuBot/services/discord-bot/tsconfig.json 配置 TypeScript 编译选项、路径包含范围与 Vue 类型支持，约束该包的类型检查方式。",
+      "tags": [
+        "配置",
+        "typescript",
+        "构建系统"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:AuBot/services/minecraft/codex-skills/minecraft-debug-mcp/agents/openai.yaml",
+      "type": "config",
+      "name": "openai.yaml",
+      "filePath": "AuBot/services/minecraft/codex-skills/minecraft-debug-mcp/agents/openai.yaml",
+      "summary": "AuBot/services/minecraft/codex-skills/minecraft-debug-mcp/agents/openai.yaml 提供项目工具链或运行时配置，影响相关模块的构建、开发和集成行为。",
+      "tags": [
+        "配置",
+        "项目设置",
+        "工具链"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:AuBot/services/minecraft/codex-skills/minecraft-debug-mcp/references/mcp-surface.md",
+      "type": "document",
+      "name": "mcp-surface.md",
+      "filePath": "AuBot/services/minecraft/codex-skills/minecraft-debug-mcp/references/mcp-surface.md",
+      "summary": "mcp-surface.md 记录 AuBot/services/minecraft/codex-skills/minecraft-debug-mcp/references 相关说明，帮助理解使用方式、约定或维护流程。",
+      "tags": [
+        "文档",
+        "说明",
+        "项目知识"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:AuBot/services/minecraft/codex-skills/minecraft-debug-mcp/SKILL.md",
+      "type": "document",
+      "name": "SKILL.md",
+      "filePath": "AuBot/services/minecraft/codex-skills/minecraft-debug-mcp/SKILL.md",
+      "summary": "SKILL.md 记录 AuBot/services/minecraft/codex-skills/minecraft-debug-mcp 相关说明，帮助理解使用方式、约定或维护流程。",
+      "tags": [
+        "文档",
+        "说明",
+        "项目知识"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:AuBot/services/minecraft/docs/preview.avif",
+      "type": "file",
+      "name": "preview.avif",
+      "filePath": "AuBot/services/minecraft/docs/preview.avif",
+      "summary": "preview.avif 是 AuBot/services/minecraft/docs 下的静态图像资源，用于前端界面、PWA 图标或品牌视觉呈现。",
+      "tags": [
+        "静态资源",
+        "图标",
+        "前端资源"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:AuBot/services/minecraft/package.json",
+      "type": "config",
+      "name": "package.json",
+      "filePath": "AuBot/services/minecraft/package.json",
+      "summary": "AuBot/services/minecraft/package.json 定义该包的依赖、脚本与发布元数据，支撑本模块的构建、测试和运行约定。",
+      "tags": [
+        "配置",
+        "依赖管理",
+        "构建系统"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:AuBot/services/minecraft/src/cognitive/action/types/index.ts",
+      "type": "file",
+      "name": "index.ts",
+      "filePath": "AuBot/services/minecraft/src/cognitive/action/types/index.ts",
+      "summary": "index.ts 作为 AuBot/services/minecraft/src/cognitive/action/types 的模块入口，汇总或转发该目录的公共导出。",
+      "tags": [
+        "入口点",
+        "barrel",
+        "模块导出"
+      ],
+      "complexity": "simple",
+      "languageNotes": "typescript 文件按提取结果识别导出、函数和类结构。"
+    },
+    {
+      "id": "document:AuBot/services/minecraft/src/cognitive/conscious/prompts/brain-prompt.md",
+      "type": "document",
+      "name": "brain-prompt.md",
+      "filePath": "AuBot/services/minecraft/src/cognitive/conscious/prompts/brain-prompt.md",
+      "summary": "brain-prompt.md 记录 AuBot/services/minecraft/src/cognitive/conscious/prompts 相关说明，帮助理解使用方式、约定或维护流程。",
+      "tags": [
+        "文档",
+        "说明",
+        "项目知识"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "config:AuBot/services/minecraft/src/cognitive/perception/rules/attention/movement.yaml",
+      "type": "config",
+      "name": "movement.yaml",
+      "filePath": "AuBot/services/minecraft/src/cognitive/perception/rules/attention/movement.yaml",
+      "summary": "AuBot/services/minecraft/src/cognitive/perception/rules/attention/movement.yaml 提供项目工具链或运行时配置，影响相关模块的构建、开发和集成行为。",
+      "tags": [
+        "配置",
+        "项目设置",
+        "工具链"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:AuBot/services/minecraft/src/cognitive/perception/rules/attention/punch.yaml",
+      "type": "config",
+      "name": "punch.yaml",
+      "filePath": "AuBot/services/minecraft/src/cognitive/perception/rules/attention/punch.yaml",
+      "summary": "AuBot/services/minecraft/src/cognitive/perception/rules/attention/punch.yaml 提供项目工具链或运行时配置，影响相关模块的构建、开发和集成行为。",
+      "tags": [
+        "配置",
+        "项目设置",
+        "工具链"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:AuBot/services/minecraft/src/cognitive/perception/rules/danger/damage.yaml",
+      "type": "config",
+      "name": "damage.yaml",
+      "filePath": "AuBot/services/minecraft/src/cognitive/perception/rules/danger/damage.yaml",
+      "summary": "AuBot/services/minecraft/src/cognitive/perception/rules/danger/damage.yaml 提供项目工具链或运行时配置，影响相关模块的构建、开发和集成行为。",
+      "tags": [
+        "配置",
+        "项目设置",
+        "工具链"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:AuBot/services/minecraft/src/cognitive/perception/rules/social/teabag.yaml",
+      "type": "config",
+      "name": "teabag.yaml",
+      "filePath": "AuBot/services/minecraft/src/cognitive/perception/rules/social/teabag.yaml",
+      "summary": "AuBot/services/minecraft/src/cognitive/perception/rules/social/teabag.yaml 提供项目工具链或运行时配置，影响相关模块的构建、开发和集成行为。",
+      "tags": [
+        "配置",
+        "项目设置",
+        "工具链"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:AuBot/services/minecraft/src/cognitive/perception/rules/system-message.yaml",
+      "type": "config",
+      "name": "system-message.yaml",
+      "filePath": "AuBot/services/minecraft/src/cognitive/perception/rules/system-message.yaml",
+      "summary": "AuBot/services/minecraft/src/cognitive/perception/rules/system-message.yaml 提供项目工具链或运行时配置，影响相关模块的构建、开发和集成行为。",
+      "tags": [
+        "配置",
+        "项目设置",
+        "工具链"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/services/minecraft/src/debug/web/app.js",
+      "type": "file",
+      "name": "app.js",
+      "filePath": "AuBot/services/minecraft/src/debug/web/app.js",
+      "summary": "app.js 提供 AuBot/services/minecraft/src/debug/web 下的代码实现，包含 4 个函数和 11 个类/组件结构。",
+      "tags": [
+        "代码",
+        "模块",
+        "前端逻辑"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:AuBot/services/minecraft/src/debug/web/app.js:formatSystemMessageContent",
+      "type": "function",
+      "name": "formatSystemMessageContent",
+      "filePath": "AuBot/services/minecraft/src/debug/web/app.js",
+      "lineRange": [
+        32,
+        41
+      ],
+      "summary": "formatSystemMessageContent 封装 app.js 中的核心逻辑，负责该模块对外暴露或内部复用的一段明确行为。",
+      "tags": [
+        "解析",
+        "格式化",
+        "工具函数"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/services/minecraft/src/debug/web/app.js:throttle",
+      "type": "function",
+      "name": "throttle",
+      "filePath": "AuBot/services/minecraft/src/debug/web/app.js",
+      "lineRange": [
+        43,
+        53
+      ],
+      "summary": "throttle 封装 app.js 中的核心逻辑，负责该模块对外暴露或内部复用的一段明确行为。",
+      "tags": [
+        "函数",
+        "业务逻辑",
+        "模块能力"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/services/minecraft/src/debug/web/app.js:parseUserMessage",
+      "type": "function",
+      "name": "parseUserMessage",
+      "filePath": "AuBot/services/minecraft/src/debug/web/app.js",
+      "lineRange": [
+        570,
+        592
+      ],
+      "summary": "parseUserMessage 封装 app.js 中的核心逻辑，负责该模块对外暴露或内部复用的一段明确行为。",
+      "tags": [
+        "解析",
+        "格式化",
+        "工具函数"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:AuBot/services/minecraft/src/debug/web/app.js:DebugClient",
+      "type": "class",
+      "name": "DebugClient",
+      "filePath": "AuBot/services/minecraft/src/debug/web/app.js",
+      "lineRange": [
+        59,
+        210
+      ],
+      "summary": "DebugClient 聚合 app.js 中的组件或类级状态与方法，形成可复用的模块结构。",
+      "tags": [
+        "类",
+        "封装",
+        "模块结构"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:AuBot/services/minecraft/src/debug/web/app.js:QueuePanel",
+      "type": "class",
+      "name": "QueuePanel",
+      "filePath": "AuBot/services/minecraft/src/debug/web/app.js",
+      "lineRange": [
+        216,
+        281
+      ],
+      "summary": "QueuePanel 聚合 app.js 中的组件或类级状态与方法，形成可复用的模块结构。",
+      "tags": [
+        "类",
+        "封装",
+        "模块结构"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:AuBot/services/minecraft/src/debug/web/app.js:ReflexPanel",
+      "type": "class",
+      "name": "ReflexPanel",
+      "filePath": "AuBot/services/minecraft/src/debug/web/app.js",
+      "lineRange": [
+        287,
+        358
+      ],
+      "summary": "ReflexPanel 聚合 app.js 中的组件或类级状态与方法，形成可复用的模块结构。",
+      "tags": [
+        "类",
+        "封装",
+        "模块结构"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:AuBot/services/minecraft/src/debug/web/app.js:BrainPanel",
+      "type": "class",
+      "name": "BrainPanel",
+      "filePath": "AuBot/services/minecraft/src/debug/web/app.js",
+      "lineRange": [
+        364,
+        405
+      ],
+      "summary": "BrainPanel 聚合 app.js 中的组件或类级状态与方法，形成可复用的模块结构。",
+      "tags": [
+        "类",
+        "封装",
+        "模块结构"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:AuBot/services/minecraft/src/debug/web/app.js:LogsPanel",
+      "type": "class",
+      "name": "LogsPanel",
+      "filePath": "AuBot/services/minecraft/src/debug/web/app.js",
+      "lineRange": [
+        411,
+        563
+      ],
+      "summary": "LogsPanel 聚合 app.js 中的组件或类级状态与方法，形成可复用的模块结构。",
+      "tags": [
+        "类",
+        "封装",
+        "模块结构"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:AuBot/services/minecraft/src/debug/web/app.js:ConversationPanel",
+      "type": "class",
+      "name": "ConversationPanel",
+      "filePath": "AuBot/services/minecraft/src/debug/web/app.js",
+      "lineRange": [
+        594,
+        917
+      ],
+      "summary": "ConversationPanel 聚合 app.js 中的组件或类级状态与方法，形成可复用的模块结构。",
+      "tags": [
+        "类",
+        "封装",
+        "模块结构"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:AuBot/services/minecraft/src/debug/web/app.js:ToolsPanel",
+      "type": "class",
+      "name": "ToolsPanel",
+      "filePath": "AuBot/services/minecraft/src/debug/web/app.js",
+      "lineRange": [
+        923,
+        1188
+      ],
+      "summary": "ToolsPanel 聚合 app.js 中的组件或类级状态与方法，形成可复用的模块结构。",
+      "tags": [
+        "类",
+        "封装",
+        "模块结构"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:AuBot/services/minecraft/src/debug/web/app.js:ReplPanel",
+      "type": "class",
+      "name": "ReplPanel",
+      "filePath": "AuBot/services/minecraft/src/debug/web/app.js",
+      "lineRange": [
+        1190,
+        1377
+      ],
+      "summary": "ReplPanel 聚合 app.js 中的组件或类级状态与方法，形成可复用的模块结构。",
+      "tags": [
+        "类",
+        "封装",
+        "模块结构"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:AuBot/services/minecraft/src/debug/web/app.js:TimelinePanel",
+      "type": "class",
+      "name": "TimelinePanel",
+      "filePath": "AuBot/services/minecraft/src/debug/web/app.js",
+      "lineRange": [
+        1379,
+        1586
+      ],
+      "summary": "TimelinePanel 聚合 app.js 中的组件或类级状态与方法，形成可复用的模块结构。",
+      "tags": [
+        "类",
+        "封装",
+        "模块结构"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:AuBot/services/minecraft/src/debug/web/app.js:LayoutManager",
+      "type": "class",
+      "name": "LayoutManager",
+      "filePath": "AuBot/services/minecraft/src/debug/web/app.js",
+      "lineRange": [
+        1596,
+        1689
+      ],
+      "summary": "LayoutManager 聚合 app.js 中的组件或类级状态与方法，形成可复用的模块结构。",
+      "tags": [
+        "类",
+        "封装",
+        "模块结构"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:AuBot/services/minecraft/src/debug/web/app.js:DebugApp",
+      "type": "class",
+      "name": "DebugApp",
+      "filePath": "AuBot/services/minecraft/src/debug/web/app.js",
+      "lineRange": [
+        1691,
+        1762
+      ],
+      "summary": "DebugApp 聚合 app.js 中的组件或类级状态与方法，形成可复用的模块结构。",
+      "tags": [
+        "类",
+        "封装",
+        "模块结构"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:AuBot/services/minecraft/tsconfig.json",
+      "type": "config",
+      "name": "tsconfig.json",
+      "filePath": "AuBot/services/minecraft/tsconfig.json",
+      "summary": "AuBot/services/minecraft/tsconfig.json 配置 TypeScript 编译选项、路径包含范围与 Vue 类型支持，约束该包的类型检查方式。",
+      "tags": [
+        "配置",
+        "typescript",
+        "构建系统"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/services/minecraft/vitest.config.ts",
+      "type": "file",
+      "name": "vitest.config.ts",
+      "filePath": "AuBot/services/minecraft/vitest.config.ts",
+      "summary": "vitest.config.ts 是 AuBot/services/minecraft 下的代码模块，参与该功能区域的类型、配置或前端逻辑组织。",
+      "tags": [
+        "代码",
+        "模块",
+        "前端逻辑"
+      ],
+      "complexity": "simple",
+      "languageNotes": "typescript 文件按提取结果识别导出、函数和类结构。"
+    },
+    {
+      "id": "file:AuBot/services/satori-bot/drizzle.config.ts",
+      "type": "file",
+      "name": "drizzle.config.ts",
+      "filePath": "AuBot/services/satori-bot/drizzle.config.ts",
+      "summary": "drizzle.config.ts 是 AuBot/services/satori-bot 下的代码模块，参与该功能区域的类型、配置或前端逻辑组织。",
+      "tags": [
+        "代码",
+        "模块",
+        "前端逻辑"
+      ],
+      "complexity": "simple",
+      "languageNotes": "typescript 文件按提取结果识别导出、函数和类结构。"
+    },
+    {
+      "id": "table:AuBot/services/satori-bot/drizzle/0000_cooing_captain_flint.sql",
+      "type": "table",
+      "name": "0000_cooing_captain_flint.sql",
+      "filePath": "AuBot/services/satori-bot/drizzle/0000_cooing_captain_flint.sql",
+      "summary": "0000_cooing_captain_flint.sql 是 AuBot/services/satori-bot/drizzle 下的代码模块，参与该功能区域的类型、配置或前端逻辑组织。",
+      "tags": [
+        "代码",
+        "模块",
+        "前端逻辑"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "schema:AuBot/services/satori-bot/drizzle/0000_cooing_captain_flint.sql:channels",
+      "type": "schema",
+      "name": "channels",
+      "filePath": "AuBot/services/satori-bot/drizzle/0000_cooing_captain_flint.sql",
+      "summary": "channels 是 0000_cooing_captain_flint.sql 中抽取出的 schema 定义，用于描述数据结构或接口契约。",
+      "tags": [
+        "schema",
+        "数据结构",
+        "契约"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "schema:AuBot/services/satori-bot/drizzle/0000_cooing_captain_flint.sql:event_queue",
+      "type": "schema",
+      "name": "event_queue",
+      "filePath": "AuBot/services/satori-bot/drizzle/0000_cooing_captain_flint.sql",
+      "summary": "event_queue 是 0000_cooing_captain_flint.sql 中抽取出的 schema 定义，用于描述数据结构或接口契约。",
+      "tags": [
+        "schema",
+        "数据结构",
+        "契约"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "schema:AuBot/services/satori-bot/drizzle/0000_cooing_captain_flint.sql:messages",
+      "type": "schema",
+      "name": "messages",
+      "filePath": "AuBot/services/satori-bot/drizzle/0000_cooing_captain_flint.sql",
+      "summary": "messages 是 0000_cooing_captain_flint.sql 中抽取出的 schema 定义，用于描述数据结构或接口契约。",
+      "tags": [
+        "schema",
+        "数据结构",
+        "契约"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "schema:AuBot/services/satori-bot/drizzle/0000_cooing_captain_flint.sql:unread_events",
+      "type": "schema",
+      "name": "unread_events",
+      "filePath": "AuBot/services/satori-bot/drizzle/0000_cooing_captain_flint.sql",
+      "summary": "unread_events 是 0000_cooing_captain_flint.sql 中抽取出的 schema 定义，用于描述数据结构或接口契约。",
+      "tags": [
+        "schema",
+        "数据结构",
+        "契约"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "schema:AuBot/services/satori-bot/drizzle/0000_cooing_captain_flint.sql:channel_timestamp_idx",
+      "type": "schema",
+      "name": "channel_timestamp_idx",
+      "filePath": "AuBot/services/satori-bot/drizzle/0000_cooing_captain_flint.sql",
+      "summary": "channel_timestamp_idx 是 0000_cooing_captain_flint.sql 中抽取出的 schema 定义，用于描述数据结构或接口契约。",
+      "tags": [
+        "schema",
+        "数据结构",
+        "契约"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:AuBot/services/satori-bot/drizzle/meta/_journal.json",
+      "type": "config",
+      "name": "_journal.json",
+      "filePath": "AuBot/services/satori-bot/drizzle/meta/_journal.json",
+      "summary": "AuBot/services/satori-bot/drizzle/meta/_journal.json 提供项目工具链或运行时配置，影响相关模块的构建、开发和集成行为。",
+      "tags": [
+        "配置",
+        "项目设置",
+        "工具链"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:AuBot/services/discord-bot/src/bots/discord/commands/ping.ts",
+      "target": "function:AuBot/services/discord-bot/src/bots/discord/commands/ping.ts:handlePing",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/services/discord-bot/src/bots/discord/commands/ping.ts",
+      "target": "function:AuBot/services/discord-bot/src/bots/discord/commands/ping.ts:handlePing",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:AuBot/services/minecraft/src/debug/web/app.js",
+      "target": "function:AuBot/services/minecraft/src/debug/web/app.js:formatSystemMessageContent",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/services/minecraft/src/debug/web/app.js",
+      "target": "function:AuBot/services/minecraft/src/debug/web/app.js:throttle",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/services/minecraft/src/debug/web/app.js",
+      "target": "function:AuBot/services/minecraft/src/debug/web/app.js:parseUserMessage",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/services/minecraft/src/debug/web/app.js",
+      "target": "class:AuBot/services/minecraft/src/debug/web/app.js:DebugClient",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/services/minecraft/src/debug/web/app.js",
+      "target": "class:AuBot/services/minecraft/src/debug/web/app.js:QueuePanel",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/services/minecraft/src/debug/web/app.js",
+      "target": "class:AuBot/services/minecraft/src/debug/web/app.js:ReflexPanel",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/services/minecraft/src/debug/web/app.js",
+      "target": "class:AuBot/services/minecraft/src/debug/web/app.js:BrainPanel",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/services/minecraft/src/debug/web/app.js",
+      "target": "class:AuBot/services/minecraft/src/debug/web/app.js:LogsPanel",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/services/minecraft/src/debug/web/app.js",
+      "target": "class:AuBot/services/minecraft/src/debug/web/app.js:ConversationPanel",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/services/minecraft/src/debug/web/app.js",
+      "target": "class:AuBot/services/minecraft/src/debug/web/app.js:ToolsPanel",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/services/minecraft/src/debug/web/app.js",
+      "target": "class:AuBot/services/minecraft/src/debug/web/app.js:ReplPanel",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/services/minecraft/src/debug/web/app.js",
+      "target": "class:AuBot/services/minecraft/src/debug/web/app.js:TimelinePanel",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/services/minecraft/src/debug/web/app.js",
+      "target": "class:AuBot/services/minecraft/src/debug/web/app.js:LayoutManager",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/services/minecraft/src/debug/web/app.js",
+      "target": "class:AuBot/services/minecraft/src/debug/web/app.js:DebugApp",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "table:AuBot/services/satori-bot/drizzle/0000_cooing_captain_flint.sql",
+      "target": "schema:AuBot/services/satori-bot/drizzle/0000_cooing_captain_flint.sql:channels",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "table:AuBot/services/satori-bot/drizzle/0000_cooing_captain_flint.sql",
+      "target": "schema:AuBot/services/satori-bot/drizzle/0000_cooing_captain_flint.sql:event_queue",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "table:AuBot/services/satori-bot/drizzle/0000_cooing_captain_flint.sql",
+      "target": "schema:AuBot/services/satori-bot/drizzle/0000_cooing_captain_flint.sql:messages",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "table:AuBot/services/satori-bot/drizzle/0000_cooing_captain_flint.sql",
+      "target": "schema:AuBot/services/satori-bot/drizzle/0000_cooing_captain_flint.sql:unread_events",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "table:AuBot/services/satori-bot/drizzle/0000_cooing_captain_flint.sql",
+      "target": "schema:AuBot/services/satori-bot/drizzle/0000_cooing_captain_flint.sql:channel_timestamp_idx",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    }
+  ]
+}

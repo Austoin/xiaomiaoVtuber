@@ -1,6 +1,6 @@
 # Python SDK
 
-把 nanobot 当作库使用，不需要 CLI，不需要 gateway，只需要 Python。
+把 xiaomiaoAgent 的 Python 主包当作库使用，不需要 CLI，不需要 gateway，只需要 Python。代码 import 仍使用内部包名 `nanobot`。
 
 ## 快速开始
 
@@ -45,7 +45,7 @@ await bot.run("hi", session_key="task-42")
 
 ### 挂载 hook 以便观测
 
-hook 让你可以查看工具调用、流式输出和迭代状态，而无需修改 nanobot 内部实现：
+hook 让你可以查看工具调用、流式输出和迭代状态，而无需修改 xiaomiaoAgent 内部实现：
 
 ```python
 from nanobot.agent import AgentHook, AgentHookContext

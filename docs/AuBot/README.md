@@ -1,6 +1,6 @@
-# Project AIRI
+# xiaomiaoVirtual / AuBot
 
-Project AIRI 是一个面向 AI 虚拟角色 / AI waifu 的多端应用项目，目标是让 AI 角色以 Web、桌面端、移动端和服务端能力进入真实使用场景。
+AuBot 是 `xiaomiaoVirtual` 的 Web/桌面 Vtuber 表现层，负责把统一 Agent 回复呈现为网页聊天、桌面字幕、TTS 和 Live2D/VRM 口型同步。内部包名、workspace scope 和部分目录仍保留 `@proj-airi/*` 兼容标识。
 
 ## 目录
 
@@ -51,7 +51,7 @@ Project AIRI 是一个面向 AI 虚拟角色 / AI waifu 的多端应用项目，
 
 ### `apps/stage-web`
 
-Web 版应用，适合在浏览器中运行和调试，用于承载 AIRI 的前端交互能力。当前 `stage-web` 的文本输入、移动端输入和页面级录音转文字入口都会发送到 `xiaomiao` bridge。
+Web 版应用，适合在浏览器中运行和调试，用于承载 `xiaomiaoVirtual` 的前端交互能力。当前 `stage-web` 的文本输入、移动端输入和页面级录音转文字入口都会发送到 `xiaomiao` bridge。
 
 ### `apps/stage-tamagotchi`
 
@@ -59,7 +59,7 @@ Electron 桌面版应用，是当前桌面形态的主要入口，适合本地�
 
 ### `apps/stage-pocket`
 
-移动端应用，用于承载移动场景下的 AIRI 体验。
+移动端应用，用于承载移动场景下的 `xiaomiaoVirtual` 体验。
 
 ### `apps/server`
 
@@ -79,12 +79,12 @@ Electron 桌面版应用，是当前桌面形态的主要入口，适合本地�
 
 ### 统一 Agent 联动前置服务
 
-如果要联动 `xiaomiao`、QQ 和 nanobot Agent，先启动后端链路：
+如果要联动 `xiaomiao`、QQ 和 xiaomiaoAgent，先启动后端链路：
 
 ```powershell
 cd F:\xiaomiaoVirtual
 conda activate xiaomiao
-nanobot serve --config F:\xiaomiaoVirtual\nanobot\.nanobot\config.json
+xiaomiao serve --config F:\xiaomiaoVirtual\nanobot\.nanobot\config.json
 ```
 
 再启动 NapCat 和 `xiaomiao`：
@@ -100,7 +100,7 @@ python main.py
 ```text
 5004  NapCat OneBot WebSocket
 5519  xiaomiao desktop bridge
-8900  nanobot OpenAI-compatible API
+8900  xiaomiaoAgent OpenAI-compatible API
 ```
 
 `python main.py` 会先启动 bridge，再连接 OneBot。如果 NapCat 未启动或 WebSocket 断开，主进程会退出，`stage-web` 也会因为 `5519` 不存在而显示 bridge 错误。
@@ -116,9 +116,9 @@ pnpm dev:web
 - 浏览器环境调试
 - 页面与交互开发
 - Web 场景预览
-- 验证 `stage-web -> xiaomiao bridge -> nanobot Agent` 链路
+- 验证 `stage-web -> xiaomiao bridge -> xiaomiaoAgent` 链路
 
-第一次打开 Web 版如果出现欢迎弹窗，先关闭或跳过弹窗，再输入消息验证。bridge 不可用、nanobot 不可用或返回空回复时，聊天历史会出现明确 error 消息，不会静默回退到 AuBot provider。
+第一次打开 Web 版会先通过 bridge 读取主目录 `config.json`。配置完整时不会弹配置面板；配置缺失时填写中转站 URL、API Key 和模型后会同步写回主目录 `config.json`。bridge 不可用、xiaomiaoAgent 不可用或返回空回复时，聊天历史会出现明确 error 消息，不会静默回退到 AuBot provider。
 
 ### 方式二：启动桌面 Electron 版
 
@@ -171,9 +171,9 @@ apps/server/.env.local
 
 ### 多端协作说明
 
-Project AIRI 采用 pnpm workspace 组织多个应用与共享包，因此日常开发通常不是只运行一个目录，而是根据你的目标选择对应入口：
+AuBot 采用 pnpm workspace 组织多个应用与共享包，因此日常开发通常不是只运行一个目录，而是根据你的目标选择对应入口：
 
-- 做 Web 页面：优先启动 `stage-web`；如果要测聊天输入，必须同时启动 `xiaomiao` bridge 和 nanobot API
+- 做 Web 页面：优先启动 `stage-web`；如果要测聊天输入，必须同时启动 `xiaomiao` bridge 和 xiaomiaoAgent API
 - 做桌面端能力：优先启动 `stage-tamagotchi`；如果要测小喵回复表现，必须同时启动 `xiaomiao`
 - 做后端接口：优先启动 `server`
 - 做共享组件或业务逻辑：在 `packages/*` 中修改并联调
@@ -257,7 +257,7 @@ AuBot/
 └── packages/stage-layouts/src/components/Layouts/MobileInteractiveArea.vue
 ```
 
-`xiaomiao-bridge.ts` 固定请求 `http://127.0.0.1:5519/v1/chat/completions`。该 bridge 再转发到 `nanobot` 的 `http://127.0.0.1:8900/v1/chat/completions`。
+`xiaomiao-bridge.ts` 固定请求 `http://127.0.0.1:5519/v1/chat/completions`。该 bridge 再转发到 xiaomiaoAgent 的 `http://127.0.0.1:8900/v1/chat/completions`。
 
 ---
 
@@ -283,7 +283,7 @@ git push -u origin main
 
 ## 补充说明
 
-- 如果你是第一次接触 AIRI，建议先从 `pnpm dev:tamagotchi` 或 `pnpm dev:web` 开始
+- 如果你是第一次接触 `xiaomiaoVirtual`，建议先从 `pnpm dev:tamagotchi` 或 `pnpm dev:web` 开始
 - 如果你需要了解更细的项目说明，可以继续查看 `docs/` 目录
 - 如果你在多端联调，请优先确认当前修改属于 `apps/*` 还是 `packages/*`
 

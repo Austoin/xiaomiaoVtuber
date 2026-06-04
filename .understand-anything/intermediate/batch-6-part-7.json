@@ -1,0 +1,1513 @@
+{
+  "nodes": [
+    {
+      "id": "file:nanobot/tests/security/test_security_network.py",
+      "type": "file",
+      "name": "test_security_network.py",
+      "filePath": "nanobot/tests/security/test_security_network.py",
+      "summary": "test_security_network.py 是 code 文件，包含 15 个函数，引用 1 个内部或外部依赖，在项目路径 nanobot/tests/security/test_security_network.py 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "python",
+        "test"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:nanobot/tests/security/test_security_network.py:_fake_resolve",
+      "type": "function",
+      "name": "_fake_resolve",
+      "filePath": "nanobot/tests/security/test_security_network.py",
+      "lineRange": [
+        13,
+        19
+      ],
+      "summary": "函数 _fake_resolve 位于 test_security_network.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/tests/security/test_security_network.py:test_rejects_non_http_scheme",
+      "type": "function",
+      "name": "test_rejects_non_http_scheme",
+      "filePath": "nanobot/tests/security/test_security_network.py",
+      "lineRange": [
+        26,
+        29
+      ],
+      "summary": "函数 test_rejects_non_http_scheme 位于 test_security_network.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/tests/security/test_security_network.py:test_rejects_missing_domain",
+      "type": "function",
+      "name": "test_rejects_missing_domain",
+      "filePath": "nanobot/tests/security/test_security_network.py",
+      "lineRange": [
+        32,
+        34
+      ],
+      "summary": "函数 test_rejects_missing_domain 位于 test_security_network.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/tests/security/test_security_network.py:test_blocks_private_ipv4",
+      "type": "function",
+      "name": "test_blocks_private_ipv4",
+      "filePath": "nanobot/tests/security/test_security_network.py",
+      "lineRange": [
+        50,
+        54
+      ],
+      "summary": "函数 test_blocks_private_ipv4 位于 test_security_network.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/tests/security/test_security_network.py:test_blocks_ipv6_loopback",
+      "type": "function",
+      "name": "test_blocks_ipv6_loopback",
+      "filePath": "nanobot/tests/security/test_security_network.py",
+      "lineRange": [
+        57,
+        62
+      ],
+      "summary": "函数 test_blocks_ipv6_loopback 位于 test_security_network.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/tests/security/test_security_network.py:test_allows_public_ip",
+      "type": "function",
+      "name": "test_allows_public_ip",
+      "filePath": "nanobot/tests/security/test_security_network.py",
+      "lineRange": [
+        69,
+        72
+      ],
+      "summary": "函数 test_allows_public_ip 位于 test_security_network.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/tests/security/test_security_network.py:test_allows_normal_https",
+      "type": "function",
+      "name": "test_allows_normal_https",
+      "filePath": "nanobot/tests/security/test_security_network.py",
+      "lineRange": [
+        75,
+        78
+      ],
+      "summary": "函数 test_allows_normal_https 位于 test_security_network.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/tests/security/test_security_network.py:test_detects_curl_metadata",
+      "type": "function",
+      "name": "test_detects_curl_metadata",
+      "filePath": "nanobot/tests/security/test_security_network.py",
+      "lineRange": [
+        85,
+        87
+      ],
+      "summary": "函数 test_detects_curl_metadata 位于 test_security_network.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/tests/security/test_security_network.py:test_detects_wget_localhost",
+      "type": "function",
+      "name": "test_detects_wget_localhost",
+      "filePath": "nanobot/tests/security/test_security_network.py",
+      "lineRange": [
+        90,
+        92
+      ],
+      "summary": "函数 test_detects_wget_localhost 位于 test_security_network.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/tests/security/test_security_network.py:test_allows_normal_curl",
+      "type": "function",
+      "name": "test_allows_normal_curl",
+      "filePath": "nanobot/tests/security/test_security_network.py",
+      "lineRange": [
+        95,
+        97
+      ],
+      "summary": "函数 test_allows_normal_curl 位于 test_security_network.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/tests/security/test_security_network.py:test_no_urls_returns_false",
+      "type": "function",
+      "name": "test_no_urls_returns_false",
+      "filePath": "nanobot/tests/security/test_security_network.py",
+      "lineRange": [
+        100,
+        101
+      ],
+      "summary": "函数 test_no_urls_returns_false 位于 test_security_network.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/tests/security/test_security_network.py:test_blocks_cgnat_by_default",
+      "type": "function",
+      "name": "test_blocks_cgnat_by_default",
+      "filePath": "nanobot/tests/security/test_security_network.py",
+      "lineRange": [
+        108,
+        112
+      ],
+      "summary": "函数 test_blocks_cgnat_by_default 位于 test_security_network.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/tests/security/test_security_network.py:test_whitelist_allows_cgnat",
+      "type": "function",
+      "name": "test_whitelist_allows_cgnat",
+      "filePath": "nanobot/tests/security/test_security_network.py",
+      "lineRange": [
+        115,
+        123
+      ],
+      "summary": "函数 test_whitelist_allows_cgnat 位于 test_security_network.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/tests/security/test_security_network.py:test_whitelist_does_not_affect_other_blocked",
+      "type": "function",
+      "name": "test_whitelist_does_not_affect_other_blocked",
+      "filePath": "nanobot/tests/security/test_security_network.py",
+      "lineRange": [
+        126,
+        134
+      ],
+      "summary": "函数 test_whitelist_does_not_affect_other_blocked 位于 test_security_network.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/tests/security/test_security_network.py:test_whitelist_invalid_cidr_ignored",
+      "type": "function",
+      "name": "test_whitelist_invalid_cidr_ignored",
+      "filePath": "nanobot/tests/security/test_security_network.py",
+      "lineRange": [
+        137,
+        145
+      ],
+      "summary": "函数 test_whitelist_invalid_cidr_ignored 位于 test_security_network.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:nanobot/tests/session/test_session_fsync.py",
+      "type": "file",
+      "name": "test_session_fsync.py",
+      "filePath": "nanobot/tests/session/test_session_fsync.py",
+      "summary": "test_session_fsync.py 是 code 文件，包含 2 个函数，包含 2 个类，引用 1 个内部或外部依赖，在项目路径 nanobot/tests/session/test_session_fsync.py 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "python",
+        "test"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:nanobot/tests/session/test_session_fsync.py:sessions_dir",
+      "type": "function",
+      "name": "sessions_dir",
+      "filePath": "nanobot/tests/session/test_session_fsync.py",
+      "lineRange": [
+        17,
+        20
+      ],
+      "summary": "函数 sessions_dir 位于 test_session_fsync.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/tests/session/test_session_fsync.py:manager",
+      "type": "function",
+      "name": "manager",
+      "filePath": "nanobot/tests/session/test_session_fsync.py",
+      "lineRange": [
+        24,
+        25
+      ],
+      "summary": "函数 manager 位于 test_session_fsync.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:nanobot/tests/session/test_session_fsync.py:TestSaveFsync",
+      "type": "class",
+      "name": "TestSaveFsync",
+      "filePath": "nanobot/tests/session/test_session_fsync.py",
+      "lineRange": [
+        28,
+        56
+      ],
+      "summary": "类 TestSaveFsync 位于 test_session_fsync.py，由结构提取结果识别。",
+      "tags": [
+        "class",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:nanobot/tests/session/test_session_fsync.py:TestFlushAll",
+      "type": "class",
+      "name": "TestFlushAll",
+      "filePath": "nanobot/tests/session/test_session_fsync.py",
+      "lineRange": [
+        59,
+        130
+      ],
+      "summary": "类 TestFlushAll 位于 test_session_fsync.py，由结构提取结果识别。",
+      "tags": [
+        "class",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:nanobot/tests/test_api_attachment.py",
+      "type": "file",
+      "name": "test_api_attachment.py",
+      "filePath": "nanobot/tests/test_api_attachment.py",
+      "summary": "test_api_attachment.py 是 code 文件，包含 26 个函数，引用 2 个内部或外部依赖，在项目路径 nanobot/tests/test_api_attachment.py 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "python",
+        "test"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:nanobot/tests/test_api_attachment.py:_make_mock_agent",
+      "type": "function",
+      "name": "_make_mock_agent",
+      "filePath": "nanobot/tests/test_api_attachment.py",
+      "lineRange": [
+        30,
+        35
+      ],
+      "summary": "函数 _make_mock_agent 位于 test_api_attachment.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/tests/test_api_attachment.py:mock_agent",
+      "type": "function",
+      "name": "mock_agent",
+      "filePath": "nanobot/tests/test_api_attachment.py",
+      "lineRange": [
+        39,
+        40
+      ],
+      "summary": "函数 mock_agent 位于 test_api_attachment.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/tests/test_api_attachment.py:app",
+      "type": "function",
+      "name": "app",
+      "filePath": "nanobot/tests/test_api_attachment.py",
+      "lineRange": [
+        44,
+        45
+      ],
+      "summary": "函数 app 位于 test_api_attachment.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/tests/test_api_attachment.py:aiohttp_client",
+      "type": "function",
+      "name": "aiohttp_client",
+      "filePath": "nanobot/tests/test_api_attachment.py",
+      "lineRange": [
+        49,
+        62
+      ],
+      "summary": "函数 aiohttp_client 位于 test_api_attachment.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/tests/test_api_attachment.py:test_save_base64_data_url_saves_png",
+      "type": "function",
+      "name": "test_save_base64_data_url_saves_png",
+      "filePath": "nanobot/tests/test_api_attachment.py",
+      "lineRange": [
+        69,
+        76
+      ],
+      "summary": "函数 test_save_base64_data_url_saves_png 位于 test_api_attachment.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/tests/test_api_attachment.py:test_save_base64_data_url_handles_invalid_b64",
+      "type": "function",
+      "name": "test_save_base64_data_url_handles_invalid_b64",
+      "filePath": "nanobot/tests/test_api_attachment.py",
+      "lineRange": [
+        79,
+        82
+      ],
+      "summary": "函数 test_save_base64_data_url_handles_invalid_b64 位于 test_api_attachment.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/tests/test_api_attachment.py:test_save_base64_data_url_handles_unknown_mime",
+      "type": "function",
+      "name": "test_save_base64_data_url_handles_unknown_mime",
+      "filePath": "nanobot/tests/test_api_attachment.py",
+      "lineRange": [
+        85,
+        91
+      ],
+      "summary": "函数 test_save_base64_data_url_handles_unknown_mime 位于 test_api_attachment.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/tests/test_api_attachment.py:test_save_base64_data_url_rejects_oversized_payload",
+      "type": "function",
+      "name": "test_save_base64_data_url_rejects_oversized_payload",
+      "filePath": "nanobot/tests/test_api_attachment.py",
+      "lineRange": [
+        94,
+        100
+      ],
+      "summary": "函数 test_save_base64_data_url_rejects_oversized_payload 位于 test_api_attachment.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/tests/test_api_attachment.py:test_parse_json_content_extracts_text_and_media",
+      "type": "function",
+      "name": "test_parse_json_content_extracts_text_and_media",
+      "filePath": "nanobot/tests/test_api_attachment.py",
+      "lineRange": [
+        103,
+        126
+      ],
+      "summary": "函数 test_parse_json_content_extracts_text_and_media 位于 test_api_attachment.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/tests/test_api_attachment.py:test_parse_json_content_plain_text_only",
+      "type": "function",
+      "name": "test_parse_json_content_plain_text_only",
+      "filePath": "nanobot/tests/test_api_attachment.py",
+      "lineRange": [
+        129,
+        134
+      ],
+      "summary": "函数 test_parse_json_content_plain_text_only 位于 test_api_attachment.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/tests/test_api_attachment.py:test_parse_json_content_validates_single_message",
+      "type": "function",
+      "name": "test_parse_json_content_validates_single_message",
+      "filePath": "nanobot/tests/test_api_attachment.py",
+      "lineRange": [
+        137,
+        146
+      ],
+      "summary": "函数 test_parse_json_content_validates_single_message 位于 test_api_attachment.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/tests/test_api_attachment.py:test_parse_json_content_validates_user_role",
+      "type": "function",
+      "name": "test_parse_json_content_validates_user_role",
+      "filePath": "nanobot/tests/test_api_attachment.py",
+      "lineRange": [
+        149,
+        153
+      ],
+      "summary": "函数 test_parse_json_content_validates_user_role 位于 test_api_attachment.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/tests/test_api_attachment.py:test_parse_json_content_rejects_oversized_base64_file",
+      "type": "function",
+      "name": "test_parse_json_content_rejects_oversized_base64_file",
+      "filePath": "nanobot/tests/test_api_attachment.py",
+      "lineRange": [
+        156,
+        178
+      ],
+      "summary": "函数 test_parse_json_content_rejects_oversized_base64_file 位于 test_api_attachment.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/tests/test_api_attachment.py:test_multipart_upload_saves_file",
+      "type": "function",
+      "name": "test_multipart_upload_saves_file",
+      "filePath": "nanobot/tests/test_api_attachment.py",
+      "lineRange": [
+        187,
+        209
+      ],
+      "summary": "函数 test_multipart_upload_saves_file 位于 test_api_attachment.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/tests/test_api_attachment.py:test_multipart_multiple_files",
+      "type": "function",
+      "name": "test_multipart_multiple_files",
+      "filePath": "nanobot/tests/test_api_attachment.py",
+      "lineRange": [
+        214,
+        235
+      ],
+      "summary": "函数 test_multipart_multiple_files 位于 test_api_attachment.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/tests/test_api_attachment.py:test_multipart_file_size_limit",
+      "type": "function",
+      "name": "test_multipart_file_size_limit",
+      "filePath": "nanobot/tests/test_api_attachment.py",
+      "lineRange": [
+        240,
+        260
+      ],
+      "summary": "函数 test_multipart_file_size_limit 位于 test_api_attachment.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/tests/test_api_attachment.py:test_multipart_defaults_text_when_missing",
+      "type": "function",
+      "name": "test_multipart_defaults_text_when_missing",
+      "filePath": "nanobot/tests/test_api_attachment.py",
+      "lineRange": [
+        265,
+        286
+      ],
+      "summary": "函数 test_multipart_defaults_text_when_missing 位于 test_api_attachment.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/tests/test_api_attachment.py:test_multipart_with_session_id",
+      "type": "function",
+      "name": "test_multipart_with_session_id",
+      "filePath": "nanobot/tests/test_api_attachment.py",
+      "lineRange": [
+        291,
+        312
+      ],
+      "summary": "函数 test_multipart_with_session_id 位于 test_api_attachment.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/tests/test_api_attachment.py:test_plain_text_backward_compat",
+      "type": "function",
+      "name": "test_plain_text_backward_compat",
+      "filePath": "nanobot/tests/test_api_attachment.py",
+      "lineRange": [
+        321,
+        334
+      ],
+      "summary": "函数 test_plain_text_backward_compat 位于 test_api_attachment.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/tests/test_api_attachment.py:test_json_base64_image_upload",
+      "type": "function",
+      "name": "test_json_base64_image_upload",
+      "filePath": "nanobot/tests/test_api_attachment.py",
+      "lineRange": [
+        339,
+        371
+      ],
+      "summary": "函数 test_json_base64_image_upload 位于 test_api_attachment.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:nanobot/tests/test_api_attachment.py:test_extract_documents_separates_images_from_docs",
+      "type": "function",
+      "name": "test_extract_documents_separates_images_from_docs",
+      "filePath": "nanobot/tests/test_api_attachment.py",
+      "lineRange": [
+        378,
+        394
+      ],
+      "summary": "函数 test_extract_documents_separates_images_from_docs 位于 test_api_attachment.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/tests/test_api_attachment.py:test_extract_documents_skips_extraction_errors",
+      "type": "function",
+      "name": "test_extract_documents_skips_extraction_errors",
+      "filePath": "nanobot/tests/test_api_attachment.py",
+      "lineRange": [
+        397,
+        410
+      ],
+      "summary": "函数 test_extract_documents_skips_extraction_errors 位于 test_api_attachment.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/tests/test_api_attachment.py:test_extract_documents_images_only",
+      "type": "function",
+      "name": "test_extract_documents_images_only",
+      "filePath": "nanobot/tests/test_api_attachment.py",
+      "lineRange": [
+        413,
+        419
+      ],
+      "summary": "函数 test_extract_documents_images_only 位于 test_api_attachment.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/tests/test_api_attachment.py:test_extract_documents_skips_oversized_files",
+      "type": "function",
+      "name": "test_extract_documents_skips_oversized_files",
+      "filePath": "nanobot/tests/test_api_attachment.py",
+      "lineRange": [
+        422,
+        429
+      ],
+      "summary": "函数 test_extract_documents_skips_oversized_files 位于 test_api_attachment.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/tests/test_api_attachment.py:test_extract_documents_does_not_read_full_file_for_mime",
+      "type": "function",
+      "name": "test_extract_documents_does_not_read_full_file_for_mime",
+      "filePath": "nanobot/tests/test_api_attachment.py",
+      "lineRange": [
+        432,
+        455
+      ],
+      "summary": "函数 test_extract_documents_does_not_read_full_file_for_mime 位于 test_api_attachment.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/tests/test_api_attachment.py:test_docx_upload_passes_media_path",
+      "type": "function",
+      "name": "test_docx_upload_passes_media_path",
+      "filePath": "nanobot/tests/test_api_attachment.py",
+      "lineRange": [
+        464,
+        496
+      ],
+      "summary": "函数 test_docx_upload_passes_media_path 位于 test_api_attachment.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:nanobot/tests/test_api_stream.py",
+      "type": "file",
+      "name": "test_api_stream.py",
+      "filePath": "nanobot/tests/test_api_stream.py",
+      "summary": "test_api_stream.py 是 code 文件，包含 14 个函数，引用 1 个内部或外部依赖，在项目路径 nanobot/tests/test_api_stream.py 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "python",
+        "test"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:nanobot/tests/test_api_stream.py:test_sse_chunk_with_delta",
+      "type": "function",
+      "name": "test_sse_chunk_with_delta",
+      "filePath": "nanobot/tests/test_api_stream.py",
+      "lineRange": [
+        33,
+        42
+      ],
+      "summary": "函数 test_sse_chunk_with_delta 位于 test_api_stream.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/tests/test_api_stream.py:test_sse_chunk_finish_reason",
+      "type": "function",
+      "name": "test_sse_chunk_finish_reason",
+      "filePath": "nanobot/tests/test_api_stream.py",
+      "lineRange": [
+        45,
+        49
+      ],
+      "summary": "函数 test_sse_chunk_finish_reason 位于 test_api_stream.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/tests/test_api_stream.py:test_sse_done_format",
+      "type": "function",
+      "name": "test_sse_done_format",
+      "filePath": "nanobot/tests/test_api_stream.py",
+      "lineRange": [
+        52,
+        53
+      ],
+      "summary": "函数 test_sse_done_format 位于 test_api_stream.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/tests/test_api_stream.py:_make_streaming_agent",
+      "type": "function",
+      "name": "_make_streaming_agent",
+      "filePath": "nanobot/tests/test_api_stream.py",
+      "lineRange": [
+        61,
+        78
+      ],
+      "summary": "函数 _make_streaming_agent 位于 test_api_stream.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/tests/test_api_stream.py:aiohttp_client",
+      "type": "function",
+      "name": "aiohttp_client",
+      "filePath": "nanobot/tests/test_api_stream.py",
+      "lineRange": [
+        82,
+        95
+      ],
+      "summary": "函数 aiohttp_client 位于 test_api_stream.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/tests/test_api_stream.py:test_stream_true_returns_sse",
+      "type": "function",
+      "name": "test_stream_true_returns_sse",
+      "filePath": "nanobot/tests/test_api_stream.py",
+      "lineRange": [
+        100,
+        125
+      ],
+      "summary": "函数 test_stream_true_returns_sse 位于 test_api_stream.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:nanobot/tests/test_api_stream.py:test_stream_false_returns_json",
+      "type": "function",
+      "name": "test_stream_false_returns_json",
+      "filePath": "nanobot/tests/test_api_stream.py",
+      "lineRange": [
+        130,
+        147
+      ],
+      "summary": "函数 test_stream_false_returns_json 位于 test_api_stream.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/tests/test_api_stream.py:test_stream_default_is_false",
+      "type": "function",
+      "name": "test_stream_default_is_false",
+      "filePath": "nanobot/tests/test_api_stream.py",
+      "lineRange": [
+        152,
+        168
+      ],
+      "summary": "函数 test_stream_default_is_false 位于 test_api_stream.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/tests/test_api_stream.py:test_stream_sse_chunk_ids_are_consistent",
+      "type": "function",
+      "name": "test_stream_sse_chunk_ids_are_consistent",
+      "filePath": "nanobot/tests/test_api_stream.py",
+      "lineRange": [
+        173,
+        193
+      ],
+      "summary": "函数 test_stream_sse_chunk_ids_are_consistent 位于 test_api_stream.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/tests/test_api_stream.py:test_stream_passes_on_stream_callbacks",
+      "type": "function",
+      "name": "test_stream_passes_on_stream_callbacks",
+      "filePath": "nanobot/tests/test_api_stream.py",
+      "lineRange": [
+        198,
+        222
+      ],
+      "summary": "函数 test_stream_passes_on_stream_callbacks 位于 test_api_stream.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:nanobot/tests/test_api_stream.py:test_stream_segment_end_does_not_close_sse",
+      "type": "function",
+      "name": "test_stream_segment_end_does_not_close_sse",
+      "filePath": "nanobot/tests/test_api_stream.py",
+      "lineRange": [
+        227,
+        264
+      ],
+      "summary": "函数 test_stream_segment_end_does_not_close_sse 位于 test_api_stream.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:nanobot/tests/test_api_stream.py:test_stream_uses_final_response_when_no_deltas",
+      "type": "function",
+      "name": "test_stream_uses_final_response_when_no_deltas",
+      "filePath": "nanobot/tests/test_api_stream.py",
+      "lineRange": [
+        269,
+        301
+      ],
+      "summary": "函数 test_stream_uses_final_response_when_no_deltas 位于 test_api_stream.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:nanobot/tests/test_api_stream.py:test_stream_with_session_id",
+      "type": "function",
+      "name": "test_stream_with_session_id",
+      "filePath": "nanobot/tests/test_api_stream.py",
+      "lineRange": [
+        306,
+        336
+      ],
+      "summary": "函数 test_stream_with_session_id 位于 test_api_stream.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:nanobot/tests/test_api_stream.py:test_streaming_backend_failure_does_not_emit_success_terminator",
+      "type": "function",
+      "name": "test_streaming_backend_failure_does_not_emit_success_terminator",
+      "filePath": "nanobot/tests/test_api_stream.py",
+      "lineRange": [
+        341,
+        363
+      ],
+      "summary": "函数 test_streaming_backend_failure_does_not_emit_success_terminator 位于 test_api_stream.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:nanobot/tests/security/test_security_network.py",
+      "target": "function:nanobot/tests/security/test_security_network.py:_fake_resolve",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/security/test_security_network.py",
+      "target": "function:nanobot/tests/security/test_security_network.py:test_rejects_non_http_scheme",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/security/test_security_network.py",
+      "target": "function:nanobot/tests/security/test_security_network.py:test_rejects_missing_domain",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/security/test_security_network.py",
+      "target": "function:nanobot/tests/security/test_security_network.py:test_blocks_private_ipv4",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/security/test_security_network.py",
+      "target": "function:nanobot/tests/security/test_security_network.py:test_blocks_ipv6_loopback",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/security/test_security_network.py",
+      "target": "function:nanobot/tests/security/test_security_network.py:test_allows_public_ip",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/security/test_security_network.py",
+      "target": "function:nanobot/tests/security/test_security_network.py:test_allows_normal_https",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/security/test_security_network.py",
+      "target": "function:nanobot/tests/security/test_security_network.py:test_detects_curl_metadata",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/security/test_security_network.py",
+      "target": "function:nanobot/tests/security/test_security_network.py:test_detects_wget_localhost",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/security/test_security_network.py",
+      "target": "function:nanobot/tests/security/test_security_network.py:test_allows_normal_curl",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/security/test_security_network.py",
+      "target": "function:nanobot/tests/security/test_security_network.py:test_no_urls_returns_false",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/security/test_security_network.py",
+      "target": "function:nanobot/tests/security/test_security_network.py:test_blocks_cgnat_by_default",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/security/test_security_network.py",
+      "target": "function:nanobot/tests/security/test_security_network.py:test_whitelist_allows_cgnat",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/security/test_security_network.py",
+      "target": "function:nanobot/tests/security/test_security_network.py:test_whitelist_does_not_affect_other_blocked",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/security/test_security_network.py",
+      "target": "function:nanobot/tests/security/test_security_network.py:test_whitelist_invalid_cidr_ignored",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/security/test_security_network.py",
+      "target": "file:nanobot/nanobot/security/network.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/tests/session/test_session_fsync.py",
+      "target": "function:nanobot/tests/session/test_session_fsync.py:sessions_dir",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/session/test_session_fsync.py",
+      "target": "function:nanobot/tests/session/test_session_fsync.py:manager",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/session/test_session_fsync.py",
+      "target": "class:nanobot/tests/session/test_session_fsync.py:TestSaveFsync",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/session/test_session_fsync.py",
+      "target": "class:nanobot/tests/session/test_session_fsync.py:TestFlushAll",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/session/test_session_fsync.py",
+      "target": "file:nanobot/nanobot/session/manager.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/tests/test_api_attachment.py",
+      "target": "function:nanobot/tests/test_api_attachment.py:_make_mock_agent",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/test_api_attachment.py",
+      "target": "function:nanobot/tests/test_api_attachment.py:mock_agent",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/test_api_attachment.py",
+      "target": "function:nanobot/tests/test_api_attachment.py:app",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/test_api_attachment.py",
+      "target": "function:nanobot/tests/test_api_attachment.py:aiohttp_client",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/test_api_attachment.py",
+      "target": "function:nanobot/tests/test_api_attachment.py:test_save_base64_data_url_saves_png",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/test_api_attachment.py",
+      "target": "function:nanobot/tests/test_api_attachment.py:test_save_base64_data_url_handles_invalid_b64",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/test_api_attachment.py",
+      "target": "function:nanobot/tests/test_api_attachment.py:test_save_base64_data_url_handles_unknown_mime",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/test_api_attachment.py",
+      "target": "function:nanobot/tests/test_api_attachment.py:test_save_base64_data_url_rejects_oversized_payload",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/test_api_attachment.py",
+      "target": "function:nanobot/tests/test_api_attachment.py:test_parse_json_content_extracts_text_and_media",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/test_api_attachment.py",
+      "target": "function:nanobot/tests/test_api_attachment.py:test_parse_json_content_plain_text_only",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/test_api_attachment.py",
+      "target": "function:nanobot/tests/test_api_attachment.py:test_parse_json_content_validates_single_message",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/test_api_attachment.py",
+      "target": "function:nanobot/tests/test_api_attachment.py:test_parse_json_content_validates_user_role",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/test_api_attachment.py",
+      "target": "function:nanobot/tests/test_api_attachment.py:test_parse_json_content_rejects_oversized_base64_file",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/test_api_attachment.py",
+      "target": "function:nanobot/tests/test_api_attachment.py:test_multipart_upload_saves_file",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/test_api_attachment.py",
+      "target": "function:nanobot/tests/test_api_attachment.py:test_multipart_multiple_files",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/test_api_attachment.py",
+      "target": "function:nanobot/tests/test_api_attachment.py:test_multipart_file_size_limit",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/test_api_attachment.py",
+      "target": "function:nanobot/tests/test_api_attachment.py:test_multipart_defaults_text_when_missing",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/test_api_attachment.py",
+      "target": "function:nanobot/tests/test_api_attachment.py:test_multipart_with_session_id",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/test_api_attachment.py",
+      "target": "function:nanobot/tests/test_api_attachment.py:test_plain_text_backward_compat",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/test_api_attachment.py",
+      "target": "function:nanobot/tests/test_api_attachment.py:test_json_base64_image_upload",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/test_api_attachment.py",
+      "target": "function:nanobot/tests/test_api_attachment.py:test_extract_documents_separates_images_from_docs",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/test_api_attachment.py",
+      "target": "function:nanobot/tests/test_api_attachment.py:test_extract_documents_skips_extraction_errors",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/test_api_attachment.py",
+      "target": "function:nanobot/tests/test_api_attachment.py:test_extract_documents_images_only",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/test_api_attachment.py",
+      "target": "function:nanobot/tests/test_api_attachment.py:test_extract_documents_skips_oversized_files",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/test_api_attachment.py",
+      "target": "function:nanobot/tests/test_api_attachment.py:test_extract_documents_does_not_read_full_file_for_mime",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/test_api_attachment.py",
+      "target": "function:nanobot/tests/test_api_attachment.py:test_docx_upload_passes_media_path",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/test_api_attachment.py",
+      "target": "file:nanobot/nanobot/api/server.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/tests/test_api_attachment.py",
+      "target": "file:nanobot/nanobot/utils/document.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/tests/test_api_stream.py",
+      "target": "function:nanobot/tests/test_api_stream.py:test_sse_chunk_with_delta",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/test_api_stream.py",
+      "target": "function:nanobot/tests/test_api_stream.py:test_sse_chunk_finish_reason",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/test_api_stream.py",
+      "target": "function:nanobot/tests/test_api_stream.py:test_sse_done_format",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/test_api_stream.py",
+      "target": "function:nanobot/tests/test_api_stream.py:_make_streaming_agent",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/test_api_stream.py",
+      "target": "function:nanobot/tests/test_api_stream.py:aiohttp_client",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/test_api_stream.py",
+      "target": "function:nanobot/tests/test_api_stream.py:test_stream_true_returns_sse",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/test_api_stream.py",
+      "target": "function:nanobot/tests/test_api_stream.py:test_stream_false_returns_json",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/test_api_stream.py",
+      "target": "function:nanobot/tests/test_api_stream.py:test_stream_default_is_false",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/test_api_stream.py",
+      "target": "function:nanobot/tests/test_api_stream.py:test_stream_sse_chunk_ids_are_consistent",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/test_api_stream.py",
+      "target": "function:nanobot/tests/test_api_stream.py:test_stream_passes_on_stream_callbacks",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/test_api_stream.py",
+      "target": "function:nanobot/tests/test_api_stream.py:test_stream_segment_end_does_not_close_sse",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/test_api_stream.py",
+      "target": "function:nanobot/tests/test_api_stream.py:test_stream_uses_final_response_when_no_deltas",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/test_api_stream.py",
+      "target": "function:nanobot/tests/test_api_stream.py:test_stream_with_session_id",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/test_api_stream.py",
+      "target": "function:nanobot/tests/test_api_stream.py:test_streaming_backend_failure_does_not_emit_success_terminator",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/test_api_stream.py",
+      "target": "file:nanobot/nanobot/api/server.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    }
+  ]
+}

@@ -1,0 +1,121 @@
+{
+  "nodes": [
+    {
+      "id": "document:nanobot/CLAUDE.md",
+      "type": "document",
+      "name": "CLAUDE.md",
+      "filePath": "nanobot/CLAUDE.md",
+      "summary": "CLAUDE.md 是 docs 文件，在项目路径 nanobot/CLAUDE.md 中承担对应模块职责。",
+      "tags": [
+        "document",
+        "docs",
+        "markdown"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:nanobot/CONTRIBUTING.md",
+      "type": "document",
+      "name": "CONTRIBUTING.md",
+      "filePath": "nanobot/CONTRIBUTING.md",
+      "summary": "CONTRIBUTING.md 是 docs 文件，在项目路径 nanobot/CONTRIBUTING.md 中承担对应模块职责。",
+      "tags": [
+        "document",
+        "docs",
+        "markdown"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:nanobot/README.md",
+      "type": "document",
+      "name": "README.md",
+      "filePath": "nanobot/README.md",
+      "summary": "README.md 是 docs 文件，在项目路径 nanobot/README.md 中承担对应模块职责。",
+      "tags": [
+        "document",
+        "docs",
+        "markdown"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "document:nanobot/SECURITY.md",
+      "type": "document",
+      "name": "SECURITY.md",
+      "filePath": "nanobot/SECURITY.md",
+      "summary": "SECURITY.md 是 docs 文件，在项目路径 nanobot/SECURITY.md 中承担对应模块职责。",
+      "tags": [
+        "document",
+        "docs",
+        "markdown"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "document:nanobot/THIRD_PARTY_NOTICES.md",
+      "type": "document",
+      "name": "THIRD_PARTY_NOTICES.md",
+      "filePath": "nanobot/THIRD_PARTY_NOTICES.md",
+      "summary": "THIRD_PARTY_NOTICES.md 是 docs 文件，在项目路径 nanobot/THIRD_PARTY_NOTICES.md 中承担对应模块职责。",
+      "tags": [
+        "document",
+        "docs",
+        "markdown"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:nanobot/core_agent_lines.sh",
+      "type": "file",
+      "name": "core_agent_lines.sh",
+      "filePath": "nanobot/core_agent_lines.sh",
+      "summary": "core_agent_lines.sh 是 script 文件，包含 4 个函数，在项目路径 nanobot/core_agent_lines.sh 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "script",
+        "shell"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:nanobot/entrypoint.sh",
+      "type": "file",
+      "name": "entrypoint.sh",
+      "filePath": "nanobot/entrypoint.sh",
+      "summary": "entrypoint.sh 是 script 文件，在项目路径 nanobot/entrypoint.sh 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "script",
+        "shell"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:nanobot/pyproject.toml",
+      "type": "config",
+      "name": "pyproject.toml",
+      "filePath": "nanobot/pyproject.toml",
+      "summary": "pyproject.toml 是 config 文件，在项目路径 nanobot/pyproject.toml 中承担对应模块职责。",
+      "tags": [
+        "config",
+        "toml"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:nanobot/项目结构与操作说明.md",
+      "type": "document",
+      "name": "项目结构与操作说明.md",
+      "filePath": "nanobot/项目结构与操作说明.md",
+      "summary": "项目结构与操作说明.md 是 docs 文件，在项目路径 nanobot/项目结构与操作说明.md 中承担对应模块职责。",
+      "tags": [
+        "document",
+        "docs",
+        "markdown"
+      ],
+      "complexity": "complex"
+    }
+  ],
+  "edges": []
+}

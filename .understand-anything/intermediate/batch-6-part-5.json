@@ -1,0 +1,663 @@
+{
+  "nodes": [
+    {
+      "id": "file:nanobot/tests/heartbeat/test_heartbeat_deliverability.py",
+      "type": "file",
+      "name": "test_heartbeat_deliverability.py",
+      "filePath": "nanobot/tests/heartbeat/test_heartbeat_deliverability.py",
+      "summary": "test_heartbeat_deliverability.py 是 code 文件，包含 3 个函数，包含 1 个类，引用 2 个内部或外部依赖，在项目路径 nanobot/tests/heartbeat/test_heartbeat_deliverability.py 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "python",
+        "test"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:nanobot/tests/heartbeat/test_heartbeat_deliverability.py:test_tick_suppresses_finalization_fallback",
+      "type": "function",
+      "name": "test_tick_suppresses_finalization_fallback",
+      "filePath": "nanobot/tests/heartbeat/test_heartbeat_deliverability.py",
+      "lineRange": [
+        83,
+        134
+      ],
+      "summary": "函数 test_tick_suppresses_finalization_fallback 位于 test_heartbeat_deliverability.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:nanobot/tests/heartbeat/test_heartbeat_deliverability.py:test_tick_suppresses_leaked_reasoning",
+      "type": "function",
+      "name": "test_tick_suppresses_leaked_reasoning",
+      "filePath": "nanobot/tests/heartbeat/test_heartbeat_deliverability.py",
+      "lineRange": [
+        138,
+        182
+      ],
+      "summary": "函数 test_tick_suppresses_leaked_reasoning 位于 test_heartbeat_deliverability.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:nanobot/tests/heartbeat/test_heartbeat_deliverability.py:test_tick_delivers_normal_report",
+      "type": "function",
+      "name": "test_tick_delivers_normal_report",
+      "filePath": "nanobot/tests/heartbeat/test_heartbeat_deliverability.py",
+      "lineRange": [
+        186,
+        230
+      ],
+      "summary": "函数 test_tick_delivers_normal_report 位于 test_heartbeat_deliverability.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:nanobot/tests/heartbeat/test_heartbeat_deliverability.py:TestIsDeliverable",
+      "type": "class",
+      "name": "TestIsDeliverable",
+      "filePath": "nanobot/tests/heartbeat/test_heartbeat_deliverability.py",
+      "lineRange": [
+        13,
+        74
+      ],
+      "summary": "类 TestIsDeliverable 位于 test_heartbeat_deliverability.py，由结构提取结果识别。",
+      "tags": [
+        "class",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:nanobot/tests/providers/test_bedrock_provider.py",
+      "type": "file",
+      "name": "test_bedrock_provider.py",
+      "filePath": "nanobot/tests/providers/test_bedrock_provider.py",
+      "summary": "test_bedrock_provider.py 是 code 文件，包含 8 个函数，包含 2 个类，引用 3 个内部或外部依赖，在项目路径 nanobot/tests/providers/test_bedrock_provider.py 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "python",
+        "test"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:nanobot/tests/providers/test_bedrock_provider.py:test_bedrock_provider_is_registered_and_matches_without_api_key",
+      "type": "function",
+      "name": "test_bedrock_provider_is_registered_and_matches_without_api_key",
+      "filePath": "nanobot/tests/providers/test_bedrock_provider.py",
+      "lineRange": [
+        56,
+        69
+      ],
+      "summary": "函数 test_bedrock_provider_is_registered_and_matches_without_api_key 位于 test_bedrock_provider.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/tests/providers/test_bedrock_provider.py:test_opus_47_uses_adaptive_thinking_and_omits_temperature",
+      "type": "function",
+      "name": "test_opus_47_uses_adaptive_thinking_and_omits_temperature",
+      "filePath": "nanobot/tests/providers/test_bedrock_provider.py",
+      "lineRange": [
+        72,
+        90
+      ],
+      "summary": "函数 test_opus_47_uses_adaptive_thinking_and_omits_temperature 位于 test_bedrock_provider.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/tests/providers/test_bedrock_provider.py:test_generic_bedrock_model_keeps_temperature_and_skips_anthropic_thinking",
+      "type": "function",
+      "name": "test_generic_bedrock_model_keeps_temperature_and_skips_anthropic_thinking",
+      "filePath": "nanobot/tests/providers/test_bedrock_provider.py",
+      "lineRange": [
+        93,
+        108
+      ],
+      "summary": "函数 test_generic_bedrock_model_keeps_temperature_and_skips_anthropic_thinking 位于 test_bedrock_provider.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/tests/providers/test_bedrock_provider.py:test_build_kwargs_converts_messages_tools_and_tool_results",
+      "type": "function",
+      "name": "test_build_kwargs_converts_messages_tools_and_tool_results",
+      "filePath": "nanobot/tests/providers/test_bedrock_provider.py",
+      "lineRange": [
+        111,
+        160
+      ],
+      "summary": "函数 test_build_kwargs_converts_messages_tools_and_tool_results 位于 test_bedrock_provider.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:nanobot/tests/providers/test_bedrock_provider.py:test_parse_response_maps_text_tools_reasoning_usage_and_stop_reason",
+      "type": "function",
+      "name": "test_parse_response_maps_text_tools_reasoning_usage_and_stop_reason",
+      "filePath": "nanobot/tests/providers/test_bedrock_provider.py",
+      "lineRange": [
+        163,
+        193
+      ],
+      "summary": "函数 test_parse_response_maps_text_tools_reasoning_usage_and_stop_reason 位于 test_bedrock_provider.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:nanobot/tests/providers/test_bedrock_provider.py:test_chat_stream_aggregates_text_tool_use_and_usage",
+      "type": "function",
+      "name": "test_chat_stream_aggregates_text_tool_use_and_usage",
+      "filePath": "nanobot/tests/providers/test_bedrock_provider.py",
+      "lineRange": [
+        197,
+        237
+      ],
+      "summary": "函数 test_chat_stream_aggregates_text_tool_use_and_usage 位于 test_bedrock_provider.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:nanobot/tests/providers/test_bedrock_provider.py:_append_delta",
+      "type": "function",
+      "name": "_append_delta",
+      "filePath": "nanobot/tests/providers/test_bedrock_provider.py",
+      "lineRange": [
+        240,
+        241
+      ],
+      "summary": "函数 _append_delta 位于 test_bedrock_provider.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/tests/providers/test_bedrock_provider.py:test_chat_error_maps_retry_metadata",
+      "type": "function",
+      "name": "test_chat_error_maps_retry_metadata",
+      "filePath": "nanobot/tests/providers/test_bedrock_provider.py",
+      "lineRange": [
+        245,
+        254
+      ],
+      "summary": "函数 test_chat_error_maps_retry_metadata 位于 test_bedrock_provider.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:nanobot/tests/providers/test_bedrock_provider.py:FakeClient",
+      "type": "class",
+      "name": "FakeClient",
+      "filePath": "nanobot/tests/providers/test_bedrock_provider.py",
+      "lineRange": [
+        14,
+        38
+      ],
+      "summary": "类 FakeClient 位于 test_bedrock_provider.py，由结构提取结果识别。",
+      "tags": [
+        "class",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:nanobot/tests/providers/test_bedrock_provider.py:FakeBedrockError",
+      "type": "class",
+      "name": "FakeBedrockError",
+      "filePath": "nanobot/tests/providers/test_bedrock_provider.py",
+      "lineRange": [
+        41,
+        53
+      ],
+      "summary": "类 FakeBedrockError 位于 test_bedrock_provider.py，由结构提取结果识别。",
+      "tags": [
+        "class",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:nanobot/tests/providers/test_enforce_role_alternation.py",
+      "type": "file",
+      "name": "test_enforce_role_alternation.py",
+      "filePath": "nanobot/tests/providers/test_enforce_role_alternation.py",
+      "summary": "test_enforce_role_alternation.py 是 code 文件，包含 1 个类，引用 1 个内部或外部依赖，在项目路径 nanobot/tests/providers/test_enforce_role_alternation.py 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "python",
+        "test"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:nanobot/tests/providers/test_enforce_role_alternation.py:TestEnforceRoleAlternation",
+      "type": "class",
+      "name": "TestEnforceRoleAlternation",
+      "filePath": "nanobot/tests/providers/test_enforce_role_alternation.py",
+      "lineRange": [
+        6,
+        240
+      ],
+      "summary": "类 TestEnforceRoleAlternation 位于 test_enforce_role_alternation.py，由结构提取结果识别。",
+      "tags": [
+        "class",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:nanobot/tests/providers/test_image_generation.py",
+      "type": "file",
+      "name": "test_image_generation.py",
+      "filePath": "nanobot/tests/providers/test_image_generation.py",
+      "summary": "test_image_generation.py 是 code 文件，包含 6 个函数，包含 2 个类，引用 1 个内部或外部依赖，在项目路径 nanobot/tests/providers/test_image_generation.py 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "python",
+        "test"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:nanobot/tests/providers/test_image_generation.py:test_openrouter_image_generation_payload_and_response",
+      "type": "function",
+      "name": "test_openrouter_image_generation_payload_and_response",
+      "filePath": "nanobot/tests/providers/test_image_generation.py",
+      "lineRange": [
+        67,
+        111
+      ],
+      "summary": "函数 test_openrouter_image_generation_payload_and_response 位于 test_image_generation.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:nanobot/tests/providers/test_image_generation.py:test_openrouter_image_generation_requires_images",
+      "type": "function",
+      "name": "test_openrouter_image_generation_requires_images",
+      "filePath": "nanobot/tests/providers/test_image_generation.py",
+      "lineRange": [
+        115,
+        120
+      ],
+      "summary": "函数 test_openrouter_image_generation_requires_images 位于 test_image_generation.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/tests/providers/test_image_generation.py:test_openrouter_image_generation_requires_api_key",
+      "type": "function",
+      "name": "test_openrouter_image_generation_requires_api_key",
+      "filePath": "nanobot/tests/providers/test_image_generation.py",
+      "lineRange": [
+        124,
+        128
+      ],
+      "summary": "函数 test_openrouter_image_generation_requires_api_key 位于 test_image_generation.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/tests/providers/test_image_generation.py:test_aihubmix_image_generation_payload_and_response",
+      "type": "function",
+      "name": "test_aihubmix_image_generation_payload_and_response",
+      "filePath": "nanobot/tests/providers/test_image_generation.py",
+      "lineRange": [
+        132,
+        162
+      ],
+      "summary": "函数 test_aihubmix_image_generation_payload_and_response 位于 test_image_generation.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:nanobot/tests/providers/test_image_generation.py:test_aihubmix_image_edit_payload_uses_reference_images",
+      "type": "function",
+      "name": "test_aihubmix_image_edit_payload_uses_reference_images",
+      "filePath": "nanobot/tests/providers/test_image_generation.py",
+      "lineRange": [
+        166,
+        189
+      ],
+      "summary": "函数 test_aihubmix_image_edit_payload_uses_reference_images 位于 test_image_generation.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/tests/providers/test_image_generation.py:test_aihubmix_image_generation_downloads_url_response",
+      "type": "function",
+      "name": "test_aihubmix_image_generation_downloads_url_response",
+      "filePath": "nanobot/tests/providers/test_image_generation.py",
+      "lineRange": [
+        193,
+        204
+      ],
+      "summary": "函数 test_aihubmix_image_generation_downloads_url_response 位于 test_image_generation.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:nanobot/tests/providers/test_image_generation.py:FakeResponse",
+      "type": "class",
+      "name": "FakeResponse",
+      "filePath": "nanobot/tests/providers/test_image_generation.py",
+      "lineRange": [
+        28,
+        47
+      ],
+      "summary": "类 FakeResponse 位于 test_image_generation.py，由结构提取结果识别。",
+      "tags": [
+        "class",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:nanobot/tests/providers/test_image_generation.py:FakeClient",
+      "type": "class",
+      "name": "FakeClient",
+      "filePath": "nanobot/tests/providers/test_image_generation.py",
+      "lineRange": [
+        50,
+        63
+      ],
+      "summary": "类 FakeClient 位于 test_image_generation.py，由结构提取结果识别。",
+      "tags": [
+        "class",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:nanobot/tests/heartbeat/test_heartbeat_deliverability.py",
+      "target": "function:nanobot/tests/heartbeat/test_heartbeat_deliverability.py:test_tick_suppresses_finalization_fallback",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/heartbeat/test_heartbeat_deliverability.py",
+      "target": "function:nanobot/tests/heartbeat/test_heartbeat_deliverability.py:test_tick_suppresses_leaked_reasoning",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/heartbeat/test_heartbeat_deliverability.py",
+      "target": "function:nanobot/tests/heartbeat/test_heartbeat_deliverability.py:test_tick_delivers_normal_report",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/heartbeat/test_heartbeat_deliverability.py",
+      "target": "class:nanobot/tests/heartbeat/test_heartbeat_deliverability.py:TestIsDeliverable",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/heartbeat/test_heartbeat_deliverability.py",
+      "target": "file:nanobot/nanobot/heartbeat/service.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/tests/heartbeat/test_heartbeat_deliverability.py",
+      "target": "file:nanobot/nanobot/providers/base.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/tests/providers/test_bedrock_provider.py",
+      "target": "function:nanobot/tests/providers/test_bedrock_provider.py:test_bedrock_provider_is_registered_and_matches_without_api_key",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/providers/test_bedrock_provider.py",
+      "target": "function:nanobot/tests/providers/test_bedrock_provider.py:test_opus_47_uses_adaptive_thinking_and_omits_temperature",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/providers/test_bedrock_provider.py",
+      "target": "function:nanobot/tests/providers/test_bedrock_provider.py:test_generic_bedrock_model_keeps_temperature_and_skips_anthropic_thinking",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/providers/test_bedrock_provider.py",
+      "target": "function:nanobot/tests/providers/test_bedrock_provider.py:test_build_kwargs_converts_messages_tools_and_tool_results",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/providers/test_bedrock_provider.py",
+      "target": "function:nanobot/tests/providers/test_bedrock_provider.py:test_parse_response_maps_text_tools_reasoning_usage_and_stop_reason",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/providers/test_bedrock_provider.py",
+      "target": "function:nanobot/tests/providers/test_bedrock_provider.py:test_chat_stream_aggregates_text_tool_use_and_usage",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/providers/test_bedrock_provider.py",
+      "target": "function:nanobot/tests/providers/test_bedrock_provider.py:_append_delta",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/providers/test_bedrock_provider.py",
+      "target": "function:nanobot/tests/providers/test_bedrock_provider.py:test_chat_error_maps_retry_metadata",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/providers/test_bedrock_provider.py",
+      "target": "class:nanobot/tests/providers/test_bedrock_provider.py:FakeClient",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/providers/test_bedrock_provider.py",
+      "target": "class:nanobot/tests/providers/test_bedrock_provider.py:FakeBedrockError",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/providers/test_bedrock_provider.py",
+      "target": "file:nanobot/nanobot/config/schema.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/tests/providers/test_bedrock_provider.py",
+      "target": "file:nanobot/nanobot/providers/bedrock_provider.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/tests/providers/test_bedrock_provider.py",
+      "target": "file:nanobot/nanobot/providers/registry.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/tests/providers/test_enforce_role_alternation.py",
+      "target": "class:nanobot/tests/providers/test_enforce_role_alternation.py:TestEnforceRoleAlternation",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/providers/test_enforce_role_alternation.py",
+      "target": "file:nanobot/nanobot/providers/base.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/tests/providers/test_image_generation.py",
+      "target": "function:nanobot/tests/providers/test_image_generation.py:test_openrouter_image_generation_payload_and_response",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/providers/test_image_generation.py",
+      "target": "function:nanobot/tests/providers/test_image_generation.py:test_openrouter_image_generation_requires_images",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/providers/test_image_generation.py",
+      "target": "function:nanobot/tests/providers/test_image_generation.py:test_openrouter_image_generation_requires_api_key",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/providers/test_image_generation.py",
+      "target": "function:nanobot/tests/providers/test_image_generation.py:test_aihubmix_image_generation_payload_and_response",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/providers/test_image_generation.py",
+      "target": "function:nanobot/tests/providers/test_image_generation.py:test_aihubmix_image_edit_payload_uses_reference_images",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/providers/test_image_generation.py",
+      "target": "function:nanobot/tests/providers/test_image_generation.py:test_aihubmix_image_generation_downloads_url_response",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/providers/test_image_generation.py",
+      "target": "class:nanobot/tests/providers/test_image_generation.py:FakeResponse",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/providers/test_image_generation.py",
+      "target": "class:nanobot/tests/providers/test_image_generation.py:FakeClient",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/providers/test_image_generation.py",
+      "target": "file:nanobot/nanobot/providers/image_generation.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    }
+  ]
+}

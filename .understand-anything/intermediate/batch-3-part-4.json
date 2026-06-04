@@ -1,0 +1,1760 @@
+{
+  "nodes": [
+    {
+      "id": "file:nanobot/nanobot/utils/runtime.py",
+      "type": "file",
+      "name": "runtime.py",
+      "filePath": "nanobot/nanobot/utils/runtime.py",
+      "summary": "runtime.py 是 code 文件，包含 10 个函数，引用 1 个内部或外部依赖，在项目路径 nanobot/nanobot/utils/runtime.py 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "python"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:nanobot/nanobot/utils/runtime.py:empty_tool_result_message",
+      "type": "function",
+      "name": "empty_tool_result_message",
+      "filePath": "nanobot/nanobot/utils/runtime.py",
+      "lineRange": [
+        33,
+        35
+      ],
+      "summary": "函数 empty_tool_result_message 位于 runtime.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/nanobot/utils/runtime.py:ensure_nonempty_tool_result",
+      "type": "function",
+      "name": "ensure_nonempty_tool_result",
+      "filePath": "nanobot/nanobot/utils/runtime.py",
+      "lineRange": [
+        38,
+        50
+      ],
+      "summary": "函数 ensure_nonempty_tool_result 位于 runtime.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/nanobot/utils/runtime.py:is_blank_text",
+      "type": "function",
+      "name": "is_blank_text",
+      "filePath": "nanobot/nanobot/utils/runtime.py",
+      "lineRange": [
+        53,
+        55
+      ],
+      "summary": "函数 is_blank_text 位于 runtime.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/nanobot/utils/runtime.py:build_finalization_retry_message",
+      "type": "function",
+      "name": "build_finalization_retry_message",
+      "filePath": "nanobot/nanobot/utils/runtime.py",
+      "lineRange": [
+        58,
+        60
+      ],
+      "summary": "函数 build_finalization_retry_message 位于 runtime.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/nanobot/utils/runtime.py:build_length_recovery_message",
+      "type": "function",
+      "name": "build_length_recovery_message",
+      "filePath": "nanobot/nanobot/utils/runtime.py",
+      "lineRange": [
+        63,
+        65
+      ],
+      "summary": "函数 build_length_recovery_message 位于 runtime.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/nanobot/utils/runtime.py:external_lookup_signature",
+      "type": "function",
+      "name": "external_lookup_signature",
+      "filePath": "nanobot/nanobot/utils/runtime.py",
+      "lineRange": [
+        68,
+        78
+      ],
+      "summary": "函数 external_lookup_signature 位于 runtime.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/nanobot/utils/runtime.py:repeated_external_lookup_error",
+      "type": "function",
+      "name": "repeated_external_lookup_error",
+      "filePath": "nanobot/nanobot/utils/runtime.py",
+      "lineRange": [
+        81,
+        102
+      ],
+      "summary": "函数 repeated_external_lookup_error 位于 runtime.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/nanobot/utils/runtime.py:workspace_violation_signature",
+      "type": "function",
+      "name": "workspace_violation_signature",
+      "filePath": "nanobot/nanobot/utils/runtime.py",
+      "lineRange": [
+        110,
+        130
+      ],
+      "summary": "函数 workspace_violation_signature 位于 runtime.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/nanobot/utils/runtime.py:_normalize_violation_target",
+      "type": "function",
+      "name": "_normalize_violation_target",
+      "filePath": "nanobot/nanobot/utils/runtime.py",
+      "lineRange": [
+        133,
+        139
+      ],
+      "summary": "函数 _normalize_violation_target 位于 runtime.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/nanobot/utils/runtime.py:repeated_workspace_violation_error",
+      "type": "function",
+      "name": "repeated_workspace_violation_error",
+      "filePath": "nanobot/nanobot/utils/runtime.py",
+      "lineRange": [
+        142,
+        170
+      ],
+      "summary": "函数 repeated_workspace_violation_error 位于 runtime.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:nanobot/nanobot/utils/searchusage.py",
+      "type": "file",
+      "name": "searchusage.py",
+      "filePath": "nanobot/nanobot/utils/searchusage.py",
+      "summary": "searchusage.py 是 code 文件，包含 3 个函数，包含 1 个类，在项目路径 nanobot/nanobot/utils/searchusage.py 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "python"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:nanobot/nanobot/utils/searchusage.py:fetch_search_usage",
+      "type": "function",
+      "name": "fetch_search_usage",
+      "filePath": "nanobot/nanobot/utils/searchusage.py",
+      "lineRange": [
+        66,
+        86
+      ],
+      "summary": "函数 fetch_search_usage 位于 searchusage.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/nanobot/utils/searchusage.py:_fetch_tavily_usage",
+      "type": "function",
+      "name": "_fetch_tavily_usage",
+      "filePath": "nanobot/nanobot/utils/searchusage.py",
+      "lineRange": [
+        93,
+        125
+      ],
+      "summary": "函数 _fetch_tavily_usage 位于 searchusage.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:nanobot/nanobot/utils/searchusage.py:_parse_tavily_usage",
+      "type": "function",
+      "name": "_parse_tavily_usage",
+      "filePath": "nanobot/nanobot/utils/searchusage.py",
+      "lineRange": [
+        128,
+        166
+      ],
+      "summary": "函数 _parse_tavily_usage 位于 searchusage.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:nanobot/nanobot/utils/searchusage.py:SearchUsageInfo",
+      "type": "class",
+      "name": "SearchUsageInfo",
+      "filePath": "nanobot/nanobot/utils/searchusage.py",
+      "lineRange": [
+        11,
+        63
+      ],
+      "summary": "类 SearchUsageInfo 位于 searchusage.py，由结构提取结果识别。",
+      "tags": [
+        "class",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:nanobot/nanobot/utils/tool_hints.py",
+      "type": "file",
+      "name": "tool_hints.py",
+      "filePath": "nanobot/nanobot/utils/tool_hints.py",
+      "summary": "tool_hints.py 是 code 文件，包含 7 个函数，引用 1 个内部或外部依赖，在项目路径 nanobot/nanobot/utils/tool_hints.py 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "python"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:nanobot/nanobot/utils/tool_hints.py:format_tool_hints",
+      "type": "function",
+      "name": "format_tool_hints",
+      "filePath": "nanobot/nanobot/utils/tool_hints.py",
+      "lineRange": [
+        30,
+        54
+      ],
+      "summary": "函数 format_tool_hints 位于 tool_hints.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:nanobot/nanobot/utils/tool_hints.py:_get_args",
+      "type": "function",
+      "name": "_get_args",
+      "filePath": "nanobot/nanobot/utils/tool_hints.py",
+      "lineRange": [
+        57,
+        65
+      ],
+      "summary": "函数 _get_args 位于 tool_hints.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/nanobot/utils/tool_hints.py:_extract_arg",
+      "type": "function",
+      "name": "_extract_arg",
+      "filePath": "nanobot/nanobot/utils/tool_hints.py",
+      "lineRange": [
+        68,
+        80
+      ],
+      "summary": "函数 _extract_arg 位于 tool_hints.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/nanobot/utils/tool_hints.py:_fmt_known",
+      "type": "function",
+      "name": "_fmt_known",
+      "filePath": "nanobot/nanobot/utils/tool_hints.py",
+      "lineRange": [
+        83,
+        92
+      ],
+      "summary": "函数 _fmt_known 位于 tool_hints.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/nanobot/utils/tool_hints.py:_abbreviate_command",
+      "type": "function",
+      "name": "_abbreviate_command",
+      "filePath": "nanobot/nanobot/utils/tool_hints.py",
+      "lineRange": [
+        95,
+        109
+      ],
+      "summary": "函数 _abbreviate_command 位于 tool_hints.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/nanobot/utils/tool_hints.py:_fmt_mcp",
+      "type": "function",
+      "name": "_fmt_mcp",
+      "filePath": "nanobot/nanobot/utils/tool_hints.py",
+      "lineRange": [
+        112,
+        130
+      ],
+      "summary": "函数 _fmt_mcp 位于 tool_hints.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/nanobot/utils/tool_hints.py:_fmt_fallback",
+      "type": "function",
+      "name": "_fmt_fallback",
+      "filePath": "nanobot/nanobot/utils/tool_hints.py",
+      "lineRange": [
+        133,
+        139
+      ],
+      "summary": "函数 _fmt_fallback 位于 tool_hints.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:nanobot/nanobot/utils/webui_titles.py",
+      "type": "file",
+      "name": "webui_titles.py",
+      "filePath": "nanobot/nanobot/utils/webui_titles.py",
+      "summary": "webui_titles.py 是 code 文件，包含 5 个函数，引用 3 个内部或外部依赖，在项目路径 nanobot/nanobot/utils/webui_titles.py 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "python"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:nanobot/nanobot/utils/webui_titles.py:mark_webui_session",
+      "type": "function",
+      "name": "mark_webui_session",
+      "filePath": "nanobot/nanobot/utils/webui_titles.py",
+      "lineRange": [
+        20,
+        25
+      ],
+      "summary": "函数 mark_webui_session 位于 webui_titles.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/nanobot/utils/webui_titles.py:clean_generated_title",
+      "type": "function",
+      "name": "clean_generated_title",
+      "filePath": "nanobot/nanobot/utils/webui_titles.py",
+      "lineRange": [
+        28,
+        38
+      ],
+      "summary": "函数 clean_generated_title 位于 webui_titles.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/nanobot/utils/webui_titles.py:_title_inputs",
+      "type": "function",
+      "name": "_title_inputs",
+      "filePath": "nanobot/nanobot/utils/webui_titles.py",
+      "lineRange": [
+        41,
+        55
+      ],
+      "summary": "函数 _title_inputs 位于 webui_titles.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/nanobot/utils/webui_titles.py:maybe_generate_webui_title",
+      "type": "function",
+      "name": "maybe_generate_webui_title",
+      "filePath": "nanobot/nanobot/utils/webui_titles.py",
+      "lineRange": [
+        58,
+        119
+      ],
+      "summary": "函数 maybe_generate_webui_title 位于 webui_titles.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:nanobot/nanobot/utils/webui_titles.py:maybe_generate_webui_title_after_turn",
+      "type": "function",
+      "name": "maybe_generate_webui_title_after_turn",
+      "filePath": "nanobot/nanobot/utils/webui_titles.py",
+      "lineRange": [
+        122,
+        138
+      ],
+      "summary": "函数 maybe_generate_webui_title_after_turn 位于 webui_titles.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:nanobot/tests/agent/test_ask_user.py",
+      "type": "file",
+      "name": "test_ask_user.py",
+      "filePath": "nanobot/tests/agent/test_ask_user.py",
+      "summary": "test_ask_user.py 是 code 文件，包含 6 个函数，引用 9 个内部或外部依赖，在项目路径 nanobot/tests/agent/test_ask_user.py 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "python",
+        "test"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:nanobot/tests/agent/test_ask_user.py:_make_provider",
+      "type": "function",
+      "name": "_make_provider",
+      "filePath": "nanobot/tests/agent/test_ask_user.py",
+      "lineRange": [
+        17,
+        27
+      ],
+      "summary": "函数 _make_provider 位于 test_ask_user.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/tests/agent/test_ask_user.py:test_ask_user_tool_schema_and_interrupt",
+      "type": "function",
+      "name": "test_ask_user_tool_schema_and_interrupt",
+      "filePath": "nanobot/tests/agent/test_ask_user.py",
+      "lineRange": [
+        30,
+        42
+      ],
+      "summary": "函数 test_ask_user_tool_schema_and_interrupt 位于 test_ask_user.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/tests/agent/test_ask_user.py:test_runner_pauses_on_ask_user_without_executing_later_tools",
+      "type": "function",
+      "name": "test_runner_pauses_on_ask_user_without_executing_later_tools",
+      "filePath": "nanobot/tests/agent/test_ask_user.py",
+      "lineRange": [
+        46,
+        98
+      ],
+      "summary": "函数 test_runner_pauses_on_ask_user_without_executing_later_tools 位于 test_ask_user.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:nanobot/tests/agent/test_ask_user.py:test_ask_user_text_fallback_resumes_with_next_message",
+      "type": "function",
+      "name": "test_ask_user_text_fallback_resumes_with_next_message",
+      "filePath": "nanobot/tests/agent/test_ask_user.py",
+      "lineRange": [
+        102,
+        173
+      ],
+      "summary": "函数 test_ask_user_text_fallback_resumes_with_next_message 位于 test_ask_user.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:nanobot/tests/agent/test_ask_user.py:test_ask_user_keeps_buttons_for_telegram",
+      "type": "function",
+      "name": "test_ask_user_keeps_buttons_for_telegram",
+      "filePath": "nanobot/tests/agent/test_ask_user.py",
+      "lineRange": [
+        177,
+        207
+      ],
+      "summary": "函数 test_ask_user_keeps_buttons_for_telegram 位于 test_ask_user.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:nanobot/tests/agent/test_ask_user.py:test_ask_user_keeps_buttons_for_websocket",
+      "type": "function",
+      "name": "test_ask_user_keeps_buttons_for_websocket",
+      "filePath": "nanobot/tests/agent/test_ask_user.py",
+      "lineRange": [
+        211,
+        241
+      ],
+      "summary": "函数 test_ask_user_keeps_buttons_for_websocket 位于 test_ask_user.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:nanobot/tests/agent/test_auto_compact.py",
+      "type": "file",
+      "name": "test_auto_compact.py",
+      "filePath": "nanobot/tests/agent/test_auto_compact.py",
+      "summary": "test_auto_compact.py 是 code 文件，包含 2 个函数，包含 9 个类，引用 6 个内部或外部依赖，在项目路径 nanobot/tests/agent/test_auto_compact.py 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "python",
+        "test"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:nanobot/tests/agent/test_auto_compact.py:_make_loop",
+      "type": "function",
+      "name": "_make_loop",
+      "filePath": "nanobot/tests/agent/test_auto_compact.py",
+      "lineRange": [
+        18,
+        38
+      ],
+      "summary": "函数 _make_loop 位于 test_auto_compact.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/tests/agent/test_auto_compact.py:_add_turns",
+      "type": "function",
+      "name": "_add_turns",
+      "filePath": "nanobot/tests/agent/test_auto_compact.py",
+      "lineRange": [
+        41,
+        45
+      ],
+      "summary": "函数 _add_turns 位于 test_auto_compact.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:nanobot/tests/agent/test_auto_compact.py:TestSessionTTLConfig",
+      "type": "class",
+      "name": "TestSessionTTLConfig",
+      "filePath": "nanobot/tests/agent/test_auto_compact.py",
+      "lineRange": [
+        48,
+        81
+      ],
+      "summary": "类 TestSessionTTLConfig 位于 test_auto_compact.py，由结构提取结果识别。",
+      "tags": [
+        "class",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:nanobot/tests/agent/test_auto_compact.py:TestAgentLoopTTLParam",
+      "type": "class",
+      "name": "TestAgentLoopTTLParam",
+      "filePath": "nanobot/tests/agent/test_auto_compact.py",
+      "lineRange": [
+        84,
+        164
+      ],
+      "summary": "类 TestAgentLoopTTLParam 位于 test_auto_compact.py，由结构提取结果识别。",
+      "tags": [
+        "class",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:nanobot/tests/agent/test_auto_compact.py:TestAutoCompact",
+      "type": "class",
+      "name": "TestAutoCompact",
+      "filePath": "nanobot/tests/agent/test_auto_compact.py",
+      "lineRange": [
+        167,
+        305
+      ],
+      "summary": "类 TestAutoCompact 位于 test_auto_compact.py，由结构提取结果识别。",
+      "tags": [
+        "class",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:nanobot/tests/agent/test_auto_compact.py:TestAutoCompactIdleDetection",
+      "type": "class",
+      "name": "TestAutoCompactIdleDetection",
+      "filePath": "nanobot/tests/agent/test_auto_compact.py",
+      "lineRange": [
+        308,
+        419
+      ],
+      "summary": "类 TestAutoCompactIdleDetection 位于 test_auto_compact.py，由结构提取结果识别。",
+      "tags": [
+        "class",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:nanobot/tests/agent/test_auto_compact.py:TestAutoCompactSystemMessages",
+      "type": "class",
+      "name": "TestAutoCompactSystemMessages",
+      "filePath": "nanobot/tests/agent/test_auto_compact.py",
+      "lineRange": [
+        422,
+        453
+      ],
+      "summary": "类 TestAutoCompactSystemMessages 位于 test_auto_compact.py，由结构提取结果识别。",
+      "tags": [
+        "class",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:nanobot/tests/agent/test_auto_compact.py:TestAutoCompactEdgeCases",
+      "type": "class",
+      "name": "TestAutoCompactEdgeCases",
+      "filePath": "nanobot/tests/agent/test_auto_compact.py",
+      "lineRange": [
+        456,
+        533
+      ],
+      "summary": "类 TestAutoCompactEdgeCases 位于 test_auto_compact.py，由结构提取结果识别。",
+      "tags": [
+        "class",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:nanobot/tests/agent/test_auto_compact.py:TestAutoCompactIntegration",
+      "type": "class",
+      "name": "TestAutoCompactIntegration",
+      "filePath": "nanobot/tests/agent/test_auto_compact.py",
+      "lineRange": [
+        536,
+        632
+      ],
+      "summary": "类 TestAutoCompactIntegration 位于 test_auto_compact.py，由结构提取结果识别。",
+      "tags": [
+        "class",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:nanobot/tests/agent/test_auto_compact.py:TestProactiveAutoCompact",
+      "type": "class",
+      "name": "TestProactiveAutoCompact",
+      "filePath": "nanobot/tests/agent/test_auto_compact.py",
+      "lineRange": [
+        635,
+        964
+      ],
+      "summary": "类 TestProactiveAutoCompact 位于 test_auto_compact.py，由结构提取结果识别。",
+      "tags": [
+        "class",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:nanobot/tests/agent/test_auto_compact.py:TestSummaryPersistence",
+      "type": "class",
+      "name": "TestSummaryPersistence",
+      "filePath": "nanobot/tests/agent/test_auto_compact.py",
+      "lineRange": [
+        967,
+        1159
+      ],
+      "summary": "类 TestSummaryPersistence 位于 test_auto_compact.py，由结构提取结果识别。",
+      "tags": [
+        "class",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:nanobot/tests/agent/test_consolidate_offset.py",
+      "type": "file",
+      "name": "test_consolidate_offset.py",
+      "filePath": "nanobot/tests/agent/test_consolidate_offset.py",
+      "summary": "test_consolidate_offset.py 是 code 文件，包含 3 个函数，包含 10 个类，引用 1 个内部或外部依赖，在项目路径 nanobot/tests/agent/test_consolidate_offset.py 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "python",
+        "test"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:nanobot/tests/agent/test_consolidate_offset.py:create_session_with_messages",
+      "type": "function",
+      "name": "create_session_with_messages",
+      "filePath": "nanobot/tests/agent/test_consolidate_offset.py",
+      "lineRange": [
+        15,
+        29
+      ],
+      "summary": "函数 create_session_with_messages 位于 test_consolidate_offset.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/tests/agent/test_consolidate_offset.py:assert_messages_content",
+      "type": "function",
+      "name": "assert_messages_content",
+      "filePath": "nanobot/tests/agent/test_consolidate_offset.py",
+      "lineRange": [
+        32,
+        42
+      ],
+      "summary": "函数 assert_messages_content 位于 test_consolidate_offset.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/tests/agent/test_consolidate_offset.py:get_old_messages",
+      "type": "function",
+      "name": "get_old_messages",
+      "filePath": "nanobot/tests/agent/test_consolidate_offset.py",
+      "lineRange": [
+        45,
+        56
+      ],
+      "summary": "函数 get_old_messages 位于 test_consolidate_offset.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:nanobot/tests/agent/test_consolidate_offset.py:TestSessionLastConsolidated",
+      "type": "class",
+      "name": "TestSessionLastConsolidated",
+      "filePath": "nanobot/tests/agent/test_consolidate_offset.py",
+      "lineRange": [
+        59,
+        85
+      ],
+      "summary": "类 TestSessionLastConsolidated 位于 test_consolidate_offset.py，由结构提取结果识别。",
+      "tags": [
+        "class",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:nanobot/tests/agent/test_consolidate_offset.py:TestSessionImmutableHistory",
+      "type": "class",
+      "name": "TestSessionImmutableHistory",
+      "filePath": "nanobot/tests/agent/test_consolidate_offset.py",
+      "lineRange": [
+        88,
+        141
+      ],
+      "summary": "类 TestSessionImmutableHistory 位于 test_consolidate_offset.py，由结构提取结果识别。",
+      "tags": [
+        "class",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:nanobot/tests/agent/test_consolidate_offset.py:TestSessionPersistence",
+      "type": "class",
+      "name": "TestSessionPersistence",
+      "filePath": "nanobot/tests/agent/test_consolidate_offset.py",
+      "lineRange": [
+        144,
+        178
+      ],
+      "summary": "类 TestSessionPersistence 位于 test_consolidate_offset.py，由结构提取结果识别。",
+      "tags": [
+        "class",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:nanobot/tests/agent/test_consolidate_offset.py:TestConsolidationTriggerConditions",
+      "type": "class",
+      "name": "TestConsolidationTriggerConditions",
+      "filePath": "nanobot/tests/agent/test_consolidate_offset.py",
+      "lineRange": [
+        181,
+        223
+      ],
+      "summary": "类 TestConsolidationTriggerConditions 位于 test_consolidate_offset.py，由结构提取结果识别。",
+      "tags": [
+        "class",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:nanobot/tests/agent/test_consolidate_offset.py:TestLastConsolidatedEdgeCases",
+      "type": "class",
+      "name": "TestLastConsolidatedEdgeCases",
+      "filePath": "nanobot/tests/agent/test_consolidate_offset.py",
+      "lineRange": [
+        226,
+        276
+      ],
+      "summary": "类 TestLastConsolidatedEdgeCases 位于 test_consolidate_offset.py，由结构提取结果识别。",
+      "tags": [
+        "class",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:nanobot/tests/agent/test_consolidate_offset.py:TestArchiveAllMode",
+      "type": "class",
+      "name": "TestArchiveAllMode",
+      "filePath": "nanobot/tests/agent/test_consolidate_offset.py",
+      "lineRange": [
+        279,
+        318
+      ],
+      "summary": "类 TestArchiveAllMode 位于 test_consolidate_offset.py，由结构提取结果识别。",
+      "tags": [
+        "class",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:nanobot/tests/agent/test_consolidate_offset.py:TestCacheImmutability",
+      "type": "class",
+      "name": "TestCacheImmutability",
+      "filePath": "nanobot/tests/agent/test_consolidate_offset.py",
+      "lineRange": [
+        321,
+        361
+      ],
+      "summary": "类 TestCacheImmutability 位于 test_consolidate_offset.py，由结构提取结果识别。",
+      "tags": [
+        "class",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:nanobot/tests/agent/test_consolidate_offset.py:TestSliceLogic",
+      "type": "class",
+      "name": "TestSliceLogic",
+      "filePath": "nanobot/tests/agent/test_consolidate_offset.py",
+      "lineRange": [
+        364,
+        405
+      ],
+      "summary": "类 TestSliceLogic 位于 test_consolidate_offset.py，由结构提取结果识别。",
+      "tags": [
+        "class",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:nanobot/tests/agent/test_consolidate_offset.py:TestEmptyAndBoundarySessions",
+      "type": "class",
+      "name": "TestEmptyAndBoundarySessions",
+      "filePath": "nanobot/tests/agent/test_consolidate_offset.py",
+      "lineRange": [
+        408,
+        480
+      ],
+      "summary": "类 TestEmptyAndBoundarySessions 位于 test_consolidate_offset.py，由结构提取结果识别。",
+      "tags": [
+        "class",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:nanobot/tests/agent/test_consolidate_offset.py:TestNewCommandArchival",
+      "type": "class",
+      "name": "TestNewCommandArchival",
+      "filePath": "nanobot/tests/agent/test_consolidate_offset.py",
+      "lineRange": [
+        483,
+        619
+      ],
+      "summary": "类 TestNewCommandArchival 位于 test_consolidate_offset.py，由结构提取结果识别。",
+      "tags": [
+        "class",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:nanobot/tests/agent/test_consolidation_ratio.py",
+      "type": "file",
+      "name": "test_consolidation_ratio.py",
+      "filePath": "nanobot/tests/agent/test_consolidation_ratio.py",
+      "summary": "test_consolidation_ratio.py 是 code 文件，包含 5 个函数，引用 5 个内部或外部依赖，在项目路径 nanobot/tests/agent/test_consolidation_ratio.py 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "python",
+        "test"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:nanobot/tests/agent/test_consolidation_ratio.py:_make_loop",
+      "type": "function",
+      "name": "_make_loop",
+      "filePath": "nanobot/tests/agent/test_consolidation_ratio.py",
+      "lineRange": [
+        15,
+        40
+      ],
+      "summary": "函数 _make_loop 位于 test_consolidation_ratio.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:nanobot/tests/agent/test_consolidation_ratio.py:_session_with_turns",
+      "type": "function",
+      "name": "_session_with_turns",
+      "filePath": "nanobot/tests/agent/test_consolidation_ratio.py",
+      "lineRange": [
+        43,
+        50
+      ],
+      "summary": "函数 _session_with_turns 位于 test_consolidation_ratio.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/tests/agent/test_consolidation_ratio.py:test_consolidation_ratio_controls_target",
+      "type": "function",
+      "name": "test_consolidation_ratio_controls_target",
+      "filePath": "nanobot/tests/agent/test_consolidation_ratio.py",
+      "lineRange": [
+        62,
+        89
+      ],
+      "summary": "函数 test_consolidation_ratio_controls_target 位于 test_consolidation_ratio.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:nanobot/tests/agent/test_consolidation_ratio.py:test_ratio_propagated_from_config_schema",
+      "type": "function",
+      "name": "test_ratio_propagated_from_config_schema",
+      "filePath": "nanobot/tests/agent/test_consolidation_ratio.py",
+      "lineRange": [
+        92,
+        100
+      ],
+      "summary": "函数 test_ratio_propagated_from_config_schema 位于 test_consolidation_ratio.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/tests/agent/test_consolidation_ratio.py:test_ratio_validation_rejects_out_of_range",
+      "type": "function",
+      "name": "test_ratio_validation_rejects_out_of_range",
+      "filePath": "nanobot/tests/agent/test_consolidation_ratio.py",
+      "lineRange": [
+        103,
+        108
+      ],
+      "summary": "函数 test_ratio_validation_rejects_out_of_range 位于 test_consolidation_ratio.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:nanobot/nanobot/utils/runtime.py",
+      "target": "function:nanobot/nanobot/utils/runtime.py:empty_tool_result_message",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/utils/runtime.py",
+      "target": "function:nanobot/nanobot/utils/runtime.py:ensure_nonempty_tool_result",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/utils/runtime.py",
+      "target": "function:nanobot/nanobot/utils/runtime.py:is_blank_text",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/utils/runtime.py",
+      "target": "function:nanobot/nanobot/utils/runtime.py:build_finalization_retry_message",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/utils/runtime.py",
+      "target": "function:nanobot/nanobot/utils/runtime.py:build_length_recovery_message",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/utils/runtime.py",
+      "target": "function:nanobot/nanobot/utils/runtime.py:external_lookup_signature",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/utils/runtime.py",
+      "target": "function:nanobot/nanobot/utils/runtime.py:repeated_external_lookup_error",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/utils/runtime.py",
+      "target": "function:nanobot/nanobot/utils/runtime.py:workspace_violation_signature",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/utils/runtime.py",
+      "target": "function:nanobot/nanobot/utils/runtime.py:_normalize_violation_target",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/utils/runtime.py",
+      "target": "function:nanobot/nanobot/utils/runtime.py:repeated_workspace_violation_error",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/utils/runtime.py",
+      "target": "file:nanobot/nanobot/utils/helpers.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/nanobot/utils/searchusage.py",
+      "target": "function:nanobot/nanobot/utils/searchusage.py:fetch_search_usage",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/utils/searchusage.py",
+      "target": "function:nanobot/nanobot/utils/searchusage.py:_fetch_tavily_usage",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/utils/searchusage.py",
+      "target": "function:nanobot/nanobot/utils/searchusage.py:_parse_tavily_usage",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/utils/searchusage.py",
+      "target": "class:nanobot/nanobot/utils/searchusage.py:SearchUsageInfo",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/utils/tool_hints.py",
+      "target": "function:nanobot/nanobot/utils/tool_hints.py:format_tool_hints",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/utils/tool_hints.py",
+      "target": "function:nanobot/nanobot/utils/tool_hints.py:_get_args",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/utils/tool_hints.py",
+      "target": "function:nanobot/nanobot/utils/tool_hints.py:_extract_arg",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/utils/tool_hints.py",
+      "target": "function:nanobot/nanobot/utils/tool_hints.py:_fmt_known",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/utils/tool_hints.py",
+      "target": "function:nanobot/nanobot/utils/tool_hints.py:_abbreviate_command",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/utils/tool_hints.py",
+      "target": "function:nanobot/nanobot/utils/tool_hints.py:_fmt_mcp",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/utils/tool_hints.py",
+      "target": "function:nanobot/nanobot/utils/tool_hints.py:_fmt_fallback",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/utils/tool_hints.py",
+      "target": "file:nanobot/nanobot/utils/path.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/nanobot/utils/webui_titles.py",
+      "target": "function:nanobot/nanobot/utils/webui_titles.py:mark_webui_session",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/utils/webui_titles.py",
+      "target": "function:nanobot/nanobot/utils/webui_titles.py:clean_generated_title",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/utils/webui_titles.py",
+      "target": "function:nanobot/nanobot/utils/webui_titles.py:_title_inputs",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/utils/webui_titles.py",
+      "target": "function:nanobot/nanobot/utils/webui_titles.py:maybe_generate_webui_title",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/utils/webui_titles.py",
+      "target": "function:nanobot/nanobot/utils/webui_titles.py:maybe_generate_webui_title_after_turn",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/utils/webui_titles.py",
+      "target": "file:nanobot/nanobot/providers/base.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/nanobot/utils/webui_titles.py",
+      "target": "file:nanobot/nanobot/session/manager.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/nanobot/utils/webui_titles.py",
+      "target": "file:nanobot/nanobot/utils/helpers.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/tests/agent/test_ask_user.py",
+      "target": "function:nanobot/tests/agent/test_ask_user.py:_make_provider",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/agent/test_ask_user.py",
+      "target": "function:nanobot/tests/agent/test_ask_user.py:test_ask_user_tool_schema_and_interrupt",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/agent/test_ask_user.py",
+      "target": "function:nanobot/tests/agent/test_ask_user.py:test_runner_pauses_on_ask_user_without_executing_later_tools",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/agent/test_ask_user.py",
+      "target": "function:nanobot/tests/agent/test_ask_user.py:test_ask_user_text_fallback_resumes_with_next_message",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/agent/test_ask_user.py",
+      "target": "function:nanobot/tests/agent/test_ask_user.py:test_ask_user_keeps_buttons_for_telegram",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/agent/test_ask_user.py",
+      "target": "function:nanobot/tests/agent/test_ask_user.py:test_ask_user_keeps_buttons_for_websocket",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/agent/test_ask_user.py",
+      "target": "file:nanobot/nanobot/agent/loop.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/tests/agent/test_ask_user.py",
+      "target": "file:nanobot/nanobot/agent/runner.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/tests/agent/test_ask_user.py",
+      "target": "file:nanobot/nanobot/agent/tools/ask.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/tests/agent/test_ask_user.py",
+      "target": "file:nanobot/nanobot/agent/tools/base.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/tests/agent/test_ask_user.py",
+      "target": "file:nanobot/nanobot/agent/tools/registry.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/tests/agent/test_ask_user.py",
+      "target": "file:nanobot/nanobot/agent/tools/schema.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/tests/agent/test_ask_user.py",
+      "target": "file:nanobot/nanobot/bus/events.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/tests/agent/test_ask_user.py",
+      "target": "file:nanobot/nanobot/bus/queue.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/tests/agent/test_ask_user.py",
+      "target": "file:nanobot/nanobot/providers/base.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/tests/agent/test_auto_compact.py",
+      "target": "function:nanobot/tests/agent/test_auto_compact.py:_make_loop",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/agent/test_auto_compact.py",
+      "target": "function:nanobot/tests/agent/test_auto_compact.py:_add_turns",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/agent/test_auto_compact.py",
+      "target": "class:nanobot/tests/agent/test_auto_compact.py:TestSessionTTLConfig",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/agent/test_auto_compact.py",
+      "target": "class:nanobot/tests/agent/test_auto_compact.py:TestAgentLoopTTLParam",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/agent/test_auto_compact.py",
+      "target": "class:nanobot/tests/agent/test_auto_compact.py:TestAutoCompact",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/agent/test_auto_compact.py",
+      "target": "class:nanobot/tests/agent/test_auto_compact.py:TestAutoCompactIdleDetection",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/agent/test_auto_compact.py",
+      "target": "class:nanobot/tests/agent/test_auto_compact.py:TestAutoCompactSystemMessages",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/agent/test_auto_compact.py",
+      "target": "class:nanobot/tests/agent/test_auto_compact.py:TestAutoCompactEdgeCases",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/agent/test_auto_compact.py",
+      "target": "class:nanobot/tests/agent/test_auto_compact.py:TestAutoCompactIntegration",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/agent/test_auto_compact.py",
+      "target": "class:nanobot/tests/agent/test_auto_compact.py:TestProactiveAutoCompact",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/agent/test_auto_compact.py",
+      "target": "class:nanobot/tests/agent/test_auto_compact.py:TestSummaryPersistence",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/agent/test_auto_compact.py",
+      "target": "file:nanobot/nanobot/agent/loop.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/tests/agent/test_auto_compact.py",
+      "target": "file:nanobot/nanobot/bus/events.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/tests/agent/test_auto_compact.py",
+      "target": "file:nanobot/nanobot/bus/queue.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/tests/agent/test_auto_compact.py",
+      "target": "file:nanobot/nanobot/command/__init__.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/tests/agent/test_auto_compact.py",
+      "target": "file:nanobot/nanobot/config/schema.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/tests/agent/test_auto_compact.py",
+      "target": "file:nanobot/nanobot/providers/base.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/tests/agent/test_consolidate_offset.py",
+      "target": "function:nanobot/tests/agent/test_consolidate_offset.py:create_session_with_messages",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/agent/test_consolidate_offset.py",
+      "target": "function:nanobot/tests/agent/test_consolidate_offset.py:assert_messages_content",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/agent/test_consolidate_offset.py",
+      "target": "function:nanobot/tests/agent/test_consolidate_offset.py:get_old_messages",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/agent/test_consolidate_offset.py",
+      "target": "class:nanobot/tests/agent/test_consolidate_offset.py:TestSessionLastConsolidated",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/agent/test_consolidate_offset.py",
+      "target": "class:nanobot/tests/agent/test_consolidate_offset.py:TestSessionImmutableHistory",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/agent/test_consolidate_offset.py",
+      "target": "class:nanobot/tests/agent/test_consolidate_offset.py:TestSessionPersistence",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/agent/test_consolidate_offset.py",
+      "target": "class:nanobot/tests/agent/test_consolidate_offset.py:TestConsolidationTriggerConditions",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/agent/test_consolidate_offset.py",
+      "target": "class:nanobot/tests/agent/test_consolidate_offset.py:TestLastConsolidatedEdgeCases",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/agent/test_consolidate_offset.py",
+      "target": "class:nanobot/tests/agent/test_consolidate_offset.py:TestArchiveAllMode",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/agent/test_consolidate_offset.py",
+      "target": "class:nanobot/tests/agent/test_consolidate_offset.py:TestCacheImmutability",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/agent/test_consolidate_offset.py",
+      "target": "class:nanobot/tests/agent/test_consolidate_offset.py:TestSliceLogic",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/agent/test_consolidate_offset.py",
+      "target": "class:nanobot/tests/agent/test_consolidate_offset.py:TestEmptyAndBoundarySessions",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/agent/test_consolidate_offset.py",
+      "target": "class:nanobot/tests/agent/test_consolidate_offset.py:TestNewCommandArchival",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/agent/test_consolidate_offset.py",
+      "target": "file:nanobot/nanobot/session/manager.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/tests/agent/test_consolidation_ratio.py",
+      "target": "function:nanobot/tests/agent/test_consolidation_ratio.py:_make_loop",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/agent/test_consolidation_ratio.py",
+      "target": "function:nanobot/tests/agent/test_consolidation_ratio.py:_session_with_turns",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/agent/test_consolidation_ratio.py",
+      "target": "function:nanobot/tests/agent/test_consolidation_ratio.py:test_consolidation_ratio_controls_target",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/agent/test_consolidation_ratio.py",
+      "target": "function:nanobot/tests/agent/test_consolidation_ratio.py:test_ratio_propagated_from_config_schema",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/agent/test_consolidation_ratio.py",
+      "target": "function:nanobot/tests/agent/test_consolidation_ratio.py:test_ratio_validation_rejects_out_of_range",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/agent/test_consolidation_ratio.py",
+      "target": "file:nanobot/nanobot/agent/loop.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/tests/agent/test_consolidation_ratio.py",
+      "target": "file:nanobot/nanobot/agent/memory.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/tests/agent/test_consolidation_ratio.py",
+      "target": "file:nanobot/nanobot/bus/queue.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/tests/agent/test_consolidation_ratio.py",
+      "target": "file:nanobot/nanobot/config/schema.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/tests/agent/test_consolidation_ratio.py",
+      "target": "file:nanobot/nanobot/providers/base.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    }
+  ]
+}

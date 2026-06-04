@@ -1,0 +1,330 @@
+{
+  "nodes": [
+    {
+      "id": "config:AuBot/packages/i18n/src/locales/fr/tamagotchi/electron/tray.yaml",
+      "type": "config",
+      "name": "tray.yaml",
+      "filePath": "AuBot/packages/i18n/src/locales/fr/tamagotchi/electron/tray.yaml",
+      "summary": "配置文件 tray.yaml 管理 AuBot\\packages\\i18n\\src\\locales\\fr\\tamagotchi\\electron 相关的工具链、构建或运行参数，是项目环境约定的一部分。",
+      "tags": [
+        "配置",
+        "项目设置",
+        "工具链"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:AuBot/packages/i18n/src/locales/fr/tamagotchi/settings.yaml",
+      "type": "config",
+      "name": "settings.yaml",
+      "filePath": "AuBot/packages/i18n/src/locales/fr/tamagotchi/settings.yaml",
+      "summary": "配置文件 settings.yaml 管理 AuBot\\packages\\i18n\\src\\locales\\fr\\tamagotchi 相关的工具链、构建或运行参数，是项目环境约定的一部分。",
+      "tags": [
+        "配置",
+        "项目设置",
+        "工具链"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:AuBot/packages/i18n/src/locales/fr/tamagotchi/stage.yaml",
+      "type": "config",
+      "name": "stage.yaml",
+      "filePath": "AuBot/packages/i18n/src/locales/fr/tamagotchi/stage.yaml",
+      "summary": "配置文件 stage.yaml 管理 AuBot\\packages\\i18n\\src\\locales\\fr\\tamagotchi 相关的工具链、构建或运行参数，是项目环境约定的一部分。",
+      "tags": [
+        "配置",
+        "项目设置",
+        "工具链"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:AuBot/packages/i18n/src/locales/ja/docs/theme.yaml",
+      "type": "config",
+      "name": "theme.yaml",
+      "filePath": "AuBot/packages/i18n/src/locales/ja/docs/theme.yaml",
+      "summary": "配置文件 theme.yaml 管理 AuBot\\packages\\i18n\\src\\locales\\ja\\docs 相关的工具链、构建或运行参数，是项目环境约定的一部分。",
+      "tags": [
+        "配置",
+        "项目设置",
+        "工具链"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:AuBot/packages/i18n/src/locales/ja/docs/versions.yaml",
+      "type": "config",
+      "name": "versions.yaml",
+      "filePath": "AuBot/packages/i18n/src/locales/ja/docs/versions.yaml",
+      "summary": "配置文件 versions.yaml 管理 AuBot\\packages\\i18n\\src\\locales\\ja\\docs 相关的工具链、构建或运行参数，是项目环境约定的一部分。",
+      "tags": [
+        "配置",
+        "项目设置",
+        "工具链"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:AuBot/packages/i18n/src/locales/ja/server/auth.yaml",
+      "type": "config",
+      "name": "auth.yaml",
+      "filePath": "AuBot/packages/i18n/src/locales/ja/server/auth.yaml",
+      "summary": "配置文件 auth.yaml 管理 AuBot\\packages\\i18n\\src\\locales\\ja\\server 相关的工具链、构建或运行参数，是项目环境约定的一部分。",
+      "tags": [
+        "配置",
+        "项目设置",
+        "工具链"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:AuBot/packages/i18n/src/locales/ja/tamagotchi/electron/tray.yaml",
+      "type": "config",
+      "name": "tray.yaml",
+      "filePath": "AuBot/packages/i18n/src/locales/ja/tamagotchi/electron/tray.yaml",
+      "summary": "配置文件 tray.yaml 管理 AuBot\\packages\\i18n\\src\\locales\\ja\\tamagotchi\\electron 相关的工具链、构建或运行参数，是项目环境约定的一部分。",
+      "tags": [
+        "配置",
+        "项目设置",
+        "工具链"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:AuBot/packages/i18n/src/locales/ja/tamagotchi/settings.yaml",
+      "type": "config",
+      "name": "settings.yaml",
+      "filePath": "AuBot/packages/i18n/src/locales/ja/tamagotchi/settings.yaml",
+      "summary": "配置文件 settings.yaml 管理 AuBot\\packages\\i18n\\src\\locales\\ja\\tamagotchi 相关的工具链、构建或运行参数，是项目环境约定的一部分。",
+      "tags": [
+        "配置",
+        "项目设置",
+        "工具链"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:AuBot/packages/i18n/src/locales/ja/tamagotchi/stage.yaml",
+      "type": "config",
+      "name": "stage.yaml",
+      "filePath": "AuBot/packages/i18n/src/locales/ja/tamagotchi/stage.yaml",
+      "summary": "配置文件 stage.yaml 管理 AuBot\\packages\\i18n\\src\\locales\\ja\\tamagotchi 相关的工具链、构建或运行参数，是项目环境约定的一部分。",
+      "tags": [
+        "配置",
+        "项目设置",
+        "工具链"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:AuBot/packages/i18n/src/locales/ko/docs/theme.yaml",
+      "type": "config",
+      "name": "theme.yaml",
+      "filePath": "AuBot/packages/i18n/src/locales/ko/docs/theme.yaml",
+      "summary": "配置文件 theme.yaml 管理 AuBot\\packages\\i18n\\src\\locales\\ko\\docs 相关的工具链、构建或运行参数，是项目环境约定的一部分。",
+      "tags": [
+        "配置",
+        "项目设置",
+        "工具链"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:AuBot/packages/i18n/src/locales/ko/docs/versions.yaml",
+      "type": "config",
+      "name": "versions.yaml",
+      "filePath": "AuBot/packages/i18n/src/locales/ko/docs/versions.yaml",
+      "summary": "配置文件 versions.yaml 管理 AuBot\\packages\\i18n\\src\\locales\\ko\\docs 相关的工具链、构建或运行参数，是项目环境约定的一部分。",
+      "tags": [
+        "配置",
+        "项目设置",
+        "工具链"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:AuBot/packages/i18n/src/locales/ko/server/auth.yaml",
+      "type": "config",
+      "name": "auth.yaml",
+      "filePath": "AuBot/packages/i18n/src/locales/ko/server/auth.yaml",
+      "summary": "配置文件 auth.yaml 管理 AuBot\\packages\\i18n\\src\\locales\\ko\\server 相关的工具链、构建或运行参数，是项目环境约定的一部分。",
+      "tags": [
+        "配置",
+        "项目设置",
+        "工具链"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:AuBot/packages/i18n/src/locales/ko/tamagotchi/electron/tray.yaml",
+      "type": "config",
+      "name": "tray.yaml",
+      "filePath": "AuBot/packages/i18n/src/locales/ko/tamagotchi/electron/tray.yaml",
+      "summary": "配置文件 tray.yaml 管理 AuBot\\packages\\i18n\\src\\locales\\ko\\tamagotchi\\electron 相关的工具链、构建或运行参数，是项目环境约定的一部分。",
+      "tags": [
+        "配置",
+        "项目设置",
+        "工具链"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:AuBot/packages/i18n/src/locales/ko/tamagotchi/settings.yaml",
+      "type": "config",
+      "name": "settings.yaml",
+      "filePath": "AuBot/packages/i18n/src/locales/ko/tamagotchi/settings.yaml",
+      "summary": "配置文件 settings.yaml 管理 AuBot\\packages\\i18n\\src\\locales\\ko\\tamagotchi 相关的工具链、构建或运行参数，是项目环境约定的一部分。",
+      "tags": [
+        "配置",
+        "项目设置",
+        "工具链"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:AuBot/packages/i18n/src/locales/ko/tamagotchi/stage.yaml",
+      "type": "config",
+      "name": "stage.yaml",
+      "filePath": "AuBot/packages/i18n/src/locales/ko/tamagotchi/stage.yaml",
+      "summary": "配置文件 stage.yaml 管理 AuBot\\packages\\i18n\\src\\locales\\ko\\tamagotchi 相关的工具链、构建或运行参数，是项目环境约定的一部分。",
+      "tags": [
+        "配置",
+        "项目设置",
+        "工具链"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:AuBot/packages/i18n/src/locales/ru/docs/theme.yaml",
+      "type": "config",
+      "name": "theme.yaml",
+      "filePath": "AuBot/packages/i18n/src/locales/ru/docs/theme.yaml",
+      "summary": "配置文件 theme.yaml 管理 AuBot\\packages\\i18n\\src\\locales\\ru\\docs 相关的工具链、构建或运行参数，是项目环境约定的一部分。",
+      "tags": [
+        "配置",
+        "项目设置",
+        "工具链"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:AuBot/packages/i18n/src/locales/ru/docs/versions.yaml",
+      "type": "config",
+      "name": "versions.yaml",
+      "filePath": "AuBot/packages/i18n/src/locales/ru/docs/versions.yaml",
+      "summary": "配置文件 versions.yaml 管理 AuBot\\packages\\i18n\\src\\locales\\ru\\docs 相关的工具链、构建或运行参数，是项目环境约定的一部分。",
+      "tags": [
+        "配置",
+        "项目设置",
+        "工具链"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:AuBot/packages/i18n/src/locales/ru/server/auth.yaml",
+      "type": "config",
+      "name": "auth.yaml",
+      "filePath": "AuBot/packages/i18n/src/locales/ru/server/auth.yaml",
+      "summary": "配置文件 auth.yaml 管理 AuBot\\packages\\i18n\\src\\locales\\ru\\server 相关的工具链、构建或运行参数，是项目环境约定的一部分。",
+      "tags": [
+        "配置",
+        "项目设置",
+        "工具链"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:AuBot/packages/i18n/src/locales/ru/tamagotchi/electron/tray.yaml",
+      "type": "config",
+      "name": "tray.yaml",
+      "filePath": "AuBot/packages/i18n/src/locales/ru/tamagotchi/electron/tray.yaml",
+      "summary": "配置文件 tray.yaml 管理 AuBot\\packages\\i18n\\src\\locales\\ru\\tamagotchi\\electron 相关的工具链、构建或运行参数，是项目环境约定的一部分。",
+      "tags": [
+        "配置",
+        "项目设置",
+        "工具链"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:AuBot/packages/i18n/src/locales/ru/tamagotchi/settings.yaml",
+      "type": "config",
+      "name": "settings.yaml",
+      "filePath": "AuBot/packages/i18n/src/locales/ru/tamagotchi/settings.yaml",
+      "summary": "配置文件 settings.yaml 管理 AuBot\\packages\\i18n\\src\\locales\\ru\\tamagotchi 相关的工具链、构建或运行参数，是项目环境约定的一部分。",
+      "tags": [
+        "配置",
+        "项目设置",
+        "工具链"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:AuBot/packages/i18n/src/locales/ru/tamagotchi/stage.yaml",
+      "type": "config",
+      "name": "stage.yaml",
+      "filePath": "AuBot/packages/i18n/src/locales/ru/tamagotchi/stage.yaml",
+      "summary": "配置文件 stage.yaml 管理 AuBot\\packages\\i18n\\src\\locales\\ru\\tamagotchi 相关的工具链、构建或运行参数，是项目环境约定的一部分。",
+      "tags": [
+        "配置",
+        "项目设置",
+        "工具链"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:AuBot/packages/i18n/src/locales/vi/docs/theme.yaml",
+      "type": "config",
+      "name": "theme.yaml",
+      "filePath": "AuBot/packages/i18n/src/locales/vi/docs/theme.yaml",
+      "summary": "配置文件 theme.yaml 管理 AuBot\\packages\\i18n\\src\\locales\\vi\\docs 相关的工具链、构建或运行参数，是项目环境约定的一部分。",
+      "tags": [
+        "配置",
+        "项目设置",
+        "工具链"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:AuBot/packages/i18n/src/locales/vi/docs/versions.yaml",
+      "type": "config",
+      "name": "versions.yaml",
+      "filePath": "AuBot/packages/i18n/src/locales/vi/docs/versions.yaml",
+      "summary": "配置文件 versions.yaml 管理 AuBot\\packages\\i18n\\src\\locales\\vi\\docs 相关的工具链、构建或运行参数，是项目环境约定的一部分。",
+      "tags": [
+        "配置",
+        "项目设置",
+        "工具链"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:AuBot/packages/i18n/src/locales/vi/server/auth.yaml",
+      "type": "config",
+      "name": "auth.yaml",
+      "filePath": "AuBot/packages/i18n/src/locales/vi/server/auth.yaml",
+      "summary": "配置文件 auth.yaml 管理 AuBot\\packages\\i18n\\src\\locales\\vi\\server 相关的工具链、构建或运行参数，是项目环境约定的一部分。",
+      "tags": [
+        "配置",
+        "项目设置",
+        "工具链"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:AuBot/packages/i18n/src/locales/vi/tamagotchi/electron/tray.yaml",
+      "type": "config",
+      "name": "tray.yaml",
+      "filePath": "AuBot/packages/i18n/src/locales/vi/tamagotchi/electron/tray.yaml",
+      "summary": "配置文件 tray.yaml 管理 AuBot\\packages\\i18n\\src\\locales\\vi\\tamagotchi\\electron 相关的工具链、构建或运行参数，是项目环境约定的一部分。",
+      "tags": [
+        "配置",
+        "项目设置",
+        "工具链"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": []
+}

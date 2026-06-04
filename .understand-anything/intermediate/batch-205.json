@@ -1,0 +1,482 @@
+{
+  "nodes": [
+    {
+      "id": "file:AuBot/apps/stage-pocket/ios/App/App/URLSessionHostWebSocketSession.swift",
+      "type": "file",
+      "name": "URLSessionHostWebSocketSession.swift",
+      "filePath": "AuBot/apps/stage-pocket/ios/App/App/URLSessionHostWebSocketSession.swift",
+      "summary": "URLSessionHostWebSocketSession.swift 是 code 文件，在项目路径 AuBot/apps/stage-pocket/ios/App/App/URLSessionHostWebSocketSession.swift 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "swift"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:AuBot/apps/stage-pocket/ios/App/App/WeakScriptMessageHandler.swift",
+      "type": "file",
+      "name": "WeakScriptMessageHandler.swift",
+      "filePath": "AuBot/apps/stage-pocket/ios/App/App/WeakScriptMessageHandler.swift",
+      "summary": "WeakScriptMessageHandler.swift 是 code 文件，在项目路径 AuBot/apps/stage-pocket/ios/App/App/WeakScriptMessageHandler.swift 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "swift"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/apps/stage-pocket/ios/App/CapApp-SPM/Package.resolved",
+      "type": "file",
+      "name": "Package.resolved",
+      "filePath": "AuBot/apps/stage-pocket/ios/App/CapApp-SPM/Package.resolved",
+      "summary": "Package.resolved 是 code 文件，在项目路径 AuBot/apps/stage-pocket/ios/App/CapApp-SPM/Package.resolved 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "resolved"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/apps/stage-pocket/ios/App/CapApp-SPM/Package.swift",
+      "type": "file",
+      "name": "Package.swift",
+      "filePath": "AuBot/apps/stage-pocket/ios/App/CapApp-SPM/Package.swift",
+      "summary": "Package.swift 是 code 文件，在项目路径 AuBot/apps/stage-pocket/ios/App/CapApp-SPM/Package.swift 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "swift"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/apps/stage-pocket/ios/App/CapApp-SPM/Sources/CapApp-SPM/CapApp-SPM.swift",
+      "type": "file",
+      "name": "CapApp-SPM.swift",
+      "filePath": "AuBot/apps/stage-pocket/ios/App/CapApp-SPM/Sources/CapApp-SPM/CapApp-SPM.swift",
+      "summary": "CapApp-SPM.swift 是 code 文件，在项目路径 AuBot/apps/stage-pocket/ios/App/CapApp-SPM/Sources/CapApp-SPM/CapApp-SPM.swift 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "swift"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/apps/stage-pocket/ios/debug.xcconfig",
+      "type": "file",
+      "name": "debug.xcconfig",
+      "filePath": "AuBot/apps/stage-pocket/ios/debug.xcconfig",
+      "summary": "debug.xcconfig 是 code 文件，在项目路径 AuBot/apps/stage-pocket/ios/debug.xcconfig 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "xcconfig",
+        "configuration"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:AuBot/apps/stage-pocket/ios/ExportOptions.plist",
+      "type": "config",
+      "name": "ExportOptions.plist",
+      "filePath": "AuBot/apps/stage-pocket/ios/ExportOptions.plist",
+      "summary": "ExportOptions.plist 是 config 文件，在项目路径 AuBot/apps/stage-pocket/ios/ExportOptions.plist 中承担对应模块职责。",
+      "tags": [
+        "config",
+        "xml"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/apps/stage-pocket/public/_headers",
+      "type": "file",
+      "name": "_headers",
+      "filePath": "AuBot/apps/stage-pocket/public/_headers",
+      "summary": "_headers 是 code 文件，在项目路径 AuBot/apps/stage-pocket/public/_headers 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "unknown"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/apps/stage-pocket/public/_redirects",
+      "type": "file",
+      "name": "_redirects",
+      "filePath": "AuBot/apps/stage-pocket/public/_redirects",
+      "summary": "_redirects 是 code 文件，在项目路径 AuBot/apps/stage-pocket/public/_redirects 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "unknown"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/apps/stage-pocket/public/.assetsignore",
+      "type": "file",
+      "name": ".assetsignore",
+      "filePath": "AuBot/apps/stage-pocket/public/.assetsignore",
+      "summary": ".assetsignore 是 code 文件，在项目路径 AuBot/apps/stage-pocket/public/.assetsignore 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "unknown"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/apps/stage-pocket/src/assets/backgrounds/fairy-forest.e17cbc2774.ko-fi.com.avif",
+      "type": "file",
+      "name": "fairy-forest.e17cbc2774.ko-fi.com.avif",
+      "filePath": "AuBot/apps/stage-pocket/src/assets/backgrounds/fairy-forest.e17cbc2774.ko-fi.com.avif",
+      "summary": "fairy-forest.e17cbc2774.ko-fi.com.avif 是 code 文件，在项目路径 AuBot/apps/stage-pocket/src/assets/backgrounds/fairy-forest.e17cbc2774.ko-fi.com.avif 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "avif"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:AuBot/apps/stage-pocket/src/components/AudioWaveform.vue",
+      "type": "file",
+      "name": "AudioWaveform.vue",
+      "filePath": "AuBot/apps/stage-pocket/src/components/AudioWaveform.vue",
+      "summary": "AudioWaveform.vue 是 code 文件，在项目路径 AuBot/apps/stage-pocket/src/components/AudioWaveform.vue 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "vue"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:AuBot/apps/stage-pocket/src/components/DataGui/DualEndRange.vue",
+      "type": "file",
+      "name": "DualEndRange.vue",
+      "filePath": "AuBot/apps/stage-pocket/src/components/DataGui/DualEndRange.vue",
+      "summary": "DualEndRange.vue 是 code 文件，在项目路径 AuBot/apps/stage-pocket/src/components/DataGui/DualEndRange.vue 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "vue"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:AuBot/apps/stage-pocket/src/components/IconAnimation.vue",
+      "type": "file",
+      "name": "IconAnimation.vue",
+      "filePath": "AuBot/apps/stage-pocket/src/components/IconAnimation.vue",
+      "summary": "IconAnimation.vue 是 code 文件，在项目路径 AuBot/apps/stage-pocket/src/components/IconAnimation.vue 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "vue"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:AuBot/apps/stage-pocket/src/components/onboarding/step-permissions.vue",
+      "type": "file",
+      "name": "step-permissions.vue",
+      "filePath": "AuBot/apps/stage-pocket/src/components/onboarding/step-permissions.vue",
+      "summary": "step-permissions.vue 是 code 文件，在项目路径 AuBot/apps/stage-pocket/src/components/onboarding/step-permissions.vue 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "vue"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:AuBot/apps/stage-pocket/src/components/websocket-status-button.vue",
+      "type": "file",
+      "name": "websocket-status-button.vue",
+      "filePath": "AuBot/apps/stage-pocket/src/components/websocket-status-button.vue",
+      "summary": "websocket-status-button.vue 是 code 文件，在项目路径 AuBot/apps/stage-pocket/src/components/websocket-status-button.vue 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "vue"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:AuBot/apps/stage-pocket/src/composables/audio-input.ts",
+      "type": "file",
+      "name": "audio-input.ts",
+      "filePath": "AuBot/apps/stage-pocket/src/composables/audio-input.ts",
+      "summary": "audio-input.ts 是 code 文件，包含 1 个函数，在项目路径 AuBot/apps/stage-pocket/src/composables/audio-input.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:AuBot/apps/stage-pocket/src/composables/audio-input.ts:useAudioInput",
+      "type": "function",
+      "name": "useAudioInput",
+      "filePath": "AuBot/apps/stage-pocket/src/composables/audio-input.ts",
+      "lineRange": [
+        4,
+        83
+      ],
+      "summary": "函数 useAudioInput 位于 audio-input.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:AuBot/apps/stage-pocket/src/composables/audio-record.ts",
+      "type": "file",
+      "name": "audio-record.ts",
+      "filePath": "AuBot/apps/stage-pocket/src/composables/audio-record.ts",
+      "summary": "audio-record.ts 是 code 文件，包含 1 个函数，在项目路径 AuBot/apps/stage-pocket/src/composables/audio-record.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/apps/stage-pocket/src/composables/audio-record.ts:useAudioRecord",
+      "type": "function",
+      "name": "useAudioRecord",
+      "filePath": "AuBot/apps/stage-pocket/src/composables/audio-record.ts",
+      "lineRange": [
+        6,
+        42
+      ],
+      "summary": "函数 useAudioRecord 位于 audio-record.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:AuBot/apps/stage-pocket/src/modules/pwa.ts",
+      "type": "file",
+      "name": "pwa.ts",
+      "filePath": "AuBot/apps/stage-pocket/src/modules/pwa.ts",
+      "summary": "pwa.ts 是 code 文件，在项目路径 AuBot/apps/stage-pocket/src/modules/pwa.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/apps/stage-pocket/src/modules/server-channel-qr-probe.ts",
+      "type": "file",
+      "name": "server-channel-qr-probe.ts",
+      "filePath": "AuBot/apps/stage-pocket/src/modules/server-channel-qr-probe.ts",
+      "summary": "server-channel-qr-probe.ts 是 code 文件，包含 1 个函数，引用 1 个内部或外部依赖，在项目路径 AuBot/apps/stage-pocket/src/modules/server-channel-qr-probe.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/apps/stage-pocket/src/modules/server-channel-qr-probe.ts:probeServerChannelQrPayload",
+      "type": "function",
+      "name": "probeServerChannelQrPayload",
+      "filePath": "AuBot/apps/stage-pocket/src/modules/server-channel-qr-probe.ts",
+      "lineRange": [
+        8,
+        39
+      ],
+      "summary": "函数 probeServerChannelQrPayload 位于 server-channel-qr-probe.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:AuBot/apps/stage-pocket/src/modules/websocket-bridge.ts",
+      "type": "file",
+      "name": "websocket-bridge.ts",
+      "filePath": "AuBot/apps/stage-pocket/src/modules/websocket-bridge.ts",
+      "summary": "websocket-bridge.ts 是 code 文件，包含 3 个函数，包含 1 个类，在项目路径 AuBot/apps/stage-pocket/src/modules/websocket-bridge.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:AuBot/apps/stage-pocket/src/modules/websocket-bridge.ts:postBridgeMessage",
+      "type": "function",
+      "name": "postBridgeMessage",
+      "filePath": "AuBot/apps/stage-pocket/src/modules/websocket-bridge.ts",
+      "lineRange": [
+        39,
+        51
+      ],
+      "summary": "函数 postBridgeMessage 位于 websocket-bridge.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/apps/stage-pocket/src/modules/websocket-bridge.ts:getHostWebSocketConstructor",
+      "type": "function",
+      "name": "getHostWebSocketConstructor",
+      "filePath": "AuBot/apps/stage-pocket/src/modules/websocket-bridge.ts",
+      "lineRange": [
+        139,
+        147
+      ],
+      "summary": "函数 getHostWebSocketConstructor 位于 websocket-bridge.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:AuBot/apps/stage-pocket/src/modules/websocket-bridge.ts:HostWebSocket",
+      "type": "class",
+      "name": "HostWebSocket",
+      "filePath": "AuBot/apps/stage-pocket/src/modules/websocket-bridge.ts",
+      "lineRange": [
+        63,
+        137
+      ],
+      "summary": "类 HostWebSocket 位于 websocket-bridge.ts，由结构提取结果识别。",
+      "tags": [
+        "class",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:AuBot/apps/stage-pocket/src/pages/[...all].vue",
+      "type": "file",
+      "name": "[...all].vue",
+      "filePath": "AuBot/apps/stage-pocket/src/pages/[...all].vue",
+      "summary": "[...all].vue 是 code 文件，在项目路径 AuBot/apps/stage-pocket/src/pages/[...all].vue 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "vue"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/apps/stage-pocket/src/pages/devtools/audio-record.vue",
+      "type": "file",
+      "name": "audio-record.vue",
+      "filePath": "AuBot/apps/stage-pocket/src/pages/devtools/audio-record.vue",
+      "summary": "audio-record.vue 是 code 文件，在项目路径 AuBot/apps/stage-pocket/src/pages/devtools/audio-record.vue 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "vue"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:AuBot/apps/stage-pocket/src/pages/devtools/background-gradient-blending.vue",
+      "type": "file",
+      "name": "background-gradient-blending.vue",
+      "filePath": "AuBot/apps/stage-pocket/src/pages/devtools/background-gradient-blending.vue",
+      "summary": "background-gradient-blending.vue 是 code 文件，在项目路径 AuBot/apps/stage-pocket/src/pages/devtools/background-gradient-blending.vue 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "vue"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:AuBot/apps/stage-pocket/src/pages/devtools/background-removal.vue",
+      "type": "file",
+      "name": "background-removal.vue",
+      "filePath": "AuBot/apps/stage-pocket/src/pages/devtools/background-removal.vue",
+      "summary": "background-removal.vue 是 code 文件，在项目路径 AuBot/apps/stage-pocket/src/pages/devtools/background-removal.vue 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "vue"
+      ],
+      "complexity": "complex"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:AuBot/apps/stage-pocket/src/composables/audio-input.ts",
+      "target": "function:AuBot/apps/stage-pocket/src/composables/audio-input.ts:useAudioInput",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/stage-pocket/src/composables/audio-record.ts",
+      "target": "function:AuBot/apps/stage-pocket/src/composables/audio-record.ts:useAudioRecord",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/stage-pocket/src/modules/server-channel-qr-probe.ts",
+      "target": "function:AuBot/apps/stage-pocket/src/modules/server-channel-qr-probe.ts:probeServerChannelQrPayload",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/stage-pocket/src/modules/server-channel-qr-probe.ts",
+      "target": "file:AuBot/apps/stage-pocket/src/modules/websocket-bridge.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-pocket/src/modules/websocket-bridge.ts",
+      "target": "function:AuBot/apps/stage-pocket/src/modules/websocket-bridge.ts:postBridgeMessage",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/stage-pocket/src/modules/websocket-bridge.ts",
+      "target": "function:AuBot/apps/stage-pocket/src/modules/websocket-bridge.ts:getHostWebSocketConstructor",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/stage-pocket/src/modules/websocket-bridge.ts",
+      "target": "class:AuBot/apps/stage-pocket/src/modules/websocket-bridge.ts:HostWebSocket",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    }
+  ]
+}

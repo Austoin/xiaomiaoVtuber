@@ -1,0 +1,1125 @@
+{
+  "nodes": [
+    {
+      "id": "file:AuBot/apps/stage-tamagotchi/src/main/tray/index.ts",
+      "type": "file",
+      "name": "index.ts",
+      "filePath": "AuBot/apps/stage-tamagotchi/src/main/tray/index.ts",
+      "summary": "index.ts 是 code 文件，包含 6 个函数，引用 9 个内部或外部依赖，在项目路径 AuBot/apps/stage-tamagotchi/src/main/tray/index.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:AuBot/apps/stage-tamagotchi/src/main/tray/index.ts:applyWindowSize",
+      "type": "function",
+      "name": "applyWindowSize",
+      "filePath": "AuBot/apps/stage-tamagotchi/src/main/tray/index.ts",
+      "lineRange": [
+        31,
+        54
+      ],
+      "summary": "函数 applyWindowSize 位于 index.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/apps/stage-tamagotchi/src/main/tray/index.ts:alignWindow",
+      "type": "function",
+      "name": "alignWindow",
+      "filePath": "AuBot/apps/stage-tamagotchi/src/main/tray/index.ts",
+      "lineRange": [
+        56,
+        78
+      ],
+      "summary": "函数 alignWindow 位于 index.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/apps/stage-tamagotchi/src/main/tray/index.ts:buildTrayMenuTemplate",
+      "type": "function",
+      "name": "buildTrayMenuTemplate",
+      "filePath": "AuBot/apps/stage-tamagotchi/src/main/tray/index.ts",
+      "lineRange": [
+        101,
+        221
+      ],
+      "summary": "函数 buildTrayMenuTemplate 位于 index.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:AuBot/apps/stage-tamagotchi/src/main/tray/index.ts:setupTray",
+      "type": "function",
+      "name": "setupTray",
+      "filePath": "AuBot/apps/stage-tamagotchi/src/main/tray/index.ts",
+      "lineRange": [
+        223,
+        261
+      ],
+      "summary": "函数 setupTray 位于 index.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:AuBot/apps/stage-tamagotchi/src/main/windows/about/index.ts",
+      "type": "file",
+      "name": "index.ts",
+      "filePath": "AuBot/apps/stage-tamagotchi/src/main/windows/about/index.ts",
+      "summary": "index.ts 是 code 文件，包含 1 个函数，引用 6 个内部或外部依赖，在项目路径 AuBot/apps/stage-tamagotchi/src/main/windows/about/index.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/apps/stage-tamagotchi/src/main/windows/about/index.ts:setupAboutWindowReusable",
+      "type": "function",
+      "name": "setupAboutWindowReusable",
+      "filePath": "AuBot/apps/stage-tamagotchi/src/main/windows/about/index.ts",
+      "lineRange": [
+        15,
+        53
+      ],
+      "summary": "函数 setupAboutWindowReusable 位于 index.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:AuBot/apps/stage-tamagotchi/src/main/windows/about/rpc/index.electron.ts",
+      "type": "file",
+      "name": "index.electron.ts",
+      "filePath": "AuBot/apps/stage-tamagotchi/src/main/windows/about/rpc/index.electron.ts",
+      "summary": "index.electron.ts 是 code 文件，包含 1 个函数，引用 5 个内部或外部依赖，在项目路径 AuBot/apps/stage-tamagotchi/src/main/windows/about/rpc/index.electron.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/apps/stage-tamagotchi/src/main/windows/about/rpc/index.electron.ts:setupAboutWindowElectronInvokes",
+      "type": "function",
+      "name": "setupAboutWindowElectronInvokes",
+      "filePath": "AuBot/apps/stage-tamagotchi/src/main/windows/about/rpc/index.electron.ts",
+      "lineRange": [
+        13,
+        29
+      ],
+      "summary": "函数 setupAboutWindowElectronInvokes 位于 index.electron.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/apps/stage-tamagotchi/src/main/windows/beat-sync/index.ts",
+      "type": "file",
+      "name": "index.ts",
+      "filePath": "AuBot/apps/stage-tamagotchi/src/main/windows/beat-sync/index.ts",
+      "summary": "index.ts 是 code 文件，包含 1 个函数，引用 1 个内部或外部依赖，在项目路径 AuBot/apps/stage-tamagotchi/src/main/windows/beat-sync/index.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/apps/stage-tamagotchi/src/main/windows/beat-sync/index.ts:setupBeatSync",
+      "type": "function",
+      "name": "setupBeatSync",
+      "filePath": "AuBot/apps/stage-tamagotchi/src/main/windows/beat-sync/index.ts",
+      "lineRange": [
+        9,
+        23
+      ],
+      "summary": "函数 setupBeatSync 位于 index.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/apps/stage-tamagotchi/src/main/windows/caption/index.ts",
+      "type": "file",
+      "name": "index.ts",
+      "filePath": "AuBot/apps/stage-tamagotchi/src/main/windows/caption/index.ts",
+      "summary": "index.ts 是 code 文件，包含 5 个函数，引用 8 个内部或外部依赖，在项目路径 AuBot/apps/stage-tamagotchi/src/main/windows/caption/index.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:AuBot/apps/stage-tamagotchi/src/main/windows/caption/index.ts:computeDisplayMatrixHash",
+      "type": "function",
+      "name": "computeDisplayMatrixHash",
+      "filePath": "AuBot/apps/stage-tamagotchi/src/main/windows/caption/index.ts",
+      "lineRange": [
+        44,
+        53
+      ],
+      "summary": "函数 computeDisplayMatrixHash 位于 index.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/apps/stage-tamagotchi/src/main/windows/caption/index.ts:computeInitialCaptionBounds",
+      "type": "function",
+      "name": "computeInitialCaptionBounds",
+      "filePath": "AuBot/apps/stage-tamagotchi/src/main/windows/caption/index.ts",
+      "lineRange": [
+        61,
+        104
+      ],
+      "summary": "函数 computeInitialCaptionBounds 位于 index.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:AuBot/apps/stage-tamagotchi/src/main/windows/caption/index.ts:createCaptionWindow",
+      "type": "function",
+      "name": "createCaptionWindow",
+      "filePath": "AuBot/apps/stage-tamagotchi/src/main/windows/caption/index.ts",
+      "lineRange": [
+        106,
+        146
+      ],
+      "summary": "函数 createCaptionWindow 位于 index.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:AuBot/apps/stage-tamagotchi/src/main/windows/caption/index.ts:setupCaptionWindowManager",
+      "type": "function",
+      "name": "setupCaptionWindowManager",
+      "filePath": "AuBot/apps/stage-tamagotchi/src/main/windows/caption/index.ts",
+      "lineRange": [
+        148,
+        484
+      ],
+      "summary": "函数 setupCaptionWindowManager 位于 index.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:AuBot/apps/stage-tamagotchi/src/main/windows/chat/index.ts",
+      "type": "file",
+      "name": "index.ts",
+      "filePath": "AuBot/apps/stage-tamagotchi/src/main/windows/chat/index.ts",
+      "summary": "index.ts 是 code 文件，包含 1 个函数，引用 7 个内部或外部依赖，在项目路径 AuBot/apps/stage-tamagotchi/src/main/windows/chat/index.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/apps/stage-tamagotchi/src/main/windows/chat/index.ts:setupChatWindowReusableFunc",
+      "type": "function",
+      "name": "setupChatWindowReusableFunc",
+      "filePath": "AuBot/apps/stage-tamagotchi/src/main/windows/chat/index.ts",
+      "lineRange": [
+        16,
+        53
+      ],
+      "summary": "函数 setupChatWindowReusableFunc 位于 index.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:AuBot/apps/stage-tamagotchi/src/main/windows/chat/rpc/index.electron.ts",
+      "type": "file",
+      "name": "index.electron.ts",
+      "filePath": "AuBot/apps/stage-tamagotchi/src/main/windows/chat/rpc/index.electron.ts",
+      "summary": "index.electron.ts 是 code 文件，包含 1 个函数，引用 7 个内部或外部依赖，在项目路径 AuBot/apps/stage-tamagotchi/src/main/windows/chat/rpc/index.electron.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/apps/stage-tamagotchi/src/main/windows/chat/rpc/index.electron.ts:setupChatWindowElectronInvokes",
+      "type": "function",
+      "name": "setupChatWindowElectronInvokes",
+      "filePath": "AuBot/apps/stage-tamagotchi/src/main/windows/chat/rpc/index.electron.ts",
+      "lineRange": [
+        17,
+        37
+      ],
+      "summary": "函数 setupChatWindowElectronInvokes 位于 index.electron.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/apps/stage-tamagotchi/src/main/windows/dashboard/index.ts",
+      "type": "file",
+      "name": "index.ts",
+      "filePath": "AuBot/apps/stage-tamagotchi/src/main/windows/dashboard/index.ts",
+      "summary": "index.ts 是 code 文件，包含 1 个函数，引用 8 个内部或外部依赖，在项目路径 AuBot/apps/stage-tamagotchi/src/main/windows/dashboard/index.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:AuBot/apps/stage-tamagotchi/src/main/windows/dashboard/index.ts:setupDashboardWindow",
+      "type": "function",
+      "name": "setupDashboardWindow",
+      "filePath": "AuBot/apps/stage-tamagotchi/src/main/windows/dashboard/index.ts",
+      "lineRange": [
+        44,
+        180
+      ],
+      "summary": "函数 setupDashboardWindow 位于 index.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:AuBot/apps/stage-tamagotchi/src/main/windows/dashboard/rpc/index.electron.ts",
+      "type": "file",
+      "name": "index.electron.ts",
+      "filePath": "AuBot/apps/stage-tamagotchi/src/main/windows/dashboard/rpc/index.electron.ts",
+      "summary": "index.electron.ts 是 code 文件，包含 1 个函数，引用 7 个内部或外部依赖，在项目路径 AuBot/apps/stage-tamagotchi/src/main/windows/dashboard/rpc/index.electron.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/apps/stage-tamagotchi/src/main/windows/dashboard/rpc/index.electron.ts:setupDashboardWindowElectronInvokes",
+      "type": "function",
+      "name": "setupDashboardWindowElectronInvokes",
+      "filePath": "AuBot/apps/stage-tamagotchi/src/main/windows/dashboard/rpc/index.electron.ts",
+      "lineRange": [
+        16,
+        37
+      ],
+      "summary": "函数 setupDashboardWindowElectronInvokes 位于 index.electron.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/apps/stage-tamagotchi/src/main/windows/desktop-overlay/index.ts",
+      "type": "file",
+      "name": "index.ts",
+      "filePath": "AuBot/apps/stage-tamagotchi/src/main/windows/desktop-overlay/index.ts",
+      "summary": "index.ts 是 code 文件，包含 4 个函数，引用 5 个内部或外部依赖，在项目路径 AuBot/apps/stage-tamagotchi/src/main/windows/desktop-overlay/index.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:AuBot/apps/stage-tamagotchi/src/main/windows/desktop-overlay/index.ts:isDesktopOverlayEnabled",
+      "type": "function",
+      "name": "isDesktopOverlayEnabled",
+      "filePath": "AuBot/apps/stage-tamagotchi/src/main/windows/desktop-overlay/index.ts",
+      "lineRange": [
+        34,
+        36
+      ],
+      "summary": "函数 isDesktopOverlayEnabled 位于 index.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/apps/stage-tamagotchi/src/main/windows/desktop-overlay/index.ts:setupDesktopOverlayWindow",
+      "type": "function",
+      "name": "setupDesktopOverlayWindow",
+      "filePath": "AuBot/apps/stage-tamagotchi/src/main/windows/desktop-overlay/index.ts",
+      "lineRange": [
+        50,
+        131
+      ],
+      "summary": "函数 setupDesktopOverlayWindow 位于 index.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:AuBot/apps/stage-tamagotchi/src/main/windows/desktop-overlay/index.ts:getDesktopOverlayWindow",
+      "type": "function",
+      "name": "getDesktopOverlayWindow",
+      "filePath": "AuBot/apps/stage-tamagotchi/src/main/windows/desktop-overlay/index.ts",
+      "lineRange": [
+        136,
+        138
+      ],
+      "summary": "函数 getDesktopOverlayWindow 位于 index.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/apps/stage-tamagotchi/src/main/windows/desktop-overlay/index.ts:destroyDesktopOverlay",
+      "type": "function",
+      "name": "destroyDesktopOverlay",
+      "filePath": "AuBot/apps/stage-tamagotchi/src/main/windows/desktop-overlay/index.ts",
+      "lineRange": [
+        143,
+        148
+      ],
+      "summary": "函数 destroyDesktopOverlay 位于 index.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/apps/stage-tamagotchi/src/main/windows/desktop-overlay/rpc/contracts.ts",
+      "type": "file",
+      "name": "contracts.ts",
+      "filePath": "AuBot/apps/stage-tamagotchi/src/main/windows/desktop-overlay/rpc/contracts.ts",
+      "summary": "contracts.ts 是 code 文件，在项目路径 AuBot/apps/stage-tamagotchi/src/main/windows/desktop-overlay/rpc/contracts.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/apps/stage-tamagotchi/src/main/windows/desktop-overlay/rpc/index.electron.ts",
+      "type": "file",
+      "name": "index.electron.ts",
+      "filePath": "AuBot/apps/stage-tamagotchi/src/main/windows/desktop-overlay/rpc/index.electron.ts",
+      "summary": "index.electron.ts 是 code 文件，包含 1 个函数，引用 6 个内部或外部依赖，在项目路径 AuBot/apps/stage-tamagotchi/src/main/windows/desktop-overlay/rpc/index.electron.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:AuBot/apps/stage-tamagotchi/src/main/windows/desktop-overlay/rpc/index.electron.ts:setupDesktopOverlayElectronInvokes",
+      "type": "function",
+      "name": "setupDesktopOverlayElectronInvokes",
+      "filePath": "AuBot/apps/stage-tamagotchi/src/main/windows/desktop-overlay/rpc/index.electron.ts",
+      "lineRange": [
+        27,
+        59
+      ],
+      "summary": "函数 setupDesktopOverlayElectronInvokes 位于 index.electron.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/tray/index.ts",
+      "target": "function:AuBot/apps/stage-tamagotchi/src/main/tray/index.ts:applyWindowSize",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/tray/index.ts",
+      "target": "function:AuBot/apps/stage-tamagotchi/src/main/tray/index.ts:alignWindow",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/tray/index.ts",
+      "target": "function:AuBot/apps/stage-tamagotchi/src/main/tray/index.ts:buildTrayMenuTemplate",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/tray/index.ts",
+      "target": "function:AuBot/apps/stage-tamagotchi/src/main/tray/index.ts:setupTray",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/tray/index.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/main/libs/bootkit/lifecycle.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/tray/index.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/main/libs/i18n/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/tray/index.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/main/services/airi/channel-server/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/tray/index.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/main/windows/beat-sync/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/tray/index.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/main/windows/caption/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/tray/index.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/main/windows/inlay/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/tray/index.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/main/windows/settings/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/tray/index.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/main/windows/shared/window.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/tray/index.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/main/windows/widgets/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/windows/about/index.ts",
+      "target": "function:AuBot/apps/stage-tamagotchi/src/main/windows/about/index.ts:setupAboutWindowReusable",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/windows/about/index.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/main/libs/electron/location.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/windows/about/index.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/main/libs/electron/window-manager/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/windows/about/index.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/main/libs/i18n/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/windows/about/index.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/main/services/airi/channel-server/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/windows/about/index.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/main/services/electron/auto-updater.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/windows/about/index.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/main/windows/about/rpc/index.electron.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/windows/about/rpc/index.electron.ts",
+      "target": "function:AuBot/apps/stage-tamagotchi/src/main/windows/about/rpc/index.electron.ts:setupAboutWindowElectronInvokes",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/windows/about/rpc/index.electron.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/main/libs/i18n/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/windows/about/rpc/index.electron.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/main/services/airi/channel-server/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/windows/about/rpc/index.electron.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/main/services/electron/auto-updater.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/windows/about/rpc/index.electron.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/main/services/electron/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/windows/about/rpc/index.electron.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/main/windows/shared/window.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/windows/beat-sync/index.ts",
+      "target": "function:AuBot/apps/stage-tamagotchi/src/main/windows/beat-sync/index.ts:setupBeatSync",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/windows/beat-sync/index.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/main/libs/electron/location.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/windows/caption/index.ts",
+      "target": "function:AuBot/apps/stage-tamagotchi/src/main/windows/caption/index.ts:computeDisplayMatrixHash",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/windows/caption/index.ts",
+      "target": "function:AuBot/apps/stage-tamagotchi/src/main/windows/caption/index.ts:computeInitialCaptionBounds",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/windows/caption/index.ts",
+      "target": "function:AuBot/apps/stage-tamagotchi/src/main/windows/caption/index.ts:createCaptionWindow",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/windows/caption/index.ts",
+      "target": "function:AuBot/apps/stage-tamagotchi/src/main/windows/caption/index.ts:setupCaptionWindowManager",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/windows/caption/index.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/main/libs/electron/location.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/windows/caption/index.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/main/libs/electron/persistence.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/windows/caption/index.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/main/libs/electron/window-manager/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/windows/caption/index.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/main/libs/i18n/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/windows/caption/index.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/main/services/airi/channel-server/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/windows/caption/index.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/main/windows/shared/display.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/windows/caption/index.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/main/windows/shared/window.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/windows/caption/index.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/shared/eventa/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/windows/chat/index.ts",
+      "target": "function:AuBot/apps/stage-tamagotchi/src/main/windows/chat/index.ts:setupChatWindowReusableFunc",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/windows/chat/index.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/main/libs/electron/location.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/windows/chat/index.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/main/libs/electron/window-manager/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/windows/chat/index.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/main/libs/i18n/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/windows/chat/index.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/main/services/airi/channel-server/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/windows/chat/index.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/main/services/airi/mcp-servers/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/windows/chat/index.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/main/windows/chat/rpc/index.electron.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/windows/chat/index.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/main/windows/widgets/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/windows/chat/rpc/index.electron.ts",
+      "target": "function:AuBot/apps/stage-tamagotchi/src/main/windows/chat/rpc/index.electron.ts:setupChatWindowElectronInvokes",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/windows/chat/rpc/index.electron.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/main/libs/i18n/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/windows/chat/rpc/index.electron.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/main/services/airi/channel-server/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/windows/chat/rpc/index.electron.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/main/services/airi/mcp-servers/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/windows/chat/rpc/index.electron.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/main/services/airi/widgets/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/windows/chat/rpc/index.electron.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/main/windows/shared/window.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/windows/chat/rpc/index.electron.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/main/windows/widgets/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/windows/chat/rpc/index.electron.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/shared/eventa/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/windows/dashboard/index.ts",
+      "target": "function:AuBot/apps/stage-tamagotchi/src/main/windows/dashboard/index.ts:setupDashboardWindow",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/windows/dashboard/index.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/main/libs/electron/location.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/windows/dashboard/index.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/main/libs/electron/persistence.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/windows/dashboard/index.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/main/libs/i18n/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/windows/dashboard/index.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/main/services/airi/channel-server/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/windows/dashboard/index.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/main/windows/dashboard/rpc/index.electron.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/windows/dashboard/index.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/main/windows/notice/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/windows/dashboard/index.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/main/windows/settings/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/windows/dashboard/index.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/shared/eventa/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/windows/dashboard/rpc/index.electron.ts",
+      "target": "function:AuBot/apps/stage-tamagotchi/src/main/windows/dashboard/rpc/index.electron.ts:setupDashboardWindowElectronInvokes",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/windows/dashboard/rpc/index.electron.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/main/libs/i18n/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/windows/dashboard/rpc/index.electron.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/main/services/airi/channel-server/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/windows/dashboard/rpc/index.electron.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/main/windows/notice/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/windows/dashboard/rpc/index.electron.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/main/windows/settings/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/windows/dashboard/rpc/index.electron.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/main/windows/shared/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/windows/dashboard/rpc/index.electron.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/main/windows/shared/window.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/windows/dashboard/rpc/index.electron.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/shared/eventa/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/windows/desktop-overlay/index.ts",
+      "target": "function:AuBot/apps/stage-tamagotchi/src/main/windows/desktop-overlay/index.ts:isDesktopOverlayEnabled",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/windows/desktop-overlay/index.ts",
+      "target": "function:AuBot/apps/stage-tamagotchi/src/main/windows/desktop-overlay/index.ts:setupDesktopOverlayWindow",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/windows/desktop-overlay/index.ts",
+      "target": "function:AuBot/apps/stage-tamagotchi/src/main/windows/desktop-overlay/index.ts:getDesktopOverlayWindow",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/windows/desktop-overlay/index.ts",
+      "target": "function:AuBot/apps/stage-tamagotchi/src/main/windows/desktop-overlay/index.ts:destroyDesktopOverlay",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/windows/desktop-overlay/index.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/main/libs/electron/location.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/windows/desktop-overlay/index.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/main/libs/i18n/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/windows/desktop-overlay/index.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/main/services/airi/channel-server/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/windows/desktop-overlay/index.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/main/services/airi/mcp-servers/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/windows/desktop-overlay/index.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/main/windows/desktop-overlay/rpc/index.electron.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/windows/desktop-overlay/rpc/index.electron.ts",
+      "target": "function:AuBot/apps/stage-tamagotchi/src/main/windows/desktop-overlay/rpc/index.electron.ts:setupDesktopOverlayElectronInvokes",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/windows/desktop-overlay/rpc/index.electron.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/main/libs/i18n/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/windows/desktop-overlay/rpc/index.electron.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/main/services/airi/channel-server/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/windows/desktop-overlay/rpc/index.electron.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/main/services/airi/mcp-servers/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/windows/desktop-overlay/rpc/index.electron.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/main/windows/desktop-overlay/rpc/contracts.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/windows/desktop-overlay/rpc/index.electron.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/main/windows/shared/window.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/windows/desktop-overlay/rpc/index.electron.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/shared/eventa/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    }
+  ]
+}

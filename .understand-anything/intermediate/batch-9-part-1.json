@@ -1,0 +1,718 @@
+{
+  "nodes": [
+    {
+      "id": "file:AuBot/apps/server/src/services/email.ts",
+      "type": "file",
+      "name": "email.ts",
+      "filePath": "AuBot/apps/server/src/services/email.ts",
+      "summary": "email.ts 是 code 文件，包含 13 个函数，引用 1 个内部或外部依赖，在项目路径 AuBot/apps/server/src/services/email.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:AuBot/apps/server/src/services/email.ts:createEmailService",
+      "type": "function",
+      "name": "createEmailService",
+      "filePath": "AuBot/apps/server/src/services/email.ts",
+      "lineRange": [
+        84,
+        170
+      ],
+      "summary": "函数 createEmailService 位于 email.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:AuBot/apps/server/src/services/email.ts:renderActionEmailHtml",
+      "type": "function",
+      "name": "renderActionEmailHtml",
+      "filePath": "AuBot/apps/server/src/services/email.ts",
+      "lineRange": [
+        186,
+        196
+      ],
+      "summary": "函数 renderActionEmailHtml 位于 email.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/apps/server/src/services/flux-transaction.ts",
+      "type": "file",
+      "name": "flux-transaction.ts",
+      "filePath": "AuBot/apps/server/src/services/flux-transaction.ts",
+      "summary": "flux-transaction.ts 是 code 文件，包含 1 个函数，引用 2 个内部或外部依赖，在项目路径 AuBot/apps/server/src/services/flux-transaction.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:AuBot/apps/server/src/services/flux-transaction.ts:createFluxTransactionService",
+      "type": "function",
+      "name": "createFluxTransactionService",
+      "filePath": "AuBot/apps/server/src/services/flux-transaction.ts",
+      "lineRange": [
+        21,
+        69
+      ],
+      "summary": "函数 createFluxTransactionService 位于 flux-transaction.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:AuBot/apps/server/src/services/flux.ts",
+      "type": "file",
+      "name": "flux.ts",
+      "filePath": "AuBot/apps/server/src/services/flux.ts",
+      "summary": "flux.ts 是 code 文件，包含 1 个函数，引用 5 个内部或外部依赖，在项目路径 AuBot/apps/server/src/services/flux.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:AuBot/apps/server/src/services/flux.ts:createFluxService",
+      "type": "function",
+      "name": "createFluxService",
+      "filePath": "AuBot/apps/server/src/services/flux.ts",
+      "lineRange": [
+        16,
+        83
+      ],
+      "summary": "函数 createFluxService 位于 flux.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:AuBot/apps/server/src/services/llm-request-log.ts",
+      "type": "file",
+      "name": "llm-request-log.ts",
+      "filePath": "AuBot/apps/server/src/services/llm-request-log.ts",
+      "summary": "llm-request-log.ts 是 code 文件，包含 1 个函数，引用 2 个内部或外部依赖，在项目路径 AuBot/apps/server/src/services/llm-request-log.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/apps/server/src/services/llm-request-log.ts:createLLMRequestLogService",
+      "type": "function",
+      "name": "createLLMRequestLogService",
+      "filePath": "AuBot/apps/server/src/services/llm-request-log.ts",
+      "lineRange": [
+        15,
+        21
+      ],
+      "summary": "函数 createLLMRequestLogService 位于 llm-request-log.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/apps/server/src/services/providers.ts",
+      "type": "file",
+      "name": "providers.ts",
+      "filePath": "AuBot/apps/server/src/services/providers.ts",
+      "summary": "providers.ts 是 code 文件，包含 1 个函数，引用 2 个内部或外部依赖，在项目路径 AuBot/apps/server/src/services/providers.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:AuBot/apps/server/src/services/providers.ts:createProviderService",
+      "type": "function",
+      "name": "createProviderService",
+      "filePath": "AuBot/apps/server/src/services/providers.ts",
+      "lineRange": [
+        10,
+        172
+      ],
+      "summary": "函数 createProviderService 位于 providers.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:AuBot/apps/server/src/services/request-log.ts",
+      "type": "file",
+      "name": "request-log.ts",
+      "filePath": "AuBot/apps/server/src/services/request-log.ts",
+      "summary": "request-log.ts 是 code 文件，包含 1 个函数，引用 2 个内部或外部依赖，在项目路径 AuBot/apps/server/src/services/request-log.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/apps/server/src/services/request-log.ts:createRequestLogService",
+      "type": "function",
+      "name": "createRequestLogService",
+      "filePath": "AuBot/apps/server/src/services/request-log.ts",
+      "lineRange": [
+        15,
+        21
+      ],
+      "summary": "函数 createRequestLogService 位于 request-log.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/apps/server/src/services/stripe.ts",
+      "type": "file",
+      "name": "stripe.ts",
+      "filePath": "AuBot/apps/server/src/services/stripe.ts",
+      "summary": "stripe.ts 是 code 文件，包含 1 个函数，引用 2 个内部或外部依赖，在项目路径 AuBot/apps/server/src/services/stripe.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:AuBot/apps/server/src/services/stripe.ts:createStripeService",
+      "type": "function",
+      "name": "createStripeService",
+      "filePath": "AuBot/apps/server/src/services/stripe.ts",
+      "lineRange": [
+        11,
+        105
+      ],
+      "summary": "函数 createStripeService 位于 stripe.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:AuBot/apps/server/src/services/tests/characters.test.ts",
+      "type": "file",
+      "name": "characters.test.ts",
+      "filePath": "AuBot/apps/server/src/services/tests/characters.test.ts",
+      "summary": "characters.test.ts 是 code 文件，引用 4 个内部或外部依赖，在项目路径 AuBot/apps/server/src/services/tests/characters.test.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript",
+        "test"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:AuBot/apps/server/src/services/tests/chats.test.ts",
+      "type": "file",
+      "name": "chats.test.ts",
+      "filePath": "AuBot/apps/server/src/services/tests/chats.test.ts",
+      "summary": "chats.test.ts 是 code 文件，引用 1 个内部或外部依赖，在项目路径 AuBot/apps/server/src/services/tests/chats.test.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript",
+        "test"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/apps/server/src/services/tests/config-kv.test.ts",
+      "type": "file",
+      "name": "config-kv.test.ts",
+      "filePath": "AuBot/apps/server/src/services/tests/config-kv.test.ts",
+      "summary": "config-kv.test.ts 是 code 文件，包含 1 个函数，引用 2 个内部或外部依赖，在项目路径 AuBot/apps/server/src/services/tests/config-kv.test.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript",
+        "test",
+        "configuration"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:AuBot/apps/server/src/services/tests/flux-transaction.test.ts",
+      "type": "file",
+      "name": "flux-transaction.test.ts",
+      "filePath": "AuBot/apps/server/src/services/tests/flux-transaction.test.ts",
+      "summary": "flux-transaction.test.ts 是 code 文件，引用 3 个内部或外部依赖，在项目路径 AuBot/apps/server/src/services/tests/flux-transaction.test.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript",
+        "test"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:AuBot/apps/server/src/services/tests/flux.test.ts",
+      "type": "file",
+      "name": "flux.test.ts",
+      "filePath": "AuBot/apps/server/src/services/tests/flux.test.ts",
+      "summary": "flux.test.ts 是 code 文件，包含 2 个函数，引用 6 个内部或外部依赖，在项目路径 AuBot/apps/server/src/services/tests/flux.test.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript",
+        "test"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:AuBot/apps/server/src/services/tests/flux.test.ts:createMockRedis",
+      "type": "function",
+      "name": "createMockRedis",
+      "filePath": "AuBot/apps/server/src/services/tests/flux.test.ts",
+      "lineRange": [
+        25,
+        34
+      ],
+      "summary": "函数 createMockRedis 位于 flux.test.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/apps/server/src/services/tests/providers.test.ts",
+      "type": "file",
+      "name": "providers.test.ts",
+      "filePath": "AuBot/apps/server/src/services/tests/providers.test.ts",
+      "summary": "providers.test.ts 是 code 文件，引用 4 个内部或外部依赖，在项目路径 AuBot/apps/server/src/services/tests/providers.test.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript",
+        "test"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:AuBot/apps/server/src/services/tests/stripe.test.ts",
+      "type": "file",
+      "name": "stripe.test.ts",
+      "filePath": "AuBot/apps/server/src/services/tests/stripe.test.ts",
+      "summary": "stripe.test.ts 是 code 文件，引用 4 个内部或外部依赖，在项目路径 AuBot/apps/server/src/services/tests/stripe.test.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript",
+        "test"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:AuBot/apps/server/src/types/character-avatar-model.ts",
+      "type": "file",
+      "name": "character-avatar-model.ts",
+      "filePath": "AuBot/apps/server/src/types/character-avatar-model.ts",
+      "summary": "character-avatar-model.ts 是 code 文件，在项目路径 AuBot/apps/server/src/types/character-avatar-model.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/apps/server/src/types/character-capability.ts",
+      "type": "file",
+      "name": "character-capability.ts",
+      "filePath": "AuBot/apps/server/src/types/character-capability.ts",
+      "summary": "character-capability.ts 是 code 文件，在项目路径 AuBot/apps/server/src/types/character-capability.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:AuBot/apps/server/src/services/email.ts",
+      "target": "function:AuBot/apps/server/src/services/email.ts:createEmailService",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/server/src/services/email.ts",
+      "target": "function:AuBot/apps/server/src/services/email.ts:renderActionEmailHtml",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/server/src/services/email.ts",
+      "target": "file:AuBot/apps/server/src/utils/error.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/server/src/services/flux-transaction.ts",
+      "target": "function:AuBot/apps/server/src/services/flux-transaction.ts:createFluxTransactionService",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/server/src/services/flux-transaction.ts",
+      "target": "file:AuBot/apps/server/src/libs/db.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/server/src/services/flux-transaction.ts",
+      "target": "file:AuBot/apps/server/src/schemas/flux-transaction.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/server/src/services/flux.ts",
+      "target": "function:AuBot/apps/server/src/services/flux.ts:createFluxService",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/server/src/services/flux.ts",
+      "target": "file:AuBot/apps/server/src/libs/db.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/server/src/services/flux.ts",
+      "target": "file:AuBot/apps/server/src/schemas/flux-transaction.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/server/src/services/flux.ts",
+      "target": "file:AuBot/apps/server/src/schemas/flux.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/server/src/services/flux.ts",
+      "target": "file:AuBot/apps/server/src/services/config-kv.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/server/src/services/flux.ts",
+      "target": "file:AuBot/apps/server/src/utils/redis-keys.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/server/src/services/llm-request-log.ts",
+      "target": "function:AuBot/apps/server/src/services/llm-request-log.ts:createLLMRequestLogService",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/server/src/services/llm-request-log.ts",
+      "target": "file:AuBot/apps/server/src/libs/db.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/server/src/services/llm-request-log.ts",
+      "target": "file:AuBot/apps/server/src/schemas/llm-request-log.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/server/src/services/providers.ts",
+      "target": "function:AuBot/apps/server/src/services/providers.ts:createProviderService",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/server/src/services/providers.ts",
+      "target": "file:AuBot/apps/server/src/libs/db.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/server/src/services/providers.ts",
+      "target": "file:AuBot/apps/server/src/schemas/providers.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/server/src/services/request-log.ts",
+      "target": "function:AuBot/apps/server/src/services/request-log.ts:createRequestLogService",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/server/src/services/request-log.ts",
+      "target": "file:AuBot/apps/server/src/libs/db.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/server/src/services/request-log.ts",
+      "target": "file:AuBot/apps/server/src/schemas/llm-request-log.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/server/src/services/stripe.ts",
+      "target": "function:AuBot/apps/server/src/services/stripe.ts:createStripeService",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/server/src/services/stripe.ts",
+      "target": "file:AuBot/apps/server/src/libs/db.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/server/src/services/stripe.ts",
+      "target": "file:AuBot/apps/server/src/schemas/stripe.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/server/src/services/tests/characters.test.ts",
+      "target": "file:AuBot/apps/server/src/libs/db.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/server/src/services/tests/characters.test.ts",
+      "target": "file:AuBot/apps/server/src/libs/mock-db.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/server/src/services/tests/characters.test.ts",
+      "target": "file:AuBot/apps/server/src/schemas/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/server/src/services/tests/characters.test.ts",
+      "target": "file:AuBot/apps/server/src/services/characters.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/server/src/services/tests/chats.test.ts",
+      "target": "file:AuBot/apps/server/src/services/chats.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/server/src/services/tests/config-kv.test.ts",
+      "target": "file:AuBot/apps/server/src/services/config-kv.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/server/src/services/tests/config-kv.test.ts",
+      "target": "file:AuBot/apps/server/src/utils/redis-keys.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/server/src/services/tests/flux-transaction.test.ts",
+      "target": "file:AuBot/apps/server/src/libs/mock-db.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/server/src/services/tests/flux-transaction.test.ts",
+      "target": "file:AuBot/apps/server/src/schemas/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/server/src/services/tests/flux-transaction.test.ts",
+      "target": "file:AuBot/apps/server/src/services/flux-transaction.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/server/src/services/tests/flux.test.ts",
+      "target": "function:AuBot/apps/server/src/services/tests/flux.test.ts:createMockRedis",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/server/src/services/tests/flux.test.ts",
+      "target": "file:AuBot/apps/server/src/libs/db.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/server/src/services/tests/flux.test.ts",
+      "target": "file:AuBot/apps/server/src/libs/mock-db.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/server/src/services/tests/flux.test.ts",
+      "target": "file:AuBot/apps/server/src/schemas/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/server/src/services/tests/flux.test.ts",
+      "target": "file:AuBot/apps/server/src/services/config-kv.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/server/src/services/tests/flux.test.ts",
+      "target": "file:AuBot/apps/server/src/services/flux.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/server/src/services/tests/flux.test.ts",
+      "target": "file:AuBot/apps/server/src/utils/redis-keys.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/server/src/services/tests/providers.test.ts",
+      "target": "file:AuBot/apps/server/src/libs/db.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/server/src/services/tests/providers.test.ts",
+      "target": "file:AuBot/apps/server/src/libs/mock-db.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/server/src/services/tests/providers.test.ts",
+      "target": "file:AuBot/apps/server/src/schemas/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/server/src/services/tests/providers.test.ts",
+      "target": "file:AuBot/apps/server/src/services/providers.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/server/src/services/tests/stripe.test.ts",
+      "target": "file:AuBot/apps/server/src/libs/db.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/server/src/services/tests/stripe.test.ts",
+      "target": "file:AuBot/apps/server/src/libs/mock-db.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/server/src/services/tests/stripe.test.ts",
+      "target": "file:AuBot/apps/server/src/schemas/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/server/src/services/tests/stripe.test.ts",
+      "target": "file:AuBot/apps/server/src/services/stripe.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    }
+  ]
+}

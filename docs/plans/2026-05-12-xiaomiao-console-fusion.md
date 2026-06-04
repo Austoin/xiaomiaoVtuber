@@ -1,12 +1,12 @@
 # 小喵 QQ Bot 控制台融合 Implementation Plan
 
-> 状态提示：这是 2026-05-12 的历史计划文档。当前项目已在 2026-06-02 完成 `stage-web`、桌面 bridge、QQ 普通 AI 回复到 nanobot Agent 的统一接入。当前启动方式以 `docs/STARTUP.md`、`README.md` 和 `TECHNICAL.md` 为准。
+> 状态提示：这是 2026-05-12 的历史计划文档。当前项目已在 2026-06-02 完成 `stage-web`、桌面 bridge、QQ 普通 AI 回复到 xiaomiaoAgent 的统一接入。当前启动方式以 `docs/STARTUP.md`、`README.md` 和 `TECHNICAL.md` 为准。
 
 > **For Claude:** REQUIRED SUB-SKILL: Use superpowers:executing-plans to implement this plan task-by-task.
 
-**Goal:** 在 AuBot Electron 桌面端中新增“小喵 QQ Bot 控制台”，用于只读展示 QQ 机器人状态、桥接状态、最近事件、基础运行信息，并为后续接入 nanobot Agent/WebUI/工具/记忆能力预留演进路径。
+**Goal:** 在 AuBot Electron 桌面端中新增“小喵 QQ Bot 控制台”，用于只读展示 QQ 机器人状态、桥接状态、最近事件、基础运行信息，并为后续接入 xiaomiaoAgent WebUI/工具/记忆能力预留演进路径。
 
-**Architecture:** 当前项目有 NapCat WebUI、AuBot Dashboard/Settings、小喵桥接模块和独立的 nanobot Agent 框架。本计划先在 `xiaomiao/desktop_bridge.py` 增加只读状态/事件接口，再在 `AuBot/apps/stage-tamagotchi` 新增控制台页面消费这些接口。nanobot 融合采用后续阶段推进：先只读监控，再能力复用，再统一通道和事件。
+**Architecture:** 当前项目有 NapCat WebUI、AuBot Dashboard/Settings、小喵桥接模块和独立的 xiaomiaoAgent 框架。本计划先在 `xiaomiao/desktop_bridge.py` 增加只读状态/事件接口，再在 `AuBot/apps/stage-tamagotchi` 新增控制台页面消费这些接口。xiaomiaoAgent 融合采用后续阶段推进：先只读监控，再能力复用，再统一通道和事件。
 
 **Tech Stack:** Python `ThreadingHTTPServer`、Hyper Bot、NapCat OneBot、Electron、Vue 3、TypeScript、Pinia、Vitest、unittest。
 
@@ -29,8 +29,8 @@
 - 不开放公网控制能力。
 - 不替代完整 NapCat WebUI。
 - 不把所有小喵命令搬进 AuBot。
-- 不直接开放 nanobot 的 Shell、文件系统、MCP 等高危工具给 QQ 用户或公网入口。
-- 不在第一阶段把 QQ 接入强制迁移到 nanobot Channel。
+- 不直接开放 xiaomiaoAgent 的 Shell、文件系统、MCP 等高危工具给 QQ 用户或公网入口。
+- 不在第一阶段把 QQ 接入强制迁移到 xiaomiaoAgent Channel。
 
 ## 目标体验
 
@@ -40,7 +40,7 @@
 2. 桥接服务是否可用？
 3. 最近 QQ 消息和小喵回复是什么？
 4. 当前机器人使用哪个模型、端口和绑定用户？
-5. 后续 nanobot gateway/WebUI/Agent 是否可作为扩展能力接入？
+5. 后续 xiaomiaoAgent gateway/WebUI/Agent 是否可作为扩展能力接入？
 
 建议入口：
 
@@ -254,17 +254,17 @@ Expected: 可以从入口打开小喵控制台页面。
 - Modify: `TECHNICAL.md`
 - Modify: `docs/plans/2026-05-12-xiaomiao-console-fusion.md`
 
-**Step 1: Document nanobot role**
+**Step 1: Document xiaomiaoAgent role**
 
-在项目文档中明确 `nanobot` 是后续 Agent 能力层，不是第一阶段直接替换 `xiaomiao` 的实现。
+在项目文档中明确 xiaomiaoAgent 是后续 Agent 能力层，不是第一阶段直接替换 `xiaomiao` 的实现。`nanobot` 作为内部代码包名保留。
 
 **Step 2: Define read-only integration targets**
 
-规划小喵控制台后续展示 nanobot 状态：
+规划小喵控制台后续展示 xiaomiaoAgent 状态：
 
 ```text
-nanobot gateway status
-nanobot WebUI status
+xiaomiao gateway status
+xiaomiaoAgent WebUI status
 active channels
 active sessions
 recent agent events
@@ -273,13 +273,13 @@ tool availability summary
 
 **Step 3: Keep failure isolated**
 
-明确 nanobot 离线或未配置时，`xiaomiao` QQ Bot 和 AuBot Vtuber 主链路必须继续可用。
+明确 xiaomiaoAgent 离线或未配置时，`xiaomiao` QQ Bot 和 AuBot Vtuber 主链路必须继续可用。
 
 **Step 4: Avoid privileged actions**
 
-第一版只允许读取 nanobot 状态，不允许从 AuBot 控制台触发 Shell、文件写入、MCP、Cron 创建、Subagent 创建等动作。
+第一版只允许读取 xiaomiaoAgent 状态，不允许从 AuBot 控制台触发 Shell、文件写入、MCP、Cron 创建、Subagent 创建等动作。
 
-## Task 8: nanobot 能力复用路线
+## Task 8: xiaomiaoAgent 能力复用路线
 
 **Files:**
 
@@ -287,7 +287,7 @@ tool availability summary
 
 **Step 1: Tool service boundary**
 
-把 nanobot tools 作为受控内部能力层，而不是直接暴露给 QQ 消息。优先允许只读工具，例如 Web fetch/search、状态查询、文档读取。
+把 xiaomiaoAgent tools 作为受控内部能力层，而不是直接暴露给 QQ 消息。优先允许只读工具，例如 Web fetch/search、状态查询、文档读取。
 
 **Step 2: Memory/session boundary**
 
@@ -299,7 +299,7 @@ platform:qq:group:<group_id>:user:<qq_id>
 platform:webui:user:<local_user>
 ```
 
-避免 `xiaomiao` 和 `nanobot` 对同一用户维护互相冲突的上下文。
+避免 `xiaomiao` 和 xiaomiaoAgent 对同一用户维护互相冲突的上下文。
 
 **Step 3: Unified event shape**
 
@@ -308,7 +308,7 @@ platform:webui:user:<local_user>
 ```json
 {
   "id": "evt-...",
-  "source": "xiaomiao|nanobot",
+  "source": "xiaomiao|xiaomiaoAgent",
   "type": "user_message|assistant_reply|tool_event|system_status",
   "session_id": "platform:qq:user:...",
   "text": "...",
@@ -322,32 +322,32 @@ platform:webui:user:<local_user>
 
 - 现有 `python main.py` 仍可独立启动。
 - `pnpm dev:tamagotchi` 仍可只消费 `xiaomiao` 桥接。
-- nanobot 离线时不影响 QQ 收发和 Vtuber 表现。
+- xiaomiaoAgent 离线时不影响 QQ 收发和 Vtuber 表现。
 - 高危工具默认关闭，显式配置后才允许启用。
 
-## nanobot 融合阶段建议
+## xiaomiaoAgent 融合阶段建议
 
 ### Phase A: 只读观测
 
-目标：让 AuBot 控制台能展示 nanobot 是否运行、WebUI 是否可访问、gateway 是否在线。
+目标：让 AuBot 控制台能展示 xiaomiaoAgent 是否运行、WebUI 是否可访问、gateway 是否在线。
 
 不新增任何远程执行能力。
 
 ### Phase B: Agent 能力旁路调用
 
-目标：`xiaomiao` 在特定命令或特定用户授权下调用 nanobot 的只读工具能力，例如 Web 搜索、文档检索、记忆查询。
+目标：`xiaomiao` 在特定命令或特定用户授权下调用 xiaomiaoAgent 的只读工具能力，例如 Web 搜索、文档检索、记忆查询。
 
 ### Phase C: 记忆与会话统一
 
-目标：将 `GoogleAI.Context` 的用户历史逐步映射到 nanobot session/memory，避免 QQ、WebUI、桌面端上下文分裂。
+目标：将 `GoogleAI.Context` 的用户历史逐步映射到 xiaomiaoAgent session/memory，避免 QQ、WebUI、桌面端上下文分裂。
 
 ### Phase D: 通道统一评估
 
-目标：评估是否让 QQ、WebSocket、WebUI 等入口进入 nanobot MessageBus，再由统一 Agent 产生回复。
+目标：评估是否让 QQ、WebSocket、WebUI 等入口进入 xiaomiaoAgent MessageBus，再由统一 Agent 产生回复。
 
 ### Phase E: Vtuber 表现层统一
 
-目标：AuBot 不再区分回复来自 `xiaomiao` 还是 nanobot，只消费统一的 assistant reply / tool event / status event。
+目标：AuBot 不再区分回复来自 `xiaomiao` 还是 xiaomiaoAgent，只消费统一的 assistant reply / tool event / status event。
 
 ## Verification
 
@@ -385,8 +385,8 @@ pnpm -F @proj-airi/stage-tamagotchi typecheck
 - 最近事件文本为空时，不渲染无意义事件。
 - 事件重复轮询时，页面不要重复追加同一事件。
 - 桥接服务重启后，控制台能自动恢复在线状态。
-- nanobot 未安装、未配置或未启动时，小喵控制台显示“未接入 nanobot”，但不影响 QQ Bot 和 Vtuber 主链路。
-- nanobot 工具权限关闭时，控制台不能绕过权限直接触发工具。
+- xiaomiaoAgent 未安装、未配置或未启动时，小喵控制台显示“未接入 xiaomiaoAgent”，但不影响 QQ Bot 和 Vtuber 主链路。
+- xiaomiaoAgent 工具权限关闭时，控制台不能绕过权限直接触发工具。
 - 同一 QQ 用户同时通过 QQ 和 WebUI 交互时，session key 映射不能混淆。
 
 ## Success Criteria
@@ -396,4 +396,4 @@ pnpm -F @proj-airi/stage-tamagotchi typecheck
 - 桥接不可用时页面稳定，不影响 Vtuber 主舞台。
 - 所有新增 API wrapper 和桥接接口测试通过。
 - 文档明确说明当前控制台是只读第一版，不包含高危管理能力。
-- 文档明确说明 nanobot 是后续 Agent 能力层，第一阶段只做状态观测，不做强制替换。
+- 文档明确说明 xiaomiaoAgent 是后续 Agent 能力层，第一阶段只做状态观测，不做强制替换。

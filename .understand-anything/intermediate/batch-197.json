@@ -1,0 +1,214 @@
+{
+  "nodes": [
+    {
+      "id": "document:nanobot/docs/README.md",
+      "type": "document",
+      "name": "README.md",
+      "filePath": "nanobot/docs/README.md",
+      "summary": "README.md 是 docs 文件，在项目路径 nanobot/docs/README.md 中承担对应模块职责。",
+      "tags": [
+        "document",
+        "docs",
+        "markdown"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:nanobot/docs/agent-social-network.md",
+      "type": "document",
+      "name": "agent-social-network.md",
+      "filePath": "nanobot/docs/agent-social-network.md",
+      "summary": "agent-social-network.md 是 docs 文件，在项目路径 nanobot/docs/agent-social-network.md 中承担对应模块职责。",
+      "tags": [
+        "document",
+        "docs",
+        "markdown"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:nanobot/docs/channel-plugin-guide.md",
+      "type": "document",
+      "name": "channel-plugin-guide.md",
+      "filePath": "nanobot/docs/channel-plugin-guide.md",
+      "summary": "channel-plugin-guide.md 是 docs 文件，在项目路径 nanobot/docs/channel-plugin-guide.md 中承担对应模块职责。",
+      "tags": [
+        "document",
+        "docs",
+        "markdown"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "document:nanobot/docs/chat-apps.md",
+      "type": "document",
+      "name": "chat-apps.md",
+      "filePath": "nanobot/docs/chat-apps.md",
+      "summary": "chat-apps.md 是 docs 文件，在项目路径 nanobot/docs/chat-apps.md 中承担对应模块职责。",
+      "tags": [
+        "document",
+        "docs",
+        "markdown"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "document:nanobot/docs/chat-commands.md",
+      "type": "document",
+      "name": "chat-commands.md",
+      "filePath": "nanobot/docs/chat-commands.md",
+      "summary": "chat-commands.md 是 docs 文件，在项目路径 nanobot/docs/chat-commands.md 中承担对应模块职责。",
+      "tags": [
+        "document",
+        "docs",
+        "markdown"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:nanobot/docs/cli-reference.md",
+      "type": "document",
+      "name": "cli-reference.md",
+      "filePath": "nanobot/docs/cli-reference.md",
+      "summary": "cli-reference.md 是 docs 文件，在项目路径 nanobot/docs/cli-reference.md 中承担对应模块职责。",
+      "tags": [
+        "document",
+        "docs",
+        "markdown"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:nanobot/docs/configuration.md",
+      "type": "document",
+      "name": "configuration.md",
+      "filePath": "nanobot/docs/configuration.md",
+      "summary": "configuration.md 是 docs 文件，在项目路径 nanobot/docs/configuration.md 中承担对应模块职责。",
+      "tags": [
+        "document",
+        "docs",
+        "markdown",
+        "configuration"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "document:nanobot/docs/deployment.md",
+      "type": "document",
+      "name": "deployment.md",
+      "filePath": "nanobot/docs/deployment.md",
+      "summary": "deployment.md 是 docs 文件，在项目路径 nanobot/docs/deployment.md 中承担对应模块职责。",
+      "tags": [
+        "document",
+        "docs",
+        "markdown"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:nanobot/docs/image-generation.md",
+      "type": "document",
+      "name": "image-generation.md",
+      "filePath": "nanobot/docs/image-generation.md",
+      "summary": "image-generation.md 是 docs 文件，在项目路径 nanobot/docs/image-generation.md 中承担对应模块职责。",
+      "tags": [
+        "document",
+        "docs",
+        "markdown"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:nanobot/docs/memory.md",
+      "type": "document",
+      "name": "memory.md",
+      "filePath": "nanobot/docs/memory.md",
+      "summary": "memory.md 是 docs 文件，在项目路径 nanobot/docs/memory.md 中承担对应模块职责。",
+      "tags": [
+        "document",
+        "docs",
+        "markdown"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:nanobot/docs/multiple-instances.md",
+      "type": "document",
+      "name": "multiple-instances.md",
+      "filePath": "nanobot/docs/multiple-instances.md",
+      "summary": "multiple-instances.md 是 docs 文件，在项目路径 nanobot/docs/multiple-instances.md 中承担对应模块职责。",
+      "tags": [
+        "document",
+        "docs",
+        "markdown"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:nanobot/docs/my-tool.md",
+      "type": "document",
+      "name": "my-tool.md",
+      "filePath": "nanobot/docs/my-tool.md",
+      "summary": "my-tool.md 是 docs 文件，在项目路径 nanobot/docs/my-tool.md 中承担对应模块职责。",
+      "tags": [
+        "document",
+        "docs",
+        "markdown"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:nanobot/docs/openai-api.md",
+      "type": "document",
+      "name": "openai-api.md",
+      "filePath": "nanobot/docs/openai-api.md",
+      "summary": "openai-api.md 是 docs 文件，在项目路径 nanobot/docs/openai-api.md 中承担对应模块职责。",
+      "tags": [
+        "document",
+        "docs",
+        "markdown"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:nanobot/docs/python-sdk.md",
+      "type": "document",
+      "name": "python-sdk.md",
+      "filePath": "nanobot/docs/python-sdk.md",
+      "summary": "python-sdk.md 是 docs 文件，在项目路径 nanobot/docs/python-sdk.md 中承担对应模块职责。",
+      "tags": [
+        "document",
+        "docs",
+        "markdown"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:nanobot/docs/quick-start.md",
+      "type": "document",
+      "name": "quick-start.md",
+      "filePath": "nanobot/docs/quick-start.md",
+      "summary": "quick-start.md 是 docs 文件，在项目路径 nanobot/docs/quick-start.md 中承担对应模块职责。",
+      "tags": [
+        "document",
+        "docs",
+        "markdown"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:nanobot/docs/websocket.md",
+      "type": "document",
+      "name": "websocket.md",
+      "filePath": "nanobot/docs/websocket.md",
+      "summary": "websocket.md 是 docs 文件，在项目路径 nanobot/docs/websocket.md 中承担对应模块职责。",
+      "tags": [
+        "document",
+        "docs",
+        "markdown"
+      ],
+      "complexity": "complex"
+    }
+  ],
+  "edges": []
+}

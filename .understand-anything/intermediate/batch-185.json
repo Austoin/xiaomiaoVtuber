@@ -1,0 +1,57 @@
+{
+  "nodes": [
+    {
+      "id": "document:AuBot/services/computer-use-mcp/AGENTS.md",
+      "type": "document",
+      "name": "AGENTS.md",
+      "filePath": "AuBot/services/computer-use-mcp/AGENTS.md",
+      "summary": "AGENTS.md 是 docs 文件，在项目路径 AuBot/services/computer-use-mcp/AGENTS.md 中承担对应模块职责。",
+      "tags": [
+        "document",
+        "docs",
+        "markdown"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:AuBot/services/computer-use-mcp/FEASIBILITY.md",
+      "type": "document",
+      "name": "FEASIBILITY.md",
+      "filePath": "AuBot/services/computer-use-mcp/FEASIBILITY.md",
+      "summary": "FEASIBILITY.md 是 docs 文件，在项目路径 AuBot/services/computer-use-mcp/FEASIBILITY.md 中承担对应模块职责。",
+      "tags": [
+        "document",
+        "docs",
+        "markdown"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:AuBot/services/computer-use-mcp/package.json",
+      "type": "config",
+      "name": "package.json",
+      "filePath": "AuBot/services/computer-use-mcp/package.json",
+      "summary": "package.json 是 config 文件，在项目路径 AuBot/services/computer-use-mcp/package.json 中承担对应模块职责。",
+      "tags": [
+        "config",
+        "json",
+        "package-manifest"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:AuBot/services/computer-use-mcp/tsconfig.json",
+      "type": "config",
+      "name": "tsconfig.json",
+      "filePath": "AuBot/services/computer-use-mcp/tsconfig.json",
+      "summary": "tsconfig.json 是 config 文件，在项目路径 AuBot/services/computer-use-mcp/tsconfig.json 中承担对应模块职责。",
+      "tags": [
+        "config",
+        "json",
+        "configuration"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": []
+}

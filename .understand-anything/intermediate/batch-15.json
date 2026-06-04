@@ -1,0 +1,1128 @@
+{
+  "nodes": [
+    {
+      "id": "file:AuBot/packages/stage-ui/src/stores/chat/session-store.ts",
+      "type": "file",
+      "name": "session-store.ts",
+      "filePath": "AuBot/packages/stage-ui/src/stores/chat/session-store.ts",
+      "summary": "session-store.ts 是 code 文件，引用 6 个内部或外部依赖，在项目路径 AuBot/packages/stage-ui/src/stores/chat/session-store.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/src/stores/chat/stream-store.ts",
+      "type": "file",
+      "name": "stream-store.ts",
+      "filePath": "AuBot/packages/stage-ui/src/stores/chat/stream-store.ts",
+      "summary": "stream-store.ts 是 code 文件，引用 2 个内部或外部依赖，在项目路径 AuBot/packages/stage-ui/src/stores/chat/stream-store.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/src/stores/configurator.ts",
+      "type": "file",
+      "name": "configurator.ts",
+      "filePath": "AuBot/packages/stage-ui/src/stores/configurator.ts",
+      "summary": "configurator.ts 是 code 文件，引用 1 个内部或外部依赖，在项目路径 AuBot/packages/stage-ui/src/stores/configurator.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript",
+        "configuration"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/src/stores/devtools/context-observability.ts",
+      "type": "file",
+      "name": "context-observability.ts",
+      "filePath": "AuBot/packages/stage-ui/src/stores/devtools/context-observability.ts",
+      "summary": "context-observability.ts 是 code 文件，包含 2 个函数，引用 2 个内部或外部依赖，在项目路径 AuBot/packages/stage-ui/src/stores/devtools/context-observability.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/src/stores/devtools/io-tracer.ts",
+      "type": "file",
+      "name": "io-tracer.ts",
+      "filePath": "AuBot/packages/stage-ui/src/stores/devtools/io-tracer.ts",
+      "summary": "io-tracer.ts 是 code 文件，包含 1 个函数，引用 1 个内部或外部依赖，在项目路径 AuBot/packages/stage-ui/src/stores/devtools/io-tracer.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/src/stores/devtools/websocket-inspector.ts",
+      "type": "file",
+      "name": "websocket-inspector.ts",
+      "filePath": "AuBot/packages/stage-ui/src/stores/devtools/websocket-inspector.ts",
+      "summary": "websocket-inspector.ts 是 code 文件，在项目路径 AuBot/packages/stage-ui/src/stores/devtools/websocket-inspector.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript",
+        "test"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/src/stores/display-models.ts",
+      "type": "file",
+      "name": "display-models.ts",
+      "filePath": "AuBot/packages/stage-ui/src/stores/display-models.ts",
+      "summary": "display-models.ts 是 code 文件，在项目路径 AuBot/packages/stage-ui/src/stores/display-models.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/src/stores/llm-tools.test.ts",
+      "type": "file",
+      "name": "llm-tools.test.ts",
+      "filePath": "AuBot/packages/stage-ui/src/stores/llm-tools.test.ts",
+      "summary": "llm-tools.test.ts 是 code 文件，引用 1 个内部或外部依赖，在项目路径 AuBot/packages/stage-ui/src/stores/llm-tools.test.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript",
+        "test"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/src/stores/llm-tools.ts",
+      "type": "file",
+      "name": "llm-tools.ts",
+      "filePath": "AuBot/packages/stage-ui/src/stores/llm-tools.ts",
+      "summary": "llm-tools.ts 是 code 文件，在项目路径 AuBot/packages/stage-ui/src/stores/llm-tools.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/src/stores/llm.test.ts",
+      "type": "file",
+      "name": "llm.test.ts",
+      "filePath": "AuBot/packages/stage-ui/src/stores/llm.test.ts",
+      "summary": "llm.test.ts 是 code 文件，包含 2 个函数，引用 2 个内部或外部依赖，在项目路径 AuBot/packages/stage-ui/src/stores/llm.test.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript",
+        "test"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:AuBot/packages/stage-ui/src/stores/llm.test.ts:toolNameFrom",
+      "type": "function",
+      "name": "toolNameFrom",
+      "filePath": "AuBot/packages/stage-ui/src/stores/llm.test.ts",
+      "lineRange": [
+        60,
+        72
+      ],
+      "summary": "函数 toolNameFrom 位于 llm.test.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/src/stores/llm.ts",
+      "type": "file",
+      "name": "llm.ts",
+      "filePath": "AuBot/packages/stage-ui/src/stores/llm.ts",
+      "summary": "llm.ts 是 code 文件，包含 1 个函数，引用 3 个内部或外部依赖，在项目路径 AuBot/packages/stage-ui/src/stores/llm.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:AuBot/packages/stage-ui/src/stores/llm.ts:toolNameFrom",
+      "type": "function",
+      "name": "toolNameFrom",
+      "filePath": "AuBot/packages/stage-ui/src/stores/llm.ts",
+      "lineRange": [
+        19,
+        28
+      ],
+      "summary": "函数 toolNameFrom 位于 llm.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/src/stores/markdown-stress.ts",
+      "type": "file",
+      "name": "markdown-stress.ts",
+      "filePath": "AuBot/packages/stage-ui/src/stores/markdown-stress.ts",
+      "summary": "markdown-stress.ts 是 code 文件，包含 3 个函数，引用 5 个内部或外部依赖，在项目路径 AuBot/packages/stage-ui/src/stores/markdown-stress.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:AuBot/packages/stage-ui/src/stores/markdown-stress.ts:createDeterministicTimer",
+      "type": "function",
+      "name": "createDeterministicTimer",
+      "filePath": "AuBot/packages/stage-ui/src/stores/markdown-stress.ts",
+      "lineRange": [
+        24,
+        71
+      ],
+      "summary": "函数 createDeterministicTimer 位于 markdown-stress.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:AuBot/packages/stage-ui/src/stores/markdown-stress.ts:chunkText",
+      "type": "function",
+      "name": "chunkText",
+      "filePath": "AuBot/packages/stage-ui/src/stores/markdown-stress.ts",
+      "lineRange": [
+        73,
+        82
+      ],
+      "summary": "函数 chunkText 位于 markdown-stress.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/packages/stage-ui/src/stores/markdown-stress.ts:createMockStream",
+      "type": "function",
+      "name": "createMockStream",
+      "filePath": "AuBot/packages/stage-ui/src/stores/markdown-stress.ts",
+      "lineRange": [
+        84,
+        136
+      ],
+      "summary": "函数 createMockStream 位于 markdown-stress.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/src/stores/mcp.ts",
+      "type": "file",
+      "name": "mcp.ts",
+      "filePath": "AuBot/packages/stage-ui/src/stores/mcp.ts",
+      "summary": "mcp.ts 是 code 文件，引用 1 个内部或外部依赖，在项目路径 AuBot/packages/stage-ui/src/stores/mcp.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/src/stores/mods/api/channel-server.ts",
+      "type": "file",
+      "name": "channel-server.ts",
+      "filePath": "AuBot/packages/stage-ui/src/stores/mods/api/channel-server.ts",
+      "summary": "channel-server.ts 是 code 文件，包含 1 个函数，引用 1 个内部或外部依赖，在项目路径 AuBot/packages/stage-ui/src/stores/mods/api/channel-server.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:AuBot/packages/stage-ui/src/stores/mods/api/channel-server.ts:hasReconnectableWebSocketScheme",
+      "type": "function",
+      "name": "hasReconnectableWebSocketScheme",
+      "filePath": "AuBot/packages/stage-ui/src/stores/mods/api/channel-server.ts",
+      "lineRange": [
+        28,
+        40
+      ],
+      "summary": "函数 hasReconnectableWebSocketScheme 位于 channel-server.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/src/stores/mods/api/context-bridge.contract.test.ts",
+      "type": "file",
+      "name": "context-bridge.contract.test.ts",
+      "filePath": "AuBot/packages/stage-ui/src/stores/mods/api/context-bridge.contract.test.ts",
+      "summary": "context-bridge.contract.test.ts 是 code 文件，包含 2 个函数，引用 1 个内部或外部依赖，在项目路径 AuBot/packages/stage-ui/src/stores/mods/api/context-bridge.contract.test.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript",
+        "test"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/src/stores/mods/api/context-bridge.ts",
+      "type": "file",
+      "name": "context-bridge.ts",
+      "filePath": "AuBot/packages/stage-ui/src/stores/mods/api/context-bridge.ts",
+      "summary": "context-bridge.ts 是 code 文件，包含 1 个函数，引用 12 个内部或外部依赖，在项目路径 AuBot/packages/stage-ui/src/stores/mods/api/context-bridge.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:AuBot/packages/stage-ui/src/stores/mods/api/context-bridge.ts:normalizeContextSnapshot",
+      "type": "function",
+      "name": "normalizeContextSnapshot",
+      "filePath": "AuBot/packages/stage-ui/src/stores/mods/api/context-bridge.ts",
+      "lineRange": [
+        27,
+        39
+      ],
+      "summary": "函数 normalizeContextSnapshot 位于 context-bridge.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/src/stores/modules/airi-card.ts",
+      "type": "file",
+      "name": "airi-card.ts",
+      "filePath": "AuBot/packages/stage-ui/src/stores/modules/airi-card.ts",
+      "summary": "airi-card.ts 是 code 文件，引用 6 个内部或外部依赖，在项目路径 AuBot/packages/stage-ui/src/stores/modules/airi-card.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/src/stores/modules/artistry-autonomous.ts",
+      "type": "file",
+      "name": "artistry-autonomous.ts",
+      "filePath": "AuBot/packages/stage-ui/src/stores/modules/artistry-autonomous.ts",
+      "summary": "artistry-autonomous.ts 是 code 文件，引用 6 个内部或外部依赖，在项目路径 AuBot/packages/stage-ui/src/stores/modules/artistry-autonomous.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/src/stores/modules/artistry.ts",
+      "type": "file",
+      "name": "artistry.ts",
+      "filePath": "AuBot/packages/stage-ui/src/stores/modules/artistry.ts",
+      "summary": "artistry.ts 是 code 文件，包含 1 个函数，在项目路径 AuBot/packages/stage-ui/src/stores/modules/artistry.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:AuBot/packages/stage-ui/src/stores/modules/artistry.ts:resolveArtistryConfigFromStore",
+      "type": "function",
+      "name": "resolveArtistryConfigFromStore",
+      "filePath": "AuBot/packages/stage-ui/src/stores/modules/artistry.ts",
+      "lineRange": [
+        194,
+        223
+      ],
+      "summary": "函数 resolveArtistryConfigFromStore 位于 artistry.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/src/stores/modules/consciousness.ts",
+      "type": "file",
+      "name": "consciousness.ts",
+      "filePath": "AuBot/packages/stage-ui/src/stores/modules/consciousness.ts",
+      "summary": "consciousness.ts 是 code 文件，引用 1 个内部或外部依赖，在项目路径 AuBot/packages/stage-ui/src/stores/modules/consciousness.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/src/stores/modules/discord.ts",
+      "type": "file",
+      "name": "discord.ts",
+      "filePath": "AuBot/packages/stage-ui/src/stores/modules/discord.ts",
+      "summary": "discord.ts 是 code 文件，引用 1 个内部或外部依赖，在项目路径 AuBot/packages/stage-ui/src/stores/modules/discord.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/src/stores/modules/gaming-factorio.ts",
+      "type": "file",
+      "name": "gaming-factorio.ts",
+      "filePath": "AuBot/packages/stage-ui/src/stores/modules/gaming-factorio.ts",
+      "summary": "gaming-factorio.ts 是 code 文件，引用 1 个内部或外部依赖，在项目路径 AuBot/packages/stage-ui/src/stores/modules/gaming-factorio.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/src/stores/modules/gaming-minecraft.ts",
+      "type": "file",
+      "name": "gaming-minecraft.ts",
+      "filePath": "AuBot/packages/stage-ui/src/stores/modules/gaming-minecraft.ts",
+      "summary": "gaming-minecraft.ts 是 code 文件，包含 5 个函数，引用 1 个内部或外部依赖，在项目路径 AuBot/packages/stage-ui/src/stores/modules/gaming-minecraft.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/src/stores/modules/gaming-module-factory.ts",
+      "type": "file",
+      "name": "gaming-module-factory.ts",
+      "filePath": "AuBot/packages/stage-ui/src/stores/modules/gaming-module-factory.ts",
+      "summary": "gaming-module-factory.ts 是 code 文件，包含 1 个函数，引用 1 个内部或外部依赖，在项目路径 AuBot/packages/stage-ui/src/stores/modules/gaming-module-factory.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/packages/stage-ui/src/stores/modules/gaming-module-factory.ts:createGamingModuleStore",
+      "type": "function",
+      "name": "createGamingModuleStore",
+      "filePath": "AuBot/packages/stage-ui/src/stores/modules/gaming-module-factory.ts",
+      "lineRange": [
+        7,
+        39
+      ],
+      "summary": "函数 createGamingModuleStore 位于 gaming-module-factory.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/src/stores/modules/hearing.test.ts",
+      "type": "file",
+      "name": "hearing.test.ts",
+      "filePath": "AuBot/packages/stage-ui/src/stores/modules/hearing.test.ts",
+      "summary": "hearing.test.ts 是 code 文件，引用 1 个内部或外部依赖，在项目路径 AuBot/packages/stage-ui/src/stores/modules/hearing.test.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript",
+        "test"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/src/stores/modules/hearing.ts",
+      "type": "file",
+      "name": "hearing.ts",
+      "filePath": "AuBot/packages/stage-ui/src/stores/modules/hearing.ts",
+      "summary": "hearing.ts 是 code 文件，包含 4 个函数，引用 4 个内部或外部依赖，在项目路径 AuBot/packages/stage-ui/src/stores/modules/hearing.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:AuBot/packages/stage-ui/src/stores/modules/hearing.ts:filterTranscriptionByConfidence",
+      "type": "function",
+      "name": "filterTranscriptionByConfidence",
+      "filePath": "AuBot/packages/stage-ui/src/stores/modules/hearing.ts",
+      "lineRange": [
+        84,
+        93
+      ],
+      "summary": "函数 filterTranscriptionByConfidence 位于 hearing.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/src/stores/modules/index.ts",
+      "type": "file",
+      "name": "index.ts",
+      "filePath": "AuBot/packages/stage-ui/src/stores/modules/index.ts",
+      "summary": "index.ts 是 code 文件，在项目路径 AuBot/packages/stage-ui/src/stores/modules/index.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/src/stores/modules/speech.test.ts",
+      "type": "file",
+      "name": "speech.test.ts",
+      "filePath": "AuBot/packages/stage-ui/src/stores/modules/speech.test.ts",
+      "summary": "speech.test.ts 是 code 文件，引用 1 个内部或外部依赖，在项目路径 AuBot/packages/stage-ui/src/stores/modules/speech.test.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript",
+        "test"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/src/stores/modules/speech.ts",
+      "type": "file",
+      "name": "speech.ts",
+      "filePath": "AuBot/packages/stage-ui/src/stores/modules/speech.ts",
+      "summary": "speech.ts 是 code 文件，包含 1 个函数，引用 2 个内部或外部依赖，在项目路径 AuBot/packages/stage-ui/src/stores/modules/speech.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:AuBot/packages/stage-ui/src/stores/modules/speech.ts:toSignedPercent",
+      "type": "function",
+      "name": "toSignedPercent",
+      "filePath": "AuBot/packages/stage-ui/src/stores/modules/speech.ts",
+      "lineRange": [
+        17,
+        23
+      ],
+      "summary": "函数 toSignedPercent 位于 speech.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/src/stores/modules/twitter.ts",
+      "type": "file",
+      "name": "twitter.ts",
+      "filePath": "AuBot/packages/stage-ui/src/stores/modules/twitter.ts",
+      "summary": "twitter.ts 是 code 文件，引用 1 个内部或外部依赖，在项目路径 AuBot/packages/stage-ui/src/stores/modules/twitter.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/src/stores/modules/vision/index.ts",
+      "type": "file",
+      "name": "index.ts",
+      "filePath": "AuBot/packages/stage-ui/src/stores/modules/vision/index.ts",
+      "summary": "index.ts 是 code 文件，在项目路径 AuBot/packages/stage-ui/src/stores/modules/vision/index.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/chat/session-store.ts",
+      "target": "file:AuBot/packages/stage-ui/src/database/repos/chat-sessions.repo.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/chat/session-store.ts",
+      "target": "file:AuBot/packages/stage-ui/src/stores/auth.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/chat/session-store.ts",
+      "target": "file:AuBot/packages/stage-ui/src/stores/chat/session-message-merge.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/chat/session-store.ts",
+      "target": "file:AuBot/packages/stage-ui/src/stores/modules/airi-card.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/chat/session-store.ts",
+      "target": "file:AuBot/packages/stage-ui/src/types/chat-session.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/chat/session-store.ts",
+      "target": "file:AuBot/packages/stage-ui/src/types/chat.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/chat/stream-store.ts",
+      "target": "file:AuBot/packages/stage-ui/src/stores/chat/session-store.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/chat/stream-store.ts",
+      "target": "file:AuBot/packages/stage-ui/src/types/chat.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/configurator.ts",
+      "target": "file:AuBot/packages/stage-ui/src/stores/mods/api/channel-server.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/devtools/context-observability.ts",
+      "target": "file:AuBot/packages/stage-ui/src/stores/chat/context-prompt.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/devtools/context-observability.ts",
+      "target": "file:AuBot/packages/stage-ui/src/types/chat.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/devtools/io-tracer.ts",
+      "target": "file:AuBot/packages/stage-ui/src/composables/use-io-tracer.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/llm-tools.test.ts",
+      "target": "file:AuBot/packages/stage-ui/src/stores/llm-tools.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/llm.test.ts",
+      "target": "function:AuBot/packages/stage-ui/src/stores/llm.test.ts:toolNameFrom",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/llm.test.ts",
+      "target": "file:AuBot/packages/stage-ui/src/stores/llm-tools.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/llm.test.ts",
+      "target": "file:AuBot/packages/stage-ui/src/stores/llm.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/llm.ts",
+      "target": "function:AuBot/packages/stage-ui/src/stores/llm.ts:toolNameFrom",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/llm.ts",
+      "target": "file:AuBot/packages/stage-ui/src/stores/llm-tools.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/llm.ts",
+      "target": "file:AuBot/packages/stage-ui/src/stores/mods/api/channel-server.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/llm.ts",
+      "target": "file:AuBot/packages/stage-ui/src/tools/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/markdown-stress.ts",
+      "target": "function:AuBot/packages/stage-ui/src/stores/markdown-stress.ts:createDeterministicTimer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/markdown-stress.ts",
+      "target": "function:AuBot/packages/stage-ui/src/stores/markdown-stress.ts:chunkText",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/markdown-stress.ts",
+      "target": "function:AuBot/packages/stage-ui/src/stores/markdown-stress.ts:createMockStream",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/markdown-stress.ts",
+      "target": "file:AuBot/packages/stage-ui/src/stores/chat.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/markdown-stress.ts",
+      "target": "file:AuBot/packages/stage-ui/src/stores/llm.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/markdown-stress.ts",
+      "target": "file:AuBot/packages/stage-ui/src/stores/modules/consciousness.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/markdown-stress.ts",
+      "target": "file:AuBot/packages/stage-ui/src/stores/perf-tracer-bridge.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/markdown-stress.ts",
+      "target": "file:AuBot/packages/stage-ui/src/stores/providers.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/mcp.ts",
+      "target": "file:AuBot/packages/stage-shared/src/composables/use-local-storage-manual-reset/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/mods/api/channel-server.ts",
+      "target": "function:AuBot/packages/stage-ui/src/stores/mods/api/channel-server.ts:hasReconnectableWebSocketScheme",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/mods/api/channel-server.ts",
+      "target": "file:AuBot/packages/stage-ui/src/stores/devtools/websocket-inspector.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/mods/api/context-bridge.contract.test.ts",
+      "target": "file:AuBot/packages/stage-ui/src/stores/mods/api/context-bridge.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/mods/api/context-bridge.ts",
+      "target": "function:AuBot/packages/stage-ui/src/stores/mods/api/context-bridge.ts:normalizeContextSnapshot",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/mods/api/context-bridge.ts",
+      "target": "file:AuBot/packages/stage-ui/src/stores/character/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/mods/api/context-bridge.ts",
+      "target": "file:AuBot/packages/stage-ui/src/stores/chat.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/mods/api/context-bridge.ts",
+      "target": "file:AuBot/packages/stage-ui/src/stores/chat/constants.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/mods/api/context-bridge.ts",
+      "target": "file:AuBot/packages/stage-ui/src/stores/chat/context-store.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/mods/api/context-bridge.ts",
+      "target": "file:AuBot/packages/stage-ui/src/stores/chat/session-store.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/mods/api/context-bridge.ts",
+      "target": "file:AuBot/packages/stage-ui/src/stores/chat/stream-store.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/mods/api/context-bridge.ts",
+      "target": "file:AuBot/packages/stage-ui/src/stores/devtools/context-observability.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/mods/api/context-bridge.ts",
+      "target": "file:AuBot/packages/stage-ui/src/stores/mods/api/channel-server.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/mods/api/context-bridge.ts",
+      "target": "file:AuBot/packages/stage-ui/src/stores/modules/consciousness.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/mods/api/context-bridge.ts",
+      "target": "file:AuBot/packages/stage-ui/src/stores/providers.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/mods/api/context-bridge.ts",
+      "target": "file:AuBot/packages/stage-ui/src/types/chat.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/mods/api/context-bridge.ts",
+      "target": "file:AuBot/packages/stage-ui/src/utils/event-source.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/modules/airi-card.ts",
+      "target": "file:AuBot/packages/stage-ui/src/constants/prompts/character-defaults.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/modules/airi-card.ts",
+      "target": "file:AuBot/packages/stage-ui/src/constants/prompts/system-v2.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/modules/airi-card.ts",
+      "target": "file:AuBot/packages/stage-ui/src/stores/modules/artistry.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/modules/airi-card.ts",
+      "target": "file:AuBot/packages/stage-ui/src/stores/modules/consciousness.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/modules/airi-card.ts",
+      "target": "file:AuBot/packages/stage-ui/src/stores/modules/speech.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/modules/airi-card.ts",
+      "target": "file:AuBot/packages/stage-ui/src/stores/settings/stage-model.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/modules/artistry-autonomous.ts",
+      "target": "file:AuBot/packages/stage-ui/src/stores/background.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/modules/artistry-autonomous.ts",
+      "target": "file:AuBot/packages/stage-ui/src/stores/chat/session-store.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/modules/artistry-autonomous.ts",
+      "target": "file:AuBot/packages/stage-ui/src/stores/modules/airi-card.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/modules/artistry-autonomous.ts",
+      "target": "file:AuBot/packages/stage-ui/src/stores/modules/artistry.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/modules/artistry-autonomous.ts",
+      "target": "file:AuBot/packages/stage-ui/src/stores/modules/consciousness.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/modules/artistry-autonomous.ts",
+      "target": "file:AuBot/packages/stage-ui/src/stores/providers.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/modules/artistry.ts",
+      "target": "function:AuBot/packages/stage-ui/src/stores/modules/artistry.ts:resolveArtistryConfigFromStore",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/modules/consciousness.ts",
+      "target": "file:AuBot/packages/stage-ui/src/stores/providers.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/modules/discord.ts",
+      "target": "file:AuBot/packages/stage-ui/src/stores/configurator.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/modules/gaming-factorio.ts",
+      "target": "file:AuBot/packages/stage-ui/src/stores/modules/gaming-module-factory.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/modules/gaming-minecraft.ts",
+      "target": "file:AuBot/packages/stage-ui/src/stores/mods/api/channel-server.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/modules/gaming-module-factory.ts",
+      "target": "function:AuBot/packages/stage-ui/src/stores/modules/gaming-module-factory.ts:createGamingModuleStore",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/modules/gaming-module-factory.ts",
+      "target": "file:AuBot/packages/stage-ui/src/stores/configurator.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/modules/hearing.test.ts",
+      "target": "file:AuBot/packages/stage-ui/src/stores/modules/hearing.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/modules/hearing.ts",
+      "target": "function:AuBot/packages/stage-ui/src/stores/modules/hearing.ts:filterTranscriptionByConfidence",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/modules/hearing.ts",
+      "target": "file:AuBot/packages/stage-ui/src/composables/use-io-tracer.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/modules/hearing.ts",
+      "target": "file:AuBot/packages/stage-ui/src/stores/providers.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/modules/hearing.ts",
+      "target": "file:AuBot/packages/stage-ui/src/stores/providers/aliyun/stream-transcription.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/modules/hearing.ts",
+      "target": "file:AuBot/packages/stage-ui/src/stores/providers/web-speech-api/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/modules/speech.test.ts",
+      "target": "file:AuBot/packages/stage-ui/src/stores/modules/speech.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/modules/speech.ts",
+      "target": "function:AuBot/packages/stage-ui/src/stores/modules/speech.ts:toSignedPercent",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/modules/speech.ts",
+      "target": "file:AuBot/packages/stage-ui/src/libs/providers/providers/official/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/modules/speech.ts",
+      "target": "file:AuBot/packages/stage-ui/src/stores/providers.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/modules/twitter.ts",
+      "target": "file:AuBot/packages/stage-ui/src/stores/configurator.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    }
+  ]
+}

@@ -1,0 +1,988 @@
+{
+  "nodes": [
+    {
+      "id": "file:AuBot/apps/server/src/types/hono.ts",
+      "type": "file",
+      "name": "hono.ts",
+      "filePath": "AuBot/apps/server/src/types/hono.ts",
+      "summary": "hono.ts 是 code 文件，引用 1 个内部或外部依赖，在项目路径 AuBot/apps/server/src/types/hono.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/apps/server/src/utils/chat-broadcast.ts",
+      "type": "file",
+      "name": "chat-broadcast.ts",
+      "filePath": "AuBot/apps/server/src/utils/chat-broadcast.ts",
+      "summary": "chat-broadcast.ts 是 code 文件，包含 5 个函数，在项目路径 AuBot/apps/server/src/utils/chat-broadcast.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:AuBot/apps/server/src/utils/chat-broadcast.ts:createChatBroadcastMessage",
+      "type": "function",
+      "name": "createChatBroadcastMessage",
+      "filePath": "AuBot/apps/server/src/utils/chat-broadcast.ts",
+      "lineRange": [
+        27,
+        40
+      ],
+      "summary": "函数 createChatBroadcastMessage 位于 chat-broadcast.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/apps/server/src/utils/chat-broadcast.ts:parseChatBroadcastMessage",
+      "type": "function",
+      "name": "parseChatBroadcastMessage",
+      "filePath": "AuBot/apps/server/src/utils/chat-broadcast.ts",
+      "lineRange": [
+        42,
+        71
+      ],
+      "summary": "函数 parseChatBroadcastMessage 位于 chat-broadcast.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:AuBot/apps/server/src/utils/error-message.ts",
+      "type": "file",
+      "name": "error-message.ts",
+      "filePath": "AuBot/apps/server/src/utils/error-message.ts",
+      "summary": "error-message.ts 是 code 文件，包含 1 个函数，在项目路径 AuBot/apps/server/src/utils/error-message.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/apps/server/src/utils/error-message.ts:errorMessageFromUnknown",
+      "type": "function",
+      "name": "errorMessageFromUnknown",
+      "filePath": "AuBot/apps/server/src/utils/error-message.ts",
+      "lineRange": [
+        6,
+        8
+      ],
+      "summary": "函数 errorMessageFromUnknown 位于 error-message.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/apps/server/src/utils/error.ts",
+      "type": "file",
+      "name": "error.ts",
+      "filePath": "AuBot/apps/server/src/utils/error.ts",
+      "summary": "error.ts 是 code 文件，包含 8 个函数，包含 1 个类，在项目路径 AuBot/apps/server/src/utils/error.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:AuBot/apps/server/src/utils/error.ts:createInternalError",
+      "type": "function",
+      "name": "createInternalError",
+      "filePath": "AuBot/apps/server/src/utils/error.ts",
+      "lineRange": [
+        18,
+        20
+      ],
+      "summary": "函数 createInternalError 位于 error.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/apps/server/src/utils/error.ts:createBadRequestError",
+      "type": "function",
+      "name": "createBadRequestError",
+      "filePath": "AuBot/apps/server/src/utils/error.ts",
+      "lineRange": [
+        25,
+        27
+      ],
+      "summary": "函数 createBadRequestError 位于 error.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/apps/server/src/utils/error.ts:createUnauthorizedError",
+      "type": "function",
+      "name": "createUnauthorizedError",
+      "filePath": "AuBot/apps/server/src/utils/error.ts",
+      "lineRange": [
+        32,
+        34
+      ],
+      "summary": "函数 createUnauthorizedError 位于 error.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/apps/server/src/utils/error.ts:createForbiddenError",
+      "type": "function",
+      "name": "createForbiddenError",
+      "filePath": "AuBot/apps/server/src/utils/error.ts",
+      "lineRange": [
+        39,
+        41
+      ],
+      "summary": "函数 createForbiddenError 位于 error.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/apps/server/src/utils/error.ts:createNotFoundError",
+      "type": "function",
+      "name": "createNotFoundError",
+      "filePath": "AuBot/apps/server/src/utils/error.ts",
+      "lineRange": [
+        46,
+        48
+      ],
+      "summary": "函数 createNotFoundError 位于 error.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/apps/server/src/utils/error.ts:createPaymentRequiredError",
+      "type": "function",
+      "name": "createPaymentRequiredError",
+      "filePath": "AuBot/apps/server/src/utils/error.ts",
+      "lineRange": [
+        53,
+        55
+      ],
+      "summary": "函数 createPaymentRequiredError 位于 error.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/apps/server/src/utils/error.ts:createConflictError",
+      "type": "function",
+      "name": "createConflictError",
+      "filePath": "AuBot/apps/server/src/utils/error.ts",
+      "lineRange": [
+        60,
+        62
+      ],
+      "summary": "函数 createConflictError 位于 error.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/apps/server/src/utils/error.ts:createServiceUnavailableError",
+      "type": "function",
+      "name": "createServiceUnavailableError",
+      "filePath": "AuBot/apps/server/src/utils/error.ts",
+      "lineRange": [
+        67,
+        69
+      ],
+      "summary": "函数 createServiceUnavailableError 位于 error.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:AuBot/apps/server/src/utils/error.ts:ApiError",
+      "type": "class",
+      "name": "ApiError",
+      "filePath": "AuBot/apps/server/src/utils/error.ts",
+      "lineRange": [
+        3,
+        13
+      ],
+      "summary": "类 ApiError 位于 error.ts，由结构提取结果识别。",
+      "tags": [
+        "class",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/apps/server/src/utils/http-query.ts",
+      "type": "file",
+      "name": "http-query.ts",
+      "filePath": "AuBot/apps/server/src/utils/http-query.ts",
+      "summary": "http-query.ts 是 code 文件，包含 2 个函数，在项目路径 AuBot/apps/server/src/utils/http-query.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/apps/server/src/utils/http-query.ts:createQueryIntegerSchema",
+      "type": "function",
+      "name": "createQueryIntegerSchema",
+      "filePath": "AuBot/apps/server/src/utils/http-query.ts",
+      "lineRange": [
+        23,
+        34
+      ],
+      "summary": "函数 createQueryIntegerSchema 位于 http-query.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/apps/server/src/utils/id.ts",
+      "type": "file",
+      "name": "id.ts",
+      "filePath": "AuBot/apps/server/src/utils/id.ts",
+      "summary": "id.ts 是 code 文件，包含 1 个函数，在项目路径 AuBot/apps/server/src/utils/id.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/apps/server/src/utils/id.ts:nanoid",
+      "type": "function",
+      "name": "nanoid",
+      "filePath": "AuBot/apps/server/src/utils/id.ts",
+      "lineRange": [
+        10,
+        17
+      ],
+      "summary": "函数 nanoid 位于 id.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/apps/server/src/utils/observability.ts",
+      "type": "file",
+      "name": "observability.ts",
+      "filePath": "AuBot/apps/server/src/utils/observability.ts",
+      "summary": "observability.ts 是 code 文件，包含 1 个函数，在项目路径 AuBot/apps/server/src/utils/observability.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:AuBot/apps/server/src/utils/observability.ts:getServerConnectionAttributes",
+      "type": "function",
+      "name": "getServerConnectionAttributes",
+      "filePath": "AuBot/apps/server/src/utils/observability.ts",
+      "lineRange": [
+        69,
+        80
+      ],
+      "summary": "函数 getServerConnectionAttributes 位于 observability.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/apps/server/src/utils/origin.ts",
+      "type": "file",
+      "name": "origin.ts",
+      "filePath": "AuBot/apps/server/src/utils/origin.ts",
+      "summary": "origin.ts 是 code 文件，包含 4 个函数，引用 1 个内部或外部依赖，在项目路径 AuBot/apps/server/src/utils/origin.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:AuBot/apps/server/src/utils/origin.ts:getTrustedOrigin",
+      "type": "function",
+      "name": "getTrustedOrigin",
+      "filePath": "AuBot/apps/server/src/utils/origin.ts",
+      "lineRange": [
+        29,
+        40
+      ],
+      "summary": "函数 getTrustedOrigin 位于 origin.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/apps/server/src/utils/origin.ts:resolveTrustedRequestOrigin",
+      "type": "function",
+      "name": "resolveTrustedRequestOrigin",
+      "filePath": "AuBot/apps/server/src/utils/origin.ts",
+      "lineRange": [
+        42,
+        58
+      ],
+      "summary": "函数 resolveTrustedRequestOrigin 位于 origin.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/apps/server/src/utils/origin.ts:getAuthTrustedOrigins",
+      "type": "function",
+      "name": "getAuthTrustedOrigins",
+      "filePath": "AuBot/apps/server/src/utils/origin.ts",
+      "lineRange": [
+        77,
+        96
+      ],
+      "summary": "函数 getAuthTrustedOrigins 位于 origin.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/apps/server/src/utils/redis-compressed.ts",
+      "type": "file",
+      "name": "redis-compressed.ts",
+      "filePath": "AuBot/apps/server/src/utils/redis-compressed.ts",
+      "summary": "redis-compressed.ts 是 code 文件，包含 3 个函数，在项目路径 AuBot/apps/server/src/utils/redis-compressed.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:AuBot/apps/server/src/utils/redis-compressed.ts:getCompressed",
+      "type": "function",
+      "name": "getCompressed",
+      "filePath": "AuBot/apps/server/src/utils/redis-compressed.ts",
+      "lineRange": [
+        30,
+        38
+      ],
+      "summary": "函数 getCompressed 位于 redis-compressed.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/apps/server/src/utils/redis-compressed.ts:setCompressed",
+      "type": "function",
+      "name": "setCompressed",
+      "filePath": "AuBot/apps/server/src/utils/redis-compressed.ts",
+      "lineRange": [
+        47,
+        60
+      ],
+      "summary": "函数 setCompressed 位于 redis-compressed.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/apps/server/src/utils/redis-keys.ts",
+      "type": "file",
+      "name": "redis-keys.ts",
+      "filePath": "AuBot/apps/server/src/utils/redis-keys.ts",
+      "summary": "redis-keys.ts 是 code 文件，包含 8 个函数，在项目路径 AuBot/apps/server/src/utils/redis-keys.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:AuBot/apps/server/src/utils/redis-keys.ts:createRedisKey",
+      "type": "function",
+      "name": "createRedisKey",
+      "filePath": "AuBot/apps/server/src/utils/redis-keys.ts",
+      "lineRange": [
+        11,
+        16
+      ],
+      "summary": "函数 createRedisKey 位于 redis-keys.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/apps/server/src/utils/redis-keys.ts:configRedisKey",
+      "type": "function",
+      "name": "configRedisKey",
+      "filePath": "AuBot/apps/server/src/utils/redis-keys.ts",
+      "lineRange": [
+        20,
+        22
+      ],
+      "summary": "函数 configRedisKey 位于 redis-keys.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/apps/server/src/utils/redis-keys.ts:userFluxRedisKey",
+      "type": "function",
+      "name": "userFluxRedisKey",
+      "filePath": "AuBot/apps/server/src/utils/redis-keys.ts",
+      "lineRange": [
+        24,
+        26
+      ],
+      "summary": "函数 userFluxRedisKey 位于 redis-keys.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/apps/server/src/utils/redis-keys.ts:ttsVoicesUpstreamCacheRedisKey",
+      "type": "function",
+      "name": "ttsVoicesUpstreamCacheRedisKey",
+      "filePath": "AuBot/apps/server/src/utils/redis-keys.ts",
+      "lineRange": [
+        28,
+        30
+      ],
+      "summary": "函数 ttsVoicesUpstreamCacheRedisKey 位于 redis-keys.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/apps/server/src/utils/redis-keys.ts:userFluxMeterDebtRedisKey",
+      "type": "function",
+      "name": "userFluxMeterDebtRedisKey",
+      "filePath": "AuBot/apps/server/src/utils/redis-keys.ts",
+      "lineRange": [
+        32,
+        34
+      ],
+      "summary": "函数 userFluxMeterDebtRedisKey 位于 redis-keys.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/apps/server/src/utils/redis-keys.ts:userChatBroadcastRedisKey",
+      "type": "function",
+      "name": "userChatBroadcastRedisKey",
+      "filePath": "AuBot/apps/server/src/utils/redis-keys.ts",
+      "lineRange": [
+        36,
+        38
+      ],
+      "summary": "函数 userChatBroadcastRedisKey 位于 redis-keys.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/apps/server/src/utils/redis-keys.ts:lockRedisKey",
+      "type": "function",
+      "name": "lockRedisKey",
+      "filePath": "AuBot/apps/server/src/utils/redis-keys.ts",
+      "lineRange": [
+        40,
+        42
+      ],
+      "summary": "函数 lockRedisKey 位于 redis-keys.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/apps/server/src/utils/server-auth-ui.ts",
+      "type": "file",
+      "name": "server-auth-ui.ts",
+      "filePath": "AuBot/apps/server/src/utils/server-auth-ui.ts",
+      "summary": "server-auth-ui.ts 是 code 文件，包含 4 个函数，在项目路径 AuBot/apps/server/src/utils/server-auth-ui.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/apps/server/src/utils/server-auth-ui.ts:getServerAuthUiDistDir",
+      "type": "function",
+      "name": "getServerAuthUiDistDir",
+      "filePath": "AuBot/apps/server/src/utils/server-auth-ui.ts",
+      "lineRange": [
+        27,
+        29
+      ],
+      "summary": "函数 getServerAuthUiDistDir 位于 server-auth-ui.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/apps/server/src/utils/server-auth-ui.ts:renderServerAuthUiHtml",
+      "type": "function",
+      "name": "renderServerAuthUiHtml",
+      "filePath": "AuBot/apps/server/src/utils/server-auth-ui.ts",
+      "lineRange": [
+        31,
+        38
+      ],
+      "summary": "函数 renderServerAuthUiHtml 位于 server-auth-ui.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/apps/server/src/utils/tests/chat-broadcast.test.ts",
+      "type": "file",
+      "name": "chat-broadcast.test.ts",
+      "filePath": "AuBot/apps/server/src/utils/tests/chat-broadcast.test.ts",
+      "summary": "chat-broadcast.test.ts 是 code 文件，引用 1 个内部或外部依赖，在项目路径 AuBot/apps/server/src/utils/tests/chat-broadcast.test.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript",
+        "test"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:AuBot/apps/server/src/utils/tests/http-query.test.ts",
+      "type": "file",
+      "name": "http-query.test.ts",
+      "filePath": "AuBot/apps/server/src/utils/tests/http-query.test.ts",
+      "summary": "http-query.test.ts 是 code 文件，引用 1 个内部或外部依赖，在项目路径 AuBot/apps/server/src/utils/tests/http-query.test.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript",
+        "test"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/apps/server/src/utils/tests/origin.test.ts",
+      "type": "file",
+      "name": "origin.test.ts",
+      "filePath": "AuBot/apps/server/src/utils/tests/origin.test.ts",
+      "summary": "origin.test.ts 是 code 文件，引用 1 个内部或外部依赖，在项目路径 AuBot/apps/server/src/utils/tests/origin.test.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript",
+        "test"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/apps/server/src/utils/tests/redis-compressed.test.ts",
+      "type": "file",
+      "name": "redis-compressed.test.ts",
+      "filePath": "AuBot/apps/server/src/utils/tests/redis-compressed.test.ts",
+      "summary": "redis-compressed.test.ts 是 code 文件，包含 1 个函数，引用 1 个内部或外部依赖，在项目路径 AuBot/apps/server/src/utils/tests/redis-compressed.test.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript",
+        "test"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:AuBot/apps/server/src/utils/tests/redis-compressed.test.ts:createMockRedis",
+      "type": "function",
+      "name": "createMockRedis",
+      "filePath": "AuBot/apps/server/src/utils/tests/redis-compressed.test.ts",
+      "lineRange": [
+        11,
+        21
+      ],
+      "summary": "函数 createMockRedis 位于 redis-compressed.test.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/apps/server/src/utils/tests/redis-keys.test.ts",
+      "type": "file",
+      "name": "redis-keys.test.ts",
+      "filePath": "AuBot/apps/server/src/utils/tests/redis-keys.test.ts",
+      "summary": "redis-keys.test.ts 是 code 文件，引用 1 个内部或外部依赖，在项目路径 AuBot/apps/server/src/utils/tests/redis-keys.test.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript",
+        "test"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:AuBot/apps/server/src/types/hono.ts",
+      "target": "file:AuBot/apps/server/src/scripts/auth.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/server/src/utils/chat-broadcast.ts",
+      "target": "function:AuBot/apps/server/src/utils/chat-broadcast.ts:createChatBroadcastMessage",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/server/src/utils/chat-broadcast.ts",
+      "target": "function:AuBot/apps/server/src/utils/chat-broadcast.ts:parseChatBroadcastMessage",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/server/src/utils/error-message.ts",
+      "target": "function:AuBot/apps/server/src/utils/error-message.ts:errorMessageFromUnknown",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/server/src/utils/error.ts",
+      "target": "function:AuBot/apps/server/src/utils/error.ts:createInternalError",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/server/src/utils/error.ts",
+      "target": "function:AuBot/apps/server/src/utils/error.ts:createBadRequestError",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/server/src/utils/error.ts",
+      "target": "function:AuBot/apps/server/src/utils/error.ts:createUnauthorizedError",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/server/src/utils/error.ts",
+      "target": "function:AuBot/apps/server/src/utils/error.ts:createForbiddenError",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/server/src/utils/error.ts",
+      "target": "function:AuBot/apps/server/src/utils/error.ts:createNotFoundError",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/server/src/utils/error.ts",
+      "target": "function:AuBot/apps/server/src/utils/error.ts:createPaymentRequiredError",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/server/src/utils/error.ts",
+      "target": "function:AuBot/apps/server/src/utils/error.ts:createConflictError",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/server/src/utils/error.ts",
+      "target": "function:AuBot/apps/server/src/utils/error.ts:createServiceUnavailableError",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/server/src/utils/error.ts",
+      "target": "class:AuBot/apps/server/src/utils/error.ts:ApiError",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/server/src/utils/http-query.ts",
+      "target": "function:AuBot/apps/server/src/utils/http-query.ts:createQueryIntegerSchema",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/server/src/utils/id.ts",
+      "target": "function:AuBot/apps/server/src/utils/id.ts:nanoid",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/server/src/utils/observability.ts",
+      "target": "function:AuBot/apps/server/src/utils/observability.ts:getServerConnectionAttributes",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/server/src/utils/origin.ts",
+      "target": "function:AuBot/apps/server/src/utils/origin.ts:getTrustedOrigin",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/server/src/utils/origin.ts",
+      "target": "function:AuBot/apps/server/src/utils/origin.ts:resolveTrustedRequestOrigin",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/server/src/utils/origin.ts",
+      "target": "function:AuBot/apps/server/src/utils/origin.ts:getAuthTrustedOrigins",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/server/src/utils/origin.ts",
+      "target": "file:AuBot/apps/server/src/libs/env.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/server/src/utils/redis-compressed.ts",
+      "target": "function:AuBot/apps/server/src/utils/redis-compressed.ts:getCompressed",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/server/src/utils/redis-compressed.ts",
+      "target": "function:AuBot/apps/server/src/utils/redis-compressed.ts:setCompressed",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/server/src/utils/redis-keys.ts",
+      "target": "function:AuBot/apps/server/src/utils/redis-keys.ts:createRedisKey",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/server/src/utils/redis-keys.ts",
+      "target": "function:AuBot/apps/server/src/utils/redis-keys.ts:configRedisKey",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/server/src/utils/redis-keys.ts",
+      "target": "function:AuBot/apps/server/src/utils/redis-keys.ts:userFluxRedisKey",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/server/src/utils/redis-keys.ts",
+      "target": "function:AuBot/apps/server/src/utils/redis-keys.ts:ttsVoicesUpstreamCacheRedisKey",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/server/src/utils/redis-keys.ts",
+      "target": "function:AuBot/apps/server/src/utils/redis-keys.ts:userFluxMeterDebtRedisKey",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/server/src/utils/redis-keys.ts",
+      "target": "function:AuBot/apps/server/src/utils/redis-keys.ts:userChatBroadcastRedisKey",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/server/src/utils/redis-keys.ts",
+      "target": "function:AuBot/apps/server/src/utils/redis-keys.ts:lockRedisKey",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/server/src/utils/server-auth-ui.ts",
+      "target": "function:AuBot/apps/server/src/utils/server-auth-ui.ts:getServerAuthUiDistDir",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/server/src/utils/server-auth-ui.ts",
+      "target": "function:AuBot/apps/server/src/utils/server-auth-ui.ts:renderServerAuthUiHtml",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/server/src/utils/tests/chat-broadcast.test.ts",
+      "target": "file:AuBot/apps/server/src/utils/chat-broadcast.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/server/src/utils/tests/http-query.test.ts",
+      "target": "file:AuBot/apps/server/src/utils/http-query.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/server/src/utils/tests/origin.test.ts",
+      "target": "file:AuBot/apps/server/src/utils/origin.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/server/src/utils/tests/redis-compressed.test.ts",
+      "target": "function:AuBot/apps/server/src/utils/tests/redis-compressed.test.ts:createMockRedis",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/server/src/utils/tests/redis-compressed.test.ts",
+      "target": "file:AuBot/apps/server/src/utils/redis-compressed.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/server/src/utils/tests/redis-keys.test.ts",
+      "target": "file:AuBot/apps/server/src/utils/redis-keys.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    }
+  ]
+}

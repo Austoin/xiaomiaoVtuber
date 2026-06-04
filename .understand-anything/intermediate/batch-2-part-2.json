@@ -1,0 +1,1330 @@
+{
+  "nodes": [
+    {
+      "id": "file:nanobot/nanobot/channels/feishu.py",
+      "type": "file",
+      "name": "feishu.py",
+      "filePath": "nanobot/nanobot/channels/feishu.py",
+      "summary": "feishu.py 是 code 文件，包含 5 个函数，包含 3 个类，引用 6 个内部或外部依赖，在项目路径 nanobot/nanobot/channels/feishu.py 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "python"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:nanobot/nanobot/channels/feishu.py:_extract_share_card_content",
+      "type": "function",
+      "name": "_extract_share_card_content",
+      "filePath": "nanobot/nanobot/channels/feishu.py",
+      "lineRange": [
+        38,
+        55
+      ],
+      "summary": "函数 _extract_share_card_content 位于 feishu.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/nanobot/channels/feishu.py:_extract_interactive_content",
+      "type": "function",
+      "name": "_extract_interactive_content",
+      "filePath": "nanobot/nanobot/channels/feishu.py",
+      "lineRange": [
+        58,
+        98
+      ],
+      "summary": "函数 _extract_interactive_content 位于 feishu.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:nanobot/nanobot/channels/feishu.py:_extract_element_content",
+      "type": "function",
+      "name": "_extract_element_content",
+      "filePath": "nanobot/nanobot/channels/feishu.py",
+      "lineRange": [
+        101,
+        171
+      ],
+      "summary": "函数 _extract_element_content 位于 feishu.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:nanobot/nanobot/channels/feishu.py:_extract_post_content",
+      "type": "function",
+      "name": "_extract_post_content",
+      "filePath": "nanobot/nanobot/channels/feishu.py",
+      "lineRange": [
+        174,
+        233
+      ],
+      "summary": "函数 _extract_post_content 位于 feishu.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:nanobot/nanobot/channels/feishu.py:_extract_post_text",
+      "type": "function",
+      "name": "_extract_post_text",
+      "filePath": "nanobot/nanobot/channels/feishu.py",
+      "lineRange": [
+        236,
+        242
+      ],
+      "summary": "函数 _extract_post_text 位于 feishu.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:nanobot/nanobot/channels/feishu.py:FeishuConfig",
+      "type": "class",
+      "name": "FeishuConfig",
+      "filePath": "nanobot/nanobot/channels/feishu.py",
+      "lineRange": [
+        245,
+        261
+      ],
+      "summary": "类 FeishuConfig 位于 feishu.py，由结构提取结果识别。",
+      "tags": [
+        "class",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:nanobot/nanobot/channels/feishu.py:_FeishuStreamBuf",
+      "type": "class",
+      "name": "_FeishuStreamBuf",
+      "filePath": "nanobot/nanobot/channels/feishu.py",
+      "lineRange": [
+        268,
+        274
+      ],
+      "summary": "类 _FeishuStreamBuf 位于 feishu.py，由结构提取结果识别。",
+      "tags": [
+        "class",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:nanobot/nanobot/channels/feishu.py:FeishuChannel",
+      "type": "class",
+      "name": "FeishuChannel",
+      "filePath": "nanobot/nanobot/channels/feishu.py",
+      "lineRange": [
+        277,
+        1875
+      ],
+      "summary": "类 FeishuChannel 位于 feishu.py，由结构提取结果识别。",
+      "tags": [
+        "class",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:nanobot/nanobot/channels/manager.py",
+      "type": "file",
+      "name": "manager.py",
+      "filePath": "nanobot/nanobot/channels/manager.py",
+      "summary": "manager.py 是 code 文件，包含 1 个函数，包含 1 个类，引用 5 个内部或外部依赖，在项目路径 nanobot/nanobot/channels/manager.py 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "python"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:nanobot/nanobot/channels/manager.py:_default_webui_dist",
+      "type": "function",
+      "name": "_default_webui_dist",
+      "filePath": "nanobot/nanobot/channels/manager.py",
+      "lineRange": [
+        23,
+        30
+      ],
+      "summary": "函数 _default_webui_dist 位于 manager.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:nanobot/nanobot/channels/manager.py:ChannelManager",
+      "type": "class",
+      "name": "ChannelManager",
+      "filePath": "nanobot/nanobot/channels/manager.py",
+      "lineRange": [
+        41,
+        427
+      ],
+      "summary": "类 ChannelManager 位于 manager.py，由结构提取结果识别。",
+      "tags": [
+        "class",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:nanobot/nanobot/channels/matrix.py",
+      "type": "file",
+      "name": "matrix.py",
+      "filePath": "nanobot/nanobot/channels/matrix.py",
+      "summary": "matrix.py 是 code 文件，包含 3 个函数，包含 3 个类，引用 7 个内部或外部依赖，在项目路径 nanobot/nanobot/channels/matrix.py 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "python"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:nanobot/nanobot/channels/matrix.py:_filter_matrix_html_attribute",
+      "type": "function",
+      "name": "_filter_matrix_html_attribute",
+      "filePath": "nanobot/nanobot/channels/matrix.py",
+      "lineRange": [
+        82,
+        91
+      ],
+      "summary": "函数 _filter_matrix_html_attribute 位于 matrix.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/nanobot/channels/matrix.py:_render_markdown_html",
+      "type": "function",
+      "name": "_render_markdown_html",
+      "filePath": "nanobot/nanobot/channels/matrix.py",
+      "lineRange": [
+        120,
+        133
+      ],
+      "summary": "函数 _render_markdown_html 位于 matrix.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/nanobot/channels/matrix.py:_build_matrix_text_content",
+      "type": "function",
+      "name": "_build_matrix_text_content",
+      "filePath": "nanobot/nanobot/channels/matrix.py",
+      "lineRange": [
+        136,
+        177
+      ],
+      "summary": "函数 _build_matrix_text_content 位于 matrix.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:nanobot/nanobot/channels/matrix.py:_StreamBuf",
+      "type": "class",
+      "name": "_StreamBuf",
+      "filePath": "nanobot/nanobot/channels/matrix.py",
+      "lineRange": [
+        104,
+        118
+      ],
+      "summary": "类 _StreamBuf 位于 matrix.py，由结构提取结果识别。",
+      "tags": [
+        "class",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:nanobot/nanobot/channels/matrix.py:MatrixConfig",
+      "type": "class",
+      "name": "MatrixConfig",
+      "filePath": "nanobot/nanobot/channels/matrix.py",
+      "lineRange": [
+        180,
+        196
+      ],
+      "summary": "类 MatrixConfig 位于 matrix.py，由结构提取结果识别。",
+      "tags": [
+        "class",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:nanobot/nanobot/channels/matrix.py:MatrixChannel",
+      "type": "class",
+      "name": "MatrixChannel",
+      "filePath": "nanobot/nanobot/channels/matrix.py",
+      "lineRange": [
+        199,
+        913
+      ],
+      "summary": "类 MatrixChannel 位于 matrix.py，由结构提取结果识别。",
+      "tags": [
+        "class",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:nanobot/nanobot/channels/mochat.py",
+      "type": "file",
+      "name": "mochat.py",
+      "filePath": "nanobot/nanobot/channels/mochat.py",
+      "summary": "mochat.py 是 code 文件，包含 10 个函数，包含 7 个类，引用 5 个内部或外部依赖，在项目路径 nanobot/nanobot/channels/mochat.py 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "python"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:nanobot/nanobot/channels/mochat.py:_safe_dict",
+      "type": "function",
+      "name": "_safe_dict",
+      "filePath": "nanobot/nanobot/channels/mochat.py",
+      "lineRange": [
+        74,
+        76
+      ],
+      "summary": "函数 _safe_dict 位于 mochat.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/nanobot/channels/mochat.py:_str_field",
+      "type": "function",
+      "name": "_str_field",
+      "filePath": "nanobot/nanobot/channels/mochat.py",
+      "lineRange": [
+        79,
+        85
+      ],
+      "summary": "函数 _str_field 位于 mochat.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/nanobot/channels/mochat.py:_make_synthetic_event",
+      "type": "function",
+      "name": "_make_synthetic_event",
+      "filePath": "nanobot/nanobot/channels/mochat.py",
+      "lineRange": [
+        88,
+        105
+      ],
+      "summary": "函数 _make_synthetic_event 位于 mochat.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/nanobot/channels/mochat.py:normalize_mochat_content",
+      "type": "function",
+      "name": "normalize_mochat_content",
+      "filePath": "nanobot/nanobot/channels/mochat.py",
+      "lineRange": [
+        108,
+        117
+      ],
+      "summary": "函数 normalize_mochat_content 位于 mochat.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/nanobot/channels/mochat.py:resolve_mochat_target",
+      "type": "function",
+      "name": "resolve_mochat_target",
+      "filePath": "nanobot/nanobot/channels/mochat.py",
+      "lineRange": [
+        120,
+        136
+      ],
+      "summary": "函数 resolve_mochat_target 位于 mochat.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/nanobot/channels/mochat.py:extract_mention_ids",
+      "type": "function",
+      "name": "extract_mention_ids",
+      "filePath": "nanobot/nanobot/channels/mochat.py",
+      "lineRange": [
+        139,
+        154
+      ],
+      "summary": "函数 extract_mention_ids 位于 mochat.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/nanobot/channels/mochat.py:resolve_was_mentioned",
+      "type": "function",
+      "name": "resolve_was_mentioned",
+      "filePath": "nanobot/nanobot/channels/mochat.py",
+      "lineRange": [
+        157,
+        171
+      ],
+      "summary": "函数 resolve_was_mentioned 位于 mochat.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/nanobot/channels/mochat.py:resolve_require_mention",
+      "type": "function",
+      "name": "resolve_require_mention",
+      "filePath": "nanobot/nanobot/channels/mochat.py",
+      "lineRange": [
+        174,
+        180
+      ],
+      "summary": "函数 resolve_require_mention 位于 mochat.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/nanobot/channels/mochat.py:build_buffered_body",
+      "type": "function",
+      "name": "build_buffered_body",
+      "filePath": "nanobot/nanobot/channels/mochat.py",
+      "lineRange": [
+        183,
+        199
+      ],
+      "summary": "函数 build_buffered_body 位于 mochat.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/nanobot/channels/mochat.py:parse_timestamp",
+      "type": "function",
+      "name": "parse_timestamp",
+      "filePath": "nanobot/nanobot/channels/mochat.py",
+      "lineRange": [
+        202,
+        209
+      ],
+      "summary": "函数 parse_timestamp 位于 mochat.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:nanobot/nanobot/channels/mochat.py:MochatBufferedEntry",
+      "type": "class",
+      "name": "MochatBufferedEntry",
+      "filePath": "nanobot/nanobot/channels/mochat.py",
+      "lineRange": [
+        44,
+        52
+      ],
+      "summary": "类 MochatBufferedEntry 位于 mochat.py，由结构提取结果识别。",
+      "tags": [
+        "class",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:nanobot/nanobot/channels/mochat.py:DelayState",
+      "type": "class",
+      "name": "DelayState",
+      "filePath": "nanobot/nanobot/channels/mochat.py",
+      "lineRange": [
+        56,
+        60
+      ],
+      "summary": "类 DelayState 位于 mochat.py，由结构提取结果识别。",
+      "tags": [
+        "class",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:nanobot/nanobot/channels/mochat.py:MochatTarget",
+      "type": "class",
+      "name": "MochatTarget",
+      "filePath": "nanobot/nanobot/channels/mochat.py",
+      "lineRange": [
+        64,
+        67
+      ],
+      "summary": "类 MochatTarget 位于 mochat.py，由结构提取结果识别。",
+      "tags": [
+        "class",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:nanobot/nanobot/channels/mochat.py:MochatMentionConfig",
+      "type": "class",
+      "name": "MochatMentionConfig",
+      "filePath": "nanobot/nanobot/channels/mochat.py",
+      "lineRange": [
+        216,
+        219
+      ],
+      "summary": "类 MochatMentionConfig 位于 mochat.py，由结构提取结果识别。",
+      "tags": [
+        "class",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:nanobot/nanobot/channels/mochat.py:MochatGroupRule",
+      "type": "class",
+      "name": "MochatGroupRule",
+      "filePath": "nanobot/nanobot/channels/mochat.py",
+      "lineRange": [
+        222,
+        225
+      ],
+      "summary": "类 MochatGroupRule 位于 mochat.py，由结构提取结果识别。",
+      "tags": [
+        "class",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:nanobot/nanobot/channels/mochat.py:MochatConfig",
+      "type": "class",
+      "name": "MochatConfig",
+      "filePath": "nanobot/nanobot/channels/mochat.py",
+      "lineRange": [
+        228,
+        252
+      ],
+      "summary": "类 MochatConfig 位于 mochat.py，由结构提取结果识别。",
+      "tags": [
+        "class",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:nanobot/nanobot/channels/mochat.py:MochatChannel",
+      "type": "class",
+      "name": "MochatChannel",
+      "filePath": "nanobot/nanobot/channels/mochat.py",
+      "lineRange": [
+        259,
+        943
+      ],
+      "summary": "类 MochatChannel 位于 mochat.py，由结构提取结果识别。",
+      "tags": [
+        "class",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:nanobot/nanobot/channels/msteams.py",
+      "type": "file",
+      "name": "msteams.py",
+      "filePath": "nanobot/nanobot/channels/msteams.py",
+      "summary": "msteams.py 是 code 文件，包含 3 个类，引用 5 个内部或外部依赖，在项目路径 nanobot/nanobot/channels/msteams.py 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "python"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:nanobot/nanobot/channels/msteams.py:MSTeamsConfig",
+      "type": "class",
+      "name": "MSTeamsConfig",
+      "filePath": "nanobot/nanobot/channels/msteams.py",
+      "lineRange": [
+        62,
+        79
+      ],
+      "summary": "类 MSTeamsConfig 位于 msteams.py，由结构提取结果识别。",
+      "tags": [
+        "class",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:nanobot/nanobot/channels/msteams.py:ConversationRef",
+      "type": "class",
+      "name": "ConversationRef",
+      "filePath": "nanobot/nanobot/channels/msteams.py",
+      "lineRange": [
+        83,
+        92
+      ],
+      "summary": "类 ConversationRef 位于 msteams.py，由结构提取结果识别。",
+      "tags": [
+        "class",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:nanobot/nanobot/channels/msteams.py:MSTeamsChannel",
+      "type": "class",
+      "name": "MSTeamsChannel",
+      "filePath": "nanobot/nanobot/channels/msteams.py",
+      "lineRange": [
+        95,
+        774
+      ],
+      "summary": "类 MSTeamsChannel 位于 msteams.py，由结构提取结果识别。",
+      "tags": [
+        "class",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:nanobot/nanobot/channels/qq.py",
+      "type": "file",
+      "name": "qq.py",
+      "filePath": "nanobot/nanobot/channels/qq.py",
+      "summary": "qq.py 是 code 文件，包含 4 个函数，包含 2 个类，引用 6 个内部或外部依赖，在项目路径 nanobot/nanobot/channels/qq.py 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "python"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:nanobot/nanobot/channels/qq.py:_sanitize_filename",
+      "type": "function",
+      "name": "_sanitize_filename",
+      "filePath": "nanobot/nanobot/channels/qq.py",
+      "lineRange": [
+        86,
+        91
+      ],
+      "summary": "函数 _sanitize_filename 位于 qq.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/nanobot/channels/qq.py:_is_image_name",
+      "type": "function",
+      "name": "_is_image_name",
+      "filePath": "nanobot/nanobot/channels/qq.py",
+      "lineRange": [
+        94,
+        95
+      ],
+      "summary": "函数 _is_image_name 位于 qq.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/nanobot/channels/qq.py:_guess_send_file_type",
+      "type": "function",
+      "name": "_guess_send_file_type",
+      "filePath": "nanobot/nanobot/channels/qq.py",
+      "lineRange": [
+        98,
+        104
+      ],
+      "summary": "函数 _guess_send_file_type 位于 qq.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/nanobot/channels/qq.py:_make_bot_class",
+      "type": "function",
+      "name": "_make_bot_class",
+      "filePath": "nanobot/nanobot/channels/qq.py",
+      "lineRange": [
+        107,
+        128
+      ],
+      "summary": "函数 _make_bot_class 位于 qq.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:nanobot/nanobot/channels/qq.py:QQConfig",
+      "type": "class",
+      "name": "QQConfig",
+      "filePath": "nanobot/nanobot/channels/qq.py",
+      "lineRange": [
+        131,
+        146
+      ],
+      "summary": "类 QQConfig 位于 qq.py，由结构提取结果识别。",
+      "tags": [
+        "class",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:nanobot/nanobot/channels/qq.py:QQChannel",
+      "type": "class",
+      "name": "QQChannel",
+      "filePath": "nanobot/nanobot/channels/qq.py",
+      "lineRange": [
+        149,
+        690
+      ],
+      "summary": "类 QQChannel 位于 qq.py，由结构提取结果识别。",
+      "tags": [
+        "class",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "complex"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:nanobot/nanobot/channels/feishu.py",
+      "target": "function:nanobot/nanobot/channels/feishu.py:_extract_share_card_content",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/feishu.py",
+      "target": "function:nanobot/nanobot/channels/feishu.py:_extract_interactive_content",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/feishu.py",
+      "target": "function:nanobot/nanobot/channels/feishu.py:_extract_element_content",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/feishu.py",
+      "target": "function:nanobot/nanobot/channels/feishu.py:_extract_post_content",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/feishu.py",
+      "target": "function:nanobot/nanobot/channels/feishu.py:_extract_post_text",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/feishu.py",
+      "target": "class:nanobot/nanobot/channels/feishu.py:FeishuConfig",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/feishu.py",
+      "target": "class:nanobot/nanobot/channels/feishu.py:_FeishuStreamBuf",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/feishu.py",
+      "target": "class:nanobot/nanobot/channels/feishu.py:FeishuChannel",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/feishu.py",
+      "target": "file:nanobot/nanobot/bus/events.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/feishu.py",
+      "target": "file:nanobot/nanobot/bus/queue.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/feishu.py",
+      "target": "file:nanobot/nanobot/channels/base.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/feishu.py",
+      "target": "file:nanobot/nanobot/config/paths.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/feishu.py",
+      "target": "file:nanobot/nanobot/config/schema.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/feishu.py",
+      "target": "file:nanobot/nanobot/utils/logging_bridge.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/manager.py",
+      "target": "function:nanobot/nanobot/channels/manager.py:_default_webui_dist",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/manager.py",
+      "target": "class:nanobot/nanobot/channels/manager.py:ChannelManager",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/manager.py",
+      "target": "file:nanobot/nanobot/bus/events.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/manager.py",
+      "target": "file:nanobot/nanobot/bus/queue.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/manager.py",
+      "target": "file:nanobot/nanobot/channels/base.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/manager.py",
+      "target": "file:nanobot/nanobot/config/schema.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/manager.py",
+      "target": "file:nanobot/nanobot/utils/restart.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/matrix.py",
+      "target": "function:nanobot/nanobot/channels/matrix.py:_filter_matrix_html_attribute",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/matrix.py",
+      "target": "function:nanobot/nanobot/channels/matrix.py:_render_markdown_html",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/matrix.py",
+      "target": "function:nanobot/nanobot/channels/matrix.py:_build_matrix_text_content",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/matrix.py",
+      "target": "class:nanobot/nanobot/channels/matrix.py:_StreamBuf",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/matrix.py",
+      "target": "class:nanobot/nanobot/channels/matrix.py:MatrixConfig",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/matrix.py",
+      "target": "class:nanobot/nanobot/channels/matrix.py:MatrixChannel",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/matrix.py",
+      "target": "file:nanobot/nanobot/bus/events.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/matrix.py",
+      "target": "file:nanobot/nanobot/bus/queue.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/matrix.py",
+      "target": "file:nanobot/nanobot/channels/base.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/matrix.py",
+      "target": "file:nanobot/nanobot/config/paths.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/matrix.py",
+      "target": "file:nanobot/nanobot/config/schema.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/matrix.py",
+      "target": "file:nanobot/nanobot/utils/helpers.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/matrix.py",
+      "target": "file:nanobot/nanobot/utils/logging_bridge.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/mochat.py",
+      "target": "function:nanobot/nanobot/channels/mochat.py:_safe_dict",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/mochat.py",
+      "target": "function:nanobot/nanobot/channels/mochat.py:_str_field",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/mochat.py",
+      "target": "function:nanobot/nanobot/channels/mochat.py:_make_synthetic_event",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/mochat.py",
+      "target": "function:nanobot/nanobot/channels/mochat.py:normalize_mochat_content",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/mochat.py",
+      "target": "function:nanobot/nanobot/channels/mochat.py:resolve_mochat_target",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/mochat.py",
+      "target": "function:nanobot/nanobot/channels/mochat.py:extract_mention_ids",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/mochat.py",
+      "target": "function:nanobot/nanobot/channels/mochat.py:resolve_was_mentioned",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/mochat.py",
+      "target": "function:nanobot/nanobot/channels/mochat.py:resolve_require_mention",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/mochat.py",
+      "target": "function:nanobot/nanobot/channels/mochat.py:build_buffered_body",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/mochat.py",
+      "target": "function:nanobot/nanobot/channels/mochat.py:parse_timestamp",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/mochat.py",
+      "target": "class:nanobot/nanobot/channels/mochat.py:MochatBufferedEntry",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/mochat.py",
+      "target": "class:nanobot/nanobot/channels/mochat.py:DelayState",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/mochat.py",
+      "target": "class:nanobot/nanobot/channels/mochat.py:MochatTarget",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/mochat.py",
+      "target": "class:nanobot/nanobot/channels/mochat.py:MochatMentionConfig",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/mochat.py",
+      "target": "class:nanobot/nanobot/channels/mochat.py:MochatGroupRule",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/mochat.py",
+      "target": "class:nanobot/nanobot/channels/mochat.py:MochatConfig",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/mochat.py",
+      "target": "class:nanobot/nanobot/channels/mochat.py:MochatChannel",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/mochat.py",
+      "target": "file:nanobot/nanobot/bus/events.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/mochat.py",
+      "target": "file:nanobot/nanobot/bus/queue.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/mochat.py",
+      "target": "file:nanobot/nanobot/channels/base.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/mochat.py",
+      "target": "file:nanobot/nanobot/config/paths.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/mochat.py",
+      "target": "file:nanobot/nanobot/config/schema.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/msteams.py",
+      "target": "class:nanobot/nanobot/channels/msteams.py:MSTeamsConfig",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/msteams.py",
+      "target": "class:nanobot/nanobot/channels/msteams.py:ConversationRef",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/msteams.py",
+      "target": "class:nanobot/nanobot/channels/msteams.py:MSTeamsChannel",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/msteams.py",
+      "target": "file:nanobot/nanobot/bus/events.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/msteams.py",
+      "target": "file:nanobot/nanobot/bus/queue.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/msteams.py",
+      "target": "file:nanobot/nanobot/channels/base.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/msteams.py",
+      "target": "file:nanobot/nanobot/config/paths.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/msteams.py",
+      "target": "file:nanobot/nanobot/config/schema.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/qq.py",
+      "target": "function:nanobot/nanobot/channels/qq.py:_sanitize_filename",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/qq.py",
+      "target": "function:nanobot/nanobot/channels/qq.py:_is_image_name",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/qq.py",
+      "target": "function:nanobot/nanobot/channels/qq.py:_guess_send_file_type",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/qq.py",
+      "target": "function:nanobot/nanobot/channels/qq.py:_make_bot_class",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/qq.py",
+      "target": "class:nanobot/nanobot/channels/qq.py:QQConfig",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/qq.py",
+      "target": "class:nanobot/nanobot/channels/qq.py:QQChannel",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/qq.py",
+      "target": "file:nanobot/nanobot/bus/events.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/qq.py",
+      "target": "file:nanobot/nanobot/bus/queue.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/qq.py",
+      "target": "file:nanobot/nanobot/channels/base.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/qq.py",
+      "target": "file:nanobot/nanobot/config/schema.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/qq.py",
+      "target": "file:nanobot/nanobot/security/network.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/qq.py",
+      "target": "file:nanobot/nanobot/utils/logging_bridge.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    }
+  ]
+}

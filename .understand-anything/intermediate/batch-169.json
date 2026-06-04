@@ -1,0 +1,49 @@
+{
+  "nodes": [
+    {
+      "id": "document:AuBot/packages/font-cjkfonts-allseto/license.txt",
+      "type": "document",
+      "name": "license.txt",
+      "filePath": "AuBot/packages/font-cjkfonts-allseto/license.txt",
+      "summary": "记录 cjkfonts-allseto 字体包的授权文本，说明字体资源的再分发与使用约束。",
+      "tags": [
+        "documentation",
+        "license",
+        "font-assets",
+        "compliance"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:AuBot/packages/font-cjkfonts-allseto/package.json",
+      "type": "config",
+      "name": "package.json",
+      "filePath": "AuBot/packages/font-cjkfonts-allseto/package.json",
+      "summary": "定义 font-cjkfonts-allseto 的包元数据、脚本和依赖配置，是该工作区构建、测试与发布流程的入口。",
+      "tags": [
+        "configuration",
+        "package-manager",
+        "build-system",
+        "workspace"
+      ],
+      "complexity": "simple",
+      "languageNotes": "结构提取识别到 11 个顶层配置项或文档章节。"
+    },
+    {
+      "id": "config:AuBot/packages/font-cjkfonts-allseto/tsconfig.json",
+      "type": "config",
+      "name": "tsconfig.json",
+      "filePath": "AuBot/packages/font-cjkfonts-allseto/tsconfig.json",
+      "summary": "配置 font-cjkfonts-allseto 的 TypeScript 编译选项、路径解析和包含范围，支撑该工作区的类型检查。",
+      "tags": [
+        "configuration",
+        "typescript",
+        "type-checking",
+        "build-system"
+      ],
+      "complexity": "simple",
+      "languageNotes": "结构提取识别到 2 个顶层配置项或文档章节。"
+    }
+  ],
+  "edges": []
+}

@@ -1,0 +1,919 @@
+{
+  "nodes": [
+    {
+      "id": "file:nanobot/webui/src/components/thread/AskUserPrompt.tsx",
+      "type": "file",
+      "name": "AskUserPrompt.tsx",
+      "filePath": "nanobot/webui/src/components/thread/AskUserPrompt.tsx",
+      "summary": "AskUserPrompt.tsx 是 code 文件，包含 1 个函数，引用 2 个内部或外部依赖，在项目路径 nanobot/webui/src/components/thread/AskUserPrompt.tsx 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:nanobot/webui/src/components/thread/AskUserPrompt.tsx:AskUserPrompt",
+      "type": "function",
+      "name": "AskUserPrompt",
+      "filePath": "nanobot/webui/src/components/thread/AskUserPrompt.tsx",
+      "lineRange": [
+        13,
+        108
+      ],
+      "summary": "函数 AskUserPrompt 位于 AskUserPrompt.tsx，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:nanobot/webui/src/components/thread/StreamErrorNotice.tsx",
+      "type": "file",
+      "name": "StreamErrorNotice.tsx",
+      "filePath": "nanobot/webui/src/components/thread/StreamErrorNotice.tsx",
+      "summary": "StreamErrorNotice.tsx 是 code 文件，包含 2 个函数，引用 3 个内部或外部依赖，在项目路径 nanobot/webui/src/components/thread/StreamErrorNotice.tsx 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:nanobot/webui/src/components/thread/StreamErrorNotice.tsx:StreamErrorNotice",
+      "type": "function",
+      "name": "StreamErrorNotice",
+      "filePath": "nanobot/webui/src/components/thread/StreamErrorNotice.tsx",
+      "lineRange": [
+        19,
+        53
+      ],
+      "summary": "函数 StreamErrorNotice 位于 StreamErrorNotice.tsx，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:nanobot/webui/src/components/thread/StreamErrorNotice.tsx:resolveCopy",
+      "type": "function",
+      "name": "resolveCopy",
+      "filePath": "nanobot/webui/src/components/thread/StreamErrorNotice.tsx",
+      "lineRange": [
+        55,
+        72
+      ],
+      "summary": "函数 resolveCopy 位于 StreamErrorNotice.tsx，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:nanobot/webui/src/components/thread/ThreadComposer.tsx",
+      "type": "file",
+      "name": "ThreadComposer.tsx",
+      "filePath": "nanobot/webui/src/components/thread/ThreadComposer.tsx",
+      "summary": "ThreadComposer.tsx 是 code 文件，包含 7 个函数，引用 6 个内部或外部依赖，在项目路径 nanobot/webui/src/components/thread/ThreadComposer.tsx 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:nanobot/webui/src/components/thread/ThreadComposer.tsx:scrollNearestOverflowParent",
+      "type": "function",
+      "name": "scrollNearestOverflowParent",
+      "filePath": "nanobot/webui/src/components/thread/ThreadComposer.tsx",
+      "lineRange": [
+        85,
+        97
+      ],
+      "summary": "函数 scrollNearestOverflowParent 位于 ThreadComposer.tsx，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/webui/src/components/thread/ThreadComposer.tsx:ThreadComposer",
+      "type": "function",
+      "name": "ThreadComposer",
+      "filePath": "nanobot/webui/src/components/thread/ThreadComposer.tsx",
+      "lineRange": [
+        99,
+        632
+      ],
+      "summary": "函数 ThreadComposer 位于 ThreadComposer.tsx，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:nanobot/webui/src/components/thread/ThreadComposer.tsx:ImageAspectMenu",
+      "type": "function",
+      "name": "ImageAspectMenu",
+      "filePath": "nanobot/webui/src/components/thread/ThreadComposer.tsx",
+      "lineRange": [
+        642,
+        693
+      ],
+      "summary": "函数 ImageAspectMenu 位于 ThreadComposer.tsx，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:nanobot/webui/src/components/thread/ThreadComposer.tsx:SlashCommandPalette",
+      "type": "function",
+      "name": "SlashCommandPalette",
+      "filePath": "nanobot/webui/src/components/thread/ThreadComposer.tsx",
+      "lineRange": [
+        695,
+        785
+      ],
+      "summary": "函数 SlashCommandPalette 位于 ThreadComposer.tsx，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:nanobot/webui/src/components/thread/ThreadComposer.tsx:AttachmentChip",
+      "type": "function",
+      "name": "AttachmentChip",
+      "filePath": "nanobot/webui/src/components/thread/ThreadComposer.tsx",
+      "lineRange": [
+        798,
+        876
+      ],
+      "summary": "函数 AttachmentChip 位于 ThreadComposer.tsx，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:nanobot/webui/src/components/thread/ThreadHeader.tsx",
+      "type": "file",
+      "name": "ThreadHeader.tsx",
+      "filePath": "nanobot/webui/src/components/thread/ThreadHeader.tsx",
+      "summary": "ThreadHeader.tsx 是 code 文件，包含 2 个函数，引用 2 个内部或外部依赖，在项目路径 nanobot/webui/src/components/thread/ThreadHeader.tsx 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:nanobot/webui/src/components/thread/ThreadHeader.tsx:ThreadHeader",
+      "type": "function",
+      "name": "ThreadHeader",
+      "filePath": "nanobot/webui/src/components/thread/ThreadHeader.tsx",
+      "lineRange": [
+        16,
+        70
+      ],
+      "summary": "函数 ThreadHeader 位于 ThreadHeader.tsx，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:nanobot/webui/src/components/thread/ThreadHeader.tsx:ThemeButton",
+      "type": "function",
+      "name": "ThemeButton",
+      "filePath": "nanobot/webui/src/components/thread/ThreadHeader.tsx",
+      "lineRange": [
+        72,
+        96
+      ],
+      "summary": "函数 ThemeButton 位于 ThreadHeader.tsx，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:nanobot/webui/src/components/thread/ThreadMessages.tsx",
+      "type": "file",
+      "name": "ThreadMessages.tsx",
+      "filePath": "nanobot/webui/src/components/thread/ThreadMessages.tsx",
+      "summary": "ThreadMessages.tsx 是 code 文件，包含 1 个函数，引用 2 个内部或外部依赖，在项目路径 nanobot/webui/src/components/thread/ThreadMessages.tsx 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/webui/src/components/thread/ThreadMessages.tsx:ThreadMessages",
+      "type": "function",
+      "name": "ThreadMessages",
+      "filePath": "nanobot/webui/src/components/thread/ThreadMessages.tsx",
+      "lineRange": [
+        8,
+        16
+      ],
+      "summary": "函数 ThreadMessages 位于 ThreadMessages.tsx，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:nanobot/webui/src/components/thread/ThreadShell.tsx",
+      "type": "file",
+      "name": "ThreadShell.tsx",
+      "filePath": "nanobot/webui/src/components/thread/ThreadShell.tsx",
+      "summary": "ThreadShell.tsx 是 code 文件，包含 2 个函数，引用 10 个内部或外部依赖，在项目路径 nanobot/webui/src/components/thread/ThreadShell.tsx 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:nanobot/webui/src/components/thread/ThreadShell.tsx:ThreadShell",
+      "type": "function",
+      "name": "ThreadShell",
+      "filePath": "nanobot/webui/src/components/thread/ThreadShell.tsx",
+      "lineRange": [
+        72,
+        324
+      ],
+      "summary": "函数 ThreadShell 位于 ThreadShell.tsx，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:nanobot/webui/src/components/thread/ThreadViewport.tsx",
+      "type": "file",
+      "name": "ThreadViewport.tsx",
+      "filePath": "nanobot/webui/src/components/thread/ThreadViewport.tsx",
+      "summary": "ThreadViewport.tsx 是 code 文件，包含 1 个函数，引用 4 个内部或外部依赖，在项目路径 nanobot/webui/src/components/thread/ThreadViewport.tsx 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:nanobot/webui/src/components/thread/ThreadViewport.tsx:ThreadViewport",
+      "type": "function",
+      "name": "ThreadViewport",
+      "filePath": "nanobot/webui/src/components/thread/ThreadViewport.tsx",
+      "lineRange": [
+        19,
+        118
+      ],
+      "summary": "函数 ThreadViewport 位于 ThreadViewport.tsx，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:nanobot/webui/src/components/ui/alert-dialog.tsx",
+      "type": "file",
+      "name": "alert-dialog.tsx",
+      "filePath": "nanobot/webui/src/components/ui/alert-dialog.tsx",
+      "summary": "alert-dialog.tsx 是 code 文件，包含 2 个函数，引用 2 个内部或外部依赖，在项目路径 nanobot/webui/src/components/ui/alert-dialog.tsx 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:nanobot/webui/src/components/ui/alert-dialog.tsx:AlertDialogHeader",
+      "type": "function",
+      "name": "AlertDialogHeader",
+      "filePath": "nanobot/webui/src/components/ui/alert-dialog.tsx",
+      "lineRange": [
+        46,
+        54
+      ],
+      "summary": "函数 AlertDialogHeader 位于 alert-dialog.tsx，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/webui/src/components/ui/alert-dialog.tsx:AlertDialogFooter",
+      "type": "function",
+      "name": "AlertDialogFooter",
+      "filePath": "nanobot/webui/src/components/ui/alert-dialog.tsx",
+      "lineRange": [
+        57,
+        68
+      ],
+      "summary": "函数 AlertDialogFooter 位于 alert-dialog.tsx，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:nanobot/webui/src/components/ui/avatar.tsx",
+      "type": "file",
+      "name": "avatar.tsx",
+      "filePath": "nanobot/webui/src/components/ui/avatar.tsx",
+      "summary": "avatar.tsx 是 code 文件，引用 1 个内部或外部依赖，在项目路径 nanobot/webui/src/components/ui/avatar.tsx 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:nanobot/webui/src/components/ui/button.tsx",
+      "type": "file",
+      "name": "button.tsx",
+      "filePath": "nanobot/webui/src/components/ui/button.tsx",
+      "summary": "button.tsx 是 code 文件，引用 1 个内部或外部依赖，在项目路径 nanobot/webui/src/components/ui/button.tsx 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:nanobot/webui/src/components/ui/dialog.tsx",
+      "type": "file",
+      "name": "dialog.tsx",
+      "filePath": "nanobot/webui/src/components/ui/dialog.tsx",
+      "summary": "dialog.tsx 是 code 文件，包含 2 个函数，引用 1 个内部或外部依赖，在项目路径 nanobot/webui/src/components/ui/dialog.tsx 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:nanobot/webui/src/components/ui/dialog.tsx:DialogHeader",
+      "type": "function",
+      "name": "DialogHeader",
+      "filePath": "nanobot/webui/src/components/ui/dialog.tsx",
+      "lineRange": [
+        51,
+        62
+      ],
+      "summary": "函数 DialogHeader 位于 dialog.tsx，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/webui/src/components/ui/dialog.tsx:DialogFooter",
+      "type": "function",
+      "name": "DialogFooter",
+      "filePath": "nanobot/webui/src/components/ui/dialog.tsx",
+      "lineRange": [
+        65,
+        76
+      ],
+      "summary": "函数 DialogFooter 位于 dialog.tsx，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:nanobot/webui/src/components/ui/dropdown-menu.tsx",
+      "type": "file",
+      "name": "dropdown-menu.tsx",
+      "filePath": "nanobot/webui/src/components/ui/dropdown-menu.tsx",
+      "summary": "dropdown-menu.tsx 是 code 文件，引用 1 个内部或外部依赖，在项目路径 nanobot/webui/src/components/ui/dropdown-menu.tsx 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:nanobot/webui/src/components/ui/input.tsx",
+      "type": "file",
+      "name": "input.tsx",
+      "filePath": "nanobot/webui/src/components/ui/input.tsx",
+      "summary": "input.tsx 是 code 文件，引用 1 个内部或外部依赖，在项目路径 nanobot/webui/src/components/ui/input.tsx 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:nanobot/webui/src/components/ui/scroll-area.tsx",
+      "type": "file",
+      "name": "scroll-area.tsx",
+      "filePath": "nanobot/webui/src/components/ui/scroll-area.tsx",
+      "summary": "scroll-area.tsx 是 code 文件，引用 1 个内部或外部依赖，在项目路径 nanobot/webui/src/components/ui/scroll-area.tsx 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:nanobot/webui/src/components/ui/separator.tsx",
+      "type": "file",
+      "name": "separator.tsx",
+      "filePath": "nanobot/webui/src/components/ui/separator.tsx",
+      "summary": "separator.tsx 是 code 文件，引用 1 个内部或外部依赖，在项目路径 nanobot/webui/src/components/ui/separator.tsx 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:nanobot/webui/src/components/ui/sheet.tsx",
+      "type": "file",
+      "name": "sheet.tsx",
+      "filePath": "nanobot/webui/src/components/ui/sheet.tsx",
+      "summary": "sheet.tsx 是 code 文件，包含 1 个函数，引用 1 个内部或外部依赖，在项目路径 nanobot/webui/src/components/ui/sheet.tsx 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:nanobot/webui/src/components/ui/sheet.tsx:SheetHeader",
+      "type": "function",
+      "name": "SheetHeader",
+      "filePath": "nanobot/webui/src/components/ui/sheet.tsx",
+      "lineRange": [
+        93,
+        98
+      ],
+      "summary": "函数 SheetHeader 位于 sheet.tsx，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:nanobot/webui/src/components/thread/AskUserPrompt.tsx",
+      "target": "function:nanobot/webui/src/components/thread/AskUserPrompt.tsx:AskUserPrompt",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/webui/src/components/thread/AskUserPrompt.tsx",
+      "target": "file:nanobot/webui/src/components/ui/button.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/webui/src/components/thread/AskUserPrompt.tsx",
+      "target": "file:nanobot/webui/src/lib/utils.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/webui/src/components/thread/StreamErrorNotice.tsx",
+      "target": "function:nanobot/webui/src/components/thread/StreamErrorNotice.tsx:StreamErrorNotice",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/webui/src/components/thread/StreamErrorNotice.tsx",
+      "target": "function:nanobot/webui/src/components/thread/StreamErrorNotice.tsx:resolveCopy",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/webui/src/components/thread/StreamErrorNotice.tsx",
+      "target": "file:nanobot/webui/src/components/ui/button.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/webui/src/components/thread/StreamErrorNotice.tsx",
+      "target": "file:nanobot/webui/src/lib/nanobot-client.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/webui/src/components/thread/StreamErrorNotice.tsx",
+      "target": "file:nanobot/webui/src/lib/utils.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/webui/src/components/thread/ThreadComposer.tsx",
+      "target": "function:nanobot/webui/src/components/thread/ThreadComposer.tsx:scrollNearestOverflowParent",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/webui/src/components/thread/ThreadComposer.tsx",
+      "target": "function:nanobot/webui/src/components/thread/ThreadComposer.tsx:ThreadComposer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/webui/src/components/thread/ThreadComposer.tsx",
+      "target": "function:nanobot/webui/src/components/thread/ThreadComposer.tsx:ImageAspectMenu",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/webui/src/components/thread/ThreadComposer.tsx",
+      "target": "function:nanobot/webui/src/components/thread/ThreadComposer.tsx:SlashCommandPalette",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/webui/src/components/thread/ThreadComposer.tsx",
+      "target": "function:nanobot/webui/src/components/thread/ThreadComposer.tsx:AttachmentChip",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/webui/src/components/thread/ThreadComposer.tsx",
+      "target": "file:nanobot/webui/src/components/ui/button.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/webui/src/components/thread/ThreadComposer.tsx",
+      "target": "file:nanobot/webui/src/hooks/useAttachedImages.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/webui/src/components/thread/ThreadComposer.tsx",
+      "target": "file:nanobot/webui/src/hooks/useClipboardAndDrop.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/webui/src/components/thread/ThreadComposer.tsx",
+      "target": "file:nanobot/webui/src/hooks/useNanobotStream.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/webui/src/components/thread/ThreadComposer.tsx",
+      "target": "file:nanobot/webui/src/lib/types.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/webui/src/components/thread/ThreadComposer.tsx",
+      "target": "file:nanobot/webui/src/lib/utils.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/webui/src/components/thread/ThreadHeader.tsx",
+      "target": "function:nanobot/webui/src/components/thread/ThreadHeader.tsx:ThreadHeader",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/webui/src/components/thread/ThreadHeader.tsx",
+      "target": "function:nanobot/webui/src/components/thread/ThreadHeader.tsx:ThemeButton",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/webui/src/components/thread/ThreadHeader.tsx",
+      "target": "file:nanobot/webui/src/components/ui/button.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/webui/src/components/thread/ThreadHeader.tsx",
+      "target": "file:nanobot/webui/src/lib/utils.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/webui/src/components/thread/ThreadMessages.tsx",
+      "target": "function:nanobot/webui/src/components/thread/ThreadMessages.tsx:ThreadMessages",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/webui/src/components/thread/ThreadMessages.tsx",
+      "target": "file:nanobot/webui/src/components/MessageBubble.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/webui/src/components/thread/ThreadMessages.tsx",
+      "target": "file:nanobot/webui/src/lib/types.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/webui/src/components/thread/ThreadShell.tsx",
+      "target": "function:nanobot/webui/src/components/thread/ThreadShell.tsx:ThreadShell",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/webui/src/components/thread/ThreadShell.tsx",
+      "target": "file:nanobot/webui/src/components/thread/AskUserPrompt.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/webui/src/components/thread/ThreadShell.tsx",
+      "target": "file:nanobot/webui/src/components/thread/StreamErrorNotice.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/webui/src/components/thread/ThreadShell.tsx",
+      "target": "file:nanobot/webui/src/components/thread/ThreadComposer.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/webui/src/components/thread/ThreadShell.tsx",
+      "target": "file:nanobot/webui/src/components/thread/ThreadHeader.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/webui/src/components/thread/ThreadShell.tsx",
+      "target": "file:nanobot/webui/src/components/thread/ThreadViewport.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/webui/src/components/thread/ThreadShell.tsx",
+      "target": "file:nanobot/webui/src/hooks/useNanobotStream.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/webui/src/components/thread/ThreadShell.tsx",
+      "target": "file:nanobot/webui/src/hooks/useSessions.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/webui/src/components/thread/ThreadShell.tsx",
+      "target": "file:nanobot/webui/src/lib/api.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/webui/src/components/thread/ThreadShell.tsx",
+      "target": "file:nanobot/webui/src/lib/types.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/webui/src/components/thread/ThreadShell.tsx",
+      "target": "file:nanobot/webui/src/providers/ClientProvider.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/webui/src/components/thread/ThreadViewport.tsx",
+      "target": "function:nanobot/webui/src/components/thread/ThreadViewport.tsx:ThreadViewport",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/webui/src/components/thread/ThreadViewport.tsx",
+      "target": "file:nanobot/webui/src/components/thread/ThreadMessages.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/webui/src/components/thread/ThreadViewport.tsx",
+      "target": "file:nanobot/webui/src/components/ui/button.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/webui/src/components/thread/ThreadViewport.tsx",
+      "target": "file:nanobot/webui/src/lib/types.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/webui/src/components/thread/ThreadViewport.tsx",
+      "target": "file:nanobot/webui/src/lib/utils.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/webui/src/components/ui/alert-dialog.tsx",
+      "target": "function:nanobot/webui/src/components/ui/alert-dialog.tsx:AlertDialogHeader",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/webui/src/components/ui/alert-dialog.tsx",
+      "target": "function:nanobot/webui/src/components/ui/alert-dialog.tsx:AlertDialogFooter",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/webui/src/components/ui/alert-dialog.tsx",
+      "target": "file:nanobot/webui/src/components/ui/button.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/webui/src/components/ui/alert-dialog.tsx",
+      "target": "file:nanobot/webui/src/lib/utils.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/webui/src/components/ui/avatar.tsx",
+      "target": "file:nanobot/webui/src/lib/utils.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/webui/src/components/ui/button.tsx",
+      "target": "file:nanobot/webui/src/lib/utils.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/webui/src/components/ui/dialog.tsx",
+      "target": "function:nanobot/webui/src/components/ui/dialog.tsx:DialogHeader",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/webui/src/components/ui/dialog.tsx",
+      "target": "function:nanobot/webui/src/components/ui/dialog.tsx:DialogFooter",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/webui/src/components/ui/dialog.tsx",
+      "target": "file:nanobot/webui/src/lib/utils.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/webui/src/components/ui/dropdown-menu.tsx",
+      "target": "file:nanobot/webui/src/lib/utils.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/webui/src/components/ui/input.tsx",
+      "target": "file:nanobot/webui/src/lib/utils.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/webui/src/components/ui/scroll-area.tsx",
+      "target": "file:nanobot/webui/src/lib/utils.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/webui/src/components/ui/separator.tsx",
+      "target": "file:nanobot/webui/src/lib/utils.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/webui/src/components/ui/sheet.tsx",
+      "target": "function:nanobot/webui/src/components/ui/sheet.tsx:SheetHeader",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/webui/src/components/ui/sheet.tsx",
+      "target": "file:nanobot/webui/src/lib/utils.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    }
+  ]
+}

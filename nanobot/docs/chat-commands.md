@@ -19,7 +19,7 @@
 
 gateway 每 30 分钟唤醒一次，并检查工作区中的 `HEARTBEAT.md`（`~/.nanobot/workspace/HEARTBEAT.md`）。如果文件中有任务，agent 会执行它们，并把结果发送到你最近活跃的聊天通道。
 
-**设置方式：** 编辑 `~/.nanobot/workspace/HEARTBEAT.md`（由 `nanobot onboard` 自动创建）：
+**设置方式：** 编辑 `~/.nanobot/workspace/HEARTBEAT.md`（由 `xiaomiao onboard` 自动创建）：
 
 ```markdown
 ## Periodic Tasks

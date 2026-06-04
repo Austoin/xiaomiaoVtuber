@@ -1,14 +1,14 @@
-# nanobot 中的记忆
+# xiaomiaoAgent 中的记忆
 
-nanobot 的记忆建立在一个简单信念上：记忆应该像活着一样，但不应该显得混乱。
+xiaomiaoAgent 的记忆建立在一个简单信念上：记忆应该像活着一样，但不应该显得混乱。
 
 好的记忆不是一堆笔记，而是一套安静的注意力系统。它会注意哪些东西值得保留，放下不再需要聚光灯的内容，并把经历转化为平静、持久、有用的东西。
 
-这就是 nanobot 中记忆的形态。
+这就是 xiaomiaoAgent 中记忆的形态。
 
 ## 设计
 
-nanobot 不把记忆当作一个巨大的文件。
+xiaomiaoAgent 不把记忆当作一个巨大的文件。
 
 它把记忆分成多个层次，因为不同类型的“记住”需要不同工具：
 
@@ -21,11 +21,11 @@ nanobot 不把记忆当作一个巨大的文件。
 
 ## 流程
 
-记忆在 nanobot 中分两个阶段流动。
+记忆在 xiaomiaoAgent 中分两个阶段流动。
 
 ### 阶段 1：Consolidator
 
-当对话增长到足以挤压上下文窗口时，nanobot 不会尝试永远携带每一条旧消息。
+当对话增长到足以挤压上下文窗口时，xiaomiaoAgent 不会尝试永远携带每一条旧消息。
 
 相反，`Consolidator` 会总结对话中最旧且安全的一段，并把总结追加到 `memory/history.jsonl`。
 
@@ -59,7 +59,7 @@ Dream 会读取：
 1. 研究什么是新的，什么已经被知道。
 2. 以外科手术式方式编辑长期文件，不是重写一切，而是做出最小且诚实的修改，让记忆保持连贯。
 
-因此，nanobot 的记忆不只是归档，它还具备解释性。
+因此，xiaomiaoAgent 的记忆不只是归档，它还具备解释性。
 
 ## 文件
 
@@ -77,7 +77,7 @@ workspace/
 
 这些文件承担不同角色：
 
-- `SOUL.md` 记住 nanobot 应该如何说话。
+- `SOUL.md` 记住 xiaomiaoAgent 应该如何说话。
 - `USER.md` 记住用户是谁，以及用户偏好什么。
 - `MEMORY.md` 记住关于工作本身仍然成立的内容。
 - `history.jsonl` 记住通往这些结果的过程。
@@ -86,7 +86,7 @@ workspace/
 
 旧的 `HISTORY.md` 格式适合随意阅读，但作为运行时基础太脆弱。
 
-`history.jsonl` 给 nanobot 带来：
+`history.jsonl` 给 xiaomiaoAgent 带来：
 
 - 稳定的增量 cursor。
 - 更安全的机器解析。
@@ -128,7 +128,7 @@ python -c "import json; [print(json.loads(l).get('content','')) for l in open('m
 
 ## 带版本的记忆
 
-Dream 修改长期记忆文件后，nanobot 可以用 `GitStore` 记录这次变更。
+Dream 修改长期记忆文件后，xiaomiaoAgent 可以用 `GitStore` 记录这次变更。
 
 这让记忆拥有自己的历史：
 
@@ -173,8 +173,8 @@ Dream 配置位于 `agents.defaults.dream`：
 
 旧版说明：
 
-- 较旧的源码配置中可能仍包含 `dream.cron`。nanobot 会继续支持它以保持向后兼容，但新配置应使用 `intervalH`。
-- 较旧的源码配置中可能仍包含 `dream.model`。nanobot 会继续支持它以保持向后兼容，但新配置应使用 `modelOverride`。
+- 较旧的源码配置中可能仍包含 `dream.cron`。xiaomiaoAgent 会继续支持它以保持向后兼容，但新配置应使用 `intervalH`。
+- 较旧的源码配置中可能仍包含 `dream.model`。xiaomiaoAgent 会继续支持它以保持向后兼容，但新配置应使用 `modelOverride`。
 
 ## 实际使用
 

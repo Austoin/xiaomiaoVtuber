@@ -1,0 +1,597 @@
+{
+  "nodes": [
+    {
+      "id": "file:AuBot/packages/stage-ui/src/stores/chat.contract.test.ts",
+      "type": "file",
+      "name": "chat.contract.test.ts",
+      "filePath": "AuBot/packages/stage-ui/src/stores/chat.contract.test.ts",
+      "summary": "chat.contract.test.ts 是 code 文件，引用 1 个内部或外部依赖，在项目路径 AuBot/packages/stage-ui/src/stores/chat.contract.test.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript",
+        "test"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/src/stores/chat.ts",
+      "type": "file",
+      "name": "chat.ts",
+      "filePath": "AuBot/packages/stage-ui/src/stores/chat.ts",
+      "summary": "chat.ts 是 code 文件，包含 2 个函数，引用 17 个内部或外部依赖，在项目路径 AuBot/packages/stage-ui/src/stores/chat.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:AuBot/packages/stage-ui/src/stores/chat.ts:prependTextToContent",
+      "type": "function",
+      "name": "prependTextToContent",
+      "filePath": "AuBot/packages/stage-ui/src/stores/chat.ts",
+      "lineRange": [
+        38,
+        55
+      ],
+      "summary": "函数 prependTextToContent 位于 chat.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/src/stores/chat/constants.ts",
+      "type": "file",
+      "name": "constants.ts",
+      "filePath": "AuBot/packages/stage-ui/src/stores/chat/constants.ts",
+      "summary": "constants.ts 是 code 文件，在项目路径 AuBot/packages/stage-ui/src/stores/chat/constants.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/src/stores/chat/context-prompt.test.ts",
+      "type": "file",
+      "name": "context-prompt.test.ts",
+      "filePath": "AuBot/packages/stage-ui/src/stores/chat/context-prompt.test.ts",
+      "summary": "context-prompt.test.ts 是 code 文件，包含 1 个函数，引用 1 个内部或外部依赖，在项目路径 AuBot/packages/stage-ui/src/stores/chat/context-prompt.test.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript",
+        "test"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:AuBot/packages/stage-ui/src/stores/chat/context-prompt.test.ts:makeContext",
+      "type": "function",
+      "name": "makeContext",
+      "filePath": "AuBot/packages/stage-ui/src/stores/chat/context-prompt.test.ts",
+      "lineRange": [
+        8,
+        28
+      ],
+      "summary": "函数 makeContext 位于 context-prompt.test.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/src/stores/chat/context-prompt.ts",
+      "type": "file",
+      "name": "context-prompt.ts",
+      "filePath": "AuBot/packages/stage-ui/src/stores/chat/context-prompt.ts",
+      "summary": "context-prompt.ts 是 code 文件，包含 2 个函数，引用 1 个内部或外部依赖，在项目路径 AuBot/packages/stage-ui/src/stores/chat/context-prompt.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:AuBot/packages/stage-ui/src/stores/chat/context-prompt.ts:formatContextPromptText",
+      "type": "function",
+      "name": "formatContextPromptText",
+      "filePath": "AuBot/packages/stage-ui/src/stores/chat/context-prompt.ts",
+      "lineRange": [
+        31,
+        44
+      ],
+      "summary": "函数 formatContextPromptText 位于 context-prompt.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/packages/stage-ui/src/stores/chat/context-prompt.ts:buildContextPromptMessage",
+      "type": "function",
+      "name": "buildContextPromptMessage",
+      "filePath": "AuBot/packages/stage-ui/src/stores/chat/context-prompt.ts",
+      "lineRange": [
+        46,
+        60
+      ],
+      "summary": "函数 buildContextPromptMessage 位于 context-prompt.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/src/stores/chat/context-providers/index.ts",
+      "type": "file",
+      "name": "index.ts",
+      "filePath": "AuBot/packages/stage-ui/src/stores/chat/context-providers/index.ts",
+      "summary": "index.ts 是 code 文件，在项目路径 AuBot/packages/stage-ui/src/stores/chat/context-providers/index.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/src/stores/chat/context-providers/minecraft.ts",
+      "type": "file",
+      "name": "minecraft.ts",
+      "filePath": "AuBot/packages/stage-ui/src/stores/chat/context-providers/minecraft.ts",
+      "summary": "minecraft.ts 是 code 文件，包含 1 个函数，引用 2 个内部或外部依赖，在项目路径 AuBot/packages/stage-ui/src/stores/chat/context-providers/minecraft.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/packages/stage-ui/src/stores/chat/context-providers/minecraft.ts:createMinecraftContext",
+      "type": "function",
+      "name": "createMinecraftContext",
+      "filePath": "AuBot/packages/stage-ui/src/stores/chat/context-providers/minecraft.ts",
+      "lineRange": [
+        10,
+        39
+      ],
+      "summary": "函数 createMinecraftContext 位于 minecraft.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/src/stores/chat/context-store.ts",
+      "type": "file",
+      "name": "context-store.ts",
+      "filePath": "AuBot/packages/stage-ui/src/stores/chat/context-store.ts",
+      "summary": "context-store.ts 是 code 文件，引用 2 个内部或外部依赖，在项目路径 AuBot/packages/stage-ui/src/stores/chat/context-store.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/src/stores/chat/data-store.ts",
+      "type": "file",
+      "name": "data-store.ts",
+      "filePath": "AuBot/packages/stage-ui/src/stores/chat/data-store.ts",
+      "summary": "data-store.ts 是 code 文件，包含 1 个函数，引用 1 个内部或外部依赖，在项目路径 AuBot/packages/stage-ui/src/stores/chat/data-store.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:AuBot/packages/stage-ui/src/stores/chat/data-store.ts:createChatDataStore",
+      "type": "function",
+      "name": "createChatDataStore",
+      "filePath": "AuBot/packages/stage-ui/src/stores/chat/data-store.ts",
+      "lineRange": [
+        30,
+        153
+      ],
+      "summary": "函数 createChatDataStore 位于 data-store.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/src/stores/chat/datetime-prefix.test.ts",
+      "type": "file",
+      "name": "datetime-prefix.test.ts",
+      "filePath": "AuBot/packages/stage-ui/src/stores/chat/datetime-prefix.test.ts",
+      "summary": "datetime-prefix.test.ts 是 code 文件，引用 1 个内部或外部依赖，在项目路径 AuBot/packages/stage-ui/src/stores/chat/datetime-prefix.test.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript",
+        "test"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/src/stores/chat/datetime-prefix.ts",
+      "type": "file",
+      "name": "datetime-prefix.ts",
+      "filePath": "AuBot/packages/stage-ui/src/stores/chat/datetime-prefix.ts",
+      "summary": "datetime-prefix.ts 是 code 文件，包含 1 个函数，在项目路径 AuBot/packages/stage-ui/src/stores/chat/datetime-prefix.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:AuBot/packages/stage-ui/src/stores/chat/datetime-prefix.ts:formatTimePrefix",
+      "type": "function",
+      "name": "formatTimePrefix",
+      "filePath": "AuBot/packages/stage-ui/src/stores/chat/datetime-prefix.ts",
+      "lineRange": [
+        56,
+        61
+      ],
+      "summary": "函数 formatTimePrefix 位于 datetime-prefix.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/src/stores/chat/hooks.ts",
+      "type": "file",
+      "name": "hooks.ts",
+      "filePath": "AuBot/packages/stage-ui/src/stores/chat/hooks.ts",
+      "summary": "hooks.ts 是 code 文件，在项目路径 AuBot/packages/stage-ui/src/stores/chat/hooks.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/src/stores/chat/maintenance.ts",
+      "type": "file",
+      "name": "maintenance.ts",
+      "filePath": "AuBot/packages/stage-ui/src/stores/chat/maintenance.ts",
+      "summary": "maintenance.ts 是 code 文件，引用 4 个内部或外部依赖，在项目路径 AuBot/packages/stage-ui/src/stores/chat/maintenance.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/src/stores/chat/session-message-merge.test.ts",
+      "type": "file",
+      "name": "session-message-merge.test.ts",
+      "filePath": "AuBot/packages/stage-ui/src/stores/chat/session-message-merge.test.ts",
+      "summary": "session-message-merge.test.ts 是 code 文件，引用 2 个内部或外部依赖，在项目路径 AuBot/packages/stage-ui/src/stores/chat/session-message-merge.test.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript",
+        "test"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/src/stores/chat/session-message-merge.ts",
+      "type": "file",
+      "name": "session-message-merge.ts",
+      "filePath": "AuBot/packages/stage-ui/src/stores/chat/session-message-merge.ts",
+      "summary": "session-message-merge.ts 是 code 文件，在项目路径 AuBot/packages/stage-ui/src/stores/chat/session-message-merge.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/chat.contract.test.ts",
+      "target": "file:AuBot/packages/stage-ui/src/stores/chat.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/chat.ts",
+      "target": "function:AuBot/packages/stage-ui/src/stores/chat.ts:prependTextToContent",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/chat.ts",
+      "target": "file:AuBot/packages/stage-ui/src/composables/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/chat.ts",
+      "target": "file:AuBot/packages/stage-ui/src/composables/llm-marker-parser.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/chat.ts",
+      "target": "file:AuBot/packages/stage-ui/src/composables/response-categoriser.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/chat.ts",
+      "target": "file:AuBot/packages/stage-ui/src/composables/use-io-tracer.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/chat.ts",
+      "target": "file:AuBot/packages/stage-ui/src/stores/chat/context-prompt.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/chat.ts",
+      "target": "file:AuBot/packages/stage-ui/src/stores/chat/context-providers/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/chat.ts",
+      "target": "file:AuBot/packages/stage-ui/src/stores/chat/context-store.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/chat.ts",
+      "target": "file:AuBot/packages/stage-ui/src/stores/chat/datetime-prefix.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/chat.ts",
+      "target": "file:AuBot/packages/stage-ui/src/stores/chat/hooks.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/chat.ts",
+      "target": "file:AuBot/packages/stage-ui/src/stores/chat/session-store.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/chat.ts",
+      "target": "file:AuBot/packages/stage-ui/src/stores/chat/stream-store.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/chat.ts",
+      "target": "file:AuBot/packages/stage-ui/src/stores/devtools/context-observability.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/chat.ts",
+      "target": "file:AuBot/packages/stage-ui/src/stores/llm.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/chat.ts",
+      "target": "file:AuBot/packages/stage-ui/src/stores/modules/airi-card.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/chat.ts",
+      "target": "file:AuBot/packages/stage-ui/src/stores/modules/artistry-autonomous.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/chat.ts",
+      "target": "file:AuBot/packages/stage-ui/src/stores/modules/consciousness.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/chat.ts",
+      "target": "file:AuBot/packages/stage-ui/src/types/chat.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/chat/context-prompt.test.ts",
+      "target": "function:AuBot/packages/stage-ui/src/stores/chat/context-prompt.test.ts:makeContext",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/chat/context-prompt.test.ts",
+      "target": "file:AuBot/packages/stage-ui/src/stores/chat/context-prompt.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/chat/context-prompt.ts",
+      "target": "function:AuBot/packages/stage-ui/src/stores/chat/context-prompt.ts:formatContextPromptText",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/chat/context-prompt.ts",
+      "target": "function:AuBot/packages/stage-ui/src/stores/chat/context-prompt.ts:buildContextPromptMessage",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/chat/context-prompt.ts",
+      "target": "file:AuBot/packages/stage-ui/src/types/chat.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/chat/context-providers/minecraft.ts",
+      "target": "function:AuBot/packages/stage-ui/src/stores/chat/context-providers/minecraft.ts:createMinecraftContext",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/chat/context-providers/minecraft.ts",
+      "target": "file:AuBot/packages/stage-ui/src/stores/modules/gaming-minecraft.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/chat/context-providers/minecraft.ts",
+      "target": "file:AuBot/packages/stage-ui/src/types/chat.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/chat/context-store.ts",
+      "target": "file:AuBot/packages/stage-ui/src/types/chat.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/chat/context-store.ts",
+      "target": "file:AuBot/packages/stage-ui/src/utils/event-source.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/chat/data-store.ts",
+      "target": "function:AuBot/packages/stage-ui/src/stores/chat/data-store.ts:createChatDataStore",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/chat/data-store.ts",
+      "target": "file:AuBot/packages/stage-ui/src/types/chat.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/chat/datetime-prefix.test.ts",
+      "target": "file:AuBot/packages/stage-ui/src/stores/chat/datetime-prefix.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/chat/datetime-prefix.ts",
+      "target": "function:AuBot/packages/stage-ui/src/stores/chat/datetime-prefix.ts:formatTimePrefix",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/chat/maintenance.ts",
+      "target": "file:AuBot/packages/stage-ui/src/stores/chat.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/chat/maintenance.ts",
+      "target": "file:AuBot/packages/stage-ui/src/stores/chat/context-store.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/chat/maintenance.ts",
+      "target": "file:AuBot/packages/stage-ui/src/stores/chat/session-store.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/chat/maintenance.ts",
+      "target": "file:AuBot/packages/stage-ui/src/stores/chat/stream-store.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/chat/session-message-merge.test.ts",
+      "target": "file:AuBot/packages/stage-ui/src/stores/chat/session-message-merge.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/chat/session-message-merge.test.ts",
+      "target": "file:AuBot/packages/stage-ui/src/types/chat.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    }
+  ]
+}

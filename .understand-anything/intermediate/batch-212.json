@@ -1,0 +1,503 @@
+{
+  "nodes": [
+    {
+      "id": "file:AuBot/apps/stage-web/src/pages/devtools/performance-visualizer.vue",
+      "type": "file",
+      "name": "performance-visualizer.vue",
+      "filePath": "AuBot/apps/stage-web/src/pages/devtools/performance-visualizer.vue",
+      "summary": "代码文件 performance-visualizer.vue 位于 AuBot\\apps\\stage-web\\src\\pages\\devtools，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "组件",
+        "ui",
+        "前端"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:AuBot/apps/stage-web/src/pages/devtools/polaroid.vue",
+      "type": "file",
+      "name": "polaroid.vue",
+      "filePath": "AuBot/apps/stage-web/src/pages/devtools/polaroid.vue",
+      "summary": "代码文件 polaroid.vue 位于 AuBot\\apps\\stage-web\\src\\pages\\devtools，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "组件",
+        "ui",
+        "前端"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:AuBot/apps/stage-web/src/pages/devtools/use-magic-keys.vue",
+      "type": "file",
+      "name": "use-magic-keys.vue",
+      "filePath": "AuBot/apps/stage-web/src/pages/devtools/use-magic-keys.vue",
+      "summary": "代码文件 use-magic-keys.vue 位于 AuBot\\apps\\stage-web\\src\\pages\\devtools，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "组件",
+        "ui",
+        "前端"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:AuBot/apps/stage-web/src/pages/devtools/web-haptics.vue",
+      "type": "file",
+      "name": "web-haptics.vue",
+      "filePath": "AuBot/apps/stage-web/src/pages/devtools/web-haptics.vue",
+      "summary": "代码文件 web-haptics.vue 位于 AuBot\\apps\\stage-web\\src\\pages\\devtools，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "组件",
+        "ui",
+        "前端"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:AuBot/apps/stage-web/src/pages/index.vue",
+      "type": "file",
+      "name": "index.vue",
+      "filePath": "AuBot/apps/stage-web/src/pages/index.vue",
+      "summary": "代码文件 index.vue 位于 AuBot\\apps\\stage-web\\src\\pages，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "入口点",
+        "barrel",
+        "导出"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:AuBot/apps/stage-web/src/pages/settings/account/index.vue",
+      "type": "file",
+      "name": "index.vue",
+      "filePath": "AuBot/apps/stage-web/src/pages/settings/account/index.vue",
+      "summary": "代码文件 index.vue 位于 AuBot\\apps\\stage-web\\src\\pages\\settings\\account，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "入口点",
+        "barrel",
+        "导出"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/apps/stage-web/src/pages/settings/characters/components/CharacterCreate.vue",
+      "type": "file",
+      "name": "CharacterCreate.vue",
+      "filePath": "AuBot/apps/stage-web/src/pages/settings/characters/components/CharacterCreate.vue",
+      "summary": "代码文件 CharacterCreate.vue 位于 AuBot\\apps\\stage-web\\src\\pages\\settings\\characters\\components，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "配置",
+        "运行时",
+        "设置"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/apps/stage-web/src/pages/settings/characters/components/CharacterDialog.vue",
+      "type": "file",
+      "name": "CharacterDialog.vue",
+      "filePath": "AuBot/apps/stage-web/src/pages/settings/characters/components/CharacterDialog.vue",
+      "summary": "代码文件 CharacterDialog.vue 位于 AuBot\\apps\\stage-web\\src\\pages\\settings\\characters\\components，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "配置",
+        "运行时",
+        "设置"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:AuBot/apps/stage-web/src/pages/settings/characters/components/CharacterItem.vue",
+      "type": "file",
+      "name": "CharacterItem.vue",
+      "filePath": "AuBot/apps/stage-web/src/pages/settings/characters/components/CharacterItem.vue",
+      "summary": "代码文件 CharacterItem.vue 位于 AuBot\\apps\\stage-web\\src\\pages\\settings\\characters\\components，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "配置",
+        "运行时",
+        "设置"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:AuBot/apps/stage-web/src/pages/settings/characters/index.vue",
+      "type": "file",
+      "name": "index.vue",
+      "filePath": "AuBot/apps/stage-web/src/pages/settings/characters/index.vue",
+      "summary": "代码文件 index.vue 位于 AuBot\\apps\\stage-web\\src\\pages\\settings\\characters，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "入口点",
+        "barrel",
+        "导出"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:AuBot/apps/stage-web/src/pages/settings/system/developer.vue",
+      "type": "file",
+      "name": "developer.vue",
+      "filePath": "AuBot/apps/stage-web/src/pages/settings/system/developer.vue",
+      "summary": "代码文件 developer.vue 位于 AuBot\\apps\\stage-web\\src\\pages\\settings\\system，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "配置",
+        "运行时",
+        "设置"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:AuBot/apps/stage-web/src/pages/settings/system/index.vue",
+      "type": "file",
+      "name": "index.vue",
+      "filePath": "AuBot/apps/stage-web/src/pages/settings/system/index.vue",
+      "summary": "代码文件 index.vue 位于 AuBot\\apps\\stage-web\\src\\pages\\settings\\system，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "入口点",
+        "barrel",
+        "导出"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:AuBot/apps/stage-web/src/stores/background.ts",
+      "type": "file",
+      "name": "background.ts",
+      "filePath": "AuBot/apps/stage-web/src/stores/background.ts",
+      "summary": "代码文件 background.ts 位于 AuBot\\apps\\stage-web\\src\\stores，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "状态管理",
+        "store",
+        "数据流"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/apps/stage-web/src/stores/devtools-lag.ts",
+      "type": "file",
+      "name": "devtools-lag.ts",
+      "filePath": "AuBot/apps/stage-web/src/stores/devtools-lag.ts",
+      "summary": "代码文件 devtools-lag.ts 位于 AuBot\\apps\\stage-web\\src\\stores，包含 4 个函数和 0 个类，承担该模块内的核心实现职责。",
+      "tags": [
+        "状态管理",
+        "store",
+        "数据流"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:AuBot/apps/stage-web/src/stores/devtools-lag.ts:calcStats",
+      "type": "function",
+      "name": "calcStats",
+      "filePath": "AuBot/apps/stage-web/src/stores/devtools-lag.ts",
+      "lineRange": [
+        43,
+        55
+      ],
+      "summary": "函数 calcStats 实现 AuBot/apps/stage-web/src/stores/devtools-lag.ts 中的关键逻辑，参与该模块的主要行为。",
+      "tags": [
+        "函数",
+        "模块逻辑",
+        "内部实现"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/apps/stage-web/src/stores/devtools-lag.ts:buildHistogram",
+      "type": "function",
+      "name": "buildHistogram",
+      "filePath": "AuBot/apps/stage-web/src/stores/devtools-lag.ts",
+      "lineRange": [
+        57,
+        87
+      ],
+      "summary": "函数 buildHistogram 实现 AuBot/apps/stage-web/src/stores/devtools-lag.ts 中的关键逻辑，参与该模块的主要行为。",
+      "tags": [
+        "函数",
+        "模块逻辑",
+        "内部实现"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/apps/stage-web/src/workers/vad/index.ts",
+      "type": "file",
+      "name": "index.ts",
+      "filePath": "AuBot/apps/stage-web/src/workers/vad/index.ts",
+      "summary": "代码文件 index.ts 位于 AuBot\\apps\\stage-web\\src\\workers\\vad，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "入口点",
+        "barrel",
+        "导出"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/apps/stage-web/src/workers/vad/manager.ts",
+      "type": "file",
+      "name": "manager.ts",
+      "filePath": "AuBot/apps/stage-web/src/workers/vad/manager.ts",
+      "summary": "代码文件 manager.ts 位于 AuBot\\apps\\stage-web\\src\\workers\\vad，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "代码",
+        "模块",
+        "项目逻辑"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/apps/stage-web/src/workers/vad/process.worklet.ts",
+      "type": "file",
+      "name": "process.worklet.ts",
+      "filePath": "AuBot/apps/stage-web/src/workers/vad/process.worklet.ts",
+      "summary": "代码文件 process.worklet.ts 位于 AuBot\\apps\\stage-web\\src\\workers\\vad，包含 0 个函数和 1 个类，承担该模块内的核心实现职责。",
+      "tags": [
+        "代码",
+        "模块",
+        "项目逻辑"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:AuBot/apps/stage-web/src/workers/vad/process.worklet.ts:VADProcessor",
+      "type": "class",
+      "name": "VADProcessor",
+      "filePath": "AuBot/apps/stage-web/src/workers/vad/process.worklet.ts",
+      "lineRange": [
+        18,
+        51
+      ],
+      "summary": "类 VADProcessor 封装 AuBot/apps/stage-web/src/workers/vad/process.worklet.ts 中的状态与行为，提供该模块的重要抽象。",
+      "tags": [
+        "类",
+        "抽象",
+        "内部实现"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/apps/stage-web/vite-env.d.ts",
+      "type": "file",
+      "name": "vite-env.d.ts",
+      "filePath": "AuBot/apps/stage-web/vite-env.d.ts",
+      "summary": "代码文件 vite-env.d.ts 位于 AuBot\\apps\\stage-web，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "代码",
+        "模块",
+        "项目逻辑"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/apps/stage-web/vite.config.ts",
+      "type": "file",
+      "name": "vite.config.ts",
+      "filePath": "AuBot/apps/stage-web/vite.config.ts",
+      "summary": "代码文件 vite.config.ts 位于 AuBot\\apps\\stage-web，包含 1 个函数和 0 个类，承担该模块内的核心实现职责。",
+      "tags": [
+        "配置",
+        "运行时",
+        "设置"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:AuBot/apps/stage-web/vite.config.ts:hasFlagEnableMkcert",
+      "type": "function",
+      "name": "hasFlagEnableMkcert",
+      "filePath": "AuBot/apps/stage-web/vite.config.ts",
+      "lineRange": [
+        29,
+        38
+      ],
+      "summary": "函数 hasFlagEnableMkcert 实现 AuBot/apps/stage-web/vite.config.ts 中的关键逻辑，参与该模块的主要行为。",
+      "tags": [
+        "函数",
+        "模块逻辑",
+        "内部实现"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/apps/ui-server-auth/public/_headers",
+      "type": "file",
+      "name": "_headers",
+      "filePath": "AuBot/apps/ui-server-auth/public/_headers",
+      "summary": "代码文件 _headers 位于 AuBot\\apps\\ui-server-auth\\public，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "代码",
+        "模块",
+        "项目逻辑"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/apps/ui-server-auth/public/.assetsignore",
+      "type": "file",
+      "name": ".assetsignore",
+      "filePath": "AuBot/apps/ui-server-auth/public/.assetsignore",
+      "summary": "代码文件 .assetsignore 位于 AuBot\\apps\\ui-server-auth\\public，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "代码",
+        "模块",
+        "项目逻辑"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/apps/ui-server-auth/src/components/auth-notice.vue",
+      "type": "file",
+      "name": "auth-notice.vue",
+      "filePath": "AuBot/apps/ui-server-auth/src/components/auth-notice.vue",
+      "summary": "代码文件 auth-notice.vue 位于 AuBot\\apps\\ui-server-auth\\src\\components，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "组件",
+        "ui",
+        "前端"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:AuBot/apps/ui-server-auth/src/composables/electron-callback.shared.ts",
+      "type": "file",
+      "name": "electron-callback.shared.ts",
+      "filePath": "AuBot/apps/ui-server-auth/src/composables/electron-callback.shared.ts",
+      "summary": "代码文件 electron-callback.shared.ts 位于 AuBot\\apps\\ui-server-auth\\src\\composables，包含 2 个函数和 0 个类，承担该模块内的核心实现职责。",
+      "tags": [
+        "工具函数",
+        "复用",
+        "辅助逻辑"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:AuBot/apps/ui-server-auth/src/composables/electron-callback.shared.ts:buildElectronLoopbackUrl",
+      "type": "function",
+      "name": "buildElectronLoopbackUrl",
+      "filePath": "AuBot/apps/ui-server-auth/src/composables/electron-callback.shared.ts",
+      "lineRange": [
+        14,
+        23
+      ],
+      "summary": "函数 buildElectronLoopbackUrl 实现 AuBot/apps/ui-server-auth/src/composables/electron-callback.shared.ts 中的关键逻辑，参与该模块的主要行为。",
+      "tags": [
+        "函数",
+        "模块逻辑",
+        "导出"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/apps/ui-server-auth/src/composables/electron-callback.shared.ts:parseElectronCallbackQuery",
+      "type": "function",
+      "name": "parseElectronCallbackQuery",
+      "filePath": "AuBot/apps/ui-server-auth/src/composables/electron-callback.shared.ts",
+      "lineRange": [
+        25,
+        64
+      ],
+      "summary": "函数 parseElectronCallbackQuery 实现 AuBot/apps/ui-server-auth/src/composables/electron-callback.shared.ts 中的关键逻辑，参与该模块的主要行为。",
+      "tags": [
+        "函数",
+        "模块逻辑",
+        "导出"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/apps/ui-server-auth/src/composables/electron-callback.test.ts",
+      "type": "file",
+      "name": "electron-callback.test.ts",
+      "filePath": "AuBot/apps/ui-server-auth/src/composables/electron-callback.test.ts",
+      "summary": "代码文件 electron-callback.test.ts 位于 AuBot\\apps\\ui-server-auth\\src\\composables，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "测试",
+        "验证",
+        "回归"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/apps/ui-server-auth/src/pages/electron-callback.vue",
+      "type": "file",
+      "name": "electron-callback.vue",
+      "filePath": "AuBot/apps/ui-server-auth/src/pages/electron-callback.vue",
+      "summary": "代码文件 electron-callback.vue 位于 AuBot\\apps\\ui-server-auth\\src\\pages，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "组件",
+        "ui",
+        "前端"
+      ],
+      "complexity": "complex"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:AuBot/apps/stage-web/src/stores/devtools-lag.ts",
+      "target": "function:AuBot/apps/stage-web/src/stores/devtools-lag.ts:calcStats",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:AuBot/apps/stage-web/src/stores/devtools-lag.ts",
+      "target": "function:AuBot/apps/stage-web/src/stores/devtools-lag.ts:buildHistogram",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:AuBot/apps/stage-web/src/workers/vad/process.worklet.ts",
+      "target": "class:AuBot/apps/stage-web/src/workers/vad/process.worklet.ts:VADProcessor",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:AuBot/apps/stage-web/vite.config.ts",
+      "target": "function:AuBot/apps/stage-web/vite.config.ts:hasFlagEnableMkcert",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:AuBot/apps/ui-server-auth/src/composables/electron-callback.shared.ts",
+      "target": "function:AuBot/apps/ui-server-auth/src/composables/electron-callback.shared.ts:buildElectronLoopbackUrl",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:AuBot/apps/ui-server-auth/src/composables/electron-callback.shared.ts",
+      "target": "function:AuBot/apps/ui-server-auth/src/composables/electron-callback.shared.ts:buildElectronLoopbackUrl",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:AuBot/apps/ui-server-auth/src/composables/electron-callback.shared.ts",
+      "target": "function:AuBot/apps/ui-server-auth/src/composables/electron-callback.shared.ts:parseElectronCallbackQuery",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:AuBot/apps/ui-server-auth/src/composables/electron-callback.shared.ts",
+      "target": "function:AuBot/apps/ui-server-auth/src/composables/electron-callback.shared.ts:parseElectronCallbackQuery",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:AuBot/apps/stage-web/src/stores/devtools-lag.ts",
+      "target": "file:AuBot/apps/stage-web/src/composables/perf/register-lag-sampler.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/ui-server-auth/src/composables/electron-callback.test.ts",
+      "target": "file:AuBot/apps/ui-server-auth/src/composables/electron-callback.shared.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    }
+  ]
+}

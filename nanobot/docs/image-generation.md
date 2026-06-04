@@ -1,6 +1,6 @@
 # 图像生成
 
-nanobot 可以通过 `generate_image` 工具生成和编辑图像。在 WebUI 中，用户可以从输入框启用 **Image Generation**，选择宽高比，并在同一个聊天中持续迭代生成图像。
+xiaomiaoAgent 可以通过 `generate_image` 工具生成和编辑图像。在 WebUI 中，用户可以从输入框启用 **Image Generation**，选择宽高比，并在同一个聊天中持续迭代生成图像。
 
 该功能默认禁用。请在 `~/.nanobot/config.json` 中启用它，配置受支持的图像 Provider，然后重启 gateway。
 
@@ -49,7 +49,7 @@ AIHubMix 示例：
 ```
 
 > [!TIP]
-> API Key 建议使用环境变量。nanobot 启动时会从环境变量解析 `${VAR_NAME}` 值。
+> API Key 建议使用环境变量。xiaomiaoAgent 启动时会从环境变量解析 `${VAR_NAME}` 值。
 
 ## WebUI 使用方式
 
@@ -74,7 +74,7 @@ WebUI 会向用户隐藏 Provider 的存储细节。agent 会在内部看到已�
 | `tools.imageGeneration.defaultAspectRatio` | string | `"1:1"` | 当提示词或工具调用未指定宽高比时使用的默认比例 |
 | `tools.imageGeneration.defaultImageSize` | string | `"1K"` | 默认尺寸提示，例如 `1K`、`2K`、`4K` 或 `1024x1024` |
 | `tools.imageGeneration.maxImagesPerTurn` | number | `4` | 单次工具调用可接受的最大 `count`。有效范围：`1` 到 `8` |
-| `tools.imageGeneration.saveDir` | string | `"generated"` | nanobot 媒体目录下用于保存生成产物的相对目录 |
+| `tools.imageGeneration.saveDir` | string | `"generated"` | xiaomiaoAgent 媒体目录下用于保存生成产物的相对目录 |
 
 Provider 设置复用常规 Provider 配置字段：
 
@@ -109,7 +109,7 @@ OpenRouter 使用 chat-completions 风格的图像响应。配置如下：
 
 ### AIHubMix
 
-AIHubMix 的 `gpt-image-2-free` 通过 AIHubMix 统一 predictions API 支持。nanobot 内部会调用：
+AIHubMix 的 `gpt-image-2-free` 通过 AIHubMix 统一 predictions API 支持。xiaomiaoAgent 内部会调用：
 
 ```text
 /v1/models/openai/gpt-image-2-free/predictions
@@ -141,7 +141,7 @@ AIHubMix 的 `gpt-image-2-free` 通过 AIHubMix 统一 predictions API 支持。
 
 ## Artifact
 
-生成图像会存储在当前 nanobot 实例的媒体目录中：
+生成图像会存储在当前 xiaomiaoAgent 实例的媒体目录中：
 
 ```text
 ~/.nanobot/media/generated/YYYY-MM-DD/img_<id>.<ext>
@@ -178,7 +178,7 @@ JSON sidecar 会保存：
 示例：
 
 ```text
-A minimal app icon for nanobot: friendly robot head, rounded square, soft blue and white palette, clean vector style, no text
+A minimal app icon for xiaomiaoAgent: friendly robot head, rounded square, soft blue and white palette, clean vector style, no text
 ```
 
 编辑时，请描述什么应该改变，以及什么必须保持不变：
@@ -194,6 +194,6 @@ Use the reference image. Keep the same robot and composition, change the palette
 | `generate_image` 不可用 | 将 `tools.imageGeneration.enabled` 设为 `true` 并重启 gateway |
 | 缺少 API Key 错误 | 配置 `providers.<provider>.apiKey`；如果使用 `${VAR_NAME}`，确认 gateway 进程可见该环境变量 |
 | `unsupported image generation provider` | 使用 `openrouter` 或 `aihubmix` |
-| AIHubMix 报 `Incorrect model ID` | 使用 `model: "gpt-image-2-free"`；nanobot 内部会将其扩展为所需的 `openai/gpt-image-2-free` 模型路径 |
+| AIHubMix 报 `Incorrect model ID` | 使用 `model: "gpt-image-2-free"`；xiaomiaoAgent 内部会将其扩展为所需的 `openai/gpt-image-2-free` 模型路径 |
 | 生成超时 | 尝试更小或默认图像尺寸，将 AIHubMix `extraBody.quality` 设为 `"low"`，或稍后重试 |
-| 参考图被拒绝 | 参考图路径必须位于工作区或 nanobot 媒体目录内，并且必须是有效图像文件 |
+| 参考图被拒绝 | 参考图路径必须位于工作区或 xiaomiaoAgent 媒体目录内，并且必须是有效图像文件 |

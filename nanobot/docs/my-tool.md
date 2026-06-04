@@ -25,7 +25,7 @@ tools:
 
 如果要允许 agent 修改自己的配置（例如切换模型、调整参数），请设置 `tools.my.allow_set: true`。
 
-旧版 `tools.myEnabled` / `tools.mySet` 键会在加载时自动迁移，并在下次 `nanobot onboard` 刷新配置时原地重写。
+旧版 `tools.myEnabled` / `tools.mySet` 键会在加载时自动迁移，并在下次 `xiaomiao onboard` 刷新配置时原地重写。
 
 所有修改都只保存在内存中，重启后会恢复默认值。
 

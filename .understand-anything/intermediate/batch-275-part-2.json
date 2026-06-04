@@ -1,0 +1,348 @@
+{
+  "nodes": [
+    {
+      "id": "file:nanobot/tests/test_package_version.py",
+      "type": "file",
+      "name": "test_package_version.py",
+      "filePath": "nanobot/tests/test_package_version.py",
+      "summary": "test_package_version.py 提供 nanobot/tests 下的代码实现，包含 1 个函数和 0 个类/组件结构。",
+      "tags": [
+        "测试",
+        "质量保障",
+        "回归验证"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/tests/test_package_version.py:test_source_checkout_import_uses_pyproject_version_without_metadata",
+      "type": "function",
+      "name": "test_source_checkout_import_uses_pyproject_version_without_metadata",
+      "filePath": "nanobot/tests/test_package_version.py",
+      "lineRange": [
+        11,
+        41
+      ],
+      "summary": "test_source_checkout_import_uses_pyproject_version_without_metadata 封装 test_package_version.py 中的核心逻辑，负责该模块对外暴露或内部复用的一段明确行为。",
+      "tags": [
+        "测试",
+        "断言",
+        "验证"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:nanobot/tests/test_truncate_text_shadowing.py",
+      "type": "file",
+      "name": "test_truncate_text_shadowing.py",
+      "filePath": "nanobot/tests/test_truncate_text_shadowing.py",
+      "summary": "test_truncate_text_shadowing.py 提供 nanobot/tests 下的代码实现，包含 1 个函数和 0 个类/组件结构。",
+      "tags": [
+        "测试",
+        "质量保障",
+        "回归验证"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/tests/test_truncate_text_shadowing.py:test_sanitize_persisted_blocks_truncate_text_shadowing_regression",
+      "type": "function",
+      "name": "test_sanitize_persisted_blocks_truncate_text_shadowing_regression",
+      "filePath": "nanobot/tests/test_truncate_text_shadowing.py",
+      "lineRange": [
+        5,
+        30
+      ],
+      "summary": "test_sanitize_persisted_blocks_truncate_text_shadowing_regression 封装 test_truncate_text_shadowing.py 中的核心逻辑，负责该模块对外暴露或内部复用的一段明确行为。",
+      "tags": [
+        "测试",
+        "断言",
+        "验证"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:nanobot/tests/tools/__init__.py",
+      "type": "file",
+      "name": "__init__.py",
+      "filePath": "nanobot/tests/tools/__init__.py",
+      "summary": "__init__.py 提供 nanobot/tests/tools 下的代码实现，包含 2 个函数和 2 个类/组件结构。",
+      "tags": [
+        "测试",
+        "质量保障",
+        "回归验证"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:nanobot/tests/tools/__init__.py:sessions_dir",
+      "type": "function",
+      "name": "sessions_dir",
+      "filePath": "nanobot/tests/tools/__init__.py",
+      "lineRange": [
+        17,
+        20
+      ],
+      "summary": "sessions_dir 封装 __init__.py 中的核心逻辑，负责该模块对外暴露或内部复用的一段明确行为。",
+      "tags": [
+        "测试",
+        "断言",
+        "验证"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/tests/tools/__init__.py:manager",
+      "type": "function",
+      "name": "manager",
+      "filePath": "nanobot/tests/tools/__init__.py",
+      "lineRange": [
+        24,
+        25
+      ],
+      "summary": "manager 封装 __init__.py 中的核心逻辑，负责该模块对外暴露或内部复用的一段明确行为。",
+      "tags": [
+        "测试",
+        "断言",
+        "验证"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:nanobot/tests/tools/__init__.py:TestSaveFsync",
+      "type": "class",
+      "name": "TestSaveFsync",
+      "filePath": "nanobot/tests/tools/__init__.py",
+      "lineRange": [
+        28,
+        56
+      ],
+      "summary": "TestSaveFsync 聚合 __init__.py 中的组件或类级状态与方法，形成可复用的模块结构。",
+      "tags": [
+        "类",
+        "封装",
+        "模块结构"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:nanobot/tests/tools/__init__.py:TestFlushAll",
+      "type": "class",
+      "name": "TestFlushAll",
+      "filePath": "nanobot/tests/tools/__init__.py",
+      "lineRange": [
+        59,
+        130
+      ],
+      "summary": "TestFlushAll 聚合 __init__.py 中的组件或类级状态与方法，形成可复用的模块结构。",
+      "tags": [
+        "类",
+        "封装",
+        "模块结构"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:nanobot/webui/postcss.config.js",
+      "type": "file",
+      "name": "postcss.config.js",
+      "filePath": "nanobot/webui/postcss.config.js",
+      "summary": "postcss.config.js 是 nanobot/webui 下的代码模块，参与该功能区域的类型、配置或前端逻辑组织。",
+      "tags": [
+        "代码",
+        "模块",
+        "前端逻辑"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:nanobot/webui/public/brand/nanobot_logo.webp",
+      "type": "file",
+      "name": "nanobot_logo.webp",
+      "filePath": "nanobot/webui/public/brand/nanobot_logo.webp",
+      "summary": "nanobot_logo.webp 是 nanobot/webui/public/brand 下的静态图像资源，用于前端界面、PWA 图标或品牌视觉呈现。",
+      "tags": [
+        "静态资源",
+        "图标",
+        "前端资源"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:nanobot/webui/src/globals.css",
+      "type": "file",
+      "name": "globals.css",
+      "filePath": "nanobot/webui/src/globals.css",
+      "summary": "globals.css 是 nanobot/webui/src 下的代码模块，参与该功能区域的类型、配置或前端逻辑组织。",
+      "tags": [
+        "代码",
+        "模块",
+        "前端逻辑"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:nanobot/webui/src/i18n/locales/en/common.json",
+      "type": "config",
+      "name": "common.json",
+      "filePath": "nanobot/webui/src/i18n/locales/en/common.json",
+      "summary": "nanobot/webui/src/i18n/locales/en/common.json 提供项目工具链或运行时配置，影响相关模块的构建、开发和集成行为。",
+      "tags": [
+        "配置",
+        "项目设置",
+        "工具链"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "config:nanobot/webui/src/i18n/locales/es/common.json",
+      "type": "config",
+      "name": "common.json",
+      "filePath": "nanobot/webui/src/i18n/locales/es/common.json",
+      "summary": "nanobot/webui/src/i18n/locales/es/common.json 提供项目工具链或运行时配置，影响相关模块的构建、开发和集成行为。",
+      "tags": [
+        "配置",
+        "项目设置",
+        "工具链"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "config:nanobot/webui/src/i18n/locales/fr/common.json",
+      "type": "config",
+      "name": "common.json",
+      "filePath": "nanobot/webui/src/i18n/locales/fr/common.json",
+      "summary": "nanobot/webui/src/i18n/locales/fr/common.json 提供项目工具链或运行时配置，影响相关模块的构建、开发和集成行为。",
+      "tags": [
+        "配置",
+        "项目设置",
+        "工具链"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "config:nanobot/webui/src/i18n/locales/id/common.json",
+      "type": "config",
+      "name": "common.json",
+      "filePath": "nanobot/webui/src/i18n/locales/id/common.json",
+      "summary": "nanobot/webui/src/i18n/locales/id/common.json 提供项目工具链或运行时配置，影响相关模块的构建、开发和集成行为。",
+      "tags": [
+        "配置",
+        "项目设置",
+        "工具链"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "config:nanobot/webui/src/i18n/locales/ja/common.json",
+      "type": "config",
+      "name": "common.json",
+      "filePath": "nanobot/webui/src/i18n/locales/ja/common.json",
+      "summary": "nanobot/webui/src/i18n/locales/ja/common.json 提供项目工具链或运行时配置，影响相关模块的构建、开发和集成行为。",
+      "tags": [
+        "配置",
+        "项目设置",
+        "工具链"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "config:nanobot/webui/src/i18n/locales/ko/common.json",
+      "type": "config",
+      "name": "common.json",
+      "filePath": "nanobot/webui/src/i18n/locales/ko/common.json",
+      "summary": "nanobot/webui/src/i18n/locales/ko/common.json 提供项目工具链或运行时配置，影响相关模块的构建、开发和集成行为。",
+      "tags": [
+        "配置",
+        "项目设置",
+        "工具链"
+      ],
+      "complexity": "complex"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:nanobot/tests/test_package_version.py",
+      "target": "function:nanobot/tests/test_package_version.py:test_source_checkout_import_uses_pyproject_version_without_metadata",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/test_package_version.py",
+      "target": "function:nanobot/tests/test_package_version.py:test_source_checkout_import_uses_pyproject_version_without_metadata",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:nanobot/tests/test_truncate_text_shadowing.py",
+      "target": "function:nanobot/tests/test_truncate_text_shadowing.py:test_sanitize_persisted_blocks_truncate_text_shadowing_regression",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/test_truncate_text_shadowing.py",
+      "target": "function:nanobot/tests/test_truncate_text_shadowing.py:test_sanitize_persisted_blocks_truncate_text_shadowing_regression",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:nanobot/tests/tools/__init__.py",
+      "target": "function:nanobot/tests/tools/__init__.py:sessions_dir",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/tools/__init__.py",
+      "target": "function:nanobot/tests/tools/__init__.py:sessions_dir",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:nanobot/tests/tools/__init__.py",
+      "target": "function:nanobot/tests/tools/__init__.py:manager",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/tools/__init__.py",
+      "target": "function:nanobot/tests/tools/__init__.py:manager",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:nanobot/tests/tools/__init__.py",
+      "target": "class:nanobot/tests/tools/__init__.py:TestSaveFsync",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/tools/__init__.py",
+      "target": "class:nanobot/tests/tools/__init__.py:TestSaveFsync",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:nanobot/tests/tools/__init__.py",
+      "target": "class:nanobot/tests/tools/__init__.py:TestFlushAll",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/tests/tools/__init__.py",
+      "target": "class:nanobot/tests/tools/__init__.py:TestFlushAll",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    }
+  ]
+}

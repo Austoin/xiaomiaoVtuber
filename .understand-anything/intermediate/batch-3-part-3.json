@@ -1,0 +1,1241 @@
+{
+  "nodes": [
+    {
+      "id": "file:nanobot/nanobot/utils/gitstore.py",
+      "type": "file",
+      "name": "gitstore.py",
+      "filePath": "nanobot/nanobot/utils/gitstore.py",
+      "summary": "gitstore.py 是 code 文件，包含 1 个函数，包含 3 个类，在项目路径 nanobot/nanobot/utils/gitstore.py 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "python"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:nanobot/nanobot/utils/gitstore.py:_compute_line_ages",
+      "type": "function",
+      "name": "_compute_line_ages",
+      "filePath": "nanobot/nanobot/utils/gitstore.py",
+      "lineRange": [
+        35,
+        42
+      ],
+      "summary": "函数 _compute_line_ages 位于 gitstore.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:nanobot/nanobot/utils/gitstore.py:CommitInfo",
+      "type": "class",
+      "name": "CommitInfo",
+      "filePath": "nanobot/nanobot/utils/gitstore.py",
+      "lineRange": [
+        15,
+        25
+      ],
+      "summary": "类 CommitInfo 位于 gitstore.py，由结构提取结果识别。",
+      "tags": [
+        "class",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:nanobot/nanobot/utils/gitstore.py:LineAge",
+      "type": "class",
+      "name": "LineAge",
+      "filePath": "nanobot/nanobot/utils/gitstore.py",
+      "lineRange": [
+        29,
+        32
+      ],
+      "summary": "类 LineAge 位于 gitstore.py，由结构提取结果识别。",
+      "tags": [
+        "class",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:nanobot/nanobot/utils/gitstore.py:GitStore",
+      "type": "class",
+      "name": "GitStore",
+      "filePath": "nanobot/nanobot/utils/gitstore.py",
+      "lineRange": [
+        45,
+        390
+      ],
+      "summary": "类 GitStore 位于 gitstore.py，由结构提取结果识别。",
+      "tags": [
+        "class",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:nanobot/nanobot/utils/helpers.py",
+      "type": "file",
+      "name": "helpers.py",
+      "filePath": "nanobot/nanobot/utils/helpers.py",
+      "summary": "helpers.py 是 code 文件，包含 23 个函数，在项目路径 nanobot/nanobot/utils/helpers.py 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "python"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:nanobot/nanobot/utils/helpers.py:strip_think",
+      "type": "function",
+      "name": "strip_think",
+      "filePath": "nanobot/nanobot/utils/helpers.py",
+      "lineRange": [
+        18,
+        71
+      ],
+      "summary": "函数 strip_think 位于 helpers.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:nanobot/nanobot/utils/helpers.py:detect_image_mime",
+      "type": "function",
+      "name": "detect_image_mime",
+      "filePath": "nanobot/nanobot/utils/helpers.py",
+      "lineRange": [
+        74,
+        84
+      ],
+      "summary": "函数 detect_image_mime 位于 helpers.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/nanobot/utils/helpers.py:build_image_content_blocks",
+      "type": "function",
+      "name": "build_image_content_blocks",
+      "filePath": "nanobot/nanobot/utils/helpers.py",
+      "lineRange": [
+        87,
+        99
+      ],
+      "summary": "函数 build_image_content_blocks 位于 helpers.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/nanobot/utils/helpers.py:ensure_dir",
+      "type": "function",
+      "name": "ensure_dir",
+      "filePath": "nanobot/nanobot/utils/helpers.py",
+      "lineRange": [
+        102,
+        105
+      ],
+      "summary": "函数 ensure_dir 位于 helpers.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/nanobot/utils/helpers.py:timestamp",
+      "type": "function",
+      "name": "timestamp",
+      "filePath": "nanobot/nanobot/utils/helpers.py",
+      "lineRange": [
+        108,
+        110
+      ],
+      "summary": "函数 timestamp 位于 helpers.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/nanobot/utils/helpers.py:current_time_str",
+      "type": "function",
+      "name": "current_time_str",
+      "filePath": "nanobot/nanobot/utils/helpers.py",
+      "lineRange": [
+        113,
+        126
+      ],
+      "summary": "函数 current_time_str 位于 helpers.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/nanobot/utils/helpers.py:safe_filename",
+      "type": "function",
+      "name": "safe_filename",
+      "filePath": "nanobot/nanobot/utils/helpers.py",
+      "lineRange": [
+        136,
+        138
+      ],
+      "summary": "函数 safe_filename 位于 helpers.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/nanobot/utils/helpers.py:image_placeholder_text",
+      "type": "function",
+      "name": "image_placeholder_text",
+      "filePath": "nanobot/nanobot/utils/helpers.py",
+      "lineRange": [
+        141,
+        143
+      ],
+      "summary": "函数 image_placeholder_text 位于 helpers.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/nanobot/utils/helpers.py:truncate_text",
+      "type": "function",
+      "name": "truncate_text",
+      "filePath": "nanobot/nanobot/utils/helpers.py",
+      "lineRange": [
+        146,
+        150
+      ],
+      "summary": "函数 truncate_text 位于 helpers.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/nanobot/utils/helpers.py:find_legal_message_start",
+      "type": "function",
+      "name": "find_legal_message_start",
+      "filePath": "nanobot/nanobot/utils/helpers.py",
+      "lineRange": [
+        153,
+        168
+      ],
+      "summary": "函数 find_legal_message_start 位于 helpers.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/nanobot/utils/helpers.py:stringify_text_blocks",
+      "type": "function",
+      "name": "stringify_text_blocks",
+      "filePath": "nanobot/nanobot/utils/helpers.py",
+      "lineRange": [
+        171,
+        182
+      ],
+      "summary": "函数 stringify_text_blocks 位于 helpers.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/nanobot/utils/helpers.py:_render_tool_result_reference",
+      "type": "function",
+      "name": "_render_tool_result_reference",
+      "filePath": "nanobot/nanobot/utils/helpers.py",
+      "lineRange": [
+        185,
+        200
+      ],
+      "summary": "函数 _render_tool_result_reference 位于 helpers.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/nanobot/utils/helpers.py:_bucket_mtime",
+      "type": "function",
+      "name": "_bucket_mtime",
+      "filePath": "nanobot/nanobot/utils/helpers.py",
+      "lineRange": [
+        203,
+        207
+      ],
+      "summary": "函数 _bucket_mtime 位于 helpers.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/nanobot/utils/helpers.py:_cleanup_tool_result_buckets",
+      "type": "function",
+      "name": "_cleanup_tool_result_buckets",
+      "filePath": "nanobot/nanobot/utils/helpers.py",
+      "lineRange": [
+        210,
+        222
+      ],
+      "summary": "函数 _cleanup_tool_result_buckets 位于 helpers.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/nanobot/utils/helpers.py:_write_text_atomic",
+      "type": "function",
+      "name": "_write_text_atomic",
+      "filePath": "nanobot/nanobot/utils/helpers.py",
+      "lineRange": [
+        225,
+        232
+      ],
+      "summary": "函数 _write_text_atomic 位于 helpers.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/nanobot/utils/helpers.py:maybe_persist_tool_result",
+      "type": "function",
+      "name": "maybe_persist_tool_result",
+      "filePath": "nanobot/nanobot/utils/helpers.py",
+      "lineRange": [
+        235,
+        281
+      ],
+      "summary": "函数 maybe_persist_tool_result 位于 helpers.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:nanobot/nanobot/utils/helpers.py:split_message",
+      "type": "function",
+      "name": "split_message",
+      "filePath": "nanobot/nanobot/utils/helpers.py",
+      "lineRange": [
+        284,
+        313
+      ],
+      "summary": "函数 split_message 位于 helpers.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:nanobot/nanobot/utils/helpers.py:build_assistant_message",
+      "type": "function",
+      "name": "build_assistant_message",
+      "filePath": "nanobot/nanobot/utils/helpers.py",
+      "lineRange": [
+        316,
+        330
+      ],
+      "summary": "函数 build_assistant_message 位于 helpers.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/nanobot/utils/helpers.py:estimate_prompt_tokens",
+      "type": "function",
+      "name": "estimate_prompt_tokens",
+      "filePath": "nanobot/nanobot/utils/helpers.py",
+      "lineRange": [
+        333,
+        375
+      ],
+      "summary": "函数 estimate_prompt_tokens 位于 helpers.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:nanobot/nanobot/utils/helpers.py:estimate_message_tokens",
+      "type": "function",
+      "name": "estimate_message_tokens",
+      "filePath": "nanobot/nanobot/utils/helpers.py",
+      "lineRange": [
+        378,
+        413
+      ],
+      "summary": "函数 estimate_message_tokens 位于 helpers.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:nanobot/nanobot/utils/helpers.py:estimate_prompt_tokens_chain",
+      "type": "function",
+      "name": "estimate_prompt_tokens_chain",
+      "filePath": "nanobot/nanobot/utils/helpers.py",
+      "lineRange": [
+        416,
+        432
+      ],
+      "summary": "函数 estimate_prompt_tokens_chain 位于 helpers.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/nanobot/utils/helpers.py:build_status_content",
+      "type": "function",
+      "name": "build_status_content",
+      "filePath": "nanobot/nanobot/utils/helpers.py",
+      "lineRange": [
+        435,
+        488
+      ],
+      "summary": "函数 build_status_content 位于 helpers.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:nanobot/nanobot/utils/helpers.py:sync_workspace_templates",
+      "type": "function",
+      "name": "sync_workspace_templates",
+      "filePath": "nanobot/nanobot/utils/helpers.py",
+      "lineRange": [
+        491,
+        540
+      ],
+      "summary": "函数 sync_workspace_templates 位于 helpers.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:nanobot/nanobot/utils/image_generation_intent.py",
+      "type": "file",
+      "name": "image_generation_intent.py",
+      "filePath": "nanobot/nanobot/utils/image_generation_intent.py",
+      "summary": "image_generation_intent.py 是 code 文件，包含 1 个函数，在项目路径 nanobot/nanobot/utils/image_generation_intent.py 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/nanobot/utils/image_generation_intent.py:image_generation_prompt",
+      "type": "function",
+      "name": "image_generation_prompt",
+      "filePath": "nanobot/nanobot/utils/image_generation_intent.py",
+      "lineRange": [
+        10,
+        27
+      ],
+      "summary": "函数 image_generation_prompt 位于 image_generation_intent.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:nanobot/nanobot/utils/logging_bridge.py",
+      "type": "file",
+      "name": "logging_bridge.py",
+      "filePath": "nanobot/nanobot/utils/logging_bridge.py",
+      "summary": "logging_bridge.py 是 code 文件，包含 1 个函数，包含 1 个类，在项目路径 nanobot/nanobot/utils/logging_bridge.py 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/nanobot/utils/logging_bridge.py:redirect_lib_logging",
+      "type": "function",
+      "name": "redirect_lib_logging",
+      "filePath": "nanobot/nanobot/utils/logging_bridge.py",
+      "lineRange": [
+        34,
+        47
+      ],
+      "summary": "函数 redirect_lib_logging 位于 logging_bridge.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:nanobot/nanobot/utils/logging_bridge.py:_LoguruBridge",
+      "type": "class",
+      "name": "_LoguruBridge",
+      "filePath": "nanobot/nanobot/utils/logging_bridge.py",
+      "lineRange": [
+        9,
+        31
+      ],
+      "summary": "类 _LoguruBridge 位于 logging_bridge.py，由结构提取结果识别。",
+      "tags": [
+        "class",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:nanobot/nanobot/utils/media_decode.py",
+      "type": "file",
+      "name": "media_decode.py",
+      "filePath": "nanobot/nanobot/utils/media_decode.py",
+      "summary": "media_decode.py 是 code 文件，包含 1 个函数，包含 1 个类，引用 1 个内部或外部依赖，在项目路径 nanobot/nanobot/utils/media_decode.py 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/nanobot/utils/media_decode.py:save_base64_data_url",
+      "type": "function",
+      "name": "save_base64_data_url",
+      "filePath": "nanobot/nanobot/utils/media_decode.py",
+      "lineRange": [
+        28,
+        55
+      ],
+      "summary": "函数 save_base64_data_url 位于 media_decode.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:nanobot/nanobot/utils/media_decode.py:FileSizeExceeded",
+      "type": "class",
+      "name": "FileSizeExceeded",
+      "filePath": "nanobot/nanobot/utils/media_decode.py",
+      "lineRange": [
+        24,
+        25
+      ],
+      "summary": "类 FileSizeExceeded 位于 media_decode.py，由结构提取结果识别。",
+      "tags": [
+        "class",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:nanobot/nanobot/utils/path.py",
+      "type": "file",
+      "name": "path.py",
+      "filePath": "nanobot/nanobot/utils/path.py",
+      "summary": "path.py 是 code 文件，包含 2 个函数，在项目路径 nanobot/nanobot/utils/path.py 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "python"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:nanobot/nanobot/utils/path.py:abbreviate_path",
+      "type": "function",
+      "name": "abbreviate_path",
+      "filePath": "nanobot/nanobot/utils/path.py",
+      "lineRange": [
+        10,
+        70
+      ],
+      "summary": "函数 abbreviate_path 位于 path.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:nanobot/nanobot/utils/path.py:_abbreviate_url",
+      "type": "function",
+      "name": "_abbreviate_url",
+      "filePath": "nanobot/nanobot/utils/path.py",
+      "lineRange": [
+        73,
+        107
+      ],
+      "summary": "函数 _abbreviate_url 位于 path.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:nanobot/nanobot/utils/progress_events.py",
+      "type": "file",
+      "name": "progress_events.py",
+      "filePath": "nanobot/nanobot/utils/progress_events.py",
+      "summary": "progress_events.py 是 code 文件，包含 5 个函数，引用 1 个内部或外部依赖，在项目路径 nanobot/nanobot/utils/progress_events.py 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "python"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:nanobot/nanobot/utils/progress_events.py:on_progress_accepts_tool_events",
+      "type": "function",
+      "name": "on_progress_accepts_tool_events",
+      "filePath": "nanobot/nanobot/utils/progress_events.py",
+      "lineRange": [
+        12,
+        19
+      ],
+      "summary": "函数 on_progress_accepts_tool_events 位于 progress_events.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/nanobot/utils/progress_events.py:invoke_on_progress",
+      "type": "function",
+      "name": "invoke_on_progress",
+      "filePath": "nanobot/nanobot/utils/progress_events.py",
+      "lineRange": [
+        22,
+        32
+      ],
+      "summary": "函数 invoke_on_progress 位于 progress_events.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/nanobot/utils/progress_events.py:build_tool_event_start_payload",
+      "type": "function",
+      "name": "build_tool_event_start_payload",
+      "filePath": "nanobot/nanobot/utils/progress_events.py",
+      "lineRange": [
+        35,
+        46
+      ],
+      "summary": "函数 build_tool_event_start_payload 位于 progress_events.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/nanobot/utils/progress_events.py:tool_event_result_extras",
+      "type": "function",
+      "name": "tool_event_result_extras",
+      "filePath": "nanobot/nanobot/utils/progress_events.py",
+      "lineRange": [
+        49,
+        54
+      ],
+      "summary": "函数 tool_event_result_extras 位于 progress_events.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/nanobot/utils/progress_events.py:build_tool_event_finish_payloads",
+      "type": "function",
+      "name": "build_tool_event_finish_payloads",
+      "filePath": "nanobot/nanobot/utils/progress_events.py",
+      "lineRange": [
+        57,
+        84
+      ],
+      "summary": "函数 build_tool_event_finish_payloads 位于 progress_events.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:nanobot/nanobot/utils/prompt_templates.py",
+      "type": "file",
+      "name": "prompt_templates.py",
+      "filePath": "nanobot/nanobot/utils/prompt_templates.py",
+      "summary": "prompt_templates.py 是 code 文件，包含 2 个函数，在项目路径 nanobot/nanobot/utils/prompt_templates.py 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/nanobot/utils/prompt_templates.py:_environment",
+      "type": "function",
+      "name": "_environment",
+      "filePath": "nanobot/nanobot/utils/prompt_templates.py",
+      "lineRange": [
+        18,
+        25
+      ],
+      "summary": "函数 _environment 位于 prompt_templates.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/nanobot/utils/prompt_templates.py:render_template",
+      "type": "function",
+      "name": "render_template",
+      "filePath": "nanobot/nanobot/utils/prompt_templates.py",
+      "lineRange": [
+        28,
+        35
+      ],
+      "summary": "函数 render_template 位于 prompt_templates.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:nanobot/nanobot/utils/restart.py",
+      "type": "file",
+      "name": "restart.py",
+      "filePath": "nanobot/nanobot/utils/restart.py",
+      "summary": "restart.py 是 code 文件，包含 4 个函数，包含 1 个类，在项目路径 nanobot/nanobot/utils/restart.py 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "python"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:nanobot/nanobot/utils/restart.py:format_restart_completed_message",
+      "type": "function",
+      "name": "format_restart_completed_message",
+      "filePath": "nanobot/nanobot/utils/restart.py",
+      "lineRange": [
+        26,
+        33
+      ],
+      "summary": "函数 format_restart_completed_message 位于 restart.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/nanobot/utils/restart.py:set_restart_notice_to_env",
+      "type": "function",
+      "name": "set_restart_notice_to_env",
+      "filePath": "nanobot/nanobot/utils/restart.py",
+      "lineRange": [
+        36,
+        49
+      ],
+      "summary": "函数 set_restart_notice_to_env 位于 restart.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/nanobot/utils/restart.py:consume_restart_notice_from_env",
+      "type": "function",
+      "name": "consume_restart_notice_from_env",
+      "filePath": "nanobot/nanobot/utils/restart.py",
+      "lineRange": [
+        52,
+        73
+      ],
+      "summary": "函数 consume_restart_notice_from_env 位于 restart.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/nanobot/utils/restart.py:should_show_cli_restart_notice",
+      "type": "function",
+      "name": "should_show_cli_restart_notice",
+      "filePath": "nanobot/nanobot/utils/restart.py",
+      "lineRange": [
+        76,
+        84
+      ],
+      "summary": "函数 should_show_cli_restart_notice 位于 restart.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:nanobot/nanobot/utils/restart.py:RestartNotice",
+      "type": "class",
+      "name": "RestartNotice",
+      "filePath": "nanobot/nanobot/utils/restart.py",
+      "lineRange": [
+        19,
+        23
+      ],
+      "summary": "类 RestartNotice 位于 restart.py，由结构提取结果识别。",
+      "tags": [
+        "class",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:nanobot/nanobot/utils/gitstore.py",
+      "target": "function:nanobot/nanobot/utils/gitstore.py:_compute_line_ages",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/utils/gitstore.py",
+      "target": "class:nanobot/nanobot/utils/gitstore.py:CommitInfo",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/utils/gitstore.py",
+      "target": "class:nanobot/nanobot/utils/gitstore.py:LineAge",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/utils/gitstore.py",
+      "target": "class:nanobot/nanobot/utils/gitstore.py:GitStore",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/utils/helpers.py",
+      "target": "function:nanobot/nanobot/utils/helpers.py:strip_think",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/utils/helpers.py",
+      "target": "function:nanobot/nanobot/utils/helpers.py:detect_image_mime",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/utils/helpers.py",
+      "target": "function:nanobot/nanobot/utils/helpers.py:build_image_content_blocks",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/utils/helpers.py",
+      "target": "function:nanobot/nanobot/utils/helpers.py:ensure_dir",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/utils/helpers.py",
+      "target": "function:nanobot/nanobot/utils/helpers.py:timestamp",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/utils/helpers.py",
+      "target": "function:nanobot/nanobot/utils/helpers.py:current_time_str",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/utils/helpers.py",
+      "target": "function:nanobot/nanobot/utils/helpers.py:safe_filename",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/utils/helpers.py",
+      "target": "function:nanobot/nanobot/utils/helpers.py:image_placeholder_text",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/utils/helpers.py",
+      "target": "function:nanobot/nanobot/utils/helpers.py:truncate_text",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/utils/helpers.py",
+      "target": "function:nanobot/nanobot/utils/helpers.py:find_legal_message_start",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/utils/helpers.py",
+      "target": "function:nanobot/nanobot/utils/helpers.py:stringify_text_blocks",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/utils/helpers.py",
+      "target": "function:nanobot/nanobot/utils/helpers.py:_render_tool_result_reference",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/utils/helpers.py",
+      "target": "function:nanobot/nanobot/utils/helpers.py:_bucket_mtime",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/utils/helpers.py",
+      "target": "function:nanobot/nanobot/utils/helpers.py:_cleanup_tool_result_buckets",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/utils/helpers.py",
+      "target": "function:nanobot/nanobot/utils/helpers.py:_write_text_atomic",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/utils/helpers.py",
+      "target": "function:nanobot/nanobot/utils/helpers.py:maybe_persist_tool_result",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/utils/helpers.py",
+      "target": "function:nanobot/nanobot/utils/helpers.py:split_message",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/utils/helpers.py",
+      "target": "function:nanobot/nanobot/utils/helpers.py:build_assistant_message",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/utils/helpers.py",
+      "target": "function:nanobot/nanobot/utils/helpers.py:estimate_prompt_tokens",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/utils/helpers.py",
+      "target": "function:nanobot/nanobot/utils/helpers.py:estimate_message_tokens",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/utils/helpers.py",
+      "target": "function:nanobot/nanobot/utils/helpers.py:estimate_prompt_tokens_chain",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/utils/helpers.py",
+      "target": "function:nanobot/nanobot/utils/helpers.py:build_status_content",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/utils/helpers.py",
+      "target": "function:nanobot/nanobot/utils/helpers.py:sync_workspace_templates",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/utils/image_generation_intent.py",
+      "target": "function:nanobot/nanobot/utils/image_generation_intent.py:image_generation_prompt",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/utils/logging_bridge.py",
+      "target": "function:nanobot/nanobot/utils/logging_bridge.py:redirect_lib_logging",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/utils/logging_bridge.py",
+      "target": "class:nanobot/nanobot/utils/logging_bridge.py:_LoguruBridge",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/utils/media_decode.py",
+      "target": "function:nanobot/nanobot/utils/media_decode.py:save_base64_data_url",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/utils/media_decode.py",
+      "target": "class:nanobot/nanobot/utils/media_decode.py:FileSizeExceeded",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/utils/media_decode.py",
+      "target": "file:nanobot/nanobot/utils/helpers.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/nanobot/utils/path.py",
+      "target": "function:nanobot/nanobot/utils/path.py:abbreviate_path",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/utils/path.py",
+      "target": "function:nanobot/nanobot/utils/path.py:_abbreviate_url",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/utils/progress_events.py",
+      "target": "function:nanobot/nanobot/utils/progress_events.py:on_progress_accepts_tool_events",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/utils/progress_events.py",
+      "target": "function:nanobot/nanobot/utils/progress_events.py:invoke_on_progress",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/utils/progress_events.py",
+      "target": "function:nanobot/nanobot/utils/progress_events.py:build_tool_event_start_payload",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/utils/progress_events.py",
+      "target": "function:nanobot/nanobot/utils/progress_events.py:tool_event_result_extras",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/utils/progress_events.py",
+      "target": "function:nanobot/nanobot/utils/progress_events.py:build_tool_event_finish_payloads",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/utils/progress_events.py",
+      "target": "file:nanobot/nanobot/agent/hook.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/nanobot/utils/prompt_templates.py",
+      "target": "function:nanobot/nanobot/utils/prompt_templates.py:_environment",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/utils/prompt_templates.py",
+      "target": "function:nanobot/nanobot/utils/prompt_templates.py:render_template",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/utils/restart.py",
+      "target": "function:nanobot/nanobot/utils/restart.py:format_restart_completed_message",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/utils/restart.py",
+      "target": "function:nanobot/nanobot/utils/restart.py:set_restart_notice_to_env",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/utils/restart.py",
+      "target": "function:nanobot/nanobot/utils/restart.py:consume_restart_notice_from_env",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/utils/restart.py",
+      "target": "function:nanobot/nanobot/utils/restart.py:should_show_cli_restart_notice",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/utils/restart.py",
+      "target": "class:nanobot/nanobot/utils/restart.py:RestartNotice",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    }
+  ]
+}

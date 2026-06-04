@@ -1,0 +1,524 @@
+{
+  "nodes": [
+    {
+      "id": "file:AuBot/packages/ccc/src/define/ext.ts",
+      "type": "file",
+      "name": "ext.ts",
+      "filePath": "AuBot/packages/ccc/src/define/ext.ts",
+      "summary": "代码文件 ext.ts 位于 AuBot\\packages\\ccc\\src\\define，包含 1 个函数和 0 个类，承担该模块内的核心实现职责。",
+      "tags": [
+        "代码",
+        "模块",
+        "项目逻辑"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/packages/ccc/src/define/ext.ts:defineExt",
+      "type": "function",
+      "name": "defineExt",
+      "filePath": "AuBot/packages/ccc/src/define/ext.ts",
+      "lineRange": [
+        6,
+        6
+      ],
+      "summary": "函数 defineExt 实现 AuBot/packages/ccc/src/define/ext.ts 中的关键逻辑，参与该模块的主要行为。",
+      "tags": [
+        "函数",
+        "模块逻辑",
+        "导出"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/ccc/src/export/apng.ts",
+      "type": "file",
+      "name": "apng.ts",
+      "filePath": "AuBot/packages/ccc/src/export/apng.ts",
+      "summary": "代码文件 apng.ts 位于 AuBot\\packages\\ccc\\src\\export，包含 1 个函数和 0 个类，承担该模块内的核心实现职责。",
+      "tags": [
+        "代码",
+        "模块",
+        "项目逻辑"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/packages/ccc/src/export/apng.ts:exportToAPNG",
+      "type": "function",
+      "name": "exportToAPNG",
+      "filePath": "AuBot/packages/ccc/src/export/apng.ts",
+      "lineRange": [
+        1,
+        1
+      ],
+      "summary": "函数 exportToAPNG 实现 AuBot/packages/ccc/src/export/apng.ts 中的关键逻辑，参与该模块的主要行为。",
+      "tags": [
+        "函数",
+        "模块逻辑",
+        "导出"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/ccc/src/export/index.ts",
+      "type": "file",
+      "name": "index.ts",
+      "filePath": "AuBot/packages/ccc/src/export/index.ts",
+      "summary": "代码文件 index.ts 位于 AuBot\\packages\\ccc\\src\\export，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "入口点",
+        "barrel",
+        "导出"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/ccc/src/export/md.ts",
+      "type": "file",
+      "name": "md.ts",
+      "filePath": "AuBot/packages/ccc/src/export/md.ts",
+      "summary": "代码文件 md.ts 位于 AuBot\\packages\\ccc\\src\\export，包含 1 个函数和 0 个类，承担该模块内的核心实现职责。",
+      "tags": [
+        "代码",
+        "模块",
+        "项目逻辑"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/packages/ccc/src/export/md.ts:exportToMD",
+      "type": "function",
+      "name": "exportToMD",
+      "filePath": "AuBot/packages/ccc/src/export/md.ts",
+      "lineRange": [
+        1,
+        1
+      ],
+      "summary": "函数 exportToMD 实现 AuBot/packages/ccc/src/export/md.ts 中的关键逻辑，参与该模块的主要行为。",
+      "tags": [
+        "函数",
+        "模块逻辑",
+        "导出"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/ccc/src/index.ts",
+      "type": "file",
+      "name": "index.ts",
+      "filePath": "AuBot/packages/ccc/src/index.ts",
+      "summary": "代码文件 index.ts 位于 AuBot\\packages\\ccc\\src，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "入口点",
+        "barrel",
+        "导出"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:AuBot/packages/ccc/tsconfig.json",
+      "type": "config",
+      "name": "tsconfig.json",
+      "filePath": "AuBot/packages/ccc/tsconfig.json",
+      "summary": "配置文件 tsconfig.json 管理 AuBot\\packages\\ccc 相关的工具链、构建或运行参数，是项目环境约定的一部分。",
+      "tags": [
+        "配置",
+        "项目设置",
+        "工具链"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:AuBot/packages/core-agent/package.json",
+      "type": "config",
+      "name": "package.json",
+      "filePath": "AuBot/packages/core-agent/package.json",
+      "summary": "配置文件 package.json 管理 AuBot\\packages\\core-agent 相关的工具链、构建或运行参数，是项目环境约定的一部分。",
+      "tags": [
+        "配置",
+        "项目设置",
+        "工具链"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:AuBot/packages/core-agent/src/agents/spark-notify/index.ts",
+      "type": "file",
+      "name": "index.ts",
+      "filePath": "AuBot/packages/core-agent/src/agents/spark-notify/index.ts",
+      "summary": "代码文件 index.ts 位于 AuBot\\packages\\core-agent\\src\\agents\\spark-notify，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "入口点",
+        "barrel",
+        "导出"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/core-agent/src/index.ts",
+      "type": "file",
+      "name": "index.ts",
+      "filePath": "AuBot/packages/core-agent/src/index.ts",
+      "summary": "代码文件 index.ts 位于 AuBot\\packages\\core-agent\\src，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "入口点",
+        "barrel",
+        "导出"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/core-agent/src/messages/index.ts",
+      "type": "file",
+      "name": "index.ts",
+      "filePath": "AuBot/packages/core-agent/src/messages/index.ts",
+      "summary": "代码文件 index.ts 位于 AuBot\\packages\\core-agent\\src\\messages，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "入口点",
+        "barrel",
+        "导出"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:AuBot/packages/core-agent/tsconfig.json",
+      "type": "config",
+      "name": "tsconfig.json",
+      "filePath": "AuBot/packages/core-agent/tsconfig.json",
+      "summary": "配置文件 tsconfig.json 管理 AuBot\\packages\\core-agent 相关的工具链、构建或运行参数，是项目环境约定的一部分。",
+      "tags": [
+        "配置",
+        "项目设置",
+        "工具链"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/core-agent/tsdown.config.ts",
+      "type": "file",
+      "name": "tsdown.config.ts",
+      "filePath": "AuBot/packages/core-agent/tsdown.config.ts",
+      "summary": "代码文件 tsdown.config.ts 位于 AuBot\\packages\\core-agent，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "配置",
+        "运行时",
+        "设置"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/core-agent/vieval.config.ts",
+      "type": "file",
+      "name": "vieval.config.ts",
+      "filePath": "AuBot/packages/core-agent/vieval.config.ts",
+      "summary": "代码文件 vieval.config.ts 位于 AuBot\\packages\\core-agent，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "配置",
+        "运行时",
+        "设置"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:AuBot/packages/core-character/package.json",
+      "type": "config",
+      "name": "package.json",
+      "filePath": "AuBot/packages/core-character/package.json",
+      "summary": "配置文件 package.json 管理 AuBot\\packages\\core-character 相关的工具链、构建或运行参数，是项目环境约定的一部分。",
+      "tags": [
+        "配置",
+        "项目设置",
+        "工具链"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/core-character/src/index.ts",
+      "type": "file",
+      "name": "index.ts",
+      "filePath": "AuBot/packages/core-character/src/index.ts",
+      "summary": "代码文件 index.ts 位于 AuBot\\packages\\core-character\\src，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "入口点",
+        "barrel",
+        "导出"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:AuBot/packages/core-character/tsconfig.json",
+      "type": "config",
+      "name": "tsconfig.json",
+      "filePath": "AuBot/packages/core-character/tsconfig.json",
+      "summary": "配置文件 tsconfig.json 管理 AuBot\\packages\\core-character 相关的工具链、构建或运行参数，是项目环境约定的一部分。",
+      "tags": [
+        "配置",
+        "项目设置",
+        "工具链"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/core-character/tsdown.config.ts",
+      "type": "file",
+      "name": "tsdown.config.ts",
+      "filePath": "AuBot/packages/core-character/tsdown.config.ts",
+      "summary": "代码文件 tsdown.config.ts 位于 AuBot\\packages\\core-character，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "配置",
+        "运行时",
+        "设置"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:AuBot/packages/electron-eventa/package.json",
+      "type": "config",
+      "name": "package.json",
+      "filePath": "AuBot/packages/electron-eventa/package.json",
+      "summary": "配置文件 package.json 管理 AuBot\\packages\\electron-eventa 相关的工具链、构建或运行参数，是项目环境约定的一部分。",
+      "tags": [
+        "配置",
+        "项目设置",
+        "工具链"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/electron-eventa/src/electron-updater/index.ts",
+      "type": "file",
+      "name": "index.ts",
+      "filePath": "AuBot/packages/electron-eventa/src/electron-updater/index.ts",
+      "summary": "代码文件 index.ts 位于 AuBot\\packages\\electron-eventa\\src\\electron-updater，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "入口点",
+        "barrel",
+        "导出"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/electron-eventa/src/index.ts",
+      "type": "file",
+      "name": "index.ts",
+      "filePath": "AuBot/packages/electron-eventa/src/index.ts",
+      "summary": "代码文件 index.ts 位于 AuBot\\packages\\electron-eventa\\src，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "入口点",
+        "barrel",
+        "导出"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:AuBot/packages/electron-eventa/tsconfig.json",
+      "type": "config",
+      "name": "tsconfig.json",
+      "filePath": "AuBot/packages/electron-eventa/tsconfig.json",
+      "summary": "配置文件 tsconfig.json 管理 AuBot\\packages\\electron-eventa 相关的工具链、构建或运行参数，是项目环境约定的一部分。",
+      "tags": [
+        "配置",
+        "项目设置",
+        "工具链"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/electron-eventa/tsdown.config.ts",
+      "type": "file",
+      "name": "tsdown.config.ts",
+      "filePath": "AuBot/packages/electron-eventa/tsdown.config.ts",
+      "summary": "代码文件 tsdown.config.ts 位于 AuBot\\packages\\electron-eventa，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "配置",
+        "运行时",
+        "设置"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:AuBot/packages/electron-screen-capture/package.json",
+      "type": "config",
+      "name": "package.json",
+      "filePath": "AuBot/packages/electron-screen-capture/package.json",
+      "summary": "配置文件 package.json 管理 AuBot\\packages\\electron-screen-capture 相关的工具链、构建或运行参数，是项目环境约定的一部分。",
+      "tags": [
+        "配置",
+        "项目设置",
+        "工具链"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:AuBot/packages/electron-screen-capture/src/index.ts",
+      "type": "file",
+      "name": "index.ts",
+      "filePath": "AuBot/packages/electron-screen-capture/src/index.ts",
+      "summary": "代码文件 index.ts 位于 AuBot\\packages\\electron-screen-capture\\src，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "入口点",
+        "barrel",
+        "导出"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/electron-screen-capture/src/main/index.ts",
+      "type": "file",
+      "name": "index.ts",
+      "filePath": "AuBot/packages/electron-screen-capture/src/main/index.ts",
+      "summary": "代码文件 index.ts 位于 AuBot\\packages\\electron-screen-capture\\src\\main，包含 5 个函数和 0 个类，承担该模块内的核心实现职责。",
+      "tags": [
+        "入口点",
+        "barrel",
+        "导出"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:AuBot/packages/electron-screen-capture/src/main/index.ts:buildFeatureFlags",
+      "type": "function",
+      "name": "buildFeatureFlags",
+      "filePath": "AuBot/packages/electron-screen-capture/src/main/index.ts",
+      "lineRange": [
+        50,
+        67
+      ],
+      "summary": "函数 buildFeatureFlags 实现 AuBot/packages/electron-screen-capture/src/main/index.ts 中的关键逻辑，参与该模块的主要行为。",
+      "tags": [
+        "函数",
+        "模块逻辑",
+        "导出"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/packages/electron-screen-capture/src/main/index.ts:initScreenCaptureForMain",
+      "type": "function",
+      "name": "initScreenCaptureForMain",
+      "filePath": "AuBot/packages/electron-screen-capture/src/main/index.ts",
+      "lineRange": [
+        98,
+        138
+      ],
+      "summary": "函数 initScreenCaptureForMain 实现 AuBot/packages/electron-screen-capture/src/main/index.ts 中的关键逻辑，参与该模块的主要行为。",
+      "tags": [
+        "函数",
+        "模块逻辑",
+        "导出"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/packages/electron-screen-capture/src/main/index.ts:initScreenCaptureForWindow",
+      "type": "function",
+      "name": "initScreenCaptureForWindow",
+      "filePath": "AuBot/packages/electron-screen-capture/src/main/index.ts",
+      "lineRange": [
+        162,
+        273
+      ],
+      "summary": "函数 initScreenCaptureForWindow 实现 AuBot/packages/electron-screen-capture/src/main/index.ts 中的关键逻辑，参与该模块的主要行为。",
+      "tags": [
+        "函数",
+        "模块逻辑",
+        "导出"
+      ],
+      "complexity": "moderate"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:AuBot/packages/ccc/src/define/ext.ts",
+      "target": "function:AuBot/packages/ccc/src/define/ext.ts:defineExt",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:AuBot/packages/ccc/src/define/ext.ts",
+      "target": "function:AuBot/packages/ccc/src/define/ext.ts:defineExt",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:AuBot/packages/ccc/src/export/apng.ts",
+      "target": "function:AuBot/packages/ccc/src/export/apng.ts:exportToAPNG",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:AuBot/packages/ccc/src/export/apng.ts",
+      "target": "function:AuBot/packages/ccc/src/export/apng.ts:exportToAPNG",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:AuBot/packages/ccc/src/export/md.ts",
+      "target": "function:AuBot/packages/ccc/src/export/md.ts:exportToMD",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:AuBot/packages/ccc/src/export/md.ts",
+      "target": "function:AuBot/packages/ccc/src/export/md.ts:exportToMD",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:AuBot/packages/electron-screen-capture/src/main/index.ts",
+      "target": "function:AuBot/packages/electron-screen-capture/src/main/index.ts:buildFeatureFlags",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:AuBot/packages/electron-screen-capture/src/main/index.ts",
+      "target": "function:AuBot/packages/electron-screen-capture/src/main/index.ts:buildFeatureFlags",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:AuBot/packages/electron-screen-capture/src/main/index.ts",
+      "target": "function:AuBot/packages/electron-screen-capture/src/main/index.ts:initScreenCaptureForMain",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:AuBot/packages/electron-screen-capture/src/main/index.ts",
+      "target": "function:AuBot/packages/electron-screen-capture/src/main/index.ts:initScreenCaptureForMain",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:AuBot/packages/electron-screen-capture/src/main/index.ts",
+      "target": "function:AuBot/packages/electron-screen-capture/src/main/index.ts:initScreenCaptureForWindow",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:AuBot/packages/electron-screen-capture/src/main/index.ts",
+      "target": "function:AuBot/packages/electron-screen-capture/src/main/index.ts:initScreenCaptureForWindow",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:AuBot/packages/electron-screen-capture/src/main/index.ts",
+      "target": "file:AuBot/packages/electron-screen-capture/src/main/utils.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    }
+  ]
+}

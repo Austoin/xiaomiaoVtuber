@@ -28,30 +28,30 @@ docker compose down                                      # 停止
 
 ```bash
 # 构建镜像
-docker build -t nanobot .
+docker build -t xiaomiao-agent .
 
 # 初始化配置（仅首次）
-docker run -v ~/.nanobot:/home/nanobot/.nanobot --rm nanobot onboard
+docker run -v ~/.nanobot:/home/nanobot/.nanobot --rm xiaomiao-agent onboard
 
 # 在宿主机编辑配置，添加 API Key
 vim ~/.nanobot/config.json
 
 # 运行 gateway（连接已启用通道，例如 Telegram/Discord/Mochat）
-docker run -v ~/.nanobot:/home/nanobot/.nanobot -p 18790:18790 xiaomiao gateway
+docker run -v ~/.nanobot:/home/nanobot/.nanobot -p 18790:18790 xiaomiao-agent gateway
 
 # 或运行单条命令
-docker run -v ~/.nanobot:/home/nanobot/.nanobot --rm xiaomiao agent -m "Hello!"
-docker run -v ~/.nanobot:/home/nanobot/.nanobot --rm nanobot status
+docker run -v ~/.nanobot:/home/nanobot/.nanobot --rm xiaomiao-agent agent -m "Hello!"
+docker run -v ~/.nanobot:/home/nanobot/.nanobot --rm xiaomiao-agent status
 ```
 
 ## Linux Service
 
 将 gateway 作为 systemd 用户服务运行，让它自动启动并在失败后重启。
 
-**1. 找到 nanobot 可执行文件路径：**
+**1. 找到 `xiaomiao` 可执行文件路径：**
 
 ```bash
-which nanobot   # e.g. /home/user/.local/bin/nanobot
+which xiaomiao   # e.g. /home/user/.local/bin/xiaomiao
 ```
 
 **2. 在 `~/.config/systemd/user/nanobot-gateway.service` 创建 service 文件**（如有需要，替换 `ExecStart` 路径）：
@@ -101,10 +101,10 @@ journalctl --user -u nanobot-gateway -f        # 跟随日志
 
 如果希望 `xiaomiao gateway` 在你登录后保持在线，同时不需要开着终端，可以使用 LaunchAgent。
 
-**1. 获取 `nanobot` 的绝对路径：**
+**1. 获取 `xiaomiao` 的绝对路径：**
 
 ```bash
-which nanobot   # e.g. /Users/youruser/.local/bin/nanobot
+which xiaomiao   # e.g. /Users/youruser/.local/bin/xiaomiao
 ```
 
 请在 plist 中使用这个精确路径。这样可以保留你的安装方式对应的 Python 环境。

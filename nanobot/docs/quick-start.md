@@ -33,21 +33,21 @@ pip install nanobot-ai
 
 ```bash
 pip install -U nanobot-ai
-nanobot --version
+xiaomiao --version
 ```
 
 **uv**
 
 ```bash
 uv tool upgrade nanobot-ai
-nanobot --version
+xiaomiao --version
 ```
 
 **如果你使用 WhatsApp**，升级后需要重建本地桥接：
 
 ```bash
 rm -rf ~/.nanobot/bridge
-nanobot channels login whatsapp
+xiaomiao channels login whatsapp
 ```
 
 ## 快速开始
@@ -63,13 +63,13 @@ nanobot channels login whatsapp
 **1. 初始化**
 
 ```bash
-nanobot onboard
+xiaomiao onboard
 ```
 
 如果你想使用交互式配置向导，可以运行：
 
 ```bash
-nanobot onboard --wizard
+xiaomiao onboard --wizard
 ```
 
 **2. 配置**（`~/.nanobot/config.json`）

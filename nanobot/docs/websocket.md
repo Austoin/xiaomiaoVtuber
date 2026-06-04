@@ -1,6 +1,6 @@
 # WebSocket 服务端通道
 
-Nanobot 可以作为 WebSocket 服务端运行，让外部客户端（Web 应用、CLI、脚本）通过持久连接实时与 agent 交互。
+xiaomiaoAgent 可以作为 WebSocket 服务端运行，让外部客户端（Web 应用、CLI、脚本）通过持久连接实时与 agent 交互。
 
 ## 功能
 
@@ -34,7 +34,7 @@ Nanobot 可以作为 WebSocket 服务端运行，让外部客户端（Web 应用
 }
 ```
 
-### 2. 启动 nanobot
+### 2. 启动 xiaomiaoAgent
 
 ```bash
 xiaomiao gateway
@@ -59,7 +59,7 @@ async def main():
     async with websockets.connect("ws://127.0.0.1:8765/?client_id=alice") as ws:
         ready = json.loads(await ws.recv())
         print(ready)  # {"event": "ready", "chat_id": "...", "client_id": "alice"}
-        await ws.send(json.dumps({"content": "Hello nanobot!"}))
+        await ws.send(json.dumps({"content": "Hello xiaomiaoAgent!"}))
         reply = json.loads(await ws.recv())
         print(reply["text"])
 
@@ -145,11 +145,11 @@ ws://{host}:{port}{path}?client_id={id}&token={token}
 **旧版格式（默认聊天）：** 发送普通字符串，或包含可识别文本字段的 JSON 对象：
 
 ```json
-"Hello nanobot!"
+"Hello xiaomiaoAgent!"
 ```
 
 ```json
-{"content": "Hello nanobot!"}
+{"content": "Hello xiaomiaoAgent!"}
 ```
 
 可识别字段：`content`、`text`、`message`，按此顺序检查。无效 JSON 会作为纯文本处理。这些帧会路由到连接的默认 `chat_id`，即 `ready` 中声明的那个。
@@ -306,7 +306,7 @@ client                                server
 
 ### 安全边界
 
-`chat_id` 是一种 *capability*：任何持有有效 WebSocket 认证凭据和该 chat_id 的调用方，都可以 attach 到该对话并查看输出。这对 nanobot 的本地单用户模型是安全的。多租户部署应为每个用户命名空间化 chat_id，或引入每租户认证网关；nanobot 当前不提供这一点。
+`chat_id` 是一种 *capability*：任何持有有效 WebSocket 认证凭据和该 chat_id 的调用方，都可以 attach 到该对话并查看输出。这对 xiaomiaoAgent 的本地单用户模型是安全的。多租户部署应为每个用户命名空间化 chat_id，或引入每租户认证网关；xiaomiaoAgent 当前不提供这一点。
 
 ## 安全说明
 
@@ -321,7 +321,7 @@ client                                server
 出站 `message` 事件可能包含 `media` 字段，其中是本地文件系统路径。远程客户端不能直接访问这些文件，需要满足以下任一条件：
 
 - 共享文件系统挂载。
-- 提供 nanobot 媒体目录的 HTTP 文件服务器。
+- 提供 xiaomiaoAgent 媒体目录的 HTTP 文件服务器。
 
 ## 常见模式
 

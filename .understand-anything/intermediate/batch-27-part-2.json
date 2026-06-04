@@ -1,0 +1,616 @@
+{
+  "nodes": [
+    {
+      "id": "file:AuBot/packages/stage-ui/src/stores/providers/openai-compatible-builder.ts",
+      "type": "file",
+      "name": "openai-compatible-builder.ts",
+      "filePath": "AuBot/packages/stage-ui/src/stores/providers/openai-compatible-builder.ts",
+      "summary": "openai-compatible-builder.ts 是 code 文件，包含 5 个函数，引用 2 个内部或外部依赖，在项目路径 AuBot/packages/stage-ui/src/stores/providers/openai-compatible-builder.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:AuBot/packages/stage-ui/src/stores/providers/openai-compatible-builder.ts:buildOpenAICompatibleProvider",
+      "type": "function",
+      "name": "buildOpenAICompatibleProvider",
+      "filePath": "AuBot/packages/stage-ui/src/stores/providers/openai-compatible-builder.ts",
+      "lineRange": [
+        38,
+        288
+      ],
+      "summary": "函数 buildOpenAICompatibleProvider 位于 openai-compatible-builder.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/src/stores/providers/openrouter/audio-speech.ts",
+      "type": "file",
+      "name": "audio-speech.ts",
+      "filePath": "AuBot/packages/stage-ui/src/stores/providers/openrouter/audio-speech.ts",
+      "summary": "audio-speech.ts 是 code 文件，包含 11 个函数，引用 2 个内部或外部依赖，在项目路径 AuBot/packages/stage-ui/src/stores/providers/openrouter/audio-speech.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:AuBot/packages/stage-ui/src/stores/providers/openrouter/audio-speech.ts:collectAudioChunksFromSSE",
+      "type": "function",
+      "name": "collectAudioChunksFromSSE",
+      "filePath": "AuBot/packages/stage-ui/src/stores/providers/openrouter/audio-speech.ts",
+      "lineRange": [
+        48,
+        86
+      ],
+      "summary": "函数 collectAudioChunksFromSSE 位于 audio-speech.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:AuBot/packages/stage-ui/src/stores/providers/openrouter/audio-speech.ts:wrapPCM16InWAV",
+      "type": "function",
+      "name": "wrapPCM16InWAV",
+      "filePath": "AuBot/packages/stage-ui/src/stores/providers/openrouter/audio-speech.ts",
+      "lineRange": [
+        98,
+        131
+      ],
+      "summary": "函数 wrapPCM16InWAV 位于 audio-speech.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:AuBot/packages/stage-ui/src/stores/providers/openrouter/audio-speech.ts:createAudioFetch",
+      "type": "function",
+      "name": "createAudioFetch",
+      "filePath": "AuBot/packages/stage-ui/src/stores/providers/openrouter/audio-speech.ts",
+      "lineRange": [
+        138,
+        177
+      ],
+      "summary": "函数 createAudioFetch 位于 audio-speech.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:AuBot/packages/stage-ui/src/stores/providers/openrouter/audio-speech.ts:createSpeechProvider",
+      "type": "function",
+      "name": "createSpeechProvider",
+      "filePath": "AuBot/packages/stage-ui/src/stores/providers/openrouter/audio-speech.ts",
+      "lineRange": [
+        179,
+        190
+      ],
+      "summary": "函数 createSpeechProvider 位于 audio-speech.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/packages/stage-ui/src/stores/providers/openrouter/audio-speech.ts:listModels",
+      "type": "function",
+      "name": "listModels",
+      "filePath": "AuBot/packages/stage-ui/src/stores/providers/openrouter/audio-speech.ts",
+      "lineRange": [
+        192,
+        209
+      ],
+      "summary": "函数 listModels 位于 audio-speech.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/packages/stage-ui/src/stores/providers/openrouter/audio-speech.ts:buildOpenRouterAudioSpeechProvider",
+      "type": "function",
+      "name": "buildOpenRouterAudioSpeechProvider",
+      "filePath": "AuBot/packages/stage-ui/src/stores/providers/openrouter/audio-speech.ts",
+      "lineRange": [
+        220,
+        273
+      ],
+      "summary": "函数 buildOpenRouterAudioSpeechProvider 位于 audio-speech.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/src/stores/providers/web-speech-api/index.ts",
+      "type": "file",
+      "name": "index.ts",
+      "filePath": "AuBot/packages/stage-ui/src/stores/providers/web-speech-api/index.ts",
+      "summary": "index.ts 是 code 文件，包含 3 个函数，在项目路径 AuBot/packages/stage-ui/src/stores/providers/web-speech-api/index.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:AuBot/packages/stage-ui/src/stores/providers/web-speech-api/index.ts:createDeferred",
+      "type": "function",
+      "name": "createDeferred",
+      "filePath": "AuBot/packages/stage-ui/src/stores/providers/web-speech-api/index.ts",
+      "lineRange": [
+        6,
+        31
+      ],
+      "summary": "函数 createDeferred 位于 index.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:AuBot/packages/stage-ui/src/stores/providers/web-speech-api/index.ts:createWebSpeechAPIProvider",
+      "type": "function",
+      "name": "createWebSpeechAPIProvider",
+      "filePath": "AuBot/packages/stage-ui/src/stores/providers/web-speech-api/index.ts",
+      "lineRange": [
+        53,
+        154
+      ],
+      "summary": "函数 createWebSpeechAPIProvider 位于 index.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:AuBot/packages/stage-ui/src/stores/providers/web-speech-api/index.ts:streamWebSpeechAPITranscription",
+      "type": "function",
+      "name": "streamWebSpeechAPITranscription",
+      "filePath": "AuBot/packages/stage-ui/src/stores/providers/web-speech-api/index.ts",
+      "lineRange": [
+        160,
+        470
+      ],
+      "summary": "函数 streamWebSpeechAPITranscription 位于 index.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/src/stores/settings/stage-model.ts",
+      "type": "file",
+      "name": "stage-model.ts",
+      "filePath": "AuBot/packages/stage-ui/src/stores/settings/stage-model.ts",
+      "summary": "stage-model.ts 是 code 文件，引用 1 个内部或外部依赖，在项目路径 AuBot/packages/stage-ui/src/stores/settings/stage-model.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/src/stores/speech-runtime.ts",
+      "type": "file",
+      "name": "speech-runtime.ts",
+      "filePath": "AuBot/packages/stage-ui/src/stores/speech-runtime.ts",
+      "summary": "speech-runtime.ts 是 code 文件，引用 1 个内部或外部依赖，在项目路径 AuBot/packages/stage-ui/src/stores/speech-runtime.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/src/tools/index.ts",
+      "type": "file",
+      "name": "index.ts",
+      "filePath": "AuBot/packages/stage-ui/src/tools/index.ts",
+      "summary": "index.ts 是 code 文件，在项目路径 AuBot/packages/stage-ui/src/tools/index.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/src/tools/mcp.test.ts",
+      "type": "file",
+      "name": "mcp.test.ts",
+      "filePath": "AuBot/packages/stage-ui/src/tools/mcp.test.ts",
+      "summary": "mcp.test.ts 是 code 文件，引用 1 个内部或外部依赖，在项目路径 AuBot/packages/stage-ui/src/tools/mcp.test.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript",
+        "test"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/src/tools/mcp.ts",
+      "type": "file",
+      "name": "mcp.ts",
+      "filePath": "AuBot/packages/stage-ui/src/tools/mcp.ts",
+      "summary": "mcp.ts 是 code 文件，包含 3 个函数，在项目路径 AuBot/packages/stage-ui/src/tools/mcp.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:AuBot/packages/stage-ui/src/tools/mcp.ts:createMcpTools",
+      "type": "function",
+      "name": "createMcpTools",
+      "filePath": "AuBot/packages/stage-ui/src/tools/mcp.ts",
+      "lineRange": [
+        93,
+        132
+      ],
+      "summary": "函数 createMcpTools 位于 mcp.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:AuBot/packages/stage-ui/src/tools/mcp.ts:createUnavailableMcpToolRuntime",
+      "type": "function",
+      "name": "createUnavailableMcpToolRuntime",
+      "filePath": "AuBot/packages/stage-ui/src/tools/mcp.ts",
+      "lineRange": [
+        134,
+        143
+      ],
+      "summary": "函数 createUnavailableMcpToolRuntime 位于 mcp.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/packages/stage-ui/src/tools/mcp.ts:mcp",
+      "type": "function",
+      "name": "mcp",
+      "filePath": "AuBot/packages/stage-ui/src/tools/mcp.ts",
+      "lineRange": [
+        157,
+        159
+      ],
+      "summary": "函数 mcp 位于 mcp.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/src/types/character.ts",
+      "type": "file",
+      "name": "character.ts",
+      "filePath": "AuBot/packages/stage-ui/src/types/character.ts",
+      "summary": "character.ts 是 code 文件，在项目路径 AuBot/packages/stage-ui/src/types/character.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/src/types/chat-session.ts",
+      "type": "file",
+      "name": "chat-session.ts",
+      "filePath": "AuBot/packages/stage-ui/src/types/chat-session.ts",
+      "summary": "chat-session.ts 是 code 文件，引用 1 个内部或外部依赖，在项目路径 AuBot/packages/stage-ui/src/types/chat-session.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/src/types/chat.ts",
+      "type": "file",
+      "name": "chat.ts",
+      "filePath": "AuBot/packages/stage-ui/src/types/chat.ts",
+      "summary": "chat.ts 是 code 文件，在项目路径 AuBot/packages/stage-ui/src/types/chat.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/src/utils/event-source.ts",
+      "type": "file",
+      "name": "event-source.ts",
+      "filePath": "AuBot/packages/stage-ui/src/utils/event-source.ts",
+      "summary": "event-source.ts 是 code 文件，包含 2 个函数，在项目路径 AuBot/packages/stage-ui/src/utils/event-source.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/packages/stage-ui/src/utils/event-source.ts:getEventSourceKey",
+      "type": "function",
+      "name": "getEventSourceKey",
+      "filePath": "AuBot/packages/stage-ui/src/utils/event-source.ts",
+      "lineRange": [
+        18,
+        24
+      ],
+      "summary": "函数 getEventSourceKey 位于 event-source.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/src/workers/kokoro/constants.ts",
+      "type": "file",
+      "name": "constants.ts",
+      "filePath": "AuBot/packages/stage-ui/src/workers/kokoro/constants.ts",
+      "summary": "constants.ts 是 code 文件，包含 2 个函数，在项目路径 AuBot/packages/stage-ui/src/workers/kokoro/constants.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:AuBot/packages/stage-ui/src/workers/kokoro/constants.ts:kokoroModelsToModelInfo",
+      "type": "function",
+      "name": "kokoroModelsToModelInfo",
+      "filePath": "AuBot/packages/stage-ui/src/workers/kokoro/constants.ts",
+      "lineRange": [
+        94,
+        110
+      ],
+      "summary": "函数 kokoroModelsToModelInfo 位于 constants.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/packages/stage-ui/src/workers/kokoro/constants.ts:getDefaultKokoroModel",
+      "type": "function",
+      "name": "getDefaultKokoroModel",
+      "filePath": "AuBot/packages/stage-ui/src/workers/kokoro/constants.ts",
+      "lineRange": [
+        117,
+        122
+      ],
+      "summary": "函数 getDefaultKokoroModel 位于 constants.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/providers/openai-compatible-builder.ts",
+      "target": "function:AuBot/packages/stage-ui/src/stores/providers/openai-compatible-builder.ts:buildOpenAICompatibleProvider",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/providers/openai-compatible-builder.ts",
+      "target": "file:AuBot/packages/stage-ui/src/libs/providers/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/providers/openai-compatible-builder.ts",
+      "target": "file:AuBot/packages/stage-ui/src/stores/providers.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/providers/openrouter/audio-speech.ts",
+      "target": "function:AuBot/packages/stage-ui/src/stores/providers/openrouter/audio-speech.ts:collectAudioChunksFromSSE",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/providers/openrouter/audio-speech.ts",
+      "target": "function:AuBot/packages/stage-ui/src/stores/providers/openrouter/audio-speech.ts:wrapPCM16InWAV",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/providers/openrouter/audio-speech.ts",
+      "target": "function:AuBot/packages/stage-ui/src/stores/providers/openrouter/audio-speech.ts:createAudioFetch",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/providers/openrouter/audio-speech.ts",
+      "target": "function:AuBot/packages/stage-ui/src/stores/providers/openrouter/audio-speech.ts:createSpeechProvider",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/providers/openrouter/audio-speech.ts",
+      "target": "function:AuBot/packages/stage-ui/src/stores/providers/openrouter/audio-speech.ts:listModels",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/providers/openrouter/audio-speech.ts",
+      "target": "function:AuBot/packages/stage-ui/src/stores/providers/openrouter/audio-speech.ts:buildOpenRouterAudioSpeechProvider",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/providers/openrouter/audio-speech.ts",
+      "target": "file:AuBot/packages/stage-ui/src/libs/providers/providers/openrouter-ai/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/providers/openrouter/audio-speech.ts",
+      "target": "file:AuBot/packages/stage-ui/src/stores/providers.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/providers/web-speech-api/index.ts",
+      "target": "function:AuBot/packages/stage-ui/src/stores/providers/web-speech-api/index.ts:createDeferred",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/providers/web-speech-api/index.ts",
+      "target": "function:AuBot/packages/stage-ui/src/stores/providers/web-speech-api/index.ts:createWebSpeechAPIProvider",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/providers/web-speech-api/index.ts",
+      "target": "function:AuBot/packages/stage-ui/src/stores/providers/web-speech-api/index.ts:streamWebSpeechAPITranscription",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/settings/stage-model.ts",
+      "target": "file:AuBot/packages/stage-ui/src/stores/display-models.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/speech-runtime.ts",
+      "target": "file:AuBot/packages/stage-ui/src/services/speech/pipeline-runtime.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/tools/mcp.test.ts",
+      "target": "file:AuBot/packages/stage-ui/src/tools/mcp.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/tools/mcp.ts",
+      "target": "function:AuBot/packages/stage-ui/src/tools/mcp.ts:createMcpTools",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/tools/mcp.ts",
+      "target": "function:AuBot/packages/stage-ui/src/tools/mcp.ts:createUnavailableMcpToolRuntime",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/tools/mcp.ts",
+      "target": "function:AuBot/packages/stage-ui/src/tools/mcp.ts:mcp",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/types/chat-session.ts",
+      "target": "file:AuBot/packages/stage-ui/src/types/chat.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/utils/event-source.ts",
+      "target": "function:AuBot/packages/stage-ui/src/utils/event-source.ts:getEventSourceKey",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/workers/kokoro/constants.ts",
+      "target": "function:AuBot/packages/stage-ui/src/workers/kokoro/constants.ts:kokoroModelsToModelInfo",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/workers/kokoro/constants.ts",
+      "target": "function:AuBot/packages/stage-ui/src/workers/kokoro/constants.ts:getDefaultKokoroModel",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    }
+  ]
+}

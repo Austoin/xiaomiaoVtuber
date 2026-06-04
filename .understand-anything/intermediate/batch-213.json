@@ -1,0 +1,379 @@
+{
+  "nodes": [
+    {
+      "id": "file:AuBot/apps/ui-server-auth/src/pages/forgot-password.vue",
+      "type": "file",
+      "name": "forgot-password.vue",
+      "filePath": "AuBot/apps/ui-server-auth/src/pages/forgot-password.vue",
+      "summary": "代码文件 forgot-password.vue 位于 AuBot\\apps\\ui-server-auth\\src\\pages，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "组件",
+        "ui",
+        "前端"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:AuBot/apps/ui-server-auth/src/pages/index.vue",
+      "type": "file",
+      "name": "index.vue",
+      "filePath": "AuBot/apps/ui-server-auth/src/pages/index.vue",
+      "summary": "代码文件 index.vue 位于 AuBot\\apps\\ui-server-auth\\src\\pages，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "入口点",
+        "barrel",
+        "导出"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/apps/ui-server-auth/src/pages/profile.vue",
+      "type": "file",
+      "name": "profile.vue",
+      "filePath": "AuBot/apps/ui-server-auth/src/pages/profile.vue",
+      "summary": "代码文件 profile.vue 位于 AuBot\\apps\\ui-server-auth\\src\\pages，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "组件",
+        "ui",
+        "前端"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:AuBot/apps/ui-server-auth/src/pages/reset-password.vue",
+      "type": "file",
+      "name": "reset-password.vue",
+      "filePath": "AuBot/apps/ui-server-auth/src/pages/reset-password.vue",
+      "summary": "代码文件 reset-password.vue 位于 AuBot\\apps\\ui-server-auth\\src\\pages，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "组件",
+        "ui",
+        "前端"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:AuBot/apps/ui-server-auth/src/pages/sign-in.vue",
+      "type": "file",
+      "name": "sign-in.vue",
+      "filePath": "AuBot/apps/ui-server-auth/src/pages/sign-in.vue",
+      "summary": "代码文件 sign-in.vue 位于 AuBot\\apps\\ui-server-auth\\src\\pages，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "组件",
+        "ui",
+        "前端"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:AuBot/apps/ui-server-auth/src/pages/verify-email.vue",
+      "type": "file",
+      "name": "verify-email.vue",
+      "filePath": "AuBot/apps/ui-server-auth/src/pages/verify-email.vue",
+      "summary": "代码文件 verify-email.vue 位于 AuBot\\apps\\ui-server-auth\\src\\pages，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "组件",
+        "ui",
+        "前端"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:AuBot/apps/ui-server-auth/vite-env.d.ts",
+      "type": "file",
+      "name": "vite-env.d.ts",
+      "filePath": "AuBot/apps/ui-server-auth/vite-env.d.ts",
+      "summary": "代码文件 vite-env.d.ts 位于 AuBot\\apps\\ui-server-auth，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "代码",
+        "模块",
+        "项目逻辑"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/apps/ui-server-auth/vite.config.ts",
+      "type": "file",
+      "name": "vite.config.ts",
+      "filePath": "AuBot/apps/ui-server-auth/vite.config.ts",
+      "summary": "代码文件 vite.config.ts 位于 AuBot\\apps\\ui-server-auth，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "配置",
+        "运行时",
+        "设置"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:AuBot/apps/ui-server-auth/vitest.config.ts",
+      "type": "file",
+      "name": "vitest.config.ts",
+      "filePath": "AuBot/apps/ui-server-auth/vitest.config.ts",
+      "summary": "代码文件 vitest.config.ts 位于 AuBot\\apps\\ui-server-auth，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "测试",
+        "验证",
+        "回归"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:AuBot/bucket/airi.json",
+      "type": "config",
+      "name": "airi.json",
+      "filePath": "AuBot/bucket/airi.json",
+      "summary": "配置文件 airi.json 管理 AuBot\\bucket 相关的工具链、构建或运行参数，是项目环境约定的一部分。",
+      "tags": [
+        "配置",
+        "项目设置",
+        "工具链"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/bump.config.ts",
+      "type": "file",
+      "name": "bump.config.ts",
+      "filePath": "AuBot/bump.config.ts",
+      "summary": "代码文件 bump.config.ts 位于 AuBot，包含 2 个函数和 0 个类，承担该模块内的核心实现职责。",
+      "tags": [
+        "配置",
+        "运行时",
+        "设置"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:AuBot/bump.config.ts:syncAndroidVersion",
+      "type": "function",
+      "name": "syncAndroidVersion",
+      "filePath": "AuBot/bump.config.ts",
+      "lineRange": [
+        12,
+        31
+      ],
+      "summary": "函数 syncAndroidVersion 实现 AuBot/bump.config.ts 中的关键逻辑，参与该模块的主要行为。",
+      "tags": [
+        "函数",
+        "模块逻辑",
+        "内部实现"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/bump.config.ts:syncIOSVersion",
+      "type": "function",
+      "name": "syncIOSVersion",
+      "filePath": "AuBot/bump.config.ts",
+      "lineRange": [
+        40,
+        60
+      ],
+      "summary": "函数 syncIOSVersion 实现 AuBot/bump.config.ts 中的关键逻辑，参与该模块的主要行为。",
+      "tags": [
+        "函数",
+        "模块逻辑",
+        "内部实现"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/default.nix",
+      "type": "file",
+      "name": "default.nix",
+      "filePath": "AuBot/default.nix",
+      "summary": "代码文件 default.nix 位于 AuBot，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "代码",
+        "模块",
+        "项目逻辑"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/docs/.vitepress/assets/home-cover-2025-07-23.avif",
+      "type": "file",
+      "name": "home-cover-2025-07-23.avif",
+      "filePath": "AuBot/docs/.vitepress/assets/home-cover-2025-07-23.avif",
+      "summary": "代码文件 home-cover-2025-07-23.avif 位于 AuBot\\docs\\.vitepress\\assets，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "代码",
+        "模块",
+        "项目逻辑"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:AuBot/docs/.vitepress/assets/home-cover-2025-10-29-bg.avif",
+      "type": "file",
+      "name": "home-cover-2025-10-29-bg.avif",
+      "filePath": "AuBot/docs/.vitepress/assets/home-cover-2025-10-29-bg.avif",
+      "summary": "代码文件 home-cover-2025-10-29-bg.avif 位于 AuBot\\docs\\.vitepress\\assets，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "代码",
+        "模块",
+        "项目逻辑"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:AuBot/docs/.vitepress/assets/home-cover-2025-10-29.avif",
+      "type": "file",
+      "name": "home-cover-2025-10-29.avif",
+      "filePath": "AuBot/docs/.vitepress/assets/home-cover-2025-10-29.avif",
+      "summary": "代码文件 home-cover-2025-10-29.avif 位于 AuBot\\docs\\.vitepress\\assets，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "代码",
+        "模块",
+        "项目逻辑"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:AuBot/docs/.vitepress/assets/home-cover-2025-12-24-bg.avif",
+      "type": "file",
+      "name": "home-cover-2025-12-24-bg.avif",
+      "filePath": "AuBot/docs/.vitepress/assets/home-cover-2025-12-24-bg.avif",
+      "summary": "代码文件 home-cover-2025-12-24-bg.avif 位于 AuBot\\docs\\.vitepress\\assets，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "代码",
+        "模块",
+        "项目逻辑"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:AuBot/docs/.vitepress/assets/home-cover-2025-12-24.avif",
+      "type": "file",
+      "name": "home-cover-2025-12-24.avif",
+      "filePath": "AuBot/docs/.vitepress/assets/home-cover-2025-12-24.avif",
+      "summary": "代码文件 home-cover-2025-12-24.avif 位于 AuBot\\docs\\.vitepress\\assets，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "代码",
+        "模块",
+        "项目逻辑"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:AuBot/docs/.vitepress/components/Banner.vue",
+      "type": "file",
+      "name": "Banner.vue",
+      "filePath": "AuBot/docs/.vitepress/components/Banner.vue",
+      "summary": "代码文件 Banner.vue 位于 AuBot\\docs\\.vitepress\\components，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "组件",
+        "ui",
+        "前端"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/docs/.vitepress/components/BlogPosts.vue",
+      "type": "file",
+      "name": "BlogPosts.vue",
+      "filePath": "AuBot/docs/.vitepress/components/BlogPosts.vue",
+      "summary": "代码文件 BlogPosts.vue 位于 AuBot\\docs\\.vitepress\\components，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "组件",
+        "ui",
+        "前端"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:AuBot/docs/.vitepress/components/Button.vue",
+      "type": "file",
+      "name": "Button.vue",
+      "filePath": "AuBot/docs/.vitepress/components/Button.vue",
+      "summary": "代码文件 Button.vue 位于 AuBot\\docs\\.vitepress\\components，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "组件",
+        "ui",
+        "前端"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:AuBot/docs/.vitepress/components/CardLink.vue",
+      "type": "file",
+      "name": "CardLink.vue",
+      "filePath": "AuBot/docs/.vitepress/components/CardLink.vue",
+      "summary": "代码文件 CardLink.vue 位于 AuBot\\docs\\.vitepress\\components，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "组件",
+        "ui",
+        "前端"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/docs/.vitepress/components/Chip.vue",
+      "type": "file",
+      "name": "Chip.vue",
+      "filePath": "AuBot/docs/.vitepress/components/Chip.vue",
+      "summary": "代码文件 Chip.vue 位于 AuBot\\docs\\.vitepress\\components，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "组件",
+        "ui",
+        "前端"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/docs/.vitepress/components/Chronicles.vue",
+      "type": "file",
+      "name": "Chronicles.vue",
+      "filePath": "AuBot/docs/.vitepress/components/Chronicles.vue",
+      "summary": "代码文件 Chronicles.vue 位于 AuBot\\docs\\.vitepress\\components，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "组件",
+        "ui",
+        "前端"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/docs/.vitepress/components/Contributors.vue",
+      "type": "file",
+      "name": "Contributors.vue",
+      "filePath": "AuBot/docs/.vitepress/components/Contributors.vue",
+      "summary": "代码文件 Contributors.vue 位于 AuBot\\docs\\.vitepress\\components，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "组件",
+        "ui",
+        "前端"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:AuBot/docs/.vitepress/components/DocCarbonAds.vue",
+      "type": "file",
+      "name": "DocCarbonAds.vue",
+      "filePath": "AuBot/docs/.vitepress/components/DocCarbonAds.vue",
+      "summary": "代码文件 DocCarbonAds.vue 位于 AuBot\\docs\\.vitepress\\components，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "组件",
+        "ui",
+        "前端"
+      ],
+      "complexity": "moderate"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:AuBot/bump.config.ts",
+      "target": "function:AuBot/bump.config.ts:syncAndroidVersion",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:AuBot/bump.config.ts",
+      "target": "function:AuBot/bump.config.ts:syncIOSVersion",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    }
+  ]
+}

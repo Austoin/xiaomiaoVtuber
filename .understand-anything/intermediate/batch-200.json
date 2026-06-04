@@ -1,0 +1,82 @@
+{
+  "nodes": [
+    {
+      "id": "document:nanobot/webui/README.md",
+      "type": "document",
+      "name": "README.md",
+      "filePath": "nanobot/webui/README.md",
+      "summary": "README.md 是 docs 文件，在项目路径 nanobot/webui/README.md 中承担对应模块职责。",
+      "tags": [
+        "document",
+        "docs",
+        "markdown"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:nanobot/webui/components.json",
+      "type": "config",
+      "name": "components.json",
+      "filePath": "nanobot/webui/components.json",
+      "summary": "components.json 是 config 文件，在项目路径 nanobot/webui/components.json 中承担对应模块职责。",
+      "tags": [
+        "config",
+        "json"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:nanobot/webui/index.html",
+      "type": "file",
+      "name": "index.html",
+      "filePath": "nanobot/webui/index.html",
+      "summary": "index.html 是 markup 文件，在项目路径 nanobot/webui/index.html 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "markup",
+        "html"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:nanobot/webui/package.json",
+      "type": "config",
+      "name": "package.json",
+      "filePath": "nanobot/webui/package.json",
+      "summary": "package.json 是 config 文件，在项目路径 nanobot/webui/package.json 中承担对应模块职责。",
+      "tags": [
+        "config",
+        "json",
+        "package-manifest"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:nanobot/webui/tsconfig.build.json",
+      "type": "config",
+      "name": "tsconfig.build.json",
+      "filePath": "nanobot/webui/tsconfig.build.json",
+      "summary": "tsconfig.build.json 是 config 文件，在项目路径 nanobot/webui/tsconfig.build.json 中承担对应模块职责。",
+      "tags": [
+        "config",
+        "json",
+        "configuration"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:nanobot/webui/tsconfig.json",
+      "type": "config",
+      "name": "tsconfig.json",
+      "filePath": "nanobot/webui/tsconfig.json",
+      "summary": "tsconfig.json 是 config 文件，在项目路径 nanobot/webui/tsconfig.json 中承担对应模块职责。",
+      "tags": [
+        "config",
+        "json",
+        "configuration"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": []
+}

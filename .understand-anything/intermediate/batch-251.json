@@ -1,0 +1,765 @@
+{
+  "nodes": [
+    {
+      "id": "file:AuBot/packages/stage-ui-live2d/src/stores/index.ts",
+      "type": "file",
+      "name": "index.ts",
+      "filePath": "AuBot/packages/stage-ui-live2d/src/stores/index.ts",
+      "summary": "代码文件 index.ts 位于 AuBot\\packages\\stage-ui-live2d\\src\\stores，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "入口点",
+        "barrel",
+        "导出"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui-live2d/src/stores/live2d.ts",
+      "type": "file",
+      "name": "live2d.ts",
+      "filePath": "AuBot/packages/stage-ui-live2d/src/stores/live2d.ts",
+      "summary": "代码文件 live2d.ts 位于 AuBot\\packages\\stage-ui-live2d\\src\\stores，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "状态管理",
+        "store",
+        "数据流"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui-live2d/src/utils/eye-motions.ts",
+      "type": "file",
+      "name": "eye-motions.ts",
+      "filePath": "AuBot/packages/stage-ui-live2d/src/utils/eye-motions.ts",
+      "summary": "代码文件 eye-motions.ts 位于 AuBot\\packages\\stage-ui-live2d\\src\\utils，包含 1 个函数和 0 个类，承担该模块内的核心实现职责。",
+      "tags": [
+        "工具函数",
+        "复用",
+        "辅助逻辑"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/packages/stage-ui-live2d/src/utils/eye-motions.ts:randomSaccadeInterval",
+      "type": "function",
+      "name": "randomSaccadeInterval",
+      "filePath": "AuBot/packages/stage-ui-live2d/src/utils/eye-motions.ts",
+      "lineRange": [
+        24,
+        32
+      ],
+      "summary": "函数 randomSaccadeInterval 实现 AuBot/packages/stage-ui-live2d/src/utils/eye-motions.ts 中的关键逻辑，参与该模块的主要行为。",
+      "tags": [
+        "函数",
+        "模块逻辑",
+        "导出"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui-live2d/src/utils/live2d-preview.ts",
+      "type": "file",
+      "name": "live2d-preview.ts",
+      "filePath": "AuBot/packages/stage-ui-live2d/src/utils/live2d-preview.ts",
+      "summary": "代码文件 live2d-preview.ts 位于 AuBot\\packages\\stage-ui-live2d\\src\\utils，包含 1 个函数和 0 个类，承担该模块内的核心实现职责。",
+      "tags": [
+        "工具函数",
+        "复用",
+        "辅助逻辑"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:AuBot/packages/stage-ui-live2d/src/utils/live2d-preview.ts:loadLive2DModelPreview",
+      "type": "function",
+      "name": "loadLive2DModelPreview",
+      "filePath": "AuBot/packages/stage-ui-live2d/src/utils/live2d-preview.ts",
+      "lineRange": [
+        11,
+        90
+      ],
+      "summary": "函数 loadLive2DModelPreview 实现 AuBot/packages/stage-ui-live2d/src/utils/live2d-preview.ts 中的关键逻辑，参与该模块的主要行为。",
+      "tags": [
+        "函数",
+        "模块逻辑",
+        "导出"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui-live2d/src/utils/live2d-zip-loader.ts",
+      "type": "file",
+      "name": "live2d-zip-loader.ts",
+      "filePath": "AuBot/packages/stage-ui-live2d/src/utils/live2d-zip-loader.ts",
+      "summary": "代码文件 live2d-zip-loader.ts 位于 AuBot\\packages\\stage-ui-live2d\\src\\utils，包含 4 个函数和 0 个类，承担该模块内的核心实现职责。",
+      "tags": [
+        "工具函数",
+        "复用",
+        "辅助逻辑"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:AuBot/packages/stage-ui-live2d/src/utils/live2d-zip-loader.ts:isSettingsFile",
+      "type": "function",
+      "name": "isSettingsFile",
+      "filePath": "AuBot/packages/stage-ui-live2d/src/utils/live2d-zip-loader.ts",
+      "lineRange": [
+        20,
+        22
+      ],
+      "summary": "函数 isSettingsFile 实现 AuBot/packages/stage-ui-live2d/src/utils/live2d-zip-loader.ts 中的关键逻辑，参与该模块的主要行为。",
+      "tags": [
+        "函数",
+        "模块逻辑",
+        "导出"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/packages/stage-ui-live2d/src/utils/live2d-zip-loader.ts:isMocFile",
+      "type": "function",
+      "name": "isMocFile",
+      "filePath": "AuBot/packages/stage-ui-live2d/src/utils/live2d-zip-loader.ts",
+      "lineRange": [
+        24,
+        26
+      ],
+      "summary": "函数 isMocFile 实现 AuBot/packages/stage-ui-live2d/src/utils/live2d-zip-loader.ts 中的关键逻辑，参与该模块的主要行为。",
+      "tags": [
+        "函数",
+        "模块逻辑",
+        "导出"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/packages/stage-ui-live2d/src/utils/live2d-zip-loader.ts:basename",
+      "type": "function",
+      "name": "basename",
+      "filePath": "AuBot/packages/stage-ui-live2d/src/utils/live2d-zip-loader.ts",
+      "lineRange": [
+        28,
+        31
+      ],
+      "summary": "函数 basename 实现 AuBot/packages/stage-ui-live2d/src/utils/live2d-zip-loader.ts 中的关键逻辑，参与该模块的主要行为。",
+      "tags": [
+        "函数",
+        "模块逻辑",
+        "导出"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/packages/stage-ui-live2d/src/utils/live2d-zip-loader.ts:createFakeSettings",
+      "type": "function",
+      "name": "createFakeSettings",
+      "filePath": "AuBot/packages/stage-ui-live2d/src/utils/live2d-zip-loader.ts",
+      "lineRange": [
+        34,
+        78
+      ],
+      "summary": "函数 createFakeSettings 实现 AuBot/packages/stage-ui-live2d/src/utils/live2d-zip-loader.ts 中的关键逻辑，参与该模块的主要行为。",
+      "tags": [
+        "函数",
+        "模块逻辑",
+        "内部实现"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:AuBot/packages/stage-ui-live2d/tsconfig.json",
+      "type": "config",
+      "name": "tsconfig.json",
+      "filePath": "AuBot/packages/stage-ui-live2d/tsconfig.json",
+      "summary": "配置文件 tsconfig.json 管理 AuBot\\packages\\stage-ui-live2d 相关的工具链、构建或运行参数，是项目环境约定的一部分。",
+      "tags": [
+        "配置",
+        "项目设置",
+        "工具链"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:AuBot/packages/stage-ui-three/package.json",
+      "type": "config",
+      "name": "package.json",
+      "filePath": "AuBot/packages/stage-ui-three/package.json",
+      "summary": "配置文件 package.json 管理 AuBot\\packages\\stage-ui-three 相关的工具链、构建或运行参数，是项目环境约定的一部分。",
+      "tags": [
+        "配置",
+        "项目设置",
+        "工具链"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:AuBot/packages/stage-ui-three/src/assets/lip-sync-profile.json",
+      "type": "config",
+      "name": "lip-sync-profile.json",
+      "filePath": "AuBot/packages/stage-ui-three/src/assets/lip-sync-profile.json",
+      "summary": "配置文件 lip-sync-profile.json 管理 AuBot\\packages\\stage-ui-three\\src\\assets 相关的工具链、构建或运行参数，是项目环境约定的一部分。",
+      "tags": [
+        "配置",
+        "项目设置",
+        "工具链"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui-three/src/assets/vrm/animations/idle_loop.vrma",
+      "type": "file",
+      "name": "idle_loop.vrma",
+      "filePath": "AuBot/packages/stage-ui-three/src/assets/vrm/animations/idle_loop.vrma",
+      "summary": "代码文件 idle_loop.vrma 位于 AuBot\\packages\\stage-ui-three\\src\\assets\\vrm\\animations，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "代码",
+        "模块",
+        "项目逻辑"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui-three/src/assets/vrm/animations/index.ts",
+      "type": "file",
+      "name": "index.ts",
+      "filePath": "AuBot/packages/stage-ui-three/src/assets/vrm/animations/index.ts",
+      "summary": "代码文件 index.ts 位于 AuBot\\packages\\stage-ui-three\\src\\assets\\vrm\\animations，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "入口点",
+        "barrel",
+        "导出"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui-three/src/components/Controls/index.ts",
+      "type": "file",
+      "name": "index.ts",
+      "filePath": "AuBot/packages/stage-ui-three/src/components/Controls/index.ts",
+      "summary": "代码文件 index.ts 位于 AuBot\\packages\\stage-ui-three\\src\\components\\Controls，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "入口点",
+        "barrel",
+        "导出"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui-three/src/components/Controls/OrbitControls.vue",
+      "type": "file",
+      "name": "OrbitControls.vue",
+      "filePath": "AuBot/packages/stage-ui-three/src/components/Controls/OrbitControls.vue",
+      "summary": "代码文件 OrbitControls.vue 位于 AuBot\\packages\\stage-ui-three\\src\\components\\Controls，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "组件",
+        "ui",
+        "前端"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui-three/src/components/Environment/assets/sky_linekotsi_23_HDRI.hdr",
+      "type": "file",
+      "name": "sky_linekotsi_23_HDRI.hdr",
+      "filePath": "AuBot/packages/stage-ui-three/src/components/Environment/assets/sky_linekotsi_23_HDRI.hdr",
+      "summary": "代码文件 sky_linekotsi_23_HDRI.hdr 位于 AuBot\\packages\\stage-ui-three\\src\\components\\Environment\\assets，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "组件",
+        "ui",
+        "前端"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui-three/src/components/Environment/index.ts",
+      "type": "file",
+      "name": "index.ts",
+      "filePath": "AuBot/packages/stage-ui-three/src/components/Environment/index.ts",
+      "summary": "代码文件 index.ts 位于 AuBot\\packages\\stage-ui-three\\src\\components\\Environment，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "入口点",
+        "barrel",
+        "导出"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui-three/src/components/Environment/SkyBox.vue",
+      "type": "file",
+      "name": "SkyBox.vue",
+      "filePath": "AuBot/packages/stage-ui-three/src/components/Environment/SkyBox.vue",
+      "summary": "代码文件 SkyBox.vue 位于 AuBot\\packages\\stage-ui-three\\src\\components\\Environment，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "组件",
+        "ui",
+        "前端"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui-three/src/components/Model/index.ts",
+      "type": "file",
+      "name": "index.ts",
+      "filePath": "AuBot/packages/stage-ui-three/src/components/Model/index.ts",
+      "summary": "代码文件 index.ts 位于 AuBot\\packages\\stage-ui-three\\src\\components\\Model，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "入口点",
+        "barrel",
+        "导出"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui-three/src/components/Model/VRMModel.vue",
+      "type": "file",
+      "name": "VRMModel.vue",
+      "filePath": "AuBot/packages/stage-ui-three/src/components/Model/VRMModel.vue",
+      "summary": "代码文件 VRMModel.vue 位于 AuBot\\packages\\stage-ui-three\\src\\components\\Model，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "组件",
+        "ui",
+        "前端"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui-three/src/components/ThreeScene.vue",
+      "type": "file",
+      "name": "ThreeScene.vue",
+      "filePath": "AuBot/packages/stage-ui-three/src/components/ThreeScene.vue",
+      "summary": "代码文件 ThreeScene.vue 位于 AuBot\\packages\\stage-ui-three\\src\\components，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "组件",
+        "ui",
+        "前端"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui-three/src/composables/index.ts",
+      "type": "file",
+      "name": "index.ts",
+      "filePath": "AuBot/packages/stage-ui-three/src/composables/index.ts",
+      "summary": "代码文件 index.ts 位于 AuBot\\packages\\stage-ui-three\\src\\composables，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "入口点",
+        "barrel",
+        "导出"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui-three/src/composables/shader/ibl.ts",
+      "type": "file",
+      "name": "ibl.ts",
+      "filePath": "AuBot/packages/stage-ui-three/src/composables/shader/ibl.ts",
+      "summary": "代码文件 ibl.ts 位于 AuBot\\packages\\stage-ui-three\\src\\composables\\shader，包含 7 个函数和 0 个类，承担该模块内的核心实现职责。",
+      "tags": [
+        "代码",
+        "模块",
+        "项目逻辑"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:AuBot/packages/stage-ui-three/src/composables/shader/ibl.ts:isShaderMat",
+      "type": "function",
+      "name": "isShaderMat",
+      "filePath": "AuBot/packages/stage-ui-three/src/composables/shader/ibl.ts",
+      "lineRange": [
+        63,
+        63
+      ],
+      "summary": "函数 isShaderMat 实现 AuBot/packages/stage-ui-three/src/composables/shader/ibl.ts 中的关键逻辑，参与该模块的主要行为。",
+      "tags": [
+        "函数",
+        "模块逻辑",
+        "导出"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/packages/stage-ui-three/src/composables/shader/ibl.ts:isRawShader",
+      "type": "function",
+      "name": "isRawShader",
+      "filePath": "AuBot/packages/stage-ui-three/src/composables/shader/ibl.ts",
+      "lineRange": [
+        64,
+        64
+      ],
+      "summary": "函数 isRawShader 实现 AuBot/packages/stage-ui-three/src/composables/shader/ibl.ts 中的关键逻辑，参与该模块的主要行为。",
+      "tags": [
+        "函数",
+        "模块逻辑",
+        "导出"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/packages/stage-ui-three/src/composables/shader/ibl.ts:normalizeEnvMode",
+      "type": "function",
+      "name": "normalizeEnvMode",
+      "filePath": "AuBot/packages/stage-ui-three/src/composables/shader/ibl.ts",
+      "lineRange": [
+        66,
+        72
+      ],
+      "summary": "函数 normalizeEnvMode 实现 AuBot/packages/stage-ui-three/src/composables/shader/ibl.ts 中的关键逻辑，参与该模块的主要行为。",
+      "tags": [
+        "函数",
+        "模块逻辑",
+        "导出"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/packages/stage-ui-three/src/composables/shader/ibl.ts:assignSHUniform",
+      "type": "function",
+      "name": "assignSHUniform",
+      "filePath": "AuBot/packages/stage-ui-three/src/composables/shader/ibl.ts",
+      "lineRange": [
+        75,
+        84
+      ],
+      "summary": "函数 assignSHUniform 实现 AuBot/packages/stage-ui-three/src/composables/shader/ibl.ts 中的关键逻辑，参与该模块的主要行为。",
+      "tags": [
+        "函数",
+        "模块逻辑",
+        "内部实现"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/packages/stage-ui-three/src/composables/shader/ibl.ts:injectDiffuseIBL",
+      "type": "function",
+      "name": "injectDiffuseIBL",
+      "filePath": "AuBot/packages/stage-ui-three/src/composables/shader/ibl.ts",
+      "lineRange": [
+        87,
+        134
+      ],
+      "summary": "函数 injectDiffuseIBL 实现 AuBot/packages/stage-ui-three/src/composables/shader/ibl.ts 中的关键逻辑，参与该模块的主要行为。",
+      "tags": [
+        "函数",
+        "模块逻辑",
+        "导出"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/packages/stage-ui-three/src/composables/shader/ibl.ts:updateNprShaderSetting",
+      "type": "function",
+      "name": "updateNprShaderSetting",
+      "filePath": "AuBot/packages/stage-ui-three/src/composables/shader/ibl.ts",
+      "lineRange": [
+        137,
+        155
+      ],
+      "summary": "函数 updateNprShaderSetting 实现 AuBot/packages/stage-ui-three/src/composables/shader/ibl.ts 中的关键逻辑，参与该模块的主要行为。",
+      "tags": [
+        "函数",
+        "模块逻辑",
+        "导出"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/packages/stage-ui-three/src/composables/shader/ibl.ts:createIblProbeController",
+      "type": "function",
+      "name": "createIblProbeController",
+      "filePath": "AuBot/packages/stage-ui-three/src/composables/shader/ibl.ts",
+      "lineRange": [
+        158,
+        172
+      ],
+      "summary": "函数 createIblProbeController 实现 AuBot/packages/stage-ui-three/src/composables/shader/ibl.ts 中的关键逻辑，参与该模块的主要行为。",
+      "tags": [
+        "函数",
+        "模块逻辑",
+        "导出"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui-three/src/composables/shader/index.ts",
+      "type": "file",
+      "name": "index.ts",
+      "filePath": "AuBot/packages/stage-ui-three/src/composables/shader/index.ts",
+      "summary": "代码文件 index.ts 位于 AuBot\\packages\\stage-ui-three\\src\\composables\\shader，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "入口点",
+        "barrel",
+        "导出"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui-three/src/composables/vrm/lip-sync.ts",
+      "type": "file",
+      "name": "lip-sync.ts",
+      "filePath": "AuBot/packages/stage-ui-three/src/composables/vrm/lip-sync.ts",
+      "summary": "代码文件 lip-sync.ts 位于 AuBot\\packages\\stage-ui-three\\src\\composables\\vrm，包含 1 个函数和 0 个类，承担该模块内的核心实现职责。",
+      "tags": [
+        "代码",
+        "模块",
+        "项目逻辑"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:AuBot/packages/stage-ui-three/src/composables/vrm/lip-sync.ts:useVRMLipSync",
+      "type": "function",
+      "name": "useVRMLipSync",
+      "filePath": "AuBot/packages/stage-ui-three/src/composables/vrm/lip-sync.ts",
+      "lineRange": [
+        13,
+        127
+      ],
+      "summary": "函数 useVRMLipSync 实现 AuBot/packages/stage-ui-three/src/composables/vrm/lip-sync.ts 中的关键逻辑，参与该模块的主要行为。",
+      "tags": [
+        "函数",
+        "模块逻辑",
+        "导出"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui-three/src/composables/vrm/utils/index.ts",
+      "type": "file",
+      "name": "index.ts",
+      "filePath": "AuBot/packages/stage-ui-three/src/composables/vrm/utils/index.ts",
+      "summary": "代码文件 index.ts 位于 AuBot\\packages\\stage-ui-three\\src\\composables\\vrm\\utils，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "入口点",
+        "barrel",
+        "导出"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui-three/src/index.ts",
+      "type": "file",
+      "name": "index.ts",
+      "filePath": "AuBot/packages/stage-ui-three/src/index.ts",
+      "summary": "代码文件 index.ts 位于 AuBot\\packages\\stage-ui-three\\src，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "入口点",
+        "barrel",
+        "导出"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui-three/src/stores/model-store.ts",
+      "type": "file",
+      "name": "model-store.ts",
+      "filePath": "AuBot/packages/stage-ui-three/src/stores/model-store.ts",
+      "summary": "代码文件 model-store.ts 位于 AuBot\\packages\\stage-ui-three\\src\\stores，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "状态管理",
+        "store",
+        "数据流"
+      ],
+      "complexity": "complex"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:AuBot/packages/stage-ui-live2d/src/utils/eye-motions.ts",
+      "target": "function:AuBot/packages/stage-ui-live2d/src/utils/eye-motions.ts:randomSaccadeInterval",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui-live2d/src/utils/eye-motions.ts",
+      "target": "function:AuBot/packages/stage-ui-live2d/src/utils/eye-motions.ts:randomSaccadeInterval",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui-live2d/src/utils/live2d-preview.ts",
+      "target": "function:AuBot/packages/stage-ui-live2d/src/utils/live2d-preview.ts:loadLive2DModelPreview",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui-live2d/src/utils/live2d-preview.ts",
+      "target": "function:AuBot/packages/stage-ui-live2d/src/utils/live2d-preview.ts:loadLive2DModelPreview",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui-live2d/src/utils/live2d-zip-loader.ts",
+      "target": "function:AuBot/packages/stage-ui-live2d/src/utils/live2d-zip-loader.ts:isSettingsFile",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui-live2d/src/utils/live2d-zip-loader.ts",
+      "target": "function:AuBot/packages/stage-ui-live2d/src/utils/live2d-zip-loader.ts:isSettingsFile",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui-live2d/src/utils/live2d-zip-loader.ts",
+      "target": "function:AuBot/packages/stage-ui-live2d/src/utils/live2d-zip-loader.ts:isMocFile",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui-live2d/src/utils/live2d-zip-loader.ts",
+      "target": "function:AuBot/packages/stage-ui-live2d/src/utils/live2d-zip-loader.ts:isMocFile",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui-live2d/src/utils/live2d-zip-loader.ts",
+      "target": "function:AuBot/packages/stage-ui-live2d/src/utils/live2d-zip-loader.ts:basename",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui-live2d/src/utils/live2d-zip-loader.ts",
+      "target": "function:AuBot/packages/stage-ui-live2d/src/utils/live2d-zip-loader.ts:basename",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui-live2d/src/utils/live2d-zip-loader.ts",
+      "target": "function:AuBot/packages/stage-ui-live2d/src/utils/live2d-zip-loader.ts:createFakeSettings",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui-three/src/composables/shader/ibl.ts",
+      "target": "function:AuBot/packages/stage-ui-three/src/composables/shader/ibl.ts:isShaderMat",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui-three/src/composables/shader/ibl.ts",
+      "target": "function:AuBot/packages/stage-ui-three/src/composables/shader/ibl.ts:isShaderMat",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui-three/src/composables/shader/ibl.ts",
+      "target": "function:AuBot/packages/stage-ui-three/src/composables/shader/ibl.ts:isRawShader",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui-three/src/composables/shader/ibl.ts",
+      "target": "function:AuBot/packages/stage-ui-three/src/composables/shader/ibl.ts:isRawShader",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui-three/src/composables/shader/ibl.ts",
+      "target": "function:AuBot/packages/stage-ui-three/src/composables/shader/ibl.ts:normalizeEnvMode",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui-three/src/composables/shader/ibl.ts",
+      "target": "function:AuBot/packages/stage-ui-three/src/composables/shader/ibl.ts:normalizeEnvMode",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui-three/src/composables/shader/ibl.ts",
+      "target": "function:AuBot/packages/stage-ui-three/src/composables/shader/ibl.ts:assignSHUniform",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui-three/src/composables/shader/ibl.ts",
+      "target": "function:AuBot/packages/stage-ui-three/src/composables/shader/ibl.ts:injectDiffuseIBL",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui-three/src/composables/shader/ibl.ts",
+      "target": "function:AuBot/packages/stage-ui-three/src/composables/shader/ibl.ts:injectDiffuseIBL",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui-three/src/composables/shader/ibl.ts",
+      "target": "function:AuBot/packages/stage-ui-three/src/composables/shader/ibl.ts:updateNprShaderSetting",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui-three/src/composables/shader/ibl.ts",
+      "target": "function:AuBot/packages/stage-ui-three/src/composables/shader/ibl.ts:updateNprShaderSetting",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui-three/src/composables/shader/ibl.ts",
+      "target": "function:AuBot/packages/stage-ui-three/src/composables/shader/ibl.ts:createIblProbeController",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui-three/src/composables/shader/ibl.ts",
+      "target": "function:AuBot/packages/stage-ui-three/src/composables/shader/ibl.ts:createIblProbeController",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui-three/src/composables/vrm/lip-sync.ts",
+      "target": "function:AuBot/packages/stage-ui-three/src/composables/vrm/lip-sync.ts:useVRMLipSync",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui-three/src/composables/vrm/lip-sync.ts",
+      "target": "function:AuBot/packages/stage-ui-three/src/composables/vrm/lip-sync.ts:useVRMLipSync",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui-three/src/composables/vrm/lip-sync.ts",
+      "target": "file:AuBot/packages/stage-ui-three/src/assets/lip-sync-profile.json",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui-three/src/composables/vrm/lip-sync.ts",
+      "target": "file:AuBot/packages/stage-ui/src/stores/audio.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    }
+  ]
+}

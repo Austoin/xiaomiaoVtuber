@@ -1,0 +1,1474 @@
+{
+  "nodes": [
+    {
+      "id": "file:nanobot/webui/src/components/ui/textarea.tsx",
+      "type": "file",
+      "name": "textarea.tsx",
+      "filePath": "nanobot/webui/src/components/ui/textarea.tsx",
+      "summary": "textarea.tsx 是 code 文件，引用 1 个内部或外部依赖，在项目路径 nanobot/webui/src/components/ui/textarea.tsx 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:nanobot/webui/src/components/ui/tooltip.tsx",
+      "type": "file",
+      "name": "tooltip.tsx",
+      "filePath": "nanobot/webui/src/components/ui/tooltip.tsx",
+      "summary": "tooltip.tsx 是 code 文件，引用 1 个内部或外部依赖，在项目路径 nanobot/webui/src/components/ui/tooltip.tsx 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:nanobot/webui/src/hooks/useAttachedImages.ts",
+      "type": "file",
+      "name": "useAttachedImages.ts",
+      "filePath": "nanobot/webui/src/hooks/useAttachedImages.ts",
+      "summary": "useAttachedImages.ts 是 code 文件，包含 3 个函数，引用 1 个内部或外部依赖，在项目路径 nanobot/webui/src/hooks/useAttachedImages.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:nanobot/webui/src/hooks/useAttachedImages.ts:mapEncodeFailure",
+      "type": "function",
+      "name": "mapEncodeFailure",
+      "filePath": "nanobot/webui/src/hooks/useAttachedImages.ts",
+      "lineRange": [
+        58,
+        71
+      ],
+      "summary": "函数 mapEncodeFailure 位于 useAttachedImages.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/webui/src/hooks/useAttachedImages.ts:useAttachedImages",
+      "type": "function",
+      "name": "useAttachedImages",
+      "filePath": "nanobot/webui/src/hooks/useAttachedImages.ts",
+      "lineRange": [
+        101,
+        233
+      ],
+      "summary": "函数 useAttachedImages 位于 useAttachedImages.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:nanobot/webui/src/hooks/useClipboardAndDrop.ts",
+      "type": "file",
+      "name": "useClipboardAndDrop.ts",
+      "filePath": "nanobot/webui/src/hooks/useClipboardAndDrop.ts",
+      "summary": "useClipboardAndDrop.ts 是 code 文件，包含 3 个函数，在项目路径 nanobot/webui/src/hooks/useClipboardAndDrop.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:nanobot/webui/src/hooks/useClipboardAndDrop.ts:extractImageFilesFromPaste",
+      "type": "function",
+      "name": "extractImageFilesFromPaste",
+      "filePath": "nanobot/webui/src/hooks/useClipboardAndDrop.ts",
+      "lineRange": [
+        12,
+        26
+      ],
+      "summary": "函数 extractImageFilesFromPaste 位于 useClipboardAndDrop.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/webui/src/hooks/useClipboardAndDrop.ts:extractImageFilesFromDrop",
+      "type": "function",
+      "name": "extractImageFilesFromDrop",
+      "filePath": "nanobot/webui/src/hooks/useClipboardAndDrop.ts",
+      "lineRange": [
+        29,
+        40
+      ],
+      "summary": "函数 extractImageFilesFromDrop 位于 useClipboardAndDrop.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/webui/src/hooks/useClipboardAndDrop.ts:useClipboardAndDrop",
+      "type": "function",
+      "name": "useClipboardAndDrop",
+      "filePath": "nanobot/webui/src/hooks/useClipboardAndDrop.ts",
+      "lineRange": [
+        60,
+        111
+      ],
+      "summary": "函数 useClipboardAndDrop 位于 useClipboardAndDrop.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:nanobot/webui/src/hooks/useNanobotStream.ts",
+      "type": "file",
+      "name": "useNanobotStream.ts",
+      "filePath": "nanobot/webui/src/hooks/useNanobotStream.ts",
+      "summary": "useNanobotStream.ts 是 code 文件，包含 1 个函数，引用 4 个内部或外部依赖，在项目路径 nanobot/webui/src/hooks/useNanobotStream.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:nanobot/webui/src/hooks/useNanobotStream.ts:useNanobotStream",
+      "type": "function",
+      "name": "useNanobotStream",
+      "filePath": "nanobot/webui/src/hooks/useNanobotStream.ts",
+      "lineRange": [
+        42,
+        317
+      ],
+      "summary": "函数 useNanobotStream 位于 useNanobotStream.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:nanobot/webui/src/hooks/useSessions.ts",
+      "type": "file",
+      "name": "useSessions.ts",
+      "filePath": "nanobot/webui/src/hooks/useSessions.ts",
+      "summary": "useSessions.ts 是 code 文件，包含 3 个函数，引用 6 个内部或外部依赖，在项目路径 nanobot/webui/src/hooks/useSessions.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:nanobot/webui/src/hooks/useSessions.ts:useSessions",
+      "type": "function",
+      "name": "useSessions",
+      "filePath": "nanobot/webui/src/hooks/useSessions.ts",
+      "lineRange": [
+        18,
+        81
+      ],
+      "summary": "函数 useSessions 位于 useSessions.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:nanobot/webui/src/hooks/useSessions.ts:useSessionHistory",
+      "type": "function",
+      "name": "useSessionHistory",
+      "filePath": "nanobot/webui/src/hooks/useSessions.ts",
+      "lineRange": [
+        84,
+        217
+      ],
+      "summary": "函数 useSessionHistory 位于 useSessions.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:nanobot/webui/src/hooks/useSessions.ts:sessionTitle",
+      "type": "function",
+      "name": "sessionTitle",
+      "filePath": "nanobot/webui/src/hooks/useSessions.ts",
+      "lineRange": [
+        220,
+        228
+      ],
+      "summary": "函数 sessionTitle 位于 useSessions.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:nanobot/webui/src/hooks/useTheme.ts",
+      "type": "file",
+      "name": "useTheme.ts",
+      "filePath": "nanobot/webui/src/hooks/useTheme.ts",
+      "summary": "useTheme.ts 是 code 文件，包含 3 个函数，在项目路径 nanobot/webui/src/hooks/useTheme.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/webui/src/hooks/useTheme.ts:useTheme",
+      "type": "function",
+      "name": "useTheme",
+      "filePath": "nanobot/webui/src/hooks/useTheme.ts",
+      "lineRange": [
+        21,
+        48
+      ],
+      "summary": "函数 useTheme 位于 useTheme.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:nanobot/webui/src/i18n/config.ts",
+      "type": "file",
+      "name": "config.ts",
+      "filePath": "nanobot/webui/src/i18n/config.ts",
+      "summary": "config.ts 是 code 文件，包含 7 个函数，在项目路径 nanobot/webui/src/i18n/config.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript",
+        "configuration"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:nanobot/webui/src/i18n/config.ts:normalizeLocale",
+      "type": "function",
+      "name": "normalizeLocale",
+      "filePath": "nanobot/webui/src/i18n/config.ts",
+      "lineRange": [
+        20,
+        48
+      ],
+      "summary": "函数 normalizeLocale 位于 config.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:nanobot/webui/src/i18n/config.ts:readStoredLocale",
+      "type": "function",
+      "name": "readStoredLocale",
+      "filePath": "nanobot/webui/src/i18n/config.ts",
+      "lineRange": [
+        50,
+        58
+      ],
+      "summary": "函数 readStoredLocale 位于 config.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/webui/src/i18n/config.ts:detectNavigatorLocale",
+      "type": "function",
+      "name": "detectNavigatorLocale",
+      "filePath": "nanobot/webui/src/i18n/config.ts",
+      "lineRange": [
+        60,
+        71
+      ],
+      "summary": "函数 detectNavigatorLocale 位于 config.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/webui/src/i18n/config.ts:resolveInitialLocale",
+      "type": "function",
+      "name": "resolveInitialLocale",
+      "filePath": "nanobot/webui/src/i18n/config.ts",
+      "lineRange": [
+        73,
+        75
+      ],
+      "summary": "函数 resolveInitialLocale 位于 config.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/webui/src/i18n/config.ts:persistLocale",
+      "type": "function",
+      "name": "persistLocale",
+      "filePath": "nanobot/webui/src/i18n/config.ts",
+      "lineRange": [
+        77,
+        84
+      ],
+      "summary": "函数 persistLocale 位于 config.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/webui/src/i18n/config.ts:applyDocumentLocale",
+      "type": "function",
+      "name": "applyDocumentLocale",
+      "filePath": "nanobot/webui/src/i18n/config.ts",
+      "lineRange": [
+        86,
+        89
+      ],
+      "summary": "函数 applyDocumentLocale 位于 config.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/webui/src/i18n/config.ts:localeOption",
+      "type": "function",
+      "name": "localeOption",
+      "filePath": "nanobot/webui/src/i18n/config.ts",
+      "lineRange": [
+        91,
+        93
+      ],
+      "summary": "函数 localeOption 位于 config.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:nanobot/webui/src/i18n/index.ts",
+      "type": "file",
+      "name": "index.ts",
+      "filePath": "nanobot/webui/src/i18n/index.ts",
+      "summary": "index.ts 是 code 文件，包含 3 个函数，引用 10 个内部或外部依赖，在项目路径 nanobot/webui/src/i18n/index.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:nanobot/webui/src/i18n/index.ts:currentLocale",
+      "type": "function",
+      "name": "currentLocale",
+      "filePath": "nanobot/webui/src/i18n/index.ts",
+      "lineRange": [
+        37,
+        39
+      ],
+      "summary": "函数 currentLocale 位于 index.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/webui/src/i18n/index.ts:setAppLanguage",
+      "type": "function",
+      "name": "setAppLanguage",
+      "filePath": "nanobot/webui/src/i18n/index.ts",
+      "lineRange": [
+        41,
+        43
+      ],
+      "summary": "函数 setAppLanguage 位于 index.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:nanobot/webui/src/lib/api.ts",
+      "type": "file",
+      "name": "api.ts",
+      "filePath": "nanobot/webui/src/lib/api.ts",
+      "summary": "api.ts 是 code 文件，包含 10 个函数，包含 1 个类，引用 1 个内部或外部依赖，在项目路径 nanobot/webui/src/lib/api.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:nanobot/webui/src/lib/api.ts:request",
+      "type": "function",
+      "name": "request",
+      "filePath": "nanobot/webui/src/lib/api.ts",
+      "lineRange": [
+        19,
+        36
+      ],
+      "summary": "函数 request 位于 api.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/webui/src/lib/api.ts:listSessions",
+      "type": "function",
+      "name": "listSessions",
+      "filePath": "nanobot/webui/src/lib/api.ts",
+      "lineRange": [
+        44,
+        67
+      ],
+      "summary": "函数 listSessions 位于 api.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/webui/src/lib/api.ts:fetchSessionMessages",
+      "type": "function",
+      "name": "fetchSessionMessages",
+      "filePath": "nanobot/webui/src/lib/api.ts",
+      "lineRange": [
+        79,
+        103
+      ],
+      "summary": "函数 fetchSessionMessages 位于 api.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:nanobot/webui/src/lib/api.ts:deleteSession",
+      "type": "function",
+      "name": "deleteSession",
+      "filePath": "nanobot/webui/src/lib/api.ts",
+      "lineRange": [
+        105,
+        115
+      ],
+      "summary": "函数 deleteSession 位于 api.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/webui/src/lib/api.ts:fetchSettings",
+      "type": "function",
+      "name": "fetchSettings",
+      "filePath": "nanobot/webui/src/lib/api.ts",
+      "lineRange": [
+        117,
+        122
+      ],
+      "summary": "函数 fetchSettings 位于 api.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/webui/src/lib/api.ts:listSlashCommands",
+      "type": "function",
+      "name": "listSlashCommands",
+      "filePath": "nanobot/webui/src/lib/api.ts",
+      "lineRange": [
+        124,
+        145
+      ],
+      "summary": "函数 listSlashCommands 位于 api.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/webui/src/lib/api.ts:updateSettings",
+      "type": "function",
+      "name": "updateSettings",
+      "filePath": "nanobot/webui/src/lib/api.ts",
+      "lineRange": [
+        147,
+        156
+      ],
+      "summary": "函数 updateSettings 位于 api.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/webui/src/lib/api.ts:updateProviderSettings",
+      "type": "function",
+      "name": "updateProviderSettings",
+      "filePath": "nanobot/webui/src/lib/api.ts",
+      "lineRange": [
+        158,
+        171
+      ],
+      "summary": "函数 updateProviderSettings 位于 api.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/webui/src/lib/api.ts:updateWebSearchSettings",
+      "type": "function",
+      "name": "updateWebSearchSettings",
+      "filePath": "nanobot/webui/src/lib/api.ts",
+      "lineRange": [
+        173,
+        186
+      ],
+      "summary": "函数 updateWebSearchSettings 位于 api.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:nanobot/webui/src/lib/api.ts:ApiError",
+      "type": "class",
+      "name": "ApiError",
+      "filePath": "nanobot/webui/src/lib/api.ts",
+      "lineRange": [
+        10,
+        17
+      ],
+      "summary": "类 ApiError 位于 api.ts，由结构提取结果识别。",
+      "tags": [
+        "class",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:nanobot/webui/src/lib/bootstrap.ts",
+      "type": "file",
+      "name": "bootstrap.ts",
+      "filePath": "nanobot/webui/src/lib/bootstrap.ts",
+      "summary": "bootstrap.ts 是 code 文件，包含 5 个函数，引用 1 个内部或外部依赖，在项目路径 nanobot/webui/src/lib/bootstrap.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:nanobot/webui/src/lib/bootstrap.ts:loadSavedSecret",
+      "type": "function",
+      "name": "loadSavedSecret",
+      "filePath": "nanobot/webui/src/lib/bootstrap.ts",
+      "lineRange": [
+        6,
+        13
+      ],
+      "summary": "函数 loadSavedSecret 位于 bootstrap.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/webui/src/lib/bootstrap.ts:saveSecret",
+      "type": "function",
+      "name": "saveSecret",
+      "filePath": "nanobot/webui/src/lib/bootstrap.ts",
+      "lineRange": [
+        16,
+        22
+      ],
+      "summary": "函数 saveSecret 位于 bootstrap.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/webui/src/lib/bootstrap.ts:clearSavedSecret",
+      "type": "function",
+      "name": "clearSavedSecret",
+      "filePath": "nanobot/webui/src/lib/bootstrap.ts",
+      "lineRange": [
+        25,
+        31
+      ],
+      "summary": "函数 clearSavedSecret 位于 bootstrap.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/webui/src/lib/bootstrap.ts:fetchBootstrap",
+      "type": "function",
+      "name": "fetchBootstrap",
+      "filePath": "nanobot/webui/src/lib/bootstrap.ts",
+      "lineRange": [
+        37,
+        58
+      ],
+      "summary": "函数 fetchBootstrap 位于 bootstrap.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/webui/src/lib/bootstrap.ts:deriveWsUrl",
+      "type": "function",
+      "name": "deriveWsUrl",
+      "filePath": "nanobot/webui/src/lib/bootstrap.ts",
+      "lineRange": [
+        67,
+        76
+      ],
+      "summary": "函数 deriveWsUrl 位于 bootstrap.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:nanobot/webui/src/lib/format.ts",
+      "type": "file",
+      "name": "format.ts",
+      "filePath": "nanobot/webui/src/lib/format.ts",
+      "summary": "format.ts 是 code 文件，包含 7 个函数，引用 1 个内部或外部依赖，在项目路径 nanobot/webui/src/lib/format.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:nanobot/webui/src/lib/format.ts:deriveTitle",
+      "type": "function",
+      "name": "deriveTitle",
+      "filePath": "nanobot/webui/src/lib/format.ts",
+      "lineRange": [
+        4,
+        9
+      ],
+      "summary": "函数 deriveTitle 位于 format.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/webui/src/lib/format.ts:dateTimeFormatter",
+      "type": "function",
+      "name": "dateTimeFormatter",
+      "filePath": "nanobot/webui/src/lib/format.ts",
+      "lineRange": [
+        43,
+        52
+      ],
+      "summary": "函数 dateTimeFormatter 位于 format.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/webui/src/lib/format.ts:relativeTime",
+      "type": "function",
+      "name": "relativeTime",
+      "filePath": "nanobot/webui/src/lib/format.ts",
+      "lineRange": [
+        54,
+        69
+      ],
+      "summary": "函数 relativeTime 位于 format.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/webui/src/lib/format.ts:fmtDateTime",
+      "type": "function",
+      "name": "fmtDateTime",
+      "filePath": "nanobot/webui/src/lib/format.ts",
+      "lineRange": [
+        71,
+        77
+      ],
+      "summary": "函数 fmtDateTime 位于 format.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:nanobot/webui/src/lib/imageEncode.ts",
+      "type": "file",
+      "name": "imageEncode.ts",
+      "filePath": "nanobot/webui/src/lib/imageEncode.ts",
+      "summary": "imageEncode.ts 是 code 文件，包含 4 个函数，引用 1 个内部或外部依赖，在项目路径 nanobot/webui/src/lib/imageEncode.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:nanobot/webui/src/lib/imageEncode.ts:bootWorker",
+      "type": "function",
+      "name": "bootWorker",
+      "filePath": "nanobot/webui/src/lib/imageEncode.ts",
+      "lineRange": [
+        26,
+        55
+      ],
+      "summary": "函数 bootWorker 位于 imageEncode.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:nanobot/webui/src/lib/imageEncode.ts:encodeImage",
+      "type": "function",
+      "name": "encodeImage",
+      "filePath": "nanobot/webui/src/lib/imageEncode.ts",
+      "lineRange": [
+        68,
+        84
+      ],
+      "summary": "函数 encodeImage 位于 imageEncode.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/webui/src/lib/imageEncode.ts:disposeImageEncoder",
+      "type": "function",
+      "name": "disposeImageEncoder",
+      "filePath": "nanobot/webui/src/lib/imageEncode.ts",
+      "lineRange": [
+        87,
+        97
+      ],
+      "summary": "函数 disposeImageEncoder 位于 imageEncode.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:nanobot/webui/src/lib/media.ts",
+      "type": "file",
+      "name": "media.ts",
+      "filePath": "nanobot/webui/src/lib/media.ts",
+      "summary": "media.ts 是 code 文件，包含 4 个函数，引用 1 个内部或外部依赖，在项目路径 nanobot/webui/src/lib/media.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:nanobot/webui/src/lib/media.ts:inferMediaKind",
+      "type": "function",
+      "name": "inferMediaKind",
+      "filePath": "nanobot/webui/src/lib/media.ts",
+      "lineRange": [
+        37,
+        46
+      ],
+      "summary": "函数 inferMediaKind 位于 media.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/webui/src/lib/media.ts:toMediaAttachment",
+      "type": "function",
+      "name": "toMediaAttachment",
+      "filePath": "nanobot/webui/src/lib/media.ts",
+      "lineRange": [
+        48,
+        58
+      ],
+      "summary": "函数 toMediaAttachment 位于 media.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:nanobot/webui/src/lib/nanobot-client.ts",
+      "type": "file",
+      "name": "nanobot-client.ts",
+      "filePath": "nanobot/webui/src/lib/nanobot-client.ts",
+      "summary": "nanobot-client.ts 是 code 文件，包含 1 个类，引用 1 个内部或外部依赖，在项目路径 nanobot/webui/src/lib/nanobot-client.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:nanobot/webui/src/lib/nanobot-client.ts:NanobotClient",
+      "type": "class",
+      "name": "NanobotClient",
+      "filePath": "nanobot/webui/src/lib/nanobot-client.ts",
+      "lineRange": [
+        58,
+        329
+      ],
+      "summary": "类 NanobotClient 位于 nanobot-client.ts，由结构提取结果识别。",
+      "tags": [
+        "class",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:nanobot/webui/src/lib/types.ts",
+      "type": "file",
+      "name": "types.ts",
+      "filePath": "nanobot/webui/src/lib/types.ts",
+      "summary": "types.ts 是 code 文件，在项目路径 nanobot/webui/src/lib/types.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:nanobot/webui/src/components/ui/textarea.tsx",
+      "target": "file:nanobot/webui/src/lib/utils.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/webui/src/components/ui/tooltip.tsx",
+      "target": "file:nanobot/webui/src/lib/utils.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/webui/src/hooks/useAttachedImages.ts",
+      "target": "function:nanobot/webui/src/hooks/useAttachedImages.ts:mapEncodeFailure",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/webui/src/hooks/useAttachedImages.ts",
+      "target": "function:nanobot/webui/src/hooks/useAttachedImages.ts:useAttachedImages",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/webui/src/hooks/useAttachedImages.ts",
+      "target": "file:nanobot/webui/src/lib/imageEncode.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/webui/src/hooks/useClipboardAndDrop.ts",
+      "target": "function:nanobot/webui/src/hooks/useClipboardAndDrop.ts:extractImageFilesFromPaste",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/webui/src/hooks/useClipboardAndDrop.ts",
+      "target": "function:nanobot/webui/src/hooks/useClipboardAndDrop.ts:extractImageFilesFromDrop",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/webui/src/hooks/useClipboardAndDrop.ts",
+      "target": "function:nanobot/webui/src/hooks/useClipboardAndDrop.ts:useClipboardAndDrop",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/webui/src/hooks/useNanobotStream.ts",
+      "target": "function:nanobot/webui/src/hooks/useNanobotStream.ts:useNanobotStream",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/webui/src/hooks/useNanobotStream.ts",
+      "target": "file:nanobot/webui/src/lib/media.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/webui/src/hooks/useNanobotStream.ts",
+      "target": "file:nanobot/webui/src/lib/nanobot-client.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/webui/src/hooks/useNanobotStream.ts",
+      "target": "file:nanobot/webui/src/lib/types.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/webui/src/hooks/useNanobotStream.ts",
+      "target": "file:nanobot/webui/src/providers/ClientProvider.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/webui/src/hooks/useSessions.ts",
+      "target": "function:nanobot/webui/src/hooks/useSessions.ts:useSessions",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/webui/src/hooks/useSessions.ts",
+      "target": "function:nanobot/webui/src/hooks/useSessions.ts:useSessionHistory",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/webui/src/hooks/useSessions.ts",
+      "target": "function:nanobot/webui/src/hooks/useSessions.ts:sessionTitle",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/webui/src/hooks/useSessions.ts",
+      "target": "file:nanobot/webui/src/i18n/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/webui/src/hooks/useSessions.ts",
+      "target": "file:nanobot/webui/src/lib/api.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/webui/src/hooks/useSessions.ts",
+      "target": "file:nanobot/webui/src/lib/format.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/webui/src/hooks/useSessions.ts",
+      "target": "file:nanobot/webui/src/lib/media.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/webui/src/hooks/useSessions.ts",
+      "target": "file:nanobot/webui/src/lib/types.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/webui/src/hooks/useSessions.ts",
+      "target": "file:nanobot/webui/src/providers/ClientProvider.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/webui/src/hooks/useTheme.ts",
+      "target": "function:nanobot/webui/src/hooks/useTheme.ts:useTheme",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/webui/src/i18n/config.ts",
+      "target": "function:nanobot/webui/src/i18n/config.ts:normalizeLocale",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/webui/src/i18n/config.ts",
+      "target": "function:nanobot/webui/src/i18n/config.ts:readStoredLocale",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/webui/src/i18n/config.ts",
+      "target": "function:nanobot/webui/src/i18n/config.ts:detectNavigatorLocale",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/webui/src/i18n/config.ts",
+      "target": "function:nanobot/webui/src/i18n/config.ts:resolveInitialLocale",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/webui/src/i18n/config.ts",
+      "target": "function:nanobot/webui/src/i18n/config.ts:persistLocale",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/webui/src/i18n/config.ts",
+      "target": "function:nanobot/webui/src/i18n/config.ts:applyDocumentLocale",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/webui/src/i18n/config.ts",
+      "target": "function:nanobot/webui/src/i18n/config.ts:localeOption",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/webui/src/i18n/index.ts",
+      "target": "function:nanobot/webui/src/i18n/index.ts:currentLocale",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/webui/src/i18n/index.ts",
+      "target": "function:nanobot/webui/src/i18n/index.ts:setAppLanguage",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/webui/src/i18n/index.ts",
+      "target": "file:nanobot/webui/src/i18n/config.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/webui/src/i18n/index.ts",
+      "target": "file:nanobot/webui/src/i18n/locales/en/common.json",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/webui/src/i18n/index.ts",
+      "target": "file:nanobot/webui/src/i18n/locales/es/common.json",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/webui/src/i18n/index.ts",
+      "target": "file:nanobot/webui/src/i18n/locales/fr/common.json",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/webui/src/i18n/index.ts",
+      "target": "file:nanobot/webui/src/i18n/locales/id/common.json",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/webui/src/i18n/index.ts",
+      "target": "file:nanobot/webui/src/i18n/locales/ja/common.json",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/webui/src/i18n/index.ts",
+      "target": "file:nanobot/webui/src/i18n/locales/ko/common.json",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/webui/src/i18n/index.ts",
+      "target": "file:nanobot/webui/src/i18n/locales/vi/common.json",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/webui/src/i18n/index.ts",
+      "target": "file:nanobot/webui/src/i18n/locales/zh-CN/common.json",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/webui/src/i18n/index.ts",
+      "target": "file:nanobot/webui/src/i18n/locales/zh-TW/common.json",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/webui/src/lib/api.ts",
+      "target": "function:nanobot/webui/src/lib/api.ts:request",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/webui/src/lib/api.ts",
+      "target": "function:nanobot/webui/src/lib/api.ts:listSessions",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/webui/src/lib/api.ts",
+      "target": "function:nanobot/webui/src/lib/api.ts:fetchSessionMessages",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/webui/src/lib/api.ts",
+      "target": "function:nanobot/webui/src/lib/api.ts:deleteSession",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/webui/src/lib/api.ts",
+      "target": "function:nanobot/webui/src/lib/api.ts:fetchSettings",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/webui/src/lib/api.ts",
+      "target": "function:nanobot/webui/src/lib/api.ts:listSlashCommands",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/webui/src/lib/api.ts",
+      "target": "function:nanobot/webui/src/lib/api.ts:updateSettings",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/webui/src/lib/api.ts",
+      "target": "function:nanobot/webui/src/lib/api.ts:updateProviderSettings",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/webui/src/lib/api.ts",
+      "target": "function:nanobot/webui/src/lib/api.ts:updateWebSearchSettings",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/webui/src/lib/api.ts",
+      "target": "class:nanobot/webui/src/lib/api.ts:ApiError",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/webui/src/lib/api.ts",
+      "target": "file:nanobot/webui/src/lib/types.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/webui/src/lib/bootstrap.ts",
+      "target": "function:nanobot/webui/src/lib/bootstrap.ts:loadSavedSecret",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/webui/src/lib/bootstrap.ts",
+      "target": "function:nanobot/webui/src/lib/bootstrap.ts:saveSecret",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/webui/src/lib/bootstrap.ts",
+      "target": "function:nanobot/webui/src/lib/bootstrap.ts:clearSavedSecret",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/webui/src/lib/bootstrap.ts",
+      "target": "function:nanobot/webui/src/lib/bootstrap.ts:fetchBootstrap",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/webui/src/lib/bootstrap.ts",
+      "target": "function:nanobot/webui/src/lib/bootstrap.ts:deriveWsUrl",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/webui/src/lib/bootstrap.ts",
+      "target": "file:nanobot/webui/src/lib/types.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/webui/src/lib/format.ts",
+      "target": "function:nanobot/webui/src/lib/format.ts:deriveTitle",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/webui/src/lib/format.ts",
+      "target": "function:nanobot/webui/src/lib/format.ts:dateTimeFormatter",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/webui/src/lib/format.ts",
+      "target": "function:nanobot/webui/src/lib/format.ts:relativeTime",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/webui/src/lib/format.ts",
+      "target": "function:nanobot/webui/src/lib/format.ts:fmtDateTime",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/webui/src/lib/format.ts",
+      "target": "file:nanobot/webui/src/i18n/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/webui/src/lib/imageEncode.ts",
+      "target": "function:nanobot/webui/src/lib/imageEncode.ts:bootWorker",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/webui/src/lib/imageEncode.ts",
+      "target": "function:nanobot/webui/src/lib/imageEncode.ts:encodeImage",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/webui/src/lib/imageEncode.ts",
+      "target": "function:nanobot/webui/src/lib/imageEncode.ts:disposeImageEncoder",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/webui/src/lib/imageEncode.ts",
+      "target": "file:nanobot/webui/src/workers/imageEncode.worker.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/webui/src/lib/media.ts",
+      "target": "function:nanobot/webui/src/lib/media.ts:inferMediaKind",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/webui/src/lib/media.ts",
+      "target": "function:nanobot/webui/src/lib/media.ts:toMediaAttachment",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/webui/src/lib/media.ts",
+      "target": "file:nanobot/webui/src/lib/types.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/webui/src/lib/nanobot-client.ts",
+      "target": "class:nanobot/webui/src/lib/nanobot-client.ts:NanobotClient",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/webui/src/lib/nanobot-client.ts",
+      "target": "file:nanobot/webui/src/lib/types.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    }
+  ]
+}

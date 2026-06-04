@@ -4,9 +4,9 @@
 
 1. `xiaomiao`：QQ Bot 主体。
 2. `AuBot`：Vtuber 桌面端。
-3. `nanobot`：独立 Agent 框架，可提供 CLI、gateway、OpenAI 兼容 API 和 WebUI。
+3. `nanobot` / `xiaomiaoAgent`：独立 Agent 框架，可提供 CLI、gateway、OpenAI 兼容 API 和 WebUI。
 
-推荐启动顺序：先启动 `nanobot serve`，再启动 NapCat 和 `xiaomiao`，最后启动 `AuBot` Web 或桌面端。
+推荐启动顺序：先启动 `xiaomiao serve`，再启动 NapCat 和 `xiaomiao`，最后启动 `AuBot` Web 或桌面端。
 
 ## 运行前准备
 
@@ -36,9 +36,9 @@ corepack prepare pnpm@10.33.0 --activate
 pnpm install
 ```
 
-### nanobot Python / Bun 环境
+### xiaomiaoAgent Python / Bun 环境
 
-`nanobot` 是独立 Python Agent 框架。首次运行时，在 `nanobot` 目录从源码安装：
+`nanobot` 代码包以用户可见品牌 `xiaomiaoAgent` 运行。首次运行时，在 `nanobot` 目录从源码安装：
 
 ```powershell
 conda activate xiaomiao
@@ -80,26 +80,37 @@ bun install
 
 运行前确认以下本地配置存在且正确：
 
-- `xiaomiao/config.json`：QQ Bot、OneBot、模型 API 等配置。
+- `config.json`：主目录统一模型配置，供 Web、QQ 和 Agent 共用。
+- `xiaomiao/config.json`：QQ Bot、OneBot、人设和本地命令配置。
 - `AuBot/**/.env`：如使用相关服务，保留本地环境变量文件。
 
 这些文件已被根 `.gitignore` 忽略，不应提交到仓库。
 
-`xiaomiao/config.json` 的 `Others.nanobot_agent` 用于控制统一 Agent backend。推荐本地配置形态如下，真实配置以你的本机文件为准：
+主目录 `config.json` 用于控制统一 Agent backend 和第三方 OpenAI-compatible 中转站。推荐本地配置形态如下，真实配置以你的本机文件为准：
 
 ```json
 {
   "nanobot_agent": {
     "enabled": true,
     "base_url": "http://127.0.0.1:8900/v1/chat/completions",
-    "model": "deepseek-chat",
+    "model": "",
     "session_id": "xiaomiao-unified",
     "timeout_seconds": 30
+  },
+  "nanobot": {
+    "provider": "custom",
+    "model": "deepseek/deepseek-chat",
+    "providers": {
+      "custom": {
+        "apiKey": "你的中转站密钥",
+        "baseUrl": "https://你的中转站地址/v1"
+      }
+    }
   }
 }
 ```
 
-如果缺省该对象，代码默认启用 `http://127.0.0.1:8900/v1/chat/completions` 和 `xiaomiao-unified` session。
+`nanobot.model` 是最终生效模型。`nanobot_agent.model` 默认留空，避免 `xiaomiao` 请求时覆盖 `nanobot.model`。
 
 ## 完整联动启动顺序
 
@@ -110,9 +121,9 @@ stage-web 输入
     ↓
 xiaomiao bridge :5519
     ↓
-nanobot API :8900
+xiaomiaoAgent API :8900
     ↓
-nanobot Agent
+xiaomiaoAgent Tools / Memory / Session
     ↓
 stage-web 聊天历史
 
@@ -122,19 +133,32 @@ xiaomiao main.py
     ↓
 agent_backend.py
     ↓
-nanobot API :8900
+xiaomiaoAgent API :8900
     ↓
 QQ 回复 + bridge state
 ```
 
-需要同时打开 3 到 4 个终端。
+可以直接使用根目录 `start-all.cmd` 一键启动：
 
-### 终端一：启动 nanobot OpenAI 兼容 API
+```powershell
+cd F:\xiaomiaoVirtual
+start-all.cmd
+```
+
+只检查依赖路径，不启动窗口：
+
+```powershell
+start-all.cmd --check
+```
+
+手动启动时需要同时打开 3 到 4 个终端。
+
+### 终端一：启动 xiaomiaoAgent OpenAI 兼容 API
 
 ```powershell
 cd F:\xiaomiaoVirtual
 conda activate xiaomiao
-nanobot serve --config F:\xiaomiaoVirtual\nanobot\.nanobot\config.json
+xiaomiao serve --config F:\xiaomiaoVirtual\nanobot\.nanobot\config.json
 ```
 
 验证：
@@ -191,7 +215,7 @@ cd F:\xiaomiaoVirtual\AuBot
 pnpm dev:tamagotchi
 ```
 
-第一次打开 `stage-web` 如果出现 AIRI 欢迎弹窗，先关闭或跳过弹窗，再输入消息验证 bridge。
+第一次打开 `stage-web` 时会先通过 bridge 读取主目录 `config.json`。如果配置完整，不会弹配置面板；如果缺少中转站 URL、API Key 或模型，再按面板提示填写并同步写回主目录 `config.json`。
 
 ## 启动 xiaomiao QQ Bot
 
@@ -216,7 +240,7 @@ conda activate xiaomiao
 python main.py
 ```
 
-如果只看到 bridge 启动行，随后出现 OneBot WebSocket 断开错误，说明 NapCat 侧未保持连接。请先修正 NapCat 登录状态和 `config.json` 的 `Connection.host` / `Connection.port`，再重新运行。
+如果只看到 bridge 启动行，随后出现 OneBot WebSocket 断开错误，说明 NapCat 侧未保持连接。请先修正 NapCat 登录状态和 `xiaomiao/config.json` 的 `Connection.host` / `Connection.port`，再重新运行。
 
 ### 方式二：使用脚本启动
 
@@ -256,9 +280,9 @@ pnpm dev:tamagotchi
 
 该命令会启动 `apps/stage-tamagotchi` 的 Electron 开发模式。桌面端会读取 `xiaomiao` bridge state，将回复同步到字幕、聊天历史、TTS 和 Live2D 口型。
 
-## 启动 nanobot
+## 启动 xiaomiaoAgent
 
-`nanobot` 当前可作为独立子系统运行，不要求 `xiaomiao` 或 `AuBot` 已启动。
+`xiaomiaoAgent` 当前可作为独立子系统运行，不要求 `xiaomiao` 或 `AuBot` 已启动。
 
 ### 1. 初始化配置和工作区
 
@@ -272,11 +296,11 @@ cd F:\xiaomiaoVirtual\nanobot
 
 ```powershell
 conda activate xiaomiao（你自己的环境）
-nanobot onboard `
+xiaomiao onboard `
   --config F:\xiaomiaoVirtual\nanobot\.nanobot\config.json `
   --workspace F:\xiaomiaoVirtual\nanobot\.nanobot\workspace
 
-如果只写nanobot onboard 就是默认盘
+如果只写 xiaomiao onboard，就是默认配置路径
 ```
 
 当前项目已执行过该命令，并生成：
@@ -290,64 +314,39 @@ F:\xiaomiaoVirtual\nanobot\.nanobot\workspace\
 
 ### 2. 配置模型 Provider
 
-编辑项目内配置文件：
+优先编辑主目录统一配置：
 
 ```text
-F:\xiaomiaoVirtual\nanobot\.nanobot\config.json
+F:\xiaomiaoVirtual\config.json
 ```
 
-最小 OpenRouter 示例：
+最小第三方 OpenAI-compatible 中转站示例：
 
 ```json
 {
-  "providers": {
-    "openrouter": {
-      "apiKey": "你的 API Key"
+  "nanobot": {
+    "provider": "custom",
+    "model": "deepseek/deepseek-chat",
+    "providers": {
+      "custom": {
+        "apiKey": "你的中转站密钥",
+        "baseUrl": "https://你的中转站地址/v1"
+      }
     }
   },
-  "agents": {
-    "defaults": {
-      "provider": "openrouter",
-      "model": "anthropic/claude-opus-4-5"
-    }
+  "nanobot_agent": {
+    "enabled": true,
+    "base_url": "http://127.0.0.1:8900/v1/chat/completions",
+    "model": "",
+    "session_id": "xiaomiao-unified",
+    "timeout_seconds": 30
   }
 }
 ```
 
-不要把真实 API Key 写入仓库文件。推荐后续改用环境变量形式保存。
+`nanobot/.nanobot/config.json` 仍保留 Agent 工作区、channel 和 runtime 配置；启动时会自动向上查找主目录 `config.json`，并用其中的 `nanobot` 段覆盖 provider 和模型。也可以用 `XIAOMIAO_UNIFIED_CONFIG` 指向自定义统一配置文件。
 
-当前已从 `xiaomiao/config.json` 的 `Others.openai_key` 同步到项目内 nanobot 配置，不在文档中记录真实 Key。同步后的有效配置为：
-
-```json
-{
-  "providers": {
-    "deepseek": {
-      "apiBase": "https://api.deepseek.com",
-      "apiKey": "<来自 xiaomiao/config.json 的 openai_key>"
-    }
-  },
-  "agents": {
-    "defaults": {
-      "provider": "deepseek",
-      "model": "deepseek-chat"
-    }
-  }
-}
-```
-
-本次同步使用的字段来源：
-
-```text
-xiaomiao/config.json -> Others.openai_key
-xiaomiao/config.json -> Others.openai_base_url
-xiaomiao/config.json -> Others.default_model
-```
-
-如果以后 `xiaomiao/config.json` 中的 Key 变更，需要重新同步到：
-
-```text
-F:\xiaomiaoVirtual\nanobot\.nanobot\config.json
-```
+不要把真实 API Key 写入可提交源码文件。主目录 `config.json` 属于本机私有配置，仓库只保留 `config.example.json`。
 
 确认 `agents.defaults.workspace` 指向项目内工作区：
 
@@ -367,20 +366,20 @@ F:\xiaomiaoVirtual\nanobot\.nanobot\config.json
 
 ```powershell
 conda activate xiaomiao
-nanobot agent --config F:\xiaomiaoVirtual\nanobot\.nanobot\config.json
+xiaomiao agent --config F:\xiaomiaoVirtual\nanobot\.nanobot\config.json
 ```
 
 直接发送一条消息：
 
 ```powershell
 conda activate xiaomiao
-nanobot agent -m "你好" --config F:\xiaomiaoVirtual\nanobot\.nanobot\config.json
+xiaomiao agent -m "你好" --config F:\xiaomiaoVirtual\nanobot\.nanobot\config.json
 ```
 
 查看状态：
 
 ```powershell
-nanobot status
+xiaomiao status
 ```
 
 注意：`status` 当前不支持 `--config` 参数，只显示默认状态信息。需要使用项目内配置时，请对 `agent`、`gateway` 或 `serve` 指定 `--config`。
@@ -391,14 +390,14 @@ nanobot status
 
 ```powershell
 conda activate xiaomiao
-nanobot gateway --config F:\xiaomiaoVirtual\nanobot\.nanobot\config.json
+xiaomiao gateway --config F:\xiaomiaoVirtual\nanobot\.nanobot\config.json
 
-如果是默认的config路径就不用加--config后面的东西
+如果是默认配置路径，就不用加 --config 后面的内容
 ```
 
 ### 5. 启动 WebUI
 
-WebUI 需要同时运行 `nanobot gateway`。另开一个 PowerShell 窗口，并确保处于 `xiaomiao` conda 环境：
+WebUI 需要同时运行 `xiaomiao gateway`。另开一个 PowerShell 窗口，并确保处于 `xiaomiao` conda 环境：
 
 ```powershell
 conda activate xiaomiao
@@ -411,18 +410,18 @@ bun run dev
 ```powershell
 conda activate xiaomiao
 cd F:\xiaomiaoVirtual\nanobot
-nanobot serve --config F:\xiaomiaoVirtual\nanobot\.nanobot\config.json
+xiaomiao serve --config F:\xiaomiaoVirtual\nanobot\.nanobot\config.json
 ```
 
-如果 `nanobot` 命令来自源码安装，通常不需要重复执行 `pip install "nanobot-ai[api]"`；缺少 API extra 时再安装。
+如果 `xiaomiao` 命令来自源码安装，通常不需要重复执行 `pip install "nanobot-ai[api]"`；缺少 API extra 时再安装。旧 `nanobot` 命令入口仍保留兼容。
 
 ## 默认端口
 
 ```text
 NapCat OneBot WebSocket: 127.0.0.1:5004
 xiaomiao 桌面桥接服务: 127.0.0.1:5519
-nanobot gateway 默认端口: 127.0.0.1:8765
-nanobot OpenAI 兼容 API 默认端口: 127.0.0.1:8900
+xiaomiaoAgent gateway 默认端口: 127.0.0.1:8765
+xiaomiaoAgent OpenAI 兼容 API 默认端口: 127.0.0.1:8900
 ```
 
 `AuBot` 桌面端会读取 `xiaomiao` 的本地桥接接口，将 Bot 回复同步到：
@@ -469,14 +468,14 @@ http://127.0.0.1:5519/v1/xiaomiao/status
 }
 ```
 
-### 验证 nanobot
+### 验证 xiaomiaoAgent
 
 初始化并配置模型后，运行：
 
 ```powershell
 cd F:\xiaomiaoVirtual\nanobot
 conda activate xiaomiao
-nanobot serve --config F:\xiaomiaoVirtual\nanobot\.nanobot\config.json
+xiaomiao serve --config F:\xiaomiaoVirtual\nanobot\.nanobot\config.json
 ```
 
 然后访问：
@@ -499,7 +498,7 @@ Invoke-RestMethod `
 
 ```powershell
 conda activate xiaomiao
-nanobot gateway --config F:\xiaomiaoVirtual\nanobot\.nanobot\config.json
+xiaomiao gateway --config F:\xiaomiaoVirtual\nanobot\.nanobot\config.json
 ```
 
 再检查日志中是否出现 gateway 启动和通道加载信息。
@@ -532,7 +531,7 @@ WebSocketConnectionClosedException: Connection to remote host was lost.
 
 ### AuBot 无法同步小喵回复
 
-先确认 `nanobot serve` 和 `xiaomiao` 都已启动，并检查桥接状态接口：
+先确认 `xiaomiao serve` 和 `xiaomiao` 都已启动，并检查桥接状态接口：
 
 ```text
 http://127.0.0.1:5519/v1/xiaomiao/status
@@ -545,9 +544,9 @@ http://127.0.0.1:5519/v1/xiaomiao/status
 `stage-web` 当前必须走 `xiaomiao` bridge。常见原因：
 
 - `python main.py` 因 NapCat 连接失败退出，导致 `5519` 不存在。
-- `nanobot serve` 未启动，导致 bridge callback 返回 HTTP 502。
-- `Others.nanobot_agent.base_url` 与实际 nanobot API 地址不一致。
-- nanobot 模型回复超过 `timeout_seconds`。
+- `xiaomiao serve` 未启动，导致 bridge callback 返回 HTTP 502。
+- `nanobot_agent.base_url` 与实际 xiaomiaoAgent API 地址不一致。
+- xiaomiaoAgent 模型回复超过 `timeout_seconds`。
 
 该路径不会静默回退到 AuBot provider，错误会显示在聊天历史中。
 
@@ -577,7 +576,7 @@ conda activate xiaomiao
 pip install -r requirements.txt
 ```
 
-### nanobot 命令不存在
+### xiaomiao 命令不存在
 
 确认已经在 `nanobot` 目录执行源码安装：
 
@@ -588,14 +587,14 @@ pip install -e .
 
 如果仍找不到命令，使用当前 Python 重新安装，或确认 Python Scripts 目录已加入 `PATH`。
 
-### nanobot WebUI 无法连接
+### xiaomiaoAgent WebUI 无法连接
 
-WebUI 需要 `nanobot gateway` 同时运行。请确认已经在另一个终端启动：
+WebUI 需要 `xiaomiao gateway` 同时运行。请确认已经在另一个终端启动：
 
 ```powershell
 cd F:\xiaomiaoVirtual\nanobot
 conda activate xiaomiao
-nanobot gateway --config F:\xiaomiaoVirtual\nanobot\.nanobot\config.json
+xiaomiao gateway --config F:\xiaomiaoVirtual\nanobot\.nanobot\config.json
 ```
 
 ## 推荐日常启动命令
@@ -605,7 +604,7 @@ nanobot gateway --config F:\xiaomiaoVirtual\nanobot\.nanobot\config.json
 ```powershell
 cd F:\xiaomiaoVirtual
 conda activate xiaomiao
-nanobot serve --config F:\xiaomiaoVirtual\nanobot\.nanobot\config.json
+xiaomiao serve --config F:\xiaomiaoVirtual\nanobot\.nanobot\config.json
 ```
 
 终端二：启动 NapCat，确认 OneBot WebSocket 是 `127.0.0.1:5004`。
@@ -632,12 +631,12 @@ cd F:\xiaomiaoVirtual\AuBot
 pnpm dev:tamagotchi
 ```
 
-可选终端三（nanobot CLI 或 gateway）：
+可选终端三（xiaomiaoAgent CLI 或 gateway）：
 
 ```powershell
 cd F:\xiaomiaoVirtual\nanobot
 conda activate xiaomiao
-nanobot agent --config F:\xiaomiaoVirtual\nanobot\.nanobot\config.json
+xiaomiao agent --config F:\xiaomiaoVirtual\nanobot\.nanobot\config.json
 ```
 
 或：
@@ -645,10 +644,10 @@ nanobot agent --config F:\xiaomiaoVirtual\nanobot\.nanobot\config.json
 ```powershell
 cd F:\xiaomiaoVirtual\nanobot
 conda activate xiaomiao
-nanobot gateway --config F:\xiaomiaoVirtual\nanobot\.nanobot\config.json
+xiaomiao gateway --config F:\xiaomiaoVirtual\nanobot\.nanobot\config.json
 ```
 
-可选终端四（nanobot WebUI）：
+可选终端四（xiaomiaoAgent WebUI）：
 
 ```powershell
 conda activate xiaomiao

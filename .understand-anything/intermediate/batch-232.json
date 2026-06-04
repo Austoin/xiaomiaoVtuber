@@ -1,0 +1,1119 @@
+{
+  "nodes": [
+    {
+      "id": "config:AuBot/integrations/vscode/vscode-airi/package.json",
+      "type": "config",
+      "name": "package.json",
+      "filePath": "AuBot/integrations/vscode/vscode-airi/package.json",
+      "summary": "配置文件 package.json 管理 AuBot\\integrations\\vscode\\vscode-airi 相关的工具链、构建或运行参数，是项目环境约定的一部分。",
+      "tags": [
+        "配置",
+        "项目设置",
+        "工具链"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:AuBot/integrations/vscode/vscode-airi/tsconfig.json",
+      "type": "config",
+      "name": "tsconfig.json",
+      "filePath": "AuBot/integrations/vscode/vscode-airi/tsconfig.json",
+      "summary": "配置文件 tsconfig.json 管理 AuBot\\integrations\\vscode\\vscode-airi 相关的工具链、构建或运行参数，是项目环境约定的一部分。",
+      "tags": [
+        "配置",
+        "项目设置",
+        "工具链"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/integrations/vscode/vscode-airi/tsdown.config.ts",
+      "type": "file",
+      "name": "tsdown.config.ts",
+      "filePath": "AuBot/integrations/vscode/vscode-airi/tsdown.config.ts",
+      "summary": "代码文件 tsdown.config.ts 位于 AuBot\\integrations\\vscode\\vscode-airi，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "配置",
+        "运行时",
+        "设置"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/nix/common.nix",
+      "type": "file",
+      "name": "common.nix",
+      "filePath": "AuBot/nix/common.nix",
+      "summary": "代码文件 common.nix 位于 AuBot\\nix，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "代码",
+        "模块",
+        "项目逻辑"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:AuBot/nix/package.nix",
+      "type": "file",
+      "name": "package.nix",
+      "filePath": "AuBot/nix/package.nix",
+      "summary": "代码文件 package.nix 位于 AuBot\\nix，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "代码",
+        "模块",
+        "项目逻辑"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:AuBot/packages/audio-pipelines-transcribe/package.json",
+      "type": "config",
+      "name": "package.json",
+      "filePath": "AuBot/packages/audio-pipelines-transcribe/package.json",
+      "summary": "配置文件 package.json 管理 AuBot\\packages\\audio-pipelines-transcribe 相关的工具链、构建或运行参数，是项目环境约定的一部分。",
+      "tags": [
+        "配置",
+        "项目设置",
+        "工具链"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/audio-pipelines-transcribe/src/utils/index.ts",
+      "type": "file",
+      "name": "index.ts",
+      "filePath": "AuBot/packages/audio-pipelines-transcribe/src/utils/index.ts",
+      "summary": "代码文件 index.ts 位于 AuBot\\packages\\audio-pipelines-transcribe\\src\\utils，包含 1 个函数和 0 个类，承担该模块内的核心实现职责。",
+      "tags": [
+        "入口点",
+        "barrel",
+        "导出"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/packages/audio-pipelines-transcribe/src/utils/index.ts:mediaStreamFromAudioFile",
+      "type": "function",
+      "name": "mediaStreamFromAudioFile",
+      "filePath": "AuBot/packages/audio-pipelines-transcribe/src/utils/index.ts",
+      "lineRange": [
+        3,
+        36
+      ],
+      "summary": "函数 mediaStreamFromAudioFile 实现 AuBot/packages/audio-pipelines-transcribe/src/utils/index.ts 中的关键逻辑，参与该模块的主要行为。",
+      "tags": [
+        "函数",
+        "模块逻辑",
+        "导出"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:AuBot/packages/audio-pipelines-transcribe/tsconfig.json",
+      "type": "config",
+      "name": "tsconfig.json",
+      "filePath": "AuBot/packages/audio-pipelines-transcribe/tsconfig.json",
+      "summary": "配置文件 tsconfig.json 管理 AuBot\\packages\\audio-pipelines-transcribe 相关的工具链、构建或运行参数，是项目环境约定的一部分。",
+      "tags": [
+        "配置",
+        "项目设置",
+        "工具链"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/audio-pipelines-transcribe/vitest.config.ts",
+      "type": "file",
+      "name": "vitest.config.ts",
+      "filePath": "AuBot/packages/audio-pipelines-transcribe/vitest.config.ts",
+      "summary": "代码文件 vitest.config.ts 位于 AuBot\\packages\\audio-pipelines-transcribe，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "测试",
+        "验证",
+        "回归"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:AuBot/packages/audio/package.json",
+      "type": "config",
+      "name": "package.json",
+      "filePath": "AuBot/packages/audio/package.json",
+      "summary": "配置文件 package.json 管理 AuBot\\packages\\audio 相关的工具链、构建或运行参数，是项目环境约定的一部分。",
+      "tags": [
+        "配置",
+        "项目设置",
+        "工具链"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:AuBot/packages/audio/src/audio-context/index.ts",
+      "type": "file",
+      "name": "index.ts",
+      "filePath": "AuBot/packages/audio/src/audio-context/index.ts",
+      "summary": "代码文件 index.ts 位于 AuBot\\packages\\audio\\src\\audio-context，包含 19 个函数和 0 个类，承担该模块内的核心实现职责。",
+      "tags": [
+        "入口点",
+        "barrel",
+        "导出"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:AuBot/packages/audio/src/audio-context/index.ts:notifyListeners",
+      "type": "function",
+      "name": "notifyListeners",
+      "filePath": "AuBot/packages/audio/src/audio-context/index.ts",
+      "lineRange": [
+        39,
+        57
+      ],
+      "summary": "函数 notifyListeners 实现 AuBot/packages/audio/src/audio-context/index.ts 中的关键逻辑，参与该模块的主要行为。",
+      "tags": [
+        "函数",
+        "模块逻辑",
+        "内部实现"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/packages/audio/src/audio-context/index.ts:loadWorklets",
+      "type": "function",
+      "name": "loadWorklets",
+      "filePath": "AuBot/packages/audio/src/audio-context/index.ts",
+      "lineRange": [
+        59,
+        73
+      ],
+      "summary": "函数 loadWorklets 实现 AuBot/packages/audio/src/audio-context/index.ts 中的关键逻辑，参与该模块的主要行为。",
+      "tags": [
+        "函数",
+        "模块逻辑",
+        "内部实现"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/packages/audio/src/audio-context/index.ts:initializeAudioContext",
+      "type": "function",
+      "name": "initializeAudioContext",
+      "filePath": "AuBot/packages/audio/src/audio-context/index.ts",
+      "lineRange": [
+        75,
+        142
+      ],
+      "summary": "函数 initializeAudioContext 实现 AuBot/packages/audio/src/audio-context/index.ts 中的关键逻辑，参与该模块的主要行为。",
+      "tags": [
+        "函数",
+        "模块逻辑",
+        "导出"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:AuBot/packages/audio/src/audio-context/index.ts:createAudioSource",
+      "type": "function",
+      "name": "createAudioSource",
+      "filePath": "AuBot/packages/audio/src/audio-context/index.ts",
+      "lineRange": [
+        144,
+        152
+      ],
+      "summary": "函数 createAudioSource 实现 AuBot/packages/audio/src/audio-context/index.ts 中的关键逻辑，参与该模块的主要行为。",
+      "tags": [
+        "函数",
+        "模块逻辑",
+        "导出"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/packages/audio/src/audio-context/index.ts:createAudioAnalyser",
+      "type": "function",
+      "name": "createAudioAnalyser",
+      "filePath": "AuBot/packages/audio/src/audio-context/index.ts",
+      "lineRange": [
+        154,
+        178
+      ],
+      "summary": "函数 createAudioAnalyser 实现 AuBot/packages/audio/src/audio-context/index.ts 中的关键逻辑，参与该模块的主要行为。",
+      "tags": [
+        "函数",
+        "模块逻辑",
+        "导出"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/packages/audio/src/audio-context/index.ts:createAudioGainNode",
+      "type": "function",
+      "name": "createAudioGainNode",
+      "filePath": "AuBot/packages/audio/src/audio-context/index.ts",
+      "lineRange": [
+        180,
+        189
+      ],
+      "summary": "函数 createAudioGainNode 实现 AuBot/packages/audio/src/audio-context/index.ts 中的关键逻辑，参与该模块的主要行为。",
+      "tags": [
+        "函数",
+        "模块逻辑",
+        "导出"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/packages/audio/src/audio-context/index.ts:removeAudioSource",
+      "type": "function",
+      "name": "removeAudioSource",
+      "filePath": "AuBot/packages/audio/src/audio-context/index.ts",
+      "lineRange": [
+        191,
+        194
+      ],
+      "summary": "函数 removeAudioSource 实现 AuBot/packages/audio/src/audio-context/index.ts 中的关键逻辑，参与该模块的主要行为。",
+      "tags": [
+        "函数",
+        "模块逻辑",
+        "导出"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/packages/audio/src/audio-context/index.ts:removeAudioGainNode",
+      "type": "function",
+      "name": "removeAudioGainNode",
+      "filePath": "AuBot/packages/audio/src/audio-context/index.ts",
+      "lineRange": [
+        196,
+        199
+      ],
+      "summary": "函数 removeAudioGainNode 实现 AuBot/packages/audio/src/audio-context/index.ts 中的关键逻辑，参与该模块的主要行为。",
+      "tags": [
+        "函数",
+        "模块逻辑",
+        "导出"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/packages/audio/src/audio-context/index.ts:removeAudioAnalyser",
+      "type": "function",
+      "name": "removeAudioAnalyser",
+      "filePath": "AuBot/packages/audio/src/audio-context/index.ts",
+      "lineRange": [
+        201,
+        204
+      ],
+      "summary": "函数 removeAudioAnalyser 实现 AuBot/packages/audio/src/audio-context/index.ts 中的关键逻辑，参与该模块的主要行为。",
+      "tags": [
+        "函数",
+        "模块逻辑",
+        "导出"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/packages/audio/src/audio-context/index.ts:suspendAudioContext",
+      "type": "function",
+      "name": "suspendAudioContext",
+      "filePath": "AuBot/packages/audio/src/audio-context/index.ts",
+      "lineRange": [
+        206,
+        211
+      ],
+      "summary": "函数 suspendAudioContext 实现 AuBot/packages/audio/src/audio-context/index.ts 中的关键逻辑，参与该模块的主要行为。",
+      "tags": [
+        "函数",
+        "模块逻辑",
+        "导出"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/packages/audio/src/audio-context/index.ts:resumeAudioContext",
+      "type": "function",
+      "name": "resumeAudioContext",
+      "filePath": "AuBot/packages/audio/src/audio-context/index.ts",
+      "lineRange": [
+        213,
+        218
+      ],
+      "summary": "函数 resumeAudioContext 实现 AuBot/packages/audio/src/audio-context/index.ts 中的关键逻辑，参与该模块的主要行为。",
+      "tags": [
+        "函数",
+        "模块逻辑",
+        "导出"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/packages/audio/src/audio-context/index.ts:createResamplingWorkletNode",
+      "type": "function",
+      "name": "createResamplingWorkletNode",
+      "filePath": "AuBot/packages/audio/src/audio-context/index.ts",
+      "lineRange": [
+        220,
+        250
+      ],
+      "summary": "函数 createResamplingWorkletNode 实现 AuBot/packages/audio/src/audio-context/index.ts 中的关键逻辑，参与该模块的主要行为。",
+      "tags": [
+        "函数",
+        "模块逻辑",
+        "导出"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/packages/audio/src/audio-context/index.ts:removeWorkletNode",
+      "type": "function",
+      "name": "removeWorkletNode",
+      "filePath": "AuBot/packages/audio/src/audio-context/index.ts",
+      "lineRange": [
+        252,
+        255
+      ],
+      "summary": "函数 removeWorkletNode 实现 AuBot/packages/audio/src/audio-context/index.ts 中的关键逻辑，参与该模块的主要行为。",
+      "tags": [
+        "函数",
+        "模块逻辑",
+        "导出"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/packages/audio/src/audio-context/index.ts:cleanupAudioContext",
+      "type": "function",
+      "name": "cleanupAudioContext",
+      "filePath": "AuBot/packages/audio/src/audio-context/index.ts",
+      "lineRange": [
+        257,
+        280
+      ],
+      "summary": "函数 cleanupAudioContext 实现 AuBot/packages/audio/src/audio-context/index.ts 中的关键逻辑，参与该模块的主要行为。",
+      "tags": [
+        "函数",
+        "模块逻辑",
+        "导出"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/packages/audio/src/audio-context/index.ts:getAudioContextState",
+      "type": "function",
+      "name": "getAudioContextState",
+      "filePath": "AuBot/packages/audio/src/audio-context/index.ts",
+      "lineRange": [
+        282,
+        292
+      ],
+      "summary": "函数 getAudioContextState 实现 AuBot/packages/audio/src/audio-context/index.ts 中的关键逻辑，参与该模块的主要行为。",
+      "tags": [
+        "函数",
+        "模块逻辑",
+        "导出"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/packages/audio/src/audio-context/index.ts:getAudioContext",
+      "type": "function",
+      "name": "getAudioContext",
+      "filePath": "AuBot/packages/audio/src/audio-context/index.ts",
+      "lineRange": [
+        294,
+        296
+      ],
+      "summary": "函数 getAudioContext 实现 AuBot/packages/audio/src/audio-context/index.ts 中的关键逻辑，参与该模块的主要行为。",
+      "tags": [
+        "函数",
+        "模块逻辑",
+        "导出"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/packages/audio/src/audio-context/index.ts:getCurrentTime",
+      "type": "function",
+      "name": "getCurrentTime",
+      "filePath": "AuBot/packages/audio/src/audio-context/index.ts",
+      "lineRange": [
+        298,
+        300
+      ],
+      "summary": "函数 getCurrentTime 实现 AuBot/packages/audio/src/audio-context/index.ts 中的关键逻辑，参与该模块的主要行为。",
+      "tags": [
+        "函数",
+        "模块逻辑",
+        "导出"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/packages/audio/src/audio-context/index.ts:isAudioContextReady",
+      "type": "function",
+      "name": "isAudioContextReady",
+      "filePath": "AuBot/packages/audio/src/audio-context/index.ts",
+      "lineRange": [
+        302,
+        304
+      ],
+      "summary": "函数 isAudioContextReady 实现 AuBot/packages/audio/src/audio-context/index.ts 中的关键逻辑，参与该模块的主要行为。",
+      "tags": [
+        "函数",
+        "模块逻辑",
+        "导出"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/packages/audio/src/audio-context/index.ts:subscribeToAudioContext",
+      "type": "function",
+      "name": "subscribeToAudioContext",
+      "filePath": "AuBot/packages/audio/src/audio-context/index.ts",
+      "lineRange": [
+        307,
+        310
+      ],
+      "summary": "函数 subscribeToAudioContext 实现 AuBot/packages/audio/src/audio-context/index.ts 中的关键逻辑，参与该模块的主要行为。",
+      "tags": [
+        "函数",
+        "模块逻辑",
+        "导出"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/audio/src/audio-context/processor.worklet.ts",
+      "type": "file",
+      "name": "processor.worklet.ts",
+      "filePath": "AuBot/packages/audio/src/audio-context/processor.worklet.ts",
+      "summary": "代码文件 processor.worklet.ts 位于 AuBot\\packages\\audio\\src\\audio-context，包含 0 个函数和 1 个类，承担该模块内的核心实现职责。",
+      "tags": [
+        "代码",
+        "模块",
+        "项目逻辑"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:AuBot/packages/audio/src/audio-context/processor.worklet.ts:ResamplingAudioWorkletProcessor",
+      "type": "class",
+      "name": "ResamplingAudioWorkletProcessor",
+      "filePath": "AuBot/packages/audio/src/audio-context/processor.worklet.ts",
+      "lineRange": [
+        15,
+        158
+      ],
+      "summary": "类 ResamplingAudioWorkletProcessor 封装 AuBot/packages/audio/src/audio-context/processor.worklet.ts 中的状态与行为，提供该模块的重要抽象。",
+      "tags": [
+        "类",
+        "抽象",
+        "内部实现"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:AuBot/packages/audio/src/encoding/index.ts",
+      "type": "file",
+      "name": "index.ts",
+      "filePath": "AuBot/packages/audio/src/encoding/index.ts",
+      "summary": "代码文件 index.ts 位于 AuBot\\packages\\audio\\src\\encoding，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "入口点",
+        "barrel",
+        "导出"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/audio/src/encoding/wav.ts",
+      "type": "file",
+      "name": "wav.ts",
+      "filePath": "AuBot/packages/audio/src/encoding/wav.ts",
+      "summary": "代码文件 wav.ts 位于 AuBot\\packages\\audio\\src\\encoding，包含 3 个函数和 0 个类，承担该模块内的核心实现职责。",
+      "tags": [
+        "代码",
+        "模块",
+        "项目逻辑"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/packages/audio/src/encoding/wav.ts:toWav",
+      "type": "function",
+      "name": "toWav",
+      "filePath": "AuBot/packages/audio/src/encoding/wav.ts",
+      "lineRange": [
+        9,
+        47
+      ],
+      "summary": "函数 toWav 实现 AuBot/packages/audio/src/encoding/wav.ts 中的关键逻辑，参与该模块的主要行为。",
+      "tags": [
+        "函数",
+        "模块逻辑",
+        "导出"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/packages/audio/src/encoding/wav.ts:toWAVBase64",
+      "type": "function",
+      "name": "toWAVBase64",
+      "filePath": "AuBot/packages/audio/src/encoding/wav.ts",
+      "lineRange": [
+        49,
+        51
+      ],
+      "summary": "函数 toWAVBase64 实现 AuBot/packages/audio/src/encoding/wav.ts 中的关键逻辑，参与该模块的主要行为。",
+      "tags": [
+        "函数",
+        "模块逻辑",
+        "导出"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/audio/src/index.ts",
+      "type": "file",
+      "name": "index.ts",
+      "filePath": "AuBot/packages/audio/src/index.ts",
+      "summary": "代码文件 index.ts 位于 AuBot\\packages\\audio\\src，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "入口点",
+        "barrel",
+        "导出"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:AuBot/packages/audio/tsconfig.json",
+      "type": "config",
+      "name": "tsconfig.json",
+      "filePath": "AuBot/packages/audio/tsconfig.json",
+      "summary": "配置文件 tsconfig.json 管理 AuBot\\packages\\audio 相关的工具链、构建或运行参数，是项目环境约定的一部分。",
+      "tags": [
+        "配置",
+        "项目设置",
+        "工具链"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/audio/tsdown.config.ts",
+      "type": "file",
+      "name": "tsdown.config.ts",
+      "filePath": "AuBot/packages/audio/tsdown.config.ts",
+      "summary": "代码文件 tsdown.config.ts 位于 AuBot\\packages\\audio，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "配置",
+        "运行时",
+        "设置"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:AuBot/packages/cap-vite/package.json",
+      "type": "config",
+      "name": "package.json",
+      "filePath": "AuBot/packages/cap-vite/package.json",
+      "summary": "配置文件 package.json 管理 AuBot\\packages\\cap-vite 相关的工具链、构建或运行参数，是项目环境约定的一部分。",
+      "tags": [
+        "配置",
+        "项目设置",
+        "工具链"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/cap-vite/src/index.test.ts",
+      "type": "file",
+      "name": "index.test.ts",
+      "filePath": "AuBot/packages/cap-vite/src/index.test.ts",
+      "summary": "代码文件 index.test.ts 位于 AuBot\\packages\\cap-vite\\src，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "测试",
+        "验证",
+        "回归"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:AuBot/packages/cap-vite/src/vite-plugin.test.ts",
+      "type": "file",
+      "name": "vite-plugin.test.ts",
+      "filePath": "AuBot/packages/cap-vite/src/vite-plugin.test.ts",
+      "summary": "代码文件 vite-plugin.test.ts 位于 AuBot\\packages\\cap-vite\\src，包含 4 个函数和 2 个类，承担该模块内的核心实现职责。",
+      "tags": [
+        "测试",
+        "验证",
+        "回归"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:AuBot/packages/cap-vite/src/vite-plugin.test.ts:createMockResult",
+      "type": "function",
+      "name": "createMockResult",
+      "filePath": "AuBot/packages/cap-vite/src/vite-plugin.test.ts",
+      "lineRange": [
+        33,
+        43
+      ],
+      "summary": "函数 createMockResult 实现 AuBot/packages/cap-vite/src/vite-plugin.test.ts 中的关键逻辑，参与该模块的主要行为。",
+      "tags": [
+        "函数",
+        "模块逻辑",
+        "内部实现"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/packages/cap-vite/src/vite-plugin.test.ts:createMockServer",
+      "type": "function",
+      "name": "createMockServer",
+      "filePath": "AuBot/packages/cap-vite/src/vite-plugin.test.ts",
+      "lineRange": [
+        45,
+        63
+      ],
+      "summary": "函数 createMockServer 实现 AuBot/packages/cap-vite/src/vite-plugin.test.ts 中的关键逻辑，参与该模块的主要行为。",
+      "tags": [
+        "函数",
+        "模块逻辑",
+        "内部实现"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/packages/cap-vite/src/vite-plugin.test.ts:createMockStdin",
+      "type": "function",
+      "name": "createMockStdin",
+      "filePath": "AuBot/packages/cap-vite/src/vite-plugin.test.ts",
+      "lineRange": [
+        65,
+        83
+      ],
+      "summary": "函数 createMockStdin 实现 AuBot/packages/cap-vite/src/vite-plugin.test.ts 中的关键逻辑，参与该模块的主要行为。",
+      "tags": [
+        "函数",
+        "模块逻辑",
+        "内部实现"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/packages/cap-vite/src/vite-plugin.test.ts:configurePluginServer",
+      "type": "function",
+      "name": "configurePluginServer",
+      "filePath": "AuBot/packages/cap-vite/src/vite-plugin.test.ts",
+      "lineRange": [
+        85,
+        96
+      ],
+      "summary": "函数 configurePluginServer 实现 AuBot/packages/cap-vite/src/vite-plugin.test.ts 中的关键逻辑，参与该模块的主要行为。",
+      "tags": [
+        "函数",
+        "模块逻辑",
+        "内部实现"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/cap-vite/src/vite-wrapper-config.test.ts",
+      "type": "file",
+      "name": "vite-wrapper-config.test.ts",
+      "filePath": "AuBot/packages/cap-vite/src/vite-wrapper-config.test.ts",
+      "summary": "代码文件 vite-wrapper-config.test.ts 位于 AuBot\\packages\\cap-vite\\src，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "测试",
+        "验证",
+        "回归"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:AuBot/packages/cap-vite/tsconfig.json",
+      "type": "config",
+      "name": "tsconfig.json",
+      "filePath": "AuBot/packages/cap-vite/tsconfig.json",
+      "summary": "配置文件 tsconfig.json 管理 AuBot\\packages\\cap-vite 相关的工具链、构建或运行参数，是项目环境约定的一部分。",
+      "tags": [
+        "配置",
+        "项目设置",
+        "工具链"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/cap-vite/tsdown.config.ts",
+      "type": "file",
+      "name": "tsdown.config.ts",
+      "filePath": "AuBot/packages/cap-vite/tsdown.config.ts",
+      "summary": "代码文件 tsdown.config.ts 位于 AuBot\\packages\\cap-vite，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "配置",
+        "运行时",
+        "设置"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/cap-vite/vitest.config.ts",
+      "type": "file",
+      "name": "vitest.config.ts",
+      "filePath": "AuBot/packages/cap-vite/vitest.config.ts",
+      "summary": "代码文件 vitest.config.ts 位于 AuBot\\packages\\cap-vite，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "测试",
+        "验证",
+        "回归"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:AuBot/packages/ccc/package.json",
+      "type": "config",
+      "name": "package.json",
+      "filePath": "AuBot/packages/ccc/package.json",
+      "summary": "配置文件 package.json 管理 AuBot\\packages\\ccc 相关的工具链、构建或运行参数，是项目环境约定的一部分。",
+      "tags": [
+        "配置",
+        "项目设置",
+        "工具链"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:AuBot/packages/audio-pipelines-transcribe/src/utils/index.ts",
+      "target": "function:AuBot/packages/audio-pipelines-transcribe/src/utils/index.ts:mediaStreamFromAudioFile",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:AuBot/packages/audio-pipelines-transcribe/src/utils/index.ts",
+      "target": "function:AuBot/packages/audio-pipelines-transcribe/src/utils/index.ts:mediaStreamFromAudioFile",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:AuBot/packages/audio/src/audio-context/index.ts",
+      "target": "function:AuBot/packages/audio/src/audio-context/index.ts:notifyListeners",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:AuBot/packages/audio/src/audio-context/index.ts",
+      "target": "function:AuBot/packages/audio/src/audio-context/index.ts:loadWorklets",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:AuBot/packages/audio/src/audio-context/index.ts",
+      "target": "function:AuBot/packages/audio/src/audio-context/index.ts:initializeAudioContext",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:AuBot/packages/audio/src/audio-context/index.ts",
+      "target": "function:AuBot/packages/audio/src/audio-context/index.ts:initializeAudioContext",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:AuBot/packages/audio/src/audio-context/index.ts",
+      "target": "function:AuBot/packages/audio/src/audio-context/index.ts:createAudioSource",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:AuBot/packages/audio/src/audio-context/index.ts",
+      "target": "function:AuBot/packages/audio/src/audio-context/index.ts:createAudioSource",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:AuBot/packages/audio/src/audio-context/index.ts",
+      "target": "function:AuBot/packages/audio/src/audio-context/index.ts:createAudioAnalyser",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:AuBot/packages/audio/src/audio-context/index.ts",
+      "target": "function:AuBot/packages/audio/src/audio-context/index.ts:createAudioAnalyser",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:AuBot/packages/audio/src/audio-context/index.ts",
+      "target": "function:AuBot/packages/audio/src/audio-context/index.ts:createAudioGainNode",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:AuBot/packages/audio/src/audio-context/index.ts",
+      "target": "function:AuBot/packages/audio/src/audio-context/index.ts:createAudioGainNode",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:AuBot/packages/audio/src/audio-context/index.ts",
+      "target": "function:AuBot/packages/audio/src/audio-context/index.ts:removeAudioSource",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:AuBot/packages/audio/src/audio-context/index.ts",
+      "target": "function:AuBot/packages/audio/src/audio-context/index.ts:removeAudioSource",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:AuBot/packages/audio/src/audio-context/index.ts",
+      "target": "function:AuBot/packages/audio/src/audio-context/index.ts:removeAudioGainNode",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:AuBot/packages/audio/src/audio-context/index.ts",
+      "target": "function:AuBot/packages/audio/src/audio-context/index.ts:removeAudioGainNode",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:AuBot/packages/audio/src/audio-context/index.ts",
+      "target": "function:AuBot/packages/audio/src/audio-context/index.ts:removeAudioAnalyser",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:AuBot/packages/audio/src/audio-context/index.ts",
+      "target": "function:AuBot/packages/audio/src/audio-context/index.ts:removeAudioAnalyser",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:AuBot/packages/audio/src/audio-context/index.ts",
+      "target": "function:AuBot/packages/audio/src/audio-context/index.ts:suspendAudioContext",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:AuBot/packages/audio/src/audio-context/index.ts",
+      "target": "function:AuBot/packages/audio/src/audio-context/index.ts:suspendAudioContext",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:AuBot/packages/audio/src/audio-context/index.ts",
+      "target": "function:AuBot/packages/audio/src/audio-context/index.ts:resumeAudioContext",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:AuBot/packages/audio/src/audio-context/index.ts",
+      "target": "function:AuBot/packages/audio/src/audio-context/index.ts:resumeAudioContext",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:AuBot/packages/audio/src/audio-context/index.ts",
+      "target": "function:AuBot/packages/audio/src/audio-context/index.ts:createResamplingWorkletNode",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:AuBot/packages/audio/src/audio-context/index.ts",
+      "target": "function:AuBot/packages/audio/src/audio-context/index.ts:createResamplingWorkletNode",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:AuBot/packages/audio/src/audio-context/index.ts",
+      "target": "function:AuBot/packages/audio/src/audio-context/index.ts:removeWorkletNode",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:AuBot/packages/audio/src/audio-context/index.ts",
+      "target": "function:AuBot/packages/audio/src/audio-context/index.ts:removeWorkletNode",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:AuBot/packages/audio/src/audio-context/index.ts",
+      "target": "function:AuBot/packages/audio/src/audio-context/index.ts:cleanupAudioContext",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:AuBot/packages/audio/src/audio-context/index.ts",
+      "target": "function:AuBot/packages/audio/src/audio-context/index.ts:cleanupAudioContext",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:AuBot/packages/audio/src/audio-context/index.ts",
+      "target": "function:AuBot/packages/audio/src/audio-context/index.ts:getAudioContextState",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:AuBot/packages/audio/src/audio-context/index.ts",
+      "target": "function:AuBot/packages/audio/src/audio-context/index.ts:getAudioContextState",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:AuBot/packages/audio/src/audio-context/index.ts",
+      "target": "function:AuBot/packages/audio/src/audio-context/index.ts:getAudioContext",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:AuBot/packages/audio/src/audio-context/index.ts",
+      "target": "function:AuBot/packages/audio/src/audio-context/index.ts:getAudioContext",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:AuBot/packages/audio/src/audio-context/index.ts",
+      "target": "function:AuBot/packages/audio/src/audio-context/index.ts:getCurrentTime",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:AuBot/packages/audio/src/audio-context/index.ts",
+      "target": "function:AuBot/packages/audio/src/audio-context/index.ts:getCurrentTime",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:AuBot/packages/audio/src/audio-context/index.ts",
+      "target": "function:AuBot/packages/audio/src/audio-context/index.ts:isAudioContextReady",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:AuBot/packages/audio/src/audio-context/index.ts",
+      "target": "function:AuBot/packages/audio/src/audio-context/index.ts:isAudioContextReady",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:AuBot/packages/audio/src/audio-context/index.ts",
+      "target": "function:AuBot/packages/audio/src/audio-context/index.ts:subscribeToAudioContext",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:AuBot/packages/audio/src/audio-context/index.ts",
+      "target": "function:AuBot/packages/audio/src/audio-context/index.ts:subscribeToAudioContext",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:AuBot/packages/audio/src/audio-context/processor.worklet.ts",
+      "target": "class:AuBot/packages/audio/src/audio-context/processor.worklet.ts:ResamplingAudioWorkletProcessor",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:AuBot/packages/audio/src/encoding/wav.ts",
+      "target": "function:AuBot/packages/audio/src/encoding/wav.ts:toWav",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:AuBot/packages/audio/src/encoding/wav.ts",
+      "target": "function:AuBot/packages/audio/src/encoding/wav.ts:toWav",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:AuBot/packages/audio/src/encoding/wav.ts",
+      "target": "function:AuBot/packages/audio/src/encoding/wav.ts:toWAVBase64",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:AuBot/packages/audio/src/encoding/wav.ts",
+      "target": "function:AuBot/packages/audio/src/encoding/wav.ts:toWAVBase64",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:AuBot/packages/cap-vite/src/vite-plugin.test.ts",
+      "target": "function:AuBot/packages/cap-vite/src/vite-plugin.test.ts:createMockResult",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:AuBot/packages/cap-vite/src/vite-plugin.test.ts",
+      "target": "function:AuBot/packages/cap-vite/src/vite-plugin.test.ts:createMockServer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:AuBot/packages/cap-vite/src/vite-plugin.test.ts",
+      "target": "function:AuBot/packages/cap-vite/src/vite-plugin.test.ts:createMockStdin",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:AuBot/packages/cap-vite/src/vite-plugin.test.ts",
+      "target": "function:AuBot/packages/cap-vite/src/vite-plugin.test.ts:configurePluginServer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    }
+  ]
+}

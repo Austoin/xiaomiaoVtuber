@@ -1,0 +1,1663 @@
+{
+  "nodes": [
+    {
+      "id": "file:nanobot/nanobot/channels/slack.py",
+      "type": "file",
+      "name": "slack.py",
+      "filePath": "nanobot/nanobot/channels/slack.py",
+      "summary": "slack.py 是 code 文件，包含 3 个类，引用 6 个内部或外部依赖，在项目路径 nanobot/nanobot/channels/slack.py 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "python"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:nanobot/nanobot/channels/slack.py:SlackDMConfig",
+      "type": "class",
+      "name": "SlackDMConfig",
+      "filePath": "nanobot/nanobot/channels/slack.py",
+      "lineRange": [
+        24,
+        29
+      ],
+      "summary": "类 SlackDMConfig 位于 slack.py，由结构提取结果识别。",
+      "tags": [
+        "class",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:nanobot/nanobot/channels/slack.py:SlackConfig",
+      "type": "class",
+      "name": "SlackConfig",
+      "filePath": "nanobot/nanobot/channels/slack.py",
+      "lineRange": [
+        32,
+        49
+      ],
+      "summary": "类 SlackConfig 位于 slack.py，由结构提取结果识别。",
+      "tags": [
+        "class",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:nanobot/nanobot/channels/slack.py:SlackChannel",
+      "type": "class",
+      "name": "SlackChannel",
+      "filePath": "nanobot/nanobot/channels/slack.py",
+      "lineRange": [
+        57,
+        701
+      ],
+      "summary": "类 SlackChannel 位于 slack.py，由结构提取结果识别。",
+      "tags": [
+        "class",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:nanobot/nanobot/channels/telegram.py",
+      "type": "file",
+      "name": "telegram.py",
+      "filePath": "nanobot/nanobot/channels/telegram.py",
+      "summary": "telegram.py 是 code 文件，包含 6 个函数，包含 3 个类，引用 9 个内部或外部依赖，在项目路径 nanobot/nanobot/channels/telegram.py 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "python"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:nanobot/nanobot/channels/telegram.py:_escape_telegram_html",
+      "type": "function",
+      "name": "_escape_telegram_html",
+      "filePath": "nanobot/nanobot/channels/telegram.py",
+      "lineRange": [
+        45,
+        47
+      ],
+      "summary": "函数 _escape_telegram_html 位于 telegram.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/nanobot/channels/telegram.py:_tool_hint_to_telegram_blockquote",
+      "type": "function",
+      "name": "_tool_hint_to_telegram_blockquote",
+      "filePath": "nanobot/nanobot/channels/telegram.py",
+      "lineRange": [
+        50,
+        52
+      ],
+      "summary": "函数 _tool_hint_to_telegram_blockquote 位于 telegram.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/nanobot/channels/telegram.py:_strip_md",
+      "type": "function",
+      "name": "_strip_md",
+      "filePath": "nanobot/nanobot/channels/telegram.py",
+      "lineRange": [
+        55,
+        61
+      ],
+      "summary": "函数 _strip_md 位于 telegram.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/nanobot/channels/telegram.py:_strip_md_block",
+      "type": "function",
+      "name": "_strip_md_block",
+      "filePath": "nanobot/nanobot/channels/telegram.py",
+      "lineRange": [
+        64,
+        89
+      ],
+      "summary": "函数 _strip_md_block 位于 telegram.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:nanobot/nanobot/channels/telegram.py:_render_table_box",
+      "type": "function",
+      "name": "_render_table_box",
+      "filePath": "nanobot/nanobot/channels/telegram.py",
+      "lineRange": [
+        92,
+        121
+      ],
+      "summary": "函数 _render_table_box 位于 telegram.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:nanobot/nanobot/channels/telegram.py:_markdown_to_telegram_html",
+      "type": "function",
+      "name": "_markdown_to_telegram_html",
+      "filePath": "nanobot/nanobot/channels/telegram.py",
+      "lineRange": [
+        124,
+        211
+      ],
+      "summary": "函数 _markdown_to_telegram_html 位于 telegram.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:nanobot/nanobot/channels/telegram.py:_StreamBuf",
+      "type": "class",
+      "name": "_StreamBuf",
+      "filePath": "nanobot/nanobot/channels/telegram.py",
+      "lineRange": [
+        220,
+        225
+      ],
+      "summary": "类 _StreamBuf 位于 telegram.py，由结构提取结果识别。",
+      "tags": [
+        "class",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:nanobot/nanobot/channels/telegram.py:TelegramConfig",
+      "type": "class",
+      "name": "TelegramConfig",
+      "filePath": "nanobot/nanobot/channels/telegram.py",
+      "lineRange": [
+        228,
+        243
+      ],
+      "summary": "类 TelegramConfig 位于 telegram.py，由结构提取结果识别。",
+      "tags": [
+        "class",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:nanobot/nanobot/channels/telegram.py:TelegramChannel",
+      "type": "class",
+      "name": "TelegramChannel",
+      "filePath": "nanobot/nanobot/channels/telegram.py",
+      "lineRange": [
+        246,
+        1290
+      ],
+      "summary": "类 TelegramChannel 位于 telegram.py，由结构提取结果识别。",
+      "tags": [
+        "class",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:nanobot/nanobot/channels/websocket.py",
+      "type": "file",
+      "name": "websocket.py",
+      "filePath": "nanobot/nanobot/channels/websocket.py",
+      "summary": "websocket.py 是 code 文件，包含 23 个函数，包含 2 个类，引用 8 个内部或外部依赖，在项目路径 nanobot/nanobot/channels/websocket.py 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "python"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:nanobot/nanobot/channels/websocket.py:_strip_trailing_slash",
+      "type": "function",
+      "name": "_strip_trailing_slash",
+      "filePath": "nanobot/nanobot/channels/websocket.py",
+      "lineRange": [
+        48,
+        51
+      ],
+      "summary": "函数 _strip_trailing_slash 位于 websocket.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/nanobot/channels/websocket.py:_normalize_config_path",
+      "type": "function",
+      "name": "_normalize_config_path",
+      "filePath": "nanobot/nanobot/channels/websocket.py",
+      "lineRange": [
+        54,
+        55
+      ],
+      "summary": "函数 _normalize_config_path 位于 websocket.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/nanobot/channels/websocket.py:_append_buttons_as_text",
+      "type": "function",
+      "name": "_append_buttons_as_text",
+      "filePath": "nanobot/nanobot/channels/websocket.py",
+      "lineRange": [
+        58,
+        63
+      ],
+      "summary": "函数 _append_buttons_as_text 位于 websocket.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/nanobot/channels/websocket.py:_http_json_response",
+      "type": "function",
+      "name": "_http_json_response",
+      "filePath": "nanobot/nanobot/channels/websocket.py",
+      "lineRange": [
+        144,
+        155
+      ],
+      "summary": "函数 _http_json_response 位于 websocket.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/nanobot/channels/websocket.py:_read_webui_model_name",
+      "type": "function",
+      "name": "_read_webui_model_name",
+      "filePath": "nanobot/nanobot/channels/websocket.py",
+      "lineRange": [
+        158,
+        167
+      ],
+      "summary": "函数 _read_webui_model_name 位于 websocket.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/nanobot/channels/websocket.py:_parse_request_path",
+      "type": "function",
+      "name": "_parse_request_path",
+      "filePath": "nanobot/nanobot/channels/websocket.py",
+      "lineRange": [
+        170,
+        174
+      ],
+      "summary": "函数 _parse_request_path 位于 websocket.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/nanobot/channels/websocket.py:_normalize_http_path",
+      "type": "function",
+      "name": "_normalize_http_path",
+      "filePath": "nanobot/nanobot/channels/websocket.py",
+      "lineRange": [
+        177,
+        179
+      ],
+      "summary": "函数 _normalize_http_path 位于 websocket.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/nanobot/channels/websocket.py:_parse_query",
+      "type": "function",
+      "name": "_parse_query",
+      "filePath": "nanobot/nanobot/channels/websocket.py",
+      "lineRange": [
+        182,
+        183
+      ],
+      "summary": "函数 _parse_query 位于 websocket.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/nanobot/channels/websocket.py:_query_first",
+      "type": "function",
+      "name": "_query_first",
+      "filePath": "nanobot/nanobot/channels/websocket.py",
+      "lineRange": [
+        186,
+        189
+      ],
+      "summary": "函数 _query_first 位于 websocket.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/nanobot/channels/websocket.py:_mask_secret_hint",
+      "type": "function",
+      "name": "_mask_secret_hint",
+      "filePath": "nanobot/nanobot/channels/websocket.py",
+      "lineRange": [
+        192,
+        197
+      ],
+      "summary": "函数 _mask_secret_hint 位于 websocket.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/nanobot/channels/websocket.py:_parse_inbound_payload",
+      "type": "function",
+      "name": "_parse_inbound_payload",
+      "filePath": "nanobot/nanobot/channels/websocket.py",
+      "lineRange": [
+        214,
+        231
+      ],
+      "summary": "函数 _parse_inbound_payload 位于 websocket.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/nanobot/channels/websocket.py:_is_valid_chat_id",
+      "type": "function",
+      "name": "_is_valid_chat_id",
+      "filePath": "nanobot/nanobot/channels/websocket.py",
+      "lineRange": [
+        239,
+        240
+      ],
+      "summary": "函数 _is_valid_chat_id 位于 websocket.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/nanobot/channels/websocket.py:_parse_envelope",
+      "type": "function",
+      "name": "_parse_envelope",
+      "filePath": "nanobot/nanobot/channels/websocket.py",
+      "lineRange": [
+        243,
+        262
+      ],
+      "summary": "函数 _parse_envelope 位于 websocket.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/nanobot/channels/websocket.py:_extract_data_url_mime",
+      "type": "function",
+      "name": "_extract_data_url_mime",
+      "filePath": "nanobot/nanobot/channels/websocket.py",
+      "lineRange": [
+        294,
+        301
+      ],
+      "summary": "函数 _extract_data_url_mime 位于 websocket.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/nanobot/channels/websocket.py:_decode_api_key",
+      "type": "function",
+      "name": "_decode_api_key",
+      "filePath": "nanobot/nanobot/channels/websocket.py",
+      "lineRange": [
+        311,
+        316
+      ],
+      "summary": "函数 _decode_api_key 位于 websocket.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/nanobot/channels/websocket.py:_is_localhost",
+      "type": "function",
+      "name": "_is_localhost",
+      "filePath": "nanobot/nanobot/channels/websocket.py",
+      "lineRange": [
+        319,
+        330
+      ],
+      "summary": "函数 _is_localhost 位于 websocket.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/nanobot/channels/websocket.py:_http_response",
+      "type": "function",
+      "name": "_http_response",
+      "filePath": "nanobot/nanobot/channels/websocket.py",
+      "lineRange": [
+        333,
+        349
+      ],
+      "summary": "函数 _http_response 位于 websocket.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/nanobot/channels/websocket.py:_http_error",
+      "type": "function",
+      "name": "_http_error",
+      "filePath": "nanobot/nanobot/channels/websocket.py",
+      "lineRange": [
+        352,
+        354
+      ],
+      "summary": "函数 _http_error 位于 websocket.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/nanobot/channels/websocket.py:_bearer_token",
+      "type": "function",
+      "name": "_bearer_token",
+      "filePath": "nanobot/nanobot/channels/websocket.py",
+      "lineRange": [
+        357,
+        362
+      ],
+      "summary": "函数 _bearer_token 位于 websocket.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/nanobot/channels/websocket.py:_is_websocket_upgrade",
+      "type": "function",
+      "name": "_is_websocket_upgrade",
+      "filePath": "nanobot/nanobot/channels/websocket.py",
+      "lineRange": [
+        365,
+        373
+      ],
+      "summary": "函数 _is_websocket_upgrade 位于 websocket.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/nanobot/channels/websocket.py:_b64url_encode",
+      "type": "function",
+      "name": "_b64url_encode",
+      "filePath": "nanobot/nanobot/channels/websocket.py",
+      "lineRange": [
+        376,
+        378
+      ],
+      "summary": "函数 _b64url_encode 位于 websocket.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/nanobot/channels/websocket.py:_b64url_decode",
+      "type": "function",
+      "name": "_b64url_decode",
+      "filePath": "nanobot/nanobot/channels/websocket.py",
+      "lineRange": [
+        381,
+        384
+      ],
+      "summary": "函数 _b64url_decode 位于 websocket.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/nanobot/channels/websocket.py:_issue_route_secret_matches",
+      "type": "function",
+      "name": "_issue_route_secret_matches",
+      "filePath": "nanobot/nanobot/channels/websocket.py",
+      "lineRange": [
+        402,
+        413
+      ],
+      "summary": "函数 _issue_route_secret_matches 位于 websocket.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:nanobot/nanobot/channels/websocket.py:WebSocketConfig",
+      "type": "class",
+      "name": "WebSocketConfig",
+      "filePath": "nanobot/nanobot/channels/websocket.py",
+      "lineRange": [
+        66,
+        141
+      ],
+      "summary": "类 WebSocketConfig 位于 websocket.py，由结构提取结果识别。",
+      "tags": [
+        "class",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:nanobot/nanobot/channels/websocket.py:WebSocketChannel",
+      "type": "class",
+      "name": "WebSocketChannel",
+      "filePath": "nanobot/nanobot/channels/websocket.py",
+      "lineRange": [
+        416,
+        1520
+      ],
+      "summary": "类 WebSocketChannel 位于 websocket.py，由结构提取结果识别。",
+      "tags": [
+        "class",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:nanobot/nanobot/channels/wecom.py",
+      "type": "file",
+      "name": "wecom.py",
+      "filePath": "nanobot/nanobot/channels/wecom.py",
+      "summary": "wecom.py 是 code 文件，包含 2 个函数，包含 2 个类，引用 5 个内部或外部依赖，在项目路径 nanobot/nanobot/channels/wecom.py 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "python"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:nanobot/nanobot/channels/wecom.py:_sanitize_filename",
+      "type": "function",
+      "name": "_sanitize_filename",
+      "filePath": "nanobot/nanobot/channels/wecom.py",
+      "lineRange": [
+        30,
+        35
+      ],
+      "summary": "函数 _sanitize_filename 位于 wecom.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/nanobot/channels/wecom.py:_guess_wecom_media_type",
+      "type": "function",
+      "name": "_guess_wecom_media_type",
+      "filePath": "nanobot/nanobot/channels/wecom.py",
+      "lineRange": [
+        43,
+        52
+      ],
+      "summary": "函数 _guess_wecom_media_type 位于 wecom.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:nanobot/nanobot/channels/wecom.py:WecomConfig",
+      "type": "class",
+      "name": "WecomConfig",
+      "filePath": "nanobot/nanobot/channels/wecom.py",
+      "lineRange": [
+        54,
+        61
+      ],
+      "summary": "类 WecomConfig 位于 wecom.py，由结构提取结果识别。",
+      "tags": [
+        "class",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:nanobot/nanobot/channels/wecom.py:WecomChannel",
+      "type": "class",
+      "name": "WecomChannel",
+      "filePath": "nanobot/nanobot/channels/wecom.py",
+      "lineRange": [
+        73,
+        554
+      ],
+      "summary": "类 WecomChannel 位于 wecom.py，由结构提取结果识别。",
+      "tags": [
+        "class",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:nanobot/nanobot/channels/weixin.py",
+      "type": "file",
+      "name": "weixin.py",
+      "filePath": "nanobot/nanobot/channels/weixin.py",
+      "summary": "weixin.py 是 code 文件，包含 7 个函数，包含 2 个类，引用 6 个内部或外部依赖，在项目路径 nanobot/nanobot/channels/weixin.py 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "python"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:nanobot/nanobot/channels/weixin.py:_build_client_version",
+      "type": "function",
+      "name": "_build_client_version",
+      "filePath": "nanobot/nanobot/channels/weixin.py",
+      "lineRange": [
+        61,
+        74
+      ],
+      "summary": "函数 _build_client_version 位于 weixin.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/nanobot/channels/weixin.py:_has_downloadable_media_locator",
+      "type": "function",
+      "name": "_has_downloadable_media_locator",
+      "filePath": "nanobot/nanobot/channels/weixin.py",
+      "lineRange": [
+        110,
+        113
+      ],
+      "summary": "函数 _has_downloadable_media_locator 位于 weixin.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/nanobot/channels/weixin.py:_parse_aes_key",
+      "type": "function",
+      "name": "_parse_aes_key",
+      "filePath": "nanobot/nanobot/channels/weixin.py",
+      "lineRange": [
+        1286,
+        1305
+      ],
+      "summary": "函数 _parse_aes_key 位于 weixin.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/nanobot/channels/weixin.py:_encrypt_aes_ecb",
+      "type": "function",
+      "name": "_encrypt_aes_ecb",
+      "filePath": "nanobot/nanobot/channels/weixin.py",
+      "lineRange": [
+        1308,
+        1334
+      ],
+      "summary": "函数 _encrypt_aes_ecb 位于 weixin.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:nanobot/nanobot/channels/weixin.py:_decrypt_aes_ecb",
+      "type": "function",
+      "name": "_decrypt_aes_ecb",
+      "filePath": "nanobot/nanobot/channels/weixin.py",
+      "lineRange": [
+        1337,
+        1367
+      ],
+      "summary": "函数 _decrypt_aes_ecb 位于 weixin.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:nanobot/nanobot/channels/weixin.py:_pkcs7_unpad_safe",
+      "type": "function",
+      "name": "_pkcs7_unpad_safe",
+      "filePath": "nanobot/nanobot/channels/weixin.py",
+      "lineRange": [
+        1370,
+        1381
+      ],
+      "summary": "函数 _pkcs7_unpad_safe 位于 weixin.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/nanobot/channels/weixin.py:_ext_for_type",
+      "type": "function",
+      "name": "_ext_for_type",
+      "filePath": "nanobot/nanobot/channels/weixin.py",
+      "lineRange": [
+        1384,
+        1390
+      ],
+      "summary": "函数 _ext_for_type 位于 weixin.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:nanobot/nanobot/channels/weixin.py:WeixinConfig",
+      "type": "class",
+      "name": "WeixinConfig",
+      "filePath": "nanobot/nanobot/channels/weixin.py",
+      "lineRange": [
+        116,
+        126
+      ],
+      "summary": "类 WeixinConfig 位于 weixin.py，由结构提取结果识别。",
+      "tags": [
+        "class",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:nanobot/nanobot/channels/weixin.py:WeixinChannel",
+      "type": "class",
+      "name": "WeixinChannel",
+      "filePath": "nanobot/nanobot/channels/weixin.py",
+      "lineRange": [
+        129,
+        1278
+      ],
+      "summary": "类 WeixinChannel 位于 weixin.py，由结构提取结果识别。",
+      "tags": [
+        "class",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:nanobot/nanobot/channels/whatsapp.py",
+      "type": "file",
+      "name": "whatsapp.py",
+      "filePath": "nanobot/nanobot/channels/whatsapp.py",
+      "summary": "whatsapp.py 是 code 文件，包含 3 个函数，包含 2 个类，引用 4 个内部或外部依赖，在项目路径 nanobot/nanobot/channels/whatsapp.py 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "python"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:nanobot/nanobot/channels/whatsapp.py:_bridge_token_path",
+      "type": "function",
+      "name": "_bridge_token_path",
+      "filePath": "nanobot/nanobot/channels/whatsapp.py",
+      "lineRange": [
+        35,
+        38
+      ],
+      "summary": "函数 _bridge_token_path 位于 whatsapp.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/nanobot/channels/whatsapp.py:_load_or_create_bridge_token",
+      "type": "function",
+      "name": "_load_or_create_bridge_token",
+      "filePath": "nanobot/nanobot/channels/whatsapp.py",
+      "lineRange": [
+        41,
+        53
+      ],
+      "summary": "函数 _load_or_create_bridge_token 位于 whatsapp.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/nanobot/channels/whatsapp.py:_ensure_bridge_setup",
+      "type": "function",
+      "name": "_ensure_bridge_setup",
+      "filePath": "nanobot/nanobot/channels/whatsapp.py",
+      "lineRange": [
+        312,
+        382
+      ],
+      "summary": "函数 _ensure_bridge_setup 位于 whatsapp.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:nanobot/nanobot/channels/whatsapp.py:WhatsAppConfig",
+      "type": "class",
+      "name": "WhatsAppConfig",
+      "filePath": "nanobot/nanobot/channels/whatsapp.py",
+      "lineRange": [
+        25,
+        32
+      ],
+      "summary": "类 WhatsAppConfig 位于 whatsapp.py，由结构提取结果识别。",
+      "tags": [
+        "class",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:nanobot/nanobot/channels/whatsapp.py:WhatsAppChannel",
+      "type": "class",
+      "name": "WhatsAppChannel",
+      "filePath": "nanobot/nanobot/channels/whatsapp.py",
+      "lineRange": [
+        56,
+        309
+      ],
+      "summary": "类 WhatsAppChannel 位于 whatsapp.py，由结构提取结果识别。",
+      "tags": [
+        "class",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "complex"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:nanobot/nanobot/channels/slack.py",
+      "target": "class:nanobot/nanobot/channels/slack.py:SlackDMConfig",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/slack.py",
+      "target": "class:nanobot/nanobot/channels/slack.py:SlackConfig",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/slack.py",
+      "target": "class:nanobot/nanobot/channels/slack.py:SlackChannel",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/slack.py",
+      "target": "file:nanobot/nanobot/bus/events.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/slack.py",
+      "target": "file:nanobot/nanobot/bus/queue.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/slack.py",
+      "target": "file:nanobot/nanobot/channels/base.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/slack.py",
+      "target": "file:nanobot/nanobot/config/paths.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/slack.py",
+      "target": "file:nanobot/nanobot/config/schema.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/slack.py",
+      "target": "file:nanobot/nanobot/utils/helpers.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/telegram.py",
+      "target": "function:nanobot/nanobot/channels/telegram.py:_escape_telegram_html",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/telegram.py",
+      "target": "function:nanobot/nanobot/channels/telegram.py:_tool_hint_to_telegram_blockquote",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/telegram.py",
+      "target": "function:nanobot/nanobot/channels/telegram.py:_strip_md",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/telegram.py",
+      "target": "function:nanobot/nanobot/channels/telegram.py:_strip_md_block",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/telegram.py",
+      "target": "function:nanobot/nanobot/channels/telegram.py:_render_table_box",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/telegram.py",
+      "target": "function:nanobot/nanobot/channels/telegram.py:_markdown_to_telegram_html",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/telegram.py",
+      "target": "class:nanobot/nanobot/channels/telegram.py:_StreamBuf",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/telegram.py",
+      "target": "class:nanobot/nanobot/channels/telegram.py:TelegramConfig",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/telegram.py",
+      "target": "class:nanobot/nanobot/channels/telegram.py:TelegramChannel",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/telegram.py",
+      "target": "file:nanobot/nanobot/bus/events.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/telegram.py",
+      "target": "file:nanobot/nanobot/bus/queue.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/telegram.py",
+      "target": "file:nanobot/nanobot/channels/base.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/telegram.py",
+      "target": "file:nanobot/nanobot/command/builtin.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/telegram.py",
+      "target": "file:nanobot/nanobot/config/paths.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/telegram.py",
+      "target": "file:nanobot/nanobot/config/schema.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/telegram.py",
+      "target": "file:nanobot/nanobot/security/network.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/telegram.py",
+      "target": "file:nanobot/nanobot/utils/helpers.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/websocket.py",
+      "target": "function:nanobot/nanobot/channels/websocket.py:_strip_trailing_slash",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/websocket.py",
+      "target": "function:nanobot/nanobot/channels/websocket.py:_normalize_config_path",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/websocket.py",
+      "target": "function:nanobot/nanobot/channels/websocket.py:_append_buttons_as_text",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/websocket.py",
+      "target": "function:nanobot/nanobot/channels/websocket.py:_http_json_response",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/websocket.py",
+      "target": "function:nanobot/nanobot/channels/websocket.py:_read_webui_model_name",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/websocket.py",
+      "target": "function:nanobot/nanobot/channels/websocket.py:_parse_request_path",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/websocket.py",
+      "target": "function:nanobot/nanobot/channels/websocket.py:_normalize_http_path",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/websocket.py",
+      "target": "function:nanobot/nanobot/channels/websocket.py:_parse_query",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/websocket.py",
+      "target": "function:nanobot/nanobot/channels/websocket.py:_query_first",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/websocket.py",
+      "target": "function:nanobot/nanobot/channels/websocket.py:_mask_secret_hint",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/websocket.py",
+      "target": "function:nanobot/nanobot/channels/websocket.py:_parse_inbound_payload",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/websocket.py",
+      "target": "function:nanobot/nanobot/channels/websocket.py:_is_valid_chat_id",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/websocket.py",
+      "target": "function:nanobot/nanobot/channels/websocket.py:_parse_envelope",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/websocket.py",
+      "target": "function:nanobot/nanobot/channels/websocket.py:_extract_data_url_mime",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/websocket.py",
+      "target": "function:nanobot/nanobot/channels/websocket.py:_decode_api_key",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/websocket.py",
+      "target": "function:nanobot/nanobot/channels/websocket.py:_is_localhost",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/websocket.py",
+      "target": "function:nanobot/nanobot/channels/websocket.py:_http_response",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/websocket.py",
+      "target": "function:nanobot/nanobot/channels/websocket.py:_http_error",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/websocket.py",
+      "target": "function:nanobot/nanobot/channels/websocket.py:_bearer_token",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/websocket.py",
+      "target": "function:nanobot/nanobot/channels/websocket.py:_is_websocket_upgrade",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/websocket.py",
+      "target": "function:nanobot/nanobot/channels/websocket.py:_b64url_encode",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/websocket.py",
+      "target": "function:nanobot/nanobot/channels/websocket.py:_b64url_decode",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/websocket.py",
+      "target": "function:nanobot/nanobot/channels/websocket.py:_issue_route_secret_matches",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/websocket.py",
+      "target": "class:nanobot/nanobot/channels/websocket.py:WebSocketConfig",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/websocket.py",
+      "target": "class:nanobot/nanobot/channels/websocket.py:WebSocketChannel",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/websocket.py",
+      "target": "file:nanobot/nanobot/bus/events.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/websocket.py",
+      "target": "file:nanobot/nanobot/bus/queue.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/websocket.py",
+      "target": "file:nanobot/nanobot/channels/base.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/websocket.py",
+      "target": "file:nanobot/nanobot/command/builtin.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/websocket.py",
+      "target": "file:nanobot/nanobot/config/paths.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/websocket.py",
+      "target": "file:nanobot/nanobot/config/schema.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/websocket.py",
+      "target": "file:nanobot/nanobot/utils/helpers.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/websocket.py",
+      "target": "file:nanobot/nanobot/utils/media_decode.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/wecom.py",
+      "target": "function:nanobot/nanobot/channels/wecom.py:_sanitize_filename",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/wecom.py",
+      "target": "function:nanobot/nanobot/channels/wecom.py:_guess_wecom_media_type",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/wecom.py",
+      "target": "class:nanobot/nanobot/channels/wecom.py:WecomConfig",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/wecom.py",
+      "target": "class:nanobot/nanobot/channels/wecom.py:WecomChannel",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/wecom.py",
+      "target": "file:nanobot/nanobot/bus/events.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/wecom.py",
+      "target": "file:nanobot/nanobot/bus/queue.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/wecom.py",
+      "target": "file:nanobot/nanobot/channels/base.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/wecom.py",
+      "target": "file:nanobot/nanobot/config/paths.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/wecom.py",
+      "target": "file:nanobot/nanobot/config/schema.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/weixin.py",
+      "target": "function:nanobot/nanobot/channels/weixin.py:_build_client_version",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/weixin.py",
+      "target": "function:nanobot/nanobot/channels/weixin.py:_has_downloadable_media_locator",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/weixin.py",
+      "target": "function:nanobot/nanobot/channels/weixin.py:_parse_aes_key",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/weixin.py",
+      "target": "function:nanobot/nanobot/channels/weixin.py:_encrypt_aes_ecb",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/weixin.py",
+      "target": "function:nanobot/nanobot/channels/weixin.py:_decrypt_aes_ecb",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/weixin.py",
+      "target": "function:nanobot/nanobot/channels/weixin.py:_pkcs7_unpad_safe",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/weixin.py",
+      "target": "function:nanobot/nanobot/channels/weixin.py:_ext_for_type",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/weixin.py",
+      "target": "class:nanobot/nanobot/channels/weixin.py:WeixinConfig",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/weixin.py",
+      "target": "class:nanobot/nanobot/channels/weixin.py:WeixinChannel",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/weixin.py",
+      "target": "file:nanobot/nanobot/bus/events.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/weixin.py",
+      "target": "file:nanobot/nanobot/bus/queue.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/weixin.py",
+      "target": "file:nanobot/nanobot/channels/base.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/weixin.py",
+      "target": "file:nanobot/nanobot/config/paths.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/weixin.py",
+      "target": "file:nanobot/nanobot/config/schema.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/weixin.py",
+      "target": "file:nanobot/nanobot/utils/helpers.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/whatsapp.py",
+      "target": "function:nanobot/nanobot/channels/whatsapp.py:_bridge_token_path",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/whatsapp.py",
+      "target": "function:nanobot/nanobot/channels/whatsapp.py:_load_or_create_bridge_token",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/whatsapp.py",
+      "target": "function:nanobot/nanobot/channels/whatsapp.py:_ensure_bridge_setup",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/whatsapp.py",
+      "target": "class:nanobot/nanobot/channels/whatsapp.py:WhatsAppConfig",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/whatsapp.py",
+      "target": "class:nanobot/nanobot/channels/whatsapp.py:WhatsAppChannel",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/whatsapp.py",
+      "target": "file:nanobot/nanobot/bus/events.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/whatsapp.py",
+      "target": "file:nanobot/nanobot/bus/queue.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/whatsapp.py",
+      "target": "file:nanobot/nanobot/channels/base.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/nanobot/channels/whatsapp.py",
+      "target": "file:nanobot/nanobot/config/schema.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    }
+  ]
+}

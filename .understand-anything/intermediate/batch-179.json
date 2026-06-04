@@ -1,0 +1,50 @@
+{
+  "nodes": [
+    {
+      "id": "document:AuBot/packages/model-driver-mediapipe/AGENTS.md",
+      "type": "document",
+      "name": "AGENTS.md",
+      "filePath": "AuBot/packages/model-driver-mediapipe/AGENTS.md",
+      "summary": "记录 model-driver-mediapipe 模块的代理协作规则、工程约定和执行注意事项，指导自动化代码分析与修改。",
+      "tags": [
+        "documentation",
+        "agent-guide",
+        "workflow",
+        "standards"
+      ],
+      "complexity": "simple",
+      "languageNotes": "结构提取识别到 5 个顶层配置项或文档章节。"
+    },
+    {
+      "id": "config:AuBot/packages/model-driver-mediapipe/package.json",
+      "type": "config",
+      "name": "package.json",
+      "filePath": "AuBot/packages/model-driver-mediapipe/package.json",
+      "summary": "定义 model-driver-mediapipe 的包元数据、脚本和依赖配置，是该工作区构建、测试与发布流程的入口。",
+      "tags": [
+        "configuration",
+        "package-manager",
+        "build-system",
+        "workspace"
+      ],
+      "complexity": "simple",
+      "languageNotes": "结构提取识别到 11 个顶层配置项或文档章节。"
+    },
+    {
+      "id": "config:AuBot/packages/model-driver-mediapipe/tsconfig.json",
+      "type": "config",
+      "name": "tsconfig.json",
+      "filePath": "AuBot/packages/model-driver-mediapipe/tsconfig.json",
+      "summary": "配置 model-driver-mediapipe 的 TypeScript 编译选项、路径解析和包含范围，支撑该工作区的类型检查。",
+      "tags": [
+        "configuration",
+        "typescript",
+        "type-checking",
+        "build-system"
+      ],
+      "complexity": "simple",
+      "languageNotes": "结构提取识别到 3 个顶层配置项或文档章节。"
+    }
+  ],
+  "edges": []
+}

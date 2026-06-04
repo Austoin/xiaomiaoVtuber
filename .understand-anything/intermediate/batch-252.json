@@ -1,0 +1,380 @@
+{
+  "nodes": [
+    {
+      "id": "config:AuBot/packages/stage-ui-three/tsconfig.json",
+      "type": "config",
+      "name": "tsconfig.json",
+      "filePath": "AuBot/packages/stage-ui-three/tsconfig.json",
+      "summary": "AuBot/packages/stage-ui-three/tsconfig.json 配置 TypeScript 编译选项、路径包含范围与 Vue 类型支持，约束该包的类型检查方式。",
+      "tags": [
+        "配置",
+        "typescript",
+        "构建系统"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/env.d.ts",
+      "type": "file",
+      "name": "env.d.ts",
+      "filePath": "AuBot/packages/stage-ui/env.d.ts",
+      "summary": "env.d.ts 提供 TypeScript 环境声明，使该包能识别全局类型或构建工具注入的类型信息。",
+      "tags": [
+        "类型定义",
+        "typescript",
+        "声明文件"
+      ],
+      "complexity": "simple",
+      "languageNotes": "typescript 文件按提取结果识别导出、函数和类结构。"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/histoire.config.ts",
+      "type": "file",
+      "name": "histoire.config.ts",
+      "filePath": "AuBot/packages/stage-ui/histoire.config.ts",
+      "summary": "histoire.config.ts 是 AuBot/packages/stage-ui 下的代码模块，参与该功能区域的类型、配置或前端逻辑组织。",
+      "tags": [
+        "代码",
+        "模块",
+        "前端逻辑"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "typescript 文件按提取结果识别导出、函数和类结构。"
+    },
+    {
+      "id": "config:AuBot/packages/stage-ui/package.json",
+      "type": "config",
+      "name": "package.json",
+      "filePath": "AuBot/packages/stage-ui/package.json",
+      "summary": "AuBot/packages/stage-ui/package.json 定义该包的依赖、脚本与发布元数据，支撑本模块的构建、测试和运行约定。",
+      "tags": [
+        "配置",
+        "依赖管理",
+        "构建系统"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/public/apple-touch-icon.avif",
+      "type": "file",
+      "name": "apple-touch-icon.avif",
+      "filePath": "AuBot/packages/stage-ui/public/apple-touch-icon.avif",
+      "summary": "apple-touch-icon.avif 是 AuBot/packages/stage-ui/public 下的静态图像资源，用于前端界面、PWA 图标或品牌视觉呈现。",
+      "tags": [
+        "静态资源",
+        "图标",
+        "前端资源"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/public/maskable_icon_x192.avif",
+      "type": "file",
+      "name": "maskable_icon_x192.avif",
+      "filePath": "AuBot/packages/stage-ui/public/maskable_icon_x192.avif",
+      "summary": "maskable_icon_x192.avif 是 AuBot/packages/stage-ui/public 下的静态图像资源，用于前端界面、PWA 图标或品牌视觉呈现。",
+      "tags": [
+        "静态资源",
+        "图标",
+        "前端资源"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/public/maskable_icon_x512.avif",
+      "type": "file",
+      "name": "maskable_icon_x512.avif",
+      "filePath": "AuBot/packages/stage-ui/public/maskable_icon_x512.avif",
+      "summary": "maskable_icon_x512.avif 是 AuBot/packages/stage-ui/public 下的静态图像资源，用于前端界面、PWA 图标或品牌视觉呈现。",
+      "tags": [
+        "静态资源",
+        "图标",
+        "前端资源"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/public/web-app-manifest-192x192.avif",
+      "type": "file",
+      "name": "web-app-manifest-192x192.avif",
+      "filePath": "AuBot/packages/stage-ui/public/web-app-manifest-192x192.avif",
+      "summary": "web-app-manifest-192x192.avif 是 AuBot/packages/stage-ui/public 下的静态图像资源，用于前端界面、PWA 图标或品牌视觉呈现。",
+      "tags": [
+        "静态资源",
+        "图标",
+        "前端资源"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/public/web-app-manifest-512x512.avif",
+      "type": "file",
+      "name": "web-app-manifest-512x512.avif",
+      "filePath": "AuBot/packages/stage-ui/public/web-app-manifest-512x512.avif",
+      "summary": "web-app-manifest-512x512.avif 是 AuBot/packages/stage-ui/public 下的静态图像资源，用于前端界面、PWA 图标或品牌视觉呈现。",
+      "tags": [
+        "静态资源",
+        "图标",
+        "前端资源"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/src/components/animations/Replayable.vue",
+      "type": "file",
+      "name": "Replayable.vue",
+      "filePath": "AuBot/packages/stage-ui/src/components/animations/Replayable.vue",
+      "summary": "Replayable.vue 实现 AuBot/packages/stage-ui/src/components/animations 下的 Vue 单文件组件，承担界面渲染、交互绑定或局部状态展示职责。",
+      "tags": [
+        "vue",
+        "组件",
+        "用户界面"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "vue 文件按提取结果识别导出、函数和类结构。"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/src/components/animations/use-replayable.ts",
+      "type": "file",
+      "name": "use-replayable.ts",
+      "filePath": "AuBot/packages/stage-ui/src/components/animations/use-replayable.ts",
+      "summary": "use-replayable.ts 封装可复用的组合式逻辑，供 Vue 组件或 store 共享状态、事件或副作用处理。",
+      "tags": [
+        "composable",
+        "状态逻辑",
+        "工具函数"
+      ],
+      "complexity": "simple",
+      "languageNotes": "typescript 文件按提取结果识别导出、函数和类结构。"
+    },
+    {
+      "id": "function:AuBot/packages/stage-ui/src/components/animations/use-replayable.ts:useReplayable",
+      "type": "function",
+      "name": "useReplayable",
+      "filePath": "AuBot/packages/stage-ui/src/components/animations/use-replayable.ts",
+      "lineRange": [
+        8,
+        38
+      ],
+      "summary": "useReplayable 封装 use-replayable.ts 中的核心逻辑，负责该模块对外暴露或内部复用的一段明确行为。",
+      "tags": [
+        "composable",
+        "状态逻辑",
+        "hook"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/src/components/auth/index.ts",
+      "type": "file",
+      "name": "index.ts",
+      "filePath": "AuBot/packages/stage-ui/src/components/auth/index.ts",
+      "summary": "index.ts 作为 AuBot/packages/stage-ui/src/components/auth 的模块入口，汇总或转发该目录的公共导出。",
+      "tags": [
+        "入口点",
+        "barrel",
+        "模块导出"
+      ],
+      "complexity": "simple",
+      "languageNotes": "typescript 文件按提取结果识别导出、函数和类结构。"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/src/components/auth/SignInPanel.vue",
+      "type": "file",
+      "name": "SignInPanel.vue",
+      "filePath": "AuBot/packages/stage-ui/src/components/auth/SignInPanel.vue",
+      "summary": "SignInPanel.vue 实现 AuBot/packages/stage-ui/src/components/auth 下的 Vue 单文件组件，承担界面渲染、交互绑定或局部状态展示职责。",
+      "tags": [
+        "vue",
+        "组件",
+        "用户界面"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "vue 文件按提取结果识别导出、函数和类结构。"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/src/components/data-pane/color-picker.vue",
+      "type": "file",
+      "name": "color-picker.vue",
+      "filePath": "AuBot/packages/stage-ui/src/components/data-pane/color-picker.vue",
+      "summary": "color-picker.vue 实现 AuBot/packages/stage-ui/src/components/data-pane 下的 Vue 单文件组件，承担界面渲染、交互绑定或局部状态展示职责。",
+      "tags": [
+        "vue",
+        "组件",
+        "用户界面"
+      ],
+      "complexity": "complex",
+      "languageNotes": "vue 文件按提取结果识别导出、函数和类结构。"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/src/components/data-pane/container.vue",
+      "type": "file",
+      "name": "container.vue",
+      "filePath": "AuBot/packages/stage-ui/src/components/data-pane/container.vue",
+      "summary": "container.vue 实现 AuBot/packages/stage-ui/src/components/data-pane 下的 Vue 单文件组件，承担界面渲染、交互绑定或局部状态展示职责。",
+      "tags": [
+        "vue",
+        "组件",
+        "用户界面"
+      ],
+      "complexity": "simple",
+      "languageNotes": "vue 文件按提取结果识别导出、函数和类结构。"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/src/components/data-pane/index.story.vue",
+      "type": "file",
+      "name": "index.story.vue",
+      "filePath": "AuBot/packages/stage-ui/src/components/data-pane/index.story.vue",
+      "summary": "index.story.vue 是 AuBot/packages/stage-ui/src/components/data-pane 的 Histoire 组件示例，用于展示交互状态并辅助视觉回归。",
+      "tags": [
+        "组件示例",
+        "histoire",
+        "开发体验"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "vue 文件按提取结果识别导出、函数和类结构。"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/src/components/data-pane/index.ts",
+      "type": "file",
+      "name": "index.ts",
+      "filePath": "AuBot/packages/stage-ui/src/components/data-pane/index.ts",
+      "summary": "index.ts 作为 AuBot/packages/stage-ui/src/components/data-pane 的模块入口，汇总或转发该目录的公共导出。",
+      "tags": [
+        "入口点",
+        "barrel",
+        "模块导出"
+      ],
+      "complexity": "simple",
+      "languageNotes": "typescript 文件按提取结果识别导出、函数和类结构。"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/src/components/data-pane/pane.vue",
+      "type": "file",
+      "name": "pane.vue",
+      "filePath": "AuBot/packages/stage-ui/src/components/data-pane/pane.vue",
+      "summary": "pane.vue 实现 AuBot/packages/stage-ui/src/components/data-pane 下的 Vue 单文件组件，承担界面渲染、交互绑定或局部状态展示职责。",
+      "tags": [
+        "vue",
+        "组件",
+        "用户界面"
+      ],
+      "complexity": "simple",
+      "languageNotes": "vue 文件按提取结果识别导出、函数和类结构。"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/src/components/data-pane/property-color.vue",
+      "type": "file",
+      "name": "property-color.vue",
+      "filePath": "AuBot/packages/stage-ui/src/components/data-pane/property-color.vue",
+      "summary": "property-color.vue 实现 AuBot/packages/stage-ui/src/components/data-pane 下的 Vue 单文件组件，承担界面渲染、交互绑定或局部状态展示职责。",
+      "tags": [
+        "vue",
+        "组件",
+        "用户界面"
+      ],
+      "complexity": "simple",
+      "languageNotes": "vue 文件按提取结果识别导出、函数和类结构。"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/src/components/data-pane/property-number.story.vue",
+      "type": "file",
+      "name": "property-number.story.vue",
+      "filePath": "AuBot/packages/stage-ui/src/components/data-pane/property-number.story.vue",
+      "summary": "property-number.story.vue 是 AuBot/packages/stage-ui/src/components/data-pane 的 Histoire 组件示例，用于展示交互状态并辅助视觉回归。",
+      "tags": [
+        "组件示例",
+        "histoire",
+        "开发体验"
+      ],
+      "complexity": "simple",
+      "languageNotes": "vue 文件按提取结果识别导出、函数和类结构。"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/src/components/data-pane/property-number.vue",
+      "type": "file",
+      "name": "property-number.vue",
+      "filePath": "AuBot/packages/stage-ui/src/components/data-pane/property-number.vue",
+      "summary": "property-number.vue 实现 AuBot/packages/stage-ui/src/components/data-pane 下的 Vue 单文件组件，承担界面渲染、交互绑定或局部状态展示职责。",
+      "tags": [
+        "vue",
+        "组件",
+        "用户界面"
+      ],
+      "complexity": "complex",
+      "languageNotes": "vue 文件按提取结果识别导出、函数和类结构。"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/src/components/data-pane/property-point.vue",
+      "type": "file",
+      "name": "property-point.vue",
+      "filePath": "AuBot/packages/stage-ui/src/components/data-pane/property-point.vue",
+      "summary": "property-point.vue 实现 AuBot/packages/stage-ui/src/components/data-pane 下的 Vue 单文件组件，承担界面渲染、交互绑定或局部状态展示职责。",
+      "tags": [
+        "vue",
+        "组件",
+        "用户界面"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "vue 文件按提取结果识别导出、函数和类结构。"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/src/components/form/checkbox/checkbox.story.vue",
+      "type": "file",
+      "name": "checkbox.story.vue",
+      "filePath": "AuBot/packages/stage-ui/src/components/form/checkbox/checkbox.story.vue",
+      "summary": "checkbox.story.vue 是 AuBot/packages/stage-ui/src/components/form/checkbox 的 Histoire 组件示例，用于展示交互状态并辅助视觉回归。",
+      "tags": [
+        "组件示例",
+        "histoire",
+        "开发体验"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "vue 文件按提取结果识别导出、函数和类结构。"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/src/components/form/combobox-select/combobox-select.story.vue",
+      "type": "file",
+      "name": "combobox-select.story.vue",
+      "filePath": "AuBot/packages/stage-ui/src/components/form/combobox-select/combobox-select.story.vue",
+      "summary": "combobox-select.story.vue 是 AuBot/packages/stage-ui/src/components/form/combobox-select 的 Histoire 组件示例，用于展示交互状态并辅助视觉回归。",
+      "tags": [
+        "组件示例",
+        "histoire",
+        "开发体验"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "vue 文件按提取结果识别导出、函数和类结构。"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/src/components/form/field/field-checkbox.story.vue",
+      "type": "file",
+      "name": "field-checkbox.story.vue",
+      "filePath": "AuBot/packages/stage-ui/src/components/form/field/field-checkbox.story.vue",
+      "summary": "field-checkbox.story.vue 是 AuBot/packages/stage-ui/src/components/form/field 的 Histoire 组件示例，用于展示交互状态并辅助视觉回归。",
+      "tags": [
+        "组件示例",
+        "histoire",
+        "开发体验"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "vue 文件按提取结果识别导出、函数和类结构。"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:AuBot/packages/stage-ui/src/components/animations/use-replayable.ts",
+      "target": "function:AuBot/packages/stage-ui/src/components/animations/use-replayable.ts:useReplayable",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/components/animations/use-replayable.ts",
+      "target": "function:AuBot/packages/stage-ui/src/components/animations/use-replayable.ts:useReplayable",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    }
+  ]
+}

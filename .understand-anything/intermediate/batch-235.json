@@ -1,0 +1,376 @@
+{
+  "nodes": [
+    {
+      "id": "file:AuBot/packages/font-departure-mono/src/index.ts",
+      "type": "file",
+      "name": "index.ts",
+      "filePath": "AuBot/packages/font-departure-mono/src/index.ts",
+      "summary": "代码文件 index.ts 位于 AuBot\\packages\\font-departure-mono\\src，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "入口点",
+        "barrel",
+        "导出"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:AuBot/packages/font-departure-mono/tsconfig.json",
+      "type": "config",
+      "name": "tsconfig.json",
+      "filePath": "AuBot/packages/font-departure-mono/tsconfig.json",
+      "summary": "配置文件 tsconfig.json 管理 AuBot\\packages\\font-departure-mono 相关的工具链、构建或运行参数，是项目环境约定的一部分。",
+      "tags": [
+        "配置",
+        "项目设置",
+        "工具链"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/font-departure-mono/tsdown.config.ts",
+      "type": "file",
+      "name": "tsdown.config.ts",
+      "filePath": "AuBot/packages/font-departure-mono/tsdown.config.ts",
+      "summary": "代码文件 tsdown.config.ts 位于 AuBot\\packages\\font-departure-mono，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "配置",
+        "运行时",
+        "设置"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:AuBot/packages/font-xiaolai/package.json",
+      "type": "config",
+      "name": "package.json",
+      "filePath": "AuBot/packages/font-xiaolai/package.json",
+      "summary": "配置文件 package.json 管理 AuBot\\packages\\font-xiaolai 相关的工具链、构建或运行参数，是项目环境约定的一部分。",
+      "tags": [
+        "配置",
+        "项目设置",
+        "工具链"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/font-xiaolai/src/index.css",
+      "type": "file",
+      "name": "index.css",
+      "filePath": "AuBot/packages/font-xiaolai/src/index.css",
+      "summary": "标记文件 index.css 提供 AuBot\\packages\\font-xiaolai\\src 下的页面结构或样式入口，服务于前端展示。",
+      "tags": [
+        "入口点",
+        "barrel",
+        "导出"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/font-xiaolai/src/index.ts",
+      "type": "file",
+      "name": "index.ts",
+      "filePath": "AuBot/packages/font-xiaolai/src/index.ts",
+      "summary": "代码文件 index.ts 位于 AuBot\\packages\\font-xiaolai\\src，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "入口点",
+        "barrel",
+        "导出"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:AuBot/packages/font-xiaolai/tsconfig.json",
+      "type": "config",
+      "name": "tsconfig.json",
+      "filePath": "AuBot/packages/font-xiaolai/tsconfig.json",
+      "summary": "配置文件 tsconfig.json 管理 AuBot\\packages\\font-xiaolai 相关的工具链、构建或运行参数，是项目环境约定的一部分。",
+      "tags": [
+        "配置",
+        "项目设置",
+        "工具链"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/font-xiaolai/tsdown.config.ts",
+      "type": "file",
+      "name": "tsdown.config.ts",
+      "filePath": "AuBot/packages/font-xiaolai/tsdown.config.ts",
+      "summary": "代码文件 tsdown.config.ts 位于 AuBot\\packages\\font-xiaolai，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "配置",
+        "运行时",
+        "设置"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:AuBot/packages/i18n/package.json",
+      "type": "config",
+      "name": "package.json",
+      "filePath": "AuBot/packages/i18n/package.json",
+      "summary": "配置文件 package.json 管理 AuBot\\packages\\i18n 相关的工具链、构建或运行参数，是项目环境约定的一部分。",
+      "tags": [
+        "配置",
+        "项目设置",
+        "工具链"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:AuBot/packages/i18n/src/index.ts",
+      "type": "file",
+      "name": "index.ts",
+      "filePath": "AuBot/packages/i18n/src/index.ts",
+      "summary": "代码文件 index.ts 位于 AuBot\\packages\\i18n\\src，包含 1 个函数和 0 个类，承担该模块内的核心实现职责。",
+      "tags": [
+        "入口点",
+        "barrel",
+        "导出"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/packages/i18n/src/index.ts:resolveSupportedLocale",
+      "type": "function",
+      "name": "resolveSupportedLocale",
+      "filePath": "AuBot/packages/i18n/src/index.ts",
+      "lineRange": [
+        39,
+        49
+      ],
+      "summary": "函数 resolveSupportedLocale 实现 AuBot/packages/i18n/src/index.ts 中的关键逻辑，参与该模块的主要行为。",
+      "tags": [
+        "函数",
+        "模块逻辑",
+        "导出"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:AuBot/packages/i18n/src/locales/en/docs/theme.yaml",
+      "type": "config",
+      "name": "theme.yaml",
+      "filePath": "AuBot/packages/i18n/src/locales/en/docs/theme.yaml",
+      "summary": "配置文件 theme.yaml 管理 AuBot\\packages\\i18n\\src\\locales\\en\\docs 相关的工具链、构建或运行参数，是项目环境约定的一部分。",
+      "tags": [
+        "配置",
+        "项目设置",
+        "工具链"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:AuBot/packages/i18n/src/locales/en/docs/versions.yaml",
+      "type": "config",
+      "name": "versions.yaml",
+      "filePath": "AuBot/packages/i18n/src/locales/en/docs/versions.yaml",
+      "summary": "配置文件 versions.yaml 管理 AuBot\\packages\\i18n\\src\\locales\\en\\docs 相关的工具链、构建或运行参数，是项目环境约定的一部分。",
+      "tags": [
+        "配置",
+        "项目设置",
+        "工具链"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:AuBot/packages/i18n/src/locales/en/server/auth.yaml",
+      "type": "config",
+      "name": "auth.yaml",
+      "filePath": "AuBot/packages/i18n/src/locales/en/server/auth.yaml",
+      "summary": "配置文件 auth.yaml 管理 AuBot\\packages\\i18n\\src\\locales\\en\\server 相关的工具链、构建或运行参数，是项目环境约定的一部分。",
+      "tags": [
+        "配置",
+        "项目设置",
+        "工具链"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:AuBot/packages/i18n/src/locales/en/tamagotchi/electron/tray.yaml",
+      "type": "config",
+      "name": "tray.yaml",
+      "filePath": "AuBot/packages/i18n/src/locales/en/tamagotchi/electron/tray.yaml",
+      "summary": "配置文件 tray.yaml 管理 AuBot\\packages\\i18n\\src\\locales\\en\\tamagotchi\\electron 相关的工具链、构建或运行参数，是项目环境约定的一部分。",
+      "tags": [
+        "配置",
+        "项目设置",
+        "工具链"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:AuBot/packages/i18n/src/locales/en/tamagotchi/settings.yaml",
+      "type": "config",
+      "name": "settings.yaml",
+      "filePath": "AuBot/packages/i18n/src/locales/en/tamagotchi/settings.yaml",
+      "summary": "配置文件 settings.yaml 管理 AuBot\\packages\\i18n\\src\\locales\\en\\tamagotchi 相关的工具链、构建或运行参数，是项目环境约定的一部分。",
+      "tags": [
+        "配置",
+        "项目设置",
+        "工具链"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:AuBot/packages/i18n/src/locales/en/tamagotchi/stage.yaml",
+      "type": "config",
+      "name": "stage.yaml",
+      "filePath": "AuBot/packages/i18n/src/locales/en/tamagotchi/stage.yaml",
+      "summary": "配置文件 stage.yaml 管理 AuBot\\packages\\i18n\\src\\locales\\en\\tamagotchi 相关的工具链、构建或运行参数，是项目环境约定的一部分。",
+      "tags": [
+        "配置",
+        "项目设置",
+        "工具链"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:AuBot/packages/i18n/src/locales/es/docs/theme.yaml",
+      "type": "config",
+      "name": "theme.yaml",
+      "filePath": "AuBot/packages/i18n/src/locales/es/docs/theme.yaml",
+      "summary": "配置文件 theme.yaml 管理 AuBot\\packages\\i18n\\src\\locales\\es\\docs 相关的工具链、构建或运行参数，是项目环境约定的一部分。",
+      "tags": [
+        "配置",
+        "项目设置",
+        "工具链"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:AuBot/packages/i18n/src/locales/es/docs/versions.yaml",
+      "type": "config",
+      "name": "versions.yaml",
+      "filePath": "AuBot/packages/i18n/src/locales/es/docs/versions.yaml",
+      "summary": "配置文件 versions.yaml 管理 AuBot\\packages\\i18n\\src\\locales\\es\\docs 相关的工具链、构建或运行参数，是项目环境约定的一部分。",
+      "tags": [
+        "配置",
+        "项目设置",
+        "工具链"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:AuBot/packages/i18n/src/locales/es/server/auth.yaml",
+      "type": "config",
+      "name": "auth.yaml",
+      "filePath": "AuBot/packages/i18n/src/locales/es/server/auth.yaml",
+      "summary": "配置文件 auth.yaml 管理 AuBot\\packages\\i18n\\src\\locales\\es\\server 相关的工具链、构建或运行参数，是项目环境约定的一部分。",
+      "tags": [
+        "配置",
+        "项目设置",
+        "工具链"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:AuBot/packages/i18n/src/locales/es/tamagotchi/electron/tray.yaml",
+      "type": "config",
+      "name": "tray.yaml",
+      "filePath": "AuBot/packages/i18n/src/locales/es/tamagotchi/electron/tray.yaml",
+      "summary": "配置文件 tray.yaml 管理 AuBot\\packages\\i18n\\src\\locales\\es\\tamagotchi\\electron 相关的工具链、构建或运行参数，是项目环境约定的一部分。",
+      "tags": [
+        "配置",
+        "项目设置",
+        "工具链"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:AuBot/packages/i18n/src/locales/es/tamagotchi/settings.yaml",
+      "type": "config",
+      "name": "settings.yaml",
+      "filePath": "AuBot/packages/i18n/src/locales/es/tamagotchi/settings.yaml",
+      "summary": "配置文件 settings.yaml 管理 AuBot\\packages\\i18n\\src\\locales\\es\\tamagotchi 相关的工具链、构建或运行参数，是项目环境约定的一部分。",
+      "tags": [
+        "配置",
+        "项目设置",
+        "工具链"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:AuBot/packages/i18n/src/locales/es/tamagotchi/stage.yaml",
+      "type": "config",
+      "name": "stage.yaml",
+      "filePath": "AuBot/packages/i18n/src/locales/es/tamagotchi/stage.yaml",
+      "summary": "配置文件 stage.yaml 管理 AuBot\\packages\\i18n\\src\\locales\\es\\tamagotchi 相关的工具链、构建或运行参数，是项目环境约定的一部分。",
+      "tags": [
+        "配置",
+        "项目设置",
+        "工具链"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:AuBot/packages/i18n/src/locales/fr/docs/theme.yaml",
+      "type": "config",
+      "name": "theme.yaml",
+      "filePath": "AuBot/packages/i18n/src/locales/fr/docs/theme.yaml",
+      "summary": "配置文件 theme.yaml 管理 AuBot\\packages\\i18n\\src\\locales\\fr\\docs 相关的工具链、构建或运行参数，是项目环境约定的一部分。",
+      "tags": [
+        "配置",
+        "项目设置",
+        "工具链"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:AuBot/packages/i18n/src/locales/fr/docs/versions.yaml",
+      "type": "config",
+      "name": "versions.yaml",
+      "filePath": "AuBot/packages/i18n/src/locales/fr/docs/versions.yaml",
+      "summary": "配置文件 versions.yaml 管理 AuBot\\packages\\i18n\\src\\locales\\fr\\docs 相关的工具链、构建或运行参数，是项目环境约定的一部分。",
+      "tags": [
+        "配置",
+        "项目设置",
+        "工具链"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:AuBot/packages/i18n/src/locales/fr/server/auth.yaml",
+      "type": "config",
+      "name": "auth.yaml",
+      "filePath": "AuBot/packages/i18n/src/locales/fr/server/auth.yaml",
+      "summary": "配置文件 auth.yaml 管理 AuBot\\packages\\i18n\\src\\locales\\fr\\server 相关的工具链、构建或运行参数，是项目环境约定的一部分。",
+      "tags": [
+        "配置",
+        "项目设置",
+        "工具链"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:AuBot/packages/i18n/src/index.ts",
+      "target": "function:AuBot/packages/i18n/src/index.ts:resolveSupportedLocale",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:AuBot/packages/i18n/src/index.ts",
+      "target": "function:AuBot/packages/i18n/src/index.ts:resolveSupportedLocale",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:AuBot/packages/font-departure-mono/src/index.ts",
+      "target": "file:AuBot/packages/font-departure-mono/src/index.css",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/packages/font-xiaolai/src/index.ts",
+      "target": "file:AuBot/packages/font-xiaolai/src/index.css",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "nodes": [
+    {
+      "id": "config:AuBot/engines/stage-tamagotchi-godot/export_presets.cfg",
+      "type": "config",
+      "name": "export_presets.cfg",
+      "filePath": "AuBot/engines/stage-tamagotchi-godot/export_presets.cfg",
+      "summary": "配置 Godot 导出预设，描述 stage-tamagotchi-godot 的目标平台、资源过滤和打包选项。",
+      "tags": [
+        "configuration",
+        "deployment",
+        "packaging",
+        "desktop-app"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:AuBot/engines/stage-tamagotchi-godot/package.json",
+      "type": "config",
+      "name": "package.json",
+      "filePath": "AuBot/engines/stage-tamagotchi-godot/package.json",
+      "summary": "定义 stage-tamagotchi-godot 的包元数据、脚本和依赖配置，是该工作区构建、测试与发布流程的入口。",
+      "tags": [
+        "configuration",
+        "package-manager",
+        "build-system",
+        "workspace"
+      ],
+      "complexity": "simple",
+      "languageNotes": "结构提取识别到 9 个顶层配置项或文档章节。"
+    },
+    {
+      "id": "config:AuBot/engines/stage-tamagotchi-godot/stage-tamagotchi-godot.csproj",
+      "type": "config",
+      "name": "stage-tamagotchi-godot.csproj",
+      "filePath": "AuBot/engines/stage-tamagotchi-godot/stage-tamagotchi-godot.csproj",
+      "summary": "定义 Godot C# 项目的目标框架和构建属性，连接引擎脚本与 .NET 工具链。",
+      "tags": [
+        "configuration",
+        "tooling",
+        "project-settings"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:AuBot/engines/stage-tamagotchi-godot/stage-tamagotchi-godot.sln",
+      "type": "config",
+      "name": "stage-tamagotchi-godot.sln",
+      "filePath": "AuBot/engines/stage-tamagotchi-godot/stage-tamagotchi-godot.sln",
+      "summary": "定义 Godot C# 解决方案结构，供 IDE 和 .NET 工具定位项目文件。",
+      "tags": [
+        "configuration",
+        "tooling",
+        "project-settings"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": []
+}

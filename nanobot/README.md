@@ -19,7 +19,7 @@
   </p>
 </div>
 
-🐈 **nanobot** is an open-source and ultra-lightweight AI agent in the spirit of [OpenClaw](https://github.com/openclaw/openclaw), [Claude Code](https://www.anthropic.com/claude-code), and [Codex](https://www.openai.com/codex/). It keeps the core agent loop small and readable while still supporting chat channels, memory, MCP and practical deployment paths, so you can go from local setup to a long-running personal agent with minimal overhead.
+🐈 **xiaomiaoAgent** is an open-source and ultra-lightweight AI agent in the spirit of [OpenClaw](https://github.com/openclaw/openclaw), [Claude Code](https://www.anthropic.com/claude-code), and [Codex](https://www.openai.com/codex/). It keeps the core agent loop small and readable while still supporting chat channels, memory, MCP and practical deployment paths, so you can go from local setup to a long-running personal agent with minimal overhead.
 
 ## 📢 News
 
@@ -118,7 +118,7 @@
 </details>
 
 
-## 💡 Key Features of nanobot
+## 💡 Key Features of xiaomiaoAgent
 
 - **Ultra-lightweight**: stable long-running agent behavior with a small, readable core.
 - **Research-ready**: the codebase is intentionally simple enough to study, modify, and extend.
@@ -157,7 +157,7 @@ pip install nanobot-ai
 **1. Initialize**
 
 ```bash
-nanobot onboard
+xiaomiao onboard
 ```
 
 **2. Configure** (`~/.nanobot/config.json`)
@@ -197,7 +197,7 @@ xiaomiao agent
 
 
 - Want different LLM providers, web search, MCP, security settings, or more config options? See [Configuration](./docs/configuration.md)
-- Want to run nanobot in chat apps like Telegram, Discord, WeChat or Feishu? See [Chat Apps](./docs/chat-apps.md)
+- Want to run xiaomiaoAgent in chat apps like Telegram, Discord, WeChat or Feishu? See [Chat Apps](./docs/chat-apps.md)
 - Want Docker or Linux service deployment? See [Deployment](./docs/deployment.md)
 
 ## 🧪 WebUI (Development)
@@ -235,7 +235,7 @@ bun run dev
   <img src="images/nanobot_arch.png" alt="nanobot architecture" width="800">
 </p>
 
-🐈 nanobot stays lightweight by centering everything around a small agent loop: messages come in from chat apps, the LLM decides when tools are needed, and memory or skills are pulled in only as context instead of becoming a heavy orchestration layer. That keeps the core path readable and easy to extend, while still letting you add channels, tools, memory, and deployment options without turning the system into a monolith.
+🐈 xiaomiaoAgent stays lightweight by centering everything around a small agent loop: messages come in from chat apps, the LLM decides when tools are needed, and memory or skills are pulled in only as context instead of becoming a heavy orchestration layer. That keeps the core path readable and easy to extend, while still letting you add channels, tools, memory, and deployment options without turning the system into a monolith.
 
 ## ✨ Features
 
@@ -264,10 +264,10 @@ bun run dev
 
 Browse the [repo docs](./docs/README.md) for the latest features and GitHub development version, or visit [nanobot.wiki](https://nanobot.wiki/docs/latest/getting-started/nanobot-overview) for the stable release documentation.
 
-- Talk to your nanobot with familiar chat apps: [Chat Apps](./docs/chat-apps.md)
+- Talk to your xiaomiaoAgent with familiar chat apps: [Chat Apps](./docs/chat-apps.md)
 - Configure providers, web search, MCP, and runtime behavior: [Configuration](./docs/configuration.md)
-- Integrate nanobot with local tools and automations: [OpenAI-Compatible API](./docs/openai-api.md) · [Python SDK](./docs/python-sdk.md)
-- Run nanobot with Docker or as a Linux service: [Deployment](./docs/deployment.md)
+- Integrate xiaomiaoAgent with local tools and automations: [OpenAI-Compatible API](./docs/openai-api.md) · [Python SDK](./docs/python-sdk.md)
+- Run xiaomiaoAgent with Docker or as a Linux service: [Deployment](./docs/deployment.md)
 
 ## 🤝 Contribute & Roadmap
 

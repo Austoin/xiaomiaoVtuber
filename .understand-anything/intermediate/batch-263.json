@@ -1,0 +1,529 @@
+{
+  "nodes": [
+    {
+      "id": "file:AuBot/packages/stage-ui/src/tools/debug.ts",
+      "type": "file",
+      "name": "debug.ts",
+      "filePath": "AuBot/packages/stage-ui/src/tools/debug.ts",
+      "summary": "debug.ts 提供 AuBot/packages/stage-ui/src/tools 下的代码实现，包含 1 个函数和 0 个类/组件结构。",
+      "tags": [
+        "代码",
+        "模块",
+        "前端逻辑"
+      ],
+      "complexity": "simple",
+      "languageNotes": "typescript 文件按提取结果识别导出、函数和类结构。"
+    },
+    {
+      "id": "function:AuBot/packages/stage-ui/src/tools/debug.ts:debug",
+      "type": "function",
+      "name": "debug",
+      "filePath": "AuBot/packages/stage-ui/src/tools/debug.ts",
+      "lineRange": [
+        19,
+        19
+      ],
+      "summary": "debug 封装 debug.ts 中的核心逻辑，负责该模块对外暴露或内部复用的一段明确行为。",
+      "tags": [
+        "函数",
+        "业务逻辑",
+        "模块能力"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/src/types/index.ts",
+      "type": "file",
+      "name": "index.ts",
+      "filePath": "AuBot/packages/stage-ui/src/types/index.ts",
+      "summary": "index.ts 作为 AuBot/packages/stage-ui/src/types 的模块入口，汇总或转发该目录的公共导出。",
+      "tags": [
+        "入口点",
+        "barrel",
+        "模块导出"
+      ],
+      "complexity": "simple",
+      "languageNotes": "typescript 文件按提取结果识别导出、函数和类结构。"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/src/utils/index.ts",
+      "type": "file",
+      "name": "index.ts",
+      "filePath": "AuBot/packages/stage-ui/src/utils/index.ts",
+      "summary": "index.ts 作为 AuBot/packages/stage-ui/src/utils 的模块入口，汇总或转发该目录的公共导出。",
+      "tags": [
+        "入口点",
+        "barrel",
+        "模块导出"
+      ],
+      "complexity": "simple",
+      "languageNotes": "typescript 文件按提取结果识别导出、函数和类结构。"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/src/utils/relative-time.ts",
+      "type": "file",
+      "name": "relative-time.ts",
+      "filePath": "AuBot/packages/stage-ui/src/utils/relative-time.ts",
+      "summary": "relative-time.ts 提供 AuBot/packages/stage-ui/src/utils 下的代码实现，包含 1 个函数和 0 个类/组件结构。",
+      "tags": [
+        "代码",
+        "模块",
+        "前端逻辑"
+      ],
+      "complexity": "simple",
+      "languageNotes": "typescript 文件按提取结果识别导出、函数和类结构。"
+    },
+    {
+      "id": "function:AuBot/packages/stage-ui/src/utils/relative-time.ts:formatRelativeTime",
+      "type": "function",
+      "name": "formatRelativeTime",
+      "filePath": "AuBot/packages/stage-ui/src/utils/relative-time.ts",
+      "lineRange": [
+        1,
+        9
+      ],
+      "summary": "formatRelativeTime 封装 relative-time.ts 中的核心逻辑，负责该模块对外暴露或内部复用的一段明确行为。",
+      "tags": [
+        "解析",
+        "格式化",
+        "工具函数"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/src/utils/stream.ts",
+      "type": "file",
+      "name": "stream.ts",
+      "filePath": "AuBot/packages/stage-ui/src/utils/stream.ts",
+      "summary": "stream.ts 提供 AuBot/packages/stage-ui/src/utils 下的代码实现，包含 1 个函数和 0 个类/组件结构。",
+      "tags": [
+        "代码",
+        "模块",
+        "前端逻辑"
+      ],
+      "complexity": "simple",
+      "languageNotes": "typescript 文件按提取结果识别导出、函数和类结构。"
+    },
+    {
+      "id": "function:AuBot/packages/stage-ui/src/utils/stream.ts:createControllableStream",
+      "type": "function",
+      "name": "createControllableStream",
+      "filePath": "AuBot/packages/stage-ui/src/utils/stream.ts",
+      "lineRange": [
+        6,
+        16
+      ],
+      "summary": "createControllableStream 封装 stream.ts 中的核心逻辑，负责该模块对外暴露或内部复用的一段明确行为。",
+      "tags": [
+        "工厂函数",
+        "初始化",
+        "服务构建"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/src/utils/tts.ts",
+      "type": "file",
+      "name": "tts.ts",
+      "filePath": "AuBot/packages/stage-ui/src/utils/tts.ts",
+      "summary": "tts.ts 提供 AuBot/packages/stage-ui/src/utils 下的代码实现，包含 1 个函数和 0 个类/组件结构。",
+      "tags": [
+        "代码",
+        "模块",
+        "前端逻辑"
+      ],
+      "complexity": "complex",
+      "languageNotes": "typescript 文件按提取结果识别导出、函数和类结构。"
+    },
+    {
+      "id": "function:AuBot/packages/stage-ui/src/utils/tts.ts:chunkEmitter",
+      "type": "function",
+      "name": "chunkEmitter",
+      "filePath": "AuBot/packages/stage-ui/src/utils/tts.ts",
+      "lineRange": [
+        237,
+        265
+      ],
+      "summary": "chunkEmitter 封装 tts.ts 中的核心逻辑，负责该模块对外暴露或内部复用的一段明确行为。",
+      "tags": [
+        "函数",
+        "业务逻辑",
+        "模块能力"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/src/workers/index.ts",
+      "type": "file",
+      "name": "index.ts",
+      "filePath": "AuBot/packages/stage-ui/src/workers/index.ts",
+      "summary": "index.ts 作为 AuBot/packages/stage-ui/src/workers 的模块入口，汇总或转发该目录的公共导出。",
+      "tags": [
+        "入口点",
+        "barrel",
+        "模块导出"
+      ],
+      "complexity": "simple",
+      "languageNotes": "typescript 文件按提取结果识别导出、函数和类结构。"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/src/workers/vad/index.ts",
+      "type": "file",
+      "name": "index.ts",
+      "filePath": "AuBot/packages/stage-ui/src/workers/vad/index.ts",
+      "summary": "index.ts 作为 AuBot/packages/stage-ui/src/workers/vad 的模块入口，汇总或转发该目录的公共导出。",
+      "tags": [
+        "入口点",
+        "barrel",
+        "模块导出"
+      ],
+      "complexity": "simple",
+      "languageNotes": "typescript 文件按提取结果识别导出、函数和类结构。"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/src/workers/vad/manager.ts",
+      "type": "file",
+      "name": "manager.ts",
+      "filePath": "AuBot/packages/stage-ui/src/workers/vad/manager.ts",
+      "summary": "manager.ts 是 AuBot/packages/stage-ui/src/workers/vad 下的代码模块，参与该功能区域的类型、配置或前端逻辑组织。",
+      "tags": [
+        "代码",
+        "模块",
+        "前端逻辑"
+      ],
+      "complexity": "simple",
+      "languageNotes": "typescript 文件按提取结果识别导出、函数和类结构。"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/src/workers/vad/process.worklet.ts",
+      "type": "file",
+      "name": "process.worklet.ts",
+      "filePath": "AuBot/packages/stage-ui/src/workers/vad/process.worklet.ts",
+      "summary": "process.worklet.ts 提供 AuBot/packages/stage-ui/src/workers/vad 下的代码实现，包含 0 个函数和 1 个类/组件结构。",
+      "tags": [
+        "代码",
+        "模块",
+        "前端逻辑"
+      ],
+      "complexity": "simple",
+      "languageNotes": "typescript 文件按提取结果识别导出、函数和类结构。"
+    },
+    {
+      "id": "class:AuBot/packages/stage-ui/src/workers/vad/process.worklet.ts:VADProcessor",
+      "type": "class",
+      "name": "VADProcessor",
+      "filePath": "AuBot/packages/stage-ui/src/workers/vad/process.worklet.ts",
+      "lineRange": [
+        18,
+        51
+      ],
+      "summary": "VADProcessor 聚合 process.worklet.ts 中的组件或类级状态与方法，形成可复用的模块结构。",
+      "tags": [
+        "类",
+        "封装",
+        "模块结构"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/stories/components/ColorPickerControl.vue",
+      "type": "file",
+      "name": "ColorPickerControl.vue",
+      "filePath": "AuBot/packages/stage-ui/stories/components/ColorPickerControl.vue",
+      "summary": "ColorPickerControl.vue 实现 AuBot/packages/stage-ui/stories/components 下的 Vue 单文件组件，承担界面渲染、交互绑定或局部状态展示职责。",
+      "tags": [
+        "vue",
+        "组件",
+        "用户界面"
+      ],
+      "complexity": "simple",
+      "languageNotes": "vue 文件按提取结果识别导出、函数和类结构。"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/stories/components/Colors.story.vue",
+      "type": "file",
+      "name": "Colors.story.vue",
+      "filePath": "AuBot/packages/stage-ui/stories/components/Colors.story.vue",
+      "summary": "Colors.story.vue 是 AuBot/packages/stage-ui/stories/components 的 Histoire 组件示例，用于展示交互状态并辅助视觉回归。",
+      "tags": [
+        "组件示例",
+        "histoire",
+        "开发体验"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "vue 文件按提取结果识别导出、函数和类结构。"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/stories/components/TypographyMono.story.vue",
+      "type": "file",
+      "name": "TypographyMono.story.vue",
+      "filePath": "AuBot/packages/stage-ui/stories/components/TypographyMono.story.vue",
+      "summary": "TypographyMono.story.vue 是 AuBot/packages/stage-ui/stories/components 的 Histoire 组件示例，用于展示交互状态并辅助视觉回归。",
+      "tags": [
+        "组件示例",
+        "histoire",
+        "开发体验"
+      ],
+      "complexity": "simple",
+      "languageNotes": "vue 文件按提取结果识别导出、函数和类结构。"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/stories/components/TypographySans.story.vue",
+      "type": "file",
+      "name": "TypographySans.story.vue",
+      "filePath": "AuBot/packages/stage-ui/stories/components/TypographySans.story.vue",
+      "summary": "TypographySans.story.vue 是 AuBot/packages/stage-ui/stories/components 的 Histoire 组件示例，用于展示交互状态并辅助视觉回归。",
+      "tags": [
+        "组件示例",
+        "histoire",
+        "开发体验"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "vue 文件按提取结果识别导出、函数和类结构。"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/stories/styles/main.css",
+      "type": "file",
+      "name": "main.css",
+      "filePath": "AuBot/packages/stage-ui/stories/styles/main.css",
+      "summary": "main.css 是 AuBot/packages/stage-ui/stories/styles 下的代码模块，参与该功能区域的类型、配置或前端逻辑组织。",
+      "tags": [
+        "代码",
+        "模块",
+        "前端逻辑"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/stories/styles/transitions.css",
+      "type": "file",
+      "name": "transitions.css",
+      "filePath": "AuBot/packages/stage-ui/stories/styles/transitions.css",
+      "summary": "transitions.css 是 AuBot/packages/stage-ui/stories/styles 下的代码模块，参与该功能区域的类型、配置或前端逻辑组织。",
+      "tags": [
+        "代码",
+        "模块",
+        "前端逻辑"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:AuBot/packages/stage-ui/tsconfig.json",
+      "type": "config",
+      "name": "tsconfig.json",
+      "filePath": "AuBot/packages/stage-ui/tsconfig.json",
+      "summary": "AuBot/packages/stage-ui/tsconfig.json 配置 TypeScript 编译选项、路径包含范围与 Vue 类型支持，约束该包的类型检查方式。",
+      "tags": [
+        "配置",
+        "typescript",
+        "构建系统"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/vite.config.ts",
+      "type": "file",
+      "name": "vite.config.ts",
+      "filePath": "AuBot/packages/stage-ui/vite.config.ts",
+      "summary": "vite.config.ts 是 AuBot/packages/stage-ui 下的代码模块，参与该功能区域的类型、配置或前端逻辑组织。",
+      "tags": [
+        "代码",
+        "模块",
+        "前端逻辑"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "typescript 文件按提取结果识别导出、函数和类结构。"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/vitest.config.ts",
+      "type": "file",
+      "name": "vitest.config.ts",
+      "filePath": "AuBot/packages/stage-ui/vitest.config.ts",
+      "summary": "vitest.config.ts 是 AuBot/packages/stage-ui 下的代码模块，参与该功能区域的类型、配置或前端逻辑组织。",
+      "tags": [
+        "代码",
+        "模块",
+        "前端逻辑"
+      ],
+      "complexity": "simple",
+      "languageNotes": "typescript 文件按提取结果识别导出、函数和类结构。"
+    },
+    {
+      "id": "config:AuBot/packages/stream-kit/package.json",
+      "type": "config",
+      "name": "package.json",
+      "filePath": "AuBot/packages/stream-kit/package.json",
+      "summary": "AuBot/packages/stream-kit/package.json 定义该包的依赖、脚本与发布元数据，支撑本模块的构建、测试和运行约定。",
+      "tags": [
+        "配置",
+        "依赖管理",
+        "构建系统"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/stream-kit/src/index.ts",
+      "type": "file",
+      "name": "index.ts",
+      "filePath": "AuBot/packages/stream-kit/src/index.ts",
+      "summary": "index.ts 作为 AuBot/packages/stream-kit/src 的模块入口，汇总或转发该目录的公共导出。",
+      "tags": [
+        "入口点",
+        "barrel",
+        "模块导出"
+      ],
+      "complexity": "simple",
+      "languageNotes": "typescript 文件按提取结果识别导出、函数和类结构。"
+    },
+    {
+      "id": "file:AuBot/packages/stream-kit/src/queue.ts",
+      "type": "file",
+      "name": "queue.ts",
+      "filePath": "AuBot/packages/stream-kit/src/queue.ts",
+      "summary": "queue.ts 提供 AuBot/packages/stream-kit/src 下的代码实现，包含 1 个函数和 0 个类/组件结构。",
+      "tags": [
+        "代码",
+        "模块",
+        "前端逻辑"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "typescript 文件按提取结果识别导出、函数和类结构。"
+    },
+    {
+      "id": "function:AuBot/packages/stream-kit/src/queue.ts:createQueue",
+      "type": "function",
+      "name": "createQueue",
+      "filePath": "AuBot/packages/stream-kit/src/queue.ts",
+      "lineRange": [
+        15,
+        94
+      ],
+      "summary": "createQueue 封装 queue.ts 中的核心逻辑，负责该模块对外暴露或内部复用的一段明确行为。",
+      "tags": [
+        "工厂函数",
+        "初始化",
+        "服务构建"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:AuBot/packages/stream-kit/tsconfig.json",
+      "type": "config",
+      "name": "tsconfig.json",
+      "filePath": "AuBot/packages/stream-kit/tsconfig.json",
+      "summary": "AuBot/packages/stream-kit/tsconfig.json 配置 TypeScript 编译选项、路径包含范围与 Vue 类型支持，约束该包的类型检查方式。",
+      "tags": [
+        "配置",
+        "typescript",
+        "构建系统"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/stream-kit/tsdown.config.ts",
+      "type": "file",
+      "name": "tsdown.config.ts",
+      "filePath": "AuBot/packages/stream-kit/tsdown.config.ts",
+      "summary": "tsdown.config.ts 是 AuBot/packages/stream-kit 下的代码模块，参与该功能区域的类型、配置或前端逻辑组织。",
+      "tags": [
+        "代码",
+        "模块",
+        "前端逻辑"
+      ],
+      "complexity": "simple",
+      "languageNotes": "typescript 文件按提取结果识别导出、函数和类结构。"
+    },
+    {
+      "id": "file:AuBot/packages/ui-loading-screens/playground/public/apple-touch-icon.avif",
+      "type": "file",
+      "name": "apple-touch-icon.avif",
+      "filePath": "AuBot/packages/ui-loading-screens/playground/public/apple-touch-icon.avif",
+      "summary": "apple-touch-icon.avif 是 AuBot/packages/ui-loading-screens/playground/public 下的静态图像资源，用于前端界面、PWA 图标或品牌视觉呈现。",
+      "tags": [
+        "静态资源",
+        "图标",
+        "前端资源"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:AuBot/packages/stage-ui/src/tools/debug.ts",
+      "target": "function:AuBot/packages/stage-ui/src/tools/debug.ts:debug",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/tools/debug.ts",
+      "target": "function:AuBot/packages/stage-ui/src/tools/debug.ts:debug",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/utils/relative-time.ts",
+      "target": "function:AuBot/packages/stage-ui/src/utils/relative-time.ts:formatRelativeTime",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/utils/relative-time.ts",
+      "target": "function:AuBot/packages/stage-ui/src/utils/relative-time.ts:formatRelativeTime",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/utils/stream.ts",
+      "target": "function:AuBot/packages/stage-ui/src/utils/stream.ts:createControllableStream",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/utils/stream.ts",
+      "target": "function:AuBot/packages/stage-ui/src/utils/stream.ts:createControllableStream",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/utils/tts.ts",
+      "target": "function:AuBot/packages/stage-ui/src/utils/tts.ts:chunkEmitter",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/utils/tts.ts",
+      "target": "function:AuBot/packages/stage-ui/src/utils/tts.ts:chunkEmitter",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/workers/vad/process.worklet.ts",
+      "target": "class:AuBot/packages/stage-ui/src/workers/vad/process.worklet.ts:VADProcessor",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/packages/stream-kit/src/queue.ts",
+      "target": "function:AuBot/packages/stream-kit/src/queue.ts:createQueue",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/packages/stream-kit/src/queue.ts",
+      "target": "function:AuBot/packages/stream-kit/src/queue.ts:createQueue",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    }
+  ]
+}

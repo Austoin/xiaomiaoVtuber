@@ -1,0 +1,635 @@
+{
+  "nodes": [
+    {
+      "id": "file:AuBot/packages/stage-ui/src/libs/inference/index.ts",
+      "type": "file",
+      "name": "index.ts",
+      "filePath": "AuBot/packages/stage-ui/src/libs/inference/index.ts",
+      "summary": "index.ts 作为 AuBot/packages/stage-ui/src/libs/inference 的模块入口，汇总或转发该目录的公共导出。",
+      "tags": [
+        "入口点",
+        "barrel",
+        "模块导出"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "typescript 文件按提取结果识别导出、函数和类结构。"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/src/libs/zod/index.ts",
+      "type": "file",
+      "name": "index.ts",
+      "filePath": "AuBot/packages/stage-ui/src/libs/zod/index.ts",
+      "summary": "index.ts 作为 AuBot/packages/stage-ui/src/libs/zod 的模块入口，汇总或转发该目录的公共导出。",
+      "tags": [
+        "入口点",
+        "barrel",
+        "模块导出"
+      ],
+      "complexity": "simple",
+      "languageNotes": "typescript 文件按提取结果识别导出、函数和类结构。"
+    },
+    {
+      "id": "function:AuBot/packages/stage-ui/src/libs/zod/index.ts:getSchemaDefault",
+      "type": "function",
+      "name": "getSchemaDefault",
+      "filePath": "AuBot/packages/stage-ui/src/libs/zod/index.ts",
+      "lineRange": [
+        7,
+        18
+      ],
+      "summary": "getSchemaDefault 封装 index.ts 中的核心逻辑，负责该模块对外暴露或内部复用的一段明确行为。",
+      "tags": [
+        "函数",
+        "业务逻辑",
+        "模块能力"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/src/stores/ai/models/vad.ts",
+      "type": "file",
+      "name": "vad.ts",
+      "filePath": "AuBot/packages/stage-ui/src/stores/ai/models/vad.ts",
+      "summary": "vad.ts 定义前端状态管理模块，集中维护 vad 相关业务状态和派生操作。",
+      "tags": [
+        "store",
+        "状态管理",
+        "业务状态"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "typescript 文件按提取结果识别导出、函数和类结构。"
+    },
+    {
+      "id": "function:AuBot/packages/stage-ui/src/stores/ai/models/vad.ts:useVAD",
+      "type": "function",
+      "name": "useVAD",
+      "filePath": "AuBot/packages/stage-ui/src/stores/ai/models/vad.ts",
+      "lineRange": [
+        15,
+        140
+      ],
+      "summary": "useVAD 封装 vad.ts 中的核心逻辑，负责该模块对外暴露或内部复用的一段明确行为。",
+      "tags": [
+        "composable",
+        "状态逻辑",
+        "hook"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/src/stores/audio.ts",
+      "type": "file",
+      "name": "audio.ts",
+      "filePath": "AuBot/packages/stage-ui/src/stores/audio.ts",
+      "summary": "audio.ts 定义前端状态管理模块，集中维护 audio 相关业务状态和派生操作。",
+      "tags": [
+        "store",
+        "状态管理",
+        "业务状态"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "typescript 文件按提取结果识别导出、函数和类结构。"
+    },
+    {
+      "id": "function:AuBot/packages/stage-ui/src/stores/audio.ts:calculateVolumeWithLinearNormalize",
+      "type": "function",
+      "name": "calculateVolumeWithLinearNormalize",
+      "filePath": "AuBot/packages/stage-ui/src/stores/audio.ts",
+      "lineRange": [
+        4,
+        22
+      ],
+      "summary": "calculateVolumeWithLinearNormalize 封装 audio.ts 中的核心逻辑，负责该模块对外暴露或内部复用的一段明确行为。",
+      "tags": [
+        "函数",
+        "业务逻辑",
+        "模块能力"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/packages/stage-ui/src/stores/audio.ts:calculateVolumeWithMinMaxNormalize",
+      "type": "function",
+      "name": "calculateVolumeWithMinMaxNormalize",
+      "filePath": "AuBot/packages/stage-ui/src/stores/audio.ts",
+      "lineRange": [
+        24,
+        56
+      ],
+      "summary": "calculateVolumeWithMinMaxNormalize 封装 audio.ts 中的核心逻辑，负责该模块对外暴露或内部复用的一段明确行为。",
+      "tags": [
+        "函数",
+        "业务逻辑",
+        "模块能力"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/src/stores/character/notebook.ts",
+      "type": "file",
+      "name": "notebook.ts",
+      "filePath": "AuBot/packages/stage-ui/src/stores/character/notebook.ts",
+      "summary": "notebook.ts 定义前端状态管理模块，集中维护 notebook 相关业务状态和派生操作。",
+      "tags": [
+        "store",
+        "状态管理",
+        "业务状态"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "typescript 文件按提取结果识别导出、函数和类结构。"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/src/stores/character/orchestrator/index.ts",
+      "type": "file",
+      "name": "index.ts",
+      "filePath": "AuBot/packages/stage-ui/src/stores/character/orchestrator/index.ts",
+      "summary": "index.ts 定义前端状态管理模块，集中维护 index 相关业务状态和派生操作。",
+      "tags": [
+        "store",
+        "状态管理",
+        "业务状态"
+      ],
+      "complexity": "simple",
+      "languageNotes": "typescript 文件按提取结果识别导出、函数和类结构。"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/src/stores/character/orchestrator/spark-notify-agent.ts",
+      "type": "file",
+      "name": "spark-notify-agent.ts",
+      "filePath": "AuBot/packages/stage-ui/src/stores/character/orchestrator/spark-notify-agent.ts",
+      "summary": "spark-notify-agent.ts 定义前端状态管理模块，集中维护 spark-notify-agent 相关业务状态和派生操作。",
+      "tags": [
+        "store",
+        "状态管理",
+        "业务状态"
+      ],
+      "complexity": "simple",
+      "languageNotes": "typescript 文件按提取结果识别导出、函数和类结构。"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/src/stores/chat/state.ts",
+      "type": "file",
+      "name": "state.ts",
+      "filePath": "AuBot/packages/stage-ui/src/stores/chat/state.ts",
+      "summary": "state.ts 定义前端状态管理模块，集中维护 state 相关业务状态和派生操作。",
+      "tags": [
+        "store",
+        "状态管理",
+        "业务状态"
+      ],
+      "complexity": "simple",
+      "languageNotes": "typescript 文件按提取结果识别导出、函数和类结构。"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/src/stores/devtools/plugin-host-debug.ts",
+      "type": "file",
+      "name": "plugin-host-debug.ts",
+      "filePath": "AuBot/packages/stage-ui/src/stores/devtools/plugin-host-debug.ts",
+      "summary": "plugin-host-debug.ts 定义前端状态管理模块，集中维护 plugin-host-debug 相关业务状态和派生操作。",
+      "tags": [
+        "store",
+        "状态管理",
+        "业务状态"
+      ],
+      "complexity": "complex",
+      "languageNotes": "typescript 文件按提取结果识别导出、函数和类结构。"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/src/stores/execute-tool.test.ts",
+      "type": "file",
+      "name": "execute-tool.test.ts",
+      "filePath": "AuBot/packages/stage-ui/src/stores/execute-tool.test.ts",
+      "summary": "execute-tool.test.ts 定义前端状态管理模块，集中维护 execute-tool.test 相关业务状态和派生操作。",
+      "tags": [
+        "测试",
+        "质量保障",
+        "回归验证"
+      ],
+      "complexity": "complex",
+      "languageNotes": "typescript 文件按提取结果识别导出、函数和类结构。"
+    },
+    {
+      "id": "function:AuBot/packages/stage-ui/src/stores/execute-tool.test.ts:createToolCall",
+      "type": "function",
+      "name": "createToolCall",
+      "filePath": "AuBot/packages/stage-ui/src/stores/execute-tool.test.ts",
+      "lineRange": [
+        7,
+        21
+      ],
+      "summary": "createToolCall 封装 execute-tool.test.ts 中的核心逻辑，负责该模块对外暴露或内部复用的一段明确行为。",
+      "tags": [
+        "工厂函数",
+        "初始化",
+        "服务构建"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/src/stores/exports.contract.test.ts",
+      "type": "file",
+      "name": "exports.contract.test.ts",
+      "filePath": "AuBot/packages/stage-ui/src/stores/exports.contract.test.ts",
+      "summary": "exports.contract.test.ts 定义前端状态管理模块，集中维护 exports.contract.test 相关业务状态和派生操作。",
+      "tags": [
+        "测试",
+        "质量保障",
+        "回归验证"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "typescript 文件按提取结果识别导出、函数和类结构。"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/src/stores/index.ts",
+      "type": "file",
+      "name": "index.ts",
+      "filePath": "AuBot/packages/stage-ui/src/stores/index.ts",
+      "summary": "index.ts 定义前端状态管理模块，集中维护 index 相关业务状态和派生操作。",
+      "tags": [
+        "store",
+        "状态管理",
+        "业务状态"
+      ],
+      "complexity": "simple",
+      "languageNotes": "typescript 文件按提取结果识别导出、函数和类结构。"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/src/stores/journal-preview.ts",
+      "type": "file",
+      "name": "journal-preview.ts",
+      "filePath": "AuBot/packages/stage-ui/src/stores/journal-preview.ts",
+      "summary": "journal-preview.ts 定义前端状态管理模块，集中维护 journal-preview 相关业务状态和派生操作。",
+      "tags": [
+        "store",
+        "状态管理",
+        "业务状态"
+      ],
+      "complexity": "simple",
+      "languageNotes": "typescript 文件按提取结果识别导出、函数和类结构。"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/src/stores/live2d.ts",
+      "type": "file",
+      "name": "live2d.ts",
+      "filePath": "AuBot/packages/stage-ui/src/stores/live2d.ts",
+      "summary": "live2d.ts 定义前端状态管理模块，集中维护 live2d 相关业务状态和派生操作。",
+      "tags": [
+        "store",
+        "状态管理",
+        "业务状态"
+      ],
+      "complexity": "simple",
+      "languageNotes": "typescript 文件按提取结果识别导出、函数和类结构。"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/src/stores/mods/api/channel-gateway.ts",
+      "type": "file",
+      "name": "channel-gateway.ts",
+      "filePath": "AuBot/packages/stage-ui/src/stores/mods/api/channel-gateway.ts",
+      "summary": "channel-gateway.ts 定义前端状态管理模块，集中维护 channel-gateway 相关业务状态和派生操作。",
+      "tags": [
+        "store",
+        "状态管理",
+        "业务状态"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "typescript 文件按提取结果识别导出、函数和类结构。"
+    },
+    {
+      "id": "function:AuBot/packages/stage-ui/src/stores/mods/api/channel-gateway.ts:createChannelGateway",
+      "type": "function",
+      "name": "createChannelGateway",
+      "filePath": "AuBot/packages/stage-ui/src/stores/mods/api/channel-gateway.ts",
+      "lineRange": [
+        30,
+        123
+      ],
+      "summary": "createChannelGateway 封装 channel-gateway.ts 中的核心逻辑，负责该模块对外暴露或内部复用的一段明确行为。",
+      "tags": [
+        "工厂函数",
+        "初始化",
+        "服务构建"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/src/stores/mods/api/channel-server.test.ts",
+      "type": "file",
+      "name": "channel-server.test.ts",
+      "filePath": "AuBot/packages/stage-ui/src/stores/mods/api/channel-server.test.ts",
+      "summary": "channel-server.test.ts 定义前端状态管理模块，集中维护 channel-server.test 相关业务状态和派生操作。",
+      "tags": [
+        "测试",
+        "质量保障",
+        "回归验证"
+      ],
+      "complexity": "complex",
+      "languageNotes": "typescript 文件按提取结果识别导出、函数和类结构。"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/src/stores/mods/api/events.ts",
+      "type": "file",
+      "name": "events.ts",
+      "filePath": "AuBot/packages/stage-ui/src/stores/mods/api/events.ts",
+      "summary": "events.ts 定义前端状态管理模块，集中维护 events 相关业务状态和派生操作。",
+      "tags": [
+        "store",
+        "状态管理",
+        "业务状态"
+      ],
+      "complexity": "simple",
+      "languageNotes": "typescript 文件按提取结果识别导出、函数和类结构。"
+    },
+    {
+      "id": "function:AuBot/packages/stage-ui/src/stores/mods/api/events.ts:createEvent",
+      "type": "function",
+      "name": "createEvent",
+      "filePath": "AuBot/packages/stage-ui/src/stores/mods/api/events.ts",
+      "lineRange": [
+        21,
+        31
+      ],
+      "summary": "createEvent 封装 events.ts 中的核心逻辑，负责该模块对外暴露或内部复用的一段明确行为。",
+      "tags": [
+        "工厂函数",
+        "初始化",
+        "服务构建"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/packages/stage-ui/src/stores/mods/api/events.ts:createEventStream",
+      "type": "function",
+      "name": "createEventStream",
+      "filePath": "AuBot/packages/stage-ui/src/stores/mods/api/events.ts",
+      "lineRange": [
+        33,
+        54
+      ],
+      "summary": "createEventStream 封装 events.ts 中的核心逻辑，负责该模块对外暴露或内部复用的一段明确行为。",
+      "tags": [
+        "工厂函数",
+        "初始化",
+        "服务构建"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/src/stores/modules/vision/agents/index.ts",
+      "type": "file",
+      "name": "index.ts",
+      "filePath": "AuBot/packages/stage-ui/src/stores/modules/vision/agents/index.ts",
+      "summary": "index.ts 定义前端状态管理模块，集中维护 index 相关业务状态和派生操作。",
+      "tags": [
+        "store",
+        "状态管理",
+        "业务状态"
+      ],
+      "complexity": "simple",
+      "languageNotes": "typescript 文件按提取结果识别导出、函数和类结构。"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/src/stores/modules/vision/processing-store.ts",
+      "type": "file",
+      "name": "processing-store.ts",
+      "filePath": "AuBot/packages/stage-ui/src/stores/modules/vision/processing-store.ts",
+      "summary": "processing-store.ts 定义前端状态管理模块，集中维护 processing-store 相关业务状态和派生操作。",
+      "tags": [
+        "store",
+        "状态管理",
+        "业务状态"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "typescript 文件按提取结果识别导出、函数和类结构。"
+    },
+    {
+      "id": "function:AuBot/packages/stage-ui/src/stores/modules/vision/processing-store.ts:countInWindow",
+      "type": "function",
+      "name": "countInWindow",
+      "filePath": "AuBot/packages/stage-ui/src/stores/modules/vision/processing-store.ts",
+      "lineRange": [
+        23,
+        32
+      ],
+      "summary": "countInWindow 封装 processing-store.ts 中的核心逻辑，负责该模块对外暴露或内部复用的一段明确行为。",
+      "tags": [
+        "函数",
+        "业务逻辑",
+        "模块能力"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/src/stores/settings/audio-device.ts",
+      "type": "file",
+      "name": "audio-device.ts",
+      "filePath": "AuBot/packages/stage-ui/src/stores/settings/audio-device.ts",
+      "summary": "audio-device.ts 定义前端状态管理模块，集中维护 audio-device 相关业务状态和派生操作。",
+      "tags": [
+        "store",
+        "状态管理",
+        "业务状态"
+      ],
+      "complexity": "simple",
+      "languageNotes": "typescript 文件按提取结果识别导出、函数和类结构。"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/src/stores/settings/beat-sync.ts",
+      "type": "file",
+      "name": "beat-sync.ts",
+      "filePath": "AuBot/packages/stage-ui/src/stores/settings/beat-sync.ts",
+      "summary": "beat-sync.ts 定义前端状态管理模块，集中维护 beat-sync 相关业务状态和派生操作。",
+      "tags": [
+        "store",
+        "状态管理",
+        "业务状态"
+      ],
+      "complexity": "simple",
+      "languageNotes": "typescript 文件按提取结果识别导出、函数和类结构。"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/src/tools/character/index.ts",
+      "type": "file",
+      "name": "index.ts",
+      "filePath": "AuBot/packages/stage-ui/src/tools/character/index.ts",
+      "summary": "index.ts 作为 AuBot/packages/stage-ui/src/tools/character 的模块入口，汇总或转发该目录的公共导出。",
+      "tags": [
+        "入口点",
+        "barrel",
+        "模块导出"
+      ],
+      "complexity": "simple",
+      "languageNotes": "typescript 文件按提取结果识别导出、函数和类结构。"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/src/tools/character/orchestrator/index.ts",
+      "type": "file",
+      "name": "index.ts",
+      "filePath": "AuBot/packages/stage-ui/src/tools/character/orchestrator/index.ts",
+      "summary": "index.ts 作为 AuBot/packages/stage-ui/src/tools/character/orchestrator 的模块入口，汇总或转发该目录的公共导出。",
+      "tags": [
+        "入口点",
+        "barrel",
+        "模块导出"
+      ],
+      "complexity": "simple",
+      "languageNotes": "typescript 文件按提取结果识别导出、函数和类结构。"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/src/tools/character/orchestrator/spark-notify.test.ts",
+      "type": "file",
+      "name": "spark-notify.test.ts",
+      "filePath": "AuBot/packages/stage-ui/src/tools/character/orchestrator/spark-notify.test.ts",
+      "summary": "spark-notify.test.ts 是 AuBot/packages/stage-ui/src/tools/character/orchestrator 下的代码模块，参与该功能区域的类型、配置或前端逻辑组织。",
+      "tags": [
+        "测试",
+        "质量保障",
+        "回归验证"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "typescript 文件按提取结果识别导出、函数和类结构。"
+    },
+    {
+      "id": "file:AuBot/packages/stage-ui/src/tools/character/orchestrator/spark-notify.ts",
+      "type": "file",
+      "name": "spark-notify.ts",
+      "filePath": "AuBot/packages/stage-ui/src/tools/character/orchestrator/spark-notify.ts",
+      "summary": "spark-notify.ts 是 AuBot/packages/stage-ui/src/tools/character/orchestrator 下的代码模块，参与该功能区域的类型、配置或前端逻辑组织。",
+      "tags": [
+        "代码",
+        "模块",
+        "前端逻辑"
+      ],
+      "complexity": "simple",
+      "languageNotes": "typescript 文件按提取结果识别导出、函数和类结构。"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:AuBot/packages/stage-ui/src/libs/zod/index.ts",
+      "target": "function:AuBot/packages/stage-ui/src/libs/zod/index.ts:getSchemaDefault",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/libs/zod/index.ts",
+      "target": "function:AuBot/packages/stage-ui/src/libs/zod/index.ts:getSchemaDefault",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/ai/models/vad.ts",
+      "target": "file:AuBot/packages/stage-ui/src/workers/vad/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/ai/models/vad.ts",
+      "target": "function:AuBot/packages/stage-ui/src/stores/ai/models/vad.ts:useVAD",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/ai/models/vad.ts",
+      "target": "function:AuBot/packages/stage-ui/src/stores/ai/models/vad.ts:useVAD",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/audio.ts",
+      "target": "function:AuBot/packages/stage-ui/src/stores/audio.ts:calculateVolumeWithLinearNormalize",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/audio.ts",
+      "target": "function:AuBot/packages/stage-ui/src/stores/audio.ts:calculateVolumeWithMinMaxNormalize",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/execute-tool.test.ts",
+      "target": "function:AuBot/packages/stage-ui/src/stores/execute-tool.test.ts:createToolCall",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/mods/api/channel-gateway.ts",
+      "target": "file:AuBot/packages/stage-ui/src/stores/mods/api/events.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/mods/api/channel-gateway.ts",
+      "target": "function:AuBot/packages/stage-ui/src/stores/mods/api/channel-gateway.ts:createChannelGateway",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/mods/api/channel-gateway.ts",
+      "target": "function:AuBot/packages/stage-ui/src/stores/mods/api/channel-gateway.ts:createChannelGateway",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/mods/api/events.ts",
+      "target": "function:AuBot/packages/stage-ui/src/stores/mods/api/events.ts:createEvent",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/mods/api/events.ts",
+      "target": "function:AuBot/packages/stage-ui/src/stores/mods/api/events.ts:createEvent",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/mods/api/events.ts",
+      "target": "function:AuBot/packages/stage-ui/src/stores/mods/api/events.ts:createEventStream",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/mods/api/events.ts",
+      "target": "function:AuBot/packages/stage-ui/src/stores/mods/api/events.ts:createEventStream",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/modules/vision/processing-store.ts",
+      "target": "function:AuBot/packages/stage-ui/src/stores/modules/vision/processing-store.ts:countInWindow",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/stores/settings/audio-device.ts",
+      "target": "file:AuBot/packages/stage-ui/src/composables/audio/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/packages/stage-ui/src/tools/character/orchestrator/spark-notify.test.ts",
+      "target": "file:AuBot/packages/stage-ui/src/tools/character/orchestrator/spark-notify.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    }
+  ]
+}

@@ -1,0 +1,732 @@
+{
+  "nodes": [
+    {
+      "id": "file:AuBot/apps/stage-tamagotchi/src/main/services/airi/widgets/providers/replicate.ts",
+      "type": "file",
+      "name": "replicate.ts",
+      "filePath": "AuBot/apps/stage-tamagotchi/src/main/services/airi/widgets/providers/replicate.ts",
+      "summary": "replicate.ts 是 code 文件，包含 1 个类，引用 1 个内部或外部依赖，在项目路径 AuBot/apps/stage-tamagotchi/src/main/services/airi/widgets/providers/replicate.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:AuBot/apps/stage-tamagotchi/src/main/services/airi/widgets/providers/replicate.ts:ReplicateProvider",
+      "type": "class",
+      "name": "ReplicateProvider",
+      "filePath": "AuBot/apps/stage-tamagotchi/src/main/services/airi/widgets/providers/replicate.ts",
+      "lineRange": [
+        9,
+        202
+      ],
+      "summary": "类 ReplicateProvider 位于 replicate.ts，由结构提取结果识别。",
+      "tags": [
+        "class",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:AuBot/apps/stage-tamagotchi/src/main/services/airi/widgets/validation.test.ts",
+      "type": "file",
+      "name": "validation.test.ts",
+      "filePath": "AuBot/apps/stage-tamagotchi/src/main/services/airi/widgets/validation.test.ts",
+      "summary": "validation.test.ts 是 code 文件，引用 1 个内部或外部依赖，在项目路径 AuBot/apps/stage-tamagotchi/src/main/services/airi/widgets/validation.test.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript",
+        "test"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:AuBot/apps/stage-tamagotchi/src/main/services/airi/widgets/validation.ts",
+      "type": "file",
+      "name": "validation.ts",
+      "filePath": "AuBot/apps/stage-tamagotchi/src/main/services/airi/widgets/validation.ts",
+      "summary": "validation.ts 是 code 文件，包含 7 个函数，引用 2 个内部或外部依赖，在项目路径 AuBot/apps/stage-tamagotchi/src/main/services/airi/widgets/validation.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:AuBot/apps/stage-tamagotchi/src/main/services/airi/widgets/validation.ts:validateWidgetsAddPayload",
+      "type": "function",
+      "name": "validateWidgetsAddPayload",
+      "filePath": "AuBot/apps/stage-tamagotchi/src/main/services/airi/widgets/validation.ts",
+      "lineRange": [
+        52,
+        75
+      ],
+      "summary": "函数 validateWidgetsAddPayload 位于 validation.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/apps/stage-tamagotchi/src/main/services/airi/widgets/validation.ts:validateWidgetsUpdatePayload",
+      "type": "function",
+      "name": "validateWidgetsUpdatePayload",
+      "filePath": "AuBot/apps/stage-tamagotchi/src/main/services/airi/widgets/validation.ts",
+      "lineRange": [
+        90,
+        116
+      ],
+      "summary": "函数 validateWidgetsUpdatePayload 位于 validation.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:AuBot/apps/stage-tamagotchi/src/main/services/airi/widgets/validation.ts:normalizeRequiredWidgetId",
+      "type": "function",
+      "name": "normalizeRequiredWidgetId",
+      "filePath": "AuBot/apps/stage-tamagotchi/src/main/services/airi/widgets/validation.ts",
+      "lineRange": [
+        130,
+        136
+      ],
+      "summary": "函数 normalizeRequiredWidgetId 位于 validation.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/apps/stage-tamagotchi/src/main/services/airi/widgets/validation.ts:normalizeOptionalWidgetId",
+      "type": "function",
+      "name": "normalizeOptionalWidgetId",
+      "filePath": "AuBot/apps/stage-tamagotchi/src/main/services/airi/widgets/validation.ts",
+      "lineRange": [
+        149,
+        151
+      ],
+      "summary": "函数 normalizeOptionalWidgetId 位于 validation.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/apps/stage-tamagotchi/src/main/services/electron/app.test.ts",
+      "type": "file",
+      "name": "app.test.ts",
+      "filePath": "AuBot/apps/stage-tamagotchi/src/main/services/electron/app.test.ts",
+      "summary": "app.test.ts 是 code 文件，引用 2 个内部或外部依赖，在项目路径 AuBot/apps/stage-tamagotchi/src/main/services/electron/app.test.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript",
+        "test"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/apps/stage-tamagotchi/src/main/services/electron/app.ts",
+      "type": "file",
+      "name": "app.ts",
+      "filePath": "AuBot/apps/stage-tamagotchi/src/main/services/electron/app.ts",
+      "summary": "app.ts 是 code 文件，包含 1 个函数，引用 1 个内部或外部依赖，在项目路径 AuBot/apps/stage-tamagotchi/src/main/services/electron/app.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/apps/stage-tamagotchi/src/main/services/electron/app.ts:createAppService",
+      "type": "function",
+      "name": "createAppService",
+      "filePath": "AuBot/apps/stage-tamagotchi/src/main/services/electron/app.ts",
+      "lineRange": [
+        10,
+        23
+      ],
+      "summary": "函数 createAppService 位于 app.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/apps/stage-tamagotchi/src/main/services/electron/auto-updater.ts",
+      "type": "file",
+      "name": "auto-updater.ts",
+      "filePath": "AuBot/apps/stage-tamagotchi/src/main/services/electron/auto-updater.ts",
+      "summary": "auto-updater.ts 是 code 文件，包含 20 个函数，引用 2 个内部或外部依赖，在项目路径 AuBot/apps/stage-tamagotchi/src/main/services/electron/auto-updater.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:AuBot/apps/stage-tamagotchi/src/main/services/electron/auto-updater.ts:normalizeLane",
+      "type": "function",
+      "name": "normalizeLane",
+      "filePath": "AuBot/apps/stage-tamagotchi/src/main/services/electron/auto-updater.ts",
+      "lineRange": [
+        90,
+        105
+      ],
+      "summary": "函数 normalizeLane 位于 auto-updater.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/apps/stage-tamagotchi/src/main/services/electron/auto-updater.ts:isTagInLane",
+      "type": "function",
+      "name": "isTagInLane",
+      "filePath": "AuBot/apps/stage-tamagotchi/src/main/services/electron/auto-updater.ts",
+      "lineRange": [
+        120,
+        133
+      ],
+      "summary": "函数 isTagInLane 位于 auto-updater.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/apps/stage-tamagotchi/src/main/services/electron/auto-updater.ts:getWindowsProtectedInstallRoots",
+      "type": "function",
+      "name": "getWindowsProtectedInstallRoots",
+      "filePath": "AuBot/apps/stage-tamagotchi/src/main/services/electron/auto-updater.ts",
+      "lineRange": [
+        142,
+        152
+      ],
+      "summary": "函数 getWindowsProtectedInstallRoots 位于 auto-updater.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/apps/stage-tamagotchi/src/main/services/electron/auto-updater.ts:selectLatestTagForLane",
+      "type": "function",
+      "name": "selectLatestTagForLane",
+      "filePath": "AuBot/apps/stage-tamagotchi/src/main/services/electron/auto-updater.ts",
+      "lineRange": [
+        162,
+        174
+      ],
+      "summary": "函数 selectLatestTagForLane 位于 auto-updater.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/apps/stage-tamagotchi/src/main/services/electron/auto-updater.ts:extractReleaseTagsFromAtom",
+      "type": "function",
+      "name": "extractReleaseTagsFromAtom",
+      "filePath": "AuBot/apps/stage-tamagotchi/src/main/services/electron/auto-updater.ts",
+      "lineRange": [
+        186,
+        217
+      ],
+      "summary": "函数 extractReleaseTagsFromAtom 位于 auto-updater.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:AuBot/apps/stage-tamagotchi/src/main/services/electron/auto-updater.ts:fromImported",
+      "type": "function",
+      "name": "fromImported",
+      "filePath": "AuBot/apps/stage-tamagotchi/src/main/services/electron/auto-updater.ts",
+      "lineRange": [
+        234,
+        240
+      ],
+      "summary": "函数 fromImported 位于 auto-updater.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/apps/stage-tamagotchi/src/main/services/electron/auto-updater.ts:setupAutoUpdater",
+      "type": "function",
+      "name": "setupAutoUpdater",
+      "filePath": "AuBot/apps/stage-tamagotchi/src/main/services/electron/auto-updater.ts",
+      "lineRange": [
+        263,
+        513
+      ],
+      "summary": "函数 setupAutoUpdater 位于 auto-updater.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:AuBot/apps/stage-tamagotchi/src/main/services/electron/auto-updater.ts:createAutoUpdaterService",
+      "type": "function",
+      "name": "createAutoUpdaterService",
+      "filePath": "AuBot/apps/stage-tamagotchi/src/main/services/electron/auto-updater.ts",
+      "lineRange": [
+        515,
+        559
+      ],
+      "summary": "函数 createAutoUpdaterService 位于 auto-updater.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:AuBot/apps/stage-tamagotchi/src/main/services/electron/index.ts",
+      "type": "file",
+      "name": "index.ts",
+      "filePath": "AuBot/apps/stage-tamagotchi/src/main/services/electron/index.ts",
+      "summary": "index.ts 是 code 文件，在项目路径 AuBot/apps/stage-tamagotchi/src/main/services/electron/index.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/apps/stage-tamagotchi/src/main/services/electron/mock-auto-updater.ts",
+      "type": "file",
+      "name": "mock-auto-updater.ts",
+      "filePath": "AuBot/apps/stage-tamagotchi/src/main/services/electron/mock-auto-updater.ts",
+      "summary": "mock-auto-updater.ts 是 code 文件，包含 1 个类，在项目路径 AuBot/apps/stage-tamagotchi/src/main/services/electron/mock-auto-updater.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:AuBot/apps/stage-tamagotchi/src/main/services/electron/mock-auto-updater.ts:MockAutoUpdater",
+      "type": "class",
+      "name": "MockAutoUpdater",
+      "filePath": "AuBot/apps/stage-tamagotchi/src/main/services/electron/mock-auto-updater.ts",
+      "lineRange": [
+        5,
+        71
+      ],
+      "summary": "类 MockAutoUpdater 位于 mock-auto-updater.ts，由结构提取结果识别。",
+      "tags": [
+        "class",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:AuBot/apps/stage-tamagotchi/src/main/services/electron/powerMonitor.ts",
+      "type": "file",
+      "name": "powerMonitor.ts",
+      "filePath": "AuBot/apps/stage-tamagotchi/src/main/services/electron/powerMonitor.ts",
+      "summary": "powerMonitor.ts 是 code 文件，包含 1 个函数，引用 1 个内部或外部依赖，在项目路径 AuBot/apps/stage-tamagotchi/src/main/services/electron/powerMonitor.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/apps/stage-tamagotchi/src/main/services/electron/powerMonitor.ts:createPowerMonitorService",
+      "type": "function",
+      "name": "createPowerMonitorService",
+      "filePath": "AuBot/apps/stage-tamagotchi/src/main/services/electron/powerMonitor.ts",
+      "lineRange": [
+        11,
+        23
+      ],
+      "summary": "函数 createPowerMonitorService 位于 powerMonitor.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/apps/stage-tamagotchi/src/main/services/electron/screen.ts",
+      "type": "file",
+      "name": "screen.ts",
+      "filePath": "AuBot/apps/stage-tamagotchi/src/main/services/electron/screen.ts",
+      "summary": "screen.ts 是 code 文件，包含 1 个函数，引用 2 个内部或外部依赖，在项目路径 AuBot/apps/stage-tamagotchi/src/main/services/electron/screen.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/apps/stage-tamagotchi/src/main/services/electron/screen.ts:createScreenService",
+      "type": "function",
+      "name": "createScreenService",
+      "filePath": "AuBot/apps/stage-tamagotchi/src/main/services/electron/screen.ts",
+      "lineRange": [
+        12,
+        32
+      ],
+      "summary": "函数 createScreenService 位于 screen.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/apps/stage-tamagotchi/src/main/services/electron/system-preferences.ts",
+      "type": "file",
+      "name": "system-preferences.ts",
+      "filePath": "AuBot/apps/stage-tamagotchi/src/main/services/electron/system-preferences.ts",
+      "summary": "system-preferences.ts 是 code 文件，包含 1 个函数，引用 1 个内部或外部依赖，在项目路径 AuBot/apps/stage-tamagotchi/src/main/services/electron/system-preferences.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/apps/stage-tamagotchi/src/main/services/electron/system-preferences.ts:createSystemPreferencesService",
+      "type": "function",
+      "name": "createSystemPreferencesService",
+      "filePath": "AuBot/apps/stage-tamagotchi/src/main/services/electron/system-preferences.ts",
+      "lineRange": [
+        9,
+        24
+      ],
+      "summary": "函数 createSystemPreferencesService 位于 system-preferences.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/apps/stage-tamagotchi/src/main/services/electron/window.ts",
+      "type": "file",
+      "name": "window.ts",
+      "filePath": "AuBot/apps/stage-tamagotchi/src/main/services/electron/window.ts",
+      "summary": "window.ts 是 code 文件，包含 1 个函数，引用 3 个内部或外部依赖，在项目路径 AuBot/apps/stage-tamagotchi/src/main/services/electron/window.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:AuBot/apps/stage-tamagotchi/src/main/services/electron/window.ts:createWindowService",
+      "type": "function",
+      "name": "createWindowService",
+      "filePath": "AuBot/apps/stage-tamagotchi/src/main/services/electron/window.ts",
+      "lineRange": [
+        20,
+        123
+      ],
+      "summary": "函数 createWindowService 位于 window.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "complex"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/services/airi/widgets/providers/replicate.ts",
+      "target": "class:AuBot/apps/stage-tamagotchi/src/main/services/airi/widgets/providers/replicate.ts:ReplicateProvider",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/services/airi/widgets/providers/replicate.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/main/services/airi/widgets/providers/base.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/services/airi/widgets/validation.test.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/main/services/airi/widgets/validation.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/services/airi/widgets/validation.ts",
+      "target": "function:AuBot/apps/stage-tamagotchi/src/main/services/airi/widgets/validation.ts:validateWidgetsAddPayload",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/services/airi/widgets/validation.ts",
+      "target": "function:AuBot/apps/stage-tamagotchi/src/main/services/airi/widgets/validation.ts:validateWidgetsUpdatePayload",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/services/airi/widgets/validation.ts",
+      "target": "function:AuBot/apps/stage-tamagotchi/src/main/services/airi/widgets/validation.ts:normalizeRequiredWidgetId",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/services/airi/widgets/validation.ts",
+      "target": "function:AuBot/apps/stage-tamagotchi/src/main/services/airi/widgets/validation.ts:normalizeOptionalWidgetId",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/services/airi/widgets/validation.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/shared/eventa/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/services/airi/widgets/validation.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/shared/utils/electron/windows/window-size.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/services/electron/app.test.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/main/services/electron/app.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/services/electron/app.test.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/shared/eventa/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/services/electron/app.ts",
+      "target": "function:AuBot/apps/stage-tamagotchi/src/main/services/electron/app.ts:createAppService",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/services/electron/app.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/shared/eventa/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/services/electron/auto-updater.ts",
+      "target": "function:AuBot/apps/stage-tamagotchi/src/main/services/electron/auto-updater.ts:normalizeLane",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/services/electron/auto-updater.ts",
+      "target": "function:AuBot/apps/stage-tamagotchi/src/main/services/electron/auto-updater.ts:isTagInLane",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/services/electron/auto-updater.ts",
+      "target": "function:AuBot/apps/stage-tamagotchi/src/main/services/electron/auto-updater.ts:getWindowsProtectedInstallRoots",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/services/electron/auto-updater.ts",
+      "target": "function:AuBot/apps/stage-tamagotchi/src/main/services/electron/auto-updater.ts:selectLatestTagForLane",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/services/electron/auto-updater.ts",
+      "target": "function:AuBot/apps/stage-tamagotchi/src/main/services/electron/auto-updater.ts:extractReleaseTagsFromAtom",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/services/electron/auto-updater.ts",
+      "target": "function:AuBot/apps/stage-tamagotchi/src/main/services/electron/auto-updater.ts:fromImported",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/services/electron/auto-updater.ts",
+      "target": "function:AuBot/apps/stage-tamagotchi/src/main/services/electron/auto-updater.ts:setupAutoUpdater",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/services/electron/auto-updater.ts",
+      "target": "function:AuBot/apps/stage-tamagotchi/src/main/services/electron/auto-updater.ts:createAutoUpdaterService",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/services/electron/auto-updater.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/main/services/electron/mock-auto-updater.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/services/electron/auto-updater.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/shared/eventa/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/services/electron/mock-auto-updater.ts",
+      "target": "class:AuBot/apps/stage-tamagotchi/src/main/services/electron/mock-auto-updater.ts:MockAutoUpdater",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/services/electron/powerMonitor.ts",
+      "target": "function:AuBot/apps/stage-tamagotchi/src/main/services/electron/powerMonitor.ts:createPowerMonitorService",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/services/electron/powerMonitor.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/main/libs/bootkit/lifecycle.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/services/electron/screen.ts",
+      "target": "function:AuBot/apps/stage-tamagotchi/src/main/services/electron/screen.ts:createScreenService",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/services/electron/screen.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/main/libs/bootkit/lifecycle.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/services/electron/screen.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/shared/eventa/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/services/electron/system-preferences.ts",
+      "target": "function:AuBot/apps/stage-tamagotchi/src/main/services/electron/system-preferences.ts:createSystemPreferencesService",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/services/electron/system-preferences.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/shared/eventa/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/services/electron/window.ts",
+      "target": "function:AuBot/apps/stage-tamagotchi/src/main/services/electron/window.ts:createWindowService",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/services/electron/window.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/main/libs/bootkit/lifecycle.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/services/electron/window.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/main/windows/shared/window.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/stage-tamagotchi/src/main/services/electron/window.ts",
+      "target": "file:AuBot/apps/stage-tamagotchi/src/shared/eventa/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    }
+  ]
+}

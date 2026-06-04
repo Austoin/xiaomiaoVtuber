@@ -1,0 +1,496 @@
+{
+  "nodes": [
+    {
+      "id": "file:AuBot/packages/ui/src/components/misc/progress.vue",
+      "type": "file",
+      "name": "progress.vue",
+      "filePath": "AuBot/packages/ui/src/components/misc/progress.vue",
+      "summary": "progress.vue 实现 AuBot/packages/ui/src/components/misc 下的 Vue 单文件组件，承担界面渲染、交互绑定或局部状态展示职责。",
+      "tags": [
+        "vue",
+        "组件",
+        "用户界面"
+      ],
+      "complexity": "simple",
+      "languageNotes": "vue 文件按提取结果识别导出、函数和类结构。"
+    },
+    {
+      "id": "file:AuBot/packages/ui/src/composables/use-deferred-mount.ts",
+      "type": "file",
+      "name": "use-deferred-mount.ts",
+      "filePath": "AuBot/packages/ui/src/composables/use-deferred-mount.ts",
+      "summary": "use-deferred-mount.ts 封装可复用的组合式逻辑，供 Vue 组件或 store 共享状态、事件或副作用处理。",
+      "tags": [
+        "composable",
+        "状态逻辑",
+        "工具函数"
+      ],
+      "complexity": "simple",
+      "languageNotes": "typescript 文件按提取结果识别导出、函数和类结构。"
+    },
+    {
+      "id": "function:AuBot/packages/ui/src/composables/use-deferred-mount.ts:useDeferredMount",
+      "type": "function",
+      "name": "useDeferredMount",
+      "filePath": "AuBot/packages/ui/src/composables/use-deferred-mount.ts",
+      "lineRange": [
+        3,
+        20
+      ],
+      "summary": "useDeferredMount 封装 use-deferred-mount.ts 中的核心逻辑，负责该模块对外暴露或内部复用的一段明确行为。",
+      "tags": [
+        "composable",
+        "状态逻辑",
+        "hook"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/ui/src/composables/use-theme.ts",
+      "type": "file",
+      "name": "use-theme.ts",
+      "filePath": "AuBot/packages/ui/src/composables/use-theme.ts",
+      "summary": "use-theme.ts 封装可复用的组合式逻辑，供 Vue 组件或 store 共享状态、事件或副作用处理。",
+      "tags": [
+        "composable",
+        "状态逻辑",
+        "工具函数"
+      ],
+      "complexity": "simple",
+      "languageNotes": "typescript 文件按提取结果识别导出、函数和类结构。"
+    },
+    {
+      "id": "function:AuBot/packages/ui/src/composables/use-theme.ts:useTheme",
+      "type": "function",
+      "name": "useTheme",
+      "filePath": "AuBot/packages/ui/src/composables/use-theme.ts",
+      "lineRange": [
+        14,
+        19
+      ],
+      "summary": "useTheme 封装 use-theme.ts 中的核心逻辑，负责该模块对外暴露或内部复用的一段明确行为。",
+      "tags": [
+        "composable",
+        "状态逻辑",
+        "hook"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/ui/src/constants/lamp-flicker-animation.ts",
+      "type": "file",
+      "name": "lamp-flicker-animation.ts",
+      "filePath": "AuBot/packages/ui/src/constants/lamp-flicker-animation.ts",
+      "summary": "lamp-flicker-animation.ts 是 AuBot/packages/ui/src/constants 下的代码模块，参与该功能区域的类型、配置或前端逻辑组织。",
+      "tags": [
+        "代码",
+        "模块",
+        "前端逻辑"
+      ],
+      "complexity": "simple",
+      "languageNotes": "typescript 文件按提取结果识别导出、函数和类结构。"
+    },
+    {
+      "id": "file:AuBot/packages/ui/src/index.ts",
+      "type": "file",
+      "name": "index.ts",
+      "filePath": "AuBot/packages/ui/src/index.ts",
+      "summary": "index.ts 作为 AuBot/packages/ui/src 的模块入口，汇总或转发该目录的公共导出。",
+      "tags": [
+        "入口点",
+        "barrel",
+        "模块导出"
+      ],
+      "complexity": "simple",
+      "languageNotes": "typescript 文件按提取结果识别导出、函数和类结构。"
+    },
+    {
+      "id": "file:AuBot/packages/ui/src/utils/index.ts",
+      "type": "file",
+      "name": "index.ts",
+      "filePath": "AuBot/packages/ui/src/utils/index.ts",
+      "summary": "index.ts 作为 AuBot/packages/ui/src/utils 的模块入口，汇总或转发该目录的公共导出。",
+      "tags": [
+        "入口点",
+        "barrel",
+        "模块导出"
+      ],
+      "complexity": "simple",
+      "languageNotes": "typescript 文件按提取结果识别导出、函数和类结构。"
+    },
+    {
+      "id": "file:AuBot/packages/ui/src/utils/shim/index.ts",
+      "type": "file",
+      "name": "index.ts",
+      "filePath": "AuBot/packages/ui/src/utils/shim/index.ts",
+      "summary": "index.ts 作为 AuBot/packages/ui/src/utils/shim 的模块入口，汇总或转发该目录的公共导出。",
+      "tags": [
+        "入口点",
+        "barrel",
+        "模块导出"
+      ],
+      "complexity": "simple",
+      "languageNotes": "typescript 文件按提取结果识别导出、函数和类结构。"
+    },
+    {
+      "id": "file:AuBot/packages/ui/src/utils/shim/local-storage.ts",
+      "type": "file",
+      "name": "local-storage.ts",
+      "filePath": "AuBot/packages/ui/src/utils/shim/local-storage.ts",
+      "summary": "local-storage.ts 提供 AuBot/packages/ui/src/utils/shim 下的代码实现，包含 0 个函数和 1 个类/组件结构。",
+      "tags": [
+        "代码",
+        "模块",
+        "前端逻辑"
+      ],
+      "complexity": "simple",
+      "languageNotes": "typescript 文件按提取结果识别导出、函数和类结构。"
+    },
+    {
+      "id": "class:AuBot/packages/ui/src/utils/shim/local-storage.ts:LocalStorageShim",
+      "type": "class",
+      "name": "LocalStorageShim",
+      "filePath": "AuBot/packages/ui/src/utils/shim/local-storage.ts",
+      "lineRange": [
+        1,
+        27
+      ],
+      "summary": "LocalStorageShim 聚合 local-storage.ts 中的组件或类级状态与方法，形成可复用的模块结构。",
+      "tags": [
+        "类",
+        "封装",
+        "模块结构"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:AuBot/packages/ui/tsconfig.json",
+      "type": "config",
+      "name": "tsconfig.json",
+      "filePath": "AuBot/packages/ui/tsconfig.json",
+      "summary": "AuBot/packages/ui/tsconfig.json 配置 TypeScript 编译选项、路径包含范围与 Vue 类型支持，约束该包的类型检查方式。",
+      "tags": [
+        "配置",
+        "typescript",
+        "构建系统"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:AuBot/packages/unocss-preset-fonts/package.json",
+      "type": "config",
+      "name": "package.json",
+      "filePath": "AuBot/packages/unocss-preset-fonts/package.json",
+      "summary": "AuBot/packages/unocss-preset-fonts/package.json 定义该包的依赖、脚本与发布元数据，支撑本模块的构建、测试和运行约定。",
+      "tags": [
+        "配置",
+        "依赖管理",
+        "构建系统"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/unocss-preset-fonts/src/index.ts",
+      "type": "file",
+      "name": "index.ts",
+      "filePath": "AuBot/packages/unocss-preset-fonts/src/index.ts",
+      "summary": "index.ts 作为 AuBot/packages/unocss-preset-fonts/src 的模块入口，汇总或转发该目录的公共导出。",
+      "tags": [
+        "入口点",
+        "barrel",
+        "模块导出"
+      ],
+      "complexity": "simple",
+      "languageNotes": "typescript 文件按提取结果识别导出、函数和类结构。"
+    },
+    {
+      "id": "config:AuBot/packages/unocss-preset-fonts/tsconfig.json",
+      "type": "config",
+      "name": "tsconfig.json",
+      "filePath": "AuBot/packages/unocss-preset-fonts/tsconfig.json",
+      "summary": "AuBot/packages/unocss-preset-fonts/tsconfig.json 配置 TypeScript 编译选项、路径包含范围与 Vue 类型支持，约束该包的类型检查方式。",
+      "tags": [
+        "配置",
+        "typescript",
+        "构建系统"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/unocss-preset-fonts/tsdown.config.ts",
+      "type": "file",
+      "name": "tsdown.config.ts",
+      "filePath": "AuBot/packages/unocss-preset-fonts/tsdown.config.ts",
+      "summary": "tsdown.config.ts 是 AuBot/packages/unocss-preset-fonts 下的代码模块，参与该功能区域的类型、配置或前端逻辑组织。",
+      "tags": [
+        "代码",
+        "模块",
+        "前端逻辑"
+      ],
+      "complexity": "simple",
+      "languageNotes": "typescript 文件按提取结果识别导出、函数和类结构。"
+    },
+    {
+      "id": "config:AuBot/packages/vishot-runner-browser/package.json",
+      "type": "config",
+      "name": "package.json",
+      "filePath": "AuBot/packages/vishot-runner-browser/package.json",
+      "summary": "AuBot/packages/vishot-runner-browser/package.json 定义该包的依赖、脚本与发布元数据，支撑本模块的构建、测试和运行约定。",
+      "tags": [
+        "配置",
+        "依赖管理",
+        "构建系统"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/vishot-runner-browser/src/index.ts",
+      "type": "file",
+      "name": "index.ts",
+      "filePath": "AuBot/packages/vishot-runner-browser/src/index.ts",
+      "summary": "index.ts 作为 AuBot/packages/vishot-runner-browser/src 的模块入口，汇总或转发该目录的公共导出。",
+      "tags": [
+        "入口点",
+        "barrel",
+        "模块导出"
+      ],
+      "complexity": "simple",
+      "languageNotes": "typescript 文件按提取结果识别导出、函数和类结构。"
+    },
+    {
+      "id": "file:AuBot/packages/vishot-runner-browser/src/runtime/integration.test.ts",
+      "type": "file",
+      "name": "integration.test.ts",
+      "filePath": "AuBot/packages/vishot-runner-browser/src/runtime/integration.test.ts",
+      "summary": "integration.test.ts 提供 AuBot/packages/vishot-runner-browser/src/runtime 下的代码实现，包含 3 个函数和 0 个类/组件结构。",
+      "tags": [
+        "测试",
+        "质量保障",
+        "回归验证"
+      ],
+      "complexity": "complex",
+      "languageNotes": "typescript 文件按提取结果识别导出、函数和类结构。"
+    },
+    {
+      "id": "function:AuBot/packages/vishot-runner-browser/src/runtime/integration.test.ts:createFixturePage",
+      "type": "function",
+      "name": "createFixturePage",
+      "filePath": "AuBot/packages/vishot-runner-browser/src/runtime/integration.test.ts",
+      "lineRange": [
+        20,
+        114
+      ],
+      "summary": "createFixturePage 封装 integration.test.ts 中的核心逻辑，负责该模块对外暴露或内部复用的一段明确行为。",
+      "tags": [
+        "工厂函数",
+        "初始化",
+        "服务构建"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:AuBot/packages/vishot-runner-browser/src/runtime/integration.test.ts:createViteSceneFixture",
+      "type": "function",
+      "name": "createViteSceneFixture",
+      "filePath": "AuBot/packages/vishot-runner-browser/src/runtime/integration.test.ts",
+      "lineRange": [
+        141,
+        186
+      ],
+      "summary": "createViteSceneFixture 封装 integration.test.ts 中的核心逻辑，负责该模块对外暴露或内部复用的一段明确行为。",
+      "tags": [
+        "工厂函数",
+        "初始化",
+        "服务构建"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:AuBot/packages/vishot-runner-browser/tsconfig.json",
+      "type": "config",
+      "name": "tsconfig.json",
+      "filePath": "AuBot/packages/vishot-runner-browser/tsconfig.json",
+      "summary": "AuBot/packages/vishot-runner-browser/tsconfig.json 配置 TypeScript 编译选项、路径包含范围与 Vue 类型支持，约束该包的类型检查方式。",
+      "tags": [
+        "配置",
+        "typescript",
+        "构建系统"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/vishot-runner-browser/vitest.config.ts",
+      "type": "file",
+      "name": "vitest.config.ts",
+      "filePath": "AuBot/packages/vishot-runner-browser/vitest.config.ts",
+      "summary": "vitest.config.ts 是 AuBot/packages/vishot-runner-browser 下的代码模块，参与该功能区域的类型、配置或前端逻辑组织。",
+      "tags": [
+        "代码",
+        "模块",
+        "前端逻辑"
+      ],
+      "complexity": "simple",
+      "languageNotes": "typescript 文件按提取结果识别导出、函数和类结构。"
+    },
+    {
+      "id": "config:AuBot/packages/vishot-runner-electron/package.json",
+      "type": "config",
+      "name": "package.json",
+      "filePath": "AuBot/packages/vishot-runner-electron/package.json",
+      "summary": "AuBot/packages/vishot-runner-electron/package.json 定义该包的依赖、脚本与发布元数据，支撑本模块的构建、测试和运行约定。",
+      "tags": [
+        "配置",
+        "依赖管理",
+        "构建系统"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/vishot-runner-electron/src/index.ts",
+      "type": "file",
+      "name": "index.ts",
+      "filePath": "AuBot/packages/vishot-runner-electron/src/index.ts",
+      "summary": "index.ts 作为 AuBot/packages/vishot-runner-electron/src 的模块入口，汇总或转发该目录的公共导出。",
+      "tags": [
+        "入口点",
+        "barrel",
+        "模块导出"
+      ],
+      "complexity": "simple",
+      "languageNotes": "typescript 文件按提取结果识别导出、函数和类结构。"
+    },
+    {
+      "id": "config:AuBot/packages/vishot-runner-electron/tsconfig.json",
+      "type": "config",
+      "name": "tsconfig.json",
+      "filePath": "AuBot/packages/vishot-runner-electron/tsconfig.json",
+      "summary": "AuBot/packages/vishot-runner-electron/tsconfig.json 配置 TypeScript 编译选项、路径包含范围与 Vue 类型支持，约束该包的类型检查方式。",
+      "tags": [
+        "配置",
+        "typescript",
+        "构建系统"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/vishot-runner-electron/vitest.config.ts",
+      "type": "file",
+      "name": "vitest.config.ts",
+      "filePath": "AuBot/packages/vishot-runner-electron/vitest.config.ts",
+      "summary": "vitest.config.ts 是 AuBot/packages/vishot-runner-electron 下的代码模块，参与该功能区域的类型、配置或前端逻辑组织。",
+      "tags": [
+        "代码",
+        "模块",
+        "前端逻辑"
+      ],
+      "complexity": "simple",
+      "languageNotes": "typescript 文件按提取结果识别导出、函数和类结构。"
+    },
+    {
+      "id": "config:AuBot/packages/vishot-runtime/package.json",
+      "type": "config",
+      "name": "package.json",
+      "filePath": "AuBot/packages/vishot-runtime/package.json",
+      "summary": "AuBot/packages/vishot-runtime/package.json 定义该包的依赖、脚本与发布元数据，支撑本模块的构建、测试和运行约定。",
+      "tags": [
+        "配置",
+        "依赖管理",
+        "构建系统"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/vishot-runtime/src/env.d.ts",
+      "type": "file",
+      "name": "env.d.ts",
+      "filePath": "AuBot/packages/vishot-runtime/src/env.d.ts",
+      "summary": "env.d.ts 提供 TypeScript 环境声明，使该包能识别全局类型或构建工具注入的类型信息。",
+      "tags": [
+        "类型定义",
+        "typescript",
+        "声明文件"
+      ],
+      "complexity": "simple",
+      "languageNotes": "typescript 文件按提取结果识别导出、函数和类结构。"
+    },
+    {
+      "id": "file:AuBot/packages/vishot-runtime/src/index.ts",
+      "type": "file",
+      "name": "index.ts",
+      "filePath": "AuBot/packages/vishot-runtime/src/index.ts",
+      "summary": "index.ts 作为 AuBot/packages/vishot-runtime/src 的模块入口，汇总或转发该目录的公共导出。",
+      "tags": [
+        "入口点",
+        "barrel",
+        "模块导出"
+      ],
+      "complexity": "simple",
+      "languageNotes": "typescript 文件按提取结果识别导出、函数和类结构。"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:AuBot/packages/ui/src/composables/use-deferred-mount.ts",
+      "target": "function:AuBot/packages/ui/src/composables/use-deferred-mount.ts:useDeferredMount",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/packages/ui/src/composables/use-deferred-mount.ts",
+      "target": "function:AuBot/packages/ui/src/composables/use-deferred-mount.ts:useDeferredMount",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:AuBot/packages/ui/src/composables/use-theme.ts",
+      "target": "file:AuBot/packages/ui/src/utils/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/packages/ui/src/composables/use-theme.ts",
+      "target": "function:AuBot/packages/ui/src/composables/use-theme.ts:useTheme",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/packages/ui/src/composables/use-theme.ts",
+      "target": "function:AuBot/packages/ui/src/composables/use-theme.ts:useTheme",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:AuBot/packages/ui/src/utils/shim/local-storage.ts",
+      "target": "class:AuBot/packages/ui/src/utils/shim/local-storage.ts:LocalStorageShim",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/packages/ui/src/utils/shim/local-storage.ts",
+      "target": "class:AuBot/packages/ui/src/utils/shim/local-storage.ts:LocalStorageShim",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:AuBot/packages/vishot-runner-browser/src/runtime/integration.test.ts",
+      "target": "function:AuBot/packages/vishot-runner-browser/src/runtime/integration.test.ts:createFixturePage",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/packages/vishot-runner-browser/src/runtime/integration.test.ts",
+      "target": "function:AuBot/packages/vishot-runner-browser/src/runtime/integration.test.ts:createViteSceneFixture",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    }
+  ]
+}

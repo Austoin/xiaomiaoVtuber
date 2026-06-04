@@ -1,0 +1,613 @@
+{
+  "nodes": [
+    {
+      "id": "document:AuBot/packages/model-driver-mediapipe/references/tasks-vision-api.md",
+      "type": "document",
+      "name": "tasks-vision-api.md",
+      "filePath": "AuBot/packages/model-driver-mediapipe/references/tasks-vision-api.md",
+      "summary": "文档 tasks-vision-api.md 记录 AuBot\\packages\\model-driver-mediapipe\\references 相关的说明、约定或使用信息，帮助理解该区域的项目上下文。",
+      "tags": [
+        "文档",
+        "说明",
+        "项目知识"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/model-driver-mediapipe/src/index.ts",
+      "type": "file",
+      "name": "index.ts",
+      "filePath": "AuBot/packages/model-driver-mediapipe/src/index.ts",
+      "summary": "代码文件 index.ts 位于 AuBot\\packages\\model-driver-mediapipe\\src，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "入口点",
+        "barrel",
+        "导出"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/model-driver-mediapipe/src/three/index.ts",
+      "type": "file",
+      "name": "index.ts",
+      "filePath": "AuBot/packages/model-driver-mediapipe/src/three/index.ts",
+      "summary": "代码文件 index.ts 位于 AuBot\\packages\\model-driver-mediapipe\\src\\three，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "入口点",
+        "barrel",
+        "导出"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:AuBot/packages/pipelines-audio/package.json",
+      "type": "config",
+      "name": "package.json",
+      "filePath": "AuBot/packages/pipelines-audio/package.json",
+      "summary": "配置文件 package.json 管理 AuBot\\packages\\pipelines-audio 相关的工具链、构建或运行参数，是项目环境约定的一部分。",
+      "tags": [
+        "配置",
+        "项目设置",
+        "工具链"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/pipelines-audio/src/index.ts",
+      "type": "file",
+      "name": "index.ts",
+      "filePath": "AuBot/packages/pipelines-audio/src/index.ts",
+      "summary": "代码文件 index.ts 位于 AuBot\\packages\\pipelines-audio\\src，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "入口点",
+        "barrel",
+        "导出"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:AuBot/packages/pipelines-audio/tsconfig.json",
+      "type": "config",
+      "name": "tsconfig.json",
+      "filePath": "AuBot/packages/pipelines-audio/tsconfig.json",
+      "summary": "配置文件 tsconfig.json 管理 AuBot\\packages\\pipelines-audio 相关的工具链、构建或运行参数，是项目环境约定的一部分。",
+      "tags": [
+        "配置",
+        "项目设置",
+        "工具链"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/pipelines-audio/tsdown.config.ts",
+      "type": "file",
+      "name": "tsdown.config.ts",
+      "filePath": "AuBot/packages/pipelines-audio/tsdown.config.ts",
+      "summary": "代码文件 tsdown.config.ts 位于 AuBot\\packages\\pipelines-audio，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "配置",
+        "运行时",
+        "设置"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/pipelines-audio/vitest.config.ts",
+      "type": "file",
+      "name": "vitest.config.ts",
+      "filePath": "AuBot/packages/pipelines-audio/vitest.config.ts",
+      "summary": "代码文件 vitest.config.ts 位于 AuBot\\packages\\pipelines-audio，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "测试",
+        "验证",
+        "回归"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:AuBot/packages/plugin-protocol/package.json",
+      "type": "config",
+      "name": "package.json",
+      "filePath": "AuBot/packages/plugin-protocol/package.json",
+      "summary": "配置文件 package.json 管理 AuBot\\packages\\plugin-protocol 相关的工具链、构建或运行参数，是项目环境约定的一部分。",
+      "tags": [
+        "配置",
+        "项目设置",
+        "工具链"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/plugin-protocol/src/index.ts",
+      "type": "file",
+      "name": "index.ts",
+      "filePath": "AuBot/packages/plugin-protocol/src/index.ts",
+      "summary": "代码文件 index.ts 位于 AuBot\\packages\\plugin-protocol\\src，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "入口点",
+        "barrel",
+        "导出"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/plugin-protocol/src/types/events.ts",
+      "type": "file",
+      "name": "events.ts",
+      "filePath": "AuBot/packages/plugin-protocol/src/types/events.ts",
+      "summary": "代码文件 events.ts 位于 AuBot\\packages\\plugin-protocol\\src\\types，包含 2 个函数和 0 个类，承担该模块内的核心实现职责。",
+      "tags": [
+        "代码",
+        "模块",
+        "项目逻辑"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:AuBot/packages/plugin-protocol/src/types/events.ts:defineProtocolEventa",
+      "type": "function",
+      "name": "defineProtocolEventa",
+      "filePath": "AuBot/packages/plugin-protocol/src/types/events.ts",
+      "lineRange": [
+        421,
+        430
+      ],
+      "summary": "函数 defineProtocolEventa 实现 AuBot/packages/plugin-protocol/src/types/events.ts 中的关键逻辑，参与该模块的主要行为。",
+      "tags": [
+        "函数",
+        "模块逻辑",
+        "内部实现"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/packages/plugin-protocol/src/types/events.ts:getProtocolEventMetadata",
+      "type": "function",
+      "name": "getProtocolEventMetadata",
+      "filePath": "AuBot/packages/plugin-protocol/src/types/events.ts",
+      "lineRange": [
+        1152,
+        1154
+      ],
+      "summary": "函数 getProtocolEventMetadata 实现 AuBot/packages/plugin-protocol/src/types/events.ts 中的关键逻辑，参与该模块的主要行为。",
+      "tags": [
+        "函数",
+        "模块逻辑",
+        "导出"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/plugin-protocol/src/types/index.ts",
+      "type": "file",
+      "name": "index.ts",
+      "filePath": "AuBot/packages/plugin-protocol/src/types/index.ts",
+      "summary": "代码文件 index.ts 位于 AuBot\\packages\\plugin-protocol\\src\\types，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "入口点",
+        "barrel",
+        "导出"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:AuBot/packages/plugin-protocol/tsconfig.json",
+      "type": "config",
+      "name": "tsconfig.json",
+      "filePath": "AuBot/packages/plugin-protocol/tsconfig.json",
+      "summary": "配置文件 tsconfig.json 管理 AuBot\\packages\\plugin-protocol 相关的工具链、构建或运行参数，是项目环境约定的一部分。",
+      "tags": [
+        "配置",
+        "项目设置",
+        "工具链"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/plugin-protocol/tsdown.config.ts",
+      "type": "file",
+      "name": "tsdown.config.ts",
+      "filePath": "AuBot/packages/plugin-protocol/tsdown.config.ts",
+      "summary": "代码文件 tsdown.config.ts 位于 AuBot\\packages\\plugin-protocol，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "配置",
+        "运行时",
+        "设置"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:AuBot/packages/plugin-sdk-tamagotchi/package.json",
+      "type": "config",
+      "name": "package.json",
+      "filePath": "AuBot/packages/plugin-sdk-tamagotchi/package.json",
+      "summary": "配置文件 package.json 管理 AuBot\\packages\\plugin-sdk-tamagotchi 相关的工具链、构建或运行参数，是项目环境约定的一部分。",
+      "tags": [
+        "配置",
+        "项目设置",
+        "工具链"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:AuBot/packages/plugin-sdk-tamagotchi/src/gamelet/index.ts",
+      "type": "file",
+      "name": "index.ts",
+      "filePath": "AuBot/packages/plugin-sdk-tamagotchi/src/gamelet/index.ts",
+      "summary": "代码文件 index.ts 位于 AuBot\\packages\\plugin-sdk-tamagotchi\\src\\gamelet，包含 3 个函数和 0 个类，承担该模块内的核心实现职责。",
+      "tags": [
+        "入口点",
+        "barrel",
+        "导出"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:AuBot/packages/plugin-sdk-tamagotchi/src/gamelet/index.ts:buildModuleConfig",
+      "type": "function",
+      "name": "buildModuleConfig",
+      "filePath": "AuBot/packages/plugin-sdk-tamagotchi/src/gamelet/index.ts",
+      "lineRange": [
+        99,
+        125
+      ],
+      "summary": "函数 buildModuleConfig 实现 AuBot/packages/plugin-sdk-tamagotchi/src/gamelet/index.ts 中的关键逻辑，参与该模块的主要行为。",
+      "tags": [
+        "函数",
+        "模块逻辑",
+        "内部实现"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/packages/plugin-sdk-tamagotchi/src/gamelet/index.ts:defineGamelet",
+      "type": "function",
+      "name": "defineGamelet",
+      "filePath": "AuBot/packages/plugin-sdk-tamagotchi/src/gamelet/index.ts",
+      "lineRange": [
+        139,
+        184
+      ],
+      "summary": "函数 defineGamelet 实现 AuBot/packages/plugin-sdk-tamagotchi/src/gamelet/index.ts 中的关键逻辑，参与该模块的主要行为。",
+      "tags": [
+        "函数",
+        "模块逻辑",
+        "导出"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/plugin-sdk-tamagotchi/src/index.test.ts",
+      "type": "file",
+      "name": "index.test.ts",
+      "filePath": "AuBot/packages/plugin-sdk-tamagotchi/src/index.test.ts",
+      "summary": "代码文件 index.test.ts 位于 AuBot\\packages\\plugin-sdk-tamagotchi\\src，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "测试",
+        "验证",
+        "回归"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:AuBot/packages/plugin-sdk-tamagotchi/src/index.ts",
+      "type": "file",
+      "name": "index.ts",
+      "filePath": "AuBot/packages/plugin-sdk-tamagotchi/src/index.ts",
+      "summary": "代码文件 index.ts 位于 AuBot\\packages\\plugin-sdk-tamagotchi\\src，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "入口点",
+        "barrel",
+        "导出"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/plugin-sdk-tamagotchi/src/tools/index.ts",
+      "type": "file",
+      "name": "index.ts",
+      "filePath": "AuBot/packages/plugin-sdk-tamagotchi/src/tools/index.ts",
+      "summary": "代码文件 index.ts 位于 AuBot\\packages\\plugin-sdk-tamagotchi\\src\\tools，包含 8 个函数和 0 个类，承担该模块内的核心实现职责。",
+      "tags": [
+        "入口点",
+        "barrel",
+        "导出"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:AuBot/packages/plugin-sdk-tamagotchi/src/tools/index.ts:isToolExecutionGameletApi",
+      "type": "function",
+      "name": "isToolExecutionGameletApi",
+      "filePath": "AuBot/packages/plugin-sdk-tamagotchi/src/tools/index.ts",
+      "lineRange": [
+        123,
+        134
+      ],
+      "summary": "函数 isToolExecutionGameletApi 实现 AuBot/packages/plugin-sdk-tamagotchi/src/tools/index.ts 中的关键逻辑，参与该模块的主要行为。",
+      "tags": [
+        "函数",
+        "模块逻辑",
+        "内部实现"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/packages/plugin-sdk-tamagotchi/src/tools/index.ts:getToolExecutionGameletApi",
+      "type": "function",
+      "name": "getToolExecutionGameletApi",
+      "filePath": "AuBot/packages/plugin-sdk-tamagotchi/src/tools/index.ts",
+      "lineRange": [
+        136,
+        146
+      ],
+      "summary": "函数 getToolExecutionGameletApi 实现 AuBot/packages/plugin-sdk-tamagotchi/src/tools/index.ts 中的关键逻辑，参与该模块的主要行为。",
+      "tags": [
+        "函数",
+        "模块逻辑",
+        "内部实现"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/packages/plugin-sdk-tamagotchi/src/tools/index.ts:serializeToolParameters",
+      "type": "function",
+      "name": "serializeToolParameters",
+      "filePath": "AuBot/packages/plugin-sdk-tamagotchi/src/tools/index.ts",
+      "lineRange": [
+        220,
+        230
+      ],
+      "summary": "函数 serializeToolParameters 实现 AuBot/packages/plugin-sdk-tamagotchi/src/tools/index.ts 中的关键逻辑，参与该模块的主要行为。",
+      "tags": [
+        "函数",
+        "模块逻辑",
+        "内部实现"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/packages/plugin-sdk-tamagotchi/src/tools/index.ts:defineToolset",
+      "type": "function",
+      "name": "defineToolset",
+      "filePath": "AuBot/packages/plugin-sdk-tamagotchi/src/tools/index.ts",
+      "lineRange": [
+        244,
+        268
+      ],
+      "summary": "函数 defineToolset 实现 AuBot/packages/plugin-sdk-tamagotchi/src/tools/index.ts 中的关键逻辑，参与该模块的主要行为。",
+      "tags": [
+        "函数",
+        "模块逻辑",
+        "导出"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/plugin-sdk-tamagotchi/src/widgets/index.ts",
+      "type": "file",
+      "name": "index.ts",
+      "filePath": "AuBot/packages/plugin-sdk-tamagotchi/src/widgets/index.ts",
+      "summary": "代码文件 index.ts 位于 AuBot\\packages\\plugin-sdk-tamagotchi\\src\\widgets，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "入口点",
+        "barrel",
+        "导出"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:AuBot/packages/plugin-sdk-tamagotchi/tsconfig.json",
+      "type": "config",
+      "name": "tsconfig.json",
+      "filePath": "AuBot/packages/plugin-sdk-tamagotchi/tsconfig.json",
+      "summary": "配置文件 tsconfig.json 管理 AuBot\\packages\\plugin-sdk-tamagotchi 相关的工具链、构建或运行参数，是项目环境约定的一部分。",
+      "tags": [
+        "配置",
+        "项目设置",
+        "工具链"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/plugin-sdk-tamagotchi/tsdown.config.ts",
+      "type": "file",
+      "name": "tsdown.config.ts",
+      "filePath": "AuBot/packages/plugin-sdk-tamagotchi/tsdown.config.ts",
+      "summary": "代码文件 tsdown.config.ts 位于 AuBot\\packages\\plugin-sdk-tamagotchi，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "配置",
+        "运行时",
+        "设置"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/packages/plugin-sdk-tamagotchi/vitest.config.ts",
+      "type": "file",
+      "name": "vitest.config.ts",
+      "filePath": "AuBot/packages/plugin-sdk-tamagotchi/vitest.config.ts",
+      "summary": "代码文件 vitest.config.ts 位于 AuBot\\packages\\plugin-sdk-tamagotchi，主要提供模块导出、类型声明或轻量级项目逻辑。",
+      "tags": [
+        "测试",
+        "验证",
+        "回归"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:AuBot/packages/plugin-sdk/package.json",
+      "type": "config",
+      "name": "package.json",
+      "filePath": "AuBot/packages/plugin-sdk/package.json",
+      "summary": "配置文件 package.json 管理 AuBot\\packages\\plugin-sdk 相关的工具链、构建或运行参数，是项目环境约定的一部分。",
+      "tags": [
+        "配置",
+        "项目设置",
+        "工具链"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:AuBot/packages/plugin-sdk/src/channels/index.ts",
+      "type": "file",
+      "name": "index.ts",
+      "filePath": "AuBot/packages/plugin-sdk/src/channels/index.ts",
+      "summary": "代码文件 index.ts 位于 AuBot\\packages\\plugin-sdk\\src\\channels，包含 2 个函数和 0 个类，承担该模块内的核心实现职责。",
+      "tags": [
+        "入口点",
+        "barrel",
+        "导出"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:AuBot/packages/plugin-sdk/src/channels/index.ts:setActiveHostChannel",
+      "type": "function",
+      "name": "setActiveHostChannel",
+      "filePath": "AuBot/packages/plugin-sdk/src/channels/index.ts",
+      "lineRange": [
+        49,
+        51
+      ],
+      "summary": "函数 setActiveHostChannel 实现 AuBot/packages/plugin-sdk/src/channels/index.ts 中的关键逻辑，参与该模块的主要行为。",
+      "tags": [
+        "函数",
+        "模块逻辑",
+        "导出"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/packages/plugin-sdk/src/channels/index.ts:setActiveDataChannel",
+      "type": "function",
+      "name": "setActiveDataChannel",
+      "filePath": "AuBot/packages/plugin-sdk/src/channels/index.ts",
+      "lineRange": [
+        65,
+        67
+      ],
+      "summary": "函数 setActiveDataChannel 实现 AuBot/packages/plugin-sdk/src/channels/index.ts 中的关键逻辑，参与该模块的主要行为。",
+      "tags": [
+        "函数",
+        "模块逻辑",
+        "导出"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:AuBot/packages/plugin-protocol/src/types/events.ts",
+      "target": "function:AuBot/packages/plugin-protocol/src/types/events.ts:defineProtocolEventa",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:AuBot/packages/plugin-protocol/src/types/events.ts",
+      "target": "function:AuBot/packages/plugin-protocol/src/types/events.ts:getProtocolEventMetadata",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:AuBot/packages/plugin-protocol/src/types/events.ts",
+      "target": "function:AuBot/packages/plugin-protocol/src/types/events.ts:getProtocolEventMetadata",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:AuBot/packages/plugin-sdk-tamagotchi/src/gamelet/index.ts",
+      "target": "function:AuBot/packages/plugin-sdk-tamagotchi/src/gamelet/index.ts:buildModuleConfig",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:AuBot/packages/plugin-sdk-tamagotchi/src/gamelet/index.ts",
+      "target": "function:AuBot/packages/plugin-sdk-tamagotchi/src/gamelet/index.ts:defineGamelet",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:AuBot/packages/plugin-sdk-tamagotchi/src/gamelet/index.ts",
+      "target": "function:AuBot/packages/plugin-sdk-tamagotchi/src/gamelet/index.ts:defineGamelet",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:AuBot/packages/plugin-sdk-tamagotchi/src/tools/index.ts",
+      "target": "function:AuBot/packages/plugin-sdk-tamagotchi/src/tools/index.ts:isToolExecutionGameletApi",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:AuBot/packages/plugin-sdk-tamagotchi/src/tools/index.ts",
+      "target": "function:AuBot/packages/plugin-sdk-tamagotchi/src/tools/index.ts:getToolExecutionGameletApi",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:AuBot/packages/plugin-sdk-tamagotchi/src/tools/index.ts",
+      "target": "function:AuBot/packages/plugin-sdk-tamagotchi/src/tools/index.ts:serializeToolParameters",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:AuBot/packages/plugin-sdk-tamagotchi/src/tools/index.ts",
+      "target": "function:AuBot/packages/plugin-sdk-tamagotchi/src/tools/index.ts:defineToolset",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:AuBot/packages/plugin-sdk-tamagotchi/src/tools/index.ts",
+      "target": "function:AuBot/packages/plugin-sdk-tamagotchi/src/tools/index.ts:defineToolset",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:AuBot/packages/plugin-sdk/src/channels/index.ts",
+      "target": "function:AuBot/packages/plugin-sdk/src/channels/index.ts:setActiveHostChannel",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:AuBot/packages/plugin-sdk/src/channels/index.ts",
+      "target": "function:AuBot/packages/plugin-sdk/src/channels/index.ts:setActiveHostChannel",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:AuBot/packages/plugin-sdk/src/channels/index.ts",
+      "target": "function:AuBot/packages/plugin-sdk/src/channels/index.ts:setActiveDataChannel",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:AuBot/packages/plugin-sdk/src/channels/index.ts",
+      "target": "function:AuBot/packages/plugin-sdk/src/channels/index.ts:setActiveDataChannel",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:AuBot/packages/plugin-sdk-tamagotchi/src/index.test.ts",
+      "target": "file:AuBot/packages/plugin-sdk-tamagotchi/src/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    }
+  ]
+}

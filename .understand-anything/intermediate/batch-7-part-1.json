@@ -1,0 +1,1464 @@
+{
+  "nodes": [
+    {
+      "id": "file:AuBot/apps/server/src/app.test.ts",
+      "type": "file",
+      "name": "app.test.ts",
+      "filePath": "AuBot/apps/server/src/app.test.ts",
+      "summary": "app.test.ts 是 code 文件，包含 1 个函数，引用 1 个内部或外部依赖，在项目路径 AuBot/apps/server/src/app.test.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript",
+        "test"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:AuBot/apps/server/src/app.test.ts:createTestDeps",
+      "type": "function",
+      "name": "createTestDeps",
+      "filePath": "AuBot/apps/server/src/app.test.ts",
+      "lineRange": [
+        5,
+        77
+      ],
+      "summary": "函数 createTestDeps 位于 app.test.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:AuBot/apps/server/src/app.ts",
+      "type": "file",
+      "name": "app.ts",
+      "filePath": "AuBot/apps/server/src/app.ts",
+      "summary": "app.ts 是 code 文件，包含 4 个函数，引用 33 个内部或外部依赖，在项目路径 AuBot/apps/server/src/app.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:AuBot/apps/server/src/app.ts:buildApp",
+      "type": "function",
+      "name": "buildApp",
+      "filePath": "AuBot/apps/server/src/app.ts",
+      "lineRange": [
+        81,
+        225
+      ],
+      "summary": "函数 buildApp 位于 app.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:AuBot/apps/server/src/app.ts:createApp",
+      "type": "function",
+      "name": "createApp",
+      "filePath": "AuBot/apps/server/src/app.ts",
+      "lineRange": [
+        229,
+        449
+      ],
+      "summary": "函数 createApp 位于 app.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:AuBot/apps/server/src/app.ts:runApiServer",
+      "type": "function",
+      "name": "runApiServer",
+      "filePath": "AuBot/apps/server/src/app.ts",
+      "lineRange": [
+        455,
+        467
+      ],
+      "summary": "函数 runApiServer 位于 app.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/apps/server/src/bin/run-billing-consumer.ts",
+      "type": "file",
+      "name": "run-billing-consumer.ts",
+      "filePath": "AuBot/apps/server/src/bin/run-billing-consumer.ts",
+      "summary": "run-billing-consumer.ts 是 code 文件，包含 1 个函数，引用 7 个内部或外部依赖，在项目路径 AuBot/apps/server/src/bin/run-billing-consumer.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:AuBot/apps/server/src/bin/run-billing-consumer.ts:runBillingConsumer",
+      "type": "function",
+      "name": "runBillingConsumer",
+      "filePath": "AuBot/apps/server/src/bin/run-billing-consumer.ts",
+      "lineRange": [
+        13,
+        92
+      ],
+      "summary": "函数 runBillingConsumer 位于 run-billing-consumer.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:AuBot/apps/server/src/bin/run.ts",
+      "type": "file",
+      "name": "run.ts",
+      "filePath": "AuBot/apps/server/src/bin/run.ts",
+      "summary": "run.ts 是 code 文件，包含 5 个函数，引用 3 个内部或外部依赖，在项目路径 AuBot/apps/server/src/bin/run.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:AuBot/apps/server/src/bin/run.ts:createServerCli",
+      "type": "function",
+      "name": "createServerCli",
+      "filePath": "AuBot/apps/server/src/bin/run.ts",
+      "lineRange": [
+        27,
+        42
+      ],
+      "summary": "函数 createServerCli 位于 run.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/apps/server/src/bin/run.ts:parseServerRole",
+      "type": "function",
+      "name": "parseServerRole",
+      "filePath": "AuBot/apps/server/src/bin/run.ts",
+      "lineRange": [
+        44,
+        54
+      ],
+      "summary": "函数 parseServerRole 位于 run.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/apps/server/src/bin/run.ts:main",
+      "type": "function",
+      "name": "main",
+      "filePath": "AuBot/apps/server/src/bin/run.ts",
+      "lineRange": [
+        56,
+        67
+      ],
+      "summary": "函数 main 位于 run.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/apps/server/src/libs/auth.test.ts",
+      "type": "file",
+      "name": "auth.test.ts",
+      "filePath": "AuBot/apps/server/src/libs/auth.test.ts",
+      "summary": "auth.test.ts 是 code 文件，包含 1 个函数，引用 1 个内部或外部依赖，在项目路径 AuBot/apps/server/src/libs/auth.test.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript",
+        "test"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:AuBot/apps/server/src/libs/auth.test.ts:createMockDb",
+      "type": "function",
+      "name": "createMockDb",
+      "filePath": "AuBot/apps/server/src/libs/auth.test.ts",
+      "lineRange": [
+        5,
+        30
+      ],
+      "summary": "函数 createMockDb 位于 auth.test.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:AuBot/apps/server/src/libs/auth.ts",
+      "type": "file",
+      "name": "auth.ts",
+      "filePath": "AuBot/apps/server/src/libs/auth.ts",
+      "summary": "auth.ts 是 code 文件，包含 11 个函数，引用 7 个内部或外部依赖，在项目路径 AuBot/apps/server/src/libs/auth.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:AuBot/apps/server/src/libs/auth.ts:buildWebRedirectUris",
+      "type": "function",
+      "name": "buildWebRedirectUris",
+      "filePath": "AuBot/apps/server/src/libs/auth.ts",
+      "lineRange": [
+        71,
+        87
+      ],
+      "summary": "函数 buildWebRedirectUris 位于 auth.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/apps/server/src/libs/auth.ts:buildTrustedWebRedirectUri",
+      "type": "function",
+      "name": "buildTrustedWebRedirectUri",
+      "filePath": "AuBot/apps/server/src/libs/auth.ts",
+      "lineRange": [
+        89,
+        104
+      ],
+      "summary": "函数 buildTrustedWebRedirectUri 位于 auth.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/apps/server/src/libs/auth.ts:buildTrustedElectronRedirectUri",
+      "type": "function",
+      "name": "buildTrustedElectronRedirectUri",
+      "filePath": "AuBot/apps/server/src/libs/auth.ts",
+      "lineRange": [
+        106,
+        122
+      ],
+      "summary": "函数 buildTrustedElectronRedirectUri 位于 auth.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/apps/server/src/libs/auth.ts:buildTrustedClientSeeds",
+      "type": "function",
+      "name": "buildTrustedClientSeeds",
+      "filePath": "AuBot/apps/server/src/libs/auth.ts",
+      "lineRange": [
+        127,
+        184
+      ],
+      "summary": "函数 buildTrustedClientSeeds 位于 auth.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:AuBot/apps/server/src/libs/auth.ts:getTrustedClientSeedSummaries",
+      "type": "function",
+      "name": "getTrustedClientSeedSummaries",
+      "filePath": "AuBot/apps/server/src/libs/auth.ts",
+      "lineRange": [
+        186,
+        192
+      ],
+      "summary": "函数 getTrustedClientSeedSummaries 位于 auth.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/apps/server/src/libs/auth.ts:getTrustedOIDCClientIds",
+      "type": "function",
+      "name": "getTrustedOIDCClientIds",
+      "filePath": "AuBot/apps/server/src/libs/auth.ts",
+      "lineRange": [
+        194,
+        196
+      ],
+      "summary": "函数 getTrustedOIDCClientIds 位于 auth.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/apps/server/src/libs/auth.ts:ensureDynamicFirstPartyRedirectUri",
+      "type": "function",
+      "name": "ensureDynamicFirstPartyRedirectUri",
+      "filePath": "AuBot/apps/server/src/libs/auth.ts",
+      "lineRange": [
+        198,
+        238
+      ],
+      "summary": "函数 ensureDynamicFirstPartyRedirectUri 位于 auth.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:AuBot/apps/server/src/libs/auth.ts:seedTrustedClients",
+      "type": "function",
+      "name": "seedTrustedClients",
+      "filePath": "AuBot/apps/server/src/libs/auth.ts",
+      "lineRange": [
+        267,
+        311
+      ],
+      "summary": "函数 seedTrustedClients 位于 auth.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:AuBot/apps/server/src/libs/auth.ts:requireEmailService",
+      "type": "function",
+      "name": "requireEmailService",
+      "filePath": "AuBot/apps/server/src/libs/auth.ts",
+      "lineRange": [
+        323,
+        332
+      ],
+      "summary": "函数 requireEmailService 位于 auth.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/apps/server/src/libs/auth.ts:createAuth",
+      "type": "function",
+      "name": "createAuth",
+      "filePath": "AuBot/apps/server/src/libs/auth.ts",
+      "lineRange": [
+        334,
+        518
+      ],
+      "summary": "函数 createAuth 位于 auth.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:AuBot/apps/server/src/libs/db.ts",
+      "type": "file",
+      "name": "db.ts",
+      "filePath": "AuBot/apps/server/src/libs/db.ts",
+      "summary": "db.ts 是 code 文件，包含 2 个函数，引用 2 个内部或外部依赖，在项目路径 AuBot/apps/server/src/libs/db.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/apps/server/src/libs/db.ts:createDrizzle",
+      "type": "function",
+      "name": "createDrizzle",
+      "filePath": "AuBot/apps/server/src/libs/db.ts",
+      "lineRange": [
+        21,
+        37
+      ],
+      "summary": "函数 createDrizzle 位于 db.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/apps/server/src/libs/db.ts:migrateDatabase",
+      "type": "function",
+      "name": "migrateDatabase",
+      "filePath": "AuBot/apps/server/src/libs/db.ts",
+      "lineRange": [
+        39,
+        41
+      ],
+      "summary": "函数 migrateDatabase 位于 db.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/apps/server/src/libs/env.test.ts",
+      "type": "file",
+      "name": "env.test.ts",
+      "filePath": "AuBot/apps/server/src/libs/env.test.ts",
+      "summary": "env.test.ts 是 code 文件，引用 1 个内部或外部依赖，在项目路径 AuBot/apps/server/src/libs/env.test.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript",
+        "test"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/apps/server/src/libs/env.ts",
+      "type": "file",
+      "name": "env.ts",
+      "filePath": "AuBot/apps/server/src/libs/env.ts",
+      "summary": "env.ts 是 code 文件，包含 3 个函数，引用 1 个内部或外部依赖，在项目路径 AuBot/apps/server/src/libs/env.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:AuBot/apps/server/src/libs/env.ts:optionalIntegerFromString",
+      "type": "function",
+      "name": "optionalIntegerFromString",
+      "filePath": "AuBot/apps/server/src/libs/env.ts",
+      "lineRange": [
+        11,
+        22
+      ],
+      "summary": "函数 optionalIntegerFromString 位于 env.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/apps/server/src/libs/env.ts:optionalNumberFromString",
+      "type": "function",
+      "name": "optionalNumberFromString",
+      "filePath": "AuBot/apps/server/src/libs/env.ts",
+      "lineRange": [
+        24,
+        35
+      ],
+      "summary": "函数 optionalNumberFromString 位于 env.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/apps/server/src/libs/env.ts:parseEnv",
+      "type": "function",
+      "name": "parseEnv",
+      "filePath": "AuBot/apps/server/src/libs/env.ts",
+      "lineRange": [
+        96,
+        104
+      ],
+      "summary": "函数 parseEnv 位于 env.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/apps/server/src/libs/eventa-hono-adapter.ts",
+      "type": "file",
+      "name": "eventa-hono-adapter.ts",
+      "filePath": "AuBot/apps/server/src/libs/eventa-hono-adapter.ts",
+      "summary": "eventa-hono-adapter.ts 是 code 文件，包含 4 个函数，在项目路径 AuBot/apps/server/src/libs/eventa-hono-adapter.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:AuBot/apps/server/src/libs/eventa-hono-adapter.ts:createPeerHooks",
+      "type": "function",
+      "name": "createPeerHooks",
+      "filePath": "AuBot/apps/server/src/libs/eventa-hono-adapter.ts",
+      "lineRange": [
+        71,
+        140
+      ],
+      "summary": "函数 createPeerHooks 位于 eventa-hono-adapter.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:AuBot/apps/server/src/libs/eventa-hono-adapter.ts:createGlobalHooks",
+      "type": "function",
+      "name": "createGlobalHooks",
+      "filePath": "AuBot/apps/server/src/libs/eventa-hono-adapter.ts",
+      "lineRange": [
+        156,
+        208
+      ],
+      "summary": "函数 createGlobalHooks 位于 eventa-hono-adapter.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:AuBot/apps/server/src/libs/external-dependency.ts",
+      "type": "file",
+      "name": "external-dependency.ts",
+      "filePath": "AuBot/apps/server/src/libs/external-dependency.ts",
+      "summary": "external-dependency.ts 是 code 文件，包含 1 个函数，在项目路径 AuBot/apps/server/src/libs/external-dependency.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/apps/server/src/libs/external-dependency.ts:initializeExternalDependency",
+      "type": "function",
+      "name": "initializeExternalDependency",
+      "filePath": "AuBot/apps/server/src/libs/external-dependency.ts",
+      "lineRange": [
+        13,
+        35
+      ],
+      "summary": "函数 initializeExternalDependency 位于 external-dependency.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/apps/server/src/libs/mock-db.ts",
+      "type": "file",
+      "name": "mock-db.ts",
+      "filePath": "AuBot/apps/server/src/libs/mock-db.ts",
+      "summary": "mock-db.ts 是 code 文件，包含 1 个函数，引用 1 个内部或外部依赖，在项目路径 AuBot/apps/server/src/libs/mock-db.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/apps/server/src/libs/mock-db.ts:mockDB",
+      "type": "function",
+      "name": "mockDB",
+      "filePath": "AuBot/apps/server/src/libs/mock-db.ts",
+      "lineRange": [
+        14,
+        38
+      ],
+      "summary": "函数 mockDB 位于 mock-db.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:AuBot/apps/server/src/libs/mq/index.ts",
+      "type": "file",
+      "name": "index.ts",
+      "filePath": "AuBot/apps/server/src/libs/mq/index.ts",
+      "summary": "index.ts 是 code 文件，在项目路径 AuBot/apps/server/src/libs/mq/index.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/apps/server/src/libs/otel.ts",
+      "type": "file",
+      "name": "otel.ts",
+      "filePath": "AuBot/apps/server/src/libs/otel.ts",
+      "summary": "otel.ts 是 code 文件，包含 2 个函数，引用 2 个内部或外部依赖，在项目路径 AuBot/apps/server/src/libs/otel.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:AuBot/apps/server/src/libs/otel.ts:initOtel",
+      "type": "function",
+      "name": "initOtel",
+      "filePath": "AuBot/apps/server/src/libs/otel.ts",
+      "lineRange": [
+        106,
+        304
+      ],
+      "summary": "函数 initOtel 位于 otel.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:AuBot/apps/server/src/libs/otel.ts:emitOtelLog",
+      "type": "function",
+      "name": "emitOtelLog",
+      "filePath": "AuBot/apps/server/src/libs/otel.ts",
+      "lineRange": [
+        319,
+        340
+      ],
+      "summary": "函数 emitOtelLog 位于 otel.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/apps/server/src/libs/redis.ts",
+      "type": "file",
+      "name": "redis.ts",
+      "filePath": "AuBot/apps/server/src/libs/redis.ts",
+      "summary": "redis.ts 是 code 文件，包含 1 个函数，在项目路径 AuBot/apps/server/src/libs/redis.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:AuBot/apps/server/src/libs/redis.ts:createRedis",
+      "type": "function",
+      "name": "createRedis",
+      "filePath": "AuBot/apps/server/src/libs/redis.ts",
+      "lineRange": [
+        3,
+        5
+      ],
+      "summary": "函数 createRedis 位于 redis.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:AuBot/apps/server/src/libs/request-auth.test.ts",
+      "type": "file",
+      "name": "request-auth.test.ts",
+      "filePath": "AuBot/apps/server/src/libs/request-auth.test.ts",
+      "summary": "request-auth.test.ts 是 code 文件，引用 1 个内部或外部依赖，在项目路径 AuBot/apps/server/src/libs/request-auth.test.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript",
+        "test"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:AuBot/apps/server/src/libs/request-auth.ts",
+      "type": "file",
+      "name": "request-auth.ts",
+      "filePath": "AuBot/apps/server/src/libs/request-auth.ts",
+      "summary": "request-auth.ts 是 code 文件，包含 4 个函数，引用 3 个内部或外部依赖，在项目路径 AuBot/apps/server/src/libs/request-auth.ts 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:AuBot/apps/server/src/libs/request-auth.ts:resolveJWTAccessToken",
+      "type": "function",
+      "name": "resolveJWTAccessToken",
+      "filePath": "AuBot/apps/server/src/libs/request-auth.ts",
+      "lineRange": [
+        37,
+        77
+      ],
+      "summary": "函数 resolveJWTAccessToken 位于 request-auth.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:AuBot/apps/server/src/libs/request-auth.ts:resolveRequestAuth",
+      "type": "function",
+      "name": "resolveRequestAuth",
+      "filePath": "AuBot/apps/server/src/libs/request-auth.ts",
+      "lineRange": [
+        79,
+        93
+      ],
+      "summary": "函数 resolveRequestAuth 位于 request-auth.ts，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:AuBot/apps/server/src/app.test.ts",
+      "target": "function:AuBot/apps/server/src/app.test.ts:createTestDeps",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/server/src/app.test.ts",
+      "target": "file:AuBot/apps/server/src/app.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/server/src/app.ts",
+      "target": "function:AuBot/apps/server/src/app.ts:buildApp",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/server/src/app.ts",
+      "target": "function:AuBot/apps/server/src/app.ts:createApp",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/server/src/app.ts",
+      "target": "function:AuBot/apps/server/src/app.ts:runApiServer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/server/src/app.ts",
+      "target": "file:AuBot/apps/server/src/libs/auth.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/server/src/app.ts",
+      "target": "file:AuBot/apps/server/src/libs/db.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/server/src/app.ts",
+      "target": "file:AuBot/apps/server/src/libs/env.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/server/src/app.ts",
+      "target": "file:AuBot/apps/server/src/libs/external-dependency.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/server/src/app.ts",
+      "target": "file:AuBot/apps/server/src/libs/mq/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/server/src/app.ts",
+      "target": "file:AuBot/apps/server/src/libs/otel.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/server/src/app.ts",
+      "target": "file:AuBot/apps/server/src/libs/redis.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/server/src/app.ts",
+      "target": "file:AuBot/apps/server/src/libs/request-auth.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/server/src/app.ts",
+      "target": "file:AuBot/apps/server/src/middlewares/auth.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/server/src/app.ts",
+      "target": "file:AuBot/apps/server/src/middlewares/otel.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/server/src/app.ts",
+      "target": "file:AuBot/apps/server/src/routes/auth/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/server/src/app.ts",
+      "target": "file:AuBot/apps/server/src/routes/characters/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/server/src/app.ts",
+      "target": "file:AuBot/apps/server/src/routes/chat-ws/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/server/src/app.ts",
+      "target": "file:AuBot/apps/server/src/routes/chats/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/server/src/app.ts",
+      "target": "file:AuBot/apps/server/src/routes/flux/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/server/src/app.ts",
+      "target": "file:AuBot/apps/server/src/routes/openai/v1/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/server/src/app.ts",
+      "target": "file:AuBot/apps/server/src/routes/providers/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/server/src/app.ts",
+      "target": "file:AuBot/apps/server/src/routes/stripe/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/server/src/app.ts",
+      "target": "file:AuBot/apps/server/src/services/billing/billing-events.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/server/src/app.ts",
+      "target": "file:AuBot/apps/server/src/services/billing/billing-service.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/server/src/app.ts",
+      "target": "file:AuBot/apps/server/src/services/billing/flux-meter.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/server/src/app.ts",
+      "target": "file:AuBot/apps/server/src/services/characters.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/server/src/app.ts",
+      "target": "file:AuBot/apps/server/src/services/chats.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/server/src/app.ts",
+      "target": "file:AuBot/apps/server/src/services/config-kv.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/server/src/app.ts",
+      "target": "file:AuBot/apps/server/src/services/email.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/server/src/app.ts",
+      "target": "file:AuBot/apps/server/src/services/flux-transaction.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/server/src/app.ts",
+      "target": "file:AuBot/apps/server/src/services/flux.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/server/src/app.ts",
+      "target": "file:AuBot/apps/server/src/services/providers.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/server/src/app.ts",
+      "target": "file:AuBot/apps/server/src/services/request-log.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/server/src/app.ts",
+      "target": "file:AuBot/apps/server/src/services/stripe.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/server/src/app.ts",
+      "target": "file:AuBot/apps/server/src/types/hono.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/server/src/app.ts",
+      "target": "file:AuBot/apps/server/src/utils/error.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/server/src/app.ts",
+      "target": "file:AuBot/apps/server/src/utils/origin.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/server/src/bin/run-billing-consumer.ts",
+      "target": "function:AuBot/apps/server/src/bin/run-billing-consumer.ts:runBillingConsumer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/server/src/bin/run-billing-consumer.ts",
+      "target": "file:AuBot/apps/server/src/libs/db.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/server/src/bin/run-billing-consumer.ts",
+      "target": "file:AuBot/apps/server/src/libs/env.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/server/src/bin/run-billing-consumer.ts",
+      "target": "file:AuBot/apps/server/src/libs/external-dependency.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/server/src/bin/run-billing-consumer.ts",
+      "target": "file:AuBot/apps/server/src/libs/mq/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/server/src/bin/run-billing-consumer.ts",
+      "target": "file:AuBot/apps/server/src/libs/redis.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/server/src/bin/run-billing-consumer.ts",
+      "target": "file:AuBot/apps/server/src/services/billing/billing-consumer-handler.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/server/src/bin/run-billing-consumer.ts",
+      "target": "file:AuBot/apps/server/src/services/billing/billing-events.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/server/src/bin/run.ts",
+      "target": "function:AuBot/apps/server/src/bin/run.ts:createServerCli",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/server/src/bin/run.ts",
+      "target": "function:AuBot/apps/server/src/bin/run.ts:parseServerRole",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/server/src/bin/run.ts",
+      "target": "function:AuBot/apps/server/src/bin/run.ts:main",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/server/src/bin/run.ts",
+      "target": "file:AuBot/apps/server/src/app.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/server/src/bin/run.ts",
+      "target": "file:AuBot/apps/server/src/bin/run-billing-consumer.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/server/src/bin/run.ts",
+      "target": "file:AuBot/apps/server/src/utils/error-message.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/server/src/libs/auth.test.ts",
+      "target": "function:AuBot/apps/server/src/libs/auth.test.ts:createMockDb",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/server/src/libs/auth.test.ts",
+      "target": "file:AuBot/apps/server/src/libs/auth.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/server/src/libs/auth.ts",
+      "target": "function:AuBot/apps/server/src/libs/auth.ts:buildWebRedirectUris",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/server/src/libs/auth.ts",
+      "target": "function:AuBot/apps/server/src/libs/auth.ts:buildTrustedWebRedirectUri",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/server/src/libs/auth.ts",
+      "target": "function:AuBot/apps/server/src/libs/auth.ts:buildTrustedElectronRedirectUri",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/server/src/libs/auth.ts",
+      "target": "function:AuBot/apps/server/src/libs/auth.ts:buildTrustedClientSeeds",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/server/src/libs/auth.ts",
+      "target": "function:AuBot/apps/server/src/libs/auth.ts:getTrustedClientSeedSummaries",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/server/src/libs/auth.ts",
+      "target": "function:AuBot/apps/server/src/libs/auth.ts:getTrustedOIDCClientIds",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/server/src/libs/auth.ts",
+      "target": "function:AuBot/apps/server/src/libs/auth.ts:ensureDynamicFirstPartyRedirectUri",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/server/src/libs/auth.ts",
+      "target": "function:AuBot/apps/server/src/libs/auth.ts:seedTrustedClients",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/server/src/libs/auth.ts",
+      "target": "function:AuBot/apps/server/src/libs/auth.ts:requireEmailService",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/server/src/libs/auth.ts",
+      "target": "function:AuBot/apps/server/src/libs/auth.ts:createAuth",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/server/src/libs/auth.ts",
+      "target": "file:AuBot/apps/server/src/libs/db.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/server/src/libs/auth.ts",
+      "target": "file:AuBot/apps/server/src/libs/env.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/server/src/libs/auth.ts",
+      "target": "file:AuBot/apps/server/src/libs/otel.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/server/src/libs/auth.ts",
+      "target": "file:AuBot/apps/server/src/schemas/accounts.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/server/src/libs/auth.ts",
+      "target": "file:AuBot/apps/server/src/services/email.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/server/src/libs/auth.ts",
+      "target": "file:AuBot/apps/server/src/utils/error.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/server/src/libs/auth.ts",
+      "target": "file:AuBot/apps/server/src/utils/origin.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/server/src/libs/db.ts",
+      "target": "function:AuBot/apps/server/src/libs/db.ts:createDrizzle",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/server/src/libs/db.ts",
+      "target": "function:AuBot/apps/server/src/libs/db.ts:migrateDatabase",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/server/src/libs/db.ts",
+      "target": "file:AuBot/apps/server/src/libs/env.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/server/src/libs/db.ts",
+      "target": "file:AuBot/apps/server/src/schemas/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/server/src/libs/env.test.ts",
+      "target": "file:AuBot/apps/server/src/libs/env.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/server/src/libs/env.ts",
+      "target": "function:AuBot/apps/server/src/libs/env.ts:optionalIntegerFromString",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/server/src/libs/env.ts",
+      "target": "function:AuBot/apps/server/src/libs/env.ts:optionalNumberFromString",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/server/src/libs/env.ts",
+      "target": "function:AuBot/apps/server/src/libs/env.ts:parseEnv",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/server/src/libs/env.ts",
+      "target": "file:AuBot/apps/server/src/utils/redis-keys.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/server/src/libs/eventa-hono-adapter.ts",
+      "target": "function:AuBot/apps/server/src/libs/eventa-hono-adapter.ts:createPeerHooks",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/server/src/libs/eventa-hono-adapter.ts",
+      "target": "function:AuBot/apps/server/src/libs/eventa-hono-adapter.ts:createGlobalHooks",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/server/src/libs/external-dependency.ts",
+      "target": "function:AuBot/apps/server/src/libs/external-dependency.ts:initializeExternalDependency",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/server/src/libs/mock-db.ts",
+      "target": "function:AuBot/apps/server/src/libs/mock-db.ts:mockDB",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/server/src/libs/mock-db.ts",
+      "target": "file:AuBot/apps/server/src/libs/db.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/server/src/libs/otel.ts",
+      "target": "function:AuBot/apps/server/src/libs/otel.ts:initOtel",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/server/src/libs/otel.ts",
+      "target": "function:AuBot/apps/server/src/libs/otel.ts:emitOtelLog",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/server/src/libs/otel.ts",
+      "target": "file:AuBot/apps/server/src/libs/env.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/server/src/libs/otel.ts",
+      "target": "file:AuBot/apps/server/src/utils/observability.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/server/src/libs/redis.ts",
+      "target": "function:AuBot/apps/server/src/libs/redis.ts:createRedis",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/server/src/libs/request-auth.test.ts",
+      "target": "file:AuBot/apps/server/src/libs/request-auth.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/server/src/libs/request-auth.ts",
+      "target": "function:AuBot/apps/server/src/libs/request-auth.ts:resolveJWTAccessToken",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/server/src/libs/request-auth.ts",
+      "target": "function:AuBot/apps/server/src/libs/request-auth.ts:resolveRequestAuth",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:AuBot/apps/server/src/libs/request-auth.ts",
+      "target": "file:AuBot/apps/server/src/libs/auth.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/server/src/libs/request-auth.ts",
+      "target": "file:AuBot/apps/server/src/libs/env.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:AuBot/apps/server/src/libs/request-auth.ts",
+      "target": "file:AuBot/apps/server/src/scripts/auth.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    }
+  ]
+}

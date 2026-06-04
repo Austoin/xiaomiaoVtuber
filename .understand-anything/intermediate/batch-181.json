@@ -1,0 +1,44 @@
+{
+  "nodes": [
+    {
+      "id": "file:AuBot/packages/scenarios-stage-tamagotchi-browser/index.html",
+      "type": "file",
+      "name": "index.html",
+      "filePath": "AuBot/packages/scenarios-stage-tamagotchi-browser/index.html",
+      "summary": "index.html 是 markup 文件，在项目路径 AuBot/packages/scenarios-stage-tamagotchi-browser/index.html 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "markup",
+        "html"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:AuBot/packages/scenarios-stage-tamagotchi-browser/package.json",
+      "type": "config",
+      "name": "package.json",
+      "filePath": "AuBot/packages/scenarios-stage-tamagotchi-browser/package.json",
+      "summary": "package.json 是 config 文件，在项目路径 AuBot/packages/scenarios-stage-tamagotchi-browser/package.json 中承担对应模块职责。",
+      "tags": [
+        "config",
+        "json",
+        "package-manifest"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:AuBot/packages/scenarios-stage-tamagotchi-browser/tsconfig.json",
+      "type": "config",
+      "name": "tsconfig.json",
+      "filePath": "AuBot/packages/scenarios-stage-tamagotchi-browser/tsconfig.json",
+      "summary": "tsconfig.json 是 config 文件，在项目路径 AuBot/packages/scenarios-stage-tamagotchi-browser/tsconfig.json 中承担对应模块职责。",
+      "tags": [
+        "config",
+        "json",
+        "configuration"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": []
+}

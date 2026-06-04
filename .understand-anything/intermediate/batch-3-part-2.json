@@ -1,0 +1,1033 @@
+{
+  "nodes": [
+    {
+      "id": "file:nanobot/nanobot/providers/openai_responses/parsing.py",
+      "type": "file",
+      "name": "parsing.py",
+      "filePath": "nanobot/nanobot/providers/openai_responses/parsing.py",
+      "summary": "parsing.py 是 code 文件，包含 5 个函数，引用 1 个内部或外部依赖，在项目路径 nanobot/nanobot/providers/openai_responses/parsing.py 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "python"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:nanobot/nanobot/providers/openai_responses/parsing.py:map_finish_reason",
+      "type": "function",
+      "name": "map_finish_reason",
+      "filePath": "nanobot/nanobot/providers/openai_responses/parsing.py",
+      "lineRange": [
+        23,
+        25
+      ],
+      "summary": "函数 map_finish_reason 位于 parsing.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/nanobot/providers/openai_responses/parsing.py:iter_sse",
+      "type": "function",
+      "name": "iter_sse",
+      "filePath": "nanobot/nanobot/providers/openai_responses/parsing.py",
+      "lineRange": [
+        28,
+        59
+      ],
+      "summary": "函数 iter_sse 位于 parsing.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:nanobot/nanobot/providers/openai_responses/parsing.py:consume_sse",
+      "type": "function",
+      "name": "consume_sse",
+      "filePath": "nanobot/nanobot/providers/openai_responses/parsing.py",
+      "lineRange": [
+        62,
+        131
+      ],
+      "summary": "函数 consume_sse 位于 parsing.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:nanobot/nanobot/providers/openai_responses/parsing.py:parse_response_output",
+      "type": "function",
+      "name": "parse_response_output",
+      "filePath": "nanobot/nanobot/providers/openai_responses/parsing.py",
+      "lineRange": [
+        134,
+        207
+      ],
+      "summary": "函数 parse_response_output 位于 parsing.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:nanobot/nanobot/providers/openai_responses/parsing.py:consume_sdk_stream",
+      "type": "function",
+      "name": "consume_sdk_stream",
+      "filePath": "nanobot/nanobot/providers/openai_responses/parsing.py",
+      "lineRange": [
+        210,
+        297
+      ],
+      "summary": "函数 consume_sdk_stream 位于 parsing.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:nanobot/nanobot/providers/transcription.py",
+      "type": "file",
+      "name": "transcription.py",
+      "filePath": "nanobot/nanobot/providers/transcription.py",
+      "summary": "transcription.py 是 code 文件，包含 1 个函数，包含 2 个类，在项目路径 nanobot/nanobot/providers/transcription.py 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "python"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:nanobot/nanobot/providers/transcription.py:_post_transcription_with_retry",
+      "type": "function",
+      "name": "_post_transcription_with_retry",
+      "filePath": "nanobot/nanobot/providers/transcription.py",
+      "lineRange": [
+        26,
+        117
+      ],
+      "summary": "函数 _post_transcription_with_retry 位于 transcription.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:nanobot/nanobot/providers/transcription.py:OpenAITranscriptionProvider",
+      "type": "class",
+      "name": "OpenAITranscriptionProvider",
+      "filePath": "nanobot/nanobot/providers/transcription.py",
+      "lineRange": [
+        120,
+        152
+      ],
+      "summary": "类 OpenAITranscriptionProvider 位于 transcription.py，由结构提取结果识别。",
+      "tags": [
+        "class",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:nanobot/nanobot/providers/transcription.py:GroqTranscriptionProvider",
+      "type": "class",
+      "name": "GroqTranscriptionProvider",
+      "filePath": "nanobot/nanobot/providers/transcription.py",
+      "lineRange": [
+        155,
+        202
+      ],
+      "summary": "类 GroqTranscriptionProvider 位于 transcription.py，由结构提取结果识别。",
+      "tags": [
+        "class",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:nanobot/nanobot/security/network.py",
+      "type": "file",
+      "name": "network.py",
+      "filePath": "nanobot/nanobot/security/network.py",
+      "summary": "network.py 是 code 文件，包含 5 个函数，在项目路径 nanobot/nanobot/security/network.py 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "python"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:nanobot/nanobot/security/network.py:configure_ssrf_whitelist",
+      "type": "function",
+      "name": "configure_ssrf_whitelist",
+      "filePath": "nanobot/nanobot/security/network.py",
+      "lineRange": [
+        29,
+        36
+      ],
+      "summary": "函数 configure_ssrf_whitelist 位于 network.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/nanobot/security/network.py:_is_private",
+      "type": "function",
+      "name": "_is_private",
+      "filePath": "nanobot/nanobot/security/network.py",
+      "lineRange": [
+        39,
+        42
+      ],
+      "summary": "函数 _is_private 位于 network.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/nanobot/security/network.py:validate_url_target",
+      "type": "function",
+      "name": "validate_url_target",
+      "filePath": "nanobot/nanobot/security/network.py",
+      "lineRange": [
+        45,
+        77
+      ],
+      "summary": "函数 validate_url_target 位于 network.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:nanobot/nanobot/security/network.py:validate_resolved_url",
+      "type": "function",
+      "name": "validate_resolved_url",
+      "filePath": "nanobot/nanobot/security/network.py",
+      "lineRange": [
+        80,
+        109
+      ],
+      "summary": "函数 validate_resolved_url 位于 network.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:nanobot/nanobot/security/network.py:contains_internal_url",
+      "type": "function",
+      "name": "contains_internal_url",
+      "filePath": "nanobot/nanobot/security/network.py",
+      "lineRange": [
+        112,
+        119
+      ],
+      "summary": "函数 contains_internal_url 位于 network.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:nanobot/nanobot/session/__init__.py",
+      "type": "file",
+      "name": "__init__.py",
+      "filePath": "nanobot/nanobot/session/__init__.py",
+      "summary": "__init__.py 是 code 文件，引用 1 个内部或外部依赖，在项目路径 nanobot/nanobot/session/__init__.py 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:nanobot/nanobot/session/manager.py",
+      "type": "file",
+      "name": "manager.py",
+      "filePath": "nanobot/nanobot/session/manager.py",
+      "summary": "manager.py 是 code 文件，包含 1 个函数，包含 2 个类，引用 2 个内部或外部依赖，在项目路径 nanobot/nanobot/session/manager.py 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "python"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:nanobot/nanobot/session/manager.py:_sanitize_assistant_replay_text",
+      "type": "function",
+      "name": "_sanitize_assistant_replay_text",
+      "filePath": "nanobot/nanobot/session/manager.py",
+      "lineRange": [
+        30,
+        43
+      ],
+      "summary": "函数 _sanitize_assistant_replay_text 位于 manager.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:nanobot/nanobot/session/manager.py:Session",
+      "type": "class",
+      "name": "Session",
+      "filePath": "nanobot/nanobot/session/manager.py",
+      "lineRange": [
+        47,
+        256
+      ],
+      "summary": "类 Session 位于 manager.py，由结构提取结果识别。",
+      "tags": [
+        "class",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:nanobot/nanobot/session/manager.py:SessionManager",
+      "type": "class",
+      "name": "SessionManager",
+      "filePath": "nanobot/nanobot/session/manager.py",
+      "lineRange": [
+        259,
+        595
+      ],
+      "summary": "类 SessionManager 位于 manager.py，由结构提取结果识别。",
+      "tags": [
+        "class",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:nanobot/nanobot/utils/__init__.py",
+      "type": "file",
+      "name": "__init__.py",
+      "filePath": "nanobot/nanobot/utils/__init__.py",
+      "summary": "__init__.py 是 code 文件，引用 2 个内部或外部依赖，在项目路径 nanobot/nanobot/utils/__init__.py 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:nanobot/nanobot/utils/artifacts.py",
+      "type": "file",
+      "name": "artifacts.py",
+      "filePath": "nanobot/nanobot/utils/artifacts.py",
+      "summary": "artifacts.py 是 code 文件，包含 7 个函数，包含 1 个类，引用 2 个内部或外部依赖，在项目路径 nanobot/nanobot/utils/artifacts.py 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "python"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:nanobot/nanobot/utils/artifacts.py:decode_image_data_url",
+      "type": "function",
+      "name": "decode_image_data_url",
+      "filePath": "nanobot/nanobot/utils/artifacts.py",
+      "lineRange": [
+        31,
+        48
+      ],
+      "summary": "函数 decode_image_data_url 位于 artifacts.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/nanobot/utils/artifacts.py:_safe_relative_dir",
+      "type": "function",
+      "name": "_safe_relative_dir",
+      "filePath": "nanobot/nanobot/utils/artifacts.py",
+      "lineRange": [
+        51,
+        58
+      ],
+      "summary": "函数 _safe_relative_dir 位于 artifacts.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/nanobot/utils/artifacts.py:_artifact_root",
+      "type": "function",
+      "name": "_artifact_root",
+      "filePath": "nanobot/nanobot/utils/artifacts.py",
+      "lineRange": [
+        61,
+        68
+      ],
+      "summary": "函数 _artifact_root 位于 artifacts.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/nanobot/utils/artifacts.py:store_generated_image_artifact",
+      "type": "function",
+      "name": "store_generated_image_artifact",
+      "filePath": "nanobot/nanobot/utils/artifacts.py",
+      "lineRange": [
+        71,
+        108
+      ],
+      "summary": "函数 store_generated_image_artifact 位于 artifacts.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:nanobot/nanobot/utils/artifacts.py:generated_image_tool_result",
+      "type": "function",
+      "name": "generated_image_tool_result",
+      "filePath": "nanobot/nanobot/utils/artifacts.py",
+      "lineRange": [
+        111,
+        123
+      ],
+      "summary": "函数 generated_image_tool_result 位于 artifacts.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/nanobot/utils/artifacts.py:_extract_text_payload",
+      "type": "function",
+      "name": "_extract_text_payload",
+      "filePath": "nanobot/nanobot/utils/artifacts.py",
+      "lineRange": [
+        126,
+        135
+      ],
+      "summary": "函数 _extract_text_payload 位于 artifacts.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/nanobot/utils/artifacts.py:generated_image_paths_from_messages",
+      "type": "function",
+      "name": "generated_image_paths_from_messages",
+      "filePath": "nanobot/nanobot/utils/artifacts.py",
+      "lineRange": [
+        138,
+        162
+      ],
+      "summary": "函数 generated_image_paths_from_messages 位于 artifacts.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:nanobot/nanobot/utils/artifacts.py:ArtifactError",
+      "type": "class",
+      "name": "ArtifactError",
+      "filePath": "nanobot/nanobot/utils/artifacts.py",
+      "lineRange": [
+        27,
+        28
+      ],
+      "summary": "类 ArtifactError 位于 artifacts.py，由结构提取结果识别。",
+      "tags": [
+        "class",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:nanobot/nanobot/utils/document.py",
+      "type": "file",
+      "name": "document.py",
+      "filePath": "nanobot/nanobot/utils/document.py",
+      "summary": "document.py 是 code 文件，包含 10 个函数，引用 1 个内部或外部依赖，在项目路径 nanobot/nanobot/utils/document.py 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "python"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:nanobot/nanobot/utils/document.py:extract_text",
+      "type": "function",
+      "name": "extract_text",
+      "filePath": "nanobot/nanobot/utils/document.py",
+      "lineRange": [
+        43,
+        79
+      ],
+      "summary": "函数 extract_text 位于 document.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:nanobot/nanobot/utils/document.py:_extract_pdf",
+      "type": "function",
+      "name": "_extract_pdf",
+      "filePath": "nanobot/nanobot/utils/document.py",
+      "lineRange": [
+        82,
+        97
+      ],
+      "summary": "函数 _extract_pdf 位于 document.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/nanobot/utils/document.py:_extract_docx",
+      "type": "function",
+      "name": "_extract_docx",
+      "filePath": "nanobot/nanobot/utils/document.py",
+      "lineRange": [
+        100,
+        112
+      ],
+      "summary": "函数 _extract_docx 位于 document.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/nanobot/utils/document.py:_extract_xlsx",
+      "type": "function",
+      "name": "_extract_xlsx",
+      "filePath": "nanobot/nanobot/utils/document.py",
+      "lineRange": [
+        115,
+        139
+      ],
+      "summary": "函数 _extract_xlsx 位于 document.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:nanobot/nanobot/utils/document.py:_extract_pptx",
+      "type": "function",
+      "name": "_extract_pptx",
+      "filePath": "nanobot/nanobot/utils/document.py",
+      "lineRange": [
+        142,
+        160
+      ],
+      "summary": "函数 _extract_pptx 位于 document.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/nanobot/utils/document.py:_collect_pptx_shape_text",
+      "type": "function",
+      "name": "_collect_pptx_shape_text",
+      "filePath": "nanobot/nanobot/utils/document.py",
+      "lineRange": [
+        163,
+        185
+      ],
+      "summary": "函数 _collect_pptx_shape_text 位于 document.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/nanobot/utils/document.py:_extract_text_file",
+      "type": "function",
+      "name": "_extract_text_file",
+      "filePath": "nanobot/nanobot/utils/document.py",
+      "lineRange": [
+        188,
+        199
+      ],
+      "summary": "函数 _extract_text_file 位于 document.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/nanobot/utils/document.py:_truncate",
+      "type": "function",
+      "name": "_truncate",
+      "filePath": "nanobot/nanobot/utils/document.py",
+      "lineRange": [
+        202,
+        206
+      ],
+      "summary": "函数 _truncate 位于 document.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/nanobot/utils/document.py:_is_text_extension",
+      "type": "function",
+      "name": "_is_text_extension",
+      "filePath": "nanobot/nanobot/utils/document.py",
+      "lineRange": [
+        209,
+        225
+      ],
+      "summary": "函数 _is_text_extension 位于 document.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:nanobot/nanobot/utils/document.py:extract_documents",
+      "type": "function",
+      "name": "extract_documents",
+      "filePath": "nanobot/nanobot/utils/document.py",
+      "lineRange": [
+        235,
+        283
+      ],
+      "summary": "函数 extract_documents 位于 document.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:nanobot/nanobot/utils/evaluator.py",
+      "type": "file",
+      "name": "evaluator.py",
+      "filePath": "nanobot/nanobot/utils/evaluator.py",
+      "summary": "evaluator.py 是 code 文件，包含 1 个函数，引用 1 个内部或外部依赖，在项目路径 nanobot/nanobot/utils/evaluator.py 中承担对应模块职责。",
+      "tags": [
+        "file",
+        "code",
+        "python"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:nanobot/nanobot/utils/evaluator.py:evaluate_response",
+      "type": "function",
+      "name": "evaluate_response",
+      "filePath": "nanobot/nanobot/utils/evaluator.py",
+      "lineRange": [
+        42,
+        89
+      ],
+      "summary": "函数 evaluate_response 位于 evaluator.py，由结构提取结果识别。",
+      "tags": [
+        "function",
+        "结构节点",
+        "代码符号"
+      ],
+      "complexity": "moderate"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:nanobot/nanobot/providers/openai_responses/parsing.py",
+      "target": "function:nanobot/nanobot/providers/openai_responses/parsing.py:map_finish_reason",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/providers/openai_responses/parsing.py",
+      "target": "function:nanobot/nanobot/providers/openai_responses/parsing.py:iter_sse",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/providers/openai_responses/parsing.py",
+      "target": "function:nanobot/nanobot/providers/openai_responses/parsing.py:consume_sse",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/providers/openai_responses/parsing.py",
+      "target": "function:nanobot/nanobot/providers/openai_responses/parsing.py:parse_response_output",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/providers/openai_responses/parsing.py",
+      "target": "function:nanobot/nanobot/providers/openai_responses/parsing.py:consume_sdk_stream",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/providers/openai_responses/parsing.py",
+      "target": "file:nanobot/nanobot/providers/base.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/nanobot/providers/transcription.py",
+      "target": "function:nanobot/nanobot/providers/transcription.py:_post_transcription_with_retry",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/providers/transcription.py",
+      "target": "class:nanobot/nanobot/providers/transcription.py:OpenAITranscriptionProvider",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/providers/transcription.py",
+      "target": "class:nanobot/nanobot/providers/transcription.py:GroqTranscriptionProvider",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/security/network.py",
+      "target": "function:nanobot/nanobot/security/network.py:configure_ssrf_whitelist",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/security/network.py",
+      "target": "function:nanobot/nanobot/security/network.py:_is_private",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/security/network.py",
+      "target": "function:nanobot/nanobot/security/network.py:validate_url_target",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/security/network.py",
+      "target": "function:nanobot/nanobot/security/network.py:validate_resolved_url",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/security/network.py",
+      "target": "function:nanobot/nanobot/security/network.py:contains_internal_url",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/session/__init__.py",
+      "target": "file:nanobot/nanobot/session/manager.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/nanobot/session/manager.py",
+      "target": "function:nanobot/nanobot/session/manager.py:_sanitize_assistant_replay_text",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/session/manager.py",
+      "target": "class:nanobot/nanobot/session/manager.py:Session",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/session/manager.py",
+      "target": "class:nanobot/nanobot/session/manager.py:SessionManager",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/session/manager.py",
+      "target": "file:nanobot/nanobot/config/paths.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/nanobot/session/manager.py",
+      "target": "file:nanobot/nanobot/utils/helpers.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/nanobot/utils/__init__.py",
+      "target": "file:nanobot/nanobot/utils/helpers.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/nanobot/utils/__init__.py",
+      "target": "file:nanobot/nanobot/utils/path.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/nanobot/utils/artifacts.py",
+      "target": "function:nanobot/nanobot/utils/artifacts.py:decode_image_data_url",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/utils/artifacts.py",
+      "target": "function:nanobot/nanobot/utils/artifacts.py:_safe_relative_dir",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/utils/artifacts.py",
+      "target": "function:nanobot/nanobot/utils/artifacts.py:_artifact_root",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/utils/artifacts.py",
+      "target": "function:nanobot/nanobot/utils/artifacts.py:store_generated_image_artifact",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/utils/artifacts.py",
+      "target": "function:nanobot/nanobot/utils/artifacts.py:generated_image_tool_result",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/utils/artifacts.py",
+      "target": "function:nanobot/nanobot/utils/artifacts.py:_extract_text_payload",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/utils/artifacts.py",
+      "target": "function:nanobot/nanobot/utils/artifacts.py:generated_image_paths_from_messages",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/utils/artifacts.py",
+      "target": "class:nanobot/nanobot/utils/artifacts.py:ArtifactError",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/utils/artifacts.py",
+      "target": "file:nanobot/nanobot/config/paths.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/nanobot/utils/artifacts.py",
+      "target": "file:nanobot/nanobot/utils/helpers.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/nanobot/utils/document.py",
+      "target": "function:nanobot/nanobot/utils/document.py:extract_text",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/utils/document.py",
+      "target": "function:nanobot/nanobot/utils/document.py:_extract_pdf",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/utils/document.py",
+      "target": "function:nanobot/nanobot/utils/document.py:_extract_docx",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/utils/document.py",
+      "target": "function:nanobot/nanobot/utils/document.py:_extract_xlsx",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/utils/document.py",
+      "target": "function:nanobot/nanobot/utils/document.py:_extract_pptx",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/utils/document.py",
+      "target": "function:nanobot/nanobot/utils/document.py:_collect_pptx_shape_text",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/utils/document.py",
+      "target": "function:nanobot/nanobot/utils/document.py:_extract_text_file",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/utils/document.py",
+      "target": "function:nanobot/nanobot/utils/document.py:_truncate",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/utils/document.py",
+      "target": "function:nanobot/nanobot/utils/document.py:_is_text_extension",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/utils/document.py",
+      "target": "function:nanobot/nanobot/utils/document.py:extract_documents",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/utils/document.py",
+      "target": "file:nanobot/nanobot/utils/helpers.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:nanobot/nanobot/utils/evaluator.py",
+      "target": "function:nanobot/nanobot/utils/evaluator.py:evaluate_response",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:nanobot/nanobot/utils/evaluator.py",
+      "target": "file:nanobot/nanobot/utils/prompt_templates.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    }
+  ]
+}

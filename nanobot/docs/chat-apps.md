@@ -1,13 +1,13 @@
 # 聊天应用
 
-把 nanobot 连接到你常用的聊天平台。若要构建自己的通道，请参考[通道插件指南](./channel-plugin-guide.md)。
+把 xiaomiaoAgent 连接到你常用的聊天平台。若要构建自己的通道，请参考[通道插件指南](./channel-plugin-guide.md)。
 
 | 通道 | 需要准备 |
 |---------|---------------|
 | **Telegram** | 从 @BotFather 获取 Bot token |
 | **Discord** | Bot token + Message Content intent |
-| **WhatsApp** | 扫描二维码（`nanobot channels login whatsapp`） |
-| **WeChat / Weixin** | 扫描二维码（`nanobot channels login weixin`） |
+| **WhatsApp** | 扫描二维码（`xiaomiao channels login whatsapp`） |
+| **WeChat / Weixin** | 扫描二维码（`xiaomiao channels login weixin`） |
 | **Feishu** | App ID + App Secret |
 | **DingTalk** | App Key + App Secret |
 | **Slack** | Bot token + App-Level token |
@@ -56,15 +56,15 @@ xiaomiao gateway
 
 默认使用 **Socket.IO WebSocket**，并带 HTTP polling fallback。
 
-**1. 让 nanobot 自动配置 Mochat**
+**1. 让 xiaomiaoAgent 自动配置 Mochat**
 
-把下面消息发送给 nanobot，并将 `xxx@xxx` 替换为你的真实邮箱：
+把下面消息发送给 xiaomiaoAgent，并将 `xxx@xxx` 替换为你的真实邮箱：
 
 ```text
 Read https://raw.githubusercontent.com/HKUDS/MoChat/refs/heads/main/skills/nanobot/skill.md and register on MoChat. My Email account is xxx@xxx Bind me as your owner and DM me on MoChat.
 ```
 
-nanobot 会自动注册、配置 `~/.nanobot/config.json` 并连接 Mochat。
+xiaomiaoAgent 会自动注册、配置 `~/.nanobot/config.json` 并连接 Mochat。
 
 **2. 重启 gateway**
 
@@ -221,7 +221,7 @@ xiaomiao gateway
 **1. 关联设备**
 
 ```bash
-nanobot channels login whatsapp
+xiaomiao channels login whatsapp
 # 使用 WhatsApp → Settings → Linked Devices 扫描二维码
 ```
 
@@ -242,7 +242,7 @@ nanobot channels login whatsapp
 
 ```bash
 # Terminal 1
-nanobot channels login whatsapp
+xiaomiao channels login whatsapp
 
 # Terminal 2
 xiaomiao gateway
@@ -251,7 +251,7 @@ xiaomiao gateway
 WhatsApp bridge 更新不会自动应用到已有安装。升级 nanobot 后，请重建本地 bridge：
 
 ```bash
-rm -rf ~/.nanobot/bridge && nanobot channels login whatsapp
+rm -rf ~/.nanobot/bridge && xiaomiao channels login whatsapp
 ```
 
 </details>
@@ -411,9 +411,9 @@ xiaomiao gateway
 - **App Home**：启用 **Messages Tab**，并允许用户从 messages tab 发送 Slash commands 和消息。
 - **Install App**：安装到 workspace，复制 **Bot Token**（`xoxb-...`）。
 
-`files:read` 用于读取用户发送的文件；`files:write` 用于发送图片、视频和其他文件。后续添加 scope 后，需要重新安装 Slack app 并重启 nanobot。
+`files:read` 用于读取用户发送的文件；`files:write` 用于发送图片、视频和其他文件。后续添加 scope 后，需要重新安装 Slack app 并重启 xiaomiaoAgent。
 
-**3. 配置 nanobot**
+**3. 配置 xiaomiaoAgent**
 
 ```json
 {
@@ -444,7 +444,7 @@ xiaomiao gateway
 <details>
 <summary><b>Email</b></summary>
 
-给 nanobot 一个专用邮箱账号。它通过 **IMAP** 拉取新邮件，并通过 **SMTP** 回复，类似个人邮件助理。
+给 xiaomiaoAgent 一个专用邮箱账号。它通过 **IMAP** 拉取新邮件，并通过 **SMTP** 回复，类似个人邮件助理。
 
 **1. 获取凭据（以 Gmail 为例）**
 
@@ -515,13 +515,13 @@ pip install "nanobot-ai[weixin]"
 **3. 登录**
 
 ```bash
-nanobot channels login weixin
+xiaomiao channels login weixin
 ```
 
 如需重新认证并忽略已保存 token：
 
 ```bash
-nanobot channels login weixin --force
+xiaomiao channels login weixin --force
 ```
 
 **4. 运行**

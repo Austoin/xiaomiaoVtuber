@@ -1,6 +1,6 @@
 # 多实例
 
-你可以同时运行多个 nanobot 实例，并为它们使用独立配置和运行时数据。主要入口是 `--config`。如果你想为某个实例初始化或更新已保存的工作区，也可以在 `onboard` 时传入 `--workspace`。
+你可以同时运行多个 xiaomiaoAgent 实例，并为它们使用独立配置和运行时数据。主要入口是 `--config`。如果你想为某个实例初始化或更新已保存的工作区，也可以在 `onboard` 时传入 `--workspace`。
 
 ## 快速开始
 
@@ -10,9 +10,9 @@
 
 ```bash
 # 创建独立实例配置和工作区
-nanobot onboard --config ~/.nanobot-telegram/config.json --workspace ~/.nanobot-telegram/workspace
-nanobot onboard --config ~/.nanobot-discord/config.json --workspace ~/.nanobot-discord/workspace
-nanobot onboard --config ~/.nanobot-feishu/config.json --workspace ~/.nanobot-feishu/workspace
+xiaomiao onboard --config ~/.nanobot-telegram/config.json --workspace ~/.nanobot-telegram/workspace
+xiaomiao onboard --config ~/.nanobot-discord/config.json --workspace ~/.nanobot-discord/workspace
+xiaomiao onboard --config ~/.nanobot-feishu/config.json --workspace ~/.nanobot-feishu/workspace
 ```
 
 **配置每个实例：**
@@ -34,7 +34,7 @@ xiaomiao gateway --config ~/.nanobot-feishu/config.json --port 18792
 
 ## 路径解析
 
-使用 `--config` 时，nanobot 会根据配置文件位置推导运行时数据目录。工作区仍来自 `agents.defaults.workspace`，除非你用 `--workspace` 覆盖它。
+使用 `--config` 时，xiaomiaoAgent 会根据配置文件位置推导运行时数据目录。工作区仍来自 `agents.defaults.workspace`，除非你用 `--workspace` 覆盖它。
 
 如果要在本地打开指向某个实例的 CLI 会话：
 

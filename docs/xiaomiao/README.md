@@ -67,16 +67,16 @@ python main.py
 
 随后 `main.py` 会继续连接 NapCat / OneBot。如果 NapCat 未启动、端口不一致或 WebSocket 被关闭，程序会报 `WebSocketConnectionClosedException` 并退出，bridge 也会随进程结束。出现这种情况时，先修复 NapCat 登录状态和 OneBot WebSocket，再重新运行 `python main.py`。
 
-### 与 nanobot / AuBot 联动启动
+### 与 xiaomiaoAgent / AuBot 联动启动
 
-当前 QQ 群/私聊普通 AI 回复、`AuBot stage-web` 输入和桌面 bridge 都统一进入 nanobot Agent。完整联动需要按顺序启动：
+当前 QQ 群/私聊普通 AI 回复、`AuBot stage-web` 输入和桌面 bridge 都统一进入 xiaomiaoAgent。完整联动需要按顺序启动：
 
-1. 启动 nanobot OpenAI 兼容 API：
+1. 启动 xiaomiaoAgent OpenAI 兼容 API：
 
    ```powershell
    cd F:\xiaomiaoVirtual
    conda activate xiaomiao
-   nanobot serve --config F:\xiaomiaoVirtual\nanobot\.nanobot\config.json
+   xiaomiao serve --config F:\xiaomiaoVirtual\nanobot\.nanobot\config.json
    ```
 
 2. 启动 NapCat，并确认 OneBot WebSocket 是 `127.0.0.1:5004`。
@@ -103,10 +103,10 @@ python main.py
 ```text
 5004  NapCat OneBot WebSocket
 5519  xiaomiao desktop bridge
-8900  nanobot OpenAI-compatible API
+8900  xiaomiaoAgent OpenAI-compatible API
 ```
 
-`stage-web` 必须走 `xiaomiao` bridge。bridge 或 nanobot 不可用时，网页聊天历史会显示明确错误，不会静默回退到 AuBot provider。
+`stage-web` 必须走 `xiaomiao` bridge。bridge 或 xiaomiaoAgent 不可用时，网页聊天历史会显示明确错误，不会静默回退到 AuBot provider。
 
 ---
 
@@ -488,7 +488,7 @@ class prerequisite:
 
 ### AI 对话 API
 
-在 `config.json` 的 `Others` 中配置：
+`xiaomiao/config.json` 的 `Others` 模型字段保留给图片理解、`SearchOnline(...)` 和未迁移分支。QQ 群/私聊普通 AI 回复已经改走主目录 `F:\xiaomiaoVirtual\config.json` 的统一配置。
 
 ```json
 {
@@ -504,19 +504,27 @@ class prerequisite:
 }
 ```
 
-### nanobot Agent backend
+### xiaomiaoAgent backend
 
-普通 AI 回复主路径现在通过 `Others.nanobot_agent` 接入 nanobot：
+普通 AI 回复主路径现在通过主目录 `config.json` 接入 xiaomiaoAgent：
 
 ```json
 {
-    "Others": {
-        "nanobot_agent": {
-            "enabled": true,
-            "base_url": "http://127.0.0.1:8900/v1/chat/completions",
-            "model": "deepseek-chat",
-            "session_id": "xiaomiao-unified",
-            "timeout_seconds": 30
+    "nanobot_agent": {
+        "enabled": true,
+        "base_url": "http://127.0.0.1:8900/v1/chat/completions",
+        "model": "",
+        "session_id": "xiaomiao-unified",
+        "timeout_seconds": 30
+    },
+    "nanobot": {
+        "provider": "custom",
+        "model": "deepseek/deepseek-chat",
+        "providers": {
+            "custom": {
+                "apiKey": "你的中转站密钥",
+                "baseUrl": "https://你的中转站地址/v1"
+            }
         }
     }
 }
@@ -527,8 +535,8 @@ class prerequisite:
 | 配置项 | 说明 |
 |--------|------|
 | `enabled` | 是否启用统一 Agent backend，默认启用 |
-| `base_url` | nanobot OpenAI 兼容聊天接口 |
-| `model` | 可选模型名，为空时由 nanobot 默认模型决定 |
+| `base_url` | xiaomiaoAgent OpenAI 兼容聊天接口 |
+| `model` | 可选请求模型，默认留空，由 `nanobot.model` 决定 |
 | `session_id` | 统一会话 ID，默认 `xiaomiao-unified` |
 | `timeout_seconds` | 请求超时时间，默认 `30` |
 
@@ -678,7 +686,7 @@ XiaoMiao_QQ_bot/
 | `SearchOnline.py` | 封装 OpenAI API，用于候补模型调用 |
 | `prerequisites.py` | 定义角色系统提示词（女朋友/姐姐/妈妈/高级程序员模式） |
 | `Quote.py` | 生成名言图片，将消息渲染为带头像的图片 |
-| `config.json` | 存储 API Key、模型配置、连接参数等 |
+| `config.json` | 存储 QQ 连接、人设、命令和未迁移分支配置；统一模型配置在主目录 `config.json` |
 
 ---
 
@@ -775,12 +783,12 @@ WebSocket 服务器配置示例：
 - 检查 API 地址是否可访问
 - 查看控制台错误信息
 
-### 3. nanobot Agent 调用失败
+### 3. xiaomiaoAgent 调用失败
 
-- 检查 `nanobot serve --config F:\xiaomiaoVirtual\nanobot\.nanobot\config.json` 是否正在运行
+- 检查 `xiaomiao serve --config F:\xiaomiaoVirtual\nanobot\.nanobot\config.json` 是否正在运行
 - 检查 `http://127.0.0.1:8900/health`
-- 检查 `Others.nanobot_agent.base_url` 是否指向 `http://127.0.0.1:8900/v1/chat/completions`
-- 如果返回 HTTP 502，查看错误内容；当前实现会显式暴露 nanobot HTTP 错误、空回复和超时
+- 检查主目录 `config.json` 的 `nanobot_agent.base_url` 是否指向 `http://127.0.0.1:8900/v1/chat/completions`
+- 如果返回 HTTP 502，查看错误内容；当前实现会显式暴露 xiaomiaoAgent HTTP 错误、空回复和超时
 
 ### 4. 权限不足
 

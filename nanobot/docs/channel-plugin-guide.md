@@ -1,12 +1,12 @@
 # 通道插件指南
 
-构建自定义 nanobot 通道只需要三步：继承、打包、安装。
+构建自定义 xiaomiaoAgent 通道只需要三步：继承、打包、安装。
 
-> **注意：** 建议基于 nanobot 源码 checkout（`pip install -e .`）开发通道插件，而不是基于 PyPI 发布版。这样你始终可以使用最新的基础通道功能和 API。
+> **注意：** 建议基于 xiaomiaoAgent 源码 checkout（`pip install -e .`）开发通道插件，而不是基于 PyPI 发布版。这样你始终可以使用最新的基础通道功能和 API。内部 Python 包名仍是 `nanobot`。
 
 ## 工作原理
 
-nanobot 通过 Python [entry points](https://packaging.python.org/en/latest/specifications/entry-points/) 发现通道插件。`xiaomiao gateway` 启动时会扫描：
+xiaomiaoAgent 通过 Python [entry points](https://packaging.python.org/en/latest/specifications/entry-points/) 发现通道插件。`xiaomiao gateway` 启动时会扫描：
 
 1. `nanobot/channels/` 中的内置通道。
 2. 注册到 `nanobot.channels` entry point group 下的外部包。
@@ -153,8 +153,8 @@ key（`webhook`）会成为配置段名称。value 指向你的 `BaseChannel` �
 
 ```bash
 pip install -e .
-nanobot plugins list      # 确认 "Webhook" 显示为 "plugin"
-nanobot onboard           # 自动为检测到的插件添加默认配置
+xiaomiao plugins list     # 确认 "Webhook" 显示为 "plugin"
+xiaomiao onboard          # 自动为检测到的插件添加默认配置
 ```
 
 编辑 `~/.nanobot/config.json`：
@@ -223,8 +223,8 @@ async def login(self, force: bool = False) -> bool:
 用户通过以下命令触发交互式登录：
 
 ```bash
-nanobot channels login <channel_name>
-nanobot channels login <channel_name> --force  # 重新认证
+xiaomiao channels login <channel_name>
+xiaomiao channels login <channel_name> --force # 重新认证
 ```
 
 ### Base 提供的方法
@@ -233,7 +233,7 @@ nanobot channels login <channel_name> --force  # 重新认证
 |-------------------|-------------|
 | `_handle_message(sender_id, chat_id, content, media?, metadata?, session_key?)` | **收到消息时调用它。** 它会检查 `is_allowed()`，然后发布到 bus。如果 `supports_streaming` 为 true，会自动设置 `_wants_stream`。 |
 | `is_allowed(sender_id)` | 按 `config.allow_from` 检查权限；`"*"` 允许所有，`[]` 拒绝所有。 |
-| `default_config()`（classmethod） | 返回供 `nanobot onboard` 使用的默认配置 dict。覆盖它以声明你的字段。 |
+| `default_config()`（classmethod） | 返回供 `xiaomiao onboard` 使用的默认配置 dict。覆盖它以声明你的字段。 |
 | `transcribe_audio(file_path)` | 通过 Groq Whisper 转写音频（如果已配置）。 |
 | `supports_streaming`（property） | 当配置包含 `"streaming": true` 且子类覆盖 `send_delta()` 时为 `True`。 |
 | `is_running` | 返回 `self._running`。 |
@@ -398,7 +398,7 @@ async def start(self) -> None:
 
 `allowFrom` 会由 `_handle_message()` 自动处理，你不需要自己检查。
 
-覆盖 `default_config()`，让 `nanobot onboard` 自动填充 `config.json`：
+覆盖 `default_config()`，让 `xiaomiao onboard` 自动填充 `config.json`：
 
 ```python
 @classmethod
@@ -425,14 +425,14 @@ def default_config(cls) -> dict[str, Any]:
 git clone https://github.com/you/nanobot-channel-webhook
 cd nanobot-channel-webhook
 pip install -e .
-nanobot plugins list    # 应显示 "Webhook" 为 "plugin"
+xiaomiao plugins list    # 应显示 "Webhook" 为 "plugin"
 xiaomiao gateway         # 端到端测试
 ```
 
 ## 验证
 
 ```bash
-$ nanobot plugins list
+$ xiaomiao plugins list
 
   Name       Source    Enabled
   telegram   builtin  yes

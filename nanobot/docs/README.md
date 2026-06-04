@@ -1,18 +1,20 @@
-# nanobot 文档
+# xiaomiaoAgent 文档
 
-最新文档请访问 [nanobot.wiki](https://nanobot.wiki/docs/latest/getting-started/nanobot-overview)。
+`nanobot` 代码包在本项目中以用户可见品牌 `xiaomiaoAgent` 运行。内部包名、Python import、配置目录和上游文档站仍保留 `nanobot` 命名。
+
+上游最新文档请访问 [nanobot.wiki](https://nanobot.wiki/docs/latest/getting-started/nanobot-overview)。
 
 本目录中的页面会跟随当前仓库更新，可能比已发布的网站文档更新更快。
 
 ## 核心文档
 
-如果你要安装、日常使用或部署 nanobot，请从这里开始。
+如果你要安装、日常使用或部署 xiaomiaoAgent，请从这里开始。
 
 | 主题 | 仓库文档 | 内容说明 |
 |---|---|---|
 | 安装与快速开始 | [`quick-start.md`](./quick-start.md) | 安装、初始化和首次运行配置 |
 | 聊天应用 | [`chat-apps.md`](./chat-apps.md) | 连接 Telegram、Discord、微信等平台 |
-| Agent 社交网络 | [`agent-social-network.md`](./agent-social-network.md) | 从 nanobot 加入外部 Agent 社区 |
+| Agent 社交网络 | [`agent-social-network.md`](./agent-social-network.md) | 从 xiaomiaoAgent 加入外部 Agent 社区 |
 | 配置 | [`configuration.md`](./configuration.md) | Provider、工具、通道、MCP 和运行时设置 |
 | 图像生成 | [`image-generation.md`](./image-generation.md) | 配置图像 Provider、WebUI 图像模式和生成产物 |
 | 多实例 | [`multiple-instances.md`](./multiple-instances.md) | 使用独立配置和工作区运行多个 Bot |
@@ -27,8 +29,8 @@
 
 | 主题 | 仓库文档 | 内容说明 |
 |---|---|---|
-| 记忆 | [`memory.md`](./memory.md) | nanobot 如何存储、整理和恢复记忆 |
-| Python SDK | [`python-sdk.md`](./python-sdk.md) | 在 Python 中以编程方式使用 nanobot |
+| 记忆 | [`memory.md`](./memory.md) | xiaomiaoAgent 如何存储、整理和恢复记忆 |
+| Python SDK | [`python-sdk.md`](./python-sdk.md) | 在 Python 中以编程方式使用 xiaomiaoAgent |
 | 通道插件指南 | [`channel-plugin-guide.md`](./channel-plugin-guide.md) | 构建和测试自定义聊天通道插件 |
 | WebSocket 通道 | [`websocket.md`](./websocket.md) | 实时 WebSocket 访问和协议细节 |
 | 自定义工具 | [`my-tool.md`](./my-tool.md) | 使用 `my` 工具检查和调整运行时状态 |

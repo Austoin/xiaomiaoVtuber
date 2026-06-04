@@ -1,0 +1,44 @@
+{
+  "nodes": [
+    {
+      "id": "config:AuBot/services/satori-bot/package.json",
+      "type": "config",
+      "name": "package.json",
+      "filePath": "AuBot/services/satori-bot/package.json",
+      "summary": "package.json 是 config 文件，在项目路径 AuBot/services/satori-bot/package.json 中承担对应模块职责。",
+      "tags": [
+        "config",
+        "json",
+        "package-manifest"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:AuBot/services/satori-bot/todolist.md",
+      "type": "document",
+      "name": "todolist.md",
+      "filePath": "AuBot/services/satori-bot/todolist.md",
+      "summary": "todolist.md 是 docs 文件，在项目路径 AuBot/services/satori-bot/todolist.md 中承担对应模块职责。",
+      "tags": [
+        "document",
+        "docs",
+        "markdown"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:AuBot/services/satori-bot/tsconfig.json",
+      "type": "config",
+      "name": "tsconfig.json",
+      "filePath": "AuBot/services/satori-bot/tsconfig.json",
+      "summary": "tsconfig.json 是 config 文件，在项目路径 AuBot/services/satori-bot/tsconfig.json 中承担对应模块职责。",
+      "tags": [
+        "config",
+        "json",
+        "configuration"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": []
+}

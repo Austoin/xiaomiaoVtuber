@@ -1,12 +1,12 @@
-# AuVirtual 项目结构
+# xiaomiaoVirtual / AuBot 项目结构
 
-本文记录 AuVirtual 的目录结构和文件作用。
+本文记录 AuBot 在 `xiaomiaoVirtual` 中的目录结构和文件作用。
 
 说明：`node_modules`、`.git`、缓存目录、构建产物不纳入索引。
 
 ## 1. 项目定位
 
-AuVirtual 是一个面向 AI 虚拟角色的 monorepo，覆盖 Web、Electron 桌面端、移动端、服务端、插件、机器人服务和共享包。
+AuBot 是 `xiaomiaoVirtual` 的 Web/桌面 Vtuber 表现层，覆盖 Web、Electron 桌面端、移动端、服务端、插件、机器人服务和共享包。内部历史文档、插件名和部分目录仍保留 `AIRI` / `@proj-airi` 兼容标识。
 
 在 `xiaomiaoVirtual` 联动中，AuBot 承担 Web/桌面表现层：
 
@@ -17,10 +17,10 @@ packages/stage-layouts/src/xiaomiao-bridge.ts
     ↓ HTTP :5519
 xiaomiao desktop bridge
     ↓ HTTP :8900
-nanobot Agent
+xiaomiaoAgent
 ```
 
-桌面端 `stage-tamagotchi` 读取 `xiaomiao` bridge state，并把回复同步到字幕、聊天历史、TTS 和 Live2D 口型。QQ 普通 AI 回复由 `xiaomiao` 进入同一个 nanobot Agent；权限、生图、撤回等命令型功能仍由 `xiaomiao` 本地处理。
+桌面端 `stage-tamagotchi` 读取 `xiaomiao` bridge state，并把回复同步到字幕、聊天历史、TTS 和 Live2D 口型。QQ 普通 AI 回复由 `xiaomiao` 进入同一个 xiaomiaoAgent；权限、生图、撤回等命令型功能仍由 `xiaomiao` 本地处理。
 
 ## 2. 顶层目录
 
@@ -38,7 +38,7 @@ nanobot Agent
 - `nix/`：Nix 环境与构建辅助配置。
 - `packages/`：共享包集合，包含 UI、SDK、运行时、协议、模型驱动和工具包。
 - `patches/`：pnpm patchedDependencies 使用的第三方依赖补丁。
-- `plugins/`：AIRI/AuVirtual 插件集合，用于扩展平台能力。
+- `plugins/`：AIRI 历史兼容插件集合，用于扩展平台能力。
 - `scripts/`：项目级脚本。
 - `services/`：外部服务和机器人适配器，如 Discord、Telegram、Minecraft、MCP。
 
@@ -65,7 +65,7 @@ nanobot Agent
 - `pnpm-lock.yaml`：pnpm 锁文件，固定依赖解析结果。
 - `pnpm-workspace.yaml`：pnpm workspace 范围、catalog、overrides 和 patch 配置。
 - `posthog.config.ts`：PostHog 相关配置。
-- `README.md`：项目中文入口说明，介绍 AuVirtual 和快速开始。
+- `README.md`：项目中文入口说明，介绍 xiaomiaoVirtual / AuBot 和快速开始。
 - `rustfmt.toml`：Rust 格式化配置。
 - `skills-lock.json`：AI skills 锁定信息。
 - `sponsorkit.config.js`：SponsorKit 赞助者资源生成配置。
@@ -3680,7 +3680,7 @@ apps/stage-tamagotchi/
 - `pnpm-lock.yaml`：pnpm 锁文件，固定依赖解析结果。
 - `pnpm-workspace.yaml`：pnpm workspace 范围、catalog、overrides 和 patch 配置。
 - `posthog.config.ts`：PostHog 相关配置。
-- `README.md`：项目中文入口说明，介绍 AuVirtual 和快速开始。
+- `README.md`：项目中文入口说明，介绍 xiaomiaoVirtual / AuBot 和快速开始。
 - `rustfmt.toml`：Rust 格式化配置。
 ### scripts
 

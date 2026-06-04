@@ -1,0 +1,44 @@
+{
+  "nodes": [
+    {
+      "id": "document:docs/AuBot/README.md",
+      "type": "document",
+      "name": "README.md",
+      "filePath": "docs/AuBot/README.md",
+      "summary": "README.md 是 docs 文件，在项目路径 docs/AuBot/README.md 中承担对应模块职责。",
+      "tags": [
+        "document",
+        "docs",
+        "markdown"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:docs/AuBot/struct.md",
+      "type": "document",
+      "name": "struct.md",
+      "filePath": "docs/AuBot/struct.md",
+      "summary": "struct.md 是 docs 文件，在项目路径 docs/AuBot/struct.md 中承担对应模块职责。",
+      "tags": [
+        "document",
+        "docs",
+        "markdown"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "document:docs/AuBot/操作文档.md",
+      "type": "document",
+      "name": "操作文档.md",
+      "filePath": "docs/AuBot/操作文档.md",
+      "summary": "操作文档.md 是 docs 文件，在项目路径 docs/AuBot/操作文档.md 中承担对应模块职责。",
+      "tags": [
+        "document",
+        "docs",
+        "markdown"
+      ],
+      "complexity": "moderate"
+    }
+  ],
+  "edges": []
+}

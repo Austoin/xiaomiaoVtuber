@@ -3,11 +3,11 @@
 配置文件位置：`~/.nanobot/config.json`
 
 > [!NOTE]
-> 如果你的配置文件早于当前 schema，可以运行 `nanobot onboard` 刷新默认字段。系统询问是否覆盖配置时选择 `N`，nanobot 会合并缺失默认字段，并保留当前设置。
+> 如果你的配置文件早于当前 schema，可以运行 `xiaomiao onboard` 刷新默认字段。系统询问是否覆盖配置时选择 `N`，xiaomiaoAgent 会合并缺失默认字段，并保留当前设置。
 
 ## 使用环境变量保存密钥
 
-不要把密钥直接写入 `config.json`。可以使用 `${VAR_NAME}` 引用环境变量，nanobot 会在启动时解析：
+不要把密钥直接写入 `config.json`。可以使用 `${VAR_NAME}` 引用环境变量，xiaomiaoAgent 会在启动时解析：
 
 ```json
 {
@@ -74,8 +74,8 @@ IMAP_PASSWORD=your-password-here
 | `stepfun` | LLM，阶跃星辰 | [platform.stepfun.com](https://platform.stepfun.com) |
 | `ovms` | 本地 LLM，OpenVINO Model Server | [docs.openvino.ai](https://docs.openvino.ai/2026/model-server/ovms_docs_llm_quickstart.html) |
 | `vllm` | 本地 LLM，任意 OpenAI 兼容服务 | — |
-| `openai_codex` | LLM，Codex OAuth | `nanobot provider login openai-codex` |
-| `github_copilot` | LLM，GitHub Copilot OAuth | `nanobot provider login github-copilot` |
+| `openai_codex` | LLM，Codex OAuth | `xiaomiao provider login openai-codex` |
+| `github_copilot` | LLM，GitHub Copilot OAuth | `xiaomiao provider login github-copilot` |
 | `qianfan` | LLM，百度千帆 | [cloud.baidu.com](https://cloud.baidu.com/doc/qianfan/s/Hmh4suq26) |
 
 ### AWS Bedrock（Converse API）
@@ -118,15 +118,15 @@ Bedrock 使用原生 `bedrock-runtime` Converse API，可调用 Claude、Amazon 
 }
 ```
 
-模型 ID 需要带 `bedrock/` 前缀，nanobot 调用 AWS 前会移除该前缀。例如：`bedrock/amazon.nova-micro-v1:0`、`bedrock/global.anthropic.claude-opus-4-7`、`bedrock/openai.gpt-oss-20b-1:0`。
+模型 ID 需要带 `bedrock/` 前缀，xiaomiaoAgent 调用 AWS 前会移除该前缀。例如：`bedrock/amazon.nova-micro-v1:0`、`bedrock/global.anthropic.claude-opus-4-7`、`bedrock/openai.gpt-oss-20b-1:0`。
 
 ### OpenAI Codex 与 GitHub Copilot（OAuth）
 
 这两个 Provider 使用 OAuth，不需要在 `config.json` 中写 API Key。登录会话保存在配置外部。
 
 ```bash
-nanobot provider login openai-codex
-nanobot provider login github-copilot
+xiaomiao provider login openai-codex
+xiaomiao provider login github-copilot
 ```
 
 设置模型示例：
@@ -185,7 +185,7 @@ LongCat 通过内置 OpenAI 兼容 Provider 流程接入。默认 API base 已�
 
 本地服务不需要认证时可将 `apiKey` 设为 `null`。如果端点是 Responses API 兼容而不是 chat completions 兼容，请使用 `azure_openai` 形态。
 
-一些 OpenAI 兼容 gateway 支持请求体扩展，例如 vLLM guided decoding 或本地采样参数。可放入 `extraBody`，nanobot 会合并进 chat-completions 请求体：
+一些 OpenAI 兼容 gateway 支持请求体扩展，例如 vLLM guided decoding 或本地采样参数。可放入 `extraBody`，xiaomiaoAgent 会合并进 chat-completions 请求体：
 
 ```json
 {
@@ -278,7 +278,7 @@ vLLM：
 
 ### 添加新 Provider（开发者指南）
 
-nanobot 使用 `nanobot/providers/registry.py` 中的 **Provider Registry** 作为单一事实来源。添加新 Provider 通常只需两步：
+xiaomiaoAgent 使用 `nanobot/providers/registry.py` 中的 **Provider Registry** 作为单一事实来源。添加新 Provider 通常只需两步：
 
 1. 在 `PROVIDERS` 中添加一个 `ProviderSpec`。
 2. 在 `nanobot/config/schema.py` 的 `ProvidersConfig` 中添加对应字段。
@@ -324,13 +324,13 @@ ProviderSpec(
 
 ### 重试行为
 
-通道 `send()` 抛错时，nanobot 会在 channel-manager 层重试。默认 `sendMaxRetries` 为 `3`，包含首次发送。退避为 `1s`、`2s`、`4s`，之后保持最大 `4s`。
+通道 `send()` 抛错时，xiaomiaoAgent 会在 channel-manager 层重试。默认 `sendMaxRetries` 为 `3`，包含首次发送。退避为 `1s`、`2s`、`4s`，之后保持最大 `4s`。
 
-如果通道完全不可达，nanobot 无法通过同一通道通知用户。请查看日志中的 `Failed to send to {channel} after N attempts`。
+如果通道完全不可达，xiaomiaoAgent 无法通过同一通道通知用户。请查看日志中的 `Failed to send to {channel} after N attempts`。
 
 ## Web 工具
 
-nanobot 默认启用基础 Web 工具，包括通过 API 搜索，以及将网页抓取为 Markdown。配置位于 `tools.web`。
+xiaomiaoAgent 默认启用基础 Web 工具，包括通过 API 搜索，以及将网页抓取为 Markdown。配置位于 `tools.web`。
 
 禁用全部 Web 工具：
 
@@ -419,7 +419,7 @@ nanobot 默认启用基础 Web 工具，包括通过 API 搜索，以及将网�
 
 ## MCP（Model Context Protocol）
 
-nanobot 支持 [MCP](https://modelcontextprotocol.io/)，可以连接外部工具服务器，并作为原生 agent 工具使用。配置格式兼容 Claude Desktop / Cursor。
+xiaomiaoAgent 支持 [MCP](https://modelcontextprotocol.io/)，可以连接外部工具服务器，并作为原生 agent 工具使用。配置格式兼容 Claude Desktop / Cursor。
 
 ```json
 {
@@ -480,7 +480,7 @@ nanobot 支持 [MCP](https://modelcontextprotocol.io/)，可以连接外部工�
 
 ## 自动压缩
 
-当用户空闲超过阈值时，nanobot 可以主动把旧会话上下文压缩成摘要，同时保留最近的合法 live message 后缀。这样用户回来时，模型不必重新处理很长的陈旧上下文。
+当用户空闲超过阈值时，xiaomiaoAgent 可以主动把旧会话上下文压缩成摘要，同时保留最近的合法 live message 后缀。这样用户回来时，模型不必重新处理很长的陈旧上下文。
 
 ```json
 {
@@ -514,7 +514,7 @@ nanobot 支持 [MCP](https://modelcontextprotocol.io/)，可以连接外部工�
 
 ## 统一会话
 
-默认情况下，每个通道与 chat ID 组合都有自己的会话。如果你跨多个通道使用 nanobot，并希望它们共享同一段对话，请启用 `unifiedSession`：
+默认情况下，每个通道与 chat ID 组合都有自己的会话。如果你跨多个通道使用 xiaomiaoAgent，并希望它们共享同一段对话，请启用 `unifiedSession`：
 
 ```json
 {
@@ -538,7 +538,7 @@ nanobot 支持 [MCP](https://modelcontextprotocol.io/)，可以连接外部工�
 
 ## 禁用 Skills
 
-nanobot 内置 skills，工作区也可以在 `skills/` 下定义自定义 skills。如需对 agent 隐藏特定 skill，请将 `agents.defaults.disabledSkills` 设为 skill 目录名列表：
+xiaomiaoAgent 内置 skills，工作区也可以在 `skills/` 下定义自定义 skills。如需对 agent 隐藏特定 skill，请将 `agents.defaults.disabledSkills` 设为 skill 目录名列表：
 
 ```json
 {
