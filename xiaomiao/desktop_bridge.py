@@ -1,4 +1,5 @@
 import json
+import ipaddress
 import time
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from threading import RLock
@@ -15,6 +16,7 @@ NEXT_EVENT_ID = 1
 BRIDGE_LOCK = RLock()
 FIRST_EVENT_ID = 1
 VALID_EVENT_ROLES = {"user", "assistant"}
+LOCALHOST_NAME = "localhost"
 
 
 def reset_bridge_state() -> None:
@@ -23,6 +25,20 @@ def reset_bridge_state() -> None:
         LATEST_STATE_BY_USER.clear()
         BRIDGE_EVENTS.clear()
         NEXT_EVENT_ID = FIRST_EVENT_ID
+
+
+def is_loopback_client(client_address: tuple[str, int]) -> bool:
+    host = client_address[0]
+    if host == LOCALHOST_NAME:
+        return True
+    try:
+        address = ipaddress.ip_address(host)
+    except ValueError:
+        return False
+    if address.is_loopback:
+        return True
+    mapped = getattr(address, "ipv4_mapped", None)
+    return bool(mapped and mapped.is_loopback)
 
 
 def load_persisted_bridge_events() -> None:
@@ -287,11 +303,15 @@ def start_desktop_bridge_server(
             self.wfile.write(body)
 
         def do_OPTIONS(self):
+            if self._reject_non_loopback():
+                return
             self.send_response(204)
             self._set_cors_headers()
             self.end_headers()
 
         def do_GET(self):
+            if self._reject_non_loopback():
+                return
             parsed = urlparse(self.path)
             if parsed.path == "/v1/models":
                 self._write_json(200, build_models_response(model_name))
@@ -329,6 +349,8 @@ def start_desktop_bridge_server(
             self._write_json(404, {"error": "not_found"})
 
         def do_POST(self):
+            if self._reject_non_loopback():
+                return
             parsed_path = urlparse(self.path).path
             if parsed_path == "/v1/xiaomiao/config":
                 self._write_config_update()
@@ -348,6 +370,18 @@ def start_desktop_bridge_server(
             if not isinstance(payload, dict):
                 raise ValueError("request body must be a JSON object")
             return payload
+
+        def _reject_non_loopback(self) -> bool:
+            if is_loopback_client(self.client_address):
+                return False
+            self._write_json(
+                403,
+                {
+                    "error": "bridge_loopback_only",
+                    "message": "xiaomiao desktop bridge only accepts loopback clients",
+                },
+            )
+            return True
 
         def _write_config_status(self):
             try:

@@ -11,7 +11,16 @@ xiaomiao serve
 
 ## xiaomiaoVirtual 集成
 
-在 `xiaomiaoVirtual` 中，该端点是网页、桌面 bridge 和 QQ 普通 AI 回复的统一 Agent 能力层。推荐从仓库根目录启动项目内配置：
+在 `xiaomiaoVirtual` 中，该端点是网页、桌面 bridge 和 QQ 普通 AI 回复的统一 Agent 能力层。推荐从仓库根目录启动完整链路：
+
+```powershell
+cd F:\xiaomiaoVirtual
+start-all.cmd
+```
+
+`start-all.cmd` 会串行启动 QQ 协议端、xiaomiaoAgent API、xiaomiaoAgent gateway、xiaomiao bridge、stage-web 和 xiaomiaoAgent WebUI。新启动的终端默认最小化；前一步没有通过健康检查时，后续服务不会打开。
+
+也可以只启动项目内 API 配置：
 
 ```powershell
 cd F:\xiaomiaoVirtual\xiaomiaoAgent
@@ -53,9 +62,9 @@ xiaomiaoAgent OpenAI-compatible API
 }
 ```
 
-这会让网页、桌面 bridge 和 QQ 普通 AI 回复共享同一个 Agent 上下文。命令型 QQ 功能、权限管理、生图、撤回和配置类命令仍由 `xiaomiao` 本地逻辑处理。
+这会让网页、桌面 bridge 和 QQ 普通 AI 回复共享同一个 Agent 上下文。命令型 QQ 功能、权限管理、生图、撤回和配置类命令仍由 `xiaomiao` 本地逻辑处理。QQ 本地命令 `帮助`、`关于`、`读图` 使用精确匹配，普通问题中包含这些词时仍作为 AI 请求进入 xiaomiaoAgent。
 
-如果 xiaomiaoAgent API 未启动，`xiaomiao` bridge 会返回明确 HTTP 502 错误；`stage-web` 会把错误写入聊天历史，不会静默回退到 xiaomiaobot provider。
+如果 xiaomiaoAgent API 未启动，`xiaomiao` bridge 会返回明确 HTTP 502 错误；`stage-web` 会把错误写入聊天历史，不会静默回退到 xiaomiaobot provider。Web 端会通过 bridge events 读取含 Web 已确认消息的记录，用于刷新后的三端消息同步。
 
 ## 行为
 

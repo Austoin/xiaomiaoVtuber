@@ -1,6 +1,6 @@
 param(
     [Parameter(Mandatory = $true, Position = 0)]
-    [ValidateSet("check", "assert-free", "wait", "is-open")]
+    [ValidateSet("check", "assert-free", "wait", "is-open", "config-safe")]
     [string] $Command,
 
     [ValidateSet("Port", "Http", "Gateway", "Xiaomiao")]
@@ -10,6 +10,7 @@ param(
     [int] $Port = 0,
     [string] $Url = "",
     [string] $BaseUrl = "",
+    [string] $ConfigPath = "",
     [string] $Needle = "",
     [int] $TimeoutSeconds = 180
 )
@@ -195,6 +196,41 @@ function Test-XiaomiaoReady {
     return $true
 }
 
+function Test-XiaomiaoAgentConfigSafe {
+    param([string] $Path)
+    if ([string]::IsNullOrWhiteSpace($Path)) {
+        Write-Host "[Error] Missing config path for xiaomiaoAgent safety check."
+        return $false
+    }
+    if (-not (Test-Path -LiteralPath $Path)) {
+        Write-Host "[Error] Missing xiaomiaoAgent config: $Path"
+        return $false
+    }
+    try {
+        $config = Get-Content -LiteralPath $Path -Raw | ConvertFrom-Json
+    }
+    catch {
+        Write-Host "[Error] Failed to parse xiaomiaoAgent config: $Path"
+        Write-Host "        $($_.Exception.Message)"
+        return $false
+    }
+    $qq = $config.channels.qq
+    if ($qq -and $qq.enabled -eq $true) {
+        Write-Host "[Error] xiaomiaoAgent native QQ channel is enabled."
+        Write-Host "        Current XiaoMiao QQ authority is xiaomiao/main.py + NapCat."
+        Write-Host "        Disable channels.qq.enabled before running start-all.cmd."
+        return $false
+    }
+    $defaults = $config.agents.defaults
+    if ($defaults -and $defaults.unifiedSession -eq $true) {
+        Write-Host "[Error] xiaomiaoAgent global unifiedSession is enabled."
+        Write-Host "        XiaoMiao uses explicit xiaomiao-unified routing instead."
+        Write-Host "        Disable agents.defaults.unifiedSession before running start-all.cmd."
+        return $false
+    }
+    return $true
+}
+
 function Test-Health {
     switch ($Kind) {
         "Port" { return Test-TcpPort $Port }
@@ -257,4 +293,5 @@ switch ($Command) {
     "assert-free" { if (Invoke-AssertFree) { exit 0 } else { exit 1 } }
     "wait" { if (Invoke-Wait) { exit 0 } else { exit 1 } }
     "is-open" { if (Test-TcpPort $Port) { exit 0 } else { exit 1 } }
+    "config-safe" { if (Test-XiaomiaoAgentConfigSafe $ConfigPath) { exit 0 } else { exit 1 } }
 }

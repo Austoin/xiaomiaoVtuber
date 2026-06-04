@@ -79,7 +79,16 @@ Electron 桌面版应用，是当前桌面形态的主要入口，适合本地�
 
 ### 统一 Agent 联动前置服务
 
-如果要联动 `xiaomiao`、QQ 和 xiaomiaoAgent，先启动后端链路：
+如果要联动 `xiaomiao`、QQ 和 xiaomiaoAgent，推荐从仓库根目录启动：
+
+```powershell
+cd F:\xiaomiaoVirtual
+start-all.cmd
+```
+
+`start-all.cmd` 会串行启动 QQ 协议端、xiaomiaoAgent API、xiaomiaoAgent gateway、xiaomiao bridge、stage-web 和 xiaomiaoAgent WebUI。新启动的终端默认最小化；前一步没有通过健康检查时，后续服务不会打开。
+
+手动启动时，先启动后端链路：
 
 ```powershell
 cd F:\xiaomiaoVirtual\xiaomiaoAgent
@@ -108,6 +117,8 @@ python main.py
 
 `python main.py` 会先启动 bridge，再连接 OneBot。如果 NapCat 未启动或 WebSocket 断开，主进程会退出，`stage-web` 也会因为 `5519` 不存在而显示 bridge 错误。
 
+QQ / Web / xiaomiaoAgent WebUI 共享 `xiaomiao-unified` 会话和 bridge events。QQ 本地命令 `帮助`、`关于`、`读图` 使用精确匹配，普通问题中包含这些词时仍会进入 xiaomiaoAgent。
+
 ### 方式一：启动 Web 版
 
 ```powershell
@@ -121,7 +132,7 @@ pnpm dev:web
 - Web 场景预览
 - 验证 `stage-web -> xiaomiao bridge -> xiaomiaoAgent` 链路
 
-第一次打开 Web 版会先通过 bridge 读取主目录 `config.json`。配置完整时不会弹配置面板；配置缺失时填写中转站 URL、API Key 和模型后会同步写回主目录 `config.json`。bridge 不可用、xiaomiaoAgent 不可用或返回空回复时，聊天历史会出现明确 error 消息，不会静默回退到 xiaomiaobot provider。
+第一次打开 Web 版会先通过 bridge 读取主目录 `config.json`。配置完整时不会弹配置面板；配置缺失时填写中转站 URL、API Key 和模型后会同步写回主目录 `config.json`。bridge 不可用、xiaomiaoAgent 不可用或返回空回复时，聊天历史会出现明确 error 消息，不会静默回退到 xiaomiaobot provider。网页确认后的消息会通过 bridge events 回放，刷新页面后仍能看到三端同步记录。
 
 ### 方式二：启动桌面 Electron 版
 
@@ -260,7 +271,7 @@ AuBot/
 └── packages/stage-layouts/src/components/Layouts/MobileInteractiveArea.vue
 ```
 
-`xiaomiao-bridge.ts` 固定请求 `http://127.0.0.1:5519/v1/chat/completions`。该 bridge 再转发到 xiaomiaoAgent 的 `http://127.0.0.1:8900/v1/chat/completions`。
+`xiaomiao-bridge.ts` 固定请求 `http://127.0.0.1:5519/v1/chat/completions`。该 bridge 再转发到 xiaomiaoAgent 的 `http://127.0.0.1:8900/v1/chat/completions`。消息同步事件读取同一个 bridge 的 `/v1/xiaomiao/events`，用于 Web、桌面和 QQ 侧的统一消息历史。
 
 ---
 

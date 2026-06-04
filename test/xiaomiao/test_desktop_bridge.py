@@ -13,6 +13,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "xiaomiao"))
 
 from desktop_bridge import (
     extract_last_user_text,
+    is_loopback_client,
     publish_bridge_exchange,
     reset_bridge_state,
     start_desktop_bridge_server,
@@ -50,6 +51,13 @@ class DesktopBridgeTests(unittest.TestCase):
         ]
 
         self.assertEqual(extract_last_user_text(payload), "最后一句")
+
+    def test_loopback_client_check_rejects_non_local_addresses(self):
+        self.assertTrue(is_loopback_client(("127.0.0.1", 12345)))
+        self.assertTrue(is_loopback_client(("::1", 12345)))
+        self.assertTrue(is_loopback_client(("localhost", 12345)))
+        self.assertFalse(is_loopback_client(("192.168.1.50", 12345)))
+        self.assertFalse(is_loopback_client(("example.com", 12345)))
 
     def test_openai_compatible_routes_return_models_reply_state_and_events(self):
         with _bridge_server(lambda user_id, text: f"{user_id}:{text}") as port:

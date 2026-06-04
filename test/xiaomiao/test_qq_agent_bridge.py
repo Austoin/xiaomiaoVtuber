@@ -11,6 +11,7 @@ from qq_agent_bridge import (  # noqa: E402
     build_agent_media_from_urls,
     build_qq_agent_reply,
     get_market_face_url,
+    is_qq_exact_command,
     publish_qq_agent_reply,
     resolve_qq_image_url,
 )
@@ -134,6 +135,15 @@ class QQAgentBridgeTests(unittest.TestCase):
         self.assertEqual(len(failures), 1)
         self.assertEqual(failures[0].url, "https://bad.test/b.png")
         self.assertIn("download failed", failures[0].error)
+
+    def test_exact_command_does_not_match_agent_prompt_words(self):
+        prompt = "在桌面agent.txt里面写入一些关于agent的知识"
+
+        self.assertTrue(is_qq_exact_command("关于", "关于"))
+        self.assertTrue(is_qq_exact_command("  帮助  ", "帮助"))
+        self.assertFalse(is_qq_exact_command(prompt, "关于"))
+        self.assertFalse(is_qq_exact_command("帮助我写文件", "帮助"))
+        self.assertFalse(is_qq_exact_command("读图总结这张图片", "读图"))
 
 
 if __name__ == "__main__":

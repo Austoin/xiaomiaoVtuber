@@ -108,6 +108,23 @@ describe('xiaomiao bridge events', () => {
     expect(next[1].id).toBe('xiaomiao-client-stage-web-local-3-assistant')
   })
 
+  it('can replay web events from bridge when local history is empty', () => {
+    const next = appendXiaomiaoBridgeEvents(
+      [],
+      [
+        bridgeEvent(7, 'web', 'user', '刷新前的问题', 'stage-web-local-4'),
+        bridgeEvent(8, 'web', 'assistant', '刷新前的回答', 'stage-web-local-4'),
+      ],
+      { includeWeb: true },
+    )
+
+    expect(next).toHaveLength(2)
+    expect(next[0].id).toBe('xiaomiao-client-stage-web-local-4-user')
+    expect(next[0].content).toBe('刷新前的问题')
+    expect(next[1].id).toBe('xiaomiao-client-stage-web-local-4-assistant')
+    expect(next[1].content).toBe('刷新前的回答')
+  })
+
   it('requests bridge root config status without requiring secrets', async () => {
     const calls: string[] = []
     const result = await requestXiaomiaoBridgeConfigStatus({

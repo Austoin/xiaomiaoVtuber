@@ -37,7 +37,10 @@ echo.
 call :preflight
 if errorlevel 1 exit /b 1
 
-if "%CHECK_ONLY%"=="1" goto check_services
+if "%CHECK_ONLY%"=="1" (
+    call :check_services
+    exit /b %errorlevel%
+)
 
 call :start_qq
 if errorlevel 1 goto launch_failed
@@ -89,6 +92,11 @@ if not exist "%NAPCAT_DIR%\napcat.quick.bat" if not exist "%LAGRANGE_EXE%" (
     echo [Error] No QQ protocol found.
     echo         Expected NapCat: %NAPCAT_DIR%\napcat.quick.bat
     echo         Expected Lagrange: %LAGRANGE_EXE%
+    pause
+    exit /b 1
+)
+powershell -NoProfile -ExecutionPolicy Bypass -File "%HEALTH_PS%" config-safe -ConfigPath "%XIAOMIAO_AGENT_CONFIG%"
+if errorlevel 1 (
     pause
     exit /b 1
 )
@@ -169,9 +177,9 @@ if not errorlevel 1 (
     exit /b %errorlevel%
 )
 if exist "%NAPCAT_DIR%\napcat.quick.bat" (
-    start "QQ Protocol - NapCat" /D "%NAPCAT_DIR%" cmd /k "call napcat.quick.bat %QQ_ACCOUNT%"
+    start "QQ Protocol - NapCat" /min /D "%NAPCAT_DIR%" cmd /k "call napcat.quick.bat %QQ_ACCOUNT%"
 ) else (
-    start "QQ Protocol - Lagrange" /D "%XIAOMIAO_DIR%" cmd /k "Lagrange.OneBot.exe"
+    start "QQ Protocol - Lagrange" /min /D "%XIAOMIAO_DIR%" cmd /k "Lagrange.OneBot.exe"
 )
 call :wait_port "QQ OneBot WebSocket" 5004
 exit /b %errorlevel%
@@ -181,7 +189,7 @@ echo.
 echo [2/6] Starting xiaomiaoAgent API...
 call :assert_free "xiaomiaoAgent API" 8900
 if errorlevel 1 exit /b 1
-start "xiaomiaoAgent API" /D "%XIAOMIAO_AGENT_DIR%" cmd /k "%CMD_AGENT_API%"
+start "xiaomiaoAgent API" /min /D "%XIAOMIAO_AGENT_DIR%" cmd /k "%CMD_AGENT_API%"
 call :wait_http "xiaomiaoAgent API" 8900 "http://127.0.0.1:8900/health" "status"
 exit /b %errorlevel%
 
@@ -190,7 +198,7 @@ echo.
 echo [3/6] Starting xiaomiaoAgent gateway...
 call :assert_free "xiaomiaoAgent gateway" 8765
 if errorlevel 1 exit /b 1
-start "xiaomiaoAgent gateway" /D "%XIAOMIAO_AGENT_DIR%" cmd /k "%CMD_AGENT_GATEWAY%"
+start "xiaomiaoAgent gateway" /min /D "%XIAOMIAO_AGENT_DIR%" cmd /k "%CMD_AGENT_GATEWAY%"
 call :wait_gateway "xiaomiaoAgent gateway" 8765 "http://127.0.0.1:8765"
 exit /b %errorlevel%
 
@@ -199,7 +207,7 @@ echo.
 echo [4/6] Starting xiaomiao main.py and bridge...
 call :assert_free "xiaomiao main.py and bridge" 5519
 if errorlevel 1 exit /b 1
-start "xiaomiao main.py" /D "%XIAOMIAO_DIR%" cmd /k "%CMD_XIAOMIAO_MAIN%"
+start "xiaomiao main.py" /min /D "%XIAOMIAO_DIR%" cmd /k "%CMD_XIAOMIAO_MAIN%"
 call :wait_xiaomiao "xiaomiao main.py, bridge, and QQ listener" 5519 "http://127.0.0.1:5519/v1/xiaomiao/status" "xiaomiao-desktop-bridge"
 exit /b %errorlevel%
 
@@ -208,7 +216,7 @@ echo.
 echo [5/6] Starting xiaomiaobot web...
 call :assert_free "xiaomiaobot web" %XIAOMIAOBOT_STAGE_WEB_PORT%
 if errorlevel 1 exit /b 1
-start "xiaomiaobot web" /D "%XIAOMIAOBOT_STAGE_WEB_DIR%" cmd /k "%CMD_XIAOMIAOBOT_WEB%"
+start "xiaomiaobot web" /min /D "%XIAOMIAOBOT_STAGE_WEB_DIR%" cmd /k "%CMD_XIAOMIAOBOT_WEB%"
 call :wait_http "xiaomiaobot web" %XIAOMIAOBOT_STAGE_WEB_PORT% "http://127.0.0.1:%XIAOMIAOBOT_STAGE_WEB_PORT%/" "xiaomiao"
 exit /b %errorlevel%
 
@@ -217,7 +225,7 @@ echo.
 echo [6/6] Starting xiaomiaoAgent WebUI...
 call :assert_free "xiaomiaoAgent WebUI" 5174
 if errorlevel 1 exit /b 1
-start "xiaomiaoAgent WebUI" /D "%XIAOMIAO_AGENT_WEBUI_DIR%" cmd /k "%CMD_AGENT_WEBUI%"
+start "xiaomiaoAgent WebUI" /min /D "%XIAOMIAO_AGENT_WEBUI_DIR%" cmd /k "%CMD_AGENT_WEBUI%"
 call :wait_http "xiaomiaoAgent WebUI" 5174 "http://127.0.0.1:5174/" "xiaomiaoAgent"
 exit /b %errorlevel%
 
@@ -233,7 +241,7 @@ exit /b 1
 :launch_success
 echo.
 echo ========================================
-echo All required services were started in visible terminals.
+echo All required services were started in minimized terminals.
 echo ========================================
 echo.
 echo Ports:

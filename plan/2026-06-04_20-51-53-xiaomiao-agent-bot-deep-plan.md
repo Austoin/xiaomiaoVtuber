@@ -79,7 +79,7 @@ created_at: 2026-06-04 20:51:53 +08:00
 - 通过：PowerShell 解析 `scripts/start-all-health.ps1`
 - 结果：`start-all-health.ps1 syntax OK`
 - 通过：`start-all.cmd --check`
-- 结果：检查通过；当前端口均空闲，会在正式启动时打开对应可见终端。
+- 结果：检查通过；当前端口均空闲，会在正式启动时打开对应独立终端。
 
 ### 2026-06-04 Phase 2：统一消息模型
 
@@ -580,13 +580,73 @@ QQ / Web / Agent WebUI
 - stage-web 只依赖一个小喵 bridge client。
 - Agent WebUI 和 stage-web 不再各自猜 session 规则。
 
+### Phase 6：真实启动与端到端验收
+
+状态：已完成。当前真实启动链路已通过 `start-all.cmd` 拉起，NapCat、`main.py`、Agent API、gateway、stage-web、Agent WebUI 均在线；Agent API、桌面桥接、Agent WebUI WebSocket 都已写入同一统一会话并同步到 bridge event。
+
+目标：确认本地 QQ 登录缓存、独立终端启动工作流、Web 端、QQ 端、Agent 端的真实运行状态可用。
+
+完成内容：
+
+1. `start-all.cmd --check` 启动前通过，确认目标端口空闲。
+2. `start-all.cmd` 真实启动后再次 `--check` 通过，确认所有必要终端与服务在线。
+3. NapCat/QQ OneBot `5004`、Agent API `8900`、Agent gateway `8765`、`main.py`/桌面桥接 `5519`、stage-web `5175`、Agent WebUI `5174` 均健康。
+4. Agent API 直连 `session_id=xiaomiao-unified` 返回 `OK ✅`。
+5. 桌面桥接 `/v1/chat/completions` 返回 `OK ✅`，并写入 `web:stage-web` bridge event。
+6. Agent WebUI WebSocket 通过 bootstrap token 连接、attach `xiaomiao-unified`，流式返回 `PHASE6_WEBUI_WS_OK`。
+7. bridge events 已确认存在 `agent-webui:xiaomiao-unified` 的 user/assistant 同步事件。
+8. gateway session API 已确认 `api:xiaomiao-unified` 含本轮 Agent API、bridge、Agent WebUI 消息与回复。
+
+验收：
+
+- `cmd /c call start-all.cmd --check`：通过。
+- `8900/v1/chat/completions`：统一 session 直连通过。
+- `5519/v1/chat/completions` 与 `/v1/xiaomiao/events`：桥接请求和事件同步通过。
+- `8765/webui/bootstrap` 与 WebSocket：token、attach、流式回复通过。
+- `5175` stage-web 和 `5174` Agent WebUI 页面：HTTP 200。
+
+### Phase 7：残留风险 hardening
+
+状态：已完成。已完成 QQ 双入口阻断、全局 `unifiedSession=true` 阻断、非统一 WebUI session 不同步回归测试、`5519` bridge loopback 访问边界、stage-web bridge 确认事件权威回放。
+
+目标：围绕真实运行后仍可能造成重复回复、误同步、边界暴露的问题做小步 hardening，不迁移 QQ channel。
+
+已完成内容：
+
+1. `start-all.cmd` 的 preflight 调用 `start-all-health.ps1 config-safe`。
+2. `config-safe` 会解析 `xiaomiaoAgent/.nanobot/config.json`，当 `channels.qq.enabled=true` 时明确失败。
+3. 错误信息声明当前 QQ 权威入口是 `xiaomiao/main.py + NapCat`，避免同时启用 Agent 原生 QQ channel。
+4. `start-all.cmd --check` 分支改为 `call :check_services` 后退出，避免 Windows batch 标签跳转异常。
+5. `start-all.cmd` 已转回 CRLF，修复 LF 下 `cmd` 标签扫描报 `cannot find the batch label` 的问题。
+6. 新增 WebSocket bridge 边界测试：非 `xiaomiao-unified` 的 WebUI/WebSocket 会话不会镜像到 bridge。
+7. `5519` desktop bridge 增加 loopback 客户端检查，非本机地址会得到显式 `403 bridge_loopback_only`。
+8. 复核 Agent API 停止、HTTP 错误、空回复、超时路径，当前均有显式失败测试覆盖。
+9. `config-safe` 增加 `agents.defaults.unifiedSession=true` 拦截，要求使用显式 `xiaomiao-unified` 路由。
+10. stage-web 主页面轮询 bridge events 时启用 `includeWeb: true`，刷新后可从 bridge 回放 web 自己的确认事件。
+11. QQ 本地命令 `帮助`、`关于`、`读图` 改为精确匹配，避免自然语言中出现 `关于`、`帮助`、`读图` 时误触发本地命令。
+12. `start-all.cmd` 新启动终端默认最小化，仍保持一个服务一个独立终端和串行健康检查。
+
+验证：
+
+- `F:\Anaconda3\envs\xiaomiao\python.exe -m pytest tests\channels\test_websocket_xiaomiao_bridge.py -q`：`4 passed`。
+- `powershell -NoProfile -ExecutionPolicy Bypass -File scripts\start-all-health.ps1 config-safe -ConfigPath xiaomiaoAgent\.nanobot\config.json`：通过。
+- `cmd /c call start-all.cmd --check`：通过。
+- `F:\Anaconda3\envs\xiaomiao\python.exe -m pytest test\xiaomiao\test_desktop_bridge.py test\xiaomiao\test_agent_backend.py -q`：`23 passed`。
+- `F:\Anaconda3\envs\xiaomiao\python.exe -m pytest test\xiaomiao\test_qq_agent_bridge.py -q`：`8 passed`。
+- `F:\Anaconda3\envs\xiaomiao\python.exe -m py_compile xiaomiao\desktop_bridge.py xiaomiao\agent_backend.py`：通过。
+- `F:\Anaconda3\envs\xiaomiao\python.exe -m py_compile xiaomiao\main.py xiaomiao\qq_agent_bridge.py`：通过。
+- 临时风险配置 `agents.defaults.unifiedSession=true`：`config-safe` 明确失败。
+- `pnpm exec vitest run packages/stage-ui/src/xiaomiao-bridge-events.test.ts`：`7 passed`。
+- `git diff --check` 限定本次修改文件：无 whitespace 错误，仅有 LF/CRLF 提示。
+
 ## 8. 风险
 
-1. 直接开启 `unifiedSession=true` 可能把所有 channel、cron、heartbeat 都混进同一上下文。
-2. 同时启用 `xiaomiao/main.py` QQ 和 `xiaomiaoAgent` 原生 QQ channel 会造成重复回复。
-3. stage-web 本地历史与 Agent session 长期并存，会继续制造“看得到但上下文不一致”的问题。
+1. 直接开启 `unifiedSession=true` 可能把所有 channel、cron、heartbeat 都混进同一上下文；Phase 7 已在启动前阻断该组合。
+2. 同时启用 `xiaomiao/main.py` QQ 和 `xiaomiaoAgent` 原生 QQ channel 会造成重复回复；Phase 7 已在启动前阻断该组合。
+3. stage-web 本地历史与 Agent session 长期并存，会继续制造“看得到但上下文不一致”的问题；Phase 7 已让主页面回放 web 确认事件，降低刷新后依赖 IndexedDB 的风险。
 4. Agent tools 暴露到 QQ 群前必须做权限隔离。
-5. `5519` bridge 当前是本机信任接口，不应直接暴露到公网。
+5. `5519` bridge 当前是本机信任接口，不应直接暴露到公网；Phase 7 已增加 loopback 客户端边界。
+6. QQ 自然语言提示中可能包含本地命令词；当前 `帮助`、`关于`、`读图` 已改为精确匹配。
 
 ## 9. 最小测试矩阵
 
@@ -610,16 +670,16 @@ QQ / Web / Agent WebUI
 2. NapCat 停止时，`main.py` 退出并暴露 OneBot 连接错误。
 3. bridge event store 有坏行时，错误可定位，不污染后续事件。
 4. stage-web 刷新后不会重复追加历史消息。
-5. 非统一 WebUI session 不应同步到 stage-web。
+5. 非统一 WebUI session 不应同步到 stage-web；Phase 7 已补回归测试。
 
 ## 10. 下一步执行顺序
 
 推荐优先级：
 
-1. 先改事件协议，不碰 QQ channel 迁移。
-2. 再改 stage-web 消息确认与去重。
-3. 再补 Agent WebUI 的统一会话入口。
-4. 再做多模态 media。
-5. 最后拆 `main.py` 和评估 Agent 原生 QQ。
+1. 已完成事件协议、stage-web 消息确认与去重、Agent WebUI 统一会话入口。
+2. 已完成多模态 media 的基础接入、权限与工具分层、QQ 模块边界治理。
+3. 已完成真实启动与三端端到端验收。
+4. 已完成残留风险 hardening，未迁移 QQ channel。
+5. 评估 Agent 原生 QQ channel 前，必须先保证不会与 `xiaomiao/main.py` 产生重复回复。
 
-这条路线能保留当前已经跑通的本地 QQ 登录缓存、NapCat 入口和 `start-all.cmd` 可见终端工作流，同时逐步消除“看起来同步但不是同一状态源”的核心问题。
+这条路线能保留当前已经跑通的本地 QQ 登录缓存、NapCat 入口和 `start-all.cmd` 独立终端工作流，同时逐步消除“看起来同步但不是同一状态源”的核心问题。

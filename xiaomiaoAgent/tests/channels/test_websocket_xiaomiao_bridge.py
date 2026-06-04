@@ -57,6 +57,32 @@ async def test_xiaomiao_unified_user_message_mirrors_to_bridge(monkeypatch) -> N
 
 
 @pytest.mark.asyncio
+async def test_non_unified_user_message_does_not_mirror_to_bridge(monkeypatch) -> None:
+    mirrored: list[dict[str, Any]] = []
+
+    async def fake_post(payload: dict[str, Any]) -> None:
+        mirrored.append(payload)
+
+    monkeypatch.setattr(websocket_module, "_post_xiaomiao_bridge_event", fake_post)
+    bus = MagicMock()
+    bus.publish_inbound = AsyncMock()
+    channel = _channel(bus)
+
+    await channel._dispatch_envelope(
+        MagicMock(remote_address=("127.0.0.1", 50000)),
+        "browser",
+        {
+            "type": "message",
+            "chat_id": "websocket-private-chat",
+            "content": "私有 WebSocket 会话",
+            "webui": True,
+        },
+    )
+
+    assert mirrored == []
+
+
+@pytest.mark.asyncio
 async def test_xiaomiao_unified_streaming_reply_mirrors_once(monkeypatch) -> None:
     mirrored: list[dict[str, Any]] = []
 

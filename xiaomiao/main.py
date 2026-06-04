@@ -37,6 +37,7 @@ from qq_agent_bridge import (
     QQ_AGENT_PRIVATE,
     build_qq_agent_reply,
     get_market_face_url,
+    is_qq_exact_command,
     publish_qq_agent_reply,
     resolve_qq_image_url,
 )
@@ -365,7 +366,7 @@ async def handler(event: Events.Event, actions: Listener.Actions) -> None:
                 message=Manager.Message(
                     Segments.Text(f"""{bot_name} {bot_name_en} - 简单 可爱 个性 全知
 ————————————————————
-Welcome! {bot_name} was restarted successfully. Now you can send {reminder}帮助 to know more.""")
+欢迎！{bot_name} 已成功重启。现在可以发送 {reminder}帮助 查看更多用法。""")
                 ),
             )
 
@@ -849,7 +850,7 @@ Welcome! {bot_name} was restarted successfully. Now you can send {reminder}帮�
                     ),
                 )
 
-        elif "读图" in order:
+        elif is_qq_exact_command(order, "读图"):
             EnableNetwork = "Pixmap"
             await actions.send(
                 group_id=event.group_id,
@@ -1019,7 +1020,7 @@ Welcome! {bot_name} was restarted successfully. Now you can send {reminder}帮�
                 if Toset in ROOT_User:
                     r = f"""{bot_name} {bot_name_en} - 简单 可爱 个性 全知
 ————————————————————
-Failed: The specified user is a ROOT_User and group ROOT_User is read only."""
+失败：指定用户是 ROOT_User，群聊 ROOT_User 列表只读。"""
                 else:
                     if Toset in s:
                         s.remove(Toset)
@@ -1029,12 +1030,12 @@ Failed: The specified user is a ROOT_User and group ROOT_User is read only."""
                     if Write_Settings(s, m):
                         r = f"""{bot_name} {bot_name_en} - 简单 可爱 个性 全知
 ————————————————————
-Succeeded: @{Toset} is a Common User now.
-Now use {reminder}帮助 to know what permissions you have now."""
+成功：@{Toset} 现在是普通用户。
+现在可以发送 {reminder}帮助 查看当前权限。"""
                     else:
                         r = f"""{bot_name} {bot_name_en} - 简单 可爱 个性 全知
 ————————————————————
-Failed: Settings files are not writeable."""
+失败：配置文件不可写。"""
             else:
                 r = f"不能这么做！那是一块丞待开发的禁地，可能很危险，{bot_name}很胆小……꒰>﹏< ꒱"
 
@@ -1055,7 +1056,7 @@ Failed: Settings files are not writeable."""
                     if len(nikename) == 0:
                         r = f"""{bot_name} {bot_name_en} - 简单 可爱 个性 全知
 ————————————————————
-Failed: {Toset} is not a valid user."""
+失败：{Toset} 不是有效用户。"""
                     else:
                         nikename = nikename["nickname"]
                         m = Manage_User
@@ -1063,34 +1064,34 @@ Failed: {Toset} is not a valid user."""
                         if Toset in Manage_User:
                             r = f"""{bot_name} {bot_name_en} - 简单 可爱 个性 全知
 ————————————————————
-Succeeded: {nikename}(@{Toset}) has become a Manage_User."""
+成功：{nikename}(@{Toset}) 已成为 Manage_User。"""
                         elif Toset in Super_User:
                             s.remove(Toset)
                             m.append(Toset)
                             if Write_Settings(s, m):
                                 r = f"""{bot_name} {bot_name_en} - 简单 可爱 个性 全知
 ————————————————————
-Succeeded: {nikename}(@{Toset}) has become a Manage_User.
-Now use {reminder}帮助 to know what permissions you have now."""
+成功：{nikename}(@{Toset}) 已成为 Manage_User。
+现在可以发送 {reminder}帮助 查看当前权限。"""
                             else:
                                 r = f"""{bot_name} {bot_name_en} - 简单 可爱 个性 全知
 ————————————————————
-Failed: Settings files are not writeable."""
+失败：配置文件不可写。"""
                         elif Toset in ROOT_User:
                             r = f"""{bot_name} {bot_name_en} - 简单 可爱 个性 全知
 ————————————————————
-Failed: The specified user is a ROOT_User and group ROOT_User is read only."""
+失败：指定用户是 ROOT_User，群聊 ROOT_User 列表只读。"""
                         else:
                             m.append(Toset)
                             if Write_Settings(s, m):
                                 r = f"""{bot_name} {bot_name_en} - 简单 可爱 个性 全知
 ————————————————————
-Succeeded: {nikename}(@{Toset}) has become a Manage_User.
-Now use {reminder}帮助 to know what permissions you have now."""
+成功：{nikename}(@{Toset}) 已成为 Manage_User。
+现在可以发送 {reminder}帮助 查看当前权限。"""
                             else:
                                 r = f"""{bot_name} {bot_name_en} - 简单 可爱 个性 全知
 ————————————————————
-Failed: Settings files are not writeable."""
+失败：配置文件不可写。"""
 
                 elif "管理 S " in order:
                     Toset = order[order.find("管理 S ") + len("管理 S ") :].strip()
@@ -1102,7 +1103,7 @@ Failed: Settings files are not writeable."""
                     if len(nikename) == 0:
                         r = f"""{bot_name} {bot_name_en} - 简单 可爱 个性 全知
 ————————————————————
-Failed: {Toset} is not a valid user."""
+失败：{Toset} 不是有效用户。"""
                     else:
                         nikename = nikename["nickname"]
                         m = Manage_User
@@ -1113,36 +1114,36 @@ Failed: {Toset} is not a valid user."""
                             if Write_Settings(s, m):
                                 r = f"""{bot_name} {bot_name_en} - 简单 可爱 个性 全知
 ————————————————————
-Succeeded: {nikename}(@{Toset}) has become a Super_User.
-Now use {reminder}帮助 to know what permissions you have now."""
+成功：{nikename}(@{Toset}) 已成为 Super_User。
+现在可以发送 {reminder}帮助 查看当前权限。"""
                             else:
                                 r = f"""{bot_name} {bot_name_en} - 简单 可爱 个性 全知
 ————————————————————
-Failed: Settings files are not writeable."""
+失败：配置文件不可写。"""
                         elif Toset in Super_User:
                             r = f"""{bot_name} {bot_name_en} - 简单 可爱 个性 全知
 ————————————————————
-Succeeded: {nikename}(@{Toset}) has become a Super_User."""
+成功：{nikename}(@{Toset}) 已成为 Super_User。"""
                         elif Toset in ROOT_User:
                             r = f"""{bot_name} {bot_name_en} - 简单 可爱 个性 全知
 ————————————————————
-Failed: The specified user is a ROOT_User and group ROOT_User is read only."""
+失败：指定用户是 ROOT_User，群聊 ROOT_User 列表只读。"""
                         else:
                             s.append(Toset)
                             if Write_Settings(s, m):
                                 r = f"""{bot_name} {bot_name_en} - 简单 可爱 个性 全知
 ————————————————————
-Succeeded: {nikename}(@{Toset}) has become a Super_User.
-Now use {reminder}帮助 to know what permissions you have now."""
+成功：{nikename}(@{Toset}) 已成为 Super_User。
+现在可以发送 {reminder}帮助 查看当前权限。"""
                             else:
                                 r = f"""{bot_name} {bot_name_en} - 简单 可爱 个性 全知
 ————————————————————
-Failed: Settings files are not writeable."""
+失败：配置文件不可写。"""
 
                 else:
                     r = f"""{bot_name} {bot_name_en} - 简单 可爱 个性 全知
 ————————————————————
-Failed: Only Manage_User or Super_User could be set."""
+失败：只能设置 Manage_User 或 Super_User。"""
 
             else:
                 r = f"不能这么做！那是一块丞待开发的禁地，可能很危险，{bot_name}很胆小……꒰>﹏< ꒱"
@@ -1163,13 +1164,13 @@ sisters: {sisters}
 Manage_User: {Manage_User}
 Super_User: {Super_User}
 ROOT_User: {ROOT_User}
-If you are a Super_User or ROOT_User, you can manage these users. Use {reminder}帮助 to know more."""
+如果你是 Super_User 或 ROOT_User，可以管理这些用户。发送 {reminder}帮助 查看更多用法。"""
             else:
                 r = f"不能这么做！那是一块丞待开发的禁地，可能很危险，{bot_name}很胆小……꒰>﹏< ꒱"
             await actions.send(
                 group_id=event.group_id, message=Manager.Message(Segments.Text(r))
             )
-        elif "帮助" in order:
+        elif is_qq_exact_command(order, "帮助"):
             if str(event.user_id) in ROOT_User or str(event.user_id) in Super_User:
                 content = f"""管理我们的{bot_name}
 ————————————————————
@@ -1259,16 +1260,16 @@ If you are a Super_User or ROOT_User, you can manage these users. Use {reminder}
                 group_id=event.group_id, message=Manager.Message(Segments.Text(content))
             )
 
-        elif "关于" in order:
+        elif is_qq_exact_command(order, "关于"):
             global version_name
             about = f"""{bot_name} {bot_name_en} - 简单 可爱 个性 全知
 ————————————————————
-Build Information
-Version：{version_name}
+构建信息
+版本：{version_name}
 Powered by NapCat.OneBot
 Rebuilt from HypeR
 ————————————————————
-Third-party API
+第三方 API
 1. Mirokoi API
 2. Lolicon API
 2. LoliAPI API
@@ -1276,7 +1277,7 @@ Third-party API
 5. ChatGPT gpt-5.1
 6. Google gemini-2.5-flash
 ————————————————————
-Copyright
+版权
 Made by SR Studio
 2019~2025 All rights reserved"""
             await actions.send(
@@ -1372,7 +1373,7 @@ Made by SR Studio
                 if len(nikename) == 0:
                     r = f"""{bot_name} {bot_name_en} - 简单 可爱 个性 全知
 ————————————————————
-Failed: {uid} is not a valid user."""
+失败：{uid} 不是有效用户。"""
                 else:
                     items = [f"{key}: {value}" for key, value in nikename.items()]
                     result = "\n".join(items)
@@ -1401,14 +1402,14 @@ Failed: {uid} is not a valid user."""
                 system_info = get_system_info()
                 feel = f"""{bot_name} {bot_name_en} - 简单 可爱 个性 全知
 ————————————————————
-System Now
-Running {seconds_to_hms(round(time.time() - second_start, 2))}
-Syetem Version：{system_info["version_info"]}
-Architecture：{system_info["architecture"]}
-CPU Usage：{str(system_info["cpu_usage"]) + "%"}
-Memory Usage：{str(system_info["memory_usage_percentage"]) + "%"}"""
+系统当前状态
+已运行：{seconds_to_hms(round(time.time() - second_start, 2))}
+系统版本：{system_info["version_info"]}
+架构：{system_info["architecture"]}
+CPU 使用率：{str(system_info["cpu_usage"]) + "%"}
+内存使用率：{str(system_info["memory_usage_percentage"]) + "%"}"""
                 for i, usage in enumerate(system_info["gpu_usage"]):
-                    feel = feel + f"\nGPU {i} Usage：{usage * 100:.2f}%"
+                    feel = feel + f"\nGPU {i} 使用率：{usage * 100:.2f}%"
                 await actions.send(
                     group_id=event.group_id,
                     message=Manager.Message(Segments.Text(feel)),
@@ -2332,7 +2333,7 @@ Memory Usage：{str(system_info["memory_usage_percentage"]) + "%"}"""
             print(f"[私聊] 收到快捷命令 {order}")
 
         # 帮助命令
-        if "帮助" in order:
+        if is_qq_exact_command(order, "帮助"):
             p = " "
             match EnableNetwork:
                 case "Pixmap":
@@ -2351,15 +2352,15 @@ Memory Usage：{str(system_info["memory_usage_percentage"]) + "%"}"""
             )
 
         # 关于命令
-        elif "关于" in order:
+        elif is_qq_exact_command(order, "关于"):
             about = f"""{bot_name} {bot_name_en} - 简单 可爱 个性 全知
 ————————————————————
-Build Information
-Version：{version_name}
+构建信息
+版本：{version_name}
 Powered by NapCat.OneBot
 Rebuilt from HypeR
 ————————————————————
-Third-party API
+第三方 API
 1. Mirokoi API
 2. Lolicon API
 2. LoliAPI API
@@ -2367,7 +2368,7 @@ Third-party API
 5. ChatGPT gpt-5.1
 6. Google gemini-2.5-flash
 ————————————————————
-Copyright
+版权
 Made by SR Studio
 2019~2025 All rights reserved"""
             await actions.send(
@@ -2375,7 +2376,7 @@ Made by SR Studio
             )
 
         # 切换模式
-        elif "读图" in order:
+        elif is_qq_exact_command(order, "读图"):
             EnableNetwork = "Pixmap"
             await actions.send(
                 user_id=event.user_id,

@@ -33,6 +33,10 @@ PublishCallback = Callable[..., None]
 MediaConverter = Callable[[str], Awaitable[str | None]]
 
 
+def is_qq_exact_command(order: str, command: str) -> bool:
+    return order.strip() == command
+
+
 def build_qq_agent_reply(
     *,
     source: str,

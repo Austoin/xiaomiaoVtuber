@@ -98,7 +98,7 @@ async function pollXiaomiaoBridgeEvents() {
     bridgeEventsCursor = Math.max(bridgeEventsCursor, result.lastId)
 
     const currentMessages = activeMessages()
-    const nextMessages = appendXiaomiaoBridgeEvents(currentMessages, result.events)
+    const nextMessages = appendXiaomiaoBridgeEvents(currentMessages, result.events, { includeWeb: true })
     if (nextMessages !== currentMessages)
       chatSession.setSessionMessages(chatSession.activeSessionId, nextMessages)
   }
