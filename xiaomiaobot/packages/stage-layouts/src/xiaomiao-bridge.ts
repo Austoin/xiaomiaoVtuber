@@ -2,15 +2,20 @@ import type { ChatHistoryItem } from '@proj-airi/stage-ui/types/chat'
 
 const XIAOMIAO_BRIDGE_BASE_URL = 'http://127.0.0.1:5519'
 const DEFAULT_XIAOMIAO_MODEL = 'deepseek-chat'
+const CLIENT_MESSAGE_ID_PREFIX = 'stage-web'
 
 export interface XiaomiaoBridgeRequest {
   text: string
   model?: string | null
+  clientMessageId?: string | null
   fetcher?: typeof globalThis.fetch
 }
 
 export interface XiaomiaoBridgeEvent {
   id: number
+  schema_version: number
+  conversation_id: string
+  message_id: string
   source: string
   channel: string
   chat_id: string
@@ -18,6 +23,7 @@ export interface XiaomiaoBridgeEvent {
   role: 'user' | 'assistant'
   content: string
   timestamp: number
+  client_message_id?: string
 }
 
 export interface XiaomiaoBridgeEventsRequest {
@@ -84,6 +90,7 @@ export async function requestXiaomiaoBridgeReply(params: XiaomiaoBridgeRequest):
     },
     body: JSON.stringify({
       model: params.model?.trim() || DEFAULT_XIAOMIAO_MODEL,
+      ...(params.clientMessageId?.trim() ? { client_message_id: params.clientMessageId.trim() } : {}),
       messages: [{ role: 'user', content: params.text }],
     }),
   })
@@ -99,6 +106,12 @@ export async function requestXiaomiaoBridgeReply(params: XiaomiaoBridgeRequest):
   }
 
   return replyText
+}
+
+export function createXiaomiaoClientMessageId(prefix = CLIENT_MESSAGE_ID_PREFIX): string {
+  const now = Date.now().toString(36)
+  const random = Math.random().toString(36).slice(2, 10)
+  return `${prefix}-${now}-${random}`
 }
 
 export async function requestXiaomiaoBridgeConfigStatus(params: XiaomiaoBridgeConfigRequest = {}): Promise<XiaomiaoBridgeConfigStatus> {
@@ -176,18 +189,21 @@ export function appendXiaomiaoBridgeExchange(
   messages: ChatHistoryItem[],
   userText: string,
   replyText: string,
+  options: { clientMessageId?: string | null } = {},
 ): ChatHistoryItem[] {
   const createdAt = Date.now()
+  const userId = chatHistoryItemId('user', createdAt, options.clientMessageId)
+  const assistantId = chatHistoryItemId('assistant', createdAt, options.clientMessageId)
   return [
     ...messages,
     {
-      id: `xiaomiao-user-${createdAt.toString(36)}`,
+      id: userId,
       role: 'user',
       content: userText,
       createdAt,
     },
     {
-      id: `xiaomiao-assistant-${createdAt.toString(36)}`,
+      id: assistantId,
       role: 'assistant',
       content: replyText,
       slices: [],
@@ -209,7 +225,7 @@ export function appendXiaomiaoBridgeEvents(
     if (!options.includeWeb && event.source === 'web')
       continue
 
-    const id = `xiaomiao-event-${event.id}`
+    const id = bridgeEventHistoryItemId(event)
     if (existingIds.has(id))
       continue
 
@@ -218,6 +234,19 @@ export function appendXiaomiaoBridgeEvents(
   }
 
   return nextMessages.length === messages.length ? messages : nextMessages
+}
+
+function chatHistoryItemId(role: 'user' | 'assistant', createdAt: number, clientMessageId?: string | null): string {
+  const stableId = clientMessageId?.trim()
+  if (stableId)
+    return `xiaomiao-client-${stableId}-${role}`
+  return `xiaomiao-${role}-${createdAt.toString(36)}`
+}
+
+function bridgeEventHistoryItemId(event: XiaomiaoBridgeEvent): string {
+  if (event.client_message_id)
+    return `xiaomiao-client-${event.client_message_id}-${event.role}`
+  return `xiaomiao-event-${event.id}`
 }
 
 export function appendXiaomiaoBridgeError(
@@ -260,7 +289,7 @@ function normalizeXiaomiaoBridgeEvent(value: unknown): XiaomiaoBridgeEvent {
     throw new Error('XiaoMiao bridge event role must be user or assistant')
   }
 
-  return {
+  const event = {
     id: requireNumber(raw.id, 'id'),
     source: requireString(raw.source, 'source'),
     channel: requireString(raw.channel, 'channel'),
@@ -270,6 +299,24 @@ function normalizeXiaomiaoBridgeEvent(value: unknown): XiaomiaoBridgeEvent {
     content: requireString(raw.content, 'content'),
     timestamp: requireNumber(raw.timestamp, 'timestamp'),
   }
+  if (raw.client_message_id !== undefined)
+    event.client_message_id = requireString(raw.client_message_id, 'client_message_id')
+  return {
+    ...event,
+    schema_version: optionalNumber(raw.schema_version) ?? 1,
+    conversation_id: optionalString(raw.conversation_id) ?? `${event.channel}:${event.chat_id}`,
+    message_id: optionalString(raw.message_id) ?? bridgeEventMessageId(event),
+  }
+}
+
+function bridgeEventMessageId(event: {
+  id: number
+  role: 'user' | 'assistant'
+  client_message_id?: string
+}): string {
+  if (event.client_message_id)
+    return `client:${event.client_message_id}:${event.role}`
+  return `bridge:${event.id}`
 }
 
 function toChatHistoryItem(event: XiaomiaoBridgeEvent, id: string): ChatHistoryItem {
@@ -319,6 +366,18 @@ function requireString(value: unknown, name: string): string {
     throw new Error(`XiaoMiao bridge event ${name} must be a string`)
   }
   return value
+}
+
+function optionalNumber(value: unknown): number | undefined {
+  if (value === undefined)
+    return undefined
+  return requireNumber(value, 'optional number')
+}
+
+function optionalString(value: unknown): string | undefined {
+  if (value === undefined)
+    return undefined
+  return requireString(value, 'optional string')
 }
 
 function requireBoolean(value: unknown, name: string): boolean {

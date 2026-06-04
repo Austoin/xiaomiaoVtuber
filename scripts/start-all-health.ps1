@@ -140,6 +140,10 @@ function Test-GatewayReady {
         if ([int] $sessions.StatusCode -lt 200 -or [int] $sessions.StatusCode -ge 300) {
             return $false
         }
+        $sessionPayload = $sessions.Content | ConvertFrom-Json
+        if (-not (Test-GatewayUnifiedSessionReadable $base $headers $sessionPayload)) {
+            return $false
+        }
         $scheme = if ($base.Scheme -eq "https") { "wss" } else { "ws" }
         $path = [string] $boot.ws_path
         if (-not $path.StartsWith("/")) { $path = "/$path" }
@@ -149,6 +153,32 @@ function Test-GatewayReady {
     catch {
         return $false
     }
+}
+
+function Test-GatewayUnifiedSessionReadable {
+    param(
+        [Uri] $Base,
+        [hashtable] $Headers,
+        $SessionPayload
+    )
+    $targetKey = "api:xiaomiao-unified"
+    $sessions = @($SessionPayload.sessions)
+    $hasUnified = $false
+    foreach ($session in $sessions) {
+        if ([string] $session.key -eq $targetKey) {
+            $hasUnified = $true
+            break
+        }
+    }
+    if (-not $hasUnified) { return $true }
+    $encodedKey = [System.Uri]::EscapeDataString($targetKey)
+    $messagesUrl = "$($Base.Scheme)://$($Base.Authority)/api/sessions/$encodedKey/messages"
+    $messages = Invoke-WebRequest -UseBasicParsing -Uri $messagesUrl -Headers $Headers -TimeoutSec 5
+    if ([int] $messages.StatusCode -ge 200 -and [int] $messages.StatusCode -lt 300) {
+        return $true
+    }
+    $script:LastHealthDetail = "xiaomiao-unified session exists but messages API is not readable"
+    return $false
 }
 
 function Test-XiaomiaoReady {

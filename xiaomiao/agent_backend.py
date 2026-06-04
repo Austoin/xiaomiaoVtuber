@@ -1,6 +1,9 @@
+import base64
 import json
+import mimetypes
 import socket
 from dataclasses import dataclass
+from pathlib import Path
 from typing import Any
 from urllib import error, request
 
@@ -71,12 +74,44 @@ def _build_request_body(
     payload: XiaomiaoAgentRequest,
 ) -> dict[str, Any]:
     body: dict[str, Any] = {
-        "messages": [{"role": "user", "content": payload.text}],
+        "messages": [{"role": "user", "content": _build_user_content(payload)}],
         "session_id": config.session_id,
+        "channel": payload.channel,
+        "chat_id": payload.chat_id,
+        "user_id": str(payload.user_id),
     }
     if config.model:
         body["model"] = config.model
     return body
+
+
+def _build_user_content(payload: XiaomiaoAgentRequest) -> str | list[dict[str, Any]]:
+    if not payload.media:
+        return payload.text
+
+    content: list[dict[str, Any]] = [{"type": "text", "text": payload.text}]
+    for media_item in payload.media:
+        content.append({
+            "type": "image_url",
+            "image_url": {"url": _media_to_data_url(media_item)},
+        })
+    return content
+
+
+def _media_to_data_url(media_item: str) -> str:
+    if media_item.startswith("data:"):
+        return media_item
+
+    media_path = Path(media_item)
+    if not media_path.is_file():
+        raise RuntimeError(f"media file not found: {media_item}")
+
+    mime_type = mimetypes.guess_type(media_path.name)[0] or "application/octet-stream"
+    if not mime_type.startswith("image/"):
+        raise RuntimeError(f"unsupported media type for image_url: {mime_type}")
+
+    encoded = base64.b64encode(media_path.read_bytes()).decode("ascii")
+    return f"data:{mime_type};base64,{encoded}"
 
 
 def _post_json(url: str, body: dict[str, Any], timeout_seconds: float) -> dict[str, Any]:

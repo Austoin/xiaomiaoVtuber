@@ -552,6 +552,10 @@ class AgentLoop:
             metadata=dict(metadata or {}),
         )
 
+        set_registry_context = getattr(self.tools, "set_context", None)
+        if callable(set_registry_context):
+            set_registry_context(request_ctx)
+
         for name in self.tools.tool_names:
             tool = self.tools.get(name)
             if tool and isinstance(tool, ContextAware):
@@ -1673,6 +1677,8 @@ class AgentLoop:
         channel: str = "cli",
         chat_id: str = "direct",
         media: list[str] | None = None,
+        sender_id: str = "user",
+        metadata: dict[str, Any] | None = None,
         on_progress: Callable[..., Awaitable[None]] | None = None,
         on_stream: Callable[[str], Awaitable[None]] | None = None,
         on_stream_end: Callable[..., Awaitable[None]] | None = None,
@@ -1680,8 +1686,12 @@ class AgentLoop:
         """Process a message directly and return the outbound payload."""
         await self._connect_mcp()
         msg = InboundMessage(
-            channel=channel, sender_id="user", chat_id=chat_id,
-            content=content, media=media or [],
+            channel=channel,
+            sender_id=sender_id,
+            chat_id=chat_id,
+            content=content,
+            media=media or [],
+            metadata=dict(metadata or {}),
         )
         return await self._process_message(
             msg,

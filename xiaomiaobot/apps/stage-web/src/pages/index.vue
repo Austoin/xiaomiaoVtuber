@@ -4,7 +4,7 @@ import Header from '@proj-airi/stage-layouts/components/Layouts/Header.vue'
 import InteractiveArea from '@proj-airi/stage-layouts/components/Layouts/InteractiveArea.vue'
 import MobileHeader from '@proj-airi/stage-layouts/components/Layouts/MobileHeader.vue'
 import MobileInteractiveArea from '@proj-airi/stage-layouts/components/Layouts/MobileInteractiveArea.vue'
-import { appendXiaomiaoBridgeError, appendXiaomiaoBridgeEvents, appendXiaomiaoBridgeExchange, requestXiaomiaoBridgeEvents, requestXiaomiaoBridgeReply } from '@proj-airi/stage-layouts/xiaomiao-bridge'
+import { appendXiaomiaoBridgeError, appendXiaomiaoBridgeEvents, appendXiaomiaoBridgeExchange, createXiaomiaoClientMessageId, requestXiaomiaoBridgeEvents, requestXiaomiaoBridgeReply } from '@proj-airi/stage-layouts/xiaomiao-bridge'
 import workletUrl from '@proj-airi/stage-ui/workers/vad/process.worklet?worker&url'
 
 import { BackgroundProvider } from '@proj-airi/stage-layouts/components/Backgrounds'
@@ -80,10 +80,11 @@ function appendBridgeError(text: string, error: unknown) {
 }
 
 async function sendViaXiaomiaoBridge(text: string) {
-  const replyText = await requestXiaomiaoBridgeReply({ text })
+  const clientMessageId = createXiaomiaoClientMessageId('stage-web-voice')
+  const replyText = await requestXiaomiaoBridgeReply({ text, clientMessageId })
   chatSession.setSessionMessages(
     chatSession.activeSessionId,
-    appendXiaomiaoBridgeExchange(activeMessages(), text, replyText),
+    appendXiaomiaoBridgeExchange(activeMessages(), text, replyText, { clientMessageId }),
   )
 }
 

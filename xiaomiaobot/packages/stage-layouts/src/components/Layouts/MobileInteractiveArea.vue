@@ -22,7 +22,7 @@ import { useI18n } from 'vue-i18n'
 import { RouterLink } from 'vue-router'
 
 import IndicatorMicVolume from '../Widgets/IndicatorMicVolume.vue'
-import { appendXiaomiaoBridgeError, appendXiaomiaoBridgeExchange, requestXiaomiaoBridgeReply } from '../../xiaomiao-bridge'
+import { appendXiaomiaoBridgeError, appendXiaomiaoBridgeExchange, createXiaomiaoClientMessageId, requestXiaomiaoBridgeReply } from '../../xiaomiao-bridge'
 import ActionAbout from './InteractiveArea/Actions/About.vue'
 import ActionViewControls from './InteractiveArea/Actions/ViewControls.vue'
 import ViewControlInputs from './ViewControls/Inputs.vue'
@@ -78,13 +78,15 @@ function appendBridgeError(text: string, error: unknown) {
 
 async function sendChatText(text: string) {
   if (isStageWeb()) {
+    const clientMessageId = createXiaomiaoClientMessageId()
     const replyText = await requestXiaomiaoBridgeReply({
       text,
       model: activeModel.value,
+      clientMessageId,
     })
     chatSession.setSessionMessages(
       chatSession.activeSessionId,
-      appendXiaomiaoBridgeExchange(activeMessages(), text, replyText),
+      appendXiaomiaoBridgeExchange(activeMessages(), text, replyText, { clientMessageId }),
     )
     return
   }

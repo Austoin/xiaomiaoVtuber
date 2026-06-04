@@ -5,7 +5,7 @@ from threading import RLock
 from typing import Callable
 from urllib.parse import parse_qs, urlparse
 
-from bridge_event_store import append_bridge_event, load_bridge_events
+from bridge_event_store import append_bridge_event, complete_bridge_event, load_bridge_events
 from unified_config import load_xiaomiao_agent_config_status, save_xiaomiao_agent_custom_config
 
 
@@ -118,6 +118,7 @@ def publish_bridge_event(
     user_id: int,
     role: str,
     content: str,
+    client_message_id: str | None = None,
 ) -> dict:
     global NEXT_EVENT_ID
     with BRIDGE_LOCK:
@@ -131,6 +132,9 @@ def publish_bridge_event(
             "content": str(content or ""),
             "timestamp": int(time.time()),
         }
+        if client_message_id is not None:
+            event["client_message_id"] = str(client_message_id)
+        event = complete_bridge_event(event)
         append_bridge_event(event)
         NEXT_EVENT_ID += 1
         BRIDGE_EVENTS.append(event)
@@ -145,6 +149,7 @@ def publish_bridge_exchange(
     user_id: int,
     user_text: str,
     assistant_text: str,
+    client_message_id: str | None = None,
 ) -> list[dict]:
     events = [
         publish_bridge_event(
@@ -154,6 +159,7 @@ def publish_bridge_exchange(
             user_id=user_id,
             role="user",
             content=user_text,
+            client_message_id=client_message_id,
         ),
         publish_bridge_event(
             source=source,
@@ -162,6 +168,7 @@ def publish_bridge_exchange(
             user_id=user_id,
             role="assistant",
             content=assistant_text,
+            client_message_id=client_message_id,
         ),
     ]
     publish_desktop_state(user_id, assistant_text)
@@ -179,6 +186,7 @@ def publish_local_bridge_event(payload: dict, default_user_id: int) -> dict:
         user_id=parse_payload_int(payload, "user_id", default_user_id),
         role=role,
         content=required_payload_text(payload, "content"),
+        client_message_id=optional_payload_text_or_none(payload, "client_message_id"),
     )
 
 
@@ -193,6 +201,15 @@ def optional_payload_text(payload: dict, name: str, default: str) -> str:
     value = payload.get(name)
     if value is None:
         return default
+    if not isinstance(value, str) or not value.strip():
+        raise ValueError(f"{name} must be a non-empty string")
+    return value.strip()
+
+
+def optional_payload_text_or_none(payload: dict, name: str) -> str | None:
+    value = payload.get(name)
+    if value is None:
+        return None
     if not isinstance(value, str) or not value.strip():
         raise ValueError(f"{name} must be a non-empty string")
     return value.strip()
@@ -368,6 +385,13 @@ def start_desktop_bridge_server(
             source = self.headers.get("X-XiaoMiao-Source", "web")
             channel = self.headers.get("X-XiaoMiao-Channel", source)
             chat_id = self.headers.get("X-XiaoMiao-Chat-Id", "stage-web")
+            try:
+                client_message_id = optional_payload_text_or_none(
+                    payload, "client_message_id"
+                )
+            except ValueError as exc:
+                self._write_json(400, {"error": "bad_request", "message": str(exc)})
+                return
             message_text = extract_last_user_text(payload.get("messages", []))
             try:
                 reply_text = reply_callback(user_id, message_text)
@@ -387,6 +411,7 @@ def start_desktop_bridge_server(
                 user_id=user_id,
                 user_text=message_text,
                 assistant_text=reply_text,
+                client_message_id=client_message_id,
             )
             self._write_json(
                 200, build_chat_response(payload.get("model") or model_name, reply_text)

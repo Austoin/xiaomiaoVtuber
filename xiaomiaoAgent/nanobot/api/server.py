@@ -11,6 +11,7 @@ import contextlib
 import json as _json
 import time
 import uuid
+from dataclasses import dataclass
 from typing import Any
 
 from aiohttp import web
@@ -40,6 +41,27 @@ __all__ = (
 
 API_SESSION_KEY = "api:default"
 API_CHAT_ID = "default"
+DEFAULT_API_USER_ID = "user"
+TRUSTED_CHANNEL_POLICY = "trusted"
+LOW_RISK_CHANNEL_POLICY = "low_risk"
+LOW_RISK_SOURCE_CHANNELS = frozenset({"qq-group"})
+
+
+@dataclass(frozen=True)
+class RequestSource:
+    channel: str
+    chat_id: str
+    user_id: str
+    channel_policy: str
+
+    @property
+    def metadata(self) -> dict[str, str]:
+        return {
+            "source_channel": self.channel,
+            "source_chat_id": self.chat_id,
+            "source_user_id": self.user_id,
+            "channel_policy": self.channel_policy,
+        }
 
 
 # ---------------------------------------------------------------------------
@@ -78,6 +100,32 @@ def _response_text(value: Any) -> str:
     if hasattr(value, "content"):
         return str(getattr(value, "content") or "")
     return str(value)
+
+
+def _source_text(value: Any, default: str) -> str:
+    text = str(value).strip() if value is not None else ""
+    return text or default
+
+
+def _source_policy(channel: str) -> str:
+    if channel in LOW_RISK_SOURCE_CHANNELS:
+        return LOW_RISK_CHANNEL_POLICY
+    return TRUSTED_CHANNEL_POLICY
+
+
+def _request_source(
+    *,
+    channel: Any = None,
+    chat_id: Any = None,
+    user_id: Any = None,
+) -> RequestSource:
+    resolved_channel = _source_text(channel, "api")
+    return RequestSource(
+        channel=resolved_channel,
+        chat_id=_source_text(chat_id, API_CHAT_ID),
+        user_id=_source_text(user_id, DEFAULT_API_USER_ID),
+        channel_policy=_source_policy(resolved_channel),
+    )
 
 # ---------------------------------------------------------------------------
 # SSE helpers
@@ -149,25 +197,39 @@ def _parse_json_content(body: dict) -> tuple[str, list[str]]:
     return text, media_paths
 
 
-async def _parse_multipart(request: web.Request) -> tuple[str, list[str], str | None, str | None]:
-    """Parse multipart/form-data. Returns (text, media_paths, session_id, model)."""
+async def _parse_multipart(
+    request: web.Request,
+) -> tuple[str, list[str], str | None, str | None, RequestSource]:
+    """Parse multipart/form-data. Returns text, media, session, model, source."""
     media_dir = get_media_dir("api")
     reader = await request.multipart()
     text = ""
     session_id = None
     model = None
+    channel = None
+    chat_id = None
+    user_id = None
     media_paths: list[str] = []
 
     while True:
         part = await reader.next()
         if part is None:
             break
+        value = None
         if part.name == "message":
             text = (await part.read()).decode("utf-8")
         elif part.name == "session_id":
             session_id = (await part.read()).decode("utf-8").strip()
         elif part.name == "model":
             model = (await part.read()).decode("utf-8").strip()
+        elif part.name in {"channel", "chat_id", "user_id"}:
+            value = (await part.read()).decode("utf-8").strip()
+            if part.name == "channel":
+                channel = value
+            elif part.name == "chat_id":
+                chat_id = value
+            else:
+                user_id = value
         elif part.name == "files":
             raw = await part.read()
             if len(raw) > MAX_FILE_SIZE:
@@ -183,7 +245,11 @@ async def _parse_multipart(request: web.Request) -> tuple[str, list[str], str | 
     if not text:
         text = "请分析上传的文件"
 
-    return text, media_paths, session_id, model
+    return text, media_paths, session_id, model, _request_source(
+        channel=channel,
+        chat_id=chat_id,
+        user_id=user_id,
+    )
 
 
 # ---------------------------------------------------------------------------
@@ -204,7 +270,7 @@ async def handle_chat_completions(request: web.Request) -> web.Response:
     stream = False
     try:
         if content_type.startswith("multipart/"):
-            text, media_paths, session_id, requested_model = await _parse_multipart(request)
+            text, media_paths, session_id, requested_model, source = await _parse_multipart(request)
         else:
             try:
                 body = await request.json()
@@ -214,6 +280,11 @@ async def handle_chat_completions(request: web.Request) -> web.Response:
             requested_model = body.get("model")
             text, media_paths = _parse_json_content(body)
             session_id = body.get("session_id")
+            source = _request_source(
+                channel=body.get("channel"),
+                chat_id=body.get("chat_id"),
+                user_id=body.get("user_id"),
+            )
     except ValueError as e:
         return _error_json(400, str(e))
     except _FileSizeExceeded as e:
@@ -230,8 +301,8 @@ async def handle_chat_completions(request: web.Request) -> web.Response:
     session_lock = session_locks.setdefault(session_key, asyncio.Lock())
 
     logger.info(
-        "API request session_key={} media={} text={} stream={}",
-        session_key, len(media_paths), text[:80], stream,
+        "API request session_key={} source={}:{} media={} text={} stream={}",
+        session_key, source.channel, source.chat_id, len(media_paths), text[:80], stream,
     )
     # -- streaming path --
     if stream:
@@ -267,8 +338,10 @@ async def handle_chat_completions(request: web.Request) -> web.Response:
                             content=text,
                             media=media_paths if media_paths else None,
                             session_key=session_key,
-                            channel="api",
-                            chat_id=API_CHAT_ID,
+                            channel=source.channel,
+                            chat_id=source.chat_id,
+                            sender_id=source.user_id,
+                            metadata=source.metadata,
                             on_stream=_on_stream,
                             on_stream_end=_on_stream_end,
                         ),
@@ -313,8 +386,10 @@ async def handle_chat_completions(request: web.Request) -> web.Response:
                         content=text,
                         media=media_paths if media_paths else None,
                         session_key=session_key,
-                        channel="api",
-                        chat_id=API_CHAT_ID,
+                        channel=source.channel,
+                        chat_id=source.chat_id,
+                        sender_id=source.user_id,
+                        metadata=source.metadata,
                     ),
                     timeout=timeout_s,
                 )
@@ -327,8 +402,10 @@ async def handle_chat_completions(request: web.Request) -> web.Response:
                             content=text,
                             media=media_paths if media_paths else None,
                             session_key=session_key,
-                            channel="api",
-                            chat_id=API_CHAT_ID,
+                            channel=source.channel,
+                            chat_id=source.chat_id,
+                            sender_id=source.user_id,
+                            metadata=source.metadata,
                         ),
                         timeout=timeout_s,
                     )

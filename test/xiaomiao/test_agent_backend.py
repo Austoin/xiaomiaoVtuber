@@ -11,12 +11,12 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "xiaomiao"))
 
 from agent_backend import (  # noqa: E402
-    DEFAULT_NANOBOT_BASE_URL,
-    DEFAULT_NANOBOT_SESSION_ID,
-    NanobotAgentConfig,
-    NanobotAgentRequest,
-    load_nanobot_agent_config,
-    reply_with_nanobot_agent,
+    DEFAULT_XIAOMIAO_AGENT_BASE_URL,
+    DEFAULT_XIAOMIAO_AGENT_SESSION_ID,
+    XiaomiaoAgentConfig,
+    XiaomiaoAgentRequest,
+    load_xiaomiao_agent_config,
+    reply_with_xiaomiao_agent,
 )
 
 
@@ -25,20 +25,20 @@ class AgentBackendTests(unittest.TestCase):
         os.environ.pop("XIAOMIAO_UNIFIED_CONFIG", None)
 
     def test_load_config_uses_enabled_defaults(self):
-        config = load_nanobot_agent_config({})
+        config = load_xiaomiao_agent_config({})
 
         self.assertTrue(config.enabled)
-        self.assertEqual(config.base_url, DEFAULT_NANOBOT_BASE_URL)
+        self.assertEqual(config.base_url, DEFAULT_XIAOMIAO_AGENT_BASE_URL)
         self.assertIsNone(config.model)
-        self.assertEqual(config.session_id, DEFAULT_NANOBOT_SESSION_ID)
+        self.assertEqual(config.session_id, DEFAULT_XIAOMIAO_AGENT_SESSION_ID)
 
-    def test_root_config_overrides_nanobot_agent_section(self):
+    def test_root_config_overrides_xiaomiao_agent_section(self):
         with tempfile.TemporaryDirectory() as tmp_dir:
             config_path = Path(tmp_dir) / "config.json"
             config_path.write_text(
                 json.dumps(
                     {
-                        "nanobot_agent": {
+                        "xiaomiao_agent": {
                             "base_url": "http://127.0.0.1:9999/v1/chat/completions",
                             "model": "root-model",
                             "session_id": "root-session",
@@ -50,8 +50,8 @@ class AgentBackendTests(unittest.TestCase):
             )
             os.environ["XIAOMIAO_UNIFIED_CONFIG"] = str(config_path)
 
-            config = load_nanobot_agent_config(
-                {"nanobot_agent": {"model": "local-model"}}
+            config = load_xiaomiao_agent_config(
+                {"xiaomiao_agent": {"model": "local-model"}}
             )
 
         self.assertEqual(config.base_url, "http://127.0.0.1:9999/v1/chat/completions")
@@ -63,20 +63,20 @@ class AgentBackendTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp_dir:
             config_path = Path(tmp_dir) / "config.json"
             config_path.write_text(
-                json.dumps({"nanobot_agent": {"model": "", "session_id": None}}),
+                json.dumps({"xiaomiao_agent": {"model": "", "session_id": None}}),
                 encoding="utf-8",
             )
             os.environ["XIAOMIAO_UNIFIED_CONFIG"] = str(config_path)
 
-            config = load_nanobot_agent_config(
-                {"nanobot_agent": {"model": "local-model", "session_id": "local-session"}}
+            config = load_xiaomiao_agent_config(
+                {"xiaomiao_agent": {"model": "local-model", "session_id": "local-session"}}
             )
 
         self.assertEqual(config.model, "local-model")
         self.assertEqual(config.session_id, "local-session")
 
     def test_disabled_config_raises_without_request(self):
-        config = NanobotAgentConfig(
+        config = XiaomiaoAgentConfig(
             enabled=False,
             base_url="http://127.0.0.1:1/v1/chat/completions",
             model=None,
@@ -85,31 +85,50 @@ class AgentBackendTests(unittest.TestCase):
         )
 
         with self.assertRaisesRegex(RuntimeError, "disabled"):
-            reply_with_nanobot_agent(config, _payload("hello"))
+            reply_with_xiaomiao_agent(config, _payload("hello"))
 
     def test_successful_agent_reply_uses_unified_session(self):
         with _agent_server(_SuccessHandler) as base_url:
-            reply = reply_with_nanobot_agent(_config(base_url), _payload("你好"))
+            reply = reply_with_xiaomiao_agent(_config(base_url), _payload("你好"))
 
         self.assertEqual(reply, "agent reply")
         self.assertEqual(_SuccessHandler.last_body["session_id"], "xiaomiao-unified")
+        self.assertEqual(_SuccessHandler.last_body["channel"], "web")
+        self.assertEqual(_SuccessHandler.last_body["chat_id"], "stage-web")
+        self.assertEqual(_SuccessHandler.last_body["user_id"], "3554978979")
         self.assertEqual(_SuccessHandler.last_body["messages"][0]["content"], "你好")
+
+    def test_agent_reply_sends_media_as_image_content_parts(self):
+        with _agent_server(_SuccessHandler) as base_url:
+            reply = reply_with_xiaomiao_agent(
+                _config(base_url),
+                _payload("看图", media=("data:image/png;base64,AAA=",)),
+            )
+
+        self.assertEqual(reply, "agent reply")
+        self.assertEqual(
+            _SuccessHandler.last_body["messages"][0]["content"],
+            [
+                {"type": "text", "text": "看图"},
+                {"type": "image_url", "image_url": {"url": "data:image/png;base64,AAA="}},
+            ],
+        )
 
     def test_http_error_is_visible(self):
         with _agent_server(_ErrorHandler) as base_url:
             with self.assertRaisesRegex(RuntimeError, "HTTP 502"):
-                reply_with_nanobot_agent(_config(base_url), _payload("hello"))
+                reply_with_xiaomiao_agent(_config(base_url), _payload("hello"))
 
     def test_empty_agent_reply_is_visible(self):
         with _agent_server(_EmptyReplyHandler) as base_url:
             with self.assertRaisesRegex(RuntimeError, "empty reply"):
-                reply_with_nanobot_agent(_config(base_url), _payload("hello"))
+                reply_with_xiaomiao_agent(_config(base_url), _payload("hello"))
 
     def test_timeout_is_visible(self):
         with _agent_server(_SlowHandler) as base_url:
             config = _config(base_url, timeout_seconds=0.01)
             with self.assertRaisesRegex(RuntimeError, "request failed"):
-                reply_with_nanobot_agent(config, _payload("hello"))
+                reply_with_xiaomiao_agent(config, _payload("hello"))
 
 
 class _ServerContext:
@@ -167,8 +186,8 @@ def _agent_server(handler):
     return _ServerContext(handler)
 
 
-def _config(base_url: str, timeout_seconds: float = 1.0) -> NanobotAgentConfig:
-    return NanobotAgentConfig(
+def _config(base_url: str, timeout_seconds: float = 1.0) -> XiaomiaoAgentConfig:
+    return XiaomiaoAgentConfig(
         enabled=True,
         base_url=base_url,
         model=None,
@@ -177,12 +196,13 @@ def _config(base_url: str, timeout_seconds: float = 1.0) -> NanobotAgentConfig:
     )
 
 
-def _payload(text: str) -> NanobotAgentRequest:
-    return NanobotAgentRequest(
+def _payload(text: str, media: tuple[str, ...] = ()) -> XiaomiaoAgentRequest:
+    return XiaomiaoAgentRequest(
         user_id=3554978979,
         channel="web",
         chat_id="stage-web",
         text=text,
+        media=media,
     )
 
 

@@ -197,7 +197,44 @@ async def test_successful_request_uses_fixed_api_session(aiohttp_client, mock_ag
         session_key=API_SESSION_KEY,
         channel="api",
         chat_id=API_CHAT_ID,
+        sender_id="user",
+        metadata={
+            "source_channel": "api",
+            "source_chat_id": API_CHAT_ID,
+            "source_user_id": "user",
+            "channel_policy": "trusted",
+        },
     )
+
+
+@pytest.mark.skipif(not HAS_AIOHTTP, reason="aiohttp not installed")
+@pytest.mark.asyncio
+async def test_request_source_fields_are_forwarded(aiohttp_client, mock_agent) -> None:
+    app = create_app(mock_agent, model_name="test-model")
+    client = await aiohttp_client(app)
+    resp = await client.post(
+        "/v1/chat/completions",
+        json={
+            "session_id": "xiaomiao-unified",
+            "channel": "qq-group",
+            "chat_id": "10001",
+            "user_id": "3554978979",
+            "messages": [{"role": "user", "content": "hello"}],
+        },
+    )
+
+    assert resp.status == 200
+    call_kwargs = mock_agent.process_direct.call_args.kwargs
+    assert call_kwargs["session_key"] == "api:xiaomiao-unified"
+    assert call_kwargs["channel"] == "qq-group"
+    assert call_kwargs["chat_id"] == "10001"
+    assert call_kwargs["sender_id"] == "3554978979"
+    assert call_kwargs["metadata"] == {
+        "source_channel": "qq-group",
+        "source_chat_id": "10001",
+        "source_user_id": "3554978979",
+        "channel_policy": "low_risk",
+    }
 
 
 @pytest.mark.skipif(not HAS_AIOHTTP, reason="aiohttp not installed")
@@ -312,6 +349,7 @@ async def test_multimodal_content_extracts_text(aiohttp_client, mock_agent) -> N
     assert call_kwargs["session_key"] == API_SESSION_KEY
     assert call_kwargs["channel"] == "api"
     assert call_kwargs["chat_id"] == API_CHAT_ID
+    assert call_kwargs["metadata"]["channel_policy"] == "trusted"
     assert len(call_kwargs.get("media") or []) >= 0  # base64 images saved to disk
 
 
@@ -420,8 +458,12 @@ async def test_process_direct_accepts_media() -> None:
         content="analyze this",
         media=["/tmp/image.png", "/tmp/report.pdf"],
         session_key="test:1",
+        sender_id="sender-1",
+        metadata={"channel_policy": "low_risk"},
     )
 
     assert captured_msg is not None
     assert captured_msg.media == ["/tmp/image.png", "/tmp/report.pdf"]
     assert captured_msg.content == "analyze this"
+    assert captured_msg.sender_id == "sender-1"
+    assert captured_msg.metadata == {"channel_policy": "low_risk"}

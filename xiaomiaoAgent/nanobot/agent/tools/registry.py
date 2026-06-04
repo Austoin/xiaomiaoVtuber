@@ -3,6 +3,18 @@
 from typing import Any
 
 from nanobot.agent.tools.base import Tool
+from nanobot.agent.tools.context import RequestContext
+
+
+LOW_RISK_CHANNEL_POLICY = "low_risk"
+LOW_RISK_ALLOWED_TOOLS = frozenset({
+    "read_file",
+    "list_dir",
+    "grep",
+    "glob",
+    "web_search",
+    "web_fetch",
+})
 
 
 class ToolRegistry:
@@ -15,6 +27,7 @@ class ToolRegistry:
     def __init__(self):
         self._tools: dict[str, Tool] = {}
         self._cached_definitions: list[dict[str, Any]] | None = None
+        self._request_context: RequestContext | None = None
 
     def register(self, tool: Tool) -> None:
         """Register a tool."""
@@ -25,6 +38,10 @@ class ToolRegistry:
         """Unregister a tool by name."""
         self._tools.pop(name, None)
         self._cached_definitions = None
+
+    def set_context(self, ctx: RequestContext) -> None:
+        """Set per-request context for policy-aware tool filtering."""
+        self._request_context = ctx
 
     def get(self, name: str) -> Tool | None:
         """Get a tool by name."""
@@ -45,6 +62,27 @@ class ToolRegistry:
         name = schema.get("name")
         return name if isinstance(name, str) else ""
 
+    def _is_tool_allowed(self, name: str) -> bool:
+        policy = self._active_policy()
+        if policy != LOW_RISK_CHANNEL_POLICY:
+            return True
+        return name in LOW_RISK_ALLOWED_TOOLS
+
+    def _active_policy(self) -> str:
+        if self._request_context is not None:
+            return str(self._request_context.metadata.get("channel_policy") or "")
+        return ""
+
+    def _policy_error(self, name: str) -> str | None:
+        if self._is_tool_allowed(name):
+            return None
+        ctx = self._request_context
+        channel = ctx.channel if ctx else "unknown"
+        return (
+            f"Error: Tool '{name}' is blocked by channel policy "
+            f"'{LOW_RISK_CHANNEL_POLICY}' for channel '{channel}'."
+        )
+
     def get_definitions(self) -> list[dict[str, Any]]:
         """Get tool definitions with stable ordering for cache-friendly prompts.
 
@@ -52,23 +90,28 @@ class ToolRegistry:
         sorted and appended.  The result is cached until the next
         register/unregister call.
         """
-        if self._cached_definitions is not None:
+        if self._cached_definitions is None:
+            definitions = [tool.to_schema() for tool in self._tools.values()]
+            builtins: list[dict[str, Any]] = []
+            mcp_tools: list[dict[str, Any]] = []
+            for schema in definitions:
+                name = self._schema_name(schema)
+                if name.startswith("mcp_"):
+                    mcp_tools.append(schema)
+                else:
+                    builtins.append(schema)
+
+            builtins.sort(key=self._schema_name)
+            mcp_tools.sort(key=self._schema_name)
+            self._cached_definitions = builtins + mcp_tools
+
+        if self._active_policy() != LOW_RISK_CHANNEL_POLICY:
             return self._cached_definitions
 
-        definitions = [tool.to_schema() for tool in self._tools.values()]
-        builtins: list[dict[str, Any]] = []
-        mcp_tools: list[dict[str, Any]] = []
-        for schema in definitions:
-            name = self._schema_name(schema)
-            if name.startswith("mcp_"):
-                mcp_tools.append(schema)
-            else:
-                builtins.append(schema)
-
-        builtins.sort(key=self._schema_name)
-        mcp_tools.sort(key=self._schema_name)
-        self._cached_definitions = builtins + mcp_tools
-        return self._cached_definitions
+        return [
+            schema for schema in self._cached_definitions
+            if self._is_tool_allowed(self._schema_name(schema))
+        ]
 
     def prepare_call(
         self,
@@ -88,6 +131,8 @@ class ToolRegistry:
             return None, params, (
                 f"Error: Tool '{name}' not found. Available: {', '.join(self.tool_names)}"
             )
+        if policy_error := self._policy_error(name):
+            return None, params, policy_error
 
         cast_params = tool.cast_params(params)
         errors = tool.validate_params(cast_params)

@@ -101,3 +101,45 @@ def test_unregister_invalidates_cache() -> None:
     second = registry.get_definitions()
     assert first is not second
     assert len(second) == 1
+
+
+def test_low_risk_policy_exposes_only_safe_tools() -> None:
+    from nanobot.agent.tools.context import RequestContext
+
+    registry = ToolRegistry()
+    registry.register(_FakeTool("read_file"))
+    registry.register(_FakeTool("grep"))
+    registry.register(_FakeTool("write_file"))
+    registry.register(_FakeTool("exec"))
+    registry.register(_FakeTool("mcp_server_tool"))
+
+    registry.set_context(
+        RequestContext(
+            channel="qq-group",
+            chat_id="10001",
+            metadata={"channel_policy": "low_risk"},
+        )
+    )
+
+    assert _tool_names(registry.get_definitions()) == ["grep", "read_file"]
+
+
+def test_low_risk_policy_blocks_hidden_tool_execution() -> None:
+    from nanobot.agent.tools.context import RequestContext
+
+    registry = ToolRegistry()
+    registry.register(_FakeTool("write_file"))
+    registry.set_context(
+        RequestContext(
+            channel="qq-group",
+            chat_id="10001",
+            metadata={"channel_policy": "low_risk"},
+        )
+    )
+
+    tool, params, error = registry.prepare_call("write_file", {})
+
+    assert tool is None
+    assert params == {}
+    assert error is not None
+    assert "blocked by channel policy" in error

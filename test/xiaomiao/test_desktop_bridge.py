@@ -18,9 +18,9 @@ from desktop_bridge import (
     start_desktop_bridge_server,
 )
 from agent_backend import (
-    NanobotAgentConfig,
-    NanobotAgentRequest,
-    reply_with_nanobot_agent,
+    XiaomiaoAgentConfig,
+    XiaomiaoAgentRequest,
+    reply_with_xiaomiao_agent,
 )
 
 DEFAULT_USER_ID = 3554978979
@@ -74,6 +74,32 @@ class DesktopBridgeTests(unittest.TestCase):
             self.assertEqual(events_json["events"][0]["source"], "web")
             self.assertEqual(events_json["events"][0]["content"], "你好")
             self.assertEqual(events_json["events"][1]["content"], "3554978979:你好")
+            self.assertEqual(events_json["events"][0]["schema_version"], 1)
+            self.assertEqual(events_json["events"][0]["conversation_id"], "web:stage-web")
+            self.assertEqual(events_json["events"][0]["message_id"], "bridge:1")
+
+    def test_chat_completion_preserves_client_message_id_in_events(self):
+        with _bridge_server(lambda user_id, text: f"{user_id}:{text}") as port:
+            _json_post(
+                f"http://127.0.0.1:{port}/v1/chat/completions",
+                {
+                    "model": MODEL_NAME,
+                    "client_message_id": "stage-web-local-2",
+                    "messages": [{"role": "user", "content": "带 ID 的问题"}],
+                },
+            )
+            events_json = _json_get(
+                f"http://127.0.0.1:{port}/v1/xiaomiao/events?user_id={DEFAULT_USER_ID}"
+            )
+
+        self.assertEqual(
+            [item["client_message_id"] for item in events_json["events"]],
+            ["stage-web-local-2", "stage-web-local-2"],
+        )
+        self.assertEqual(
+            [item["message_id"] for item in events_json["events"]],
+            ["client:stage-web-local-2:user", "client:stage-web-local-2:assistant"],
+        )
 
     def test_qq_exchange_can_be_read_from_bridge_events(self):
         publish_bridge_exchange(
@@ -171,7 +197,7 @@ class DesktopBridgeTests(unittest.TestCase):
             config_path.write_text(
                 json.dumps(
                     {
-                        "nanobot": {
+                        "xiaomiaoAgent": {
                             "provider": "custom",
                             "model": "deepseek-v4-flash",
                             "providers": {
@@ -212,10 +238,10 @@ class DesktopBridgeTests(unittest.TestCase):
             saved = json.loads(config_path.read_text(encoding="utf-8"))
 
         self.assertTrue(body["configured"])
-        self.assertEqual(saved["nanobot"]["provider"], "custom")
-        self.assertEqual(saved["nanobot"]["model"], "deepseek-v4-flash")
-        self.assertEqual(saved["nanobot"]["providers"]["custom"]["apiKey"], "secret-key")
-        self.assertEqual(saved["nanobot"]["providers"]["custom"]["baseUrl"], "https://relay.example.com/v1")
+        self.assertEqual(saved["xiaomiaoAgent"]["provider"], "custom")
+        self.assertEqual(saved["xiaomiaoAgent"]["model"], "deepseek-v4-flash")
+        self.assertEqual(saved["xiaomiaoAgent"]["providers"]["custom"]["apiKey"], "secret-key")
+        self.assertEqual(saved["xiaomiaoAgent"]["providers"]["custom"]["baseUrl"], "https://relay.example.com/v1")
 
     def test_config_route_rejects_incomplete_payload(self):
         with tempfile.TemporaryDirectory() as tmp_dir:
@@ -229,20 +255,20 @@ class DesktopBridgeTests(unittest.TestCase):
 
         self.assertEqual(raised.exception.code, 400)
 
-    def test_bridge_callback_can_use_nanobot_agent_backend(self):
+    def test_bridge_callback_can_use_xiaomiao_agent_backend(self):
         agent_server = _LocalAgentServer()
         agent_server.start()
 
         def reply_with_agent(user_id, text):
-            return reply_with_nanobot_agent(
-                NanobotAgentConfig(
+            return reply_with_xiaomiao_agent(
+                XiaomiaoAgentConfig(
                     enabled=True,
                     base_url=agent_server.url,
                     model=None,
                     session_id="xiaomiao-unified",
                     timeout_seconds=1.0,
                 ),
-                NanobotAgentRequest(user_id=user_id, channel="web", chat_id="stage-web", text=text),
+                XiaomiaoAgentRequest(user_id=user_id, channel="web", chat_id="stage-web", text=text),
             )
 
         try:

@@ -32,6 +32,15 @@ from agent_backend import (
     reply_with_xiaomiao_agent,
 )
 from desktop_bridge import publish_bridge_exchange, start_desktop_bridge_server
+from qq_agent_bridge import (
+    QQ_AGENT_GROUP,
+    QQ_AGENT_PRIVATE,
+    build_qq_agent_reply,
+    get_market_face_url,
+    publish_qq_agent_reply,
+    resolve_qq_image_url,
+)
+from qq_permissions import has_manage_permission
 
 # import framework
 Configurator.cm = Configurator.ConfigManager(
@@ -169,12 +178,6 @@ def has_emoji(s: str) -> bool:
     return emoji.emoji_count(s) == 1 and len(s) == 1
 
 
-def get_market_face_url(face_id: str) -> str:
-    """获取商城表情包的图片 URL"""
-    # 商城表情包 URL 格式
-    return f"https://gxh.vip.qq.com/club/item/parcel/item/{face_id[:2]}/{face_id}/raw300.gif"
-
-
 def select_persona_prompt(user_id: int, event_user: str) -> str:
     user_id_str = str(user_id)
     persona = prerequisite(bot_name, event_user, personas_config)
@@ -194,7 +197,13 @@ def generate_desktop_reply(user_id: int, text: str) -> str:
         return generate_agent_reply(user_id, "web", "stage-web", text)
 
 
-def generate_agent_reply(user_id: int, channel: str, chat_id: str, text: str) -> str:
+def generate_agent_reply(
+    user_id: int,
+    channel: str,
+    chat_id: str,
+    text: str,
+    media: tuple[str, ...] = (),
+) -> str:
     agent_config = load_xiaomiao_agent_config(Configurator.cm.get_cfg().others)
     return reply_with_xiaomiao_agent(
         agent_config,
@@ -203,8 +212,16 @@ def generate_agent_reply(user_id: int, channel: str, chat_id: str, text: str) ->
             channel=channel,
             chat_id=chat_id,
             text=text,
+            media=media,
         ),
     ).rstrip("\n")
+
+
+async def image_url_to_agent_media(url: str) -> str | None:
+    compressed_base64 = await download_and_compress_image(url)
+    if not compressed_base64:
+        return None
+    return f"data:image/jpeg;base64,{compressed_base64}"
 
 
 def start_desktop_bridge() -> None:
@@ -518,10 +535,11 @@ Welcome! {bot_name} was restarted successfully. Now you can send {reminder}帮�
             print(f"收到快捷命令 {order}")
 
         if f"{reminder}重启" == user_message:
-            if (
-                str(event.user_id) in Super_User
-                or str(event.user_id) in ROOT_User
-                or str(event.user_id) in Manage_User
+            if has_manage_permission(
+                event.user_id,
+                manage_users=Manage_User,
+                super_users=Super_User,
+                root_users=ROOT_User,
             ):
                 await actions.send(
                     group_id=event.group_id,
@@ -549,10 +567,11 @@ Welcome! {bot_name} was restarted successfully. Now you can send {reminder}帮�
         elif "runcommand " in order:
             blacklist_file = BLACKLIST_FILE
 
-            if (
-                str(event.user_id) in Manage_User
-                or str(event.user_id) in Super_User
-                or str(event.user_id) in ROOT_User
+            if has_manage_permission(
+                event.user_id,
+                manage_users=Manage_User,
+                super_users=Super_User,
+                root_users=ROOT_User,
             ):
                 order = order.removeprefix("runcommand").strip()
                 order_lower = order.lower()
@@ -839,10 +858,11 @@ Welcome! {bot_name} was restarted successfully. Now you can send {reminder}帮�
                 ),
             )
         elif "列出黑名单" in order:
-            if (
-                str(event.user_id) in Super_User
-                or str(event.user_id) in ROOT_User
-                or str(event.user_id) in Manage_User
+            if has_manage_permission(
+                event.user_id,
+                manage_users=Manage_User,
+                super_users=Super_User,
+                root_users=ROOT_User,
             ):
                 try:
                     with open(BLACKLIST_FILE, "r", encoding="utf-8") as f:
@@ -889,10 +909,11 @@ Welcome! {bot_name} was restarted successfully. Now you can send {reminder}帮�
                 except FileNotFoundError:
                     return set()
 
-            if (
-                str(event.user_id) in Super_User
-                or str(event.user_id) in ROOT_User
-                or str(event.user_id) in Manage_User
+            if has_manage_permission(
+                event.user_id,
+                manage_users=Manage_User,
+                super_users=Super_User,
+                root_users=ROOT_User,
             ):
                 Toset2 = order[order.find("添加黑名单 ") + len("添加黑名单 ") :].strip()
                 blacklist114 = load_blacklist()  # 加载现有的黑名单,防止已修改沒更新
@@ -945,10 +966,11 @@ Welcome! {bot_name} was restarted successfully. Now you can send {reminder}帮�
                 except FileNotFoundError:
                     return set()
 
-            if (
-                str(event.user_id) in Super_User
-                or str(event.user_id) in ROOT_User
-                or str(event.user_id) in Manage_User
+            if has_manage_permission(
+                event.user_id,
+                manage_users=Manage_User,
+                super_users=Super_User,
+                root_users=ROOT_User,
             ):
                 Toset1 = order[order.find("删除黑名单 ") + len("删除黑名单 ") :].strip()
                 blacklist117 = load_blacklist()  # 加载现有的黑名单,防止已修改沒更新
@@ -2139,6 +2161,7 @@ Memory Usage：{str(system_info["memory_usage_percentage"]) + "%"}"""
                             )
 
                             new = []
+                            media = []
 
                             if isinstance(event.message[0], Segments.Reply):
                                 print("有消息反馈")
@@ -2153,12 +2176,12 @@ Memory Usage：{str(system_info["memory_usage_percentage"]) + "%"}"""
                                             Parts.Text(i.text.replace(reminder, "", 1))
                                         )
                                     elif isinstance(i, Segments.Image):
-                                        if i.file.startswith("http"):
-                                            url = i.file
-                                        else:
-                                            url = i.url
+                                        url = resolve_qq_image_url(i.file, i.url)
                                         try:
                                             new.append(Parts.File.upload_from_url(url))
+                                            media_item = await image_url_to_agent_media(url)
+                                            if media_item:
+                                                media.append(media_item)
                                             print("有图")
                                         except Exception as img_err:
                                             print(f"图片下载失败: {img_err}")
@@ -2168,6 +2191,9 @@ Memory Usage：{str(system_info["memory_usage_percentage"]) + "%"}"""
                                         url = get_market_face_url(i.face_id)
                                         try:
                                             new.append(Parts.File.upload_from_url(url))
+                                            media_item = await image_url_to_agent_media(url)
+                                            if media_item:
+                                                media.append(media_item)
                                             print("有表情包")
                                         except Exception as img_err:
                                             print(f"表情包下载失败: {img_err}")
@@ -2179,12 +2205,12 @@ Memory Usage：{str(system_info["memory_usage_percentage"]) + "%"}"""
                                         Parts.Text(i.text.replace(reminder, "", 1))
                                     )
                                 elif isinstance(i, Segments.Image):
-                                    if i.file.startswith("http"):
-                                        url = i.file
-                                    else:
-                                        url = i.url
+                                    url = resolve_qq_image_url(i.file, i.url)
                                     try:
                                         new.append(Parts.File.upload_from_url(url))
+                                        media_item = await image_url_to_agent_media(url)
+                                        if media_item:
+                                            media.append(media_item)
                                         print("有图")
                                     except Exception as img_err:
                                         print(f"图片下载失败: {img_err}")
@@ -2194,41 +2220,41 @@ Memory Usage：{str(system_info["memory_usage_percentage"]) + "%"}"""
                                     url = get_market_face_url(i.face_id)
                                     try:
                                         new.append(Parts.File.upload_from_url(url))
+                                        media_item = await image_url_to_agent_media(url)
+                                        if media_item:
+                                            media.append(media_item)
                                         print("有表情包")
                                     except Exception as img_err:
                                         print(f"表情包下载失败: {img_err}")
                                         new.append(Parts.Text("[表情包下载失败]"))
 
                             new = Roles.User(*new)
-                            result = generate_agent_reply(
-                                event.user_id,
-                                "qq-group",
-                                str(event.group_id),
-                                order or user_message,
+                            agent_reply = build_qq_agent_reply(
+                                source=QQ_AGENT_GROUP,
+                                user_id=event.user_id,
+                                chat_id=event.group_id,
+                                text=order or user_message,
+                                media=tuple(media),
+                                reply_callback=generate_agent_reply,
                             )
 
                         case "Normal" | "Net":
-                            result = generate_agent_reply(
-                                event.user_id,
-                                "qq-group",
-                                str(event.group_id),
-                                order or user_message,
+                            agent_reply = build_qq_agent_reply(
+                                source=QQ_AGENT_GROUP,
+                                user_id=event.user_id,
+                                chat_id=event.group_id,
+                                text=order or user_message,
+                                reply_callback=generate_agent_reply,
                             )
 
                     await actions.send(
                         group_id=event.group_id,
                         message=Manager.Message(
-                            Segments.Reply(event.message_id), Segments.Text(result)
+                            Segments.Reply(event.message_id),
+                            Segments.Text(agent_reply.assistant_text),
                         ),
                     )
-                    publish_bridge_exchange(
-                        source="qq-group",
-                        channel="qq-group",
-                        chat_id=str(event.group_id),
-                        user_id=event.user_id,
-                        user_text=order or user_message,
-                        assistant_text=result,
-                    )
+                    publish_qq_agent_reply(agent_reply, publish_bridge_exchange)
 
                 except UnboundLocalError:
                     await actions.send(
@@ -2754,16 +2780,17 @@ Made by SR Studio
                         )
 
                         new = []
+                        media = []
                         for i in event.message:
                             if isinstance(i, Segments.Text):
                                 new.append(Parts.Text(i.text.replace(reminder, "", 1)))
                             elif isinstance(i, Segments.Image):
-                                if i.file.startswith("http"):
-                                    url = i.file
-                                else:
-                                    url = i.url
+                                url = resolve_qq_image_url(i.file, i.url)
                                 try:
                                     new.append(Parts.File.upload_from_url(url))
+                                    media_item = await image_url_to_agent_media(url)
+                                    if media_item:
+                                        media.append(media_item)
                                     print("[私聊] 有图")
                                 except Exception as img_err:
                                     print(f"[私聊] 图片下载失败: {img_err}")
@@ -2773,39 +2800,38 @@ Made by SR Studio
                                 url = get_market_face_url(i.face_id)
                                 try:
                                     new.append(Parts.File.upload_from_url(url))
+                                    media_item = await image_url_to_agent_media(url)
+                                    if media_item:
+                                        media.append(media_item)
                                     print("[私聊] 有表情包")
                                 except Exception as img_err:
                                     print(f"[私聊] 表情包下载失败: {img_err}")
                                     new.append(Parts.Text("[表情包下载失败]"))
 
                         new = Roles.User(*new)
-                        result = generate_agent_reply(
-                            event.user_id,
-                            "qq-private",
-                            str(event.user_id),
-                            order or user_message,
+                        agent_reply = build_qq_agent_reply(
+                            source=QQ_AGENT_PRIVATE,
+                            user_id=event.user_id,
+                            chat_id=event.user_id,
+                            text=order or user_message,
+                            media=tuple(media),
+                            reply_callback=generate_agent_reply,
                         )
 
                     case "Normal" | "Net":
-                        result = generate_agent_reply(
-                            event.user_id,
-                            "qq-private",
-                            str(event.user_id),
-                            order or user_message,
+                        agent_reply = build_qq_agent_reply(
+                            source=QQ_AGENT_PRIVATE,
+                            user_id=event.user_id,
+                            chat_id=event.user_id,
+                            text=order or user_message,
+                            reply_callback=generate_agent_reply,
                         )
 
                 await actions.send(
                     user_id=event.user_id,
-                    message=Manager.Message(Segments.Text(result)),
+                    message=Manager.Message(Segments.Text(agent_reply.assistant_text)),
                 )
-                publish_bridge_exchange(
-                    source="qq-private",
-                    channel="qq-private",
-                    chat_id=str(event.user_id),
-                    user_id=event.user_id,
-                    user_text=order or user_message,
-                    assistant_text=result,
-                )
+                publish_qq_agent_reply(agent_reply, publish_bridge_exchange)
 
             except UnboundLocalError:
                 await actions.send(
