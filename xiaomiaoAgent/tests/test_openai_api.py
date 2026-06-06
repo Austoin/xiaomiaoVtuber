@@ -191,20 +191,57 @@ async def test_successful_request_uses_fixed_api_session(aiohttp_client, mock_ag
     body = await resp.json()
     assert body["choices"][0]["message"]["content"] == "mock response"
     assert body["model"] == "test-model"
-    mock_agent.process_direct.assert_called_once_with(
-        content="hello",
-        media=None,
-        session_key=API_SESSION_KEY,
-        channel="api",
-        chat_id=API_CHAT_ID,
-        sender_id="user",
-        metadata={
-            "source_channel": "api",
-            "source_chat_id": API_CHAT_ID,
-            "source_user_id": "user",
-            "channel_policy": "trusted",
-        },
+    mock_agent.process_direct.assert_called_once()
+    call_kwargs = mock_agent.process_direct.call_args.kwargs
+    assert call_kwargs["content"] == "hello"
+    assert call_kwargs["media"] is None
+    assert call_kwargs["session_key"] == API_SESSION_KEY
+    assert call_kwargs["channel"] == "api"
+    assert call_kwargs["chat_id"] == API_CHAT_ID
+    assert call_kwargs["sender_id"] == "user"
+    assert call_kwargs["metadata"] == {
+        "source_channel": "api",
+        "source_chat_id": API_CHAT_ID,
+        "source_user_id": "user",
+        "channel_policy": "trusted",
+    }
+    assert call_kwargs["on_progress"] is not None
+
+
+@pytest.mark.skipif(not HAS_AIOHTTP, reason="aiohttp not installed")
+@pytest.mark.asyncio
+async def test_tool_events_are_returned_in_non_streaming_response(aiohttp_client) -> None:
+    tool_events = [
+        {
+            "event_type": "tool_finish",
+            "tool_name": "xiaomiao_stage",
+            "risk_level": "high",
+            "confirmation_id": "ABC123",
+            "result_summary": "say",
+        }
+    ]
+
+    async def process_with_tool_event(*_args, on_progress=None, **_kwargs):
+        assert on_progress is not None
+        await on_progress("", tool_events=tool_events)
+        return "done"
+
+    agent = MagicMock()
+    agent.process_direct = process_with_tool_event
+    agent._connect_mcp = AsyncMock()
+    agent.close_mcp = AsyncMock()
+
+    app = create_app(agent, model_name="test-model")
+    client = await aiohttp_client(app)
+    resp = await client.post(
+        "/v1/chat/completions",
+        json={"messages": [{"role": "user", "content": "让桌面小喵说你好"}]},
     )
+
+    assert resp.status == 200
+    body = await resp.json()
+    assert body["choices"][0]["message"]["content"] == "done"
+    assert body["xiaomiao_tool_events"] == tool_events
 
 
 @pytest.mark.skipif(not HAS_AIOHTTP, reason="aiohttp not installed")
@@ -235,6 +272,100 @@ async def test_request_source_fields_are_forwarded(aiohttp_client, mock_agent) -
         "source_user_id": "3554978979",
         "channel_policy": "low_risk",
     }
+
+
+@pytest.mark.skipif(not HAS_AIOHTTP, reason="aiohttp not installed")
+@pytest.mark.asyncio
+async def test_qq_confirmed_tool_policy_requires_confirmation_id(aiohttp_client, mock_agent) -> None:
+    app = create_app(mock_agent, model_name="test-model")
+    client = await aiohttp_client(app)
+    resp = await client.post(
+        "/v1/chat/completions",
+        json={
+            "session_id": "xiaomiao-unified",
+            "channel": "qq-group",
+            "chat_id": "10001",
+            "user_id": "3554978979",
+            "tool_policy": "trusted_confirmed",
+            "messages": [{"role": "user", "content": "run dir"}],
+        },
+    )
+
+    assert resp.status == 400
+    body = await resp.json()
+    assert "confirmation_id" in body["error"]["message"]
+    mock_agent.process_direct.assert_not_called()
+
+
+@pytest.mark.skipif(not HAS_AIOHTTP, reason="aiohttp not installed")
+@pytest.mark.asyncio
+async def test_qq_confirmed_tool_policy_is_forwarded(aiohttp_client, mock_agent) -> None:
+    app = create_app(mock_agent, model_name="test-model")
+    client = await aiohttp_client(app)
+    resp = await client.post(
+        "/v1/chat/completions",
+        json={
+            "session_id": "xiaomiao-unified",
+            "channel": "qq-group",
+            "chat_id": "10001",
+            "user_id": "3554978979",
+            "tool_policy": "trusted_confirmed",
+            "confirmation_id": "ABC123",
+            "messages": [{"role": "user", "content": "run dir"}],
+        },
+    )
+
+    assert resp.status == 200
+    call_kwargs = mock_agent.process_direct.call_args.kwargs
+    assert call_kwargs["metadata"] == {
+        "source_channel": "qq-group",
+        "source_chat_id": "10001",
+        "source_user_id": "3554978979",
+        "channel_policy": "trusted_confirmed",
+        "confirmation_id": "ABC123",
+    }
+
+
+@pytest.mark.skipif(not HAS_AIOHTTP, reason="aiohttp not installed")
+@pytest.mark.asyncio
+async def test_qq_source_cannot_request_legacy_trusted_policy(aiohttp_client, mock_agent) -> None:
+    app = create_app(mock_agent, model_name="test-model")
+    client = await aiohttp_client(app)
+    resp = await client.post(
+        "/v1/chat/completions",
+        json={
+            "session_id": "xiaomiao-unified",
+            "channel": "qq-group",
+            "chat_id": "10001",
+            "user_id": "3554978979",
+            "tool_policy": "trusted",
+            "messages": [{"role": "user", "content": "run dir"}],
+        },
+    )
+
+    assert resp.status == 400
+    body = await resp.json()
+    assert "qq sources" in body["error"]["message"].lower()
+    mock_agent.process_direct.assert_not_called()
+
+
+@pytest.mark.skipif(not HAS_AIOHTTP, reason="aiohttp not installed")
+@pytest.mark.asyncio
+async def test_invalid_tool_policy_returns_400(aiohttp_client, mock_agent) -> None:
+    app = create_app(mock_agent, model_name="test-model")
+    client = await aiohttp_client(app)
+    resp = await client.post(
+        "/v1/chat/completions",
+        json={
+            "tool_policy": "from-user-text",
+            "messages": [{"role": "user", "content": "hello"}],
+        },
+    )
+
+    assert resp.status == 400
+    body = await resp.json()
+    assert "invalid tool_policy" in body["error"]["message"].lower()
+    mock_agent.process_direct.assert_not_called()
 
 
 @pytest.mark.skipif(not HAS_AIOHTTP, reason="aiohttp not installed")

@@ -1,1 +1,0 @@
-{"nanobot": {"provider": "custom", "model": "relay-chat", "providers": {"custom": {"apiKey": "root-key", "baseUrl": "https://relay.example/v1"}}}}

@@ -2,6 +2,7 @@
 import { OnboardingDialog, OnboardingStepAnalyticsNotice, ToasterRoot } from '@proj-airi/stage-ui/components'
 import { isPosthogAvailableInBuild, useSharedAnalyticsStore } from '@proj-airi/stage-ui/stores/analytics'
 import { useCharacterOrchestratorStore } from '@proj-airi/stage-ui/stores/character'
+import { useChatSessionStore } from '@proj-airi/stage-ui/stores/chat/session-store'
 import { useDisplayModelsStore } from '@proj-airi/stage-ui/stores/display-models'
 import { useModsServerChannelStore } from '@proj-airi/stage-ui/stores/mods/api/channel-server'
 import { useContextBridgeStore } from '@proj-airi/stage-ui/stores/mods/api/context-bridge'
@@ -19,6 +20,7 @@ import { toast, Toaster } from 'vue-sonner'
 import OnboardingPermissionsStep from './components/onboarding/step-permissions.vue'
 
 import { getHostWebSocketConstructor } from './modules/websocket-bridge'
+import { createStagePocketBridgeEventSync } from './modules/xiaomiao-bridge-events'
 
 const contextBridgeStore = useContextBridgeStore()
 const i18n = useI18n()
@@ -26,6 +28,7 @@ const displayModelsStore = useDisplayModelsStore()
 const settingsStore = useSettings()
 const settings = storeToRefs(settingsStore)
 const onboardingStore = useOnboardingStore()
+const chatSessionStore = useChatSessionStore()
 const serverChannelStore = useModsServerChannelStore()
 const characterOrchestratorStore = useCharacterOrchestratorStore()
 const settingsAudioDeviceStore = useSettingsAudioDevice()
@@ -33,6 +36,7 @@ const { showingSetup } = storeToRefs(onboardingStore)
 const { isDark } = useTheme()
 const cardStore = useAiriCardStore()
 const analyticsStore = useSharedAnalyticsStore()
+let xiaomiaoBridgeEventSync: ReturnType<typeof createStagePocketBridgeEventSync> | undefined
 
 const primaryColor = computed(() => {
   return isDark.value
@@ -78,6 +82,7 @@ onMounted(async () => {
     onboardingStore.showingSetup = true
   }
 
+  await chatSessionStore.initialize()
   await serverChannelStore.initialize({
     possibleEvents: ['ui:configure'],
     websocketConstructor: getHostWebSocketConstructor(),
@@ -88,9 +93,17 @@ onMounted(async () => {
   await displayModelsStore.loadDisplayModelsFromIndexedDB()
   await settingsStore.initializeStageModel()
   await settingsAudioDeviceStore.initialize()
+
+  xiaomiaoBridgeEventSync = createStagePocketBridgeEventSync({
+    getMessages: () => chatSessionStore.getSessionMessages(chatSessionStore.activeSessionId),
+    setMessages: messages => chatSessionStore.setSessionMessages(chatSessionStore.activeSessionId, messages),
+  })
+  xiaomiaoBridgeEventSync.start()
 })
 
 onUnmounted(() => {
+  xiaomiaoBridgeEventSync?.stop()
+  xiaomiaoBridgeEventSync = undefined
   contextBridgeStore.dispose()
 })
 

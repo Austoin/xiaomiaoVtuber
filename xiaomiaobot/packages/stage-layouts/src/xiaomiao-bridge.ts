@@ -24,6 +24,11 @@ export interface XiaomiaoBridgeEvent {
   content: string
   timestamp: number
   client_message_id?: string
+  event_type?: 'chat' | 'tool_start' | 'tool_finish' | 'tool_error' | 'confirmation_requested' | 'memory_update' | 'stage_action' | string
+  tool_name?: string
+  risk_level?: string
+  confirmation_id?: string
+  result_summary?: string
 }
 
 export interface XiaomiaoBridgeEventsRequest {
@@ -301,8 +306,16 @@ function normalizeXiaomiaoBridgeEvent(value: unknown): XiaomiaoBridgeEvent {
   }
   if (raw.client_message_id !== undefined)
     event.client_message_id = requireString(raw.client_message_id, 'client_message_id')
+  const metadata = {
+    ...(raw.event_type !== undefined ? { event_type: requireString(raw.event_type, 'event_type') } : {}),
+    ...(raw.tool_name !== undefined ? { tool_name: requireString(raw.tool_name, 'tool_name') } : {}),
+    ...(raw.risk_level !== undefined ? { risk_level: requireString(raw.risk_level, 'risk_level') } : {}),
+    ...(raw.confirmation_id !== undefined ? { confirmation_id: requireString(raw.confirmation_id, 'confirmation_id') } : {}),
+    ...(raw.result_summary !== undefined ? { result_summary: requireString(raw.result_summary, 'result_summary') } : {}),
+  }
   return {
     ...event,
+    ...metadata,
     schema_version: optionalNumber(raw.schema_version) ?? 1,
     conversation_id: optionalString(raw.conversation_id) ?? `${event.channel}:${event.chat_id}`,
     message_id: optionalString(raw.message_id) ?? bridgeEventMessageId(event),
@@ -340,10 +353,104 @@ function toChatHistoryItem(event: XiaomiaoBridgeEvent, id: string): ChatHistoryI
 }
 
 function formatBridgeEventContent(event: XiaomiaoBridgeEvent): string {
+  const content = formatBridgeEventActionContent(event)
   if (event.source === 'web')
-    return event.content
+    return content
 
-  return `[${formatBridgeEventSource(event)}] ${event.content}`
+  return `[${formatBridgeEventSource(event)}] ${content}`
+}
+
+function formatBridgeEventActionContent(event: XiaomiaoBridgeEvent): string {
+  if (event.event_type === 'confirmation_requested') {
+    const suffix = event.confirmation_id ? ` (${event.confirmation_id})` : ''
+    return `[需要确认${suffix}] ${event.content}`
+  }
+  if (event.event_type === 'tool_error')
+    return `[工具失败] ${event.content}`
+  if (event.event_type === 'tool_start')
+    return `[工具开始${event.tool_name ? `:${event.tool_name}` : ''}] ${event.content}`
+  if (event.event_type === 'tool_finish')
+    return `[工具完成${event.tool_name ? `:${event.tool_name}` : ''}] ${event.content}`
+  if (event.event_type === 'memory_update')
+    return `[记忆更新] ${event.content}`
+  if (event.event_type === 'stage_action')
+    return formatStageActionContent(event)
+  return event.content
+}
+
+function formatStageActionContent(event: XiaomiaoBridgeEvent): string {
+  const structured = parseStructuredBridgeContent(event.content)
+  const action = structured?.action || normalizeResultSummaryAction(event.result_summary) || ''
+  const actionLabel = action ? `:${action}` : ''
+  const summary = structured
+    ? summarizeStructuredStagePayload(structured.payload)
+    : event.content
+  return `[舞台动作${actionLabel}] ${summary || event.content}`
+}
+
+function parseStructuredBridgeContent(content: string): { service?: string, action?: string, payload?: Record<string, unknown> } | null {
+  try {
+    const parsed = JSON.parse(content) as unknown
+    if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed))
+      return null
+    const record = parsed as Record<string, unknown>
+    return {
+      service: typeof record.service === 'string' ? record.service : undefined,
+      action: typeof record.action === 'string' ? record.action : undefined,
+      payload: record.payload && typeof record.payload === 'object' && !Array.isArray(record.payload)
+        ? record.payload as Record<string, unknown>
+        : undefined,
+    }
+  }
+  catch {
+    return null
+  }
+}
+
+function normalizeResultSummaryAction(value?: string): string {
+  const text = value?.trim()
+  if (!text)
+    return ''
+  return text.includes(':') ? text.split(':').at(-1) || '' : text
+}
+
+function summarizeStructuredStagePayload(payload?: Record<string, unknown>): string {
+  if (!payload)
+    return ''
+
+  const text = firstPayloadString(payload, ['text', 'content', 'message', 'subtitle', 'speech'])
+  if (text)
+    return text
+
+  const emotion = firstPayloadString(payload, ['name', 'emotion', 'emotionName'])
+  if (emotion)
+    return `表情：${emotion}`
+
+  const background = firstPayloadString(payload, ['backgroundId', 'id'])
+  if (background)
+    return `目标：${background}`
+
+  const model = firstPayloadString(payload, ['modelId', 'displayModelId'])
+  if (model)
+    return `目标：${model}`
+
+  const query = firstPayloadString(payload, ['query', 'scope'])
+  if (query)
+    return `查询：${query}`
+
+  return JSON.stringify(payload)
+}
+
+function firstPayloadString(payload: Record<string, unknown>, keys: string[]): string {
+  for (const key of keys) {
+    const value = payload[key]
+    if (typeof value !== 'string')
+      continue
+    const text = value.trim()
+    if (text)
+      return text
+  }
+  return ''
 }
 
 function formatBridgeEventSource(event: XiaomiaoBridgeEvent): string {

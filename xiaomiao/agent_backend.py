@@ -31,6 +31,14 @@ class XiaomiaoAgentRequest:
     chat_id: str
     text: str
     media: tuple[str, ...] = ()
+    tool_policy: str | None = None
+    confirmation_id: str | None = None
+
+
+@dataclass(frozen=True)
+class XiaomiaoAgentResponse:
+    assistant_text: str
+    tool_events: tuple[dict[str, Any], ...] = ()
 
 
 def load_xiaomiao_agent_config(others: dict[str, Any]) -> XiaomiaoAgentConfig:
@@ -52,6 +60,13 @@ def reply_with_xiaomiao_agent(
     config: XiaomiaoAgentConfig,
     payload: XiaomiaoAgentRequest,
 ) -> str:
+    return request_xiaomiao_agent(config, payload).assistant_text
+
+
+def request_xiaomiao_agent(
+    config: XiaomiaoAgentConfig,
+    payload: XiaomiaoAgentRequest,
+) -> XiaomiaoAgentResponse:
     if not config.enabled:
         raise RuntimeError("xiaomiaoAgent backend is disabled")
     if not payload.text.strip():
@@ -59,7 +74,7 @@ def reply_with_xiaomiao_agent(
 
     body = _build_request_body(config, payload)
     raw_response = _post_json(config.base_url, body, config.timeout_seconds)
-    return _extract_assistant_text(raw_response)
+    return _extract_agent_response(raw_response)
 
 
 def _optional_text(value: Any) -> str | None:
@@ -82,6 +97,10 @@ def _build_request_body(
     }
     if config.model:
         body["model"] = config.model
+    if payload.tool_policy:
+        body["tool_policy"] = payload.tool_policy
+    if payload.confirmation_id:
+        body["confirmation_id"] = payload.confirmation_id
     return body
 
 
@@ -133,6 +152,10 @@ def _post_json(url: str, body: dict[str, Any], timeout_seconds: float) -> dict[s
 
 
 def _extract_assistant_text(response: dict[str, Any]) -> str:
+    return _extract_agent_response(response).assistant_text
+
+
+def _extract_agent_response(response: dict[str, Any]) -> XiaomiaoAgentResponse:
     choices = response.get("choices")
     if not isinstance(choices, list) or not choices:
         raise RuntimeError("xiaomiaoAgent response missing choices")
@@ -141,4 +164,21 @@ def _extract_assistant_text(response: dict[str, Any]) -> str:
     content = message.get("content") if isinstance(message, dict) else None
     if not isinstance(content, str) or not content.strip():
         raise RuntimeError("xiaomiaoAgent returned an empty reply")
-    return content.strip()
+    return XiaomiaoAgentResponse(
+        assistant_text=content.strip(),
+        tool_events=_extract_tool_events(response),
+    )
+
+
+def _extract_tool_events(response: dict[str, Any]) -> tuple[dict[str, Any], ...]:
+    raw_events = response.get("xiaomiao_tool_events")
+    if raw_events is None:
+        return ()
+    if not isinstance(raw_events, list):
+        raise RuntimeError("xiaomiaoAgent tool events must be a list")
+    events: list[dict[str, Any]] = []
+    for event in raw_events:
+        if not isinstance(event, dict):
+            raise RuntimeError("xiaomiaoAgent tool event must be an object")
+        events.append(dict(event))
+    return tuple(events)

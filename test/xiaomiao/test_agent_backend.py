@@ -16,6 +16,7 @@ from agent_backend import (  # noqa: E402
     XiaomiaoAgentConfig,
     XiaomiaoAgentRequest,
     load_xiaomiao_agent_config,
+    request_xiaomiao_agent,
     reply_with_xiaomiao_agent,
 )
 
@@ -114,6 +115,39 @@ class AgentBackendTests(unittest.TestCase):
             ],
         )
 
+    def test_agent_reply_sends_tool_policy_and_confirmation_id(self):
+        with _agent_server(_SuccessHandler) as base_url:
+            reply = reply_with_xiaomiao_agent(
+                _config(base_url),
+                _payload(
+                    "执行 dir",
+                    tool_policy="trusted_confirmed",
+                    confirmation_id="ABC123",
+                ),
+            )
+
+        self.assertEqual(reply, "agent reply")
+        self.assertEqual(_SuccessHandler.last_body["tool_policy"], "trusted_confirmed")
+        self.assertEqual(_SuccessHandler.last_body["confirmation_id"], "ABC123")
+
+    def test_agent_response_keeps_tool_events(self):
+        with _agent_server(_ToolEventsHandler) as base_url:
+            response = request_xiaomiao_agent(_config(base_url), _payload("stage action"))
+
+        self.assertEqual(response.assistant_text, "agent reply")
+        self.assertEqual(
+            response.tool_events,
+            (
+                {
+                    "event_type": "stage_action",
+                    "tool_name": "xiaomiaobot_action",
+                    "risk_level": "high",
+                    "confirmation_id": "ABC123",
+                    "result_summary": "stage:say",
+                },
+            ),
+        )
+
     def test_http_error_is_visible(self):
         with _agent_server(_ErrorHandler) as base_url:
             with self.assertRaisesRegex(RuntimeError, "HTTP 502"):
@@ -176,6 +210,25 @@ class _EmptyReplyHandler(_SuccessHandler):
         self._write(200, {"choices": [{"message": {"content": ""}}]})
 
 
+class _ToolEventsHandler(_SuccessHandler):
+    def do_POST(self):
+        self._write(
+            200,
+            {
+                "choices": [{"message": {"content": "agent reply"}}],
+                "xiaomiao_tool_events": [
+                    {
+                        "event_type": "stage_action",
+                        "tool_name": "xiaomiaobot_action",
+                        "risk_level": "high",
+                        "confirmation_id": "ABC123",
+                        "result_summary": "stage:say",
+                    }
+                ],
+            },
+        )
+
+
 class _SlowHandler(_SuccessHandler):
     def do_POST(self):
         time.sleep(0.2)
@@ -196,13 +249,20 @@ def _config(base_url: str, timeout_seconds: float = 1.0) -> XiaomiaoAgentConfig:
     )
 
 
-def _payload(text: str, media: tuple[str, ...] = ()) -> XiaomiaoAgentRequest:
+def _payload(
+    text: str,
+    media: tuple[str, ...] = (),
+    tool_policy: str | None = None,
+    confirmation_id: str | None = None,
+) -> XiaomiaoAgentRequest:
     return XiaomiaoAgentRequest(
         user_id=3554978979,
         channel="web",
         chat_id="stage-web",
         text=text,
         media=media,
+        tool_policy=tool_policy,
+        confirmation_id=confirmation_id,
     )
 
 

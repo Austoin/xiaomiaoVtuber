@@ -11,6 +11,7 @@ from urllib import request
 sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "xiaomiao"))
 
 from desktop_bridge import (
+    publish_bridge_event,
     publish_bridge_exchange,
     reset_bridge_state,
     start_desktop_bridge_server,
@@ -80,6 +81,78 @@ class DesktopBridgePersistenceTests(unittest.TestCase):
             [item["client_message_id"] for item in body["events"]],
             ["stage-web-local-1", "stage-web-local-1"],
         )
+
+    def test_bridge_events_preserve_tool_metadata_after_reload(self):
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            os.environ["XIAOMIAO_BRIDGE_EVENT_STORE"] = str(
+                Path(tmp_dir) / "bridge_events.jsonl"
+            )
+            publish_bridge_event(
+                source="qq-group",
+                channel="qq-group",
+                chat_id="10001",
+                user_id=42,
+                role="assistant",
+                content="需要确认",
+                event_type="confirmation_requested",
+                risk_level="high",
+                confirmation_id="ABC123",
+                result_summary="等待确认",
+            )
+            reset_bridge_state()
+
+            with _bridge_server() as port:
+                body = _json_get(
+                    f"http://127.0.0.1:{port}/v1/xiaomiao/events?user_id=42"
+                )
+
+        event = body["events"][0]
+        self.assertEqual(event["event_type"], "confirmation_requested")
+        self.assertEqual(event["risk_level"], "high")
+        self.assertEqual(event["confirmation_id"], "ABC123")
+        self.assertEqual(event["result_summary"], "等待确认")
+
+    def test_tool_events_do_not_replace_rebuilt_latest_state(self):
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            os.environ["XIAOMIAO_BRIDGE_EVENT_STORE"] = str(
+                Path(tmp_dir) / "bridge_events.jsonl"
+            )
+            publish_bridge_exchange(
+                source="qq-private",
+                channel="qq-private",
+                chat_id="42",
+                user_id=42,
+                user_text="重启前问题",
+                assistant_text="重启前回答",
+            )
+            publish_bridge_event(
+                source="qq-private",
+                channel="qq-private",
+                chat_id="42",
+                user_id=42,
+                role="assistant",
+                content="确认事件不应成为状态",
+                event_type="confirmation_requested",
+                risk_level="high",
+                confirmation_id="ABC123",
+            )
+            publish_bridge_event(
+                source="xiaomiao-agent-tool",
+                channel="qq-private",
+                chat_id="42",
+                user_id=42,
+                role="assistant",
+                content="舞台事件不应成为状态",
+                event_type="stage_action",
+                tool_name="xiaomiao_stage",
+                result_summary="say",
+            )
+            reset_bridge_state()
+
+            with _bridge_server() as port:
+                state = _json_get(f"http://127.0.0.1:{port}/v1/xiaomiao/state?user_id=42")
+
+        self.assertEqual(state["reply_text"], "重启前回答")
 
     def test_bridge_events_isolate_invalid_persisted_lines(self):
         with tempfile.TemporaryDirectory() as tmp_dir:

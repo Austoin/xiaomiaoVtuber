@@ -44,7 +44,15 @@ API_CHAT_ID = "default"
 DEFAULT_API_USER_ID = "user"
 TRUSTED_CHANNEL_POLICY = "trusted"
 LOW_RISK_CHANNEL_POLICY = "low_risk"
+TRUSTED_PENDING_TOOL_POLICY = "trusted_pending"
+TRUSTED_CONFIRMED_TOOL_POLICY = "trusted_confirmed"
 LOW_RISK_SOURCE_CHANNELS = frozenset({"qq-group"})
+VALID_TOOL_POLICIES = frozenset({
+    LOW_RISK_CHANNEL_POLICY,
+    TRUSTED_CHANNEL_POLICY,
+    TRUSTED_PENDING_TOOL_POLICY,
+    TRUSTED_CONFIRMED_TOOL_POLICY,
+})
 
 
 @dataclass(frozen=True)
@@ -53,15 +61,19 @@ class RequestSource:
     chat_id: str
     user_id: str
     channel_policy: str
+    confirmation_id: str | None = None
 
     @property
     def metadata(self) -> dict[str, str]:
-        return {
+        metadata = {
             "source_channel": self.channel,
             "source_chat_id": self.chat_id,
             "source_user_id": self.user_id,
             "channel_policy": self.channel_policy,
         }
+        if self.confirmation_id:
+            metadata["confirmation_id"] = self.confirmation_id
+        return metadata
 
 
 # ---------------------------------------------------------------------------
@@ -76,8 +88,12 @@ def _error_json(status: int, message: str, err_type: str = "invalid_request_erro
     )
 
 
-def _chat_completion_response(content: str, model: str) -> dict[str, Any]:
-    return {
+def _chat_completion_response(
+    content: str,
+    model: str,
+    tool_events: list[dict[str, Any]] | None = None,
+) -> dict[str, Any]:
+    response = {
         "id": f"chatcmpl-{uuid.uuid4().hex[:12]}",
         "object": "chat.completion",
         "created": int(time.time()),
@@ -91,6 +107,9 @@ def _chat_completion_response(content: str, model: str) -> dict[str, Any]:
         ],
         "usage": {"prompt_tokens": 0, "completion_tokens": 0, "total_tokens": 0},
     }
+    if tool_events:
+        response["xiaomiao_tool_events"] = tool_events
+    return response
 
 
 def _response_text(value: Any) -> str:
@@ -113,19 +132,43 @@ def _source_policy(channel: str) -> str:
     return TRUSTED_CHANNEL_POLICY
 
 
+def _tool_policy(value: Any, *, channel: str) -> str:
+    if value is None:
+        return _source_policy(channel)
+
+    policy = str(value).strip()
+    if policy not in VALID_TOOL_POLICIES:
+        raise ValueError(f"Invalid tool_policy: {policy}")
+    if channel in LOW_RISK_SOURCE_CHANNELS and policy == TRUSTED_CHANNEL_POLICY:
+        raise ValueError("QQ sources must use low_risk, trusted_pending, or trusted_confirmed")
+    return policy
+
+
 def _request_source(
     *,
     channel: Any = None,
     chat_id: Any = None,
     user_id: Any = None,
+    tool_policy: Any = None,
+    confirmation_id: Any = None,
 ) -> RequestSource:
     resolved_channel = _source_text(channel, "api")
+    resolved_policy = _tool_policy(tool_policy, channel=resolved_channel)
+    resolved_confirmation_id = _optional_source_text(confirmation_id)
+    if resolved_policy == TRUSTED_CONFIRMED_TOOL_POLICY and not resolved_confirmation_id:
+        raise ValueError("trusted_confirmed requests require confirmation_id")
     return RequestSource(
         channel=resolved_channel,
         chat_id=_source_text(chat_id, API_CHAT_ID),
         user_id=_source_text(user_id, DEFAULT_API_USER_ID),
-        channel_policy=_source_policy(resolved_channel),
+        channel_policy=resolved_policy,
+        confirmation_id=resolved_confirmation_id,
     )
+
+
+def _optional_source_text(value: Any) -> str | None:
+    text = str(value).strip() if value is not None else ""
+    return text or None
 
 # ---------------------------------------------------------------------------
 # SSE helpers
@@ -209,6 +252,8 @@ async def _parse_multipart(
     channel = None
     chat_id = None
     user_id = None
+    tool_policy = None
+    confirmation_id = None
     media_paths: list[str] = []
 
     while True:
@@ -222,14 +267,18 @@ async def _parse_multipart(
             session_id = (await part.read()).decode("utf-8").strip()
         elif part.name == "model":
             model = (await part.read()).decode("utf-8").strip()
-        elif part.name in {"channel", "chat_id", "user_id"}:
+        elif part.name in {"channel", "chat_id", "user_id", "tool_policy", "confirmation_id"}:
             value = (await part.read()).decode("utf-8").strip()
             if part.name == "channel":
                 channel = value
             elif part.name == "chat_id":
                 chat_id = value
-            else:
+            elif part.name == "user_id":
                 user_id = value
+            elif part.name == "tool_policy":
+                tool_policy = value
+            else:
+                confirmation_id = value
         elif part.name == "files":
             raw = await part.read()
             if len(raw) > MAX_FILE_SIZE:
@@ -249,6 +298,8 @@ async def _parse_multipart(
         channel=channel,
         chat_id=chat_id,
         user_id=user_id,
+        tool_policy=tool_policy,
+        confirmation_id=confirmation_id,
     )
 
 
@@ -284,6 +335,8 @@ async def handle_chat_completions(request: web.Request) -> web.Response:
                 channel=body.get("channel"),
                 chat_id=body.get("chat_id"),
                 user_id=body.get("user_id"),
+                tool_policy=body.get("tool_policy"),
+                confirmation_id=body.get("confirmation_id"),
             )
     except ValueError as e:
         return _error_json(400, str(e))
@@ -377,6 +430,16 @@ async def handle_chat_completions(request: web.Request) -> web.Response:
 
     # -- non-streaming path (original logic) --
     fallback = EMPTY_FINAL_RESPONSE_MESSAGE
+    collected_tool_events: list[dict[str, Any]] = []
+
+    async def _on_progress(
+        _content: str,
+        *,
+        tool_hint: bool = False,
+        tool_events: list[dict[str, Any]] | None = None,
+    ) -> None:
+        if tool_events:
+            collected_tool_events.extend(tool_events)
 
     try:
         async with session_lock:
@@ -390,6 +453,7 @@ async def handle_chat_completions(request: web.Request) -> web.Response:
                         chat_id=source.chat_id,
                         sender_id=source.user_id,
                         metadata=source.metadata,
+                        on_progress=_on_progress,
                     ),
                     timeout=timeout_s,
                 )
@@ -406,6 +470,7 @@ async def handle_chat_completions(request: web.Request) -> web.Response:
                             chat_id=source.chat_id,
                             sender_id=source.user_id,
                             metadata=source.metadata,
+                            on_progress=_on_progress,
                         ),
                         timeout=timeout_s,
                     )
@@ -423,7 +488,13 @@ async def handle_chat_completions(request: web.Request) -> web.Response:
         logger.exception("Unexpected API lock error for session {}", session_key)
         return _error_json(500, "Internal server error", err_type="server_error")
 
-    return web.json_response(_chat_completion_response(response_text, model_name))
+    return web.json_response(
+        _chat_completion_response(
+            response_text,
+            model_name,
+            tool_events=collected_tool_events,
+        )
+    )
 
 
 async def handle_models(request: web.Request) -> web.Response:

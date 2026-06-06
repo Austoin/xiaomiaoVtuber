@@ -7,6 +7,14 @@ BRIDGE_EVENT_STORE_ENV = "XIAOMIAO_BRIDGE_EVENT_STORE"
 DEFAULT_BRIDGE_EVENT_STORE = Path(__file__).resolve().parent / "runtime" / "bridge_events.jsonl"
 REQUIRED_EVENT_FIELDS = ("id", "source", "channel", "chat_id", "user_id", "role", "content", "timestamp")
 BRIDGE_EVENT_SCHEMA_VERSION = 1
+OPTIONAL_EVENT_FIELDS = (
+    "client_message_id",
+    "event_type",
+    "tool_name",
+    "risk_level",
+    "confirmation_id",
+    "result_summary",
+)
 
 
 def bridge_event_store_path() -> Path:
@@ -90,9 +98,10 @@ def _normalize_event(raw_event: Any, line_number: int) -> dict[str, Any]:
         "content": str(raw_event["content"]),
         "timestamp": int(raw_event["timestamp"]),
     }
-    client_message_id = raw_event.get("client_message_id")
-    if client_message_id is not None:
-        event["client_message_id"] = str(client_message_id)
+    for field in OPTIONAL_EVENT_FIELDS:
+        value = raw_event.get(field)
+        if value is not None:
+            event[field] = str(value)
     return complete_bridge_event(event)
 
 

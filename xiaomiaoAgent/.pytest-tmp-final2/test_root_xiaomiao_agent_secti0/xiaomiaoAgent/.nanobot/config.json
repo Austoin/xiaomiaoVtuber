@@ -1,1 +1,0 @@
-{"agents": {"defaults": {"provider": "deepseek", "model": "deepseek-chat"}}, "providers": {"custom": {"apiKey": "old-key"}}}

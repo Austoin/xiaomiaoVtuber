@@ -1,1 +1,0 @@
-{"xiaomiao_agent": {"model": "runtime-chat"}, "xiaomiaoAgent": {"provider": "custom", "model": "deepseek-v4-flash", "providers": {"custom": {"apiKey": "root-key", "baseUrl": "https://relay.example/v1"}}}}

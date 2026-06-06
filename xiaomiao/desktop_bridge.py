@@ -16,7 +16,15 @@ NEXT_EVENT_ID = 1
 BRIDGE_LOCK = RLock()
 FIRST_EVENT_ID = 1
 VALID_EVENT_ROLES = {"user", "assistant"}
+BRIDGE_EVENT_METADATA_FIELDS = (
+    "event_type",
+    "tool_name",
+    "risk_level",
+    "confirmation_id",
+    "result_summary",
+)
 LOCALHOST_NAME = "localhost"
+DESKTOP_STATE_EVENT_TYPES = frozenset({"", "chat"})
 
 
 def reset_bridge_state() -> None:
@@ -60,13 +68,27 @@ def _next_event_id(events: list[dict]) -> int:
 
 def _rebuild_latest_state(events: list[dict]) -> None:
     for event in events:
-        if event["role"] != "assistant":
+        if not _updates_desktop_state(event):
             continue
-        LATEST_STATE_BY_USER[event["user_id"]] = {
-            "user_id": event["user_id"],
-            "reply_text": event["content"],
-            "timestamp": event["timestamp"],
-        }
+        _set_latest_state(event["user_id"], event["content"], event["timestamp"])
+
+
+def _updates_desktop_state(event: dict) -> bool:
+    return event.get("role") == "assistant" and _is_desktop_state_event_type(
+        event.get("event_type")
+    )
+
+
+def _is_desktop_state_event_type(event_type: str | None) -> bool:
+    return str(event_type or "").strip() in DESKTOP_STATE_EVENT_TYPES
+
+
+def _set_latest_state(user_id: int, reply_text: str, timestamp: int) -> None:
+    LATEST_STATE_BY_USER[int(user_id)] = {
+        "user_id": int(user_id),
+        "reply_text": str(reply_text or ""),
+        "timestamp": int(timestamp),
+    }
 
 
 def extract_last_user_text(messages) -> str:
@@ -119,11 +141,7 @@ def build_chat_response(model_name: str, content: str) -> dict:
 
 def publish_desktop_state(user_id: int, reply_text: str) -> None:
     with BRIDGE_LOCK:
-        LATEST_STATE_BY_USER[user_id] = {
-            "user_id": user_id,
-            "reply_text": reply_text,
-            "timestamp": int(time.time()),
-        }
+        _set_latest_state(user_id, reply_text, int(time.time()))
 
 
 def publish_bridge_event(
@@ -135,6 +153,11 @@ def publish_bridge_event(
     role: str,
     content: str,
     client_message_id: str | None = None,
+    event_type: str | None = None,
+    tool_name: str | None = None,
+    risk_level: str | None = None,
+    confirmation_id: str | None = None,
+    result_summary: str | None = None,
 ) -> dict:
     global NEXT_EVENT_ID
     with BRIDGE_LOCK:
@@ -150,6 +173,15 @@ def publish_bridge_event(
         }
         if client_message_id is not None:
             event["client_message_id"] = str(client_message_id)
+        for name, value in {
+            "event_type": event_type,
+            "tool_name": tool_name,
+            "risk_level": risk_level,
+            "confirmation_id": confirmation_id,
+            "result_summary": result_summary,
+        }.items():
+            if value is not None:
+                event[name] = str(value)
         event = complete_bridge_event(event)
         append_bridge_event(event)
         NEXT_EVENT_ID += 1
@@ -166,6 +198,11 @@ def publish_bridge_exchange(
     user_text: str,
     assistant_text: str,
     client_message_id: str | None = None,
+    event_type: str | None = None,
+    tool_name: str | None = None,
+    risk_level: str | None = None,
+    confirmation_id: str | None = None,
+    result_summary: str | None = None,
 ) -> list[dict]:
     events = [
         publish_bridge_event(
@@ -176,6 +213,11 @@ def publish_bridge_exchange(
             role="user",
             content=user_text,
             client_message_id=client_message_id,
+            event_type=event_type,
+            tool_name=tool_name,
+            risk_level=risk_level,
+            confirmation_id=confirmation_id,
+            result_summary=result_summary,
         ),
         publish_bridge_event(
             source=source,
@@ -185,9 +227,15 @@ def publish_bridge_exchange(
             role="assistant",
             content=assistant_text,
             client_message_id=client_message_id,
+            event_type=event_type,
+            tool_name=tool_name,
+            risk_level=risk_level,
+            confirmation_id=confirmation_id,
+            result_summary=result_summary,
         ),
     ]
-    publish_desktop_state(user_id, assistant_text)
+    if _is_desktop_state_event_type(event_type):
+        publish_desktop_state(user_id, assistant_text)
     return events
 
 
@@ -203,6 +251,11 @@ def publish_local_bridge_event(payload: dict, default_user_id: int) -> dict:
         role=role,
         content=required_payload_text(payload, "content"),
         client_message_id=optional_payload_text_or_none(payload, "client_message_id"),
+        event_type=optional_payload_text_or_none(payload, "event_type"),
+        tool_name=optional_payload_text_or_none(payload, "tool_name"),
+        risk_level=optional_payload_text_or_none(payload, "risk_level"),
+        confirmation_id=optional_payload_text_or_none(payload, "confirmation_id"),
+        result_summary=optional_payload_text_or_none(payload, "result_summary"),
     )
 
 

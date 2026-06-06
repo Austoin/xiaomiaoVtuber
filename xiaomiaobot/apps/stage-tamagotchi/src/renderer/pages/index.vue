@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import type { ModelSettingsRuntimeSnapshot } from '@proj-airi/stage-ui/components/scenarios/settings/model-settings/runtime'
+import type { ChatHistoryItem } from '@proj-airi/stage-ui/types/chat'
 
 import type { ModelSettingsRuntimeChannelEvent } from '../../shared/model-settings-runtime'
+import type { XiaomiaoStageActionRejection } from './xiaomiao-bridge-reaction'
 
 import workletUrl from '@proj-airi/stage-ui/workers/vad/process.worklet?worker&url'
 
@@ -24,11 +26,15 @@ import { appendXiaomiaoBridgeEvents, requestXiaomiaoBridgeEvents } from '@proj-a
 import { WidgetStage } from '@proj-airi/stage-ui/components/scenes'
 import { useAudioRecorder } from '@proj-airi/stage-ui/composables/audio/audio-recorder'
 import { useCanvasPixelIsTransparentAtPoint } from '@proj-airi/stage-ui/composables/canvas-alpha'
+import { EMOTION_VALUES } from '@proj-airi/stage-ui/constants/emotions'
 import { useVAD } from '@proj-airi/stage-ui/stores/ai/models/vad'
+import { useBackgroundStore } from '@proj-airi/stage-ui/stores/background'
 import { useChatSessionStore } from '@proj-airi/stage-ui/stores/chat/session-store'
 import { useCharacterStore } from '@proj-airi/stage-ui/stores/character'
+import { useDisplayModelsStore } from '@proj-airi/stage-ui/stores/display-models'
 import { useLive2d } from '@proj-airi/stage-ui/stores/live2d'
 import { useSpeechStore } from '@proj-airi/stage-ui/stores/modules/speech'
+import { useAiriCardStore } from '@proj-airi/stage-ui/stores/modules/airi-card'
 import { useProvidersStore } from '@proj-airi/stage-ui/stores/providers'
 import { useHearingSpeechInputPipeline } from '@proj-airi/stage-ui/stores/modules/hearing'
 import { useOnboardingStore } from '@proj-airi/stage-ui/stores/onboarding'
@@ -48,7 +54,11 @@ import { useControlsIslandStore } from '../stores/controls-island'
 import { useStageWindowLifecycleStore } from '../stores/stage-window-lifecycle'
 import { useWindowStore } from '../stores/window'
 import { shouldSampleStageTransparency } from '../utils/stage-three-transparency'
-import { applyXiaomiaoBridgeReaction, ensureBridgeSpeechReady as ensureBridgeSpeechReadyForStores } from './xiaomiao-bridge-reaction'
+import {
+  applyXiaomiaoBridgeReaction,
+  applyXiaomiaoStageActionEvents,
+  ensureBridgeSpeechReady as ensureBridgeSpeechReadyForStores,
+} from './xiaomiao-bridge-reaction'
 import { readXiaomiaoBridgeState } from './xiaomiao-bridge'
 
 const controlsIslandRef = ref<InstanceType<typeof ControlsIsland>>()
@@ -67,6 +77,9 @@ const chatSession = useChatSessionStore()
 const characterStore = useCharacterStore()
 const speechStore = useSpeechStore()
 const providersStore = useProvidersStore()
+const backgroundStore = useBackgroundStore()
+const displayModelsStore = useDisplayModelsStore()
+const airiCardStore = useAiriCardStore()
 const openOnboarding = useElectronEventaInvoke(electronOpenOnboarding)
 
 async function ensureBridgeSpeechReady() {
@@ -299,6 +312,7 @@ let bridgeCaptionTimer: ReturnType<typeof setInterval> | undefined
 let bridgeEventsCursor = 0
 let bridgeEventsPolling = false
 let bridgeEventsTimer: ReturnType<typeof setInterval> | undefined
+const handledStageActionEventIds = new Set<number>()
 
 // NOTICE:
 // The current QQ ↔ desktop integration is bound to the active XiaoMiao owner QQ.
@@ -350,6 +364,19 @@ async function pollXiaomiaoBridgeEvents() {
     const nextMessages = appendXiaomiaoBridgeEvents(currentMessages, result.events, { includeWeb: true })
     if (nextMessages !== currentMessages)
       chatSession.setSessionMessages(sessionId, nextMessages)
+
+    await applyXiaomiaoStageActionEvents({
+      events: result.events,
+      handledEventIds: handledStageActionEventIds,
+      postCaption: text => postCaption({ type: 'caption-assistant', text }),
+      ensureSpeechReady: ensureBridgeSpeechReady,
+      speakReply: async text => await characterStore.emitTextOutput(text),
+      applyEmotion: applyStageEmotion,
+      applyBackground: applyStageBackground,
+      applyModel: applyStageModel,
+      readStatus: readStageStatus,
+      onRejected: appendStageActionError,
+    })
   }
   catch {
     // Ignore local bridge event polling errors so the stage keeps rendering normally.
@@ -357,6 +384,111 @@ async function pollXiaomiaoBridgeEvents() {
   finally {
     bridgeEventsPolling = false
   }
+}
+
+async function applyStageEmotion(name: string, intensity: number) {
+  const normalized = name.trim().toLowerCase()
+  if (!EMOTION_VALUES.includes(normalized as (typeof EMOTION_VALUES)[number]))
+    throw new Error(`未知表情：${name}`)
+
+  await characterStore.emitTextOutput(`<|ACT ${JSON.stringify({ emotion: { name: normalized, intensity } })}|>`)
+}
+
+async function applyStageBackground(id: string) {
+  const backgroundId = id.trim()
+  if (!backgroundId)
+    throw new Error('背景 ID 不能为空')
+
+  if (backgroundId !== 'none') {
+    await backgroundStore.initializeStore()
+    if (!backgroundStore.entries.has(backgroundId))
+      throw new Error(`背景不存在：${backgroundId}`)
+  }
+
+  const cardId = airiCardStore.activeCardId
+  const card = airiCardStore.activeCard
+  if (!card || !cardId)
+    throw new Error('当前没有可写入的角色卡')
+
+  const extensions = JSON.parse(JSON.stringify(card.extensions || {}))
+  if (!extensions.airi)
+    extensions.airi = {}
+  if (!extensions.airi.modules)
+    extensions.airi.modules = {}
+  extensions.airi.modules.activeBackgroundId = backgroundId
+
+  const updated = {
+    ...card,
+    extensions,
+  }
+  if (!airiCardStore.updateCard(cardId, updated))
+    throw new Error(`更新角色卡背景失败：${cardId}`)
+}
+
+async function applyStageModel(id: string) {
+  const modelId = id.trim()
+  if (!modelId)
+    throw new Error('模型 ID 不能为空')
+
+  const model = await displayModelsStore.getDisplayModel(modelId)
+  if (!model)
+    throw new Error(`模型不存在：${modelId}`)
+
+  settingsStore.stageModelSelected = modelId
+  await settingsStore.updateStageModel()
+
+  const cardId = airiCardStore.activeCardId
+  const card = airiCardStore.activeCard
+  if (!card || !cardId)
+    return
+
+  const extensions = JSON.parse(JSON.stringify(card.extensions || {}))
+  if (!extensions.airi)
+    extensions.airi = {}
+  if (!extensions.airi.modules)
+    extensions.airi.modules = {}
+  extensions.airi.modules.displayModelId = modelId
+  airiCardStore.updateCard(cardId, { ...card, extensions })
+}
+
+function readStageStatus(query?: string) {
+  const activeBackgroundId = airiCardStore.activeCard?.extensions?.airi?.modules?.activeBackgroundId || 'none'
+  const modelName = settingsStore.stageModelSelectedDisplayModel?.name || settingsStore.stageModelSelected || 'none'
+  const recentMessage = chatSession.getSessionMessages(chatSession.activeSessionId)
+    .filter(message => message.role !== 'system')
+    .at(-1)?.content
+  const recent = typeof recentMessage === 'string' && recentMessage.trim()
+    ? truncateStatusText(recentMessage.trim())
+    : 'none'
+
+  return [
+    `舞台在线：${stageMounted.value ? 'yes' : 'loading'}`,
+    `查询：${query || 'current'}`,
+    `角色：${airiCardStore.activeCard?.name || 'unknown'}`,
+    `模型：${modelName}`,
+    `渲染器：${settingsStore.stageModelRenderer || 'disabled'}`,
+    `背景：${activeBackgroundId}`,
+    `语音：${speechStore.activeSpeechProvider || 'none'}/${speechStore.activeSpeechModel || 'none'}/${speechStore.activeSpeechVoiceId || 'none'}`,
+    `最近消息：${recent}`,
+  ].join('\n')
+}
+
+function appendStageActionError(rejection: XiaomiaoStageActionRejection) {
+  const content = `[舞台动作失败${rejection.action ? `:${rejection.action}` : ''}] ${rejection.reason}`
+  postCaption({ type: 'caption-assistant', text: content })
+  if (!chatSession.activeSessionId)
+    return
+
+  chatSession.appendSessionMessage(chatSession.activeSessionId, {
+    id: `xiaomiao-stage-action-error-${rejection.id}`,
+    role: 'error',
+    content,
+    createdAt: Date.now(),
+  } as ChatHistoryItem)
+}
+
+function truncateStatusText(text: string) {
+  return text.length > 80 ? `${text.slice(0, 77)}...` : text
 }
 
 function handleStreamingSentenceEnd(delta: string) {

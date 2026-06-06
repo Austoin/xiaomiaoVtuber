@@ -26,5 +26,20 @@ def has_super_permission(
     return user in _normalize_ids(super_users) or user in _normalize_ids(root_users)
 
 
+def has_agent_tool_permission(
+    user_id: int | str,
+    *,
+    agent_tool_allowlist: Iterable[int | str],
+    super_users: Iterable[int | str],
+    root_users: Iterable[int | str],
+) -> bool:
+    user = str(user_id)
+    return (
+        user in _normalize_ids(agent_tool_allowlist)
+        or user in _normalize_ids(super_users)
+        or user in _normalize_ids(root_users)
+    )
+
+
 def _normalize_ids(user_ids: Iterable[int | str]) -> set[str]:
     return {str(user_id).strip() for user_id in user_ids if str(user_id).strip()}

@@ -14,6 +14,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "xiaomiao"))
 from desktop_bridge import (
     extract_last_user_text,
     is_loopback_client,
+    publish_bridge_event,
     publish_bridge_exchange,
     reset_bridge_state,
     start_desktop_bridge_server,
@@ -125,6 +126,72 @@ class DesktopBridgeTests(unittest.TestCase):
         self.assertEqual(body["last_id"], 2)
         self.assertEqual([item["content"] for item in body["events"]], ["群里问一句", "群里答一句"])
         self.assertEqual(body["events"][0]["chat_id"], "10001")
+
+    def test_bridge_event_preserves_tool_metadata(self):
+        publish_bridge_event(
+            source="qq-group",
+            channel="qq-group",
+            chat_id="10001",
+            user_id=42,
+            role="assistant",
+            content="需要确认",
+            event_type="confirmation_requested",
+            tool_name="exec",
+            risk_level="high",
+            confirmation_id="ABC123",
+            result_summary="等待确认",
+        )
+
+        with _bridge_server() as port:
+            body = _json_get(f"http://127.0.0.1:{port}/v1/xiaomiao/events?user_id=42")
+
+        event = body["events"][0]
+        self.assertEqual(event["event_type"], "confirmation_requested")
+        self.assertEqual(event["tool_name"], "exec")
+        self.assertEqual(event["risk_level"], "high")
+        self.assertEqual(event["confirmation_id"], "ABC123")
+        self.assertEqual(event["result_summary"], "等待确认")
+
+    def test_tool_events_do_not_replace_latest_desktop_state(self):
+        publish_bridge_exchange(
+            source="qq-group",
+            channel="qq-group",
+            chat_id="10001",
+            user_id=42,
+            user_text="普通问题",
+            assistant_text="普通回答",
+        )
+        publish_bridge_exchange(
+            source="qq-group",
+            channel="qq-group",
+            chat_id="10001",
+            user_id=42,
+            user_text="工具请求",
+            assistant_text="需要确认执行",
+            event_type="confirmation_requested",
+            tool_name="exec",
+            risk_level="high",
+            confirmation_id="ABC123",
+        )
+        publish_bridge_event(
+            source="xiaomiao-agent-tool",
+            channel="qq-group",
+            chat_id="10001",
+            user_id=42,
+            role="assistant",
+            content="舞台播报",
+            event_type="stage_action",
+            tool_name="xiaomiao_stage",
+            risk_level="high",
+            result_summary="say",
+        )
+
+        with _bridge_server() as port:
+            state = _json_get(f"http://127.0.0.1:{port}/v1/xiaomiao/state?user_id=42")
+            events = _json_get(f"http://127.0.0.1:{port}/v1/xiaomiao/events?user_id=42")
+
+        self.assertEqual(state["reply_text"], "普通回答")
+        self.assertEqual(events["last_id"], 5)
 
     def test_events_after_cursor_returns_only_newer_events(self):
         publish_bridge_exchange(

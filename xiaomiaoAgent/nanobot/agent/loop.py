@@ -434,7 +434,7 @@ class AgentLoop:
             provider_retry_mode=defaults.provider_retry_mode,
             tool_hint_max_length=defaults.tool_hint_max_length,
             restrict_to_workspace=config.tools.restrict_to_workspace,
-            mcp_servers=config.tools.mcp_servers,
+            mcp_servers=config.tools.effective_mcp_servers(),
             channels_config=config.channels,
             timezone=defaults.timezone,
             unified_session=defaults.unified_session,

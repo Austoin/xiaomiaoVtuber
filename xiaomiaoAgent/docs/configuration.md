@@ -449,6 +449,53 @@ xiaomiaoAgent 支持 [MCP](https://modelcontextprotocol.io/)，可以连接外�
 
 慢速服务器可用 `toolTimeout` 覆盖默认 30 秒工具超时。`enabledTools` 可只注册某个 MCP server 的部分工具；省略或设为 `["*"]` 表示注册全部，设为 `[]` 表示不注册任何工具。
 
+### xiaomiaoVirtual MCP 安全 profile
+
+为 QQ/bridge 场景，仓库内新增了三个 opt-in MCP profile。它们默认全部关闭，不会自动启动外部服务；启用后也只注册显式工具列表，不使用 `*`。
+
+```json
+{
+  "tools": {
+    "computerUseMcp": {
+      "enable": false,
+      "mode": "trusted_confirmed"
+    },
+    "twitterMcp": {
+      "enable": false,
+      "url": "http://127.0.0.1:8080/sse",
+      "mode": "trusted_confirmed"
+    },
+    "minecraftMcp": {
+      "enable": false,
+      "url": "http://127.0.0.1:3001/sse",
+      "transport": "streamableHttp",
+      "mode": "trusted_confirmed"
+    }
+  }
+}
+```
+
+风险策略：
+
+| Profile | 低风险工具 | 高风险确认后工具 |
+|---|---|---|
+| Computer Use | 桌面/浏览器/终端状态读取、截图观察 | 终端执行、点击、键盘、剪贴板写入、PTY、workflow |
+| Twitter | `search`、`refresh-timeline`、`get-my-profile` | 发帖、点赞、转发、登录、保存 session |
+| Minecraft | `get_state`、`get_logs`、`get_last_prompt`、`get_llm_trace` | `inject_chat`、`inject_event`、`execute_repl` |
+
+QQ 普通用户即使能触发 Agent，也只会走 `low_risk`；ROOT/Super/`agent_tool_allowlist` 用户需要确认后才会让高风险 MCP 工具进入 `trusted_confirmed`。`ToolRegistry.prepare_call()` 会在工具调用前再次拦截。
+
+### xiaomiaoVirtual 低风险工具
+
+当前已接入两个来自仓库 `tool/` 目录的低风险工具：
+
+| 工具 | 来源 | 边界 |
+|---|---|---|
+| `markitdown_convert` | `tool/markitdown` | 只读 workspace 内本地文件；拒绝 URI 和 workspace 外路径 |
+| `scrapling_get` | `tool/Scrapling` | 只允许公网 `http/https` GET；阻断 localhost/private/link-local/metadata；不开放浏览器、session、cookies、proxy、CDP |
+
+详细解析见 `../../docs/tool-directory-analysis.md`。
+
 ## 安全
 
 > [!TIP]

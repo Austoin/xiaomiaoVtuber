@@ -219,6 +219,210 @@ class MCPServerConfig(Base):
     enabled_tools: list[str] = Field(default_factory=lambda: ["*"])  # Only register these tools; accepts raw MCP names or wrapped mcp_<server>_<tool> names; ["*"] = all tools; [] = no tools
 
 
+COMPUTER_USE_LOW_RISK_TOOLS: tuple[str, ...] = (
+    "desktop_get_capabilities",
+    "desktop_get_state",
+    "desktop_list_pending_actions",
+    "desktop_observe_windows",
+    "desktop_screenshot",
+    "terminal_get_state",
+    "browser_dom_get_active_tab",
+    "browser_dom_get_bridge_status",
+    "browser_dom_read_input_value",
+    "browser_dom_read_page",
+    "browser_dom_get_element_attributes",
+    "browser_dom_get_computed_styles",
+    "browser_dom_wait_for_element",
+    "browser_dom_find_elements",
+    "tool_directory",
+    "tool_search",
+)
+
+COMPUTER_USE_CONFIRMED_TOOLS: tuple[str, ...] = (
+    *COMPUTER_USE_LOW_RISK_TOOLS,
+    "desktop_approve_pending_action",
+    "desktop_click",
+    "desktop_click_target",
+    "desktop_ensure_chrome",
+    "desktop_focus_app",
+    "desktop_open_app",
+    "desktop_press_keys",
+    "desktop_reject_pending_action",
+    "desktop_scroll",
+    "desktop_type_text",
+    "desktop_wait",
+    "terminal_exec",
+    "terminal_reset_state",
+    "clipboard_read_text",
+    "clipboard_write_text",
+    "browser_dom_check_checkbox",
+    "browser_dom_click",
+    "browser_dom_select_option",
+    "browser_dom_set_input_value",
+    "browser_dom_trigger_event",
+    "browser_agent_get_status",
+    "browser_agent_run",
+    "pty_create",
+    "pty_destroy",
+    "pty_destroy_session",
+    "pty_read_screen",
+    "pty_send_input",
+    "pty_wait_for_output",
+    "workflow_browse_and_act",
+    "workflow_inspect_failure",
+    "workflow_open_workspace",
+    "workflow_resume",
+    "workflow_run_tests",
+    "workflow_switch_lane",
+    "workflow_validate_workspace",
+)
+
+
+TWITTER_LOW_RISK_TOOLS: tuple[str, ...] = (
+    "search",
+    "refresh-timeline",
+    "get-my-profile",
+)
+
+TWITTER_CONFIRMED_TOOLS: tuple[str, ...] = (
+    *TWITTER_LOW_RISK_TOOLS,
+    "login",
+    "post-tweet",
+    "like-tweet",
+    "retweet",
+    "save-session",
+)
+
+MINECRAFT_LOW_RISK_TOOLS: tuple[str, ...] = (
+    "get_state",
+    "get_last_prompt",
+    "get_logs",
+    "get_llm_trace",
+)
+
+MINECRAFT_CONFIRMED_TOOLS: tuple[str, ...] = (
+    *MINECRAFT_LOW_RISK_TOOLS,
+    "execute_repl",
+    "inject_chat",
+    "inject_event",
+)
+
+
+class ComputerUseMCPProfileConfig(Base):
+    """Optional safe MCP profile for xiaomiaobot computer-use-mcp.
+
+    The profile is opt-in. When enabled it creates a named MCP stdio server
+    with an explicit allowlist instead of exposing every Computer Use tool.
+    QQ low-risk requests are still filtered by ToolRegistry; confirmed users
+    can see the broader enabled set after the QQ confirmation layer promotes
+    the request to trusted_confirmed.
+    """
+
+    enable: bool = False
+    server_name: str = "computer_use"
+    command: str = "pnpm"
+    args: list[str] = Field(
+        default_factory=lambda: ["-F", "@proj-airi/computer-use-mcp", "start"]
+    )
+    env: dict[str, str] = Field(default_factory=dict)
+    tool_timeout: int = 30
+    mode: Literal["low_risk", "trusted_confirmed"] = "trusted_confirmed"
+    extra_enabled_tools: list[str] = Field(default_factory=list)
+
+    def enabled_tool_names(self) -> list[str]:
+        base = (
+            COMPUTER_USE_LOW_RISK_TOOLS
+            if self.mode == "low_risk"
+            else COMPUTER_USE_CONFIRMED_TOOLS
+        )
+        return _dedupe_tool_names([*base, *self.extra_enabled_tools])
+
+    def build_server_config(self) -> MCPServerConfig:
+        return MCPServerConfig(
+            type="stdio",
+            command=self.command,
+            args=list(self.args),
+            env=dict(self.env),
+            tool_timeout=self.tool_timeout,
+            enabled_tools=self.enabled_tool_names(),
+        )
+
+
+class TwitterMCPProfileConfig(Base):
+    """Optional safe MCP profile for xiaomiaobot Twitter service.
+
+    This profile connects to an already-running local Twitter MCP service.
+    It is opt-in and always uses an explicit allowlist, so enabling the
+    profile never exposes every Twitter tool by accident.
+    """
+
+    enable: bool = False
+    server_name: str = "twitter"
+    url: str = "http://127.0.0.1:8080/sse"
+    headers: dict[str, str] = Field(default_factory=dict)
+    tool_timeout: int = 30
+    mode: Literal["low_risk", "trusted_confirmed"] = "trusted_confirmed"
+    extra_enabled_tools: list[str] = Field(default_factory=list)
+
+    def enabled_tool_names(self) -> list[str]:
+        base = (
+            TWITTER_LOW_RISK_TOOLS
+            if self.mode == "low_risk"
+            else TWITTER_CONFIRMED_TOOLS
+        )
+        return _dedupe_tool_names([*base, *self.extra_enabled_tools])
+
+    def build_server_config(self) -> MCPServerConfig:
+        return MCPServerConfig(
+            type="sse",
+            url=self.url,
+            headers=dict(self.headers),
+            tool_timeout=self.tool_timeout,
+            enabled_tools=self.enabled_tool_names(),
+        )
+
+
+class MinecraftMCPProfileConfig(Base):
+    """Optional safe MCP profile for xiaomiaobot Minecraft debug MCP."""
+
+    enable: bool = False
+    server_name: str = "minecraft"
+    url: str = "http://127.0.0.1:3001/sse"
+    headers: dict[str, str] = Field(default_factory=dict)
+    tool_timeout: int = 30
+    mode: Literal["low_risk", "trusted_confirmed"] = "trusted_confirmed"
+    extra_enabled_tools: list[str] = Field(default_factory=list)
+    transport: Literal["sse", "streamableHttp"] = "streamableHttp"
+
+    def enabled_tool_names(self) -> list[str]:
+        base = (
+            MINECRAFT_LOW_RISK_TOOLS
+            if self.mode == "low_risk"
+            else MINECRAFT_CONFIRMED_TOOLS
+        )
+        return _dedupe_tool_names([*base, *self.extra_enabled_tools])
+
+    def build_server_config(self) -> MCPServerConfig:
+        return MCPServerConfig(
+            type=self.transport,
+            url=self.url,
+            headers=dict(self.headers),
+            tool_timeout=self.tool_timeout,
+            enabled_tools=self.enabled_tool_names(),
+        )
+
+
+def _dedupe_tool_names(names: list[str]) -> list[str]:
+    seen: set[str] = set()
+    out: list[str] = []
+    for name in names:
+        if name in seen:
+            continue
+        seen.add(name)
+        out.append(name)
+    return out
+
+
 def _lazy_default(module_path: str, class_name: str) -> Any:
     """Deferred import helper for ToolsConfig default factories."""
     import importlib
@@ -242,7 +446,17 @@ class ToolsConfig(Base):
     )
     restrict_to_workspace: bool = False  # restrict all tool access to workspace directory
     mcp_servers: dict[str, MCPServerConfig] = Field(default_factory=dict)
+    computer_use_mcp: ComputerUseMCPProfileConfig = Field(default_factory=ComputerUseMCPProfileConfig)
+    twitter_mcp: TwitterMCPProfileConfig = Field(default_factory=TwitterMCPProfileConfig)
+    minecraft_mcp: MinecraftMCPProfileConfig = Field(default_factory=MinecraftMCPProfileConfig)
     ssrf_whitelist: list[str] = Field(default_factory=list)  # CIDR ranges to exempt from SSRF blocking (e.g. ["100.64.0.0/10"] for Tailscale)
+
+    def effective_mcp_servers(self) -> dict[str, MCPServerConfig]:
+        servers = dict(self.mcp_servers)
+        for profile in (self.computer_use_mcp, self.twitter_mcp, self.minecraft_mcp):
+            if profile.enable:
+                servers[profile.server_name] = profile.build_server_config()
+        return servers
 
 
 class Config(BaseSettings):

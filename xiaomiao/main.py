@@ -29,9 +29,9 @@ from console_output import configure_console_output
 from agent_backend import (
     XiaomiaoAgentRequest,
     load_xiaomiao_agent_config,
-    reply_with_xiaomiao_agent,
+    request_xiaomiao_agent,
 )
-from desktop_bridge import publish_bridge_exchange, start_desktop_bridge_server
+from desktop_bridge import publish_bridge_event, publish_bridge_exchange, start_desktop_bridge_server
 from qq_agent_bridge import (
     QQ_AGENT_GROUP,
     QQ_AGENT_PRIVATE,
@@ -41,7 +41,8 @@ from qq_agent_bridge import (
     publish_qq_agent_reply,
     resolve_qq_image_url,
 )
-from qq_permissions import has_manage_permission
+from qq_agent_tools import AgentToolConfirmationStore, decide_agent_tool_request
+from qq_permissions import has_agent_tool_permission, has_manage_permission
 
 # import framework
 Configurator.cm = Configurator.ConfigManager(
@@ -76,6 +77,7 @@ emoji_send_count: datetime = None
 generating = False
 bridge_server = None
 bridge_lock = threading.Lock()
+agent_tool_confirmations = AgentToolConfirmationStore()
 RUNTIME_DIR = "runtime"
 SUPER_USER_FILE = os.path.join(RUNTIME_DIR, "Super_User.ini")
 MANAGE_USER_FILE = os.path.join(RUNTIME_DIR, "Manage_User.ini")
@@ -129,6 +131,11 @@ Manage_User: list = []
 sisters: list = []
 jhq: list = []
 programmers: list = []
+
+
+def get_agent_tool_allowlist() -> list:
+    allowlist = Configurator.cm.get_cfg().others.get("agent_tool_allowlist", [])
+    return allowlist if isinstance(allowlist, list) else []
 
 
 def load_blacklist():
@@ -204,9 +211,31 @@ def generate_agent_reply(
     chat_id: str,
     text: str,
     media: tuple[str, ...] = (),
+    tool_policy: str | None = None,
+    confirmation_id: str | None = None,
 ) -> str:
+    return generate_agent_response(
+        user_id,
+        channel,
+        chat_id,
+        text,
+        media,
+        tool_policy=tool_policy,
+        confirmation_id=confirmation_id,
+    ).assistant_text.rstrip("\n")
+
+
+def generate_agent_response(
+    user_id: int,
+    channel: str,
+    chat_id: str,
+    text: str,
+    media: tuple[str, ...] = (),
+    tool_policy: str | None = None,
+    confirmation_id: str | None = None,
+):
     agent_config = load_xiaomiao_agent_config(Configurator.cm.get_cfg().others)
-    return reply_with_xiaomiao_agent(
+    return request_xiaomiao_agent(
         agent_config,
         XiaomiaoAgentRequest(
             user_id=user_id,
@@ -214,8 +243,73 @@ def generate_agent_reply(
             chat_id=chat_id,
             text=text,
             media=media,
+            tool_policy=tool_policy,
+            confirmation_id=confirmation_id,
         ),
-    ).rstrip("\n")
+    )
+
+
+def build_authorized_qq_agent_reply(
+    *,
+    source: str,
+    user_id: int,
+    chat_id: int | str,
+    text: str,
+    media: tuple[str, ...] = (),
+):
+    decision = decide_agent_tool_request(
+        text=text,
+        user_id=user_id,
+        chat_id=chat_id,
+        has_tool_permission=has_agent_tool_permission(
+            user_id,
+            agent_tool_allowlist=get_agent_tool_allowlist(),
+            super_users=Super_User,
+            root_users=ROOT_User,
+        ),
+        confirmation_store=agent_tool_confirmations,
+    )
+    if not decision.allowed:
+        publish_bridge_event(
+            source=source,
+            channel=source,
+            chat_id=str(chat_id),
+            user_id=user_id,
+            role="assistant",
+            content=decision.message,
+            event_type="confirmation_requested" if decision.pending_request else "tool_error",
+            risk_level=decision.pending_request.risk_level if decision.pending_request else "high",
+            confirmation_id=(
+                decision.pending_request.confirmation_id if decision.pending_request else None
+            ),
+            result_summary=decision.message,
+        )
+        return None, decision.message
+
+    agent_text = decision.pending_request.text if decision.pending_request else text
+
+    def reply_callback(uid, channel, cid, turn_text, turn_media=()):
+        return generate_agent_response(
+            uid,
+            channel,
+            cid,
+            turn_text,
+            turn_media,
+            tool_policy=decision.tool_policy,
+            confirmation_id=decision.confirmation_id,
+        )
+
+    return (
+        build_qq_agent_reply(
+            source=source,
+            user_id=user_id,
+            chat_id=chat_id,
+            text=agent_text,
+            media=media,
+            reply_callback=reply_callback,
+        ),
+        None,
+    )
 
 
 async def image_url_to_agent_media(url: str) -> str | None:
@@ -2230,23 +2324,31 @@ CPU 使用率：{str(system_info["cpu_usage"]) + "%"}
                                         new.append(Parts.Text("[表情包下载失败]"))
 
                             new = Roles.User(*new)
-                            agent_reply = build_qq_agent_reply(
+                            agent_reply, blocked_message = build_authorized_qq_agent_reply(
                                 source=QQ_AGENT_GROUP,
                                 user_id=event.user_id,
                                 chat_id=event.group_id,
                                 text=order or user_message,
                                 media=tuple(media),
-                                reply_callback=generate_agent_reply,
                             )
 
                         case "Normal" | "Net":
-                            agent_reply = build_qq_agent_reply(
+                            agent_reply, blocked_message = build_authorized_qq_agent_reply(
                                 source=QQ_AGENT_GROUP,
                                 user_id=event.user_id,
                                 chat_id=event.group_id,
                                 text=order or user_message,
-                                reply_callback=generate_agent_reply,
                             )
+
+                    if blocked_message:
+                        await actions.send(
+                            group_id=event.group_id,
+                            message=Manager.Message(
+                                Segments.Reply(event.message_id),
+                                Segments.Text(blocked_message),
+                            ),
+                        )
+                        return
 
                     await actions.send(
                         group_id=event.group_id,
@@ -2255,7 +2357,11 @@ CPU 使用率：{str(system_info["cpu_usage"]) + "%"}
                             Segments.Text(agent_reply.assistant_text),
                         ),
                     )
-                    publish_qq_agent_reply(agent_reply, publish_bridge_exchange)
+                    publish_qq_agent_reply(
+                        agent_reply,
+                        publish_bridge_exchange,
+                        publish_bridge_event,
+                    )
 
                 except UnboundLocalError:
                     await actions.send(
@@ -2810,29 +2916,38 @@ Made by SR Studio
                                     new.append(Parts.Text("[表情包下载失败]"))
 
                         new = Roles.User(*new)
-                        agent_reply = build_qq_agent_reply(
+                        agent_reply, blocked_message = build_authorized_qq_agent_reply(
                             source=QQ_AGENT_PRIVATE,
                             user_id=event.user_id,
                             chat_id=event.user_id,
                             text=order or user_message,
                             media=tuple(media),
-                            reply_callback=generate_agent_reply,
                         )
 
                     case "Normal" | "Net":
-                        agent_reply = build_qq_agent_reply(
+                        agent_reply, blocked_message = build_authorized_qq_agent_reply(
                             source=QQ_AGENT_PRIVATE,
                             user_id=event.user_id,
                             chat_id=event.user_id,
                             text=order or user_message,
-                            reply_callback=generate_agent_reply,
                         )
+
+                if blocked_message:
+                    await actions.send(
+                        user_id=event.user_id,
+                        message=Manager.Message(Segments.Text(blocked_message)),
+                    )
+                    return
 
                 await actions.send(
                     user_id=event.user_id,
                     message=Manager.Message(Segments.Text(agent_reply.assistant_text)),
                 )
-                publish_qq_agent_reply(agent_reply, publish_bridge_exchange)
+                publish_qq_agent_reply(
+                    agent_reply,
+                    publish_bridge_exchange,
+                    publish_bridge_event,
+                )
 
             except UnboundLocalError:
                 await actions.send(

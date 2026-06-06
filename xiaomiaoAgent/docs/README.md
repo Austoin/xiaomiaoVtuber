@@ -6,6 +6,24 @@
 
 本目录中的页面会跟随当前仓库更新，可能比已发布的网站文档更新更快。
 
+## xiaomiaoVirtual 集成状态
+
+当前仓库内的 xiaomiaoAgent 已作为 `xiaomiaoVirtual` 的统一能力层运行：
+
+- QQ 群/私聊普通 AI 回复、stage-web 输入、desktop bridge 和 WebUI 共享 `xiaomiao-unified` 会话。
+- QQ 请求会携带 `channel/chat_id/user_id/session_id/tool_policy/confirmation_id` 等元数据。
+- 普通 QQ 用户默认 `low_risk`；ROOT/Super/`agent_tool_allowlist` 用户高风险动作需要确认后才会进入 `trusted_confirmed`。
+- 已接入低风险工具 `markitdown_convert`、`scrapling_get`。
+- 已提供 Computer Use、Twitter、Minecraft opt-in MCP 安全 profile，默认关闭，启用后按低风险/确认策略暴露。
+- stage-web、stage-tamagotchi 和 stage-pocket 已能消费第一批 bridge events；stage-pocket 当前是只读同步。
+
+相关项目文档：
+
+- `../../docs/STARTUP.md`
+- `../../docs/tool-directory-analysis.md`
+- `../../docs/plans/2026-06-06-qq-agent-xiaomiaobot-capability-integration.md`
+- `../../docs/plans/2026-06-06-project-deep-analysis-and-qq-agent-gap-audit.md`
+
 ## 核心文档
 
 如果你要安装、日常使用或部署 xiaomiaoAgent，请从这里开始。

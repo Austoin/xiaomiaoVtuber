@@ -66,6 +66,34 @@ xiaomiaoAgent OpenAI-compatible API
 
 如果 xiaomiaoAgent API 未启动，`xiaomiao` bridge 会返回明确 HTTP 502 错误；`stage-web` 会把错误写入聊天历史，不会静默回退到 xiaomiaobot provider。Web 端会通过 bridge events 读取含 Web 已确认消息的记录，用于刷新后的三端消息同步。
 
+QQ Agent 工具请求会额外传递权限元数据：
+
+```json
+{
+  "channel": "qq-group",
+  "chat_id": "10001",
+  "user_id": "3554978979",
+  "session_id": "xiaomiao-unified",
+  "tool_policy": "low_risk|trusted_pending|trusted_confirmed",
+  "confirmation_id": "ABC123"
+}
+```
+
+`low_risk` 和 `trusted_pending` 只暴露低风险工具；`trusted_confirmed` 才暴露 `exec`、写文件、高风险 MCP 和外部服务写操作。即使模型从历史上下文中伪造高风险工具调用，`ToolRegistry.prepare_call()` 仍会二次拦截。
+
+QQ 中文记忆命令会转发到内置 slash command：
+
+| QQ 命令 | Agent 命令 |
+|---|---|
+| `记忆状态` | `/status` |
+| `整理记忆` | `/dream` |
+| `记忆日志` | `/dream-log` |
+| `恢复记忆` | `/dream-restore` |
+| `新会话` | `/new` |
+| `停止任务` | `/stop` |
+
+API 响应中的工具事件摘要会进入 `xiaomiao_tool_events`，供 QQ 回复和 bridge events 展示。stage-pocket 当前同步这些事件为只读聊天历史。
+
 ## 行为
 
 - 会话隔离：在请求体中传入 `"session_id"` 可隔离对话；省略时使用共享默认会话（`api:default`）。
@@ -73,6 +101,7 @@ xiaomiaoAgent OpenAI-compatible API
 - 固定模型：省略 `model`，或传入与 `/v1/models` 显示相同的模型。
 - 流式输出：设置 `stream=true` 可接收 Server-Sent Events（`text/event-stream`），返回 OpenAI 兼容的 delta chunk，并以 `data: [DONE]` 结束；省略或设置 `stream=false` 时返回单个 JSON 响应。
 - **文件上传**：支持通过 JSON base64 或 `multipart/form-data` 上传图片、PDF、Word（.docx）、Excel（.xlsx）、PowerPoint（.pptx），单文件最大 10MB。
+- **工具策略**：`tool_policy` 为 xiaomiaoVirtual/QQ 网关扩展字段，普通 API 客户端不应依赖用户文本控制它。
 - API 请求运行在合成的 `api` 通道中，因此 `message` 工具**不会**自动投递到 Telegram、Discord 等平台。若要主动发送到其他聊天，请调用 `message`，并显式传入已启用通道的 `channel` 和 `chat_id`。
 
 API 会话中跨通道投递的工具调用示例：

@@ -112,6 +112,10 @@ def test_low_risk_policy_exposes_only_safe_tools() -> None:
     registry.register(_FakeTool("write_file"))
     registry.register(_FakeTool("exec"))
     registry.register(_FakeTool("mcp_server_tool"))
+    registry.register(_FakeTool("markitdown_convert"))
+    registry.register(_FakeTool("scrapling_get"))
+    registry.register(_FakeTool("xiaomiaobot_status"))
+    registry.register(_FakeTool("xiaomiaobot_action"))
 
     registry.set_context(
         RequestContext(
@@ -121,7 +125,13 @@ def test_low_risk_policy_exposes_only_safe_tools() -> None:
         )
     )
 
-    assert _tool_names(registry.get_definitions()) == ["grep", "read_file"]
+    assert _tool_names(registry.get_definitions()) == [
+        "grep",
+        "markitdown_convert",
+        "read_file",
+        "scrapling_get",
+        "xiaomiaobot_status",
+    ]
 
 
 def test_low_risk_policy_blocks_hidden_tool_execution() -> None:
@@ -143,3 +153,137 @@ def test_low_risk_policy_blocks_hidden_tool_execution() -> None:
     assert params == {}
     assert error is not None
     assert "blocked by channel policy" in error
+
+
+def test_trusted_pending_policy_keeps_high_risk_tools_hidden() -> None:
+    from nanobot.agent.tools.context import RequestContext
+
+    registry = ToolRegistry()
+    registry.register(_FakeTool("read_file"))
+    registry.register(_FakeTool("exec"))
+    registry.register(_FakeTool("write_file"))
+    registry.register(_FakeTool("mcp_computer_use"))
+
+    registry.set_context(
+        RequestContext(
+            channel="qq-group",
+            chat_id="10001",
+            metadata={"channel_policy": "trusted_pending"},
+        )
+    )
+
+    assert _tool_names(registry.get_definitions()) == ["read_file"]
+
+    tool, params, error = registry.prepare_call("exec", {"command": "dir"})
+
+    assert tool is None
+    assert params == {"command": "dir"}
+    assert error is not None
+    assert "blocked by channel policy" in error
+
+
+def test_restricted_policy_allows_only_explicit_low_risk_mcp_tools() -> None:
+    from nanobot.agent.tools.context import RequestContext
+
+    registry = ToolRegistry()
+    registry.register(_FakeTool("mcp_computer_use_desktop_get_capabilities"))
+    registry.register(_FakeTool("mcp_computer_use_desktop_get_state"))
+    registry.register(_FakeTool("mcp_computer_use_desktop_list_pending_actions"))
+    registry.register(_FakeTool("mcp_computer_use_desktop_screenshot"))
+    registry.register(_FakeTool("mcp_computer_use_terminal_get_state"))
+    registry.register(_FakeTool("mcp_computer_use_terminal_exec"))
+    registry.register(_FakeTool("mcp_computer_use_desktop_click"))
+    registry.register(_FakeTool("mcp_computer_use_browser_dom_get_active_tab"))
+    registry.register(_FakeTool("mcp_computer_use_browser_dom_read_page"))
+    registry.register(_FakeTool("mcp_computer_use_browser_dom_click"))
+    registry.register(_FakeTool("mcp_computer_use_clipboard_read_text"))
+    registry.register(_FakeTool("mcp_twitter_search_tweets"))
+    registry.register(_FakeTool("mcp_twitter_search"))
+    registry.register(_FakeTool("mcp_twitter_refresh-timeline"))
+    registry.register(_FakeTool("mcp_twitter_get-my-profile"))
+    registry.register(_FakeTool("mcp_twitter_post_tweet"))
+    registry.register(_FakeTool("mcp_twitter_post-tweet"))
+    registry.register(_FakeTool("mcp_twitter_like-tweet"))
+    registry.register(_FakeTool("mcp_minecraft_get_state"))
+    registry.register(_FakeTool("mcp_minecraft_get_logs"))
+    registry.register(_FakeTool("mcp_minecraft_get_last_prompt"))
+    registry.register(_FakeTool("mcp_minecraft_get_llm_trace"))
+    registry.register(_FakeTool("mcp_minecraft_inject_chat"))
+    registry.register(_FakeTool("mcp_minecraft_execute_repl"))
+
+    registry.set_context(
+        RequestContext(
+            channel="qq-group",
+            chat_id="10001",
+            metadata={"channel_policy": "low_risk"},
+        )
+    )
+
+    assert _tool_names(registry.get_definitions()) == [
+        "mcp_computer_use_browser_dom_get_active_tab",
+        "mcp_computer_use_browser_dom_read_page",
+        "mcp_computer_use_desktop_get_capabilities",
+        "mcp_computer_use_desktop_get_state",
+        "mcp_computer_use_desktop_list_pending_actions",
+        "mcp_computer_use_desktop_screenshot",
+        "mcp_computer_use_terminal_get_state",
+        "mcp_minecraft_get_last_prompt",
+        "mcp_minecraft_get_llm_trace",
+        "mcp_minecraft_get_logs",
+        "mcp_minecraft_get_state",
+        "mcp_twitter_get-my-profile",
+        "mcp_twitter_refresh-timeline",
+        "mcp_twitter_search",
+        "mcp_twitter_search_tweets",
+    ]
+
+    for tool_name in [
+        "mcp_computer_use_terminal_exec",
+        "mcp_computer_use_desktop_click",
+        "mcp_computer_use_browser_dom_click",
+        "mcp_computer_use_clipboard_read_text",
+        "mcp_twitter_post_tweet",
+        "mcp_twitter_post-tweet",
+        "mcp_twitter_like-tweet",
+        "mcp_minecraft_inject_chat",
+        "mcp_minecraft_execute_repl",
+    ]:
+        tool, params, error = registry.prepare_call(tool_name, {})
+        assert tool is None
+        assert params == {}
+        assert error is not None
+        assert "blocked by channel policy" in error
+
+
+def test_trusted_confirmed_policy_exposes_high_risk_tools() -> None:
+    from nanobot.agent.tools.context import RequestContext
+
+    registry = ToolRegistry()
+    registry.register(_FakeTool("read_file"))
+    registry.register(_FakeTool("exec"))
+    registry.register(_FakeTool("write_file"))
+    registry.register(_FakeTool("mcp_computer_use"))
+
+    registry.set_context(
+        RequestContext(
+            channel="qq-group",
+            chat_id="10001",
+            metadata={
+                "channel_policy": "trusted_confirmed",
+                "confirmation_id": "ABC123",
+            },
+        )
+    )
+
+    assert _tool_names(registry.get_definitions()) == [
+        "exec",
+        "read_file",
+        "write_file",
+        "mcp_computer_use",
+    ]
+
+    tool, params, error = registry.prepare_call("exec", {"command": "dir"})
+
+    assert tool is not None
+    assert params == {"command": "dir"}
+    assert error is None

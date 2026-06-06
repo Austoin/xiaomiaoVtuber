@@ -7,13 +7,65 @@ from nanobot.agent.tools.context import RequestContext
 
 
 LOW_RISK_CHANNEL_POLICY = "low_risk"
+TRUSTED_PENDING_TOOL_POLICY = "trusted_pending"
+TRUSTED_CONFIRMED_TOOL_POLICY = "trusted_confirmed"
+RESTRICTED_TOOL_POLICIES = frozenset({
+    LOW_RISK_CHANNEL_POLICY,
+    TRUSTED_PENDING_TOOL_POLICY,
+})
 LOW_RISK_ALLOWED_TOOLS = frozenset({
     "read_file",
     "list_dir",
     "grep",
     "glob",
+    "markitdown_convert",
+    "scrapling_get",
     "web_search",
     "web_fetch",
+    "xiaomiaobot_status",
+})
+LOW_RISK_MCP_TOOL_SUFFIXES = frozenset({
+    "browser_cdp_status",
+    "browser_dom_find_elements",
+    "browser_dom_get_active_tab",
+    "browser_dom_get_bridge_status",
+    "browser_dom_get_computed_styles",
+    "browser_dom_get_element_attributes",
+    "browser_dom_read_input_value",
+    "browser_dom_read_page",
+    "browser_dom_wait_for_element",
+    "desktop_get_capabilities",
+    "desktop_get_session_trace",
+    "desktop_get_state",
+    "desktop_list_pending_actions",
+    "desktop_observe_windows",
+    "desktop_screenshot",
+    "desktop_wait",
+    "get_last_prompt",
+    "get_llm_trace",
+    "get_logs",
+    "get_my_profile",
+    "get_profile",
+    "get_state",
+    "get_status",
+    "get_timeline",
+    "get_tweet",
+    "list",
+    "list_tabs",
+    "list_windows",
+    "read_profile",
+    "read_page",
+    "read_tweet",
+    "refresh-timeline",
+    "refresh_timeline",
+    "screenshot",
+    "search",
+    "search_tweets",
+    "get-my-profile",
+    "status",
+    "terminal_get_state",
+    "tool_directory",
+    "tool_search",
 })
 
 
@@ -64,9 +116,9 @@ class ToolRegistry:
 
     def _is_tool_allowed(self, name: str) -> bool:
         policy = self._active_policy()
-        if policy != LOW_RISK_CHANNEL_POLICY:
+        if policy not in RESTRICTED_TOOL_POLICIES:
             return True
-        return name in LOW_RISK_ALLOWED_TOOLS
+        return name in LOW_RISK_ALLOWED_TOOLS or _is_low_risk_mcp_tool(name)
 
     def _active_policy(self) -> str:
         if self._request_context is not None:
@@ -105,7 +157,7 @@ class ToolRegistry:
             mcp_tools.sort(key=self._schema_name)
             self._cached_definitions = builtins + mcp_tools
 
-        if self._active_policy() != LOW_RISK_CHANNEL_POLICY:
+        if self._active_policy() not in RESTRICTED_TOOL_POLICIES:
             return self._cached_definitions
 
         return [
@@ -168,3 +220,20 @@ class ToolRegistry:
 
     def __contains__(self, name: str) -> bool:
         return name in self._tools
+
+
+def _is_low_risk_mcp_tool(name: str) -> bool:
+    if not name.startswith("mcp_"):
+        return False
+
+    for suffix in LOW_RISK_MCP_TOOL_SUFFIXES:
+        if name == f"mcp_{suffix}" or name.endswith(f"_{suffix}"):
+            return True
+
+    parts = name.split("_")
+    for index in range(1, len(parts)):
+        candidate = "_".join(parts[index:])
+        if candidate in LOW_RISK_MCP_TOOL_SUFFIXES:
+            return True
+
+    return False

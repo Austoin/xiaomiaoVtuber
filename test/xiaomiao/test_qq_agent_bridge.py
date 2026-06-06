@@ -1,7 +1,9 @@
 import asyncio
 import sys
 import unittest
+from dataclasses import dataclass
 from pathlib import Path
+from typing import Any
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "xiaomiao"))
 
@@ -12,6 +14,7 @@ from qq_agent_bridge import (  # noqa: E402
     build_qq_agent_reply,
     get_market_face_url,
     is_qq_exact_command,
+    map_qq_memory_command,
     publish_qq_agent_reply,
     resolve_qq_image_url,
 )
@@ -59,6 +62,64 @@ class QQAgentBridgeTests(unittest.TestCase):
                     "user_id": 3554978979,
                     "user_text": "hello",
                     "assistant_text": "agent reply",
+                }
+            ],
+        )
+
+    def test_agent_tool_events_are_published_as_bridge_events(self):
+        bridge_exchanges = []
+        tool_events = []
+
+        @dataclass(frozen=True)
+        class Response:
+            assistant_text: str
+            tool_events: tuple[dict[str, Any], ...]
+
+        def reply_callback(*_args, **_kwargs):
+            return Response(
+                assistant_text="queued",
+                tool_events=(
+                    {
+                        "event_type": "tool_start",
+                        "tool_name": "xiaomiaobot_action",
+                        "risk_level": "high",
+                        "confirmation_id": "ABC123",
+                        "result_summary": "homeassistant:control",
+                    },
+                ),
+            )
+
+        result = build_qq_agent_reply(
+            source=QQ_AGENT_GROUP,
+            user_id=3554978979,
+            chat_id=10001,
+            text="打开台灯",
+            reply_callback=reply_callback,
+        )
+        publish_qq_agent_reply(
+            result,
+            lambda **kwargs: bridge_exchanges.append(kwargs),
+            lambda **kwargs: tool_events.append(kwargs),
+        )
+
+        self.assertEqual(result.assistant_text, "queued")
+        self.assertEqual(len(bridge_exchanges), 1)
+        self.assertEqual(bridge_exchanges[0]["assistant_text"], "queued")
+        self.assertEqual(
+            tool_events,
+            [
+                {
+                    "source": "qq-group",
+                    "channel": "qq-group",
+                    "chat_id": "10001",
+                    "user_id": 3554978979,
+                    "role": "assistant",
+                    "content": "homeassistant:control",
+                    "event_type": "tool_start",
+                    "tool_name": "xiaomiaobot_action",
+                    "risk_level": "high",
+                    "confirmation_id": "ABC123",
+                    "result_summary": "homeassistant:control",
                 }
             ],
         )
@@ -144,6 +205,34 @@ class QQAgentBridgeTests(unittest.TestCase):
         self.assertFalse(is_qq_exact_command(prompt, "关于"))
         self.assertFalse(is_qq_exact_command("帮助我写文件", "帮助"))
         self.assertFalse(is_qq_exact_command("读图总结这张图片", "读图"))
+
+    def test_qq_memory_command_aliases_map_to_agent_slash_commands(self):
+        self.assertEqual(map_qq_memory_command("记忆状态"), "/status")
+        self.assertEqual(map_qq_memory_command("整理记忆"), "/dream")
+        self.assertEqual(map_qq_memory_command("记忆日志"), "/dream-log")
+        self.assertEqual(map_qq_memory_command("记忆日志 abc123"), "/dream-log abc123")
+        self.assertEqual(map_qq_memory_command("恢复记忆"), "/dream-restore")
+        self.assertEqual(map_qq_memory_command("恢复记忆 abc123"), "/dream-restore abc123")
+        self.assertEqual(map_qq_memory_command("新会话"), "/new")
+        self.assertEqual(map_qq_memory_command("停止任务"), "/stop")
+
+    def test_build_qq_agent_turn_applies_memory_aliases(self):
+        calls = []
+
+        def reply_callback(user_id, channel, chat_id, text, media=()):
+            calls.append((user_id, channel, chat_id, text, media))
+            return "dreaming"
+
+        result = build_qq_agent_reply(
+            source=QQ_AGENT_GROUP,
+            user_id=3554978979,
+            chat_id=10001,
+            text="整理记忆",
+            reply_callback=reply_callback,
+        )
+
+        self.assertEqual(result.assistant_text, "dreaming")
+        self.assertEqual(calls[0][3], "/dream")
 
 
 if __name__ == "__main__":

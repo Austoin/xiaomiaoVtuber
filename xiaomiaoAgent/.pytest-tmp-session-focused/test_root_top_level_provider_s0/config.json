@@ -1,1 +1,0 @@
-{"nanobot": {"provider": "openai"}, "providers": {"openai": {"api_key": "snake-key", "base_url": "https://snake.example/v1", "model": "snake-chat"}}}

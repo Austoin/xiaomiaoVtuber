@@ -59,7 +59,7 @@ Electron 桌面版应用，是当前桌面形态的主要入口，适合本地�
 
 ### `apps/stage-pocket`
 
-移动端应用，用于承载移动场景下的 `xiaomiaoVirtual` 体验。
+移动端应用，用于承载移动场景下的 `xiaomiaoVirtual` 体验。当前已接入第一批只读 `xiaomiao` bridge events 同步，可把 chat、tool、confirmation、memory、stage events 合并到移动端聊天历史；后续仍需 bridge binding handshake、动态地址配置和专门事件 UI。
 
 ### `apps/server`
 
@@ -119,6 +119,8 @@ python main.py
 
 QQ / Web / xiaomiaoAgent WebUI 共享 `xiaomiao-unified` 会话和 bridge events。QQ 本地命令 `帮助`、`关于`、`读图` 使用精确匹配，普通问题中包含这些词时仍会进入 xiaomiaoAgent。
 
+QQ 工具请求会经过权限网关：普通用户默认只能触发 `low_risk` 工具；ROOT/Super/`agent_tool_allowlist` 用户请求本机命令、MCP 动作或外部服务写操作时，会先收到 `确认执行 <code>`，确认后才执行。
+
 ### 方式一：启动 Web 版
 
 ```powershell
@@ -132,7 +134,7 @@ pnpm dev:web
 - Web 场景预览
 - 验证 `stage-web -> xiaomiao bridge -> xiaomiaoAgent` 链路
 
-第一次打开 Web 版会先通过 bridge 读取主目录 `config.json`。配置完整时不会弹配置面板；配置缺失时填写中转站 URL、API Key 和模型后会同步写回主目录 `config.json`。bridge 不可用、xiaomiaoAgent 不可用或返回空回复时，聊天历史会出现明确 error 消息，不会静默回退到 xiaomiaobot provider。网页确认后的消息会通过 bridge events 回放，刷新页面后仍能看到三端同步记录。
+第一次打开 Web 版会先通过 bridge 读取主目录 `config.json`。配置完整时不会弹配置面板；配置缺失时填写中转站 URL、API Key 和模型后会同步写回主目录 `config.json`。bridge 不可用、xiaomiaoAgent 不可用或返回空回复时，聊天历史会出现明确 error 消息，不会静默回退到 xiaomiaobot provider。网页确认后的消息会通过 bridge events 回放，刷新页面后仍能看到三端同步记录。工具执行、确认码、记忆整理和舞台动作也会进入同一事件流。
 
 ### 方式二：启动桌面 Electron 版
 

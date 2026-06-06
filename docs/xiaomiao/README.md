@@ -450,6 +450,18 @@ systemctl start xiaomiao-bot
 | `runtime/programmers.ini` | 高级程序员模式用户 |
 | `runtime/blacklist.sr` | 黑名单 |
 
+### Agent 工具权限
+
+QQ 普通 AI 对话会进入 xiaomiaoAgent，但工具执行会额外经过 `qq_agent_tools.py` 和 `qq_permissions.py`：
+
+- 普通 QQ 用户默认只使用 `low_risk` 工具策略。
+- ROOT 用户、`runtime/Super_User.ini` 用户、`Others.agent_tool_allowlist` 用户可触发高风险工具确认。
+- 高风险动作首次只返回确认码，例如 `确认执行 ABC123`。
+- 确认码绑定用户、群、过期时间、命令摘要和风险等级；确认通过后才会向 xiaomiaoAgent 发送 `trusted_confirmed`。
+- `- runcommand <命令>` 仍是旧本地系统命令；Agent 工具确认链路与它分开，避免权限语义混淆。
+
+低风险工具包括读文件、搜索、Web 抓取、状态查询、`markitdown_convert` 和 `scrapling_get`。高风险工具包括本机 `exec`、写文件、MCP 动作、外部账号写操作和设备/游戏控制。
+
 ---
 
 ## 人设修改
@@ -576,6 +588,21 @@ class prerequisite:
 
 命令型功能、权限管理、生图、撤回、配置类命令和 `SearchOnline(...)` 分支仍保留原逻辑。
 
+QQ Agent 请求会额外传递运行时元数据：
+
+```json
+{
+  "channel": "qq-group",
+  "chat_id": "群号",
+  "user_id": "QQ号",
+  "session_id": "xiaomiao-unified",
+  "tool_policy": "low_risk|trusted_pending|trusted_confirmed",
+  "confirmation_id": "ABC123"
+}
+```
+
+`tool_policy` 只由后端权限网关生成，用户文本里伪造这些字段不会生效。xiaomiaoAgent 的 `ToolRegistry.prepare_call()` 仍会做最后一道拦截。
+
 **模型配置说明：**
 
 | 配置项 | 说明 |
@@ -634,6 +661,19 @@ class prerequisite:
 
 `帮助`、`关于`、`读图` 是精确本地命令。只有完整发送 `- 帮助`、`- 关于`、`- 读图` 时才触发；如果普通问题里包含这些词，例如 `- 在桌面agent.txt里面写入一些关于agent的知识`，会作为普通 AI 对话进入 xiaomiaoAgent。
 
+### Agent 记忆命令
+
+| 命令 | 转发命令 | 功能 |
+|------|----------|------|
+| `记忆状态` | `/status` | 查看 xiaomiaoAgent 当前状态 |
+| `整理记忆` | `/dream` | 触发 Dream 记忆整理 |
+| `记忆日志` | `/dream-log` | 查看 Dream 日志 |
+| `恢复记忆` | `/dream-restore` | 恢复记忆版本，高风险，需要确认 |
+| `新会话` | `/new` | 新建会话 |
+| `停止任务` | `/stop` | 停止当前任务 |
+
+这些命令的结果会写入 bridge events，stage-web、stage-tamagotchi 和 stage-pocket 可同步看到。
+
 ### 图片功能
 
 | 命令 | 功能 |
@@ -671,6 +711,8 @@ class prerequisite:
 | `- 注销` | 清空对话上下文 |
 | `- 核验 <QQ号>` | 查询用户信息 |
 | `- runcommand <命令>` | 执行系统命令 |
+
+需要通过 Agent 执行本机指令时，建议使用自然语言触发 Agent 工具确认链路，例如“帮我在本机执行 dir”。白名单用户首次会收到确认码；普通用户会被明确拒绝。
 
 ### 其他功能
 

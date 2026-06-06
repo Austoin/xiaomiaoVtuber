@@ -29,6 +29,10 @@ describe('xiaomiao bridge events', () => {
             content: '你好',
             timestamp: 1780399500,
             client_message_id: 'stage-web-local-1',
+            event_type: 'confirmation_requested',
+            risk_level: 'high',
+            confirmation_id: 'ABC123',
+            result_summary: '等待确认',
           }],
         })
       },
@@ -41,6 +45,10 @@ describe('xiaomiao bridge events', () => {
     expect(result.events[0].schema_version).toBe(1)
     expect(result.events[0].conversation_id).toBe('qq-private:42')
     expect(result.events[0].message_id).toBe('client:stage-web-local-1:user')
+    expect(result.events[0].event_type).toBe('confirmation_requested')
+    expect(result.events[0].risk_level).toBe('high')
+    expect(result.events[0].confirmation_id).toBe('ABC123')
+    expect(result.events[0].result_summary).toBe('等待确认')
   })
 
   it('sends client message id with chat completion requests', async () => {
@@ -125,6 +133,56 @@ describe('xiaomiao bridge events', () => {
     expect(next[1].content).toBe('刷新前的回答')
   })
 
+  it('formats confirmation and tool events without duplicating messages', () => {
+    const next = appendXiaomiaoBridgeEvents(
+      [],
+      [
+        bridgeEvent(9, 'qq-group', 'assistant', '需要确认高风险动作', undefined, {
+          event_type: 'confirmation_requested',
+          risk_level: 'high',
+          confirmation_id: 'ABC123',
+        }),
+        bridgeEvent(10, 'qq-group', 'assistant', '命令被拒绝', undefined, {
+          event_type: 'tool_error',
+          tool_name: 'exec',
+          risk_level: 'high',
+        }),
+      ],
+    )
+
+    expect(next).toHaveLength(2)
+    expect(next[0].content).toBe('[QQ群 42] [需要确认 (ABC123)] 需要确认高风险动作')
+    expect(next[1].content).toBe('[QQ群 42] [工具失败] 命令被拒绝')
+  })
+
+  it('formats structured stage action events as readable summaries', () => {
+    const next = appendXiaomiaoBridgeEvents(
+      [],
+      [
+        bridgeEvent(11, 'qq-group', 'assistant', JSON.stringify({
+          service: 'stage',
+          action: 'background',
+          payload: { id: 'builtin:cozy-tea-corner' },
+        }), undefined, {
+          event_type: 'stage_action',
+          result_summary: 'background',
+        }),
+        bridgeEvent(12, 'qq-group', 'assistant', JSON.stringify({
+          service: 'stage',
+          action: 'emotion',
+          payload: { name: 'happy', intensity: 1 },
+        }), undefined, {
+          event_type: 'stage_action',
+          result_summary: 'stage:emotion',
+        }),
+      ],
+    )
+
+    expect(next).toHaveLength(2)
+    expect(next[0].content).toBe('[QQ群 42] [舞台动作:background] 目标：builtin:cozy-tea-corner')
+    expect(next[1].content).toBe('[QQ群 42] [舞台动作:emotion] 表情：happy')
+  })
+
   it('requests bridge root config status without requiring secrets', async () => {
     const calls: string[] = []
     const result = await requestXiaomiaoBridgeConfigStatus({
@@ -183,6 +241,7 @@ function bridgeEvent(
   role: 'user' | 'assistant',
   content: string,
   clientMessageId?: string,
+  metadata: Record<string, string> = {},
 ) {
   const event = {
     id,
@@ -194,6 +253,7 @@ function bridgeEvent(
     content,
     timestamp: 1780399500 + id,
     ...(clientMessageId ? { client_message_id: clientMessageId } : {}),
+    ...metadata,
   }
   return {
     ...event,

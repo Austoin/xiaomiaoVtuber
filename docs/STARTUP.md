@@ -178,6 +178,10 @@ start-all.cmd --check
 
 QQ 本地命令 `帮助`、`关于`、`读图` 使用精确匹配。只有 `- 帮助`、`- 关于`、`- 读图` 会触发本地命令；`- 帮我写关于 agent 的知识`、`- 读图总结这张图片` 会作为普通 AI 请求进入 xiaomiaoAgent。
 
+QQ Agent 工具请求会额外经过权限网关：普通用户默认 `low_risk`，只能使用读文件、搜索、Web 抓取、状态查询、`markitdown_convert`、`scrapling_get` 等低风险能力；ROOT/Super/`agent_tool_allowlist` 用户触发高风险工具时会先收到 `确认执行 <code>`，确认后才会以 `trusted_confirmed` 调用 `exec`、写文件、MCP 动作或外部服务写操作。
+
+QQ 中文记忆命令会转发到 xiaomiaoAgent 内置命令：`记忆状态`、`整理记忆`、`记忆日志`、`恢复记忆`、`新会话`、`停止任务`。其中恢复类命令属于高风险动作，需要确认。
+
 手动启动时需要同时打开 5 到 6 个终端。
 
 ### 终端一：启动 xiaomiaoAgent OpenAI 兼容 API
@@ -468,6 +472,8 @@ xiaomiaobot stage-web 默认端口: 127.0.0.1:5175
 - TTS 语音播报。
 - Live2D 口型和表现层。
 
+`stage-pocket` 移动端已接入第一批只读 bridge event 同步，可展示 chat、tool、confirmation、memory、stage events；它暂不执行舞台动作，也还没有完成 bridge binding handshake 和动态地址配置。
+
 ## 启动验证
 
 ### 验证 xiaomiao 测试
@@ -476,14 +482,45 @@ xiaomiaobot stage-web 默认端口: 127.0.0.1:5175
 
 ```powershell
 cd F:\xiaomiaoVirtual
-conda run -n xiaomiao python -m unittest discover -s test/xiaomiao -p "test_*.py"
+python -m pytest --basetemp .pytest-tmp-xiaomiao-verify test\xiaomiao
 ```
 
 预期结果：
 
 ```text
-Ran 20 tests
-OK
+68 passed
+```
+
+### 验证 xiaomiaoAgent 测试
+
+在 `xiaomiaoAgent` 目录运行：
+
+```powershell
+cd F:\xiaomiaoVirtual\xiaomiaoAgent
+uv run --extra dev pytest --basetemp ..\.pytest-tmp-agent-verify tests\test_openai_api.py tests\tools\test_tool_registry.py tests\tools\test_tool_loader.py tests\tools\test_computer_use_mcp_profile.py tests\tools\test_markitdown_tool.py tests\tools\test_scrapling_tool.py tests\tools\test_xiaomiao_stage_tool.py tests\tools\test_xiaomiaobot_services_tool.py
+```
+
+预期结果：
+
+```text
+95 passed
+```
+
+如果 `uv` 因用户目录 cache 权限失败，说明当前 shell 权限不足；换到有权限的终端重跑同一条命令即可。
+
+### 验证 xiaomiaobot bridge events
+
+在 `xiaomiaobot` 目录运行：
+
+```powershell
+cd F:\xiaomiaoVirtual\xiaomiaobot
+pnpm exec vitest run apps/stage-pocket/src/modules/xiaomiao-bridge-events.test.ts packages/stage-ui/src/xiaomiao-bridge-events.test.ts apps/stage-tamagotchi/src/renderer/pages/xiaomiao-bridge-reaction.test.ts apps/stage-tamagotchi/src/renderer/pages/xiaomiao-bridge.test.ts
+```
+
+预期结果：
+
+```text
+4 files / 32 tests passed
 ```
 
 ### 验证桥接服务
@@ -539,6 +576,15 @@ python -m xiaomiao_agent gateway --config F:\xiaomiaoVirtual\xiaomiaoAgent\.nano
 ```
 
 再检查日志中是否出现 gateway 启动和通道加载信息。
+
+### 验证统一启动脚本
+
+```powershell
+cd F:\xiaomiaoVirtual
+cmd /c call start-all.cmd --check
+```
+
+预期看到 `Check passed. No windows were started.`。
 
 ## 常见问题
 
