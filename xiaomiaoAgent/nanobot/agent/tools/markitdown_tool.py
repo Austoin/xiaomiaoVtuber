@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import asyncio
+import os
 from pathlib import Path
 from typing import Any
 
@@ -13,6 +14,20 @@ from nanobot.agent.tools.schema import IntegerSchema, StringSchema, tool_paramet
 _DEFAULT_MAX_CHARS = 120_000
 _MAX_CHARS = 300_000
 _URI_PREFIXES = ("http:", "https:", "file:", "data:")
+
+
+def _default_resource_workspace() -> Path | None:
+    configured = os.environ.get("XIAOMIAO_RESOURCE_WORKSPACE", "").strip()
+    if configured:
+        return Path(configured).expanduser().resolve()
+
+    # Repository layout: xiaomiaoAgent/nanobot/agent/tools/markitdown_tool.py
+    # -> project root is parents[4].
+    try:
+        root_workspace = Path(__file__).resolve().parents[4] / "workspace"
+    except IndexError:
+        return None
+    return root_workspace.resolve() if root_workspace.exists() else None
 
 
 def _truncate(text: str, max_chars: int) -> tuple[str, bool]:
@@ -42,8 +57,17 @@ class MarkItDownConvertTool(Tool):
 
     _scopes = {"core", "subagent"}
 
-    def __init__(self, workspace: str | Path | None = None):
+    def __init__(
+        self,
+        workspace: str | Path | None = None,
+        extra_allowed_dirs: list[str | Path] | None = None,
+    ):
         self._workspace = Path(workspace or Path.cwd()).resolve()
+        extras = [Path(path).expanduser().resolve() for path in (extra_allowed_dirs or [])]
+        default_extra = _default_resource_workspace()
+        if default_extra is not None:
+            extras.append(default_extra)
+        self._extra_allowed_dirs = tuple(dict.fromkeys(extras))
 
     @classmethod
     def create(cls, ctx: Any) -> Tool:
@@ -57,7 +81,8 @@ class MarkItDownConvertTool(Tool):
     def description(self) -> str:
         return (
             "Convert a workspace-local file to Markdown using MarkItDown. "
-            "Only local files under the workspace are allowed; URLs and file/data URIs are blocked."
+            "Only local files under the Agent workspace or the project resource workspace are allowed; "
+            "URLs and file/data URIs are blocked."
         )
 
     @property
@@ -77,12 +102,14 @@ class MarkItDownConvertTool(Tool):
 
         limit = min(max(max_chars or _DEFAULT_MAX_CHARS, 100), _MAX_CHARS)
         try:
-            fp = _resolve_path(path, workspace=self._workspace, allowed_dir=self._workspace)
-            fp.relative_to(self._workspace)
+            fp = _resolve_path(
+                path,
+                workspace=self._workspace,
+                allowed_dir=self._workspace,
+                extra_allowed_dirs=list(self._extra_allowed_dirs),
+            )
         except PermissionError as exc:
             return f"Error: {exc}"
-        except ValueError:
-            return f"Error: Path {path} is outside allowed directory {self._workspace}"
 
         if not fp.exists():
             return f"Error: File not found: {path}"
@@ -117,7 +144,9 @@ class MarkItDownConvertTool(Tool):
         return str(markdown or "")
 
     def _display_path(self, fp: Path) -> str:
-        try:
-            return str(fp.relative_to(self._workspace))
-        except ValueError:
-            return str(fp)
+        for root in (self._workspace, *self._extra_allowed_dirs):
+            try:
+                return str(fp.relative_to(root))
+            except ValueError:
+                continue
+        return str(fp)

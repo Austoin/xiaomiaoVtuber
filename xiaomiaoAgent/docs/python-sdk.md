@@ -1,6 +1,6 @@
 # Python SDK
 
-把 xiaomiaoAgent 的 Python 主包当作库使用，不需要 CLI，不需要 gateway，只需要 Python。代码 import 仍使用内部包名 `nanobot`。
+把 xiaomiaoAgent 的 Python 主包当作库使用，不需要命令行入口，不需要网关，只需要 Python。代码 import 仍使用内部包名 `nanobot`。
 
 ## 快速开始
 
@@ -19,7 +19,7 @@ async def main() -> None:
 asyncio.run(main())
 ```
 
-`Nanobot.from_config()` 会复用常规的 `~/.nanobot/config.json`，所以除非你显式覆盖，否则 SDK 会使用与 CLI 相同的 Provider、模型、工具和工作区默认值。
+`Nanobot.from_config()` 会复用常规的 `~/.nanobot/config.json`，所以除非你显式覆盖，否则 SDK 会使用与命令行相同的提供方、模型、工具和工作区默认值。
 
 ## 常见模式
 
@@ -36,7 +36,7 @@ bot = Nanobot.from_config(
 
 ### 使用 `session_key` 隔离对话
 
-不同 session key 会保留独立的对话历史：
+不同会话键会保留独立的对话历史：
 
 ```python
 await bot.run("hi", session_key="user-alice")
@@ -91,7 +91,7 @@ result = await bot.run("Review this change", hooks=[AuditHook()])
 | `tools_used` | `list[str]` | 预留给更丰富的 SDK 自省能力；当前版本中可能为空。 |
 | `messages` | `list[dict]` | 预留给更丰富的 SDK 自省能力；当前版本中可能为空。 |
 
-## Hooks
+## 钩子
 
 hook 让你可以观察或定制 agent loop。继承 `AgentHook`，并按需覆盖对应方法。
 

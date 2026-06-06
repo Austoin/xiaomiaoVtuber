@@ -94,7 +94,7 @@ start-all.cmd --check
    python -m xiaomiao_agent serve --config F:\xiaomiaoVirtual\xiaomiaoAgent\.nanobot\config.json
    ```
 
-2. 启动 xiaomiaoAgent gateway：
+2. 启动 xiaomiaoAgent 网关：
 
    ```powershell
    cd F:\xiaomiaoVirtual\xiaomiaoAgent
@@ -133,14 +133,14 @@ start-all.cmd --check
 
 ```text
 5004  NapCat OneBot WebSocket
-5519  xiaomiao desktop bridge
-8765  xiaomiaoAgent gateway
-8900  xiaomiaoAgent OpenAI-compatible API
+5519  xiaomiao 桥接服务
+8765  xiaomiaoAgent 网关
+8900  xiaomiaoAgent OpenAI 兼容 API
 5174  xiaomiaoAgent WebUI
 5175  xiaomiaobot stage-web
 ```
 
-`stage-web` 必须走 `xiaomiao` bridge。bridge 或 xiaomiaoAgent 不可用时，网页聊天历史会显示明确错误，不会静默回退到 xiaomiaobot provider。
+`stage-web` 必须走 `xiaomiao` 桥接服务。桥接服务或 xiaomiaoAgent 不可用时，网页聊天历史会显示明确错误，不会静默回退到 xiaomiaobot 提供方。
 
 ---
 
@@ -362,20 +362,17 @@ systemctl start xiaomiao-bot
 |----------|-----------|
 | 修改 main.py 等现有文件 | 直接重新打包上传即可 |
 | 添加新的 Python 依赖 | 更新 `requirements.txt` 后打包 |
-| 添加新的文件/目录 | 修改 `deploy/pack.bat` 添加到打包列表 |
+| 添加新的文件/目录 | 修改 `deploy/pack.bat` 的 `BOT_FILES` 打包列表 |
 | 修改 config.json 结构 | 服务器上需手动更新配置或合并 |
+
+打包脚本只应包含运行 QQ Bot 必需的源码、配置模板、资源和运行目录骨架。不要把 `.git`、`.understand-anything/`、`.nanobot/`、`.cache/`、QQ 下载文件、测试缓存或本机数据库打入包；完整文件边界见 `../file-workspace-hygiene.md`。
 
 #### 添加新文件到打包列表
 
-编辑 `deploy/pack.bat`，在文件列表中添加新文件：
+编辑 `deploy/pack.bat`，把新文件或目录加入 `BOT_FILES`：
 
 ```batch
-7z a -tzip "%OUTPUT_DIR%%ZIP_NAME%" ^
-    main.py ^
-    config.json ^
-    ...
-    新文件.py ^      REM 添加新文件
-    新目录 ^         REM 添加新目录
+set "BOT_FILES=main.py ... 新文件.py 新目录"
 ```
 
 ---
@@ -461,6 +458,10 @@ QQ 普通 AI 对话会进入 xiaomiaoAgent，但工具执行会额外经过 `qq_
 - `- runcommand <命令>` 仍是旧本地系统命令；Agent 工具确认链路与它分开，避免权限语义混淆。
 
 低风险工具包括读文件、搜索、Web 抓取、状态查询、`markitdown_convert` 和 `scrapling_get`。高风险工具包括本机 `exec`、写文件、MCP 动作、外部账号写操作和设备/游戏控制。
+
+QQ 文档转换链路已经接入：群文件上传和普通 file 消息段会保存到项目根 `workspace/downloads/qq/`，随后普通 AI 请求会把 `workspace_path` 交给 xiaomiaoAgent，由 `markitdown_convert` 转 Markdown 和总结。普通 file 消息段会拒绝 localhost/private/link-local 下载地址；群上传通过 OneBot `get_group_file_url` 解析出的临时地址允许本机/private URL，以兼容 NapCat 本地文件缓存。
+
+QQ 网页抓取也已经接入低风险 Agent 工具：自然语言要求抓取或总结公网 URL 时，Agent 可调用 `scrapling_get` 抽取网页正文。浏览器渲染、stealth、cookies、proxy、CDP 和带账号状态的抓取仍不对普通用户开放。
 
 ---
 
@@ -550,7 +551,7 @@ class prerequisite:
 }
 ```
 
-### xiaomiaoAgent backend
+### xiaomiaoAgent 后端
 
 普通 AI 回复主路径现在通过主目录 `config.json` 接入 xiaomiaoAgent：
 
@@ -580,7 +581,7 @@ class prerequisite:
 
 | 配置项 | 说明 |
 |--------|------|
-| `enabled` | 是否启用统一 Agent backend，默认启用 |
+| `enabled` | 是否启用统一 Agent 后端，默认启用 |
 | `base_url` | xiaomiaoAgent OpenAI 兼容聊天接口 |
 | `model` | 可选请求模型，默认留空，由 `nanobot.model` 决定 |
 | `session_id` | 统一会话 ID，默认 `xiaomiao-unified` |
@@ -672,7 +673,7 @@ QQ Agent 请求会额外传递运行时元数据：
 | `新会话` | `/new` | 新建会话 |
 | `停止任务` | `/stop` | 停止当前任务 |
 
-这些命令的结果会写入 bridge events，stage-web、stage-tamagotchi 和 stage-pocket 可同步看到。
+这些命令的结果会写入桥接事件，stage-web、stage-tamagotchi 和 stage-pocket 可同步看到。
 
 ### 图片功能
 
@@ -728,13 +729,22 @@ QQ Agent 请求会额外传递运行时元数据：
 
 ```
 XiaoMiao_QQ_bot/
-├── main.py                 # 主程序入口，包含所有消息处理逻辑
+├── main.py                 # 主程序入口，包含 QQ 事件、命令和普通 AI 分支
+├── agent_backend.py        # xiaomiaoAgent OpenAI 兼容 API 调用封装
+├── desktop_bridge.py       # 本地桥接服务
+├── bridge_event_store.py   # 桥接事件持久化
+├── qq_agent_bridge.py      # QQ Agent 回复、图片 URL 和桥接同步辅助
+├── qq_agent_tools.py       # QQ Agent 工具权限策略、确认码和记忆命令映射
+├── qq_permissions.py       # ROOT/Super/Agent 白名单权限判断
+├── qq_workspace.py         # QQ 文件下载到工作区并交给 Agent 转 Markdown
+├── unified_config.py       # 主目录统一模型配置读取
+├── console_output.py       # 控制台输出编码和日志辅助
 ├── config.json             # 机器人配置文件
 ├── prerequisites.py        # AI 人设提示词配置
 ├── start.bat               # Windows 启动脚本
 ├── requirements.txt        # Python 依赖列表
-├── GoogleAI.py             # Gemini AI 封装（OpenAI 兼容层）
-├── SearchOnline.py         # OpenAI 对话封装
+├── GoogleAI.py             # OpenAI 兼容多模态封装
+├── SearchOnline.py         # 备用 OpenAI 对话封装
 ├── Quote.py                # 名言图片生成模块
 │
 ├── runtime/                # 运行配置文件目录
@@ -751,6 +761,7 @@ XiaoMiao_QQ_bot/
 │   ├── dict.txt            # 词典文件
 │   └── quote/mask.png      # 名言图片遮罩
 ├── temps/                  # 临时文件目录
+├── workspace/              # 平铺部署时的 QQ 文件下载和 Agent 资源工作区，运行时自动创建
 │
 └── NapCat.Shell.Windows.OneKey/  # NapCat QQ 协议框架
 ```
@@ -760,11 +771,21 @@ XiaoMiao_QQ_bot/
 | 文件 | 作用 |
 |------|------|
 | `main.py` | 主程序，处理所有 QQ 消息事件、命令解析、AI 对话、图片生成等 |
+| `agent_backend.py` | 调用 xiaomiaoAgent OpenAI 兼容 API，承接 QQ 普通 AI 回复和桥接请求 |
+| `desktop_bridge.py` | 暴露本地 OpenAI 兼容桥接、状态接口和桥接事件 |
+| `bridge_event_store.py` | 记录 chat/tool/confirmation/memory/stage 等事件，供 Web/桌面/移动端同步 |
+| `qq_agent_bridge.py` | 构造 QQ Agent 回复、同步桥接事件、处理 QQ 图片和商城表情 URL |
+| `qq_agent_tools.py` | 管理低/高风险工具策略、确认码、中文记忆命令映射 |
+| `qq_permissions.py` | 判断 ROOT、Super 和 `agent_tool_allowlist` 权限 |
+| `qq_workspace.py` | 将 QQ 群文件上传和 file 消息段保存到 `workspace/downloads/qq/`，再交给 Agent 转 Markdown |
+| `unified_config.py` | 合并主目录统一模型配置，供 QQ、桥接服务和 Agent 后端共用 |
 | `GoogleAI.py` | 封装 Gemini API，通过 OpenAI 兼容接口调用，支持多模态（图片理解） |
 | `SearchOnline.py` | 封装 OpenAI API，用于候补模型调用 |
 | `prerequisites.py` | 定义角色系统提示词（女朋友/姐姐/妈妈/高级程序员模式） |
 | `Quote.py` | 生成名言图片，将消息渲染为带头像的图片 |
 | `config.json` | 存储 QQ 连接、人设、命令和未迁移分支配置；统一模型配置在主目录 `config.json` |
+
+`workspace/` 只保存 QQ 下载文件和 Agent 资源工作区的目录骨架；真实下载文件、生成物和临时文件不提交。详细规则见 `../file-workspace-hygiene.md`。
 
 ---
 

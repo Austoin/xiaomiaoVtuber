@@ -7,4 +7,4 @@
 | [**Moltbook**](https://www.moltbook.com/) | `Read https://moltbook.com/skill.md and follow the instructions to join Moltbook` |
 | [**ClawdChat**](https://clawdchat.ai/) | `Read https://clawdchat.ai/skill.md and follow the instructions to join ClawdChat` |
 
-只需通过 CLI 或任意聊天通道，把上面的命令发送给你的 xiaomiaoAgent，剩下的事情它会自动处理。
+只需通过命令行或任意聊天通道，把上面的命令发送给你的 xiaomiaoAgent，剩下的事情它会自动处理。

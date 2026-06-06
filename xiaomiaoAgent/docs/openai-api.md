@@ -18,7 +18,7 @@ cd F:\xiaomiaoVirtual
 start-all.cmd
 ```
 
-`start-all.cmd` 会串行启动 QQ 协议端、xiaomiaoAgent API、xiaomiaoAgent gateway、xiaomiao bridge、stage-web 和 xiaomiaoAgent WebUI。新启动的终端默认最小化；前一步没有通过健康检查时，后续服务不会打开。
+`start-all.cmd` 会串行启动 QQ 协议端、xiaomiaoAgent API、xiaomiaoAgent 网关、xiaomiao 桥接服务、stage-web 和 xiaomiaoAgent WebUI。新启动的终端默认最小化；前一步没有通过健康检查时，后续服务不会打开。
 
 也可以只启动项目内 API 配置：
 
@@ -37,24 +37,24 @@ xiaomiao desktop_bridge.py
     ↓
 xiaomiao agent_backend.py
     ↓ POST http://127.0.0.1:8900/v1/chat/completions
-xiaomiaoAgent OpenAI-compatible API
+xiaomiaoAgent OpenAI 兼容 API
 
 xiaomiaoAgent WebUI
     ↓ WebSocket http://127.0.0.1:8765
-xiaomiaoAgent gateway
+xiaomiaoAgent 网关
     ↓ chat_id=xiaomiao-unified
-xiaomiaoAgent unified session
-    ↓ mirror
-xiaomiao bridge events
+xiaomiaoAgent 统一会话
+    ↓ 镜像同步
+xiaomiao 桥接事件
 
 QQ 群/私聊普通 AI 回复
     ↓
 xiaomiao generate_agent_reply()
     ↓ POST http://127.0.0.1:8900/v1/chat/completions
-xiaomiaoAgent OpenAI-compatible API
+xiaomiaoAgent OpenAI 兼容 API
 ```
 
-`xiaomiao` 默认使用统一 session：
+`xiaomiao` 默认使用统一会话：
 
 ```json
 {
@@ -62,9 +62,9 @@ xiaomiaoAgent OpenAI-compatible API
 }
 ```
 
-这会让网页、桌面 bridge 和 QQ 普通 AI 回复共享同一个 Agent 上下文。命令型 QQ 功能、权限管理、生图、撤回和配置类命令仍由 `xiaomiao` 本地逻辑处理。QQ 本地命令 `帮助`、`关于`、`读图` 使用精确匹配，普通问题中包含这些词时仍作为 AI 请求进入 xiaomiaoAgent。
+这会让网页、桌面桥接服务和 QQ 普通 AI 回复共享同一个 Agent 上下文。命令型 QQ 功能、权限管理、生图、撤回和配置类命令仍由 `xiaomiao` 本地逻辑处理。QQ 本地命令 `帮助`、`关于`、`读图` 使用精确匹配，普通问题中包含这些词时仍作为 AI 请求进入 xiaomiaoAgent。
 
-如果 xiaomiaoAgent API 未启动，`xiaomiao` bridge 会返回明确 HTTP 502 错误；`stage-web` 会把错误写入聊天历史，不会静默回退到 xiaomiaobot provider。Web 端会通过 bridge events 读取含 Web 已确认消息的记录，用于刷新后的三端消息同步。
+如果 xiaomiaoAgent API 未启动，`xiaomiao` 桥接服务会返回明确 HTTP 502 错误；`stage-web` 会把错误写入聊天历史，不会静默回退到 xiaomiaobot 提供方。Web 端会通过桥接事件读取含 Web 已确认消息的记录，用于刷新后的三端消息同步。
 
 QQ Agent 工具请求会额外传递权限元数据：
 
@@ -92,7 +92,7 @@ QQ 中文记忆命令会转发到内置 slash command：
 | `新会话` | `/new` |
 | `停止任务` | `/stop` |
 
-API 响应中的工具事件摘要会进入 `xiaomiao_tool_events`，供 QQ 回复和 bridge events 展示。stage-pocket 当前同步这些事件为只读聊天历史。
+API 响应中的工具事件摘要会进入 `xiaomiao_tool_events`，供 QQ 回复和桥接事件展示。stage-pocket 当前同步这些事件为只读聊天历史。
 
 ## 行为
 
@@ -181,7 +181,7 @@ resp = requests.post(
     "http://127.0.0.1:8900/v1/chat/completions",
     json={
         "messages": [{"role": "user", "content": "hi"}],
-        "session_id": "my-session",  # optional: isolate conversation
+        "session_id": "my-session",  # 可选：隔离对话
     },
     timeout=120,
 )
@@ -202,7 +202,7 @@ client = OpenAI(
 resp = client.chat.completions.create(
     model="MiniMax-M2.7",
     messages=[{"role": "user", "content": "hi"}],
-    extra_body={"session_id": "my-session"},  # optional: isolate conversation
+    extra_body={"session_id": "my-session"},  # 可选：隔离对话
 )
 print(resp.choices[0].message.content)
 ```

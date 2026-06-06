@@ -36,7 +36,7 @@ xiaomiao gateway --config ~/.nanobot-feishu/config.json --port 18792
 
 使用 `--config` 时，xiaomiaoAgent 会根据配置文件位置推导运行时数据目录。工作区仍来自 `agents.defaults.workspace`，除非你用 `--workspace` 覆盖它。
 
-如果要在本地打开指向某个实例的 CLI 会话：
+如果要在本地打开指向某个实例的命令行会话：
 
 ```bash
 xiaomiao agent -c ~/.nanobot-telegram/config.json -m "Hello from Telegram instance"
@@ -46,14 +46,14 @@ xiaomiao agent -c ~/.nanobot-discord/config.json -m "Hello from Discord instance
 xiaomiao agent -c ~/.nanobot-telegram/config.json -w /tmp/nanobot-telegram-test
 ```
 
-> `xiaomiao agent` 会使用所选工作区和配置启动本地 CLI agent。它不会附加到已经运行的 `xiaomiao gateway` 进程，也不会通过该进程代理。
+> `xiaomiao agent` 会使用所选工作区和配置启动本地命令行 agent。它不会附加到已经运行的 `xiaomiao gateway` 进程，也不会通过该进程代理。
 
 | 组件 | 解析来源 | 示例 |
 |-----------|---------------|---------|
-| **Config** | `--config` 路径 | `~/.nanobot-A/config.json` |
-| **Workspace** | `--workspace` 或配置 | `~/.nanobot-A/workspace/` |
-| **Cron Jobs** | 配置目录 | `~/.nanobot-A/cron/` |
-| **Media / runtime state** | 配置目录 | `~/.nanobot-A/media/` |
+| **配置** | `--config` 路径 | `~/.nanobot-A/config.json` |
+| **工作区** | `--workspace` 或配置 | `~/.nanobot-A/workspace/` |
+| **Cron 任务** | 配置目录 | `~/.nanobot-A/cron/` |
+| **媒体 / 运行时状态** | 配置目录 | `~/.nanobot-A/media/` |
 
 ## 工作原理
 
@@ -97,7 +97,7 @@ xiaomiao gateway --config ~/.nanobot-telegram/config.json
 xiaomiao gateway --config ~/.nanobot-discord/config.json
 ```
 
-每个 gateway 实例还会在 `gateway.host:gateway.port` 暴露一个轻量 HTTP 健康检查端点。默认情况下，gateway 绑定到 `127.0.0.1`，所以端点会保持本地访问，除非你显式将 `gateway.host` 设置为公网或局域网地址。
+每个网关实例还会在 `gateway.host:gateway.port` 暴露一个轻量 HTTP 健康检查端点。默认情况下，网关绑定到 `127.0.0.1`，所以端点会保持本地访问，除非你显式将 `gateway.host` 设置为公网或局域网地址。
 
 - `GET /health` 返回 `{"status":"ok"}`。
 - 其他路径返回 `404`。
@@ -112,7 +112,7 @@ xiaomiao gateway --config ~/.nanobot-telegram/config.json --workspace /tmp/nanob
 
 - 为 Telegram、Discord、飞书和其他平台运行独立 Bot。
 - 隔离测试实例和生产实例。
-- 为不同团队使用不同模型或 Provider。
+- 为不同团队使用不同模型或提供方。
 - 使用独立配置和运行时数据服务多个租户。
 
 ## 注意事项

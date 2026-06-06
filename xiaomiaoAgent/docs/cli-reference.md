@@ -1,4 +1,4 @@
-# CLI 参考
+# 命令行参考
 
 | 命令 | 说明 |
 |---------|-------------|
@@ -12,9 +12,9 @@
 | `xiaomiao agent --no-markdown` | 显示纯文本回复 |
 | `xiaomiao agent --logs` | 聊天时显示运行日志 |
 | `xiaomiao serve` | 启动 OpenAI 兼容 API |
-| `xiaomiao gateway` | 启动 gateway |
+| `xiaomiao gateway` | 启动网关 |
 | `xiaomiao status` | 显示状态 |
-| `xiaomiao provider login openai-codex` | 为 Provider 执行 OAuth 登录 |
+| `xiaomiao provider login openai-codex` | 为提供方执行 OAuth 登录 |
 | `xiaomiao channels login <channel>` | 以交互方式认证一个通道 |
 | `xiaomiao channels status` | 显示通道状态 |
 

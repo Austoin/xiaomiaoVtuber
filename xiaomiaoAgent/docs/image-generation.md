@@ -2,7 +2,7 @@
 
 xiaomiaoAgent 可以通过 `generate_image` 工具生成和编辑图像。在 WebUI 中，用户可以从输入框启用 **Image Generation**，选择宽高比，并在同一个聊天中持续迭代生成图像。
 
-该功能默认禁用。请在 `~/.nanobot/config.json` 中启用它，配置受支持的图像 Provider，然后重启 gateway。
+该功能默认禁用。请在 `~/.nanobot/config.json` 中启用它，配置受支持的图像提供方，然后重启网关。
 
 ## 快速配置
 
@@ -62,32 +62,32 @@ AIHubMix 示例：
 
 生成的图像会作为 assistant 媒体显示在聊天中。后续提示词，例如 “make it warmer”、“change the background” 或 “try a 16:9 version”，可以复用最近生成的产物。
 
-WebUI 会向用户隐藏 Provider 的存储细节。agent 会在内部看到已保存的 artifact 路径，并可以将其作为 `reference_images` 传回 `generate_image`，用于迭代编辑。
+WebUI 会向用户隐藏提供方的存储细节。agent 会在内部看到已保存的产物路径，并可以将其作为 `reference_images` 传回 `generate_image`，用于迭代编辑。
 
 ## 配置参考
 
 | 选项 | 类型 | 默认值 | 说明 |
 |--------|------|---------|-------------|
 | `tools.imageGeneration.enabled` | boolean | `false` | 注册 `generate_image` 工具 |
-| `tools.imageGeneration.provider` | string | `"openrouter"` | 图像 Provider 名称。目前支持 `openrouter` 和 `aihubmix` |
-| `tools.imageGeneration.model` | string | `"openai/gpt-5.4-image-2"` | Provider 模型名称 |
+| `tools.imageGeneration.provider` | string | `"openrouter"` | 图像提供方名称。目前支持 `openrouter` 和 `aihubmix` |
+| `tools.imageGeneration.model` | string | `"openai/gpt-5.4-image-2"` | 提供方模型名称 |
 | `tools.imageGeneration.defaultAspectRatio` | string | `"1:1"` | 当提示词或工具调用未指定宽高比时使用的默认比例 |
 | `tools.imageGeneration.defaultImageSize` | string | `"1K"` | 默认尺寸提示，例如 `1K`、`2K`、`4K` 或 `1024x1024` |
 | `tools.imageGeneration.maxImagesPerTurn` | number | `4` | 单次工具调用可接受的最大 `count`。有效范围：`1` 到 `8` |
 | `tools.imageGeneration.saveDir` | string | `"generated"` | xiaomiaoAgent 媒体目录下用于保存生成产物的相对目录 |
 
-Provider 设置复用常规 Provider 配置字段：
+提供方设置复用常规提供方配置字段：
 
 | 选项 | 说明 |
 |--------|-------------|
-| `providers.<name>.apiKey` | Provider API Key。推荐使用 `${ENV_VAR}` |
+| `providers.<name>.apiKey` | 提供方 API Key。推荐使用 `${ENV_VAR}` |
 | `providers.<name>.apiBase` | 可选的自定义 base URL |
-| `providers.<name>.extraHeaders` | 合并到 Provider 请求中的 Header |
-| `providers.<name>.extraBody` | 合并到 Provider 请求体中的额外 JSON 字段 |
+| `providers.<name>.extraHeaders` | 合并到提供方请求中的 Header |
+| `providers.<name>.extraBody` | 合并到提供方请求体中的额外 JSON 字段 |
 
 camelCase 和 snake_case 配置键都可接受，但文档使用 camelCase，以匹配 `config.json`。
 
-## Provider 说明
+## 提供方说明
 
 ### OpenRouter
 
@@ -139,7 +139,7 @@ AIHubMix 的 `gpt-image-2-free` 通过 AIHubMix 统一 predictions API 支持。
 
 `quality: low` 是可选项。它可以让免费图像模型更快，并降低超时概率，但不是正确运行所必需的。
 
-## Artifact
+## 产物
 
 生成图像会存储在当前 xiaomiaoAgent 实例的媒体目录中：
 
@@ -158,12 +158,12 @@ JSON sidecar 会保存：
 | `path` | 内部用于后续编辑的本地图像路径 |
 | `mime` | 检测到的图像 MIME 类型 |
 | `prompt` | 生成使用的提示词 |
-| `model` | Provider 模型 |
-| `provider` | Provider 名称 |
+| `model` | 提供方模型 |
+| `provider` | 提供方名称 |
 | `source_images` | 编辑时使用的参考图路径 |
 | `created_at` | 创建时间戳 |
 
-不要把 base64 图像 payload 粘贴到聊天中。除非用户明确要求调试细节，否则 agent 应该将本地 artifact 路径保留在内部。
+不要把 base64 图像 payload 粘贴到聊天中。除非用户明确要求调试细节，否则 agent 应该将本地产物路径保留在内部。
 
 ## 提示词
 
@@ -191,8 +191,8 @@ Use the reference image. Keep the same robot and composition, change the palette
 
 | 现象 | 检查项 |
 |---------|-------|
-| `generate_image` 不可用 | 将 `tools.imageGeneration.enabled` 设为 `true` 并重启 gateway |
-| 缺少 API Key 错误 | 配置 `providers.<provider>.apiKey`；如果使用 `${VAR_NAME}`，确认 gateway 进程可见该环境变量 |
+| `generate_image` 不可用 | 将 `tools.imageGeneration.enabled` 设为 `true` 并重启网关 |
+| 缺少 API Key 错误 | 配置 `providers.<provider>.apiKey`；如果使用 `${VAR_NAME}`，确认网关进程可见该环境变量 |
 | `unsupported image generation provider` | 使用 `openrouter` 或 `aihubmix` |
 | AIHubMix 报 `Incorrect model ID` | 使用 `model: "gpt-image-2-free"`；xiaomiaoAgent 内部会将其扩展为所需的 `openai/gpt-image-2-free` 模型路径 |
 | 生成超时 | 尝试更小或默认图像尺寸，将 AIHubMix `extraBody.quality` 设为 `"low"`，或稍后重试 |

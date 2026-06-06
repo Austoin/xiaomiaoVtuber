@@ -10,12 +10,12 @@
 
 当前仓库内的 xiaomiaoAgent 已作为 `xiaomiaoVirtual` 的统一能力层运行：
 
-- QQ 群/私聊普通 AI 回复、stage-web 输入、desktop bridge 和 WebUI 共享 `xiaomiao-unified` 会话。
+- QQ 群/私聊普通 AI 回复、stage-web 输入、桌面桥接服务和 WebUI 共享 `xiaomiao-unified` 会话。
 - QQ 请求会携带 `channel/chat_id/user_id/session_id/tool_policy/confirmation_id` 等元数据。
 - 普通 QQ 用户默认 `low_risk`；ROOT/Super/`agent_tool_allowlist` 用户高风险动作需要确认后才会进入 `trusted_confirmed`。
 - 已接入低风险工具 `markitdown_convert`、`scrapling_get`。
-- 已提供 Computer Use、Twitter、Minecraft opt-in MCP 安全 profile，默认关闭，启用后按低风险/确认策略暴露。
-- stage-web、stage-tamagotchi 和 stage-pocket 已能消费第一批 bridge events；stage-pocket 当前是只读同步。
+- 已提供 Computer Use、Twitter、Minecraft 显式启用 MCP 安全配置档，默认关闭，启用后按低风险/确认策略暴露。
+- stage-web、stage-tamagotchi 和 stage-pocket 已能消费第一批桥接事件；stage-pocket 当前是只读同步。
 
 相关项目文档：
 
@@ -33,10 +33,10 @@
 | 安装与快速开始 | [`quick-start.md`](./quick-start.md) | 安装、初始化和首次运行配置 |
 | 聊天应用 | [`chat-apps.md`](./chat-apps.md) | 连接 Telegram、Discord、微信等平台 |
 | Agent 社交网络 | [`agent-social-network.md`](./agent-social-network.md) | 从 xiaomiaoAgent 加入外部 Agent 社区 |
-| 配置 | [`configuration.md`](./configuration.md) | Provider、工具、通道、MCP 和运行时设置 |
-| 图像生成 | [`image-generation.md`](./image-generation.md) | 配置图像 Provider、WebUI 图像模式和生成产物 |
+| 配置 | [`configuration.md`](./configuration.md) | 提供方、工具、通道、MCP 和运行时设置 |
+| 图像生成 | [`image-generation.md`](./image-generation.md) | 配置图像提供方、WebUI 图像模式和生成产物 |
 | 多实例 | [`multiple-instances.md`](./multiple-instances.md) | 使用独立配置和工作区运行多个 Bot |
-| CLI 参考 | [`cli-reference.md`](./cli-reference.md) | 核心 CLI 命令和常用入口 |
+| 命令行参考 | [`cli-reference.md`](./cli-reference.md) | 核心命令行命令和常用入口 |
 | 聊天内命令 | [`chat-commands.md`](./chat-commands.md) | Slash 命令和周期任务行为 |
 | OpenAI 兼容 API | [`openai-api.md`](./openai-api.md) | 本地 API 端点、请求格式、文件上传和 xiaomiaoVirtual 集成 |
 | 部署 | [`deployment.md`](./deployment.md) | Docker、Linux service 和 macOS LaunchAgent 配置 |

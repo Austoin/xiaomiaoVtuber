@@ -10,7 +10,7 @@ created_at: 2026-06-04 20:51:53 +08:00
 
 ## 0. 实施进度
 
-### 2026-06-04 Target 1：bridge event 支持 client_message_id
+### 2026-06-04 目标 1：桥接事件支持 client_message_id
 
 状态：已完成。
 
@@ -27,7 +27,7 @@ created_at: 2026-06-04 20:51:53 +08:00
 - 结果：`3 passed`
 - 发现既有问题：`test/xiaomiao/test_desktop_bridge.py` 仍导入旧的 `NanobotAgentConfig` / `reply_with_nanobot_agent` 名称，当前代码已改为 `XiaomiaoAgentConfig` / `reply_with_xiaomiao_agent`，导致该文件收集失败。该问题已在 Target 2 修复。
 
-### 2026-06-04 Target 2：修复 bridge 主测试并补 HTTP client_message_id 验证
+### 2026-06-04 目标 2：修复桥接主测试并补 HTTP client_message_id 验证
 
 状态：已完成。
 
@@ -44,18 +44,18 @@ created_at: 2026-06-04 20:51:53 +08:00
 - 通过：`conda run --no-capture-output -n xiaomiao python -m pytest test/xiaomiao/test_desktop_bridge_persistence.py -q`
 - 结果：`3 passed`
 
-### 2026-06-04 Phase 1：固化现有闭环
+### 2026-06-04 阶段 1：固化现有闭环
 
 状态：已完成。
 
 完成内容：
 
-1. 后端 bridge event 协议支持 `client_message_id`，包括 `/v1/chat/completions`、`POST /v1/xiaomiao/events`、内存事件和持久化重载。
+1. 后端桥接事件协议支持 `client_message_id`，包括 `/v1/chat/completions`、`POST /v1/xiaomiao/events`、内存事件和持久化重载。
 2. stage-web bridge client 支持 `clientMessageId` 参数，请求时转换为后端字段 `client_message_id`。
 3. stage-web 常规文本入口、移动端入口、页面级语音转写入口都会生成并传入 `clientMessageId`。
 4. 本地乐观消息和 bridge 回放事件统一使用 `clientMessageId + role` 生成 chat item id；同一消息被事件流确认时不会重复追加。
-5. bridge event store 遇到坏 JSON 或缺字段行时，会把坏行写入 `bridge_events.invalid.jsonl`，继续加载其他有效事件。
-6. `start-all.cmd --check` 的 gateway 检查会在 `api:xiaomiao-unified` session 已存在时验证其 messages API 可读；首次启动尚无该 session 时不误报失败。
+5. 桥接事件存储遇到坏 JSON 或缺字段行时，会把坏行写入 `bridge_events.invalid.jsonl`，继续加载其他有效事件。
+6. `start-all.cmd --check` 的网关检查会在 `api:xiaomiao-unified` 会话已存在时验证其消息 API 可读；首次启动尚无该会话时不误报失败。
 
 修改范围：
 
@@ -81,22 +81,22 @@ created_at: 2026-06-04 20:51:53 +08:00
 - 通过：`start-all.cmd --check`
 - 结果：检查通过；当前端口均空闲，会在正式启动时打开对应独立终端。
 
-### 2026-06-04 Phase 2：统一消息模型
+### 2026-06-04 阶段 2：统一消息模型
 
 状态：已完成。
 
 完成内容：
 
-1. bridge event 统一补齐 `schema_version`、`conversation_id`、`message_id`。
+1. 桥接事件统一补齐 `schema_version`、`conversation_id`、`message_id`。
 2. 新事件写入时由 `complete_bridge_event()` 生成统一字段。
 3. 旧持久化事件读取时也会自动归一化为统一消息模型。
 4. `message_id` 规则：
    - 有 `client_message_id` 时：`client:<client_message_id>:<role>`
    - 无 `client_message_id` 时：`bridge:<id>`
 5. `conversation_id` 规则：`<channel>:<chat_id>`。
-6. stage-web bridge event 类型增加统一字段。
-7. stage-web 事件响应在字段缺失时会按同样规则补齐，兼容旧 bridge event。
-8. QQ 路径、Web 路径、Agent WebUI mirror 路径都复用同一 bridge event 完成逻辑。
+6. stage-web 桥接事件类型增加统一字段。
+7. stage-web 事件响应在字段缺失时会按同样规则补齐，兼容旧桥接事件。
+8. QQ 路径、Web 路径、Agent WebUI 镜像路径都复用同一桥接事件完成逻辑。
 
 修改范围：
 
@@ -114,7 +114,7 @@ created_at: 2026-06-04 20:51:53 +08:00
 - 通过：`pnpm exec vitest run packages/stage-ui/src/xiaomiao-bridge-events.test.ts`
 - 结果：`1 passed / 6 passed`
 
-### 2026-06-04 Phase 3：多模态打通
+### 2026-06-04 阶段 3：多模态打通
 
 状态：已完成。
 
@@ -125,7 +125,7 @@ created_at: 2026-06-04 20:51:53 +08:00
 3. data URL 会原样传递；本地图片文件会转成 data URL；不存在文件或非图片类型会显式报错。
 4. `xiaomiao/main.py` 的 QQ 群 Pixmap 图片/表情包分支会把图片 URL 压缩成 `data:image/jpeg;base64,...` 并传入 Agent media。
 5. `xiaomiao/main.py` 的 QQ 私聊 Pixmap 图片/表情包分支同样接入 Agent media。
-6. stage-web 当前 active 输入面没有图片/文件上传控件；现有语音路径是转写为文本后发送，因此本 Phase 不新增空上传 UI。
+6. stage-web 当前 active 输入面没有图片/文件上传控件；现有语音路径是转写为文本后发送，因此本阶段不新增空上传 UI。
 
 修改范围：
 
@@ -142,7 +142,7 @@ created_at: 2026-06-04 20:51:53 +08:00
 - 通过：`pnpm exec vitest run packages/stage-ui/src/xiaomiao-bridge-events.test.ts`
 - 结果：`1 passed / 6 passed`
 
-### 2026-06-04 Phase 4：权限与工具分层
+### 2026-06-04 阶段 4：权限与工具分层
 
 状态：已完成。
 
@@ -177,7 +177,7 @@ created_at: 2026-06-04 20:51:53 +08:00
 - 通过：`pnpm exec vitest run packages/stage-ui/src/xiaomiao-bridge-events.test.ts`
 - 结果：`1 passed / 6 passed`
 
-### 2026-06-05 Phase 5：模块边界治理
+### 2026-06-05 阶段 5：模块边界治理
 
 状态：已完成。
 
@@ -220,9 +220,9 @@ created_at: 2026-06-04 20:51:53 +08:00
 
 1. Web 端：`xiaomiaobot/apps/stage-web`
 2. QQ 端：`xiaomiao/main.py + NapCat/OneBot`
-3. Agent 端：`xiaomiaoAgent` API、gateway、WebUI、tools、session
+3. Agent 端：`xiaomiaoAgent` API、网关、WebUI、工具、会话
 
-当前结论：普通文本对话已经通过 `xiaomiaoAgent API :8900` 收敛到同一个 Agent 能力层；三端消息同步已经有事件通道雏形，但还没有形成唯一消息源。重复最大的是 QQ 接入、聊天 UI、会话历史、语音/多模态和配置面。未用最大的是 `xiaomiaoAgent` 多平台 channel、`xiaomiaobot` 多数 app/service，以及 Agent 原生工具对 QQ/Web 的权限化暴露。
+当前结论：普通文本对话已经通过 `xiaomiaoAgent API :8900` 收敛到同一个 Agent 能力层；三端消息同步已经有事件通道雏形，但还没有形成唯一消息源。重复最大的是 QQ 接入、聊天 UI、会话历史、语音/多模态和配置面。未用最大的是 `xiaomiaoAgent` 多平台通道、`xiaomiaobot` 多数应用/服务，以及 Agent 原生工具对 QQ/Web 的权限化暴露。
 
 ## 2. 当前已打通链路
 
@@ -272,14 +272,14 @@ NapCat / OneBot :5004
 - `xiaomiao/main.py:2782` 私聊普通 AI 分支调用 `generate_agent_reply()`。
 - `xiaomiao/main.py:2801` 私聊回复后调用 `publish_bridge_exchange()`。
 
-### 2.3 Agent WebUI 到 bridge 事件
+### 2.3 Agent WebUI 到桥接事件
 
-Agent WebUI/gateway 只有在 `chat_id == "xiaomiao-unified"` 时加入统一链路：
+Agent WebUI/网关只有在 `chat_id == "xiaomiao-unified"` 时加入统一链路：
 
 - `xiaomiaoAgent/nanobot/channels/websocket.py:68` 定义 `XIAOMIAO_UNIFIED_CHAT_ID = "xiaomiao-unified"`。
 - `xiaomiaoAgent/nanobot/channels/websocket.py:69` 映射到 `api:xiaomiao-unified`。
-- `xiaomiaoAgent/nanobot/channels/websocket.py:964` 对该 chat_id 返回统一 session key。
-- `xiaomiaoAgent/nanobot/channels/websocket.py:972` 非统一 chat_id 不镜像到 bridge。
+- `xiaomiaoAgent/nanobot/channels/websocket.py:964` 对该 chat_id 返回统一会话键。
+- `xiaomiaoAgent/nanobot/channels/websocket.py:972` 非统一 chat_id 不镜像到桥接服务。
 - `xiaomiaoAgent/nanobot/channels/websocket.py:1451` 用户输入时镜像 user 事件。
 - `xiaomiaoAgent/nanobot/channels/websocket.py:1545` 非工具/进度类 assistant 消息镜像 assistant 事件。
 
@@ -287,8 +287,8 @@ Agent WebUI/gateway 只有在 `chat_id == "xiaomiao-unified"` 时加入统一链
 
 `stage-web` 会轮询 bridge 事件，把 QQ 或 Agent WebUI 的消息补进当前聊天历史：
 
-- `xiaomiaobot/apps/stage-web/src/pages/index.vue:67` 保存 bridge event cursor。
-- `xiaomiaobot/apps/stage-web/src/pages/index.vue:96` 请求 bridge events。
+- `xiaomiaobot/apps/stage-web/src/pages/index.vue:67` 保存桥接事件游标。
+- `xiaomiaobot/apps/stage-web/src/pages/index.vue:96` 请求桥接事件。
 - `xiaomiaobot/apps/stage-web/src/pages/index.vue:100` 调用 `appendXiaomiaoBridgeEvents()`。
 - `xiaomiaobot/packages/stage-layouts/src/xiaomiao-bridge.ts:145` 定义 `requestXiaomiaoBridgeEvents()`。
 - `xiaomiaobot/packages/stage-layouts/src/xiaomiao-bridge.ts:200` 定义 `appendXiaomiaoBridgeEvents()`。
@@ -296,14 +296,14 @@ Agent WebUI/gateway 只有在 `chat_id == "xiaomiao-unified"` 时加入统一链
 
 ## 3. 没完全打通的功能
 
-### 3.1 三端 session 不是全局统一
+### 3.1 三端会话不是全局统一
 
-当前统一依赖一个特例 session：`xiaomiao-unified`。
+当前统一依赖一个特例会话：`xiaomiao-unified`。
 
 - 根目录 `config.json:6` 配置 `xiaomiao_agent.session_id = "xiaomiao-unified"`。
 - `xiaomiaoAgent/.nanobot/config.json:20` 的 `unifiedSession` 仍是 `false`。
-- `xiaomiaoAgent/nanobot/agent/loop.py:542` 只有启用 unified session 时才使用全局 `UNIFIED_SESSION_KEY`。
-- `xiaomiaoAgent/nanobot/channels/websocket.py:955` 普通 WebUI session 仍是 `websocket:<id>`。
+- `xiaomiaoAgent/nanobot/agent/loop.py:542` 只有启用统一会话时才使用全局 `UNIFIED_SESSION_KEY`。
+- `xiaomiaoAgent/nanobot/channels/websocket.py:955` 普通 WebUI 会话仍是 `websocket:<id>`。
 
 影响：
 
@@ -317,20 +317,20 @@ Agent WebUI/gateway 只有在 `chat_id == "xiaomiao-unified"` 时加入统一链
 
 当前有三套历史：
 
-1. `xiaomiaoAgent` session 文件：Agent 真正上下文。
-2. `xiaomiaobot` IndexedDB/Pinia chat session：Web UI 本地历史。
+1. `xiaomiaoAgent` 会话文件：Agent 真正上下文。
+2. `xiaomiaobot` IndexedDB/Pinia 聊天会话：Web UI 本地历史。
 3. `xiaomiao/runtime/bridge_events.jsonl`：跨端展示事件。
 
 证据：
 
-- `xiaomiaobot/packages/stage-ui/src/stores/chat/session-store.ts:240` 保存 stage-web session。
+- `xiaomiaobot/packages/stage-ui/src/stores/chat/session-store.ts:240` 保存 stage-web 会话。
 - `xiaomiaobot/packages/stage-ui/src/database/repos/chat-sessions.repo.ts:21` 保存单个聊天会话。
 - `xiaomiao/bridge_event_store.py:7` bridge 事件落到 `runtime/bridge_events.jsonl`。
 - `xiaomiaoAgent/nanobot/api/server.py:228` Agent API 侧生成 `api:<session_id>`。
 
-影响：stage-web 展示的消息不等于 Agent 的完整 session；Agent WebUI 展示的是 Agent session；bridge 事件只是镜像，不是权威存储。
+影响：stage-web 展示的消息不等于 Agent 的完整会话；Agent WebUI 展示的是 Agent 会话；桥接事件只是镜像，不是权威存储。
 
-规划：后续应把 `bridge_events` 升级成“消息事件总线 API”，并明确权威来源。推荐权威来源为 Agent session，bridge event 只作为跨端投递日志。
+规划：后续应把 `bridge_events` 升级成“消息事件总线 API”，并明确权威来源。推荐权威来源为 Agent 会话，桥接事件只作为跨端投递日志。
 
 ### 3.3 stage-web 主动发送不会从事件流回放
 
@@ -383,13 +383,13 @@ Agent 自带 QQ channel：
 当前至少两个聊天界面：
 
 1. `xiaomiaobot stage-web`：角色表现、语音、字幕、聊天历史。
-2. `xiaomiaoAgent WebUI`：Agent session、工具进度、文件/图片/多会话管理。
+2. `xiaomiaoAgent WebUI`：Agent 会话、工具进度、文件/图片/多会话管理。
 
 规划：不要强行合并 UI。应定义职责：
 
 - stage-web：用户陪伴入口、语音/表情/角色表现。
-- Agent WebUI：调试、工具、session 管理、权限配置。
-- 两者共享同一个 session/event API。
+- Agent WebUI：调试、工具、会话管理、权限配置。
+- 两者共享同一个会话/事件 API。
 
 ### 4.3 语音与转写重复
 
@@ -398,7 +398,7 @@ Agent 自带 QQ channel：
 - `xiaomiaobot/apps/stage-web/src/pages/index.vue:49` 使用 `transcribeForRecording()`。
 - `xiaomiaobot/packages/stage-layouts/src/components/Widgets/ChatArea.vue:87` 使用 streaming transcription。
 
-Agent channel 基类也有转写 provider 支持：
+Agent 通道基类也有转写提供方支持：
 
 - `xiaomiaoAgent/nanobot/channels/base.py:51` 引入 OpenAI transcription。
 - `xiaomiaoAgent/nanobot/channels/base.py:58` 引入 Groq transcription。
@@ -412,14 +412,14 @@ Agent channel 基类也有转写 provider 支持：
 - 根目录 `config.json`
 - `xiaomiao/config.json`
 - `xiaomiaoAgent/.nanobot/config.json`
-- stage-web 启动时读取 bridge config
+- stage-web 启动时读取桥接配置
 
 证据：
 
 - `xiaomiao/unified_config.py:13` 默认统一配置路径是根目录 `config.json`。
 - `xiaomiao/unified_config.py:53` 支持保存小喵 Agent 自定义配置。
-- `xiaomiaobot/apps/stage-web/src/App.vue:127` 读取 bridge config。
-- `xiaomiaobot/apps/stage-web/src/App.vue:138` 保存 bridge config。
+- `xiaomiaobot/apps/stage-web/src/App.vue:127` 读取桥接配置。
+- `xiaomiaobot/apps/stage-web/src/App.vue:138` 保存桥接配置。
 
 规划：根目录 `config.json` 只放跨子系统共享配置；各子系统本地配置只放运行时细节。配置 UI 写根配置时必须明确“需重启哪些服务”。
 
@@ -427,17 +427,17 @@ Agent channel 基类也有转写 provider 支持：
 
 ### 5.1 xiaomiaoAgent 低使用模块
 
-当前 `.nanobot/config.json` 只启用 websocket channel：
+当前 `.nanobot/config.json` 只启用 websocket 通道：
 
-- `xiaomiaoAgent/.nanobot/config.json:196` websocket channel。
+- `xiaomiaoAgent/.nanobot/config.json:196` websocket 通道。
 - `xiaomiaoAgent/.nanobot/config.json:197` `enabled = true`。
-- `xiaomiaoAgent/.nanobot/config.json:150` QQ channel 存在但未启用。
-- `xiaomiaoAgent/.nanobot/config.json:40`、`:48`、`:182`、`:223`、`:233` 等多平台 channel 均未启用。
+- `xiaomiaoAgent/.nanobot/config.json:150` QQ 通道存在但未启用。
+- `xiaomiaoAgent/.nanobot/config.json:40`、`:48`、`:182`、`:223`、`:233` 等多平台通道均未启用。
 
 低使用能力：
 
-- 原生 QQ、Telegram、Discord、Slack、Feishu、WeChat、WhatsApp 等 channel。
-- Cron、Heartbeat、Dream 等 gateway 后台能力，当前不是三端消息闭环核心。
+- 原生 QQ、Telegram、Discord、Slack、Feishu、WeChat、WhatsApp 等通道。
+- Cron、Heartbeat、Dream 等网关后台能力，当前不是三端消息闭环核心。
 - 文件系统、Shell、Web、MCP、Subagent 等工具还没有按 QQ/Web 权限分层暴露。
 
 ### 5.2 xiaomiaobot 低使用模块
@@ -447,7 +447,7 @@ Agent channel 基类也有转写 provider 支持：
 - `start-all.cmd:206` 启动 xiaomiaobot web。
 - `start-all.cmd:211` 进入 `xiaomiaobot/apps/stage-web`。
 
-未纳入当前三端闭环的 app：
+未纳入当前三端闭环的应用：
 
 - `apps/component-calling`
 - `apps/server`
@@ -455,7 +455,7 @@ Agent channel 基类也有转写 provider 支持：
 - `apps/stage-tamagotchi`
 - `apps/ui-server-auth`
 
-未纳入当前三端闭环的 service：
+未纳入当前三端闭环的服务：
 
 - `services/discord-bot`
 - `services/telegram-bot`
@@ -464,7 +464,7 @@ Agent channel 基类也有转写 provider 支持：
 - `services/twitter-services`
 - `services/computer-use-mcp`
 
-规划：先不要删除这些上游 monorepo 能力。对当前小喵目标，只把 `stage-web`、`stage-layouts`、`stage-ui`、音频相关 package 标记为 active surface，其余归为 upstream reserved。
+规划：先不要删除这些上游 monorepo 能力。对当前小喵目标，只把 `stage-web`、`stage-layouts`、`stage-ui`、音频相关包标记为活跃使用面，其余归为上游保留能力。
 
 ## 6. 推荐目标架构
 
@@ -472,10 +472,10 @@ Agent channel 基类也有转写 provider 支持：
 
 ```text
 QQ / Web / Agent WebUI
-  -> Ingress Adapter
-  -> Unified Conversation API
-  -> xiaomiaoAgent Session + Tools + Memory
-  -> Message Event Bus
+  -> 入口适配器
+  -> 统一对话 API
+  -> xiaomiaoAgent 会话 + 工具 + 记忆
+  -> 消息事件总线
   -> QQ / stage-web / Agent WebUI 同步展示
 ```
 
@@ -484,12 +484,12 @@ QQ / Web / Agent WebUI
 1. `xiaomiaoAgent` 是 Agent 能力权威。
 2. `xiaomiao` 是 QQ 命令和 NapCat 登录缓存权威。
 3. `xiaomiaobot` 是角色表现和 Web 交互权威。
-4. session/event 协议必须独立于 UI。
+4. 会话/事件协议必须独立于 UI。
 5. 所有跨端消息都必须有稳定 `conversation_id`、`message_id`、`source`、`channel`、`role`、`content`、`media`、`timestamp`。
 
 ## 7. 分阶段路线
 
-### Phase 1：固化现有闭环
+### 阶段 1：固化现有闭环
 
 目标：把当前可跑链路变成可验证、可定位、可恢复。
 
@@ -498,7 +498,7 @@ QQ / Web / Agent WebUI
 1. 为 `5519 /events` 增加 `client_message_id` 字段。
 2. stage-web 主动发送也写入/读取同一事件确认链。
 3. Agent WebUI 默认提供“加入小喵统一会话”入口，而不是靠用户猜 `xiaomiao-unified`。
-4. `start-all.cmd --check` 增加统一 session 可读性检查。
+4. `start-all.cmd --check` 增加统一会话可读性检查。
 5. 给 `bridge_events.jsonl` 增加损坏行隔离和保留策略。
 
 验收：
@@ -507,25 +507,25 @@ QQ / Web / Agent WebUI
 - stage-web 发消息后，QQ 事件流不重复，Agent WebUI 能看到。
 - Agent WebUI 在统一会话发消息后，stage-web 能看到。
 
-### Phase 2：统一消息模型
+### 阶段 2：统一消息模型
 
 目标：从“事件镜像”升级为“统一消息总线”。
 
 任务：
 
 1. 定义 `UnifiedMessage` schema。
-2. bridge event store 改为 schema 校验。
+2. 桥接事件存储改为 schema 校验。
 3. stage-web chat item 与 `UnifiedMessage` 建立纯转换层。
-4. Agent WebUI session message 与 `UnifiedMessage` 建立转换层。
-5. QQ message segment 转成文本/media 的规范结构。
+4. Agent WebUI 会话消息与 `UnifiedMessage` 建立转换层。
+5. QQ 消息段转成文本/media 的规范结构。
 
 验收：
 
 - 同一条消息跨端 ID 一致。
 - Web 乐观消息能被服务端确认消息替换。
-- 重启 stage-web 后能从 bridge/Agent session 恢复统一会话。
+- 重启 stage-web 后能从桥接服务/Agent 会话恢复统一会话。
 
-### Phase 3：多模态打通
+### 阶段 3：多模态打通
 
 目标：图片、表情包、语音都能进入 Agent，而不是只在某一端本地处理。
 
@@ -539,14 +539,14 @@ QQ / Web / Agent WebUI
 验收：
 
 - QQ 图片提问能进入 Agent 多模态。
-- stage-web 上传图片能进入同一 session。
+- stage-web 上传图片能进入同一会话。
 - Agent 生成图片或文件时，WebUI 可见，stage-web 可展示链接或缩略信息。
 
-### Phase 4：权限与工具分层
+### 阶段 4：权限与工具分层
 
 状态：已完成。当前已完成来源透传、`channel_policy` 生成、QQ 群低风险工具过滤和隐藏工具拦截。
 
-目标：Agent tools 可以服务三端，但不会直接把高危能力暴露给 QQ 或网页。
+目标：Agent 工具可以服务三端，但不会直接把高危能力暴露给 QQ 或网页。
 
 任务：
 
@@ -561,28 +561,28 @@ QQ / Web / Agent WebUI
 - Web 端工具错误不静默吞掉。
 - Agent WebUI 能看到工具进度，stage-web 不被调试噪声污染。
 
-### Phase 5：模块边界治理
+### 阶段 5：模块边界治理
 
-状态：已完成。当前已拆出 QQ Agent reply/bridge payload、QQ media URL 规则、QQ permissions 纯函数边界；`xiaomiao/main.py` 仍保留为唯一 QQ 权威入口。
+状态：已完成。当前已拆出 QQ Agent 回复/桥接载荷、QQ 媒体 URL 规则、QQ 权限纯函数边界；`xiaomiao/main.py` 仍保留为唯一 QQ 权威入口。
 
 目标：减少重复实现和巨型文件风险。
 
 任务：
 
-1. `xiaomiao/main.py` 拆出 QQ ingress、commands、agent reply、bridge publish、media、permissions。
-2. `xiaomiaobot` 标注 active packages 与 upstream reserved packages。
-3. `xiaomiaoAgent` 明确 API/gateway/channel/tool 的小喵使用边界。
-4. 决策是否迁移到 Agent 原生 QQ channel；迁移前保留 `xiaomiao/main.py` 为唯一 QQ 权威入口。
+1. `xiaomiao/main.py` 拆出 QQ 入口、命令、Agent 回复、桥接发布、媒体、权限。
+2. `xiaomiaobot` 标注活跃包与上游保留包。
+3. `xiaomiaoAgent` 明确 API/网关/通道/工具的小喵使用边界。
+4. 决策是否迁移到 Agent 原生 QQ 通道；迁移前保留 `xiaomiao/main.py` 为唯一 QQ 权威入口。
 
 验收：
 
 - QQ 普通消息、命令消息、图片消息各有独立测试入口。
-- stage-web 只依赖一个小喵 bridge client。
-- Agent WebUI 和 stage-web 不再各自猜 session 规则。
+- stage-web 只依赖一个小喵桥接客户端。
+- Agent WebUI 和 stage-web 不再各自猜会话规则。
 
-### Phase 6：真实启动与端到端验收
+### 阶段 6：真实启动与端到端验收
 
-状态：已完成。当前真实启动链路已通过 `start-all.cmd` 拉起，NapCat、`main.py`、Agent API、gateway、stage-web、Agent WebUI 均在线；Agent API、桌面桥接、Agent WebUI WebSocket 都已写入同一统一会话并同步到 bridge event。
+状态：已完成。当前真实启动链路已通过 `start-all.cmd` 拉起，NapCat、`main.py`、Agent API、网关、stage-web、Agent WebUI 均在线；Agent API、桌面桥接、Agent WebUI WebSocket 都已写入同一统一会话并同步到桥接事件。
 
 目标：确认本地 QQ 登录缓存、独立终端启动工作流、Web 端、QQ 端、Agent 端的真实运行状态可用。
 
@@ -590,39 +590,39 @@ QQ / Web / Agent WebUI
 
 1. `start-all.cmd --check` 启动前通过，确认目标端口空闲。
 2. `start-all.cmd` 真实启动后再次 `--check` 通过，确认所有必要终端与服务在线。
-3. NapCat/QQ OneBot `5004`、Agent API `8900`、Agent gateway `8765`、`main.py`/桌面桥接 `5519`、stage-web `5175`、Agent WebUI `5174` 均健康。
+3. NapCat/QQ OneBot `5004`、Agent API `8900`、Agent 网关 `8765`、`main.py`/桌面桥接 `5519`、stage-web `5175`、Agent WebUI `5174` 均健康。
 4. Agent API 直连 `session_id=xiaomiao-unified` 返回 `OK ✅`。
-5. 桌面桥接 `/v1/chat/completions` 返回 `OK ✅`，并写入 `web:stage-web` bridge event。
-6. Agent WebUI WebSocket 通过 bootstrap token 连接、attach `xiaomiao-unified`，流式返回 `PHASE6_WEBUI_WS_OK`。
-7. bridge events 已确认存在 `agent-webui:xiaomiao-unified` 的 user/assistant 同步事件。
-8. gateway session API 已确认 `api:xiaomiao-unified` 含本轮 Agent API、bridge、Agent WebUI 消息与回复。
+5. 桌面桥接 `/v1/chat/completions` 返回 `OK ✅`，并写入 `web:stage-web` 桥接事件。
+6. Agent WebUI WebSocket 通过启动令牌连接、附着 `xiaomiao-unified`，流式返回 `PHASE6_WEBUI_WS_OK`。
+7. 桥接事件已确认存在 `agent-webui:xiaomiao-unified` 的 user/assistant 同步事件。
+8. 网关会话 API 已确认 `api:xiaomiao-unified` 含本轮 Agent API、桥接服务、Agent WebUI 消息与回复。
 
 验收：
 
 - `cmd /c call start-all.cmd --check`：通过。
-- `8900/v1/chat/completions`：统一 session 直连通过。
+- `8900/v1/chat/completions`：统一会话直连通过。
 - `5519/v1/chat/completions` 与 `/v1/xiaomiao/events`：桥接请求和事件同步通过。
-- `8765/webui/bootstrap` 与 WebSocket：token、attach、流式回复通过。
+- `8765/webui/bootstrap` 与 WebSocket：令牌、附着、流式回复通过。
 - `5175` stage-web 和 `5174` Agent WebUI 页面：HTTP 200。
 
-### Phase 7：残留风险 hardening
+### 阶段 7：残留风险加固
 
-状态：已完成。已完成 QQ 双入口阻断、全局 `unifiedSession=true` 阻断、非统一 WebUI session 不同步回归测试、`5519` bridge loopback 访问边界、stage-web bridge 确认事件权威回放。
+状态：已完成。已完成 QQ 双入口阻断、全局 `unifiedSession=true` 阻断、非统一 WebUI 会话不同步回归测试、`5519` 桥接服务 loopback 访问边界、stage-web 桥接确认事件权威回放。
 
-目标：围绕真实运行后仍可能造成重复回复、误同步、边界暴露的问题做小步 hardening，不迁移 QQ channel。
+目标：围绕真实运行后仍可能造成重复回复、误同步、边界暴露的问题做小步加固，不迁移 QQ 通道。
 
 已完成内容：
 
-1. `start-all.cmd` 的 preflight 调用 `start-all-health.ps1 config-safe`。
+1. `start-all.cmd` 的预检调用 `start-all-health.ps1 config-safe`。
 2. `config-safe` 会解析 `xiaomiaoAgent/.nanobot/config.json`，当 `channels.qq.enabled=true` 时明确失败。
-3. 错误信息声明当前 QQ 权威入口是 `xiaomiao/main.py + NapCat`，避免同时启用 Agent 原生 QQ channel。
+3. 错误信息声明当前 QQ 权威入口是 `xiaomiao/main.py + NapCat`，避免同时启用 Agent 原生 QQ 通道。
 4. `start-all.cmd --check` 分支改为 `call :check_services` 后退出，避免 Windows batch 标签跳转异常。
 5. `start-all.cmd` 已转回 CRLF，修复 LF 下 `cmd` 标签扫描报 `cannot find the batch label` 的问题。
-6. 新增 WebSocket bridge 边界测试：非 `xiaomiao-unified` 的 WebUI/WebSocket 会话不会镜像到 bridge。
-7. `5519` desktop bridge 增加 loopback 客户端检查，非本机地址会得到显式 `403 bridge_loopback_only`。
+6. 新增 WebSocket 桥接边界测试：非 `xiaomiao-unified` 的 WebUI/WebSocket 会话不会镜像到桥接服务。
+7. `5519` 桌面桥接增加 loopback 客户端检查，非本机地址会得到显式 `403 bridge_loopback_only`。
 8. 复核 Agent API 停止、HTTP 错误、空回复、超时路径，当前均有显式失败测试覆盖。
 9. `config-safe` 增加 `agents.defaults.unifiedSession=true` 拦截，要求使用显式 `xiaomiao-unified` 路由。
-10. stage-web 主页面轮询 bridge events 时启用 `includeWeb: true`，刷新后可从 bridge 回放 web 自己的确认事件。
+10. stage-web 主页面轮询桥接事件时启用 `includeWeb: true`，刷新后可从桥接服务回放 web 自己的确认事件。
 11. QQ 本地命令 `帮助`、`关于`、`读图` 改为精确匹配，避免自然语言中出现 `关于`、`帮助`、`读图` 时误触发本地命令。
 12. `start-all.cmd` 新启动终端默认最小化，仍保持一个服务一个独立终端和串行健康检查。
 
@@ -641,11 +641,11 @@ QQ / Web / Agent WebUI
 
 ## 8. 风险
 
-1. 直接开启 `unifiedSession=true` 可能把所有 channel、cron、heartbeat 都混进同一上下文；Phase 7 已在启动前阻断该组合。
-2. 同时启用 `xiaomiao/main.py` QQ 和 `xiaomiaoAgent` 原生 QQ channel 会造成重复回复；Phase 7 已在启动前阻断该组合。
-3. stage-web 本地历史与 Agent session 长期并存，会继续制造“看得到但上下文不一致”的问题；Phase 7 已让主页面回放 web 确认事件，降低刷新后依赖 IndexedDB 的风险。
-4. Agent tools 暴露到 QQ 群前必须做权限隔离。
-5. `5519` bridge 当前是本机信任接口，不应直接暴露到公网；Phase 7 已增加 loopback 客户端边界。
+1. 直接开启 `unifiedSession=true` 可能把所有通道、cron、heartbeat 都混进同一上下文；阶段 7 已在启动前阻断该组合。
+2. 同时启用 `xiaomiao/main.py` QQ 和 `xiaomiaoAgent` 原生 QQ 通道会造成重复回复；阶段 7 已在启动前阻断该组合。
+3. stage-web 本地历史与 Agent 会话长期并存，会继续制造“看得到但上下文不一致”的问题；阶段 7 已让主页面回放 web 确认事件，降低刷新后依赖 IndexedDB 的风险。
+4. Agent 工具暴露到 QQ 群前必须做权限隔离。
+5. `5519` 桥接服务当前是本机信任接口，不应直接暴露到公网；阶段 7 已增加 loopback 客户端边界。
 6. QQ 自然语言提示中可能包含本地命令词；当前 `帮助`、`关于`、`读图` 已改为精确匹配。
 
 ## 9. 最小测试矩阵
@@ -653,24 +653,24 @@ QQ / Web / Agent WebUI
 ### 回归测试
 
 1. `start-all.cmd --check` 全部通过。
-2. `5519/v1/xiaomiao/status` 返回 bridge 可用。
+2. `5519/v1/xiaomiao/status` 返回桥接服务可用。
 3. `8900/v1/chat/completions` 携带 `session_id=xiaomiao-unified` 可回复。
-4. `8765` WebUI token、session list、WS 握手可用。
+4. `8765` WebUI 令牌、会话列表、WS 握手可用。
 
 ### 三端同步测试
 
 1. QQ 私聊发送 `确认同步-qq-private`，stage-web 出现 user/assistant。
 2. QQ 群发送 `确认同步-qq-group`，stage-web 出现群来源。
-3. stage-web 发送 `确认同步-web`，Agent session `api:xiaomiao-unified` 可读到。
+3. stage-web 发送 `确认同步-web`，Agent 会话 `api:xiaomiao-unified` 可读到。
 4. Agent WebUI 在 `xiaomiao-unified` 发送 `确认同步-agent-webui`，stage-web 出现 agent-webui 来源。
 
 ### 边界测试
 
-1. Agent API 停止时，QQ 普通 AI 回复显式失败，不让 bridge 假成功。
+1. Agent API 停止时，QQ 普通 AI 回复显式失败，不让桥接服务假成功。
 2. NapCat 停止时，`main.py` 退出并暴露 OneBot 连接错误。
-3. bridge event store 有坏行时，错误可定位，不污染后续事件。
+3. 桥接事件存储有坏行时，错误可定位，不污染后续事件。
 4. stage-web 刷新后不会重复追加历史消息。
-5. 非统一 WebUI session 不应同步到 stage-web；Phase 7 已补回归测试。
+5. 非统一 WebUI 会话不应同步到 stage-web；阶段 7 已补回归测试。
 
 ## 10. 下一步执行顺序
 
@@ -679,7 +679,7 @@ QQ / Web / Agent WebUI
 1. 已完成事件协议、stage-web 消息确认与去重、Agent WebUI 统一会话入口。
 2. 已完成多模态 media 的基础接入、权限与工具分层、QQ 模块边界治理。
 3. 已完成真实启动与三端端到端验收。
-4. 已完成残留风险 hardening，未迁移 QQ channel。
-5. 评估 Agent 原生 QQ channel 前，必须先保证不会与 `xiaomiao/main.py` 产生重复回复。
+4. 已完成残留风险加固，未迁移 QQ 通道。
+5. 评估 Agent 原生 QQ 通道前，必须先保证不会与 `xiaomiao/main.py` 产生重复回复。
 
 这条路线能保留当前已经跑通的本地 QQ 登录缓存、NapCat 入口和 `start-all.cmd` 独立终端工作流，同时逐步消除“看起来同步但不是同一状态源”的核心问题。

@@ -1,6 +1,6 @@
 # 小喵 QQ 机器人 - Linux 部署指南
 
-> 范围说明：本文档描述的是 Linux 服务器上的 QQ Bot / NapCat 部署。Windows 本机三端联动、`start-all.cmd`、xiaomiaoAgent API/gateway/WebUI、xiaomiaobot stage-web/stage-tamagotchi/stage-pocket、QQ Agent 工具确认链路，请以 `docs/STARTUP.md` 和根目录 `README.md` 为准。
+> 范围说明：本文档描述的是 Linux 服务器上的 QQ Bot / NapCat 部署。Windows 本机三端联动、`start-all.cmd`、xiaomiaoAgent API/网关/WebUI、xiaomiaobot stage-web/stage-tamagotchi/stage-pocket、QQ Agent 工具确认链路，请以 `docs/STARTUP.md` 和根目录 `README.md` 为准。
 
 ## 部署文件说明
 
@@ -445,22 +445,31 @@ iptables -A INPUT -p tcp --dport 5004 -j ACCEPT
 
 ```
 /www/wwwroot/xiaomiaoVirtual/
-├── main.py              # 主程序
-├── config.json          # 机器人配置文件
-├── requirements.txt     # Python 依赖
-├── venv/                # Python 虚拟环境
-├── logs/                # 日志目录
-├── temps/               # 临时文件
-├── napcat_data/         # NapCat 配置和数据
+├── main.py                  # 主程序
+├── agent_backend.py         # xiaomiaoAgent API 调用封装
+├── desktop_bridge.py        # 本地 bridge 服务
+├── bridge_event_store.py    # 桥接事件持久化
+├── qq_agent_bridge.py       # QQ Agent 回复和桥接同步
+├── qq_agent_tools.py        # QQ Agent 工具权限和确认码
+├── qq_permissions.py        # ROOT/Super/白名单权限判断
+├── qq_workspace.py          # QQ 文档下载到工作区
+├── unified_config.py        # 主目录统一配置读取
+├── config.json              # 机器人配置文件
+├── requirements.txt         # Python 依赖
+├── workspace/               # QQ 文件下载和 Agent 资源工作区，运行时自动创建
+├── venv/                    # Python 虚拟环境
+├── logs/                    # 日志目录
+├── temps/                   # 临时文件
+├── napcat_data/             # NapCat 配置和数据
 │   ├── onebot11_QQ号.json  # WebSocket 配置
 │   ├── napcat_QQ号.json    # NapCat 基础配置
 │   └── webui.json          # WebUI 配置
-├── deploy/              # 部署相关文件
-│   ├── deploy.sh        # 一键部署脚本
-│   └── README_DEPLOY.md # 本文档
-├── start.sh             # 启动脚本
-├── stop.sh              # 停止脚本
-└── restart.sh           # 重启脚本
+├── deploy/                  # 部署相关文件
+│   ├── deploy.sh            # 一键部署脚本
+│   └── README_DEPLOY.md     # 本文档
+├── start.sh                 # 启动脚本
+├── stop.sh                  # 停止脚本
+└── restart.sh               # 重启脚本
 ```
 
 ---

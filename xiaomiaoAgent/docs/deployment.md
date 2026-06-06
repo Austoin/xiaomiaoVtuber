@@ -15,11 +15,11 @@
 ```bash
 docker compose run --rm nanobot-cli onboard   # 首次设置
 vim ~/.nanobot/config.json                     # 添加 API Key
-docker compose up -d nanobot-gateway           # 启动 gateway
+docker compose up -d nanobot-gateway           # 启动网关
 ```
 
 ```bash
-docker compose run --rm nanobot-cli agent -m "Hello!"   # 运行 CLI
+docker compose run --rm nanobot-cli agent -m "Hello!"   # 运行命令行
 docker compose logs -f nanobot-gateway                   # 查看日志
 docker compose down                                      # 停止
 ```
@@ -36,7 +36,7 @@ docker run -v ~/.nanobot:/home/nanobot/.nanobot --rm xiaomiao-agent onboard
 # 在宿主机编辑配置，添加 API Key
 vim ~/.nanobot/config.json
 
-# 运行 gateway（连接已启用通道，例如 Telegram/Discord/Mochat）
+# 运行网关（连接已启用通道，例如 Telegram/Discord/Mochat）
 docker run -v ~/.nanobot:/home/nanobot/.nanobot -p 18790:18790 xiaomiao-agent gateway
 
 # 或运行单条命令
@@ -44,9 +44,9 @@ docker run -v ~/.nanobot:/home/nanobot/.nanobot --rm xiaomiao-agent agent -m "He
 docker run -v ~/.nanobot:/home/nanobot/.nanobot --rm xiaomiao-agent status
 ```
 
-## Linux Service
+## Linux 服务
 
-将 gateway 作为 systemd 用户服务运行，让它自动启动并在失败后重启。
+将网关作为 systemd 用户服务运行，让它自动启动并在失败后重启。
 
 **1. 找到 `xiaomiao` 可执行文件路径：**
 
@@ -54,7 +54,7 @@ docker run -v ~/.nanobot:/home/nanobot/.nanobot --rm xiaomiao-agent status
 which xiaomiao   # e.g. /home/user/.local/bin/xiaomiao
 ```
 
-**2. 在 `~/.config/systemd/user/nanobot-gateway.service` 创建 service 文件**（如有需要，替换 `ExecStart` 路径）：
+**2. 在 `~/.config/systemd/user/nanobot-gateway.service` 创建服务文件**（如有需要，替换 `ExecStart` 路径）：
 
 ```ini
 [Unit]
@@ -91,7 +91,7 @@ journalctl --user -u nanobot-gateway -f        # 跟随日志
 
 如果编辑了 `.service` 文件本身，请在重启前运行 `systemctl --user daemon-reload`。
 
-> **注意：** 用户服务默认只会在你登录期间运行。若要在退出登录后继续运行 gateway，请启用 lingering：
+> **注意：** 用户服务默认只会在你登录期间运行。若要在退出登录后继续运行网关，请启用用户驻留：
 >
 > ```bash
 > loginctl enable-linger $USER

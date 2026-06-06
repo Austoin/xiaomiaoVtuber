@@ -40,16 +40,16 @@ TELEGRAM_TOKEN=your-token-here
 IMAP_PASSWORD=your-password-here
 ```
 
-## Providers
+## 提供方
 
 > [!TIP]
-> 语音消息（Telegram、WhatsApp）会自动使用 Whisper 转写。默认 Provider 是 Groq（免费层）。如需使用 OpenAI Whisper，请在 `channels` 下设置 `"transcriptionProvider": "openai"`，并可选设置 `"transcriptionLanguage": "en"` 等 ISO-639-1 语言码。
+> 语音消息（Telegram、WhatsApp）会自动使用 Whisper 转写。默认提供方是 Groq（免费层）。如需使用 OpenAI Whisper，请在 `channels` 下设置 `"transcriptionProvider": "openai"`，并可选设置 `"transcriptionLanguage": "en"` 等 ISO-639-1 语言码。
 
-| Provider | 用途 | 获取 API Key |
+| 提供方 | 用途 | 获取 API Key |
 |----------|---------|-------------|
 | `custom` | 任意 OpenAI 兼容端点 | — |
 | `openrouter` | LLM，推荐，可访问多模型 | [openrouter.ai](https://openrouter.ai) |
-| `huggingface` | LLM，Hugging Face Inference Providers | [huggingface.co/settings/tokens](https://huggingface.co/settings/tokens) |
+| `huggingface` | LLM，Hugging Face 推理提供方 | [huggingface.co/settings/tokens](https://huggingface.co/settings/tokens) |
 | `volcengine` | LLM，火山引擎，按量付费 | [volcengine.com](https://www.volcengine.com) |
 | `byteplus` | LLM，火山引擎国际版，按量付费 | [byteplus.com](https://www.byteplus.com) |
 | `anthropic` | LLM，Claude 直连 | [console.anthropic.com](https://console.anthropic.com) |
@@ -57,11 +57,11 @@ IMAP_PASSWORD=your-password-here
 | `bedrock` | LLM，AWS Bedrock Converse | [aws.amazon.com/bedrock](https://aws.amazon.com/bedrock/) |
 | `openai` | LLM + Whisper 语音转写 | [platform.openai.com](https://platform.openai.com) |
 | `deepseek` | LLM，DeepSeek 直连 | [platform.deepseek.com](https://platform.deepseek.com) |
-| `groq` | LLM + Whisper 语音转写，默认转写 Provider | [console.groq.com](https://console.groq.com) |
+| `groq` | LLM + Whisper 语音转写，默认转写提供方 | [console.groq.com](https://console.groq.com) |
 | `minimax` | LLM，MiniMax 直连 | [platform.minimaxi.com](https://platform.minimaxi.com) |
-| `minimax_anthropic` | LLM，MiniMax Anthropic 兼容端点，支持 thinking mode | [platform.minimaxi.com](https://platform.minimaxi.com) |
+| `minimax_anthropic` | LLM，MiniMax Anthropic 兼容端点，支持思考模式 | [platform.minimaxi.com](https://platform.minimaxi.com) |
 | `gemini` | LLM，Gemini 直连 | [aistudio.google.com](https://aistudio.google.com) |
-| `aihubmix` | LLM API gateway，可访问多模型 | [aihubmix.com](https://aihubmix.com) |
+| `aihubmix` | LLM API 网关，可访问多模型 | [aihubmix.com](https://aihubmix.com) |
 | `siliconflow` | LLM，硅基流动 | [siliconflow.cn](https://siliconflow.cn) |
 | `dashscope` | LLM，通义千问 | [dashscope.console.aliyun.com](https://dashscope.console.aliyun.com) |
 | `moonshot` | LLM，Moonshot/Kimi | [platform.moonshot.cn](https://platform.moonshot.cn) |
@@ -122,7 +122,7 @@ Bedrock 使用原生 `bedrock-runtime` Converse API，可调用 Claude、Amazon 
 
 ### OpenAI Codex 与 GitHub Copilot（OAuth）
 
-这两个 Provider 使用 OAuth，不需要在 `config.json` 中写 API Key。登录会话保存在配置外部。
+这两个提供方使用 OAuth，不需要在 `config.json` 中写 API Key。登录会话保存在配置外部。
 
 ```bash
 xiaomiao provider login openai-codex
@@ -145,7 +145,7 @@ Docker 用户执行交互式 OAuth 登录时需要使用 `docker run -it`。
 
 ### LongCat
 
-LongCat 通过内置 OpenAI 兼容 Provider 流程接入。默认 API base 已指向 `https://api.longcat.chat/openai/v1`，通常只需设置 `apiKey`：
+LongCat 通过内置 OpenAI 兼容提供方流程接入。默认 API base 已指向 `https://api.longcat.chat/openai/v1`，通常只需设置 `apiKey`：
 
 ```json
 {
@@ -163,7 +163,7 @@ LongCat 通过内置 OpenAI 兼容 Provider 流程接入。默认 API base 已�
 }
 ```
 
-### Custom Provider
+### 自定义提供方
 
 `custom` 可连接任意 OpenAI 兼容 chat completions 端点，例如 llama.cpp、Together AI、Fireworks、Azure OpenAI 或自托管服务。模型名会原样传递。
 
@@ -185,7 +185,7 @@ LongCat 通过内置 OpenAI 兼容 Provider 流程接入。默认 API base 已�
 
 本地服务不需要认证时可将 `apiKey` 设为 `null`。如果端点是 Responses API 兼容而不是 chat completions 兼容，请使用 `azure_openai` 形态。
 
-一些 OpenAI 兼容 gateway 支持请求体扩展，例如 vLLM guided decoding 或本地采样参数。可放入 `extraBody`，xiaomiaoAgent 会合并进 chat-completions 请求体：
+一些 OpenAI 兼容网关支持请求体扩展，例如 vLLM guided decoding 或本地采样参数。可放入 `extraBody`，xiaomiaoAgent 会合并进 chat-completions 请求体：
 
 ```json
 {
@@ -201,7 +201,7 @@ LongCat 通过内置 OpenAI 兼容 Provider 流程接入。默认 API base 已�
 }
 ```
 
-### 本地 Provider
+### 本地提供方
 
 Ollama：
 
@@ -276,9 +276,9 @@ vLLM：
 }
 ```
 
-### 添加新 Provider（开发者指南）
+### 添加新提供方（开发者指南）
 
-xiaomiaoAgent 使用 `nanobot/providers/registry.py` 中的 **Provider Registry** 作为单一事实来源。添加新 Provider 通常只需两步：
+xiaomiaoAgent 使用 `nanobot/providers/registry.py` 中的 **提供方注册表** 作为单一事实来源。添加新提供方通常只需两步：
 
 1. 在 `PROVIDERS` 中添加一个 `ProviderSpec`。
 2. 在 `nanobot/config/schema.py` 的 `ProvidersConfig` 中添加对应字段。
@@ -372,7 +372,7 @@ xiaomiaoAgent 默认启用基础 Web 工具，包括通过 API 搜索，以及�
 
 默认使用 `duckduckgo`，无需 API Key。
 
-| Provider | 配置字段 | 环境变量 fallback | 免费 |
+| 提供方 | 配置字段 | 环境变量回退 | 免费 |
 |----------|--------------|------------------|------|
 | `brave` | `apiKey` | `BRAVE_API_KEY` | 否 |
 | `tavily` | `apiKey` | `TAVILY_API_KEY` | 否 |
@@ -477,10 +477,10 @@ xiaomiaoAgent 支持 [MCP](https://modelcontextprotocol.io/)，可以连接外�
 
 风险策略：
 
-| Profile | 低风险工具 | 高风险确认后工具 |
+| 配置档 | 低风险工具 | 高风险确认后工具 |
 |---|---|---|
-| Computer Use | 桌面/浏览器/终端状态读取、截图观察 | 终端执行、点击、键盘、剪贴板写入、PTY、workflow |
-| Twitter | `search`、`refresh-timeline`、`get-my-profile` | 发帖、点赞、转发、登录、保存 session |
+| Computer Use | 桌面/浏览器/终端状态读取、截图观察 | 终端执行、点击、键盘、剪贴板写入、PTY、工作流 |
+| Twitter | `search`、`refresh-timeline`、`get-my-profile` | 发帖、点赞、转发、登录、保存会话 |
 | Minecraft | `get_state`、`get_logs`、`get_last_prompt`、`get_llm_trace` | `inject_chat`、`inject_event`、`execute_repl` |
 
 QQ 普通用户即使能触发 Agent，也只会走 `low_risk`；ROOT/Super/`agent_tool_allowlist` 用户需要确认后才会让高风险 MCP 工具进入 `trusted_confirmed`。`ToolRegistry.prepare_call()` 会在工具调用前再次拦截。
@@ -491,8 +491,10 @@ QQ 普通用户即使能触发 Agent，也只会走 `low_risk`；ROOT/Super/`age
 
 | 工具 | 来源 | 边界 |
 |---|---|---|
-| `markitdown_convert` | `tool/markitdown` | 只读 workspace 内本地文件；拒绝 URI 和 workspace 外路径 |
-| `scrapling_get` | `tool/Scrapling` | 只允许公网 `http/https` GET；阻断 localhost/private/link-local/metadata；不开放浏览器、session、cookies、proxy、CDP |
+| `markitdown_convert` | `tool/markitdown` | 只读 Agent 工作区和项目根 `workspace/` 内本地文件；拒绝 URI 和其它本机路径 |
+| `scrapling_get` | `tool/Scrapling` | 只允许公网 `http/https` GET；阻断 localhost/private/link-local/云厂商元数据服务；不开放浏览器、会话、cookies、proxy、CDP |
+
+QQ 群文件上传和普通 file 消息段会先由 `xiaomiao/qq_workspace.py` 下载到项目根 `workspace/downloads/qq/`，再把 `workspace_path` 交给 Agent。`markitdown_convert` 会把项目根 `workspace/` 作为额外只读允许目录，因此可以读取这些 QQ 文档，但仍不能读取任意本机路径或远程 URI。
 
 详细解析见 `../../docs/tool-directory-analysis.md`。
 
@@ -513,7 +515,7 @@ QQ 普通用户即使能触发 Agent，也只会走 `low_risk`；ROOT/Super/`age
 
 ## 子 Agent 并发
 
-默认只允许同时运行一个 spawned subagent。达到上限时，`spawn` 工具会返回错误，让 agent 自行决定等待或重排工作。若 Provider 能处理更多并行任务，可提高限制：
+默认只允许同时运行一个派生子 Agent。达到上限时，`spawn` 工具会返回错误，让 agent 自行决定等待或重排工作。若提供方能处理更多并行任务，可提高限制：
 
 ```json
 {
@@ -527,7 +529,7 @@ QQ 普通用户即使能触发 Agent，也只会走 `low_risk`；ROOT/Super/`age
 
 ## 自动压缩
 
-当用户空闲超过阈值时，xiaomiaoAgent 可以主动把旧会话上下文压缩成摘要，同时保留最近的合法 live message 后缀。这样用户回来时，模型不必重新处理很长的陈旧上下文。
+当用户空闲超过阈值时，xiaomiaoAgent 可以主动把旧会话上下文压缩成摘要，同时保留最近的合法实时消息后缀。这样用户回来时，模型不必重新处理很长的陈旧上下文。
 
 ```json
 {
@@ -541,7 +543,7 @@ QQ 普通用户即使能触发 Agent，也只会走 `low_risk`；ROOT/Super/`age
 
 `0` 表示禁用。推荐值是 `15`。`sessionTtlMinutes` 仍作为旧别名被接受，但推荐使用 `idleCompactAfterMinutes`。
 
-注意：自动压缩会原地重写 `sessions/<key>.jsonl`，旧结构化消息会被最近后缀和文本摘要取代。如果你依赖完整 tool-call 轨迹进行调试或审计，请保持默认 `0`，只使用 token 驱动的软 consolidation。
+注意：自动压缩会原地重写 `sessions/<key>.jsonl`，旧结构化消息会被最近后缀和文本摘要取代。如果你依赖完整工具调用轨迹进行调试或审计，请保持默认 `0`，只使用 token 驱动的软整理。
 
 ## 时区
 

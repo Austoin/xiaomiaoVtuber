@@ -1,14 +1,14 @@
-# 小喵 QQ Bot 控制台融合 Implementation Plan
+# 小喵 QQ Bot 控制台融合实施计划
 
 > 状态提示：这是 2026-05-12 的历史计划文档。当前项目已在 2026-06-02 完成 `stage-web`、桌面 bridge、QQ 普通 AI 回复到 xiaomiaoAgent 的统一接入。当前启动方式以 `docs/STARTUP.md`、`README.md` 和 `TECHNICAL.md` 为准。
 
-> **For Claude:** REQUIRED SUB-SKILL: Use superpowers:executing-plans to implement this plan task-by-task.
+> **给 Claude：** 需要使用 `superpowers:executing-plans` 子技能，按任务逐步实施本计划。
 
-**Goal:** 在 AuBot Electron 桌面端中新增“小喵 QQ Bot 控制台”，用于只读展示 QQ 机器人状态、桥接状态、最近事件、基础运行信息，并为后续接入 xiaomiaoAgent WebUI/工具/记忆能力预留演进路径。
+**目标：** 在 AuBot Electron 桌面端中新增“小喵 QQ Bot 控制台”，用于只读展示 QQ 机器人状态、桥接状态、最近事件、基础运行信息，并为后续接入 xiaomiaoAgent WebUI/工具/记忆能力预留演进路径。
 
-**Architecture:** 当前项目有 NapCat WebUI、AuBot Dashboard/Settings、小喵桥接模块和独立的 xiaomiaoAgent 框架。本计划先在 `xiaomiao/desktop_bridge.py` 增加只读状态/事件接口，再在 `AuBot/apps/stage-tamagotchi` 新增控制台页面消费这些接口。xiaomiaoAgent 融合采用后续阶段推进：先只读监控，再能力复用，再统一通道和事件。
+**架构：** 当前项目有 NapCat WebUI、AuBot Dashboard/Settings、小喵桥接模块和独立的 xiaomiaoAgent 框架。本计划先在 `xiaomiao/desktop_bridge.py` 增加只读状态/事件接口，再在 `AuBot/apps/stage-tamagotchi` 新增控制台页面消费这些接口。xiaomiaoAgent 融合采用后续阶段推进：先只读监控，再能力复用，再统一通道和事件。
 
-**Tech Stack:** Python `ThreadingHTTPServer`、Hyper Bot、NapCat OneBot、Electron、Vue 3、TypeScript、Pinia、Vitest、unittest。
+**技术栈：** Python `ThreadingHTTPServer`、Hyper Bot、NapCat OneBot、Electron、Vue 3、TypeScript、Pinia、Vitest、unittest。
 
 ---
 
@@ -50,14 +50,14 @@ AuBot Electron
     └── XiaoMiao Console
 ```
 
-## Task 1: 桥接状态接口
+## 任务 1：桥接状态接口
 
-**Files:**
+**文件：**
 
-- Modify: `xiaomiao/desktop_bridge.py`
-- Test: `xiaomiao/test_desktop_bridge.py`
+- 修改：`xiaomiao/desktop_bridge.py`
+- 测试：`xiaomiao/test_desktop_bridge.py`
 
-**Step 1: Write the failing test**
+**步骤 1：编写失败测试**
 
 新增测试：`GET /v1/xiaomiao/status` 返回桥接状态。
 
@@ -70,37 +70,37 @@ AuBot Electron
 }
 ```
 
-**Step 2: Run test to verify it fails**
+**步骤 2：运行测试确认失败**
 
 ```powershell
 cd xiaomiao
 python -m unittest test_desktop_bridge.py
 ```
 
-Expected: FAIL，因为 `/v1/xiaomiao/status` 尚不存在。
+预期：FAIL，因为 `/v1/xiaomiao/status` 尚不存在。
 
-**Step 3: Implement minimal endpoint**
+**步骤 3：实现最小接口**
 
 在 `desktop_bridge.py` 的 `do_GET()` 中增加只读状态路由。不要引入鉴权、持久化或管理动作。
 
-**Step 4: Run test to verify it passes**
+**步骤 4：运行测试确认通过**
 
 ```powershell
 cd xiaomiao
 python -m unittest test_desktop_bridge.py
 ```
 
-Expected: PASS。
+预期：PASS。
 
-## Task 2: 最近事件接口
+## 任务 2：最近事件接口
 
-**Files:**
+**文件：**
 
-- Modify: `xiaomiao/desktop_bridge.py`
-- Modify: `xiaomiao/main.py`
-- Test: `xiaomiao/test_desktop_bridge.py`
+- 修改：`xiaomiao/desktop_bridge.py`
+- 修改：`xiaomiao/main.py`
+- 测试：`xiaomiao/test_desktop_bridge.py`
 
-**Step 1: Write the failing test**
+**步骤 1：编写失败测试**
 
 新增测试：`GET /v1/xiaomiao/events` 返回最近事件数组。
 
@@ -115,150 +115,150 @@ Expected: PASS。
 }
 ```
 
-**Step 2: Run test to verify it fails**
+**步骤 2：运行测试确认失败**
 
 ```powershell
 cd xiaomiao
 python -m unittest test_desktop_bridge.py
 ```
 
-Expected: FAIL，因为事件接口尚不存在。
+预期：FAIL，因为事件接口尚不存在。
 
-**Step 3: Implement in-memory event buffer**
+**步骤 3：实现内存事件缓冲区**
 
 在 `desktop_bridge.py` 增加内存事件队列，最大保留 50 条。`publish_desktop_state()` 同步写入最近回复事件。
 
-**Step 4: Wire QQ reply publishing**
+**步骤 4：接入 QQ 回复发布**
 
 保留 `main.py` 现有 `publish_desktop_state(event.user_id, result)` 调用。若需要群号，扩展函数签名时必须同步更新测试。
 
-**Step 5: Run test to verify it passes**
+**步骤 5：运行测试确认通过**
 
 ```powershell
 cd xiaomiao
 python -m unittest test_desktop_bridge.py
 ```
 
-Expected: PASS。
+预期：PASS。
 
-## Task 3: AuBot 控制台 API 模块
+## 任务 3：AuBot 控制台 API 模块
 
-**Files:**
+**文件：**
 
-- Create: `AuBot/apps/stage-tamagotchi/src/renderer/pages/xiaomiao-console-api.ts`
-- Test: `AuBot/apps/stage-tamagotchi/src/renderer/pages/xiaomiao-console-api.test.ts`
+- 新增：`AuBot/apps/stage-tamagotchi/src/renderer/pages/xiaomiao-console-api.ts`
+- 测试：`AuBot/apps/stage-tamagotchi/src/renderer/pages/xiaomiao-console-api.test.ts`
 
-**Step 1: Write failing tests**
+**步骤 1：编写失败测试**
 
 覆盖三种情况：成功读取状态、成功读取事件、桥接不可用时返回明确错误状态。
 
-**Step 2: Run test to verify it fails**
+**步骤 2：运行测试确认失败**
 
 ```powershell
 cd AuBot
 pnpm exec vitest run apps/stage-tamagotchi/src/renderer/pages/xiaomiao-console-api.test.ts
 ```
 
-Expected: FAIL，因为模块尚不存在。
+预期：FAIL，因为模块尚不存在。
 
-**Step 3: Implement minimal API wrapper**
+**步骤 3：实现最小 API 封装**
 
 实现 `readXiaomiaoStatus(fetcher)` 和 `readXiaomiaoEvents(fetcher)`。默认桥接地址继续复用 `http://127.0.0.1:5519`，不要在本任务新增设置系统。
 
-**Step 4: Run test to verify it passes**
+**步骤 4：运行测试确认通过**
 
 ```powershell
 cd AuBot
 pnpm exec vitest run apps/stage-tamagotchi/src/renderer/pages/xiaomiao-console-api.test.ts
 ```
 
-Expected: PASS。
+预期：PASS。
 
-## Task 4: XiaoMiao Console 页面
+## 任务 4：XiaoMiao Console 页面
 
-**Files:**
+**文件：**
 
-- Create: `AuBot/apps/stage-tamagotchi/src/renderer/pages/xiaomiao-console.vue`
-- Modify: `AuBot/apps/stage-tamagotchi/src/renderer/typed-router.d.ts` only if generated or required by router tooling
+- 新增：`AuBot/apps/stage-tamagotchi/src/renderer/pages/xiaomiao-console.vue`
+- 修改：仅在路由工具生成或要求时修改 `AuBot/apps/stage-tamagotchi/src/renderer/typed-router.d.ts`
 
-**Step 1: Build minimal page**
+**步骤 1：构建最小页面**
 
 页面第一版只读展示：桥接状态、当前模型、默认绑定用户、最近事件列表、最近一次助手回复。
 
-**Step 2: Add polling**
+**步骤 2：增加轮询**
 
-页面挂载后每 2 秒读取一次状态和事件。卸载时清理 timer。
+页面挂载后每 2 秒读取一次状态和事件。卸载时清理定时器。
 
-**Step 3: Handle bridge unavailable**
+**步骤 3：处理桥接不可用**
 
 桥接不可用时显示“未连接到小喵桥接服务”，不要弹异常或阻塞其他页面。
 
-**Step 4: Manual smoke check**
+**步骤 4：手动冒烟检查**
 
 ```powershell
 cd AuBot
 pnpm dev:tamagotchi
 ```
 
-Expected: Electron 可以打开新页面，桥接不可用时页面稳定显示离线状态。
+预期：Electron 可以打开新页面，桥接不可用时页面稳定显示离线状态。
 
-## Task 5: 入口导航
+## 任务 5：入口导航
 
-**Files:**
+**文件：**
 
-- Modify: `AuBot/apps/stage-tamagotchi/src/renderer/layouts/settings.vue`
-- Or Modify: `AuBot/apps/stage-tamagotchi/src/renderer/pages/dashboard/index.vue`
+- 修改：`AuBot/apps/stage-tamagotchi/src/renderer/layouts/settings.vue`
+- 或修改：`AuBot/apps/stage-tamagotchi/src/renderer/pages/dashboard/index.vue`
 
-**Step 1: Choose entry location**
+**步骤 1：选择入口位置**
 
 优先放在 Dashboard。如果现有 Dashboard 结构不适合，再放到 Settings 的开发/集成区域。
 
-**Step 2: Add navigation item**
+**步骤 2：增加导航项**
 
 文案建议：`小喵控制台` / `XiaoMiao Console`。
 
-**Step 3: Verify route works**
+**步骤 3：验证路由可用**
 
 ```powershell
 cd AuBot
 pnpm dev:tamagotchi
 ```
 
-Expected: 可以从入口打开小喵控制台页面。
+预期：可以从入口打开小喵控制台页面。
 
-## Task 6: 文档更新
+## 任务 6：文档更新
 
-**Files:**
+**文件：**
 
-- Modify: `README.md`
-- Modify: `TECHNICAL.md`
-- Modify: `docs/plans/2026-05-12-xiaomiao-console-fusion.md` if implementation details changed
+- 修改：`README.md`
+- 修改：`TECHNICAL.md`
+- 如实现细节变化，修改：`docs/plans/2026-05-12-xiaomiao-console-fusion.md`
 
-**Step 1: Update README**
+**步骤 1：更新 README**
 
 在主目录 `README.md` 中补充“小喵控制台”入口说明。
 
-**Step 2: Update TECHNICAL**
+**步骤 2：更新 TECHNICAL**
 
 在 `TECHNICAL.md` 中将“当前没有小喵专用控制台”更新为“已规划/已实现控制台”，并说明接口。
 
-**Step 3: Verify docs stay readable**
+**步骤 3：验证文档可读性**
 
 确认 `TECHNICAL.md` 结构清晰，章节边界明确。当前不限制行数，优先保证 nanobot 融合背景、边界和路线完整。
 
-## Task 7: nanobot 只读接入规划
+## 任务 7：nanobot 只读接入规划
 
-**Files:**
+**文件：**
 
-- Modify: `README.md`
-- Modify: `TECHNICAL.md`
-- Modify: `docs/plans/2026-05-12-xiaomiao-console-fusion.md`
+- 修改：`README.md`
+- 修改：`TECHNICAL.md`
+- 修改：`docs/plans/2026-05-12-xiaomiao-console-fusion.md`
 
-**Step 1: Document xiaomiaoAgent role**
+**步骤 1：说明 xiaomiaoAgent 角色**
 
 在项目文档中明确 xiaomiaoAgent 是后续 Agent 能力层，不是第一阶段直接替换 `xiaomiao` 的实现。`nanobot` 作为内部代码包名保留。
 
-**Step 2: Define read-only integration targets**
+**步骤 2：定义只读接入目标**
 
 规划小喵控制台后续展示 xiaomiaoAgent 状态：
 
@@ -271,27 +271,27 @@ recent agent events
 tool availability summary
 ```
 
-**Step 3: Keep failure isolated**
+**步骤 3：隔离失败影响**
 
 明确 xiaomiaoAgent 离线或未配置时，`xiaomiao` QQ Bot 和 AuBot Vtuber 主链路必须继续可用。
 
-**Step 4: Avoid privileged actions**
+**步骤 4：避免高权限动作**
 
 第一版只允许读取 xiaomiaoAgent 状态，不允许从 AuBot 控制台触发 Shell、文件写入、MCP、Cron 创建、Subagent 创建等动作。
 
-## Task 8: xiaomiaoAgent 能力复用路线
+## 任务 8：xiaomiaoAgent 能力复用路线
 
-**Files:**
+**文件：**
 
-- Modify: future implementation plan after Task 7 is accepted
+- 修改：任务 7 确认后的后续实施计划
 
-**Step 1: Tool service boundary**
+**步骤 1：工具服务边界**
 
 把 xiaomiaoAgent tools 作为受控内部能力层，而不是直接暴露给 QQ 消息。优先允许只读工具，例如 Web fetch/search、状态查询、文档读取。
 
-**Step 2: Memory/session boundary**
+**步骤 2：记忆/会话边界**
 
-定义统一 session key：
+定义统一会话键：
 
 ```text
 platform:qq:user:<qq_id>
@@ -301,7 +301,7 @@ platform:webui:user:<local_user>
 
 避免 `xiaomiao` 和 xiaomiaoAgent 对同一用户维护互相冲突的上下文。
 
-**Step 3: Unified event shape**
+**步骤 3：统一事件结构**
 
 设计统一事件结构供 AuBot 消费：
 
@@ -316,7 +316,7 @@ platform:webui:user:<local_user>
 }
 ```
 
-**Step 4: Gradual replacement rules**
+**步骤 4：渐进替换规则**
 
 任何迁移都必须满足：
 
@@ -327,29 +327,29 @@ platform:webui:user:<local_user>
 
 ## xiaomiaoAgent 融合阶段建议
 
-### Phase A: 只读观测
+### 阶段 A：只读观测
 
 目标：让 AuBot 控制台能展示 xiaomiaoAgent 是否运行、WebUI 是否可访问、gateway 是否在线。
 
 不新增任何远程执行能力。
 
-### Phase B: Agent 能力旁路调用
+### 阶段 B：Agent 能力旁路调用
 
 目标：`xiaomiao` 在特定命令或特定用户授权下调用 xiaomiaoAgent 的只读工具能力，例如 Web 搜索、文档检索、记忆查询。
 
-### Phase C: 记忆与会话统一
+### 阶段 C：记忆与会话统一
 
-目标：将 `GoogleAI.Context` 的用户历史逐步映射到 xiaomiaoAgent session/memory，避免 QQ、WebUI、桌面端上下文分裂。
+目标：将 `GoogleAI.Context` 的用户历史逐步映射到 xiaomiaoAgent 会话/记忆，避免 QQ、WebUI、桌面端上下文分裂。
 
-### Phase D: 通道统一评估
+### 阶段 D：通道统一评估
 
 目标：评估是否让 QQ、WebSocket、WebUI 等入口进入 xiaomiaoAgent MessageBus，再由统一 Agent 产生回复。
 
-### Phase E: Vtuber 表现层统一
+### 阶段 E：Vtuber 表现层统一
 
 目标：AuBot 不再区分回复来自 `xiaomiao` 还是 xiaomiaoAgent，只消费统一的 assistant reply / tool event / status event。
 
-## Verification
+## 验证
 
 完成后至少运行：
 
@@ -377,7 +377,7 @@ cd AuBot
 pnpm -F @proj-airi/stage-tamagotchi typecheck
 ```
 
-## Edge Cases To Cover
+## 需覆盖的边界情况
 
 - `xiaomiao` 未启动时，控制台显示离线。
 - `xiaomiao` 已启动但没有最近事件时，事件列表为空态清晰。
@@ -387,9 +387,9 @@ pnpm -F @proj-airi/stage-tamagotchi typecheck
 - 桥接服务重启后，控制台能自动恢复在线状态。
 - xiaomiaoAgent 未安装、未配置或未启动时，小喵控制台显示“未接入 xiaomiaoAgent”，但不影响 QQ Bot 和 Vtuber 主链路。
 - xiaomiaoAgent 工具权限关闭时，控制台不能绕过权限直接触发工具。
-- 同一 QQ 用户同时通过 QQ 和 WebUI 交互时，session key 映射不能混淆。
+- 同一 QQ 用户同时通过 QQ 和 WebUI 交互时，会话键映射不能混淆。
 
-## Success Criteria
+## 成功标准
 
 - AuBot 中能打开“小喵控制台”。
 - 控制台能展示桥接在线状态、模型、绑定用户和最近事件。

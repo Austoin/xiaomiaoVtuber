@@ -43,6 +43,17 @@ from qq_agent_bridge import (
 )
 from qq_agent_tools import AgentToolConfirmationStore, decide_agent_tool_request
 from qq_permissions import has_agent_tool_permission, has_manage_permission
+from qq_workspace import (
+    QQWorkspaceError,
+    append_documents_to_agent_text,
+    build_group_upload_agent_text,
+    download_documents_from_raw_message,
+    download_qq_document,
+    extract_file_name,
+    format_failures,
+    has_document_file_segments,
+    resolve_group_upload_url,
+)
 
 # import framework
 Configurator.cm = Configurator.ConfigManager(
@@ -312,6 +323,26 @@ def build_authorized_qq_agent_reply(
     )
 
 
+async def build_agent_text_with_qq_documents(
+    *,
+    base_text: str,
+    raw_message,
+    source: str,
+    user_id: int,
+    chat_id: int | str,
+) -> tuple[str, str | None]:
+    documents, failures = await download_documents_from_raw_message(
+        raw_message=raw_message,
+        source=source,
+        user_id=user_id,
+        chat_id=chat_id,
+    )
+    text = append_documents_to_agent_text(base_text, documents, failures)
+    if failures:
+        return text, format_failures(failures)
+    return text, None
+
+
 async def image_url_to_agent_media(url: str) -> str | None:
     compressed_base64 = await download_and_compress_image(url)
     if not compressed_base64:
@@ -507,6 +538,56 @@ async def handler(event: Events.Event, actions: Listener.Actions) -> None:
                     ),
                 )
                 break
+
+    if isinstance(event, Events.GroupFileUploadEvent):
+        if event.blocked or event.is_silent:
+            return
+        try:
+            filename = extract_file_name(event.file)
+            url = await resolve_group_upload_url(actions, event.group_id, event.file)
+            document = await download_qq_document(
+                url=url,
+                filename=filename,
+                source=QQ_AGENT_GROUP,
+                user_id=event.user_id,
+                chat_id=event.group_id,
+                allow_private_url=True,
+            )
+            agent_reply, blocked_message = build_authorized_qq_agent_reply(
+                source=QQ_AGENT_GROUP,
+                user_id=event.user_id,
+                chat_id=event.group_id,
+                text=build_group_upload_agent_text(document),
+            )
+            if blocked_message:
+                await actions.send(
+                    group_id=event.group_id,
+                    message=Manager.Message(Segments.Text(blocked_message)),
+                )
+                return
+            await actions.send(
+                group_id=event.group_id,
+                message=Manager.Message(Segments.Text(agent_reply.assistant_text)),
+            )
+            publish_qq_agent_reply(
+                agent_reply,
+                publish_bridge_exchange,
+                publish_bridge_event,
+            )
+            return
+        except QQWorkspaceError as exc:
+            await actions.send(
+                group_id=event.group_id,
+                message=Manager.Message(Segments.Text(f"文档接收失败：{exc}")),
+            )
+            return
+        except Exception:
+            print(traceback.format_exc())
+            await actions.send(
+                group_id=event.group_id,
+                message=Manager.Message(Segments.Text(f"{bot_name}处理群文件失败了，请稍后再试。")),
+            )
+            return
 
     def execute_command(command):
         try:
@@ -2228,7 +2309,8 @@ CPU 使用率：{str(system_info["cpu_usage"]) + "%"}
                 )
 
         else:
-            if len(order) >= 2:
+            has_document_segments = has_document_file_segments(getattr(event, "data", {}).get("message"))
+            if len(order) >= 2 or has_document_segments:
                 url = ""
                 try:
                     match EnableNetwork:
@@ -2324,20 +2406,38 @@ CPU 使用率：{str(system_info["cpu_usage"]) + "%"}
                                         new.append(Parts.Text("[表情包下载失败]"))
 
                             new = Roles.User(*new)
+                            agent_text, document_warning = await build_agent_text_with_qq_documents(
+                                base_text=order or user_message,
+                                raw_message=getattr(event, "data", {}).get("message"),
+                                source=QQ_AGENT_GROUP,
+                                user_id=event.user_id,
+                                chat_id=event.group_id,
+                            )
+                            if document_warning:
+                                print(f"QQ 文档下载失败: {document_warning}")
                             agent_reply, blocked_message = build_authorized_qq_agent_reply(
                                 source=QQ_AGENT_GROUP,
                                 user_id=event.user_id,
                                 chat_id=event.group_id,
-                                text=order or user_message,
+                                text=agent_text,
                                 media=tuple(media),
                             )
 
                         case "Normal" | "Net":
+                            agent_text, document_warning = await build_agent_text_with_qq_documents(
+                                base_text=order or user_message,
+                                raw_message=getattr(event, "data", {}).get("message"),
+                                source=QQ_AGENT_GROUP,
+                                user_id=event.user_id,
+                                chat_id=event.group_id,
+                            )
+                            if document_warning:
+                                print(f"QQ 文档下载失败: {document_warning}")
                             agent_reply, blocked_message = build_authorized_qq_agent_reply(
                                 source=QQ_AGENT_GROUP,
                                 user_id=event.user_id,
                                 chat_id=event.group_id,
-                                text=order or user_message,
+                                text=agent_text,
                             )
 
                     if blocked_message:
@@ -2397,6 +2497,7 @@ CPU 使用率：{str(system_info["cpu_usage"]) + "%"}
     if isinstance(event, Events.PrivateMessageEvent):
         user_message = str(event.message)
         order = ""
+        has_document_segments = has_document_file_segments(getattr(event, "data", {}).get("message"))
 
         event_user = (await actions.get_stranger_info(event.user_id)).data.raw
         event_user = event_user.get("nickname", "用户")
@@ -2875,7 +2976,7 @@ Made by SR Studio
                         )
 
         # AI 对话（私聊版）
-        elif len(order) >= 2:
+        elif len(order) >= 2 or has_document_segments:
             url = ""
             try:
                 match EnableNetwork:
@@ -2916,20 +3017,38 @@ Made by SR Studio
                                     new.append(Parts.Text("[表情包下载失败]"))
 
                         new = Roles.User(*new)
+                        agent_text, document_warning = await build_agent_text_with_qq_documents(
+                            base_text=order or user_message,
+                            raw_message=getattr(event, "data", {}).get("message"),
+                            source=QQ_AGENT_PRIVATE,
+                            user_id=event.user_id,
+                            chat_id=event.user_id,
+                        )
+                        if document_warning:
+                            print(f"[私聊] QQ 文档下载失败: {document_warning}")
                         agent_reply, blocked_message = build_authorized_qq_agent_reply(
                             source=QQ_AGENT_PRIVATE,
                             user_id=event.user_id,
                             chat_id=event.user_id,
-                            text=order or user_message,
+                            text=agent_text,
                             media=tuple(media),
                         )
 
                     case "Normal" | "Net":
+                        agent_text, document_warning = await build_agent_text_with_qq_documents(
+                            base_text=order or user_message,
+                            raw_message=getattr(event, "data", {}).get("message"),
+                            source=QQ_AGENT_PRIVATE,
+                            user_id=event.user_id,
+                            chat_id=event.user_id,
+                        )
+                        if document_warning:
+                            print(f"[私聊] QQ 文档下载失败: {document_warning}")
                         agent_reply, blocked_message = build_authorized_qq_agent_reply(
                             source=QQ_AGENT_PRIVATE,
                             user_id=event.user_id,
                             chat_id=event.user_id,
-                            text=order or user_message,
+                            text=agent_text,
                         )
 
                 if blocked_message:

@@ -1,6 +1,6 @@
 # xiaomiaoVirtual / AuBot
 
-AuBot 是 `xiaomiaoVirtual` 的 Web/桌面 Vtuber 表现层，负责把统一 Agent 回复呈现为网页聊天、桌面字幕、TTS 和 Live2D/VRM 口型同步。内部包名、workspace scope 和部分目录仍保留 `@proj-airi/*` 兼容标识。
+AuBot 是 `xiaomiaoVirtual` 的 Web/桌面 Vtuber 表现层，负责把统一 Agent 回复呈现为网页聊天、桌面字幕、TTS 和 Live2D/VRM 口型同步。内部包名、工作区作用域和部分目录仍保留 `@proj-airi/*` 兼容标识。
 
 ## 目录
 
@@ -43,7 +43,7 @@ AuBot 是 `xiaomiaoVirtual` 的 Web/桌面 Vtuber 表现层，负责把统一 Ag
    - Web 应用：`pnpm dev:web`
    - Electron 桌面版：`pnpm dev:tamagotchi`
    - 文档站：`pnpm dev:docs`
-   - Server API：`pnpm -F @proj-airi/server dev`
+   - 服务端 API：`pnpm -F @proj-airi/server dev`
 
 ---
 
@@ -51,15 +51,15 @@ AuBot 是 `xiaomiaoVirtual` 的 Web/桌面 Vtuber 表现层，负责把统一 Ag
 
 ### `apps/stage-web`
 
-Web 版应用，适合在浏览器中运行和调试，用于承载 `xiaomiaoVirtual` 的前端交互能力。当前 `stage-web` 的文本输入、移动端输入和页面级录音转文字入口都会发送到 `xiaomiao` bridge。
+Web 版应用，适合在浏览器中运行和调试，用于承载 `xiaomiaoVirtual` 的前端交互能力。当前 `stage-web` 的文本输入、移动端输入和页面级录音转文字入口都会发送到 `xiaomiao` 桥接服务。
 
 ### `apps/stage-tamagotchi`
 
-Electron 桌面版应用，是当前桌面形态的主要入口，适合本地运行虚拟角色、桌面交互和窗口能力集成。桌面端读取 `xiaomiao` bridge state，并把回复同步到字幕、聊天历史、TTS 和 Live2D 口型。
+Electron 桌面版应用，是当前桌面形态的主要入口，适合本地运行虚拟角色、桌面交互和窗口能力集成。桌面端读取 `xiaomiao` 桥接状态，并把回复同步到字幕、聊天历史、TTS 和 Live2D 口型。
 
 ### `apps/stage-pocket`
 
-移动端应用，用于承载移动场景下的 `xiaomiaoVirtual` 体验。当前已接入第一批只读 `xiaomiao` bridge events 同步，可把 chat、tool、confirmation、memory、stage events 合并到移动端聊天历史；后续仍需 bridge binding handshake、动态地址配置和专门事件 UI。
+移动端应用，用于承载移动场景下的 `xiaomiaoVirtual` 体验。当前已接入第一批只读 `xiaomiao` 桥接事件同步，可把聊天、工具、确认、记忆、舞台事件合并到移动端聊天历史；后续仍需桥接绑定握手、动态地址配置和专门事件 UI。
 
 ### `apps/server`
 
@@ -86,7 +86,7 @@ cd F:\xiaomiaoVirtual
 start-all.cmd
 ```
 
-`start-all.cmd` 会串行启动 QQ 协议端、xiaomiaoAgent API、xiaomiaoAgent gateway、xiaomiao bridge、stage-web 和 xiaomiaoAgent WebUI。新启动的终端默认最小化；前一步没有通过健康检查时，后续服务不会打开。
+`start-all.cmd` 会串行启动 QQ 协议端、xiaomiaoAgent API、xiaomiaoAgent 网关、xiaomiao 桥接服务、stage-web 和 xiaomiaoAgent WebUI。新启动的终端默认最小化；前一步没有通过健康检查时，后续服务不会打开。
 
 手动启动时，先启动后端链路：
 
@@ -108,16 +108,16 @@ python main.py
 
 ```text
 5004  NapCat OneBot WebSocket
-5519  xiaomiao desktop bridge
-8765  xiaomiaoAgent gateway
-8900  xiaomiaoAgent OpenAI-compatible API
+5519  xiaomiao 桥接服务
+8765  xiaomiaoAgent 网关
+8900  xiaomiaoAgent OpenAI 兼容 API
 5174  xiaomiaoAgent WebUI
 5175  xiaomiaobot stage-web
 ```
 
-`python main.py` 会先启动 bridge，再连接 OneBot。如果 NapCat 未启动或 WebSocket 断开，主进程会退出，`stage-web` 也会因为 `5519` 不存在而显示 bridge 错误。
+`python main.py` 会先启动桥接服务，再连接 OneBot。如果 NapCat 未启动或 WebSocket 断开，主进程会退出，`stage-web` 也会因为 `5519` 不存在而显示桥接错误。
 
-QQ / Web / xiaomiaoAgent WebUI 共享 `xiaomiao-unified` 会话和 bridge events。QQ 本地命令 `帮助`、`关于`、`读图` 使用精确匹配，普通问题中包含这些词时仍会进入 xiaomiaoAgent。
+QQ / Web / xiaomiaoAgent WebUI 共享 `xiaomiao-unified` 会话和桥接事件。QQ 本地命令 `帮助`、`关于`、`读图` 使用精确匹配，普通问题中包含这些词时仍会进入 xiaomiaoAgent。
 
 QQ 工具请求会经过权限网关：普通用户默认只能触发 `low_risk` 工具；ROOT/Super/`agent_tool_allowlist` 用户请求本机命令、MCP 动作或外部服务写操作时，会先收到 `确认执行 <code>`，确认后才执行。
 
@@ -132,9 +132,9 @@ pnpm dev:web
 - 浏览器环境调试
 - 页面与交互开发
 - Web 场景预览
-- 验证 `stage-web -> xiaomiao bridge -> xiaomiaoAgent` 链路
+- 验证 `stage-web -> xiaomiao 桥接服务 -> xiaomiaoAgent` 链路
 
-第一次打开 Web 版会先通过 bridge 读取主目录 `config.json`。配置完整时不会弹配置面板；配置缺失时填写中转站 URL、API Key 和模型后会同步写回主目录 `config.json`。bridge 不可用、xiaomiaoAgent 不可用或返回空回复时，聊天历史会出现明确 error 消息，不会静默回退到 xiaomiaobot provider。网页确认后的消息会通过 bridge events 回放，刷新页面后仍能看到三端同步记录。工具执行、确认码、记忆整理和舞台动作也会进入同一事件流。
+第一次打开 Web 版会先通过桥接服务读取主目录 `config.json`。配置完整时不会弹配置面板；配置缺失时填写中转站 URL、API Key 和模型后会同步写回主目录 `config.json`。桥接服务不可用、xiaomiaoAgent 不可用或返回空回复时，聊天历史会出现明确 error 消息，不会静默回退到 xiaomiaobot 提供方。网页确认后的消息会通过桥接事件回放，刷新页面后仍能看到三端同步记录。工具执行、确认码、记忆整理和舞台动作也会进入同一事件流。
 
 ### 方式二：启动桌面 Electron 版
 
@@ -147,7 +147,7 @@ pnpm dev:tamagotchi
 - 本地桌面运行
 - 虚拟角色展示
 - Electron 能力联调
-- 验证 `xiaomiao bridge state -> 桌面字幕 / 聊天历史 / TTS / Live2D` 表现链路
+- 验证 `xiaomiao 桥接状态 -> 桌面字幕 / 聊天历史 / TTS / Live2D` 表现链路
 
 ### 方式三：启动文档站
 
@@ -155,13 +155,13 @@ pnpm dev:tamagotchi
 pnpm dev:docs
 ```
 
-### 方式四：启动 Server API
+### 方式四：启动服务端 API
 
 ```powershell
 pnpm -F @proj-airi/server dev
 ```
 
-Server API 默认读取：
+服务端 API 默认读取：
 
 ```text
 apps/server/.env.local
@@ -187,7 +187,7 @@ apps/server/.env.local
 
 ### 多端协作说明
 
-AuBot 采用 pnpm workspace 组织多个应用与共享包，因此日常开发通常不是只运行一个目录，而是根据你的目标选择对应入口：
+AuBot 采用 pnpm 工作区组织多个应用与共享包，因此日常开发通常不是只运行一个目录，而是根据你的目标选择对应入口：
 
 - 做 Web 页面：优先启动 `stage-web`；如果要测聊天输入，必须同时启动 `xiaomiao` bridge 和 xiaomiaoAgent API
 - 做桌面端能力：优先启动 `stage-tamagotchi`；如果要测小喵回复表现，必须同时启动 `xiaomiao`
@@ -226,13 +226,13 @@ pnpm build
 pnpm typecheck
 ```
 
-Lint 检查：
+代码规范检查：
 
 ```powershell
 pnpm lint
 ```
 
-自动修复 Lint：
+自动修复代码规范问题：
 
 ```powershell
 pnpm lint:fix
@@ -257,10 +257,10 @@ AuBot/
 │   └── server/             # 服务端 API
 ├── packages/               # 共享 UI、业务、运行时、SDK、工具包
 ├── docs/                   # 文档站与补充资料
-├── eslint.config.js        # Lint 配置
+├── eslint.config.js        # 代码规范配置
 ├── uno.config.ts           # UnoCSS 配置
 ├── vitest.config.ts        # 测试配置
-└── package.json            # workspace 根配置
+└── package.json            # 工作区根配置
 ```
 
 与小喵联动相关的关键文件：

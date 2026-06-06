@@ -8,9 +8,9 @@
 2. `xiaomiaobot`：`xiaomiaoVirtual` 的 Web/桌面 Vtuber 表现层，基于 Electron、Vue、TypeScript、Live2D、VRM、TTS 和口型同步能力。内部包名仍保留 `@proj-airi/*` 兼容标识。
 3. `xiaomiaoAgent`：轻量 Python Agent 框架，内部 Python 包仍是 `nanobot`，提供 Agent Loop、多平台 Channels、工具调用、记忆、会话管理、OpenAI 兼容 API、Gateway 和 WebUI 能力。
 
-当前已打通统一 Agent 链路：`xiaomiaobot stage-web` 的网页输入、`xiaomiao` 桌面 bridge、QQ 群/私聊普通 AI 回复和 `xiaomiaoAgent WebUI` 都会进入同一个 `xiaomiaoAgent` 能力层。`xiaomiao` 在本机暴露 OpenAI 兼容 bridge，`stage-web` 通过 bridge 发消息，QQ 自然语言回复也通过同一个 `agent_backend` 调用 `xiaomiaoAgent` API。
+当前已打通统一 Agent 链路：`xiaomiaobot stage-web` 的网页输入、`xiaomiao` 桌面桥接、QQ 群/私聊普通 AI 回复和 `xiaomiaoAgent WebUI` 都会进入同一个 `xiaomiaoAgent` 能力层。`xiaomiao` 在本机暴露 OpenAI 兼容桥接，`stage-web` 通过桥接发消息，QQ 自然语言回复也通过同一个 `agent_backend` 调用 `xiaomiaoAgent` API。
 
-QQ 侧已增加 Agent 工具权限网关：普通用户默认 `low_risk`，ROOT/Super/`agent_tool_allowlist` 用户可以触发高风险工具确认，确认后才会以 `trusted_confirmed` 调用 Agent。命令型 QQ 功能仍保留在 `xiaomiao` 中，包括权限管理、生图、撤回、配置类命令和部分搜索分支。`xiaomiaobot` 继续作为 Web/桌面/移动端表现层，消费统一回复并同步聊天历史、字幕、语音、口型和 bridge events。
+QQ 侧已增加 Agent 工具权限网关：普通用户默认 `low_risk`，ROOT/Super/`agent_tool_allowlist` 用户可以触发高风险工具确认，确认后才会以 `trusted_confirmed` 调用 Agent。命令型 QQ 功能仍保留在 `xiaomiao` 中，包括权限管理、生图、撤回、配置类命令和部分搜索分支。`xiaomiaobot` 继续作为网页端、桌面端和移动端表现层，消费统一回复并同步聊天历史、字幕、语音、口型和桥接事件。
 
 ## 架构概览
 
@@ -21,19 +21,19 @@ xiaomiao desktop_bridge.py
     ↓
 xiaomiao agent_backend.py
     ↓ HTTP :8900
-xiaomiaoAgent OpenAI-compatible API
+xiaomiaoAgent OpenAI 兼容 API
     ↓
-xiaomiaoAgent Tools / Memory / Session
+xiaomiaoAgent 工具 / 记忆 / 会话
     ↓
 stage-web 聊天历史 / 错误消息
 
 xiaomiaoAgent WebUI :5174
     ↓ WebSocket
-xiaomiaoAgent gateway :8765
+xiaomiaoAgent 网关 :8765
     ↓ chat_id=xiaomiao-unified
-xiaomiaoAgent Session / Tools / Memory
-    ↓ mirror
-xiaomiao bridge events :5519
+xiaomiaoAgent 会话 / 工具 / 记忆
+    ↓ 镜像同步
+xiaomiao 桥接事件 :5519
 
 QQ 用户 / 群消息
     ↓
@@ -45,13 +45,13 @@ xiaomiao/main.py
 
 xiaomiaobot stage-tamagotchi 桌面端
     ↓
-读取 xiaomiao bridge state / 本地 bridge 回复
+读取 xiaomiao 桥接状态 / 本地桥接回复
     ↓
 字幕 / 聊天历史 / TTS / Live2D 口型同步
 
 xiaomiaobot stage-pocket 移动端
     ↓
-轮询 xiaomiao bridge events
+轮询 xiaomiao 桥接事件
     ↓
 聊天 / 工具 / 确认 / 记忆 / 舞台事件只读同步
 ```
@@ -62,12 +62,15 @@ xiaomiaobot stage-pocket 移动端
 xiaomiaoVirtual/
 ├── xiaomiao/       # QQ 机器人主体
 ├── xiaomiaobot/    # xiaomiaoVirtual Web/桌面 Vtuber 表现层
-├── xiaomiaoAgent/  # 轻量 Agent 框架、Gateway、API 与 WebUI
+├── xiaomiaoAgent/  # 轻量 Agent 框架、网关、API 与 WebUI
 ├── docs/           # 项目文档、启动说明和融合计划
 ├── test/           # 项目统一测试目录
+├── workspace/      # 对话资源工作区，QQ 文件下载和生成物按子目录归档
 ├── README.md       # 项目入口说明
 └── TECHNICAL.md    # 技术分析文档
 ```
+
+文件和运行态边界见 `docs/file-workspace-hygiene.md`：`workspace/` 只提交目录骨架，QQ 下载文件、Agent 产物、缓存、会话、桥接事件和本机数据库都留在本地。
 
 ## 快速启动
 
@@ -78,8 +81,8 @@ xiaomiaoVirtual/
 ```text
 QQ 协议端 :5004
   → xiaomiaoAgent API :8900
-  → xiaomiaoAgent gateway :8765
-  → xiaomiao main.py / bridge :5519
+  → xiaomiaoAgent 网关 :8765
+  → xiaomiao main.py / 桥接 :5519
   → xiaomiaobot stage-web :5175
   → xiaomiaoAgent WebUI :5174
 ```
@@ -148,7 +151,7 @@ cd F:\xiaomiaoVirtual\xiaomiaobot
 pnpm dev:tamagotchi
 ```
 
-`stage-web` 会把文本输入和录音转文字结果发送到 `xiaomiao` bridge；桌面端会读取 bridge state，并将机器人回复同步到 Vtuber 表现层。
+`stage-web` 会把文本输入和录音转文字结果发送到 `xiaomiao` 桥接服务；桌面端会读取桥接状态，并将机器人回复同步到 Vtuber 表现层。
 
 ## 核心能力
 
@@ -156,14 +159,16 @@ pnpm dev:tamagotchi
 - QQ 普通 AI 对话统一进入 xiaomiaoAgent。
 - QQ Agent 工具权限网关：普通用户 `low_risk`，白名单高风险动作二次确认。
 - QQ 中文记忆命令：`记忆状态`、`整理记忆`、`记忆日志`、`恢复记忆`、`新会话`、`停止任务`。
-- `stage-web` 文本输入和语音转文字入口统一进入 xiaomiao bridge。
+- QQ 群文件上传和 file 消息段会保存到 `workspace/downloads/qq/`，再由 Agent 调用 `markitdown_convert` 转 Markdown 和总结。
+- QQ 可通过 Agent 低风险工具抓取公网网页正文：`scrapling_get` 负责结构化抽取，仍阻断内网和本机地址。
+- `stage-web` 文本输入和语音转文字入口统一进入 xiaomiao 桥接服务。
 - 人设切换：女朋友、姐姐、妈妈、高级程序员。
 - 图片理解、图片生成、名言图片生成。
 - 群管理和定时消息。
 - 本地 OpenAI 兼容桥接接口。
-- xiaomiaoAgent OpenAI 兼容 API、统一 session 和记忆/工具能力层。
+- xiaomiaoAgent OpenAI 兼容 API、统一会话和记忆/工具能力层。
 - xiaomiaoAgent 低风险工具：`markitdown_convert`、`scrapling_get`。
-- xiaomiaoAgent MCP 安全 profile：Computer Use、Twitter、Minecraft 默认关闭，启用后按低风险/确认策略暴露。
+- xiaomiaoAgent MCP 安全配置档：Computer Use、Twitter、Minecraft 默认关闭，启用后按低风险/确认策略暴露。
 - Electron 桌面 Vtuber 展示。
 - Live2D / VRM 模型渲染。
 - TTS 语音播报。
@@ -171,7 +176,7 @@ pnpm dev:tamagotchi
 - 字幕和聊天历史同步。
 - xiaomiaoAgent Loop 与多轮任务执行能力。
 - xiaomiaoAgent 工具系统、MCP、Web 搜索、Cron 和记忆系统。
-- Web、桌面、移动端 bridge events 和 QQ 普通 AI 回复已统一到 xiaomiaoAgent。
+- 网页端、桌面端、移动端桥接事件和 QQ 普通 AI 回复已统一到 xiaomiaoAgent。
 
 ## 关键文件
 
@@ -179,9 +184,10 @@ pnpm dev:tamagotchi
 
 - `main.py`：QQ 机器人主入口，包含事件监听、命令解析、AI 回复和桥接启动。
 - `desktop_bridge.py`：本地 OpenAI 兼容桥接服务。
-- `agent_backend.py`：调用 xiaomiaoAgent OpenAI 兼容 API 的统一 Agent backend。
+- `agent_backend.py`：调用 xiaomiaoAgent OpenAI 兼容 API 的统一 Agent 后端。
 - `qq_agent_tools.py`：QQ Agent 工具策略、确认码和中文记忆命令映射。
 - `qq_permissions.py`：ROOT/Super/Agent 工具白名单权限判断。
+- `qq_workspace.py`：QQ 文件下载、工作区归档、安全校验和文档转 Markdown Agent 提示构造。
 - `GoogleAI.py`：OpenAI 兼容模型调用封装。
 - `SearchOnline.py`：备用模型调用封装。
 - `prerequisites.py`：人设提示词和角色选择。
@@ -190,13 +196,13 @@ pnpm dev:tamagotchi
 `xiaomiaobot`：
 
 - `apps/stage-tamagotchi`：Electron 桌面端入口。
-- `apps/stage-web/src/pages/index.vue`：stage-web 页面级语音转文字入口，发送到 xiaomiao bridge。
-- `packages/stage-layouts/src/xiaomiao-bridge.ts`：stage-web 本地 bridge client。
-- `packages/stage-layouts/src/components/Widgets/ChatArea.vue`：桌面布局文本聊天入口，Web 模式发送到 bridge。
-- `packages/stage-layouts/src/components/Layouts/MobileInteractiveArea.vue`：移动布局文本聊天入口，Web 模式发送到 bridge。
+- `apps/stage-web/src/pages/index.vue`：stage-web 页面级语音转文字入口，发送到 xiaomiao 桥接服务。
+- `packages/stage-layouts/src/xiaomiao-bridge.ts`：stage-web 本地桥接客户端。
+- `packages/stage-layouts/src/components/Widgets/ChatArea.vue`：桌面布局文本聊天入口，Web 模式发送到桥接服务。
+- `packages/stage-layouts/src/components/Layouts/MobileInteractiveArea.vue`：移动布局文本聊天入口，Web 模式发送到桥接服务。
 - `apps/stage-tamagotchi/src/renderer/pages/xiaomiao-bridge.ts`：读取小喵桥接状态。
 - `apps/stage-tamagotchi/src/renderer/pages/xiaomiao-bridge-reaction.ts`：把桥接回复分发到字幕、聊天历史和语音。
-- `apps/stage-pocket/src/modules/xiaomiao-bridge-events.ts`：移动端只读同步 xiaomiao bridge events。
+- `apps/stage-pocket/src/modules/xiaomiao-bridge-events.ts`：移动端只读同步 xiaomiao 桥接事件。
 - `apps/stage-tamagotchi/src/renderer/stores/chat-sync.ts`：桌面聊天同步和小喵桥接调用。
 - `packages/stage-ui/src/components/scenes/Stage.vue`：Vtuber 舞台、TTS 和口型同步。
 - `packages/stage-ui-live2d`：Live2D 组件与状态管理。
@@ -208,16 +214,16 @@ pnpm dev:tamagotchi
 - `xiaomiaoAgent/nanobot/agent/runner.py`：LLM 对话循环、工具调用和流式响应执行器。
 - `xiaomiaoAgent/nanobot/channels/`：Telegram、Discord、Slack、Feishu、QQ、WeChat、WebSocket 等通道适配。
 - `xiaomiaoAgent/nanobot/agent/tools/`：文件系统、Shell、Web、MCP、Cron、Notebook、Subagent 等工具能力。
-- `xiaomiaoAgent/nanobot/agent/tools/markitdown_tool.py`：workspace 文件转 Markdown 的低风险工具。
+- `xiaomiaoAgent/nanobot/agent/tools/markitdown_tool.py`：Agent 工作区和项目 `workspace/` 文件转 Markdown 的低风险工具。
 - `xiaomiaoAgent/nanobot/agent/tools/scrapling_tool.py`：公网网页主内容抽取的低风险工具。
 - `xiaomiaoAgent/nanobot/agent/tools/xiaomiao_stage.py`：舞台动作工具。
 - `xiaomiaoAgent/nanobot/agent/tools/xiaomiaobot_services.py`：xiaomiaobot 服务状态/动作适配。
 - `xiaomiaoAgent/nanobot/agent/memory.py`：会话记忆和 Dream 两阶段记忆整理。
-- `xiaomiaoAgent/webui/`：React/Vite WebUI，通过 gateway 与后端通信。
+- `xiaomiaoAgent/webui/`：React/Vite WebUI，通过网关与后端通信。
 
 ## xiaomiaoAgent 接入状态
 
-`xiaomiaoAgent` 当前以内部 `nanobot` Python 包运行，通过 OpenAI 兼容 API 接入，不直接由 `xiaomiao` import AgentLoop。模型、provider 和中转站 API 配置统一写在主目录 `config.json` 的 `nanobot` 段：
+`xiaomiaoAgent` 当前以内部 `nanobot` Python 包运行，通过 OpenAI 兼容 API 接入，不直接由 `xiaomiao` import AgentLoop。模型、提供方和中转站 API 配置统一写在主目录 `config.json` 的 `nanobot` 段：
 
 ```json
 {
@@ -250,13 +256,13 @@ xiaomiao desktop_bridge.py
     ↓
 xiaomiao agent_backend.py
     ↓ HTTP POST http://127.0.0.1:8900/v1/chat/completions
-xiaomiaoAgent OpenAI-compatible API
-    ↓ provider=custom, model=nanobot.model
-第三方 OpenAI-compatible 中转站
+xiaomiaoAgent OpenAI 兼容 API
+    ↓ 提供方=custom, model=nanobot.model
+第三方 OpenAI 兼容中转站
     ↓
 xiaomiaoAgent 回复
     ↓
-xiaomiao bridge state / stage-web 聊天历史 / 桌面字幕与 TTS
+xiaomiao 桥接状态 / stage-web 聊天历史 / 桌面字幕与 TTS
 
 QQ 群/私聊普通 AI 回复
     ↓
@@ -266,21 +272,21 @@ xiaomiao/main.py
     ↓
 xiaomiao agent_backend.py
     ↓ HTTP POST http://127.0.0.1:8900/v1/chat/completions
-xiaomiaoAgent → 第三方 OpenAI-compatible 中转站
+xiaomiaoAgent → 第三方 OpenAI 兼容中转站
 
 xiaomiaoAgent WebUI
     ↓ WebSocket http://127.0.0.1:8765
 chat_id=xiaomiao-unified
     ↓
-xiaomiaoAgent session api:xiaomiao-unified
-    ↓ mirror
+xiaomiaoAgent 会话 api:xiaomiao-unified
+    ↓ 镜像同步
 POST http://127.0.0.1:5519/v1/xiaomiao/events
 ```
 
 配置规则：
 
 1. `nanobot.model` 是最终生效并返回给调用方的模型名。
-2. `nanobot.provider` 使用 `custom`，表示任意第三方 OpenAI-compatible 中转站。
+2. `nanobot.provider` 使用 `custom`，表示任意第三方 OpenAI 兼容中转站。
 3. `nanobot.providers.custom.baseUrl` 填中转站 `/v1` 地址，不要填 `/v1/chat/completions`。
 4. `nanobot_agent.base_url` 是 `xiaomiao` 访问本机 xiaomiaoAgent API 的地址，必须保持本机 `8900`。
 5. `nanobot_agent.model` 保持空值，避免 `xiaomiao` 请求时覆盖 `nanobot.model`。
@@ -291,9 +297,9 @@ POST http://127.0.0.1:5519/v1/xiaomiao/events
 1. `stage-web` 必须走 `xiaomiao` bridge；bridge 不可用时在聊天历史写入明确错误。
 2. QQ 群/私聊普通 AI 回复走同一个 `agent_backend`。
 3. QQ 工具型请求由 `qq_agent_tools.py` 分级：普通用户只能低风险，白名单高风险动作必须先收到 `确认执行 <code>`。
-4. 统一 session 默认为 `xiaomiao-unified`，避免 Web、QQ、桌面端上下文分裂。
+4. 统一会话默认为 `xiaomiao-unified`，避免网页端、QQ、桌面端上下文分裂。
 5. QQ 本地命令 `帮助`、`关于`、`读图` 使用精确匹配；普通问题里包含这些词时仍作为 AI 请求进入 xiaomiaoAgent。
-6. Computer Use、Twitter、Minecraft 通过 opt-in MCP profile 暴露；HomeAssistant、Bilibili、Chess、Claude Code、Browser Extension 仍按 WIP 处理。
+6. Computer Use、Twitter、Minecraft 通过显式启用的 MCP 安全配置档暴露；HomeAssistant、Bilibili、Chess、Claude Code、Browser Extension 仍按开发中能力处理。
 
 ## 验证矩阵
 
@@ -309,12 +315,13 @@ cd ..
 cmd /c call start-all.cmd --check
 ```
 
-最近验证结果：`test/xiaomiao` 68 passed，`xiaomiaoAgent` 95 passed，前端 Vitest 4 files / 32 tests passed，`start-all.cmd --check` passed。
+最近验证结果：`test/xiaomiao` 77 passed，`xiaomiaoAgent` 95 passed，前端 Vitest 4 files / 32 tests passed，`start-all.cmd --check` passed。
 
 ## 文档
 
 - `TECHNICAL.md`：完整技术结构、运行链路、桥接协议、风险和演进建议。
 - `docs/STARTUP.md`：本地启动步骤、端口、验证和常见问题。
+- `docs/file-workspace-hygiene.md`：文件追踪、工作区、QQ 下载资源、运行态缓存和清理规则。
 - `docs/xiaomiao/README.md`：QQ 机器人部署和功能说明。
 - `docs/AuBot/README.md`：历史命名下的 xiaomiaobot / xiaomiaoVirtual 表现层启动和模块说明。
 - `docs/tool-directory-analysis.md`：`tool/markitdown` 与 `tool/Scrapling` 深度解析和接入边界。

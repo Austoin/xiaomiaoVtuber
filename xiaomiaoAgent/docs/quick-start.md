@@ -56,7 +56,7 @@ xiaomiao channels login whatsapp
 > 请在 `~/.nanobot/config.json` 中设置 API Key。
 > 获取 API Key：[OpenRouter](https://openrouter.ai/keys)（全球可用）。
 >
-> 其他 LLM Provider 请参考 [`configuration.md`](./configuration.md)。
+> 其他 LLM 提供方请参考 [`configuration.md`](./configuration.md)。
 >
 > Web 搜索能力配置请参考 [`configuration.md`](./configuration.md#web-search) 中的 web-search 章节。
 
@@ -88,7 +88,7 @@ xiaomiao onboard --wizard
 }
 ```
 
-*设置模型*（可以指定 Provider；默认会自动检测）：
+*设置模型*（可以指定提供方；默认会自动检测）：
 
 ```json
 {

@@ -9,14 +9,15 @@
 | 目录 | 定位 | 文件数 | 对 xiaomiaoAgent/QQ 的价值 |
 | --- | --- | ---: | --- |
 | `tool/markitdown` | 多格式文件转 Markdown，含 MCP、OCR 插件、示例插件 | 191 | 适合做“文档读取/转换”Agent 工具 |
-| `tool/Scrapling` | Web scraping、动态浏览器抓取、反机器人抓取、Spider、MCP、Agent skill | 263 | 适合增强 Web 抓取、网页抽取和长任务爬虫能力 |
+| `tool/Scrapling` | 网页抓取、动态浏览器抓取、反机器人抓取、Spider、MCP、Agent skill | 263 | 适合增强 Web 抓取、网页抽取和长任务爬虫能力 |
 
 总体判断：
 
-- MarkItDown 的第一批低风险接入已完成：`xiaomiaoAgent` 新增 `markitdown_convert`，只允许转换 workspace 内本地文件，拒绝 URL、`file:`、`data:` 和 workspace 外路径。
-- Scrapling 的第一批低风险接入已完成：`xiaomiaoAgent` 新增 `scrapling_get`，只允许公网 `http/https` GET，复用 SSRF 校验，固定 `main_content_only=true`，不暴露 cookies/auth/proxy/browser/stealth/session。
+- MarkItDown 的第一批低风险接入已完成：`xiaomiaoAgent` 新增 `markitdown_convert`，只允许转换 Agent 工作区和项目根 `workspace/` 内本地文件，拒绝 URL、`file:`、`data:` 和其它本机路径。
+- QQ 文档资源链路已接入：群文件上传和普通 file 消息段会保存到 `workspace/downloads/qq/`，再由 Agent 调用 `markitdown_convert` 转 Markdown 和总结。
+- Scrapling 的第一批低风险接入已完成：`xiaomiaoAgent` 新增 `scrapling_get`，只允许公网 `http/https` GET，复用 SSRF 校验，固定 `main_content_only=true`，不暴露 cookies/auth/proxy/browser/stealth/浏览器会话。
 - 两者都已有 MCP 形态，可以优先通过 xiaomiaoAgent 的 MCP/ToolRegistry 接入，而不是让 QQ 直接操作这些项目。
-- `tool/` 中二进制测试素材已按目录和用途纳入审计；深度阅读对象为 Markdown、Python 源码、配置、测试入口和 skill 文档。
+- `tool/` 中二进制测试素材已按目录和用途纳入审计；深度阅读对象为 Markdown、Python 源码、配置、测试入口和技能文档。
 
 ## 当前接入状态
 
@@ -24,8 +25,8 @@
 
 | 工具名 | 来源 | 风险等级 | QQ `low_risk` 可见 | 边界 |
 | --- | --- | --- | --- | --- |
-| `markitdown_convert` | `tool/markitdown` / MarkItDown | low | 是 | 仅 workspace 内本地文件；禁止 URI；缺依赖显式报错；输出截断 |
-| `scrapling_get` | `tool/Scrapling` / `ScraplingMCPServer.get` | low | 是 | 仅公网 `http/https` GET；阻断内网/metadata；固定主内容抽取；不开放浏览器/session/凭据 |
+| `markitdown_convert` | `tool/markitdown` / MarkItDown | low | 是 | 仅 Agent 工作区和项目根 `workspace/` 内本地文件；禁止 URI；缺依赖显式报错；输出截断 |
+| `scrapling_get` | `tool/Scrapling` / `ScraplingMCPServer.get` | low | 是 | 仅公网 `http/https` GET；阻断内网/元数据地址；固定主内容抽取；不开放浏览器/浏览器会话/凭据 |
 
 已补测试：
 
@@ -38,7 +39,7 @@
 
 - MarkItDown OCR、Azure Document Intelligence、Azure Content Understanding。
 - MarkItDown 任意本机路径、远程 URI、ZIP 深度/大体积转换。
-- Scrapling `bulk_get`、`fetch`、`stealthy_fetch`、`open_session`、`screenshot`、Spider、cookies/auth/proxy/CDP/headful browser。
+- Scrapling `bulk_get`、`fetch`、`stealthy_fetch`、`open_session`、`screenshot`、Spider、cookies/auth/proxy/CDP/有界面浏览器。
 
 ## 阅读范围
 
@@ -143,7 +144,7 @@ converter 架构：
 - `DocumentIntelligenceConverter`
 - `ContentUnderstandingConverter`
 
-### CLI
+### 命令行接口
 
 入口：`markitdown.__main__:main`
 
@@ -159,7 +160,7 @@ converter 架构：
 - `--use-cu --cu-endpoint ...` 使用 Azure Content Understanding。
 - `--keep-data-uris` 保留 data URI。
 
-### MCP
+### MCP 接口
 
 入口：`tool/markitdown/packages/markitdown-mcp/src/markitdown_mcp/__main__.py`
 
@@ -203,13 +204,13 @@ convert_to_markdown(uri)
 实现方式：
 
 - 插件注册 `PdfConverterWithOCR`、`DocxConverterWithOCR`、`PptxConverterWithOCR`、`XlsxConverterWithOCR`。
-- priority 是 `-1.0`，会先于内置 converter 运行。
-- `LLMVisionOCRService` 使用 OpenAI-compatible client。
+- 优先级是 `-1.0`，会先于内置转换器运行。
+- `LLMVisionOCRService` 使用 OpenAI 兼容客户端。
 - 如果没有 `llm_client` 或 `llm_model`，插件加载但 OCR 跳过。
 
 风险：
 
-- OCR 会把图片内容发送给外部 LLM provider。
+- OCR 会把图片内容发送给外部 LLM 提供方。
 - 扫描文档可能包含隐私数据。
 - 应默认关闭，只允许 ROOT/Super/白名单显式启用。
 
@@ -217,7 +218,7 @@ convert_to_markdown(uri)
 
 MarkItDown 测试覆盖面较广：
 
-- CLI 输入输出。
+- 命令行输入输出。
 - 本地文件和 URL。
 - data URI。
 - PDF 表格和复杂 PDF。
@@ -234,30 +235,30 @@ MarkItDown 测试覆盖面较广：
 
 Scrapling 是 Web Scraping 框架，覆盖从单页请求到大规模爬虫：
 
-- HTML Parser。
-- HTTP Fetcher。
+- HTML 解析器。
+- HTTP 抓取器。
 - DynamicFetcher 浏览器渲染。
 - StealthyFetcher 反机器人/Cloudflare 场景。
 - Session 管理。
 - Proxy rotation。
-- Adaptive scraping。
+- 自适应抓取。
 - Spider 框架。
-- CLI。
-- MCP Server。
-- Agent Skill。
+- 命令行接口。
+- MCP 服务端。
+- Agent 技能。
 
-### Parser
+### 解析器
 
 核心类：`scrapling.parser.Selector`
 
 特点：
 
 - 基于 `lxml.html`，但不直接继承 `HtmlElement`，避免 pickle 和生命周期问题。
-- 支持 CSS3 selector、XPath、文本搜索、正则搜索、BeautifulSoup 风格 `find/find_all`。
+- 支持 CSS3 选择器、XPath、文本搜索、正则搜索、BeautifulSoup 风格 `find/find_all`。
 - 支持 `::text` 和 `::attr(name)` 伪元素。
 - 返回对象是 `Selector` 或 `Selectors`，文本是 `TextHandler` 或 `TextHandlers`。
 - 属性是只读 `AttributesHandler`。
-- 大量属性 lazy load，提高解析速度。
+- 大量属性采用懒加载，提高解析速度。
 
 常用能力：
 
@@ -274,43 +275,43 @@ Scrapling 是 Web Scraping 框架，覆盖从单页请求到大规模爬虫：
 - `re_first()`
 - `json()`
 - `get_all_text()`
-- 生成 CSS/XPath selector
+- 生成 CSS/XPath 选择器
 
-### Adaptive scraping
+### 自适应抓取
 
 能力：
 
 - 第一次通过 `auto_save=True` 存储元素特征。
 - 页面结构变化后用 `adaptive=True` 重新定位元素。
 - 默认 SQLite 存储：`elements_storage.db`。
-- 可按 domain 隔离，也可用 `adaptive_domain` 复用旧站点特征。
+- 可按域名隔离，也可用 `adaptive_domain` 复用旧站点特征。
 
 存储内容：
 
-- 元素 tag、text、attributes。
-- sibling tag。
-- DOM path。
-- parent tag、attributes、text。
+- 元素标签、文本、属性。
+- 同级标签。
+- DOM 路径。
+- 父级标签、属性、文本。
 
 风险：
 
 - 会在本地写 SQLite 数据。
-- 如果接 QQ，默认应归为 medium，不应让普通群用户写入持久 adaptive storage。
+- 如果接 QQ，默认应归为 medium，不应让普通群用户写入持久自适应存储。
 
-### Fetchers
+### 抓取器
 
-Scrapling 有三类 fetcher：
+Scrapling 有三类抓取器：
 
-| Fetcher | 用途 | 风险建议 |
+| 抓取器 | 用途 | 风险建议 |
 | --- | --- | --- |
 | `Fetcher` / `AsyncFetcher` | HTTP 请求，无 JS | low 到 medium |
 | `DynamicFetcher` | Playwright/Chrome 渲染 JS | medium |
-| `StealthyFetcher` | 反机器人、Cloudflare、fingerprint spoofing | high |
+| `StealthyFetcher` | 反机器人、Cloudflare、指纹伪装 | high |
 
 `Fetcher` 特点：
 
 - 基于 `curl_cffi`。
-- 支持浏览器 TLS fingerprint impersonation。
+- 支持浏览器 TLS 指纹模拟。
 - 支持 HTTP/3。
 - 支持 cookies、headers、params、proxy、auth。
 - `follow_redirects` 默认 `"safe"`，可拒绝重定向到内网/private IP，具备 SSRF 防护意识。
@@ -318,8 +319,8 @@ Scrapling 有三类 fetcher：
 `DynamicFetcher` 特点：
 
 - 基于 Playwright Chromium/Chrome。
-- 支持 headless/headful。
-- 支持 real Chrome。
+- 支持无头/有界面模式。
+- 支持真实 Chrome。
 - 支持 CDP 连接。
 - 支持 wait、wait_selector、network_idle。
 - 支持 page_action/page_setup。
@@ -329,11 +330,11 @@ Scrapling 有三类 fetcher：
 
 - 基于 DynamicFetcher 增强。
 - 支持 Cloudflare Turnstile/Interstitial 自动处理。
-- 支持 WebRTC 限制、canvas noise、fingerprint spoofing。
-- 支持 proxy、real Chrome、CDP。
+- 支持 WebRTC 限制、canvas 噪声、指纹伪装。
+- 支持 proxy、真实 Chrome、CDP。
 - 属于高价值但高风险能力。
 
-### CLI
+### 命令行接口
 
 入口：`scrapling.cli:main`
 
@@ -369,7 +370,7 @@ Scrapling 有三类 fetcher：
 - `extract get --ai-targeted` 可作为低风险候选。
 - `fetch/stealthy-fetch` 应要求白名单，必要时确认。
 
-### MCP Server
+### MCP 服务端
 
 入口：`scrapling.core.ai.ScraplingMCPServer`
 
@@ -383,27 +384,27 @@ Scrapling 有三类 fetcher：
 | `bulk_fetch` | 多 URL 浏览器抓取 | medium/high |
 | `stealthy_fetch` | 单 URL stealth 抓取 | high |
 | `bulk_stealthy_fetch` | 多 URL stealth 抓取 | high |
-| `open_session` | 开持久浏览器 session | high |
-| `close_session` | 关闭 session | medium |
-| `list_sessions` | 列 session | low |
-| `screenshot` | 用已有 session 截图 | medium/high |
+| `open_session` | 开持久浏览器会话 | high |
+| `close_session` | 关闭会话 | medium |
+| `list_sessions` | 列出会话 | low |
+| `screenshot` | 用已有会话截图 | medium/high |
 
 MCP 输出：
 
 - 抓取工具返回 `ResponseModel`：`status/content/url`。
-- `screenshot` 返回 MCP image content block 和最终 URL 文本。
+- `screenshot` 返回 MCP 图像内容块和最终 URL 文本。
 
 安全特性：
 
 - `main_content_only=true` 默认启用。
 - 清理 CSS-hidden、`aria-hidden`、`template`、HTML comments、zero-width 字符。
-- 浏览器工具默认 block ads。
+- 浏览器工具默认屏蔽广告。
 
 接入风险：
 
 - HTTP 抓取可能触发 SSRF、内网探测、访问未授权目标。
-- 浏览器 session 会消耗资源，可能残留 cookies/session。
-- Stealth/Cloudflare 绕过可能违反站点 ToS。
+- 浏览器会话会消耗资源，可能残留 cookies/会话。
+- Stealth/Cloudflare 绕过可能违反站点服务条款。
 - `headless=false` 会打开可见浏览器。
 - `cdp_url` 可连接已有浏览器，权限很高。
 
@@ -423,40 +424,40 @@ MCP 输出：
 
 能力：
 
-- async spider。
-- priority queue。
-- URL fingerprint 去重。
-- allowed domains。
+- 异步爬虫。
+- 优先级队列。
+- URL 指纹去重。
+- 允许域名。
 - robots.txt obey。
 - 并发控制。
 - per-domain concurrency。
-- download delay。
-- blocked response 检测与重试。
+- 下载延迟。
+- 阻断响应检测与重试。
 - checkpoint pause/resume。
-- development cache。
-- streaming results。
-- lifecycle hooks。
+- 开发缓存。
+- 流式结果。
+- 生命周期钩子。
 - JSON/JSONL 导出。
 
 接入建议：
 
 - 不要把 Spider 作为同步 QQ 命令直接跑到底。
-- 应封装成 Agent long-running task：
+- 应封装成 Agent 长任务：
   - `scrapling_spider_start`
   - `scrapling_spider_status`
   - `scrapling_spider_stop`
   - `scrapling_spider_result`
-- 返回任务 ID，bridge event 实时显示状态。
+- 返回任务 ID，并通过桥接事件实时显示状态。
 - 默认要求 `allowed_domains` 和 `robots_txt_obey=True`。
 
-### Agent Skill
+### Agent 技能
 
-Scrapling 自带官方 skill：
+Scrapling 自带官方技能：
 
 - 路径：`tool/Scrapling/agent-skill/Scrapling-Skill/SKILL.md`
 - 明确要求 CLI 使用 `--ai-targeted` 防 prompt injection。
 - 建议从 `get` 开始，失败再升级到 `fetch`、`stealthy-fetch`。
-- 包含 MCP、fetching、parsing、spiders reference。
+- 包含 MCP、抓取、解析、spiders 参考资料。
 
 这份 skill 可以直接转化为 xiaomiaoAgent 的工具说明和系统提示约束。
 
@@ -472,7 +473,8 @@ markitdown_convert(path, max_chars=120000)
 
 默认策略：
 
-- 普通 QQ 用户只能转换 workspace 内文件。
+- 普通 QQ 用户只能转换 Agent 工作区或项目根 `workspace/` 内文件。
+- QQ 群文件上传和普通 file 消息段先由 `xiaomiao/qq_workspace.py` 校验扩展名、大小和下载 URL，并归档到 `workspace/downloads/qq/<channel>/<chat>/<date>/`。
 - 禁止任意 `file:` URI、`data:` URI、`http/https` URI。
 - 默认禁止远程 URI，复用现有 `web_fetch` 或 `scrapling_get` 更安全。
 - ZIP 转换要限制最大文件数、最大递归深度、总大小。
@@ -511,12 +513,12 @@ scrapling_session_list()
   - 禁止 localhost。
   - 禁止 private IP。
   - 禁止 link-local。
-  - 禁止 metadata service。
+  - 禁止云厂商元数据服务。
   - 限制最大响应体。
   - 限制重定向。
 - `bulk_get` 需要限制 URL 数量和并发。
-- `fetch` 需要白名单或 medium policy。
-- `stealthy_fetch/open_session/screenshot` 默认 high，白名单加确认。
+- `fetch` 需要白名单或中风险策略。
+- `stealthy_fetch/open_session/screenshot` 默认高风险，需要白名单加确认。
 
 风险分级：
 
@@ -532,7 +534,7 @@ scrapling_session_list()
 | `post/put/delete` | high |
 | Spider 长爬虫 | high |
 
-### 第三阶段：MCP profile
+### 第三阶段：MCP 配置档
 
 建议建立 `qq-agent-tool-profile`：
 
@@ -543,7 +545,7 @@ scrapling_session_list()
 
 白名单但可直接运行：
 
-- `scrapling_fetch`，仅 headless、无 proxy、无 cookies、无 CDP。
+- `scrapling_fetch`，仅无头模式、无 proxy、无 cookies、无 CDP。
 - `scrapling_session_list`
 
 高风险确认：
@@ -555,9 +557,9 @@ scrapling_session_list()
 - Scrapling `screenshot`。
 - Scrapling `post/put/delete`。
 - Scrapling Spider。
-- 任何 cookies/auth/proxy/CDP/headful browser。
+- 任何 cookies/auth/proxy/CDP/有界面浏览器。
 
-### Bridge event 建议
+### 桥接事件建议
 
 工具事件应统一写入：
 
@@ -584,13 +586,13 @@ scrapling_session_list()
 
 ## 建议的最小落地顺序
 
-1. 已完成：接入 MarkItDown workspace 本地文件转换。
+1. 已完成：接入 MarkItDown 工作区本地文件转换，并打通 QQ 文档下载到 `workspace/downloads/qq/` 后转 Markdown 的链路。
 2. 已完成：接入 Scrapling `get`，只允许公网 URL 和 `main_content_only=true`。
 3. 后续：如改走 Scrapling MCP 形态，再建立独立低风险后缀白名单。
 4. 后续：接入 `scrapling_fetch`，要求白名单用户。
 5. 后续：接入 `stealthy_fetch/open_session/screenshot`，要求二次确认。
 6. 后续：把 Spider 封装成长任务，不阻塞 QQ 消息。
-7. 后续：将结果文件写入统一 artifacts 目录，并同步 bridge events。
+7. 后续：将结果文件写入统一产物目录，并同步桥接事件。
 
 ## 测试建议
 
@@ -599,6 +601,7 @@ MarkItDown：
 - 转换上传 PDF/DOCX/XLSX/PPTX 成 Markdown。
 - 任意本机路径被普通 QQ 用户拒绝。
 - `file:` URI 逃逸被拒绝。
+- QQ file 消息段缺 URL、不支持扩展名、超大文件、private URL 下载均显式失败。
 - ZIP 超限显式失败。
 - OCR 未配置时显式提示未启用，不假成功。
 
@@ -609,12 +612,12 @@ Scrapling：
 - `bulk_get` 超数量被拒绝。
 - `fetch` 对普通用户不可见或被拒绝。
 - `stealthy_fetch/open_session/screenshot` 首次返回确认码。
-- session 创建后可 `list_sessions`，超时或关闭后状态正确。
-- Spider 启动返回 task id，状态和取消可用。
+- 浏览器会话创建后可 `list_sessions`，超时或关闭后状态正确。
+- Spider 启动返回任务 ID，状态和取消可用。
 
 联调：
 
-- QQ 发送“把这个 PDF 转成 Markdown”，返回摘要和 artifact。
+- QQ 发送“把这个 PDF 转成 Markdown”，返回摘要和产物。
 - QQ 发送“抓取这个网页正文”，返回正文摘要。
 - QQ 普通用户请求“用 stealth 绕过 Cloudflare”，明确拒绝。
 - QQ 白名单用户请求高风险抓取，先收到确认码。
@@ -625,6 +628,7 @@ Scrapling：
 `tool/` 已从“可复用工具资产”推进到“第一批低风险 Agent 工具已接入”：
 
 - MarkItDown 已作为 `markitdown_convert` 接入 Agent 工具层和 QQ `low_risk` 策略。
+- QQ 文档上传/文件段已进入项目根 `workspace/downloads/qq/`，Agent 可在低风险策略下转换这些文件。
 - Scrapling 已作为 `scrapling_get` 接入 Agent 工具层和 QQ `low_risk` 策略。
 - 两者都需要严格的路径、URL、网络、资源、权限和确认边界。
-- 最安全的产品路线保持不变：QQ 不直接调用这些库，而是通过 xiaomiaoAgent 工具层和 ToolRegistry 风险策略调用；后续应把工具开始/完成/失败结果进一步统一写入 bridge events 和 artifacts。
+- 最安全的产品路线保持不变：QQ 不直接调用这些库，而是通过 xiaomiaoAgent 工具层和 ToolRegistry 风险策略调用；后续应把工具开始/完成/失败结果进一步统一写入桥接事件和产物目录。

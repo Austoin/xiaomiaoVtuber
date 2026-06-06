@@ -4,7 +4,7 @@
 
 1. `xiaomiao`：QQ Bot 主体。
 2. `xiaomiaobot`：Vtuber Web / 桌面端。
-3. `xiaomiaoAgent`：独立 Agent 框架，内部 Python 包名仍是 `nanobot`，可提供 CLI、gateway、OpenAI 兼容 API 和 WebUI。
+3. `xiaomiaoAgent`：独立 Agent 框架，内部 Python 包名仍是 `nanobot`，可提供命令行、网关、OpenAI 兼容 API 和 WebUI。
 
 推荐直接使用根目录 `start-all.cmd`。它会打开必要的独立终端，并按真实健康状态串行启动；新启动的终端默认最小化，前一个服务未就绪时，不会打开后续终端。
 
@@ -86,7 +86,9 @@ npm install
 
 这些文件已被根 `.gitignore` 忽略，不应提交到仓库。
 
-主目录 `config.json` 用于控制统一 Agent backend 和第三方 OpenAI-compatible 中转站。推荐本地配置形态如下，真实配置以你的本机文件为准：
+项目根 `workspace/` 用于保存 QQ 下载文件、Agent 产物和短期临时文件。仓库只保留目录骨架；文件追踪和清理规则见 `docs/file-workspace-hygiene.md`。
+
+主目录 `config.json` 用于控制统一 Agent 后端和第三方 OpenAI 兼容中转站。推荐本地配置形态如下，真实配置以你的本机文件为准：
 
 ```json
 {
@@ -135,15 +137,15 @@ agent_backend.py
     ↓
 xiaomiaoAgent API :8900
     ↓
-QQ 回复 + bridge state
+QQ 回复 + 桥接状态
 
 xiaomiaoAgent WebUI
     ↓
-xiaomiaoAgent gateway :8765
+xiaomiaoAgent 网关 :8765
     ↓
-chat_id=xiaomiao-unified / session api:xiaomiao-unified
+chat_id=xiaomiao-unified / 会话 API:xiaomiao-unified
     ↓
-xiaomiao bridge events :5519
+xiaomiao 桥接事件 :5519
 ```
 
 可以直接使用根目录 `start-all.cmd` 一键启动：
@@ -164,21 +166,25 @@ start-all.cmd --check
 ```text
 1. QQ 协议端：127.0.0.1:5004
 2. xiaomiaoAgent OpenAI 兼容 API：127.0.0.1:8900
-3. xiaomiaoAgent gateway：127.0.0.1:8765
-4. xiaomiao main.py / bridge：127.0.0.1:5519
+3. xiaomiaoAgent 网关：127.0.0.1:8765
+4. xiaomiao main.py / 桥接服务：127.0.0.1:5519
 5. xiaomiaobot stage-web：http://127.0.0.1:5175
 6. xiaomiaoAgent WebUI：http://127.0.0.1:5174
 ```
 
 每一步都会先检查端口是否已被占用。QQ 协议端是例外：如果 `5004` 已经监听，脚本会明确复用现有 QQ/NapCat 进程并继续，以保留本地登录缓存。其他服务不会跳过旧进程：端口已占用时会显示 PID 并停止，因为脚本无法把旧进程重新挂到新的独立终端；端口未占用时才打开对应独立终端并等待健康检查通过。新启动的终端默认最小化，可从任务栏点开查看日志。如果在超时时间内没有就绪，脚本会停止，后续终端不会打开。
 
-`start-all.cmd --check` 不启动窗口，只报告当前端口 PID 和健康状态。它会检查 `8900/health`、`8765` 的 WebUI bootstrap + session API + WebSocket 握手、`5519/v1/xiaomiao/status`、`main.py` 进程到 QQ OneBot `5004` 的连接、两个 Vite 页面，以及 QQ OneBot 端口。
+`start-all.cmd --check` 不启动窗口，只报告当前端口 PID 和健康状态。它会检查 `8900/health`、`8765` 的 WebUI 启动信息 + 会话 API + WebSocket 握手、`5519/v1/xiaomiao/status`、`main.py` 进程到 QQ OneBot `5004` 的连接、两个 Vite 页面，以及 QQ OneBot 端口。
 
 脚本会设置 `NO_PROXY=127.0.0.1,localhost,::1` 和 `no_proxy=127.0.0.1,localhost,::1`。如果系统环境里有 `HTTP_PROXY` 或 `HTTPS_PROXY`，这一步可以避免 `main.py` 连接 NapCat 时被本地代理转到 `127.0.0.1:7897`。
 
 QQ 本地命令 `帮助`、`关于`、`读图` 使用精确匹配。只有 `- 帮助`、`- 关于`、`- 读图` 会触发本地命令；`- 帮我写关于 agent 的知识`、`- 读图总结这张图片` 会作为普通 AI 请求进入 xiaomiaoAgent。
 
 QQ Agent 工具请求会额外经过权限网关：普通用户默认 `low_risk`，只能使用读文件、搜索、Web 抓取、状态查询、`markitdown_convert`、`scrapling_get` 等低风险能力；ROOT/Super/`agent_tool_allowlist` 用户触发高风险工具时会先收到 `确认执行 <code>`，确认后才会以 `trusted_confirmed` 调用 `exec`、写文件、MCP 动作或外部服务写操作。
+
+QQ 文档资源会进入项目根 `workspace/`。群文件上传事件和普通 file 消息段会先保存到 `workspace/downloads/qq/`，再由 Agent 调用 `markitdown_convert(path=workspace_path)` 转 Markdown 和总结；不支持的扩展名、超大文件、缺少下载地址或不可信下载地址会显式失败。普通 file 消息段阻断 localhost/private/link-local 下载地址；群上传通过 NapCat/OneBot `get_group_file_url` 得到的临时地址允许本机/private URL，以兼容本地 QQ 文件缓存。
+
+QQ 抓网页正文已经走 Agent 低风险工具链：用户可直接描述“抓取这个网页内容/总结这个 URL”，由 `scrapling_get` 公网 GET 抽取正文；localhost、private IP、云厂商元数据服务、cookies、浏览器会话、proxy、CDP 和 stealth 浏览器能力不会对普通用户开放。
 
 QQ 中文记忆命令会转发到 xiaomiaoAgent 内置命令：`记忆状态`、`整理记忆`、`记忆日志`、`恢复记忆`、`新会话`、`停止任务`。其中恢复类命令属于高风险动作，需要确认。
 
@@ -309,7 +315,7 @@ cd apps\stage-web
 pnpm exec vite --host 127.0.0.1 --port 5175
 ```
 
-`stage-web` 的文本输入、移动端输入和页面级录音转文字入口都会发送到 `xiaomiao` bridge。bridge 不可用时，聊天历史中会出现明确 error 消息，不会静默回退到 xiaomiaobot provider。
+`stage-web` 的文本输入、移动端输入和页面级录音转文字入口都会发送到 `xiaomiao` 桥接服务。桥接不可用时，聊天历史中会出现明确 error 消息，不会静默回退到 xiaomiaobot 提供方。
 
 启动桌面端：
 
@@ -317,7 +323,7 @@ pnpm exec vite --host 127.0.0.1 --port 5175
 pnpm dev:tamagotchi
 ```
 
-该命令会启动 `apps/stage-tamagotchi` 的 Electron 开发模式。桌面端会读取 `xiaomiao` bridge state，将回复同步到字幕、聊天历史、TTS 和 Live2D 口型。
+该命令会启动 `apps/stage-tamagotchi` 的 Electron 开发模式。桌面端会读取 `xiaomiao` 桥接状态，将回复同步到字幕、聊天历史、TTS 和 Live2D 口型。
 
 ## 启动 xiaomiaoAgent
 
@@ -351,7 +357,7 @@ F:\xiaomiaoVirtual\xiaomiaoAgent\.nanobot\workspace\
 
 `xiaomiaoAgent/.nanobot/` 已加入根 `.gitignore`，用于避免本地 API Key、会话、记忆和运行时状态被提交。
 
-### 2. 配置模型 Provider
+### 2. 配置模型提供方
 
 优先编辑主目录统一配置：
 
@@ -359,7 +365,7 @@ F:\xiaomiaoVirtual\xiaomiaoAgent\.nanobot\workspace\
 F:\xiaomiaoVirtual\config.json
 ```
 
-最小第三方 OpenAI-compatible 中转站示例：
+最小第三方 OpenAI 兼容中转站示例：
 
 ```json
 {
@@ -383,7 +389,7 @@ F:\xiaomiaoVirtual\config.json
 }
 ```
 
-`xiaomiaoAgent/.nanobot/config.json` 仍保留 Agent 工作区、channel 和 runtime 配置；启动时会自动向上查找主目录 `config.json`，并用其中的 `nanobot` 段覆盖 provider 和模型。也可以用 `XIAOMIAO_UNIFIED_CONFIG` 指向自定义统一配置文件。
+`xiaomiaoAgent/.nanobot/config.json` 仍保留 Agent 工作区、通道和运行时配置；启动时会自动向上查找主目录 `config.json`，并用其中的 `nanobot` 段覆盖提供方和模型。也可以用 `XIAOMIAO_UNIFIED_CONFIG` 指向自定义统一配置文件。
 
 不要把真实 API Key 写入可提交源码文件。主目录 `config.json` 属于本机私有配置，仓库只保留 `config.example.json`。
 
@@ -399,7 +405,7 @@ F:\xiaomiaoVirtual\config.json
 }
 ```
 
-### 3. CLI 交互运行
+### 3. 命令行交互运行
 
 启动交互聊天：
 
@@ -423,9 +429,9 @@ xiaomiao status
 
 注意：`status` 当前不支持 `--config` 参数，只显示默认状态信息。需要使用项目内配置时，请对 `agent`、`gateway` 或 `serve` 指定 `--config`。
 
-### 4. 启动 gateway
+### 4. 启动网关
 
-如果需要聊天通道、WebSocket 或 WebUI 接入，启动 gateway：
+如果需要聊天通道、WebSocket 或 WebUI 接入，启动网关：
 
 ```powershell
 conda activate xiaomiao
@@ -434,9 +440,9 @@ python -m xiaomiao_agent gateway --config F:\xiaomiaoVirtual\xiaomiaoAgent\.nano
 如果是默认配置路径，就不用加 --config 后面的内容
 ```
 
-### 5. 启动 WebUI
+### 5. 启动 WebUI 界面
 
-WebUI 需要同时运行 `xiaomiaoAgent gateway`。另开一个 PowerShell 窗口，并确保处于 `xiaomiao` conda 环境：
+WebUI 需要同时运行 `xiaomiaoAgent gateway` 网关。另开一个 PowerShell 窗口，并确保处于 `xiaomiao` conda 环境：
 
 ```powershell
 conda activate xiaomiao
@@ -459,7 +465,7 @@ python -m xiaomiao_agent serve --config F:\xiaomiaoVirtual\xiaomiaoAgent\.nanobo
 ```text
 NapCat OneBot WebSocket: 127.0.0.1:5004
 xiaomiao 桌面桥接服务: 127.0.0.1:5519
-xiaomiaoAgent gateway 默认端口: 127.0.0.1:8765
+xiaomiaoAgent 网关默认端口: 127.0.0.1:8765
 xiaomiaoAgent OpenAI 兼容 API 默认端口: 127.0.0.1:8900
 xiaomiaoAgent WebUI 默认端口: 127.0.0.1:5174
 xiaomiaobot stage-web 默认端口: 127.0.0.1:5175
@@ -472,7 +478,7 @@ xiaomiaobot stage-web 默认端口: 127.0.0.1:5175
 - TTS 语音播报。
 - Live2D 口型和表现层。
 
-`stage-pocket` 移动端已接入第一批只读 bridge event 同步，可展示 chat、tool、confirmation、memory、stage events；它暂不执行舞台动作，也还没有完成 bridge binding handshake 和动态地址配置。
+`stage-pocket` 移动端已接入第一批只读桥接事件同步，可展示聊天、工具、确认、记忆、舞台事件；它暂不执行舞台动作，也还没有完成桥接绑定握手和动态地址配置。
 
 ## 启动验证
 
@@ -488,7 +494,7 @@ python -m pytest --basetemp .pytest-tmp-xiaomiao-verify test\xiaomiao
 预期结果：
 
 ```text
-68 passed
+77 passed
 ```
 
 ### 验证 xiaomiaoAgent 测试
@@ -508,7 +514,7 @@ uv run --extra dev pytest --basetemp ..\.pytest-tmp-agent-verify tests\test_open
 
 如果 `uv` 因用户目录 cache 权限失败，说明当前 shell 权限不足；换到有权限的终端重跑同一条命令即可。
 
-### 验证 xiaomiaobot bridge events
+### 验证 xiaomiaobot 桥接事件
 
 在 `xiaomiaobot` 目录运行：
 
@@ -568,14 +574,14 @@ Invoke-RestMethod `
   -Body '{"messages":[{"role":"user","content":"你好，用一句话回复我。"}],"session_id":"xiaomiao-unified"}'
 ```
 
-如果需要验证 gateway，可另行运行：
+如果需要验证网关，可另行运行：
 
 ```powershell
 conda activate xiaomiao
 python -m xiaomiao_agent gateway --config F:\xiaomiaoVirtual\xiaomiaoAgent\.nanobot\config.json
 ```
 
-再检查日志中是否出现 gateway 启动和通道加载信息。
+再检查日志中是否出现网关启动和通道加载信息。
 
 ### 验证统一启动脚本
 
@@ -631,7 +637,7 @@ http://127.0.0.1:5519/v1/xiaomiao/status
 - `nanobot_agent.base_url` 与实际 xiaomiaoAgent API 地址不一致。
 - xiaomiaoAgent 模型回复超过 `timeout_seconds`。
 
-该路径不会静默回退到 xiaomiaobot provider，错误会显示在聊天历史中。
+该路径不会静默回退到 xiaomiaobot 提供方，错误会显示在聊天历史中。
 
 ### pnpm install 很慢或失败
 
@@ -670,9 +676,9 @@ pip install -e .
 
 如果仍找不到命令，使用当前 Python 重新安装，或确认 Python Scripts 目录已加入 `PATH`。
 
-### xiaomiaoAgent WebUI 无法连接
+### xiaomiaoAgent WebUI 界面无法连接
 
-WebUI 需要 `xiaomiao gateway` 同时运行。请确认已经在另一个终端启动：
+WebUI 需要 `xiaomiao gateway` 网关同时运行。请确认已经在另一个终端启动：
 
 ```powershell
 cd F:\xiaomiaoVirtual\xiaomiaoAgent
@@ -714,7 +720,7 @@ cd F:\xiaomiaoVirtual\xiaomiaobot
 pnpm dev:tamagotchi
 ```
 
-可选终端三（xiaomiaoAgent CLI 或 gateway）：
+可选终端三（xiaomiaoAgent 命令行或网关）：
 
 ```powershell
 cd F:\xiaomiaoVirtual\xiaomiaoAgent

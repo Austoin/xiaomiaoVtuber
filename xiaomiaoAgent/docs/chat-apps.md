@@ -54,7 +54,7 @@ xiaomiao gateway
 <details>
 <summary><b>Mochat（Claw IM）</b></summary>
 
-默认使用 **Socket.IO WebSocket**，并带 HTTP polling fallback。
+默认使用 **Socket.IO WebSocket**，并带 HTTP 轮询回退。
 
 **1. 让 xiaomiaoAgent 自动配置 Mochat**
 
@@ -66,7 +66,7 @@ Read https://raw.githubusercontent.com/HKUDS/MoChat/refs/heads/main/skills/nanob
 
 xiaomiaoAgent 会自动注册、配置 `~/.nanobot/config.json` 并连接 Mochat。
 
-**2. 重启 gateway**
+**2. 重启网关**
 
 ```bash
 xiaomiao gateway
@@ -401,7 +401,7 @@ xiaomiao gateway
 **1. 创建 Slack App**
 
 - 打开 [Slack API](https://api.slack.com/apps) → **Create New App** → “From scratch”。
-- 填写名称并选择 workspace。
+- 填写名称并选择工作区。
 
 **2. 配置 App**
 
@@ -409,7 +409,7 @@ xiaomiao gateway
 - **OAuth & Permissions**：添加 bot scopes：`chat:write`、`reactions:write`、`app_mentions:read`、`files:read`、`files:write`、`channels:history`、`groups:history`、`im:history`、`mpim:history`。
 - **Event Subscriptions**：开启并订阅 `message.im`、`message.channels`、`app_mention`。
 - **App Home**：启用 **Messages Tab**，并允许用户从 messages tab 发送 Slash commands 和消息。
-- **Install App**：安装到 workspace，复制 **Bot Token**（`xoxb-...`）。
+- **Install App**：安装到工作区，复制 **Bot Token**（`xoxb-...`）。
 
 `files:read` 用于读取用户发送的文件；`files:write` 用于发送图片、视频和其他文件。后续添加 scope 后，需要重新安装 Slack app 并重启 xiaomiaoAgent。
 

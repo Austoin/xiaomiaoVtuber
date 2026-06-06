@@ -6,6 +6,7 @@
 .orion
 .docs/superpowers
 .claude/worktrees/
+.understand-anything/
 
 # Environment and secrets
 .env
@@ -121,6 +122,7 @@ AuBot/plugins-development
 AuBot/apps/stage-tamagotchi/electron.vite.config.*.mjs
 AuBot/.ghfs/
 AuBot/.obsidian/
+xiaomiaobot/.cache/
 
 # AuBot service data
 AuBot/services/satori-bot/data/
@@ -132,6 +134,9 @@ AuBot/services/satori-bot/node_modules/
 AuBot/services/satori-bot/dist/
 AuBot/services/satori-bot/*.log
 AuBot/services/minecraft/logs/
+xiaomiaobot/services/satori-bot/data/*
+!xiaomiaobot/services/satori-bot/data/
+!xiaomiaobot/services/satori-bot/data/.gitkeep
 
 # AuBot mobile and engine outputs
 AuBot/engines/stage-tamagotchi-godot/.godot/
@@ -218,12 +223,14 @@ xiaomiao/*.db-wal
 xiaomiao/*.sqlite
 xiaomiao/*.sqlite3
 xiaomiao/config.json
+xiaomiao/runtime/bridge_events.jsonl
 xiaomiao/deploy/*.zip
 xiaomiao/NapCat.Shell.Windows.OneKey/
 xiaomiao/napcat_data/
 
 # nanobot local and generated files
 nanobot/.nanobot/
+xiaomiaoAgent/.nanobot/
 nanobot/.worktrees/
 nanobot/.worktree/
 nanobot/.assets
@@ -252,6 +259,17 @@ temp/
 *.tmp
 .temp
 **/temp/
+
+# Project resource workspace: keep layout files, ignore runtime resources
+workspace/downloads/**
+!workspace/downloads/.gitkeep
+!workspace/downloads/qq/
+!workspace/downloads/qq/.gitkeep
+workspace/artifacts/**
+!workspace/artifacts/.gitkeep
+workspace/tmp/**
+!workspace/tmp/.gitkeep
+
 .Trash/
 .trash/
 .DS_Store

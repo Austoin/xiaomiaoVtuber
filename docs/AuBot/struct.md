@@ -15,12 +15,12 @@ stage-web 文本/语音输入
     ↓
 packages/stage-layouts/src/xiaomiao-bridge.ts
     ↓ HTTP :5519
-xiaomiao desktop bridge
+xiaomiao 桥接服务
     ↓ HTTP :8900
 xiaomiaoAgent
 ```
 
-桌面端 `stage-tamagotchi` 读取 `xiaomiao` bridge state，并把回复同步到字幕、聊天历史、TTS 和 Live2D 口型。QQ 普通 AI 回复由 `xiaomiao` 进入同一个 xiaomiaoAgent；权限、生图、撤回等命令型功能仍由 `xiaomiao` 本地处理。
+桌面端 `stage-tamagotchi` 读取 `xiaomiao` 桥接状态，并把回复同步到字幕、聊天历史、TTS 和 Live2D 口型。QQ 普通 AI 回复由 `xiaomiao` 进入同一个 xiaomiaoAgent；权限、生图、撤回等命令型功能仍由 `xiaomiao` 本地处理。
 
 ## 2. 顶层目录
 
@@ -86,11 +86,11 @@ packages/stage-layouts/src/components/Layouts/MobileInteractiveArea.vue
 apps/stage-tamagotchi/
 ```
 
-- `apps/stage-web/src/pages/index.vue`：页面级录音转文字入口，Web 模式发送到 `xiaomiao` bridge。
+- `apps/stage-web/src/pages/index.vue`：页面级录音转文字入口，Web 模式发送到 `xiaomiao` 桥接服务。
 - `packages/stage-layouts/src/xiaomiao-bridge.ts`：固定请求 `http://127.0.0.1:5519/v1/chat/completions`。
-- `ChatArea.vue`：桌面布局文本输入，Web 模式不走 xiaomiaobot provider，而是走 bridge。
-- `MobileInteractiveArea.vue`：移动布局文本输入，Web 模式同样走 bridge。
-- `apps/stage-tamagotchi/`：Electron 桌面端，读取小喵 bridge state 并驱动 Vtuber 表现层。
+- `ChatArea.vue`：桌面布局文本输入，Web 模式不走 xiaomiaobot 提供方，而是走桥接服务。
+- `MobileInteractiveArea.vue`：移动布局文本输入，Web 模式同样走桥接服务。
+- `apps/stage-tamagotchi/`：Electron 桌面端，读取小喵桥接状态并驱动 Vtuber 表现层。
 
 ## 4. Workspace 包结构
 
