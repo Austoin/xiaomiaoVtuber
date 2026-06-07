@@ -6,10 +6,12 @@ AuBot 是 `xiaomiaoVirtual` 的 Web/桌面 Vtuber 表现层，负责把统一 Ag
 
 - [快速开始](#快速开始)
 - [主要模块](#主要模块)
+- [服务和插件清单](#服务和插件清单)
 - [启动方式](#启动方式)
 - [配置说明](#配置说明)
 - [常用命令](#常用命令)
 - [项目结构](#项目结构)
+- [全结构索引](#全结构索引)
 - [重新建立 Git 仓库](#重新建立-git-仓库)
 
 ---
@@ -72,6 +74,10 @@ Electron 桌面版应用，是当前桌面形态的主要入口，适合本地�
 ### `docs`
 
 项目文档站与补充资料。
+
+## 服务和插件清单
+
+服务、插件、Agent 工具适配状态以 [services-and-plugins.md](services-and-plugins.md) 为准。该文档覆盖 `apps`、`services`、`plugins`、`packages`、已打通的 QQ Agent 工具，以及仍未接入 QQ 的能力边界。
 
 ---
 
@@ -274,6 +280,12 @@ AuBot/
 ```
 
 `xiaomiao-bridge.ts` 固定请求 `http://127.0.0.1:5519/v1/chat/completions`。该 bridge 再转发到 xiaomiaoAgent 的 `http://127.0.0.1:8900/v1/chat/completions`。消息同步事件读取同一个 bridge 的 `/v1/xiaomiao/events`，用于 Web、桌面和 QQ 侧的统一消息历史。
+
+---
+
+## 全结构索引
+
+[struct.md](struct.md) 是 `xiaomiaobot` 的全目录和全文件作用索引，适合查找具体文件、包、服务、插件和上游保留目录。日常运行和联动说明优先看本文；需要定位细节时再查结构索引。
 
 ---
 

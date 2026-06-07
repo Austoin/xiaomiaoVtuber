@@ -13,7 +13,9 @@ xiaomiaoVirtual/
 ├── xiaomiao/runtime/          # QQ Bot 运行配置和桥接事件
 ├── xiaomiaoAgent/.nanobot/    # Agent 本机会话、记忆、配置和工作区
 ├── xiaomiaobot/.cache/        # Live2D / VRM 等本地缓存资源
-└── .understand-anything/      # 本地项目解析缓存
+├── .understand-anything/      # 本地项目解析缓存和知识图谱
+├── .learnings/                # 本地错误记录和经验沉淀
+└── xiaomiaoVirtual/           # 历史/嵌套目录，当前主链路不依赖
 ```
 
 `workspace/README.md` 和各子目录 `.gitkeep` 应提交；`downloads/`、`artifacts/`、`tmp/` 下的真实资源不提交。
@@ -39,6 +41,20 @@ xiaomiaoVirtual/
 - 测试缓存和 Python 字节码：`.pytest-tmp*/`、`.pytest_cache/`、`__pycache__/`、`*.pyc`。
 
 这些路径已写入根目录 `.gitignore`。已经被 git 追踪过的运行态文件需要用 `git rm --cached` 从索引移除，但本地文件可以保留。
+
+## 辅助目录边界
+
+| 路径 | 类型 | 处理方式 |
+|------|------|----------|
+| `.github/` | 远端平台配置 | 可提交，当前不是本机运行主链路 |
+| `.learnings/` | 本地错误记录 | 可保留，用于记录踩坑和修复经验 |
+| `.understand-anything/` | 项目解析产物 | 不提交；知识图谱和 dashboard 日志都属于本机缓存 |
+| `.ruff_cache/`、`.uv-cache/` | 工具缓存 | 不提交，可在需要时清理 |
+| `log/`、`logs/`、`tmp/`、`temp/` | 运行日志和临时文件 | 不提交，清理前确认没有排障需要 |
+| `xiaomiaoVirtual/` | 历史/嵌套目录 | 当前主链路不依赖；清理前先确认是否仍有未迁移资料 |
+| `open-understand-dashboard.*` | 本地知识图谱仪表盘入口 | 可保留，依赖 `.understand-anything/knowledge-graph.json` |
+
+项目主链路只依赖 `xiaomiao/`、`xiaomiaoAgent/`、`xiaomiaobot/`、`workspace/`、`scripts/`、`test/`、`tool/` 和根配置/脚本。辅助目录不应被写入启动脚本的强依赖。
 
 ## QQ 文件链路
 

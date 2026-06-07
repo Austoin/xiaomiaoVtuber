@@ -100,7 +100,7 @@
 - Chess 小游戏。
 - Claude Code plugin hook。
 - Browser Extension 页面上下文。
-- stage-pocket 移动端桥接事件同步第一步已完成；后续补桥接绑定握手、动态地址配置和专门事件 UI。
+- stage-pocket 移动端桥接事件同步第一步已完成；下一步增加桥接绑定握手、动态地址配置和专门事件 UI。
 - `memory-pgvector` 与 xiaomiaoAgent 记忆层是否合并评估。
 
 ### 5. 统一事件与可观测性

@@ -56,7 +56,7 @@
    ```bash
    # 查看登录二维码
    docker logs -f napcat
-   
+
    # 或访问 WebUI
    http://你的服务器IP:6099
    ```

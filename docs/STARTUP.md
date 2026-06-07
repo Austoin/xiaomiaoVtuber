@@ -2,6 +2,8 @@
 
 本文说明如何在本机启动 `xiaomiaoVirtual` 的三个核心部分，并跑通网页、桌面端和 QQ 普通 AI 回复的统一 Agent 链路：
 
+如果只需要最短命令入口，请先看 [运行与配置.md](运行与配置.md)。完整文档入口见 [README.md](README.md)，脚本和配置细节见 [scripts-and-config.md](scripts-and-config.md)，验收命令见 [verification.md](verification.md)。
+
 1. `xiaomiao`：QQ Bot 主体。
 2. `xiaomiaobot`：Vtuber Web / 桌面端。
 3. `xiaomiaoAgent`：独立 Agent 框架，内部 Python 包名仍是 `nanobot`，可提供命令行、网关、OpenAI 兼容 API 和 WebUI。
