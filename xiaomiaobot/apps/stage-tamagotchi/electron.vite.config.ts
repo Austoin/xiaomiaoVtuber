@@ -17,7 +17,8 @@ import { DownloadLive2DSDK } from '@proj-airi/unplugin-live2d-sdk'
 import { defineConfig } from 'electron-vite'
 
 const stageUIAssetsRoot = resolve(join(import.meta.dirname, '..', '..', 'packages', 'stage-ui', 'src', 'assets'))
-const sharedCacheDir = resolve(join(import.meta.dirname, '..', '..', '.cache'))
+const rootCacheDir = resolve(join(import.meta.dirname, '..', '..', '..', '.cache', 'xiaomiaobot'))
+const sharedCacheDir = rootCacheDir
 
 export default defineConfig({
   main: {

@@ -15,6 +15,7 @@ set "HEALTH_PS=%ROOT_DIR%scripts\start-all-health.ps1"
 set "QQ_ACCOUNT=3994383071"
 set "XIAOMIAOBOT_STAGE_WEB_PORT=5175"
 set "WAIT_TIMEOUT_SECONDS=180"
+set "QQ_WAIT_TIMEOUT_SECONDS=600"
 set "CHECK_ONLY=0"
 set "CHECK_FAILED=0"
 set "NO_PROXY=127.0.0.1,localhost,::1"
@@ -88,9 +89,9 @@ if not exist "%XIAOMIAO_AGENT_WEBUI_DIR%\package.json" (
     pause
     exit /b 1
 )
-if not exist "%NAPCAT_DIR%\napcat.quick.bat" if not exist "%LAGRANGE_EXE%" (
+if not exist "%NAPCAT_DIR%\NapCatWinBootMain.exe" if not exist "%LAGRANGE_EXE%" (
     echo [Error] No QQ protocol found.
-    echo         Expected NapCat: %NAPCAT_DIR%\napcat.quick.bat
+    echo         Expected NapCat: %NAPCAT_DIR%\NapCatWinBootMain.exe
     echo         Expected Lagrange: %LAGRANGE_EXE%
     pause
     exit /b 1
@@ -168,6 +169,9 @@ exit /b %errorlevel%
 
 :start_qq
 echo [1/6] Starting QQ protocol...
+echo       QQ protocol terminal stays visible for login.
+echo       If the terminal QR code is hard to scan, open NapCat WebUI:
+echo       http://127.0.0.1:6099
 powershell -NoProfile -ExecutionPolicy Bypass -File "%HEALTH_PS%" is-open -Port 5004 >nul 2>nul
 if not errorlevel 1 (
     echo       QQ OneBot WebSocket already listening on 127.0.0.1:5004.
@@ -176,12 +180,12 @@ if not errorlevel 1 (
     powershell -NoProfile -ExecutionPolicy Bypass -File "%HEALTH_PS%" check -Kind Port -Name "QQ OneBot WebSocket" -Port 5004
     exit /b %errorlevel%
 )
-if exist "%NAPCAT_DIR%\napcat.quick.bat" (
-    start "QQ Protocol - NapCat" /min /D "%NAPCAT_DIR%" cmd /k "call napcat.quick.bat %QQ_ACCOUNT%"
+if exist "%NAPCAT_DIR%\NapCatWinBootMain.exe" (
+    start "QQ Protocol - NapCat" /D "%NAPCAT_DIR%" powershell -NoProfile -ExecutionPolicy Bypass -NoExit -Command "try { $raw = $Host.UI.RawUI; $raw.BufferSize = New-Object Management.Automation.Host.Size 180, 3000; $raw.WindowSize = New-Object Management.Automation.Host.Size 180, 45 } catch {}; [Console]::OutputEncoding = [System.Text.Encoding]::UTF8; $OutputEncoding = [System.Text.Encoding]::UTF8; & '.\NapCatWinBootMain.exe' '%QQ_ACCOUNT%'"
 ) else (
-    start "QQ Protocol - Lagrange" /min /D "%XIAOMIAO_DIR%" cmd /k "Lagrange.OneBot.exe"
+    start "QQ Protocol - Lagrange" /D "%XIAOMIAO_DIR%" powershell -NoProfile -ExecutionPolicy Bypass -NoExit -Command "try { $raw = $Host.UI.RawUI; $raw.BufferSize = New-Object Management.Automation.Host.Size 180, 3000; $raw.WindowSize = New-Object Management.Automation.Host.Size 180, 45 } catch {}; [Console]::OutputEncoding = [System.Text.Encoding]::UTF8; $OutputEncoding = [System.Text.Encoding]::UTF8; & '.\Lagrange.OneBot.exe'"
 )
-call :wait_port "QQ OneBot WebSocket" 5004
+powershell -NoProfile -ExecutionPolicy Bypass -File "%HEALTH_PS%" wait -Kind Port -Name "QQ OneBot WebSocket" -Port 5004 -TimeoutSeconds %QQ_WAIT_TIMEOUT_SECONDS%
 exit /b %errorlevel%
 
 :start_agent_api
@@ -189,7 +193,7 @@ echo.
 echo [2/6] Starting xiaomiaoAgent API...
 call :assert_free "xiaomiaoAgent API" 8900
 if errorlevel 1 exit /b 1
-start "xiaomiaoAgent API" /min /D "%XIAOMIAO_AGENT_DIR%" cmd /k "%CMD_AGENT_API%"
+start "xiaomiaoAgent API" /min /D "%XIAOMIAO_AGENT_DIR%" powershell -NoProfile -ExecutionPolicy Bypass -NoExit -Command "%CMD_AGENT_API%"
 call :wait_http "xiaomiaoAgent API" 8900 "http://127.0.0.1:8900/health" "status"
 exit /b %errorlevel%
 
@@ -198,7 +202,7 @@ echo.
 echo [3/6] Starting xiaomiaoAgent gateway...
 call :assert_free "xiaomiaoAgent gateway" 8765
 if errorlevel 1 exit /b 1
-start "xiaomiaoAgent gateway" /min /D "%XIAOMIAO_AGENT_DIR%" cmd /k "%CMD_AGENT_GATEWAY%"
+start "xiaomiaoAgent gateway" /min /D "%XIAOMIAO_AGENT_DIR%" powershell -NoProfile -ExecutionPolicy Bypass -NoExit -Command "%CMD_AGENT_GATEWAY%"
 call :wait_gateway "xiaomiaoAgent gateway" 8765 "http://127.0.0.1:8765"
 exit /b %errorlevel%
 
@@ -207,7 +211,7 @@ echo.
 echo [4/6] Starting xiaomiao main.py and bridge...
 call :assert_free "xiaomiao main.py and bridge" 5519
 if errorlevel 1 exit /b 1
-start "xiaomiao main.py" /min /D "%XIAOMIAO_DIR%" cmd /k "%CMD_XIAOMIAO_MAIN%"
+start "xiaomiao main.py" /min /D "%XIAOMIAO_DIR%" powershell -NoProfile -ExecutionPolicy Bypass -NoExit -Command "%CMD_XIAOMIAO_MAIN%"
 call :wait_xiaomiao "xiaomiao main.py, bridge, and QQ listener" 5519 "http://127.0.0.1:5519/v1/xiaomiao/status" "xiaomiao-desktop-bridge"
 exit /b %errorlevel%
 
@@ -216,7 +220,7 @@ echo.
 echo [5/6] Starting xiaomiaobot web...
 call :assert_free "xiaomiaobot web" %XIAOMIAOBOT_STAGE_WEB_PORT%
 if errorlevel 1 exit /b 1
-start "xiaomiaobot web" /min /D "%XIAOMIAOBOT_STAGE_WEB_DIR%" cmd /k "%CMD_XIAOMIAOBOT_WEB%"
+start "xiaomiaobot web" /min /D "%XIAOMIAOBOT_STAGE_WEB_DIR%" powershell -NoProfile -ExecutionPolicy Bypass -NoExit -Command "%CMD_XIAOMIAOBOT_WEB%"
 call :wait_http "xiaomiaobot web" %XIAOMIAOBOT_STAGE_WEB_PORT% "http://127.0.0.1:%XIAOMIAOBOT_STAGE_WEB_PORT%/" "xiaomiao"
 exit /b %errorlevel%
 
@@ -225,7 +229,7 @@ echo.
 echo [6/6] Starting xiaomiaoAgent WebUI...
 call :assert_free "xiaomiaoAgent WebUI" 5174
 if errorlevel 1 exit /b 1
-start "xiaomiaoAgent WebUI" /min /D "%XIAOMIAO_AGENT_WEBUI_DIR%" cmd /k "%CMD_AGENT_WEBUI%"
+start "xiaomiaoAgent WebUI" /min /D "%XIAOMIAO_AGENT_WEBUI_DIR%" powershell -NoProfile -ExecutionPolicy Bypass -NoExit -Command "%CMD_AGENT_WEBUI%"
 call :wait_http "xiaomiaoAgent WebUI" 5174 "http://127.0.0.1:5174/" "xiaomiaoAgent"
 exit /b %errorlevel%
 

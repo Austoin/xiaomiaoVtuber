@@ -13,6 +13,7 @@ RESTRICTED_TOOL_POLICIES = frozenset({
     LOW_RISK_CHANNEL_POLICY,
     TRUSTED_PENDING_TOOL_POLICY,
 })
+CONFIRMATION_REQUIRED_PREFIX = "CONFIRMATION_REQUIRED"
 LOW_RISK_ALLOWED_TOOLS = frozenset({
     "read_file",
     "list_dir",
@@ -130,6 +131,12 @@ class ToolRegistry:
             return None
         ctx = self._request_context
         channel = ctx.channel if ctx else "unknown"
+        policy = self._active_policy()
+        if policy == TRUSTED_PENDING_TOOL_POLICY:
+            return (
+                f"{CONFIRMATION_REQUIRED_PREFIX}: Tool '{name}' requires confirmation "
+                f"for channel '{channel}'."
+            )
         return (
             f"Error: Tool '{name}' is blocked by channel policy "
             f"'{LOW_RISK_CHANNEL_POLICY}' for channel '{channel}'."
@@ -157,7 +164,7 @@ class ToolRegistry:
             mcp_tools.sort(key=self._schema_name)
             self._cached_definitions = builtins + mcp_tools
 
-        if self._active_policy() not in RESTRICTED_TOOL_POLICIES:
+        if self._active_policy() != LOW_RISK_CHANNEL_POLICY:
             return self._cached_definitions
 
         return [

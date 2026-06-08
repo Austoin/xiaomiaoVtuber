@@ -12,7 +12,7 @@ xiaomiaoVirtual/
 │   └── tmp/                   # 短期临时文件
 ├── xiaomiao/runtime/          # QQ Bot 运行配置和桥接事件
 ├── xiaomiaoAgent/.nanobot/    # Agent 本机会话、记忆、配置和工作区
-├── xiaomiaobot/.cache/        # Live2D / VRM 等本地缓存资源
+├── .cache/xiaomiaobot/        # xiaomiaobot Live2D / VRM 等本地缓存资源
 ├── .understand-anything/      # 本地项目解析缓存和知识图谱
 ├── .learnings/                # 本地错误记录和经验沉淀
 └── xiaomiaoVirtual/           # 历史/嵌套目录，当前主链路不依赖
@@ -34,8 +34,11 @@ xiaomiaoVirtual/
 - QQ 下载文件和用户上传文档：`workspace/downloads/**`。
 - Agent / 工具生成物：`workspace/artifacts/**`、`workspace/tmp/**`。
 - Agent 本地状态：`xiaomiaoAgent/.nanobot/**`，包括会话、记忆、历史和工作区运行文件。
+- Agent 本地启动日志：`xiaomiaoAgent/.run-*.log`。
 - 桥接运行事件：`xiaomiao/runtime/bridge_events.jsonl`。
-- xiaomiaobot 缓存模型：`xiaomiaobot/.cache/**`。
+- xiaomiaobot 缓存模型：`.cache/xiaomiaobot/**`。
+- xiaomiaobot app 内历史缓存副本：`xiaomiaobot/**/.cache/**`。
+- xiaomiaobot 构建输出和 lint 缓存：`xiaomiaobot/**/out/**`、`xiaomiaobot/.eslintcache`。
 - Satori 本地数据库：`xiaomiaobot/services/satori-bot/data/db.json`。
 - 项目解析缓存：`.understand-anything/**`。
 - 测试缓存和 Python 字节码：`.pytest-tmp*/`、`.pytest_cache/`、`__pycache__/`、`*.pyc`。
@@ -53,6 +56,8 @@ xiaomiaoVirtual/
 | `log/`、`logs/`、`tmp/`、`temp/` | 运行日志和临时文件 | 不提交，清理前确认没有排障需要 |
 | `xiaomiaoVirtual/` | 历史/嵌套目录 | 当前主链路不依赖；清理前先确认是否仍有未迁移资料 |
 | `open-understand-dashboard.*` | 本地知识图谱仪表盘入口 | 可保留，依赖 `.understand-anything/knowledge-graph.json` |
+
+更细的项目目录分类和清理优先级见 [project-deep-classification.md](project-deep-classification.md)。
 
 项目主链路只依赖 `xiaomiao/`、`xiaomiaoAgent/`、`xiaomiaobot/`、`workspace/`、`scripts/`、`test/`、`tool/` 和根配置/脚本。辅助目录不应被写入启动脚本的强依赖。
 
@@ -103,7 +108,7 @@ Linux 部署文档只覆盖 QQ Bot / NapCat 服务器部署；Windows 本机三�
 
 ```powershell
 git ls-files -ci --exclude-standard
-git ls-files | Select-String -Pattern '(^|/)\.nanobot/|(^|/)runtime/bridge_events\.jsonl$|(^|/)\.understand-anything/|xiaomiaobot/\.cache/|satori-bot/data/db\.json$|\.pid$|history\.jsonl$|sessions/|runtime_.*\.txt$|three_end_.*\.txt$'
+git ls-files | Select-String -Pattern '(^|/)\.nanobot/|(^|/)runtime/bridge_events\.jsonl$|(^|/)\.understand-anything/|(^|/)\.cache/|xiaomiaobot/.*/\.cache/|satori-bot/data/db\.json$|\.pid$|history\.jsonl$|sessions/|runtime_.*\.txt$|three_end_.*\.txt$'
 ```
 
 两条命令都应无输出。`git status --short --untracked-files=all` 中看到 `.understand-anything/**`、`.nanobot/**`、`.cache/**`、`bridge_events.jsonl`、`db.json` 的删除记录是从 git 索引移除运行态文件的预期结果，本地文件不会因此消失。
@@ -122,4 +127,5 @@ Get-ChildItem -Recurse -Directory -Filter __pycache__ | Remove-Item -Recurse -Fo
 - `workspace/downloads/**`：用户在 QQ 中发来的文件，确认不需要再追溯后再删。
 - `workspace/artifacts/**`：工具输出，确认文档或截图已不再需要后再删。
 - `xiaomiaoAgent/.nanobot/**`：包含 Agent 记忆、会话和本机配置，不建议批量删除。
-- `xiaomiaobot/.cache/**`：删除后可能需要重新下载 Live2D / VRM 资源。
+- `.cache/xiaomiaobot/**`：删除后可能需要重新下载 Live2D / VRM 资源。
+- `xiaomiaobot/**/.cache/**`：历史 app 内缓存副本，当前应逐步迁移到根 `.cache/xiaomiaobot/`。

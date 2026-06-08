@@ -8,6 +8,7 @@ LOW_RISK_TOOL_POLICY = "low_risk"
 TRUSTED_PENDING_TOOL_POLICY = "trusted_pending"
 TRUSTED_CONFIRMED_TOOL_POLICY = "trusted_confirmed"
 HIGH_RISK_CONFIRM_PREFIX = "确认执行"
+CONFIRMATION_REQUIRED_PREFIX = "CONFIRMATION_REQUIRED"
 DEFAULT_CONFIRMATION_TTL_SECONDS = 300
 
 RiskLevel = Literal["low", "medium", "high"]
@@ -159,16 +160,20 @@ def decide_agent_tool_request(
         )
 
     risk_level = detect_agent_tool_risk(text)
-    if risk_level == "low":
+    if not has_tool_permission:
         return AgentToolDecision(allowed=True, tool_policy=LOW_RISK_TOOL_POLICY)
 
-    if not has_tool_permission:
-        return AgentToolDecision(
-            allowed=False,
-            tool_policy=LOW_RISK_TOOL_POLICY,
-            message="该请求需要本机/高风险工具权限，只有 ROOT、Super 或 Agent 工具白名单用户可以执行。",
-        )
+    return AgentToolDecision(allowed=True, tool_policy=TRUSTED_PENDING_TOOL_POLICY)
 
+
+def build_confirmation_request(
+    *,
+    text: str,
+    user_id: int | str,
+    chat_id: int | str,
+    confirmation_store: AgentToolConfirmationStore,
+    risk_level: RiskLevel = "high",
+) -> AgentToolDecision:
     request = confirmation_store.create(
         user_id=user_id,
         chat_id=chat_id,
@@ -179,10 +184,25 @@ def decide_agent_tool_request(
         allowed=False,
         tool_policy=TRUSTED_PENDING_TOOL_POLICY,
         pending_request=request,
-        message=(
-            f"检测到高风险工具请求，需要二次确认。\n"
-            f"确认码：{request.confirmation_id}\n"
-            f"请在 {confirmation_store.ttl_seconds // 60} 分钟内发送："
-            f"{HIGH_RISK_CONFIRM_PREFIX} {request.confirmation_id}"
-        ),
+        message=format_confirmation_message(request, confirmation_store.ttl_seconds),
     )
+
+
+def format_confirmation_message(
+    request: PendingAgentToolRequest,
+    ttl_seconds: int,
+) -> str:
+    return (
+        f"检测到高风险工具请求，需要二次确认。\n"
+        f"确认码：{request.confirmation_id}\n"
+        f"请在 {ttl_seconds // 60} 分钟内发送："
+        f"{HIGH_RISK_CONFIRM_PREFIX} {request.confirmation_id}"
+    )
+
+
+def agent_event_requires_confirmation(event: dict) -> bool:
+    for name in ("error", "result_summary", "detail", "content"):
+        value = event.get(name)
+        if isinstance(value, str) and value.strip().startswith(CONFIRMATION_REQUIRED_PREFIX):
+            return True
+    return False

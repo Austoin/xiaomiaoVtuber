@@ -12,7 +12,7 @@ from unified_config import merge_unified_config_section
 
 DEFAULT_XIAOMIAO_AGENT_BASE_URL = "http://127.0.0.1:8900/v1/chat/completions"
 DEFAULT_XIAOMIAO_AGENT_SESSION_ID = "xiaomiao-unified"
-DEFAULT_XIAOMIAO_AGENT_TIMEOUT_SECONDS = 30.0
+DEFAULT_XIAOMIAO_AGENT_TIMEOUT_SECONDS = 0.0
 
 
 @dataclass(frozen=True)
@@ -52,7 +52,7 @@ def load_xiaomiao_agent_config(others: dict[str, Any]) -> XiaomiaoAgentConfig:
         base_url=str(raw_config.get("base_url") or DEFAULT_XIAOMIAO_AGENT_BASE_URL),
         model=_optional_text(raw_config.get("model")),
         session_id=str(raw_config.get("session_id") or DEFAULT_XIAOMIAO_AGENT_SESSION_ID),
-        timeout_seconds=float(raw_config.get("timeout_seconds") or DEFAULT_XIAOMIAO_AGENT_TIMEOUT_SECONDS),
+        timeout_seconds=_timeout_seconds(raw_config),
     )
 
 
@@ -82,6 +82,12 @@ def _optional_text(value: Any) -> str | None:
         return None
     text = str(value).strip()
     return text or None
+
+
+def _timeout_seconds(raw_config: dict[str, Any]) -> float:
+    if "timeout_seconds" not in raw_config or raw_config.get("timeout_seconds") is None:
+        return DEFAULT_XIAOMIAO_AGENT_TIMEOUT_SECONDS
+    return float(raw_config.get("timeout_seconds"))
 
 
 def _build_request_body(
@@ -142,6 +148,9 @@ def _post_json(url: str, body: dict[str, Any], timeout_seconds: float) -> dict[s
         method="POST",
     )
     try:
+        if timeout_seconds <= 0:
+            with request.urlopen(req) as response:
+                return json.loads(response.read().decode("utf-8"))
         with request.urlopen(req, timeout=timeout_seconds) as response:
             return json.loads(response.read().decode("utf-8"))
     except error.HTTPError as exc:

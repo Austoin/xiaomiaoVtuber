@@ -74,6 +74,7 @@ QQ 回复 + bridge event + Web/桌面同步
 |------|------|
 | 文档总入口 | `docs/README.md` |
 | 启动与配置 | `docs/运行与配置.md`、`docs/STARTUP.md` |
+| 项目深度分类 | `docs/project-deep-classification.md` |
 | 根脚本和配置 | `docs/scripts-and-config.md` |
 | 验证矩阵 | `docs/verification.md` |
 | 测试目录和质量边界 | `docs/testing-and-quality.md` |

@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 from collections.abc import Awaitable
+import asyncio
 from typing import Any, Callable
 
 
@@ -45,6 +46,8 @@ ReplyCallback = Callable[[int, str, str, str, tuple[str, ...]], Any]
 PublishCallback = Callable[..., None]
 EventPublishCallback = Callable[..., None]
 MediaConverter = Callable[[str], Awaitable[str | None]]
+SyncAgentCall = Callable[[], Any]
+WaitNoticeCallback = Callable[[], Awaitable[None]]
 
 
 def is_qq_exact_command(order: str, command: str) -> bool:
@@ -107,6 +110,23 @@ def publish_qq_agent_reply(
             confirmation_id=_optional_event_text(event, "confirmation_id"),
             result_summary=_optional_event_text(event, "result_summary"),
         )
+
+
+async def await_agent_reply_with_wait_notice(
+    call: SyncAgentCall,
+    wait_notice_callback: WaitNoticeCallback,
+    *,
+    notice_after_seconds: float = 300.0,
+) -> Any:
+    task = asyncio.create_task(asyncio.to_thread(call))
+    try:
+        return await asyncio.wait_for(
+            asyncio.shield(task),
+            timeout=notice_after_seconds,
+        )
+    except asyncio.TimeoutError:
+        await wait_notice_callback()
+        return await task
 
 
 def _optional_event_text(event: dict[str, Any], name: str) -> str | None:

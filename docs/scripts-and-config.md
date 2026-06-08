@@ -54,6 +54,8 @@ cd F:\xiaomiaoVirtual
 cmd /c call start-all.cmd
 ```
 
+脚本启动服务时统一打开 PowerShell 独立终端。QQ/NapCat 登录窗口保持可见，其它服务窗口默认最小化并保留日志输出。
+
 只检查：
 
 ```powershell

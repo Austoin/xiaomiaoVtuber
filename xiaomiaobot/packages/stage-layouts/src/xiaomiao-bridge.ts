@@ -294,13 +294,14 @@ function normalizeXiaomiaoBridgeEvent(value: unknown): XiaomiaoBridgeEvent {
     throw new Error('XiaoMiao bridge event role must be user or assistant')
   }
 
-  const event = {
+  const role = raw.role
+  const event: Pick<XiaomiaoBridgeEvent, 'id' | 'source' | 'channel' | 'chat_id' | 'user_id' | 'role' | 'content' | 'timestamp' | 'client_message_id'> = {
     id: requireNumber(raw.id, 'id'),
     source: requireString(raw.source, 'source'),
     channel: requireString(raw.channel, 'channel'),
     chat_id: requireString(raw.chat_id, 'chat_id'),
     user_id: requireNumber(raw.user_id, 'user_id'),
-    role: raw.role,
+    role,
     content: requireString(raw.content, 'content'),
     timestamp: requireNumber(raw.timestamp, 'timestamp'),
   }

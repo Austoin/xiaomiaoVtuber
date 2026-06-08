@@ -13,6 +13,7 @@ import urllib.parse
 import emoji
 import time
 import traceback
+from dataclasses import replace
 from openai import OpenAI
 import requests, aiohttp
 from Hyper import Configurator
@@ -35,13 +36,19 @@ from desktop_bridge import publish_bridge_event, publish_bridge_exchange, start_
 from qq_agent_bridge import (
     QQ_AGENT_GROUP,
     QQ_AGENT_PRIVATE,
+    await_agent_reply_with_wait_notice,
     build_qq_agent_reply,
     get_market_face_url,
     is_qq_exact_command,
     publish_qq_agent_reply,
     resolve_qq_image_url,
 )
-from qq_agent_tools import AgentToolConfirmationStore, decide_agent_tool_request
+from qq_agent_tools import (
+    AgentToolConfirmationStore,
+    agent_event_requires_confirmation,
+    build_confirmation_request,
+    decide_agent_tool_request,
+)
 from qq_permissions import has_agent_tool_permission, has_manage_permission
 from qq_workspace import (
     QQWorkspaceError,
@@ -89,6 +96,7 @@ generating = False
 bridge_server = None
 bridge_lock = threading.Lock()
 agent_tool_confirmations = AgentToolConfirmationStore()
+QQ_AGENT_WAIT_NOTICE_SECONDS = 300.0
 RUNTIME_DIR = "runtime"
 SUPER_USER_FILE = os.path.join(RUNTIME_DIR, "Super_User.ini")
 MANAGE_USER_FILE = os.path.join(RUNTIME_DIR, "Manage_User.ini")
@@ -246,6 +254,8 @@ def generate_agent_response(
     confirmation_id: str | None = None,
 ):
     agent_config = load_xiaomiao_agent_config(Configurator.cm.get_cfg().others)
+    if agent_config.timeout_seconds > 0:
+        agent_config = replace(agent_config, timeout_seconds=0)
     return request_xiaomiao_agent(
         agent_config,
         XiaomiaoAgentRequest(
@@ -310,16 +320,97 @@ def build_authorized_qq_agent_reply(
             confirmation_id=decision.confirmation_id,
         )
 
-    return (
-        build_qq_agent_reply(
-            source=source,
+    agent_reply = build_qq_agent_reply(
+        source=source,
+        user_id=user_id,
+        chat_id=chat_id,
+        text=agent_text,
+        media=media,
+        reply_callback=reply_callback,
+    )
+    if decision.tool_policy == "trusted_pending" and any(
+        agent_event_requires_confirmation(event) for event in agent_reply.tool_events
+    ):
+        confirmation = build_confirmation_request(
+            text=agent_text,
             user_id=user_id,
             chat_id=chat_id,
-            text=agent_text,
+            confirmation_store=agent_tool_confirmations,
+        )
+        publish_bridge_event(
+            source=source,
+            channel=source,
+            chat_id=str(chat_id),
+            user_id=user_id,
+            role="assistant",
+            content=confirmation.message,
+            event_type="confirmation_requested",
+            risk_level="high",
+            confirmation_id=(
+                confirmation.pending_request.confirmation_id
+                if confirmation.pending_request
+                else None
+            ),
+            result_summary=confirmation.message,
+        )
+        return None, confirmation.message
+
+    return agent_reply, None
+
+
+async def build_group_agent_reply_with_wait_notice(
+    *,
+    actions,
+    event,
+    text: str,
+    media: tuple[str, ...] = (),
+):
+    async def notice():
+        message_parts = [Segments.Text("任务还在处理中，完成后会继续发给你。")]
+        message_id = getattr(event, "message_id", None)
+        if message_id is not None:
+            message_parts.insert(0, Segments.Reply(message_id))
+        await actions.send(
+            group_id=event.group_id,
+            message=Manager.Message(*message_parts),
+        )
+
+    return await await_agent_reply_with_wait_notice(
+        lambda: build_authorized_qq_agent_reply(
+            source=QQ_AGENT_GROUP,
+            user_id=event.user_id,
+            chat_id=event.group_id,
+            text=text,
             media=media,
-            reply_callback=reply_callback,
         ),
-        None,
+        notice,
+        notice_after_seconds=QQ_AGENT_WAIT_NOTICE_SECONDS,
+    )
+
+
+async def build_private_agent_reply_with_wait_notice(
+    *,
+    actions,
+    event,
+    text: str,
+    media: tuple[str, ...] = (),
+):
+    async def notice():
+        await actions.send(
+            user_id=event.user_id,
+            message=Manager.Message(Segments.Text("任务还在处理中，完成后会继续发给你。")),
+        )
+
+    return await await_agent_reply_with_wait_notice(
+        lambda: build_authorized_qq_agent_reply(
+            source=QQ_AGENT_PRIVATE,
+            user_id=event.user_id,
+            chat_id=event.user_id,
+            text=text,
+            media=media,
+        ),
+        notice,
+        notice_after_seconds=QQ_AGENT_WAIT_NOTICE_SECONDS,
     )
 
 
@@ -553,10 +644,9 @@ async def handler(event: Events.Event, actions: Listener.Actions) -> None:
                 chat_id=event.group_id,
                 allow_private_url=True,
             )
-            agent_reply, blocked_message = build_authorized_qq_agent_reply(
-                source=QQ_AGENT_GROUP,
-                user_id=event.user_id,
-                chat_id=event.group_id,
+            agent_reply, blocked_message = await build_group_agent_reply_with_wait_notice(
+                actions=actions,
+                event=event,
                 text=build_group_upload_agent_text(document),
             )
             if blocked_message:
@@ -2415,10 +2505,9 @@ CPU 使用率：{str(system_info["cpu_usage"]) + "%"}
                             )
                             if document_warning:
                                 print(f"QQ 文档下载失败: {document_warning}")
-                            agent_reply, blocked_message = build_authorized_qq_agent_reply(
-                                source=QQ_AGENT_GROUP,
-                                user_id=event.user_id,
-                                chat_id=event.group_id,
+                            agent_reply, blocked_message = await build_group_agent_reply_with_wait_notice(
+                                actions=actions,
+                                event=event,
                                 text=agent_text,
                                 media=tuple(media),
                             )
@@ -2433,10 +2522,9 @@ CPU 使用率：{str(system_info["cpu_usage"]) + "%"}
                             )
                             if document_warning:
                                 print(f"QQ 文档下载失败: {document_warning}")
-                            agent_reply, blocked_message = build_authorized_qq_agent_reply(
-                                source=QQ_AGENT_GROUP,
-                                user_id=event.user_id,
-                                chat_id=event.group_id,
+                            agent_reply, blocked_message = await build_group_agent_reply_with_wait_notice(
+                                actions=actions,
+                                event=event,
                                 text=agent_text,
                             )
 
@@ -3026,10 +3114,9 @@ Made by SR Studio
                         )
                         if document_warning:
                             print(f"[私聊] QQ 文档下载失败: {document_warning}")
-                        agent_reply, blocked_message = build_authorized_qq_agent_reply(
-                            source=QQ_AGENT_PRIVATE,
-                            user_id=event.user_id,
-                            chat_id=event.user_id,
+                        agent_reply, blocked_message = await build_private_agent_reply_with_wait_notice(
+                            actions=actions,
+                            event=event,
                             text=agent_text,
                             media=tuple(media),
                         )
@@ -3044,10 +3131,9 @@ Made by SR Studio
                         )
                         if document_warning:
                             print(f"[私聊] QQ 文档下载失败: {document_warning}")
-                        agent_reply, blocked_message = build_authorized_qq_agent_reply(
-                            source=QQ_AGENT_PRIVATE,
-                            user_id=event.user_id,
-                            chat_id=event.user_id,
+                        agent_reply, blocked_message = await build_private_agent_reply_with_wait_notice(
+                            actions=actions,
+                            event=event,
                             text=agent_text,
                         )
 

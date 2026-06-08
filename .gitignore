@@ -7,6 +7,9 @@
 .docs/superpowers
 .claude/worktrees/
 .understand-anything/
+.cache/
+**/.gitignore
+!.gitignore
 
 # Environment and secrets
 .env
@@ -123,6 +126,9 @@ AuBot/apps/stage-tamagotchi/electron.vite.config.*.mjs
 AuBot/.ghfs/
 AuBot/.obsidian/
 xiaomiaobot/.cache/
+xiaomiaobot/**/.cache/
+xiaomiaobot/**/out/
+xiaomiaobot/.eslintcache
 
 # AuBot service data
 AuBot/services/satori-bot/data/
@@ -253,6 +259,7 @@ nanobot/uv.lock
 # Logs, temp, and OS/editor files
 *.log
 *.logs
+log/
 logs/
 tmp/
 temp/
@@ -301,3 +308,21 @@ crates/*/target/
 # Lock files ignored by nanobot policy
 poetry.lock
 uv.lock
+
+# Third-party tool local outputs
+tool/Scrapling/site/
+tool/Scrapling/local_tests/
+tool/Scrapling/.mcpregistry_*
+tool/Scrapling/public/
+tool/Scrapling/web/
+tool/markitdown/downloads/
+tool/markitdown/.test-logs/
+tool/markitdown/.pdm.toml
+tool/markitdown/.pdm-python
+tool/markitdown/.pdm-build/
+tool/markitdown/__pypackages__/
+tool/markitdown/.pyre/
+tool/markitdown/.scrapy/
+tool/markitdown/.webassets-cache
+tool/markitdown/celerybeat-schedule
+tool/markitdown/celerybeat.pid

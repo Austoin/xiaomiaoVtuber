@@ -6,9 +6,10 @@
 
 - MCP 服务默认不启用。
 - 启用服务时必须使用显式 `enabled_tools`，不要使用 `*` 暴露全部工具。
-- QQ 普通用户始终走 `low_risk`，只能看到低风险工具。
-- ROOT / Super / `agent_tool_allowlist` 用户可以触发高风险请求，但首次只生成确认码。
-- 只有确认后进入 `trusted_confirmed`，高风险工具才会暴露给 Agent。
+- QQ 普通用户始终走 `low_risk`，只能看到并执行低风险工具。
+- ROOT / Super / `agent_tool_allowlist` 用户首次请求走 `trusted_pending`，Agent 可以看到高风险工具定义用于理解和规划。
+- `trusted_pending` 中的高风险工具不会直接执行；`ToolRegistry.prepare_call()` 会在执行前返回 `CONFIRMATION_REQUIRED`，由 QQ 侧生成确认码。
+- 只有确认后进入 `trusted_confirmed`，高风险工具才会真正执行。
 - 即使模型从上下文伪造高风险工具调用，`ToolRegistry.prepare_call()` 仍会拦截。
 
 ## 配置位置
@@ -167,9 +168,9 @@ Minecraft 动作会改变游戏状态，因此必须走确认链路。
 
 | 策略 | 入口 | 可见工具 |
 |------|------|----------|
-| `low_risk` | 普通 QQ 用户 | 读文件、目录、grep/glob、Web、MarkItDown、Scrapling、xiaomiaobot 状态、低风险 MCP |
-| `trusted_pending` | 白名单用户首次高风险请求 | 仍只暴露低风险工具，并返回确认码 |
-| `trusted_confirmed` | 确认码有效后 | 暴露写文件、Shell、MCP 动作、外部服务写操作等高风险工具 |
+| `low_risk` | 普通 QQ 用户 | 暴露并执行读文件、目录、grep/glob、Web、MarkItDown、Scrapling、xiaomiaobot 状态、低风险 MCP |
+| `trusted_pending` | 白名单用户首次 Agent 请求 | 暴露高风险工具定义供 Agent 规划；执行高风险工具前返回确认事件 |
+| `trusted_confirmed` | 确认码有效后 | 执行写文件、Shell、MCP 动作、外部服务写操作等高风险工具 |
 
 `tool_policy` 只由后端权限网关生成，用户文本中伪造该字段不会生效。
 

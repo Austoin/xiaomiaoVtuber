@@ -1,6 +1,6 @@
-# xiaomiaoVirtual / AuBot
+# xiaomiaobot 表现层说明
 
-AuBot 是 `xiaomiaoVirtual` 的 Web/桌面 Vtuber 表现层，负责把统一 Agent 回复呈现为网页聊天、桌面字幕、TTS 和 Live2D/VRM 口型同步。内部包名、工作区作用域和部分目录仍保留 `@proj-airi/*` 兼容标识。
+`xiaomiaobot` 是 `xiaomiaoVirtual` 的 Web、桌面、移动端 Vtuber 表现层，负责把统一 Agent 回复呈现为网页聊天、桌面字幕、TTS、Live2D/VRM 和口型同步。该目录来自 AIRI monorepo，历史文档中也会出现 `AuBot`；内部包名、工作区作用域和部分目录仍保留 `@proj-airi/*` 兼容标识。
 
 ## 目录
 
@@ -12,7 +12,7 @@ AuBot 是 `xiaomiaoVirtual` 的 Web/桌面 Vtuber 表现层，负责把统一 Ag
 - [常用命令](#常用命令)
 - [项目结构](#项目结构)
 - [全结构索引](#全结构索引)
-- [重新建立 Git 仓库](#重新建立-git-仓库)
+- [Git 仓库说明](#git-仓库说明)
 
 ---
 
@@ -67,9 +67,32 @@ Electron 桌面版应用，是当前桌面形态的主要入口，适合本地�
 
 服务端 API，负责后端接口、服务能力与部分系统级功能支持。
 
+### `apps/component-calling`
+
+组件调用和实时音频实验应用，用于验证组件化调用能力，当前不是 QQ 主链路。
+
+### `apps/ui-server-auth`
+
+服务端鉴权 UI，用于配合 `apps/server` 和 server-runtime 相关能力，当前不是 QQ 主链路。
+
 ### `packages/*`
 
-共享 UI、业务组件、运行时、SDK、工具模块等核心公共能力。
+共享 UI、业务组件、运行时、SDK、工具模块等核心公共能力。按用途大致分为：
+
+- 舞台 UI 与布局：`stage-ui`、`stage-layouts`、`stage-pages`、`stage-shared`。
+- 渲染和模型：`stage-ui-live2d`、`stage-ui-three`、`model-driver-lipsync`、`model-driver-mediapipe`。
+- 语音和音频：`audio`、`pipelines-audio`、`audio-pipelines-transcribe`。
+- 插件和服务协议：`plugin-sdk`、`plugin-sdk-tamagotchi`、`plugin-protocol`、`server-runtime`、`server-sdk`、`server-schema`、`server-shared`。
+- 角色、Agent 和记忆：`core-character`、`core-agent`、`memory-pgvector`。
+- 基础 UI、字体和工具：`ui`、`ui-loading-screens`、`ui-transitions`、`i18n`、`font-*`、`cap-vite`、`vishot-*`。
+
+### `services/*`
+
+外部服务能力，包括 Computer Use MCP、Minecraft、Twitter、Satori、Discord、Telegram。它们是后续让 QQ/Agent 调用更多外部能力的主要来源，但写操作和本机控制默认需要白名单与确认。
+
+### `plugins/*`
+
+插件能力，包括 HomeAssistant、Bilibili、Chess、Claude Code 和 Browser Extension。当前目录已保留源码，QQ 侧仍以 Agent 工具适配为入口，不直接操作前端插件内部状态。
 
 ### `docs`
 
@@ -92,7 +115,7 @@ cd F:\xiaomiaoVirtual
 start-all.cmd
 ```
 
-`start-all.cmd` 会串行启动 QQ 协议端、xiaomiaoAgent API、xiaomiaoAgent 网关、xiaomiao 桥接服务、stage-web 和 xiaomiaoAgent WebUI。新启动的终端默认最小化；前一步没有通过健康检查时，后续服务不会打开。
+`start-all.cmd` 会串行启动 QQ 协议端、xiaomiaoAgent API、xiaomiaoAgent 网关、xiaomiao 桥接服务、stage-web 和 xiaomiaoAgent WebUI。QQ/NapCat 登录窗口保持可见，其它服务窗口默认最小化；前一步没有通过健康检查时，后续服务不会打开。
 
 手动启动时，先启动后端链路：
 
@@ -141,6 +164,8 @@ pnpm dev:web
 - 验证 `stage-web -> xiaomiao 桥接服务 -> xiaomiaoAgent` 链路
 
 第一次打开 Web 版会先通过桥接服务读取主目录 `config.json`。配置完整时不会弹配置面板；配置缺失时填写中转站 URL、API Key 和模型后会同步写回主目录 `config.json`。桥接服务不可用、xiaomiaoAgent 不可用或返回空回复时，聊天历史会出现明确 error 消息，不会静默回退到 xiaomiaobot 提供方。网页确认后的消息会通过桥接事件回放，刷新页面后仍能看到三端同步记录。工具执行、确认码、记忆整理和舞台动作也会进入同一事件流。
+
+Live2D 模型和 VRM 下载缓存集中在仓库根目录 `.cache/xiaomiaobot/`。Cubism SDK 仍由外部 `DownloadLive2DSDK()` 插件写入各 app 的 `.cache/`，后续需要替换或扩展该插件才能彻底集中。
 
 ### 方式二：启动桌面 Electron 版
 
@@ -193,7 +218,7 @@ apps/server/.env.local
 
 ### 多端协作说明
 
-AuBot 采用 pnpm 工作区组织多个应用与共享包，因此日常开发通常不是只运行一个目录，而是根据你的目标选择对应入口：
+`xiaomiaobot` 采用 pnpm 工作区组织多个应用与共享包，因此日常开发通常不是只运行一个目录，而是根据你的目标选择对应入口：
 
 - 做 Web 页面：优先启动 `stage-web`；如果要测聊天输入，必须同时启动 `xiaomiao` bridge 和 xiaomiaoAgent API
 - 做桌面端能力：优先启动 `stage-tamagotchi`；如果要测小喵回复表现，必须同时启动 `xiaomiao`
@@ -255,24 +280,31 @@ pnpm test:run
 ## 项目结构
 
 ```text
-AuBot/
+xiaomiaobot/
 ├── apps/
-│   ├── stage-web/          # Web 应用
-│   ├── stage-tamagotchi/   # Electron 桌面版应用
-│   ├── stage-pocket/       # 移动端应用
-│   └── server/             # 服务端 API
-├── packages/               # 共享 UI、业务、运行时、SDK、工具包
-├── docs/                   # 文档站与补充资料
-├── eslint.config.js        # 代码规范配置
-├── uno.config.ts           # UnoCSS 配置
-├── vitest.config.ts        # 测试配置
-└── package.json            # 工作区根配置
+│   ├── stage-web/           # Web 应用
+│   ├── stage-tamagotchi/    # Electron 桌面版应用
+│   ├── stage-pocket/        # 移动端应用
+│   ├── server/              # 服务端 API
+│   ├── component-calling/   # 组件调用和实时音频实验
+│   └── ui-server-auth/      # 服务端鉴权 UI
+├── packages/                # 共享 UI、业务、运行时、SDK、工具包
+├── services/                # Computer Use、Minecraft、Twitter 等服务
+├── plugins/                 # HomeAssistant、Bilibili、Chess 等插件
+├── integrations/            # VSCode 等外部集成
+├── engines/                 # Godot 等引擎实验
+├── nix/                     # Nix 打包配置
+├── docs/                    # 文档站与补充资料
+├── eslint.config.js         # 代码规范配置
+├── uno.config.ts            # UnoCSS 配置
+├── vitest.config.ts         # 测试配置
+└── package.json             # 工作区根配置
 ```
 
 与小喵联动相关的关键文件：
 
 ```text
-AuBot/
+xiaomiaobot/
 ├── apps/stage-web/src/pages/index.vue
 ├── packages/stage-layouts/src/xiaomiao-bridge.ts
 ├── packages/stage-layouts/src/components/Widgets/ChatArea.vue
@@ -289,9 +321,9 @@ AuBot/
 
 ---
 
-## 重新建立 Git 仓库
+## Git 仓库说明
 
-如果当前目录没有 `.git`，可以重新初始化仓库：
+`xiaomiaobot` 现在作为 `xiaomiaoVirtual` 仓库的子目录管理，不需要在该目录下重新初始化 `.git`。如果你单独抽出 `xiaomiaobot` 做上游开发，才需要重新初始化仓库：
 
 ```powershell
 git init

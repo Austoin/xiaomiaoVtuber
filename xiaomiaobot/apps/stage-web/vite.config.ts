@@ -24,7 +24,8 @@ import { defineConfig } from 'vite'
 import { VitePWA } from 'vite-plugin-pwa'
 
 const stageUIAssetsRoot = resolve(join(import.meta.dirname, '..', '..', 'packages', 'stage-ui', 'src', 'assets'))
-const sharedCacheDir = resolve(join(import.meta.dirname, '..', '..', '.cache'))
+const rootCacheDir = resolve(join(import.meta.dirname, '..', '..', '..', '.cache', 'xiaomiaobot'))
+const sharedCacheDir = rootCacheDir
 
 function hasFlagEnableMkcert(): boolean {
   if (process.argv.includes('--mkcert')) {

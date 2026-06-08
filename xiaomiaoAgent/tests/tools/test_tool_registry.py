@@ -155,7 +155,7 @@ def test_low_risk_policy_blocks_hidden_tool_execution() -> None:
     assert "blocked by channel policy" in error
 
 
-def test_trusted_pending_policy_keeps_high_risk_tools_hidden() -> None:
+def test_trusted_pending_policy_exposes_high_risk_tools_but_requires_confirmation() -> None:
     from nanobot.agent.tools.context import RequestContext
 
     registry = ToolRegistry()
@@ -172,14 +172,39 @@ def test_trusted_pending_policy_keeps_high_risk_tools_hidden() -> None:
         )
     )
 
-    assert _tool_names(registry.get_definitions()) == ["read_file"]
+    assert _tool_names(registry.get_definitions()) == [
+        "exec",
+        "read_file",
+        "write_file",
+        "mcp_computer_use",
+    ]
 
     tool, params, error = registry.prepare_call("exec", {"command": "dir"})
 
     assert tool is None
     assert params == {"command": "dir"}
     assert error is not None
-    assert "blocked by channel policy" in error
+    assert "requires confirmation" in error
+
+
+def test_trusted_pending_policy_allows_low_risk_tools() -> None:
+    from nanobot.agent.tools.context import RequestContext
+
+    registry = ToolRegistry()
+    registry.register(_FakeTool("read_file"))
+    registry.set_context(
+        RequestContext(
+            channel="qq-group",
+            chat_id="10001",
+            metadata={"channel_policy": "trusted_pending"},
+        )
+    )
+
+    tool, params, error = registry.prepare_call("read_file", {"path": "README.md"})
+
+    assert tool is not None
+    assert params == {"path": "README.md"}
+    assert error is None
 
 
 def test_restricted_policy_allows_only_explicit_low_risk_mcp_tools() -> None:

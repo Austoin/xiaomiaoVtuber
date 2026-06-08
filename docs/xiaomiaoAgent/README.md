@@ -115,9 +115,9 @@ set XIAOMIAO_UNIFIED_CONFIG=F:\xiaomiaoVirtual\config.json
 
 ## 相关文档
 
+- 工具目录清单：[tools.md](tools.md)
 - 原始 Agent 文档：[../../xiaomiaoAgent/docs/README.md](../../xiaomiaoAgent/docs/README.md)
 - OpenAI 兼容 API：[../../xiaomiaoAgent/docs/openai-api.md](../../xiaomiaoAgent/docs/openai-api.md)
 - 记忆：[../../xiaomiaoAgent/docs/memory.md](../../xiaomiaoAgent/docs/memory.md)
 - 启动说明：[../STARTUP.md](../STARTUP.md)
 - 验证矩阵：[../verification.md](../verification.md)
-

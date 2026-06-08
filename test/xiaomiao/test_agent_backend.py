@@ -164,6 +164,13 @@ class AgentBackendTests(unittest.TestCase):
             with self.assertRaisesRegex(RuntimeError, "request failed"):
                 reply_with_xiaomiao_agent(config, _payload("hello"))
 
+    def test_zero_timeout_waits_for_slow_agent_reply(self):
+        with _agent_server(_SlowHandler) as base_url:
+            config = _config(base_url, timeout_seconds=0)
+            reply = reply_with_xiaomiao_agent(config, _payload("hello"))
+
+        self.assertEqual(reply, "late")
+
 
 class _ServerContext:
     def __init__(self, handler):

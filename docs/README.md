@@ -9,6 +9,7 @@
 | [运行与配置.md](运行与配置.md) | 最短运行入口，包含 `setup-env.cmd` 和 `start-all.cmd` |
 | [STARTUP.md](STARTUP.md) | 详细启动、端口、手动运行和常见问题 |
 | [project-overview.md](project-overview.md) | 项目整体目录、子系统职责和运行边界 |
+| [project-deep-classification.md](project-deep-classification.md) | 项目目录深度分类、清理清单和保留边界 |
 | [verification.md](verification.md) | 单测、前端测试、启动检查和验收命令 |
 | [testing-and-quality.md](testing-and-quality.md) | 测试目录职责和质量检查范围 |
 | [QQ机器人指令速查.md](QQ机器人指令速查.md) | QQ 群聊/私聊可用指令 |
@@ -24,6 +25,7 @@
 | `xiaomiao` QQ 机器人 | [xiaomiao/README.md](xiaomiao/README.md) |
 | `xiaomiao` 部署打包 | [xiaomiao/deploy/README_DEPLOY.md](xiaomiao/deploy/README_DEPLOY.md) |
 | `xiaomiaoAgent` 统一 Agent | [xiaomiaoAgent/README.md](xiaomiaoAgent/README.md) |
+| `xiaomiaoAgent` 工具目录 | [xiaomiaoAgent/tools.md](xiaomiaoAgent/tools.md) |
 | `xiaomiaobot` Web / 桌面表现层 | [xiaomiaobot/README.md](xiaomiaobot/README.md) |
 | `xiaomiaobot` 操作文档 | [xiaomiaobot/操作文档.md](xiaomiaobot/操作文档.md) |
 | `xiaomiaobot` 服务与插件 | [xiaomiaobot/services-and-plugins.md](xiaomiaobot/services-and-plugins.md) |
@@ -52,6 +54,7 @@
 | xiaomiaobot 表现层 | 已覆盖 |
 | xiaomiaoAgent 统一 Agent 能力 | 已覆盖 |
 | root 脚本、配置文件、健康检查 | 已覆盖 |
+| 项目深度分类和清理边界 | 已覆盖 |
 | MCP 和外部服务配置 | 已覆盖 |
 | 测试和验收矩阵 | 已补本目录入口 |
 | 测试目录和质量边界 | 已覆盖 |

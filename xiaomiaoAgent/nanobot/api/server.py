@@ -46,7 +46,7 @@ TRUSTED_CHANNEL_POLICY = "trusted"
 LOW_RISK_CHANNEL_POLICY = "low_risk"
 TRUSTED_PENDING_TOOL_POLICY = "trusted_pending"
 TRUSTED_CONFIRMED_TOOL_POLICY = "trusted_confirmed"
-LOW_RISK_SOURCE_CHANNELS = frozenset({"qq-group"})
+LOW_RISK_SOURCE_CHANNELS = frozenset({"qq-group", "qq-private"})
 VALID_TOOL_POLICIES = frozenset({
     LOW_RISK_CHANNEL_POLICY,
     TRUSTED_CHANNEL_POLICY,
@@ -119,6 +119,12 @@ def _response_text(value: Any) -> str:
     if hasattr(value, "content"):
         return str(getattr(value, "content") or "")
     return str(value)
+
+
+async def _maybe_wait_for(awaitable, timeout_s: float):
+    if timeout_s <= 0:
+        return await awaitable
+    return await asyncio.wait_for(awaitable, timeout=timeout_s)
 
 
 def _source_text(value: Any, default: str) -> str:
@@ -349,6 +355,9 @@ async def handle_chat_completions(request: web.Request) -> web.Response:
     if requested_model and requested_model != model_name:
         return _error_json(400, f"Only configured model '{model_name}' is available")
 
+    if source.channel in LOW_RISK_SOURCE_CHANNELS:
+        timeout_s = 0
+
     session_key = f"api:{session_id}" if session_id else API_SESSION_KEY
     session_locks: dict[str, asyncio.Lock] = request.app["session_locks"]
     session_lock = session_locks.setdefault(session_key, asyncio.Lock())
@@ -386,7 +395,7 @@ async def handle_chat_completions(request: web.Request) -> web.Response:
             nonlocal stream_failed
             try:
                 async with session_lock:
-                    response = await asyncio.wait_for(
+                    response = await _maybe_wait_for(
                         agent_loop.process_direct(
                             content=text,
                             media=media_paths if media_paths else None,
@@ -398,7 +407,7 @@ async def handle_chat_completions(request: web.Request) -> web.Response:
                             on_stream=_on_stream,
                             on_stream_end=_on_stream_end,
                         ),
-                        timeout=timeout_s,
+                        timeout_s,
                     )
                     if not emitted_content:
                         response_text = _response_text(response)
@@ -444,7 +453,7 @@ async def handle_chat_completions(request: web.Request) -> web.Response:
     try:
         async with session_lock:
             try:
-                response = await asyncio.wait_for(
+                response = await _maybe_wait_for(
                     agent_loop.process_direct(
                         content=text,
                         media=media_paths if media_paths else None,
@@ -455,13 +464,13 @@ async def handle_chat_completions(request: web.Request) -> web.Response:
                         metadata=source.metadata,
                         on_progress=_on_progress,
                     ),
-                    timeout=timeout_s,
+                    timeout_s,
                 )
                 response_text = _response_text(response)
 
                 if not response_text or not response_text.strip():
                     logger.warning("Empty response for session {}, retrying", session_key)
-                    retry_response = await asyncio.wait_for(
+                    retry_response = await _maybe_wait_for(
                         agent_loop.process_direct(
                             content=text,
                             media=media_paths if media_paths else None,
@@ -472,7 +481,7 @@ async def handle_chat_completions(request: web.Request) -> web.Response:
                             metadata=source.metadata,
                             on_progress=_on_progress,
                         ),
-                        timeout=timeout_s,
+                        timeout_s,
                     )
                     response_text = _response_text(retry_response)
                     if not response_text or not response_text.strip():

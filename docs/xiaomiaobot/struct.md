@@ -1,14 +1,14 @@
-# xiaomiaoVirtual / AuBot 项目结构
+# xiaomiaobot 项目结构
 
-本文记录 AuBot 在 `xiaomiaoVirtual` 中的目录结构和文件作用。
+本文记录 `xiaomiaobot` 在 `xiaomiaoVirtual` 中的目录结构和文件作用。历史文档、包名和插件名中仍可能出现 `AuBot`、`AIRI` 或 `@proj-airi/*`，这些是上游兼容标识，不代表当前项目还有独立 `AuBot/` 主目录。
 
 说明：`node_modules`、`.git`、缓存目录、构建产物不纳入索引。
 
 ## 1. 项目定位
 
-AuBot 是 `xiaomiaoVirtual` 的 Web/桌面 Vtuber 表现层，覆盖 Web、Electron 桌面端、移动端、服务端、插件、机器人服务和共享包。内部历史文档、插件名和部分目录仍保留 `AIRI` / `@proj-airi` 兼容标识。
+`xiaomiaobot` 是 `xiaomiaoVirtual` 的 Web/桌面 Vtuber 表现层，覆盖 Web、Electron 桌面端、移动端、服务端、插件、机器人服务和共享包。内部历史文档、插件名和部分目录仍保留 `AIRI` / `@proj-airi` 兼容标识。
 
-在 `xiaomiaoVirtual` 联动中，AuBot 承担 Web/桌面表现层：
+在 `xiaomiaoVirtual` 联动中，`xiaomiaobot` 承担 Web/桌面表现层：
 
 ```text
 stage-web 文本/语音输入

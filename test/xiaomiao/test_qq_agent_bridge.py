@@ -10,6 +10,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "xiaomiao"))
 from qq_agent_bridge import (  # noqa: E402
     QQ_AGENT_GROUP,
     QQ_AGENT_PRIVATE,
+    await_agent_reply_with_wait_notice,
     build_agent_media_from_urls,
     build_qq_agent_reply,
     get_market_face_url,
@@ -233,6 +234,46 @@ class QQAgentBridgeTests(unittest.TestCase):
 
         self.assertEqual(result.assistant_text, "dreaming")
         self.assertEqual(calls[0][3], "/dream")
+
+    def test_wait_notice_is_not_sent_for_fast_agent_reply(self):
+        notices = []
+
+        async def notice():
+            notices.append("waiting")
+
+        result = asyncio.run(
+            await_agent_reply_with_wait_notice(
+                lambda: "done",
+                notice,
+                notice_after_seconds=0.1,
+            )
+        )
+
+        self.assertEqual(result, "done")
+        self.assertEqual(notices, [])
+
+    def test_wait_notice_is_sent_once_before_slow_agent_reply_finishes(self):
+        notices = []
+
+        async def notice():
+            notices.append("waiting")
+
+        def slow_call():
+            import time
+
+            time.sleep(0.05)
+            return "done"
+
+        result = asyncio.run(
+            await_agent_reply_with_wait_notice(
+                slow_call,
+                notice,
+                notice_after_seconds=0.01,
+            )
+        )
+
+        self.assertEqual(result, "done")
+        self.assertEqual(notices, ["waiting"])
 
 
 if __name__ == "__main__":

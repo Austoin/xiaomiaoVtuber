@@ -33,7 +33,8 @@ function isEnvTruthy(value: string | undefined | null): boolean {
 }
 
 const stageUIAssetsRoot = resolve(join(import.meta.dirname, '..', '..', 'packages', 'stage-ui', 'src', 'assets'))
-const sharedCacheDir = resolve(join(import.meta.dirname, '..', '..', '.cache'))
+const rootCacheDir = resolve(join(import.meta.dirname, '..', '..', '..', '.cache', 'xiaomiaobot'))
+const sharedCacheDir = rootCacheDir
 
 export default defineConfig({
   optimizeDeps: {
