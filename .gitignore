@@ -310,6 +310,14 @@ poetry.lock
 uv.lock
 
 # Third-party tool local outputs
+tool/**/.git/
+tool/**/.venv/
+tool/**/venv/
+tool/**/__pycache__/
+tool/**/.pytest_cache/
+tool/**/.ruff_cache/
+tool/**/.mypy_cache/
+tool/**/.cache/
 tool/Scrapling/site/
 tool/Scrapling/local_tests/
 tool/Scrapling/.mcpregistry_*

@@ -326,7 +326,7 @@ cmd /c call start-all.cmd --check
 - `docs/file-workspace-hygiene.md`：文件追踪、工作区、QQ 下载资源、运行态缓存和清理规则。
 - `docs/xiaomiao/README.md`：QQ 机器人部署和功能说明。
 - `docs/AuBot/README.md`：历史命名下的 xiaomiaobot / xiaomiaoVirtual 表现层启动和模块说明。
-- `docs/tool-directory-analysis.md`：`tool/markitdown` 与 `tool/Scrapling` 深度解析和接入边界。
+- `docs/tool/tool-directory-analysis.md`：`tool/markitdown` 与 `tool/Scrapling` 精简源码和接入边界。
 - `docs/plans/2026-06-06-qq-agent-xiaomiaobot-capability-integration.md`：QQ 直连 Agent/xiaomiaobot 能力计划与执行批次。
 - `docs/plans/2026-06-06-project-deep-analysis-and-qq-agent-gap-audit.md`：上一计划完成度审计、剩余缺口和下一阶段路线。
 

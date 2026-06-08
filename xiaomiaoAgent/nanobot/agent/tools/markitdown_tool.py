@@ -7,6 +7,7 @@ import os
 from pathlib import Path
 from typing import Any
 
+from nanobot.agent.tools._repo_tool_source import prefer_repo_tool_source
 from nanobot.agent.tools.base import Tool, tool_parameters
 from nanobot.agent.tools.filesystem import _resolve_path
 from nanobot.agent.tools.schema import IntegerSchema, StringSchema, tool_parameters_schema
@@ -135,6 +136,10 @@ class MarkItDownConvertTool(Tool):
         return f"{header}\n\n{trimmed}"
 
     def _convert_file(self, fp: Path) -> str:
+        prefer_repo_tool_source(
+            "markitdown",
+            ("tool", "markitdown", "packages", "markitdown", "src"),
+        )
         from markitdown import MarkItDown
 
         result = MarkItDown(enable_plugins=False).convert(fp)

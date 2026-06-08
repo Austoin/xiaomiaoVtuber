@@ -85,7 +85,7 @@ QQ 回复 + bridge event + Web/桌面同步
 | xiaomiao QQ 机器人 | `docs/xiaomiao/README.md` |
 | xiaomiaoAgent | `docs/xiaomiaoAgent/README.md` |
 | xiaomiaobot 表现层 | `docs/xiaomiaobot/README.md`、`docs/xiaomiaobot/services-and-plugins.md`、`docs/xiaomiaobot/struct.md` |
-| tool 目录 | `docs/tool-directory-analysis.md` |
+| tool 目录 | `docs/tool/tool-directory-analysis.md` |
 | 开发维护 | `docs/development-maintenance.md` |
 | 计划书索引 | `docs/plans/README.md` |
 

@@ -119,7 +119,7 @@
 
 ## tool 分类
 
-`tool/` 不是临时目录。当前两个工具都已经有项目级文档：[tool-directory-analysis.md](tool-directory-analysis.md)。
+`tool/` 不是临时目录。当前两个工具都已经有项目级文档：[tool-directory-analysis.md](tool/tool-directory-analysis.md)。
 
 | 路径 | 分类 | 处理建议 |
 |------|------|----------|
@@ -128,8 +128,9 @@
 
 清理边界：
 
-- 测试素材、README、MCP 示例、skill 文档属于工具源码的一部分，不应随意删除。
-- 若未来只保留运行依赖而不保留源码，需要先改 `xiaomiaoAgent` 工具实现和文档引用。
+- 保留主功能源码、安装元数据、许可证和最小说明。
+- 删除本地虚拟环境、缓存、嵌套仓库元数据、上游 CI/发布配置、示例凭证文档和非当前接入所需扩展包。
+- 若未来重新启用 OCR、MCP 示例、浏览器会话或 Spider 扩展，需要重新补回相应源码、依赖和测试。
 
 ## 文档分类
 
@@ -144,7 +145,7 @@
 | `docs/project-deep-classification.md` | 本文，目录分类和清理清单 |
 | `docs/file-workspace-hygiene.md` | 文件、workspace、运行态边界 |
 | `docs/QQ机器人指令速查.md` | QQ 指令速查 |
-| `docs/tool-directory-analysis.md` | `tool/` 深度解析 |
+| `docs/tool/tool-directory-analysis.md` | `tool/` 精简源码和接入边界 |
 | `docs/xiaomiao*/` | 子系统中文说明 |
 | `docs/plans/` | 计划书、完成度和后续缺口 |
 

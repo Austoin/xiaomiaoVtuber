@@ -30,7 +30,7 @@
 | `xiaomiaobot` 操作文档 | [xiaomiaobot/操作文档.md](xiaomiaobot/操作文档.md) |
 | `xiaomiaobot` 服务与插件 | [xiaomiaobot/services-and-plugins.md](xiaomiaobot/services-and-plugins.md) |
 | `xiaomiaobot` 全结构索引 | [xiaomiaobot/struct.md](xiaomiaobot/struct.md) |
-| `tool/markitdown` 与 `tool/Scrapling` | [tool-directory-analysis.md](tool-directory-analysis.md) |
+| `tool/markitdown` 与 `tool/Scrapling` | [tool/tool-directory-analysis.md](tool/tool-directory-analysis.md) |
 | 文件和 workspace 规则 | [file-workspace-hygiene.md](file-workspace-hygiene.md) |
 
 ## 架构和计划
