@@ -28,7 +28,7 @@ python -m pytest --basetemp .pytest-tmp-xiaomiao-verify test\xiaomiao
 当前预期：
 
 ```text
-77 passed
+78 passed
 ```
 
 覆盖重点：
@@ -49,7 +49,7 @@ uv run --extra dev pytest --basetemp ..\.pytest-tmp-agent-verify tests\test_open
 当前预期：
 
 ```text
-95 passed
+97 passed
 ```
 
 覆盖重点：

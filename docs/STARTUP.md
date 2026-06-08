@@ -498,7 +498,7 @@ python -m pytest --basetemp .pytest-tmp-xiaomiao-verify test\xiaomiao
 预期结果：
 
 ```text
-77 passed
+78 passed
 ```
 
 ### 验证 xiaomiaoAgent 测试
@@ -513,7 +513,7 @@ uv run --extra dev pytest --basetemp ..\.pytest-tmp-agent-verify tests\test_open
 预期结果：
 
 ```text
-95 passed
+97 passed
 ```
 
 如果 `uv` 因用户目录 cache 权限失败，说明当前 shell 权限不足；换到有权限的终端重跑同一条命令即可。
