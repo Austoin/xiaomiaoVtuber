@@ -54,6 +54,21 @@ def is_qq_exact_command(order: str, command: str) -> bool:
     return order.strip() == command
 
 
+def should_private_message_enter_agent(
+    *,
+    order: str,
+    user_message: str,
+    has_document_segments: bool,
+    has_media_segments: bool,
+) -> bool:
+    return bool(
+        order.strip()
+        or user_message.strip()
+        or has_document_segments
+        or has_media_segments
+    )
+
+
 def build_qq_agent_reply(
     *,
     source: str,

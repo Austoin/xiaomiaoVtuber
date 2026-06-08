@@ -7,7 +7,7 @@
 | 文件 | 作用 |
 |------|------|
 | `loader.py` | 扫描 `nanobot.agent.tools` 下的工具类，跳过基础模块，并加载外部 entry point `nanobot.tools` |
-| `registry.py` | 保存工具、输出 schema、执行前校验；QQ `low_risk`、`trusted_pending` 和 `trusted_confirmed` 的最终拦截也在这里完成 |
+| `registry.py` | 保存工具、输出 schema、执行前校验；QQ `low_risk` 和高权限工具策略的最终拦截也在这里完成 |
 | `base.py` | 工具抽象基类、schema 输出、参数转换、启用条件和工具元信息 |
 | `schema.py` | 工具参数 schema 类型定义 |
 | `context.py` | 每次请求的来源、会话和 metadata 上下文 |
@@ -16,11 +16,11 @@
 
 `ToolRegistry` 的关键规则：
 
-- `low_risk` 只暴露低风险工具。
-- `trusted_pending` 会暴露高风险工具定义供 Agent 理解和规划，但 `prepare_call()` 会在真正执行高风险工具前返回 `CONFIRMATION_REQUIRED`。
-- `trusted_confirmed` 才允许实际执行 `exec`、写文件、编辑文件、舞台动作和其它高风险工具。
+- `low_risk` 只暴露并执行低风险工具。
+- `trusted_confirmed` 允许暴露并执行 `exec`、写文件、编辑文件、舞台动作和其它高风险工具。
+- `trusted_pending` 仅作为旧 API 兼容值保留；工具层按高权限策略处理。
 - 即使模型在历史上下文中伪造工具调用，`prepare_call()` 仍会按当前请求上下文拦截。
-- MCP 工具按名称后缀识别低风险读取工具，其它动作默认需要确认。
+- MCP 工具按名称后缀识别低风险读取工具，其它动作默认只对高权限策略开放。
 
 ## 低风险工具
 
@@ -38,9 +38,9 @@
 | `scrapling_get` | `scrapling_tool.py` | 低风险公网网页正文抓取，默认主内容抽取 |
 | `xiaomiaobot_status` | `xiaomiaobot_services.py` | 查询 bridge 和 xiaomiaobot 服务能力状态 |
 
-## 需要确认的高风险工具
+## 高权限工具
 
-这些工具默认不暴露给普通 QQ 用户。ROOT、Super 或 `agent_tool_allowlist` 用户在 `trusted_pending` 阶段可以让 Agent 看到工具定义，但工具真正执行前必须完成二次确认。
+这些工具默认不暴露给普通 QQ 用户。ROOT、Super 或 `agent_tool_allowlist` 用户会以 `trusted_confirmed` 策略进入 Agent，可直接让 Agent 看到并执行高风险工具。
 
 | 工具 | 文件 | 风险点 |
 |------|------|--------|
@@ -72,15 +72,15 @@ QQ 消息
 xiaomiao/main.py
     ↓ 用户权限识别，生成 tool_policy
 xiaomiao/agent_backend.py
-    ↓ tool_policy / confirmation_id
+    ↓ tool_policy
 xiaomiaoAgent API server.py
     ↓ RequestContext.metadata.channel_policy
 ToolRegistry.get_definitions() / prepare_call()
     ↓
-低风险工具直接执行；高风险工具要求确认或在确认后执行
+低风险工具按 low_risk 执行；高权限用户可执行高风险工具
 ```
 
-普通用户看到的工具集合来自 `LOW_RISK_ALLOWED_TOOLS` 和低风险 MCP 后缀。白名单用户首次请求会带 `tool_policy=trusted_pending`，工具列表可包含高风险工具定义；当 Agent 准备执行高风险工具时，`prepare_call()` 返回 `CONFIRMATION_REQUIRED`，QQ 侧生成 `确认执行 <code>`。用户确认后，请求会带 `tool_policy=trusted_confirmed` 重放原任务，高风险工具才会真正执行。
+普通用户看到的工具集合来自 `LOW_RISK_ALLOWED_TOOLS` 和低风险 MCP 后缀。ROOT、Super 或 `agent_tool_allowlist` 用户请求会带 `tool_policy=trusted_confirmed`，高风险工具可直接进入执行链路。`tool_policy` 只由 QQ 后端权限网关生成，用户文本中伪造字段不会生效。
 
 ## MCP 低风险后缀
 

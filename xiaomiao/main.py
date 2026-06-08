@@ -42,11 +42,9 @@ from qq_agent_bridge import (
     is_qq_exact_command,
     publish_qq_agent_reply,
     resolve_qq_image_url,
+    should_private_message_enter_agent,
 )
 from qq_agent_tools import (
-    AgentToolConfirmationStore,
-    agent_event_requires_confirmation,
-    build_confirmation_request,
     decide_agent_tool_request,
 )
 from qq_permissions import has_agent_tool_permission, has_manage_permission
@@ -95,7 +93,6 @@ emoji_send_count: datetime = None
 generating = False
 bridge_server = None
 bridge_lock = threading.Lock()
-agent_tool_confirmations = AgentToolConfirmationStore()
 QQ_AGENT_WAIT_NOTICE_SECONDS = 300.0
 RUNTIME_DIR = "runtime"
 SUPER_USER_FILE = os.path.join(RUNTIME_DIR, "Super_User.ini")
@@ -288,7 +285,6 @@ def build_authorized_qq_agent_reply(
             super_users=Super_User,
             root_users=ROOT_User,
         ),
-        confirmation_store=agent_tool_confirmations,
     )
     if not decision.allowed:
         publish_bridge_event(
@@ -298,16 +294,11 @@ def build_authorized_qq_agent_reply(
             user_id=user_id,
             role="assistant",
             content=decision.message,
-            event_type="confirmation_requested" if decision.pending_request else "tool_error",
-            risk_level=decision.pending_request.risk_level if decision.pending_request else "high",
-            confirmation_id=(
-                decision.pending_request.confirmation_id if decision.pending_request else None
-            ),
+            event_type="tool_error",
+            risk_level="high",
             result_summary=decision.message,
         )
         return None, decision.message
-
-    agent_text = decision.pending_request.text if decision.pending_request else text
 
     def reply_callback(uid, channel, cid, turn_text, turn_media=()):
         return generate_agent_response(
@@ -317,43 +308,16 @@ def build_authorized_qq_agent_reply(
             turn_text,
             turn_media,
             tool_policy=decision.tool_policy,
-            confirmation_id=decision.confirmation_id,
         )
 
     agent_reply = build_qq_agent_reply(
         source=source,
         user_id=user_id,
         chat_id=chat_id,
-        text=agent_text,
+        text=text,
         media=media,
         reply_callback=reply_callback,
     )
-    if decision.tool_policy == "trusted_pending" and any(
-        agent_event_requires_confirmation(event) for event in agent_reply.tool_events
-    ):
-        confirmation = build_confirmation_request(
-            text=agent_text,
-            user_id=user_id,
-            chat_id=chat_id,
-            confirmation_store=agent_tool_confirmations,
-        )
-        publish_bridge_event(
-            source=source,
-            channel=source,
-            chat_id=str(chat_id),
-            user_id=user_id,
-            role="assistant",
-            content=confirmation.message,
-            event_type="confirmation_requested",
-            risk_level="high",
-            confirmation_id=(
-                confirmation.pending_request.confirmation_id
-                if confirmation.pending_request
-                else None
-            ),
-            result_summary=confirmation.message,
-        )
-        return None, confirmation.message
 
     return agent_reply, None
 
@@ -439,6 +403,34 @@ async def image_url_to_agent_media(url: str) -> str | None:
     if not compressed_base64:
         return None
     return f"data:image/jpeg;base64,{compressed_base64}"
+
+
+def has_agent_media_segments(message) -> bool:
+    return any(isinstance(i, (Segments.Image, Segments.MarketFace)) for i in message)
+
+
+async def collect_agent_media_from_private_message(message) -> tuple[str, ...]:
+    media: list[str] = []
+    for i in message:
+        if isinstance(i, Segments.Image):
+            url = resolve_qq_image_url(i.file, i.url)
+            try:
+                media_item = await image_url_to_agent_media(url)
+                if media_item:
+                    media.append(media_item)
+                print("[私聊] 有图")
+            except Exception as img_err:
+                print(f"[私聊] 图片下载失败: {img_err}")
+        elif isinstance(i, Segments.MarketFace):
+            url = get_market_face_url(i.face_id)
+            try:
+                media_item = await image_url_to_agent_media(url)
+                if media_item:
+                    media.append(media_item)
+                print("[私聊] 有表情包")
+            except Exception as img_err:
+                print(f"[私聊] 表情包下载失败: {img_err}")
+    return tuple(media)
 
 
 def start_desktop_bridge() -> None:
@@ -2600,6 +2592,7 @@ CPU 使用率：{str(system_info["cpu_usage"]) + "%"}
                 user_id=event.user_id,
                 message=Manager.Message(Segments.Text("pong! 爆炸！v(◦'ωˉ◦)~♡ ")),
             )
+            return
 
         # 夸奖回复
         elif f"{bot_name}真棒" in user_message:
@@ -2614,6 +2607,7 @@ CPU 使用率：{str(system_info["cpu_usage"]) + "%"}
             await actions.send(
                 user_id=event.user_id, message=Manager.Message(Segments.Text(m))
             )
+            return
 
         # 解析命令
         elif user_message.startswith(reminder):
@@ -2626,6 +2620,10 @@ CPU 使用率：{str(system_info["cpu_usage"]) + "%"}
         if not order and (user_message == "生图" or user_message.startswith("生图 ")):
             order = user_message
             print(f"[私聊] 收到快捷命令 {order}")
+        elif not order:
+            order = user_message.strip()
+            if order:
+                print(f"[私聊] 收到裸消息: {order}")
 
         # 帮助命令
         if is_qq_exact_command(order, "帮助"):
@@ -3064,7 +3062,12 @@ Made by SR Studio
                         )
 
         # AI 对话（私聊版）
-        elif len(order) >= 2 or has_document_segments:
+        elif should_private_message_enter_agent(
+            order=order,
+            user_message=user_message,
+            has_document_segments=has_document_segments,
+            has_media_segments=has_agent_media_segments(event.message),
+        ):
             url = ""
             try:
                 match EnableNetwork:
@@ -3076,7 +3079,6 @@ Made by SR Studio
                         )
 
                         new = []
-                        media = []
                         for i in event.message:
                             if isinstance(i, Segments.Text):
                                 new.append(Parts.Text(i.text.replace(reminder, "", 1)))
@@ -3084,9 +3086,6 @@ Made by SR Studio
                                 url = resolve_qq_image_url(i.file, i.url)
                                 try:
                                     new.append(Parts.File.upload_from_url(url))
-                                    media_item = await image_url_to_agent_media(url)
-                                    if media_item:
-                                        media.append(media_item)
                                     print("[私聊] 有图")
                                 except Exception as img_err:
                                     print(f"[私聊] 图片下载失败: {img_err}")
@@ -3096,15 +3095,13 @@ Made by SR Studio
                                 url = get_market_face_url(i.face_id)
                                 try:
                                     new.append(Parts.File.upload_from_url(url))
-                                    media_item = await image_url_to_agent_media(url)
-                                    if media_item:
-                                        media.append(media_item)
                                     print("[私聊] 有表情包")
                                 except Exception as img_err:
                                     print(f"[私聊] 表情包下载失败: {img_err}")
                                     new.append(Parts.Text("[表情包下载失败]"))
 
                         new = Roles.User(*new)
+                        media = await collect_agent_media_from_private_message(event.message)
                         agent_text, document_warning = await build_agent_text_with_qq_documents(
                             base_text=order or user_message,
                             raw_message=getattr(event, "data", {}).get("message"),
@@ -3118,10 +3115,11 @@ Made by SR Studio
                             actions=actions,
                             event=event,
                             text=agent_text,
-                            media=tuple(media),
+                            media=media,
                         )
 
                     case "Normal" | "Net":
+                        media = await collect_agent_media_from_private_message(event.message)
                         agent_text, document_warning = await build_agent_text_with_qq_documents(
                             base_text=order or user_message,
                             raw_message=getattr(event, "data", {}).get("message"),
@@ -3135,6 +3133,7 @@ Made by SR Studio
                             actions=actions,
                             event=event,
                             text=agent_text,
+                            media=media,
                         )
 
                 if blocked_message:

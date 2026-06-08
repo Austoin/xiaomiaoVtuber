@@ -57,8 +57,7 @@ QQ 和 bridge 会把来源和权限写入请求体：
   "chat_id": "10001",
   "user_id": "3554978979",
   "session_id": "xiaomiao-unified",
-  "tool_policy": "low_risk",
-  "confirmation_id": "ABC123"
+  "tool_policy": "low_risk"
 }
 ```
 
@@ -67,8 +66,8 @@ QQ 和 bridge 会把来源和权限写入请求体：
 | 值 | 含义 |
 |----|------|
 | `low_risk` | 只暴露低风险工具 |
-| `trusted_pending` | 已识别高风险请求，但还未确认 |
-| `trusted_confirmed` | 用户已二次确认，可暴露高风险工具 |
+| `trusted_confirmed` | ROOT、Super 或 Agent 工具白名单用户，可暴露并执行高风险工具 |
+| `trusted_pending` | 旧 API 兼容值，当前按高权限策略处理 |
 
 ## QQ 工具权限
 
@@ -80,7 +79,7 @@ QQ 和 bridge 会把来源和权限写入请求体：
 - `scrapling_get` 公网网页正文抽取。
 - xiaomiaobot 状态查询。
 
-高风险能力必须是 ROOT、Super 或 Agent 工具白名单用户，并且通过确认码后才执行：
+高风险能力必须是 ROOT、Super 或 Agent 工具白名单用户才可执行：
 
 - `exec` 和本机命令。
 - 写文件或修改工作区。

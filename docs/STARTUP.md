@@ -182,15 +182,15 @@ start-all.cmd --check
 
 脚本会设置 `NO_PROXY=127.0.0.1,localhost,::1` 和 `no_proxy=127.0.0.1,localhost,::1`。如果系统环境里有 `HTTP_PROXY` 或 `HTTPS_PROXY`，这一步可以避免 `main.py` 连接 NapCat 时被本地代理转到 `127.0.0.1:7897`。
 
-QQ 本地命令 `帮助`、`关于`、`读图` 使用精确匹配。只有 `- 帮助`、`- 关于`、`- 读图` 会触发本地命令；`- 帮我写关于 agent 的知识`、`- 读图总结这张图片` 会作为普通 AI 请求进入 xiaomiaoAgent。
+QQ 本地命令 `帮助`、`关于`、`读图` 使用精确匹配。群聊中只有 `- 帮助`、`- 关于`、`- 读图` 会触发本地命令；`- 帮我写关于 agent 的知识`、`- 读图总结这张图片` 会作为普通 AI 请求进入 xiaomiaoAgent。私聊可直接发送自然语言、图片、表情包或文件进入 Agent，不需要加 `-`。
 
-QQ Agent 工具请求会额外经过权限网关：普通用户默认 `low_risk`，只能使用读文件、搜索、Web 抓取、状态查询、`markitdown_convert`、`scrapling_get` 等低风险能力；ROOT/Super/`agent_tool_allowlist` 用户触发高风险工具时会先收到 `确认执行 <code>`，确认后才会以 `trusted_confirmed` 调用 `exec`、写文件、MCP 动作或外部服务写操作。
+QQ Agent 工具请求会额外经过权限网关：普通用户默认 `low_risk`，只能使用读文件、搜索、Web 抓取、状态查询、`markitdown_convert`、`scrapling_get` 等低风险能力；ROOT/Super/`agent_tool_allowlist` 用户直接以 `trusted_confirmed` 调用 `exec`、写文件、MCP 动作或外部服务写操作。
 
 QQ 文档资源会进入项目根 `workspace/`。群文件上传事件和普通 file 消息段会先保存到 `workspace/downloads/qq/`，再由 Agent 调用 `markitdown_convert(path=workspace_path)` 转 Markdown 和总结；不支持的扩展名、超大文件、缺少下载地址或不可信下载地址会显式失败。普通 file 消息段阻断 localhost/private/link-local 下载地址；群上传通过 NapCat/OneBot `get_group_file_url` 得到的临时地址允许本机/private URL，以兼容本地 QQ 文件缓存。
 
 QQ 抓网页正文已经走 Agent 低风险工具链：用户可直接描述“抓取这个网页内容/总结这个 URL”，由 `scrapling_get` 公网 GET 抽取正文；localhost、private IP、云厂商元数据服务、cookies、浏览器会话、proxy、CDP 和 stealth 浏览器能力不会对普通用户开放。
 
-QQ 中文记忆命令会转发到 xiaomiaoAgent 内置命令：`记忆状态`、`整理记忆`、`记忆日志`、`恢复记忆`、`新会话`、`停止任务`。其中恢复类命令属于高风险动作，需要确认。
+QQ 中文记忆命令会转发到 xiaomiaoAgent 内置命令：`记忆状态`、`整理记忆`、`记忆日志`、`恢复记忆`、`新会话`、`停止任务`。其中恢复类命令属于高风险动作，只对 ROOT/Super/`agent_tool_allowlist` 用户开放。
 
 手动启动时需要同时打开 5 到 6 个终端。
 

@@ -148,7 +148,7 @@ python main.py
 
 QQ / Web / xiaomiaoAgent WebUI 共享 `xiaomiao-unified` 会话和桥接事件。QQ 本地命令 `帮助`、`关于`、`读图` 使用精确匹配，普通问题中包含这些词时仍会进入 xiaomiaoAgent。
 
-QQ 工具请求会经过权限网关：普通用户默认只能触发 `low_risk` 工具；ROOT/Super/`agent_tool_allowlist` 用户请求本机命令、MCP 动作或外部服务写操作时，会先收到 `确认执行 <code>`，确认后才执行。
+QQ 工具请求会经过权限网关：普通用户默认只能触发 `low_risk` 工具；ROOT/Super/`agent_tool_allowlist` 用户请求本机命令、MCP 动作或外部服务写操作时，会直接以 `trusted_confirmed` 策略执行。
 
 ### 方式一：启动 Web 版
 
@@ -163,7 +163,7 @@ pnpm dev:web
 - Web 场景预览
 - 验证 `stage-web -> xiaomiao 桥接服务 -> xiaomiaoAgent` 链路
 
-第一次打开 Web 版会先通过桥接服务读取主目录 `config.json`。配置完整时不会弹配置面板；配置缺失时填写中转站 URL、API Key 和模型后会同步写回主目录 `config.json`。桥接服务不可用、xiaomiaoAgent 不可用或返回空回复时，聊天历史会出现明确 error 消息，不会静默回退到 xiaomiaobot 提供方。网页确认后的消息会通过桥接事件回放，刷新页面后仍能看到三端同步记录。工具执行、确认码、记忆整理和舞台动作也会进入同一事件流。
+第一次打开 Web 版会先通过桥接服务读取主目录 `config.json`。配置完整时不会弹配置面板；配置缺失时填写中转站 URL、API Key 和模型后会同步写回主目录 `config.json`。桥接服务不可用、xiaomiaoAgent 不可用或返回空回复时，聊天历史会出现明确 error 消息，不会静默回退到 xiaomiaobot 提供方。网页消息会通过桥接事件回放，刷新页面后仍能看到三端同步记录。工具执行、记忆整理和舞台动作也会进入同一事件流。
 
 Live2D 模型和 VRM 下载缓存集中在仓库根目录 `.cache/xiaomiaobot/`。Cubism SDK 仍由外部 `DownloadLive2DSDK()` 插件写入各 app 的 `.cache/`，后续需要替换或扩展该插件才能彻底集中。
 

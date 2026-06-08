@@ -47,7 +47,7 @@
 |------|------|
 | `main.py` | QQ 消息主入口，包含命令处理、角色、AI 回复、QQ Agent 工具权限网关 |
 | `agent_backend.py` | 调用 `xiaomiaoAgent` OpenAI 兼容 API，传递 `channel/chat_id/user_id/tool_policy/confirmation_id` |
-| `qq_agent_tools.py` | QQ 工具风险识别、白名单判断、确认码存储和确认策略 |
+| `qq_agent_tools.py` | QQ Agent 工具策略决策：普通用户 `low_risk`，白名单用户 `trusted_confirmed` |
 | `qq_agent_bridge.py` | QQ 文本/图片/记忆命令映射，桥接事件发布 |
 | `qq_workspace.py` | QQ 文件下载到 `workspace/downloads/qq/`，供 MarkItDown 转 Markdown |
 | `desktop_bridge.py` | 本地 HTTP bridge、聊天同步、bridge event 查询和写入 |

@@ -34,7 +34,7 @@ python -m pytest --basetemp .pytest-tmp-xiaomiao-verify test\xiaomiao
 覆盖重点：
 
 - QQ Agent 后端调用。
-- QQ 工具权限和确认码。
+- QQ 工具权限和私聊裸消息入口。
 - QQ 文件下载与 workspace。
 - 桥接服务持久化和状态接口。
 - 人设切换和控制台输出。
@@ -97,8 +97,9 @@ git diff --check
 | QQ 发送 `- 记忆状态` | 返回 xiaomiaoAgent 状态 |
 | QQ 发送 `- 整理记忆` | 触发 Dream 和记忆事件 |
 | QQ 普通用户请求本机命令 | 明确拒绝 |
-| QQ 白名单用户请求本机命令 | 先返回确认码 |
-| QQ 发送 `确认执行 ABC123` | 确认码有效时执行原请求 |
+| QQ 白名单用户请求本机命令 | 直接执行高风险 Agent 工具 |
+| QQ 私聊裸发自然语言 | 不加 `-` 也进入 Agent |
+| QQ 私聊发送图片/表情包/文档 | 默认下载或转媒体后交给 Agent |
 | QQ 上传文档后提问 | 保存到 `workspace/downloads/qq/` 并可转 Markdown |
 | QQ 请求抓取公网网页 | 调用 `scrapling_get` 返回摘要 |
 | stage-web 输入文本 | 通过 bridge 进入统一 Agent |
@@ -114,4 +115,3 @@ git diff --check
 | 改 `xiaomiaobot` bridge / stage | 指定 Vitest bridge 测试 |
 | 改启动脚本 | `setup-env.cmd --check` 和 `start-all.cmd --check` |
 | 跨系统改动 | 跑完整最小矩阵 |
-

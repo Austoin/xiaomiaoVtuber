@@ -16,8 +16,8 @@
 |------|------|
 | `test_agent_backend.py` | QQ 普通 AI 回复调用 xiaomiaoAgent API、错误显式暴露 |
 | `test_qq_permissions.py` | ROOT、Super、白名单、普通用户权限判断 |
-| `test_qq_agent_tools.py` | 高风险确认码、过期、用户/群绑定和命令摘要 |
-| `test_qq_agent_bridge.py` | QQ 请求元数据、工具事件和桥接事件写入 |
+| `test_qq_agent_tools.py` | 普通用户低风险策略、白名单用户高权限工具策略 |
+| `test_qq_agent_bridge.py` | QQ 请求元数据、私聊裸消息入口、工具事件和桥接事件写入 |
 | `test_qq_workspace.py` | QQ 文件下载、扩展名、大小、URL 和 workspace 边界 |
 | `test_desktop_bridge.py` | 本机 bridge HTTP 接口、聊天、状态和事件 |
 | `test_desktop_bridge_persistence.py` | bridge event 持久化和历史读取 |

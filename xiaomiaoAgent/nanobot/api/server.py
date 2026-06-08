@@ -161,8 +161,6 @@ def _request_source(
     resolved_channel = _source_text(channel, "api")
     resolved_policy = _tool_policy(tool_policy, channel=resolved_channel)
     resolved_confirmation_id = _optional_source_text(confirmation_id)
-    if resolved_policy == TRUSTED_CONFIRMED_TOOL_POLICY and not resolved_confirmation_id:
-        raise ValueError("trusted_confirmed requests require confirmation_id")
     return RequestSource(
         channel=resolved_channel,
         chat_id=_source_text(chat_id, API_CHAT_ID),

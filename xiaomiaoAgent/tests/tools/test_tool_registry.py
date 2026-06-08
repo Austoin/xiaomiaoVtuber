@@ -155,7 +155,7 @@ def test_low_risk_policy_blocks_hidden_tool_execution() -> None:
     assert "blocked by channel policy" in error
 
 
-def test_trusted_pending_policy_exposes_high_risk_tools_but_requires_confirmation() -> None:
+def test_trusted_pending_policy_is_legacy_alias_for_confirmed_tools() -> None:
     from nanobot.agent.tools.context import RequestContext
 
     registry = ToolRegistry()
@@ -181,10 +181,9 @@ def test_trusted_pending_policy_exposes_high_risk_tools_but_requires_confirmatio
 
     tool, params, error = registry.prepare_call("exec", {"command": "dir"})
 
-    assert tool is None
+    assert tool is not None
     assert params == {"command": "dir"}
-    assert error is not None
-    assert "requires confirmation" in error
+    assert error is None
 
 
 def test_trusted_pending_policy_allows_low_risk_tools() -> None:

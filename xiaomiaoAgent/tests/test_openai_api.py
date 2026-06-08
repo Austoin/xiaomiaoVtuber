@@ -276,7 +276,7 @@ async def test_request_source_fields_are_forwarded(aiohttp_client, mock_agent) -
 
 @pytest.mark.skipif(not HAS_AIOHTTP, reason="aiohttp not installed")
 @pytest.mark.asyncio
-async def test_qq_confirmed_tool_policy_requires_confirmation_id(aiohttp_client, mock_agent) -> None:
+async def test_qq_confirmed_tool_policy_does_not_require_confirmation_id(aiohttp_client, mock_agent) -> None:
     app = create_app(mock_agent, model_name="test-model")
     client = await aiohttp_client(app)
     resp = await client.post(
@@ -291,10 +291,14 @@ async def test_qq_confirmed_tool_policy_requires_confirmation_id(aiohttp_client,
         },
     )
 
-    assert resp.status == 400
-    body = await resp.json()
-    assert "confirmation_id" in body["error"]["message"]
-    mock_agent.process_direct.assert_not_called()
+    assert resp.status == 200
+    call_kwargs = mock_agent.process_direct.call_args.kwargs
+    assert call_kwargs["metadata"] == {
+        "source_channel": "qq-group",
+        "source_chat_id": "10001",
+        "source_user_id": "3554978979",
+        "channel_policy": "trusted_confirmed",
+    }
 
 
 @pytest.mark.skipif(not HAS_AIOHTTP, reason="aiohttp not installed")

@@ -7,13 +7,9 @@ from nanobot.agent.tools.context import RequestContext
 
 
 LOW_RISK_CHANNEL_POLICY = "low_risk"
-TRUSTED_PENDING_TOOL_POLICY = "trusted_pending"
-TRUSTED_CONFIRMED_TOOL_POLICY = "trusted_confirmed"
 RESTRICTED_TOOL_POLICIES = frozenset({
     LOW_RISK_CHANNEL_POLICY,
-    TRUSTED_PENDING_TOOL_POLICY,
 })
-CONFIRMATION_REQUIRED_PREFIX = "CONFIRMATION_REQUIRED"
 LOW_RISK_ALLOWED_TOOLS = frozenset({
     "read_file",
     "list_dir",
@@ -132,11 +128,6 @@ class ToolRegistry:
         ctx = self._request_context
         channel = ctx.channel if ctx else "unknown"
         policy = self._active_policy()
-        if policy == TRUSTED_PENDING_TOOL_POLICY:
-            return (
-                f"{CONFIRMATION_REQUIRED_PREFIX}: Tool '{name}' requires confirmation "
-                f"for channel '{channel}'."
-            )
         return (
             f"Error: Tool '{name}' is blocked by channel policy "
             f"'{LOW_RISK_CHANNEL_POLICY}' for channel '{channel}'."

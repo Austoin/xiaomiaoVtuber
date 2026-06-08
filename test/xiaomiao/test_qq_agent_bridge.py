@@ -18,6 +18,7 @@ from qq_agent_bridge import (  # noqa: E402
     map_qq_memory_command,
     publish_qq_agent_reply,
     resolve_qq_image_url,
+    should_private_message_enter_agent,
 )
 
 
@@ -206,6 +207,40 @@ class QQAgentBridgeTests(unittest.TestCase):
         self.assertFalse(is_qq_exact_command(prompt, "关于"))
         self.assertFalse(is_qq_exact_command("帮助我写文件", "帮助"))
         self.assertFalse(is_qq_exact_command("读图总结这张图片", "读图"))
+
+    def test_private_bare_text_and_media_enter_agent(self):
+        self.assertTrue(
+            should_private_message_enter_agent(
+                order="抓取网页",
+                user_message="抓取网页",
+                has_document_segments=False,
+                has_media_segments=False,
+            )
+        )
+        self.assertTrue(
+            should_private_message_enter_agent(
+                order="",
+                user_message="",
+                has_document_segments=True,
+                has_media_segments=False,
+            )
+        )
+        self.assertTrue(
+            should_private_message_enter_agent(
+                order="",
+                user_message="",
+                has_document_segments=False,
+                has_media_segments=True,
+            )
+        )
+        self.assertFalse(
+            should_private_message_enter_agent(
+                order="",
+                user_message="   ",
+                has_document_segments=False,
+                has_media_segments=False,
+            )
+        )
 
     def test_qq_memory_command_aliases_map_to_agent_slash_commands(self):
         self.assertEqual(map_qq_memory_command("记忆状态"), "/status")

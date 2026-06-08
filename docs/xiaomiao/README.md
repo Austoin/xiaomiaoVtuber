@@ -452,10 +452,9 @@ set "BOT_FILES=main.py ... 新文件.py 新目录"
 QQ 普通 AI 对话会进入 xiaomiaoAgent，但工具执行会额外经过 `qq_agent_tools.py` 和 `qq_permissions.py`：
 
 - 普通 QQ 用户默认只使用 `low_risk` 工具策略。
-- ROOT 用户、`runtime/Super_User.ini` 用户、`Others.agent_tool_allowlist` 用户可触发高风险工具确认。
-- 高风险动作首次只返回确认码，例如 `确认执行 ABC123`。
-- 确认码绑定用户、群、过期时间、命令摘要和风险等级；确认通过后才会向 xiaomiaoAgent 发送 `trusted_confirmed`。
-- `- runcommand <命令>` 仍是旧本地系统命令；Agent 工具确认链路与它分开，避免权限语义混淆。
+- ROOT 用户、`runtime/Super_User.ini` 用户、`Others.agent_tool_allowlist` 用户直接使用 `trusted_confirmed` 工具策略。
+- 高权限用户可直接执行本机命令、写文件、MCP 动作等高风险 Agent 工具。
+- `- runcommand <命令>` 仍是旧本地系统命令；Agent 工具权限链路与它分开，避免权限语义混淆。
 
 低风险工具包括读文件、搜索、Web 抓取、状态查询、`markitdown_convert` 和 `scrapling_get`。高风险工具包括本机 `exec`、写文件、MCP 动作、外部账号写操作和设备/游戏控制。
 
@@ -597,8 +596,7 @@ QQ Agent 请求会额外传递运行时元数据：
   "chat_id": "群号",
   "user_id": "QQ号",
   "session_id": "xiaomiao-unified",
-  "tool_policy": "low_risk|trusted_pending|trusted_confirmed",
-  "confirmation_id": "ABC123"
+  "tool_policy": "low_risk|trusted_confirmed"
 }
 ```
 
@@ -669,7 +667,7 @@ QQ Agent 请求会额外传递运行时元数据：
 | `记忆状态` | `/status` | 查看 xiaomiaoAgent 当前状态 |
 | `整理记忆` | `/dream` | 触发 Dream 记忆整理 |
 | `记忆日志` | `/dream-log` | 查看 Dream 日志 |
-| `恢复记忆` | `/dream-restore` | 恢复记忆版本，高风险，需要确认 |
+| `恢复记忆` | `/dream-restore` | 恢复记忆版本，高风险，仅高权限用户可执行 |
 | `新会话` | `/new` | 新建会话 |
 | `停止任务` | `/stop` | 停止当前任务 |
 
@@ -713,7 +711,7 @@ QQ Agent 请求会额外传递运行时元数据：
 | `- 核验 <QQ号>` | 查询用户信息 |
 | `- runcommand <命令>` | 执行系统命令 |
 
-需要通过 Agent 执行本机指令时，建议使用自然语言触发 Agent 工具确认链路，例如“帮我在本机执行 dir”。白名单用户首次会收到确认码；普通用户会被明确拒绝。
+需要通过 Agent 执行本机指令时，建议使用自然语言触发 Agent 工具链路，例如“帮我在本机执行 dir”。白名单用户可直接执行高风险 Agent 工具；普通用户仍只能使用低风险工具。
 
 ### 其他功能
 
@@ -734,7 +732,7 @@ XiaoMiao_QQ_bot/
 ├── desktop_bridge.py       # 本地桥接服务
 ├── bridge_event_store.py   # 桥接事件持久化
 ├── qq_agent_bridge.py      # QQ Agent 回复、图片 URL 和桥接同步辅助
-├── qq_agent_tools.py       # QQ Agent 工具权限策略、确认码和记忆命令映射
+├── qq_agent_tools.py       # QQ Agent 工具权限策略
 ├── qq_permissions.py       # ROOT/Super/Agent 白名单权限判断
 ├── qq_workspace.py         # QQ 文件下载到工作区并交给 Agent 转 Markdown
 ├── unified_config.py       # 主目录统一模型配置读取
@@ -775,7 +773,7 @@ XiaoMiao_QQ_bot/
 | `desktop_bridge.py` | 暴露本地 OpenAI 兼容桥接、状态接口和桥接事件 |
 | `bridge_event_store.py` | 记录 chat/tool/confirmation/memory/stage 等事件，供 Web/桌面/移动端同步 |
 | `qq_agent_bridge.py` | 构造 QQ Agent 回复、同步桥接事件、处理 QQ 图片和商城表情 URL |
-| `qq_agent_tools.py` | 管理低/高风险工具策略、确认码、中文记忆命令映射 |
+| `qq_agent_tools.py` | 管理普通用户低风险策略和白名单用户高权限策略 |
 | `qq_permissions.py` | 判断 ROOT、Super 和 `agent_tool_allowlist` 权限 |
 | `qq_workspace.py` | 将 QQ 群文件上传和 file 消息段保存到 `workspace/downloads/qq/`，再交给 Agent 转 Markdown |
 | `unified_config.py` | 合并主目录统一模型配置，供 QQ、桥接服务和 Agent 后端共用 |

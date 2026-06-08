@@ -7,9 +7,8 @@
 - MCP 服务默认不启用。
 - 启用服务时必须使用显式 `enabled_tools`，不要使用 `*` 暴露全部工具。
 - QQ 普通用户始终走 `low_risk`，只能看到并执行低风险工具。
-- ROOT / Super / `agent_tool_allowlist` 用户首次请求走 `trusted_pending`，Agent 可以看到高风险工具定义用于理解和规划。
-- `trusted_pending` 中的高风险工具不会直接执行；`ToolRegistry.prepare_call()` 会在执行前返回 `CONFIRMATION_REQUIRED`，由 QQ 侧生成确认码。
-- 只有确认后进入 `trusted_confirmed`，高风险工具才会真正执行。
+- ROOT / Super / `agent_tool_allowlist` 用户走 `trusted_confirmed`，Agent 可以看到并执行高风险工具。
+- `trusted_pending` 仅作为旧 API 兼容值保留，当前按高权限策略处理。
 - 即使模型从上下文伪造高风险工具调用，`ToolRegistry.prepare_call()` 仍会拦截。
 
 ## 配置位置
@@ -64,7 +63,7 @@ Agent 启动时连接 MCP 并注册工具
 - 浏览器当前页、元素、输入值、样式和 bridge 状态读取。
 - 终端状态读取。
 
-确认后才可见能力：
+高权限用户可见能力：
 
 - 终端执行命令。
 - 桌面点击、拖拽、滚动、输入、快捷键。
@@ -98,7 +97,7 @@ Agent 启动时连接 MCP 并注册工具
 - `refresh-timeline`
 - `get-my-profile`
 
-确认后才可见能力：
+高权限用户可见能力：
 
 - `login`
 - `post-tweet`
@@ -135,13 +134,13 @@ Agent 启动时连接 MCP 并注册工具
 - `get_logs`
 - `get_llm_trace`
 
-确认后才可见能力：
+高权限用户可见能力：
 
 - `execute_repl`
 - `inject_chat`
 - `inject_event`
 
-Minecraft 动作会改变游戏状态，因此必须走确认链路。
+Minecraft 动作会改变游戏状态，因此只对高权限 QQ 用户开放。
 
 ## 通用 MCP 服务器
 
@@ -169,8 +168,8 @@ Minecraft 动作会改变游戏状态，因此必须走确认链路。
 | 策略 | 入口 | 可见工具 |
 |------|------|----------|
 | `low_risk` | 普通 QQ 用户 | 暴露并执行读文件、目录、grep/glob、Web、MarkItDown、Scrapling、xiaomiaobot 状态、低风险 MCP |
-| `trusted_pending` | 白名单用户首次 Agent 请求 | 暴露高风险工具定义供 Agent 规划；执行高风险工具前返回确认事件 |
-| `trusted_confirmed` | 确认码有效后 | 执行写文件、Shell、MCP 动作、外部服务写操作等高风险工具 |
+| `trusted_pending` | 旧 API 兼容值 | 当前按高权限策略处理 |
+| `trusted_confirmed` | ROOT / Super / `agent_tool_allowlist` 用户 | 执行写文件、Shell、MCP 动作、外部服务写操作等高风险工具 |
 
 `tool_policy` 只由后端权限网关生成，用户文本中伪造该字段不会生效。
 
