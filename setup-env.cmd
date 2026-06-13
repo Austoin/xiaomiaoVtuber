@@ -5,7 +5,6 @@ setlocal EnableExtensions
 set "ROOT_DIR=%~dp0"
 set "XIAOMIAO_DIR=%ROOT_DIR%xiaomiao"
 set "XIAOMIAO_AGENT_DIR=%ROOT_DIR%xiaomiaoAgent"
-set "XIAOMIAO_AGENT_WEBUI_DIR=%XIAOMIAO_AGENT_DIR%\webui"
 set "XIAOMIAOBOT_DIR=%ROOT_DIR%xiaomiaobot"
 set "ROOT_CONFIG=%ROOT_DIR%config.json"
 set "ROOT_CONFIG_EXAMPLE=%ROOT_DIR%config.example.json"
@@ -16,7 +15,6 @@ set "CHECK_ONLY=0"
 set "YES=0"
 set "SKIP_PYTHON=0"
 set "SKIP_NODE=0"
-set "SKIP_WEBUI=0"
 set "FAILED=0"
 
 :parse_args
@@ -43,11 +41,6 @@ if /I "%~1"=="--skip-python" (
 )
 if /I "%~1"=="--skip-node" (
     set "SKIP_NODE=1"
-    shift
-    goto parse_args
-)
-if /I "%~1"=="--skip-webui" (
-    set "SKIP_WEBUI=1"
     shift
     goto parse_args
 )
@@ -125,7 +118,6 @@ echo   --check        Only check tools, config files and dependency folders.
 echo   --yes, -y      Copy config.example.json to config.json when missing.
 echo   --skip-python  Skip Python dependency installation.
 echo   --skip-node    Skip xiaomiaobot pnpm installation.
-echo   --skip-webui   Skip xiaomiaoAgent WebUI npm installation.
 echo   --help, -h     Show this help message.
 echo.
 echo Examples:
@@ -145,10 +137,6 @@ if not exist "%XIAOMIAO_AGENT_DIR%\pyproject.toml" (
 )
 if not exist "%XIAOMIAOBOT_DIR%\package.json" (
     echo [Error] Missing: %XIAOMIAOBOT_DIR%\package.json
-    exit /b 1
-)
-if not exist "%XIAOMIAO_AGENT_WEBUI_DIR%\package.json" (
-    echo [Error] Missing: %XIAOMIAO_AGENT_WEBUI_DIR%\package.json
     exit /b 1
 )
 exit /b 0
@@ -190,7 +178,6 @@ call :check_file "%XIAOMIAO_AGENT_CONFIG%" "xiaomiaoAgent .nanobot config.json"
 echo.
 echo [Check] Dependency folders
 call :check_dir "%XIAOMIAOBOT_DIR%\node_modules" "xiaomiaobot node_modules"
-if "%SKIP_WEBUI%"=="0" call :check_dir "%XIAOMIAO_AGENT_WEBUI_DIR%\node_modules" "xiaomiaoAgent WebUI node_modules"
 call :check_dir "%XIAOMIAO_AGENT_WORKSPACE%" "xiaomiaoAgent workspace"
 call :check_dir "%ROOT_DIR%workspace" "project workspace"
 
@@ -267,19 +254,6 @@ call pnpm install
 set "PNPM_EXIT=%ERRORLEVEL%"
 popd
 if not "%PNPM_EXIT%"=="0" exit /b %PNPM_EXIT%
-
-if "%SKIP_WEBUI%"=="1" (
-    echo   [Skip] xiaomiaoAgent WebUI npm install.
-    echo.
-    exit /b 0
-)
-
-echo   Installing xiaomiaoAgent WebUI dependencies...
-pushd "%XIAOMIAO_AGENT_WEBUI_DIR%"
-call npm install
-set "NPM_EXIT=%ERRORLEVEL%"
-popd
-if not "%NPM_EXIT%"=="0" exit /b %NPM_EXIT%
 echo.
 exit /b 0
 

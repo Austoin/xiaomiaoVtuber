@@ -27,14 +27,6 @@ xiaomiaoAgent 工具 / 记忆 / 会话
     ↓
 stage-web 聊天历史 / 错误消息
 
-xiaomiaoAgent WebUI :5174
-    ↓ WebSocket
-xiaomiaoAgent 网关 :8765
-    ↓ chat_id=xiaomiao-unified
-xiaomiaoAgent 会话 / 工具 / 记忆
-    ↓ 镜像同步
-xiaomiao 桥接事件 :5519
-
 QQ 用户 / 群消息
     ↓
 NapCat OneBot WebSocket :5004
@@ -81,10 +73,8 @@ xiaomiaoVirtual/
 ```text
 QQ 协议端 :5004
   → xiaomiaoAgent API :8900
-  → xiaomiaoAgent 网关 :8765
   → xiaomiao main.py / 桥接 :5519
   → xiaomiaobot stage-web :5175
-  → xiaomiaoAgent WebUI :5174
 ```
 
 如果前一个服务没有在超时时间内通过健康检查，脚本会停止，后续终端不会打开。QQ 协议端会复用已登录并正在监听 `5004` 的现有 NapCat/QQ 进程；其他服务不再跳过已占用端口，如果端口已被旧进程占用，脚本会显示 PID 并停止，因为无法把旧进程重新挂到新的 PowerShell 终端。脚本会为本地链路设置 `NO_PROXY=127.0.0.1,localhost,::1`，避免 QQ OneBot WebSocket 被本机代理转走。
@@ -96,7 +86,7 @@ start-all.cmd
 
 一键启动打开的服务窗口统一使用 PowerShell。QQ/NapCat 窗口保持可见，用于登录和扫码；其它服务窗口默认最小化。
 
-只检查依赖路径、端口占用和 HTTP / WebSocket 健康状态，不启动窗口：
+只检查依赖路径、端口占用和 HTTP 健康状态，不启动窗口：
 
 ```powershell
 start-all.cmd --check
@@ -179,6 +169,7 @@ pnpm dev:tamagotchi
 - xiaomiaoAgent Loop 与多轮任务执行能力。
 - xiaomiaoAgent 工具系统、MCP、Web 搜索、Cron 和记忆系统。
 - 网页端、桌面端、移动端桥接事件和 QQ 普通 AI 回复已统一到 xiaomiaoAgent。
+- TUI 终端界面，快速命令行交互。
 
 ## 关键文件
 
@@ -221,7 +212,6 @@ pnpm dev:tamagotchi
 - `xiaomiaoAgent/nanobot/agent/tools/xiaomiao_stage.py`：舞台动作工具。
 - `xiaomiaoAgent/nanobot/agent/tools/xiaomiaobot_services.py`：xiaomiaobot 服务状态/动作适配。
 - `xiaomiaoAgent/nanobot/agent/memory.py`：会话记忆和 Dream 两阶段记忆整理。
-- `xiaomiaoAgent/webui/`：React/Vite WebUI，通过网关与后端通信。
 
 ## xiaomiaoAgent 接入状态
 
@@ -276,13 +266,9 @@ xiaomiao agent_backend.py
     ↓ HTTP POST http://127.0.0.1:8900/v1/chat/completions
 xiaomiaoAgent → 第三方 OpenAI 兼容中转站
 
-xiaomiaoAgent WebUI
-    ↓ WebSocket http://127.0.0.1:8765
-chat_id=xiaomiao-unified
-    ↓
-xiaomiaoAgent 会话 api:xiaomiao-unified
-    ↓ 镜像同步
-POST http://127.0.0.1:5519/v1/xiaomiao/events
+TUI 终端界面
+    ↓ 直接调用 AgentLoop
+xiaomiaoAgent 工具 / 记忆 / 会话
 ```
 
 配置规则：
@@ -299,9 +285,10 @@ POST http://127.0.0.1:5519/v1/xiaomiao/events
 1. `stage-web` 必须走 `xiaomiao` bridge；bridge 不可用时在聊天历史写入明确错误。
 2. QQ 群/私聊普通 AI 回复走同一个 `agent_backend`。
 3. QQ 工具型请求由 `qq_agent_tools.py` 分级：普通用户只能低风险，白名单高风险动作必须先收到 `确认执行 <code>`。
-4. 统一会话默认为 `xiaomiao-unified`，避免网页端、QQ、桌面端上下文分裂。
+4. 统一会话默认为 `xiaomiao-unified`，避免网页端、QQ、桌面端、TUI 上下文分裂。
 5. QQ 本地命令 `帮助`、`关于`、`读图` 使用精确匹配；普通问题里包含这些词时仍作为 AI 请求进入 xiaomiaoAgent。
 6. Computer Use、Twitter、Minecraft 通过显式启用的 MCP 安全配置档暴露；HomeAssistant、Bilibili、Chess、Claude Code、Browser Extension 仍按开发中能力处理。
+7. TUI 终端界面直接调用 `AgentLoop`，使用 `trusted_confirmed` 策略，拥有完整工具权限。
 
 ## 验证矩阵
 
@@ -314,10 +301,16 @@ uv run --extra dev pytest --basetemp ..\.pytest-tmp-agent-verify tests\test_open
 cd ..\xiaomiaobot
 pnpm exec vitest run apps/stage-pocket/src/modules/xiaomiao-bridge-events.test.ts packages/stage-ui/src/xiaomiao-bridge-events.test.ts apps/stage-tamagotchi/src/renderer/pages/xiaomiao-bridge-reaction.test.ts apps/stage-tamagotchi/src/renderer/pages/xiaomiao-bridge.test.ts
 cd ..
-cmd /c call start-all.cmd --check
+start-all.cmd --check
 ```
 
 最近验证结果：`test/xiaomiao` 77 passed，`xiaomiaoAgent` 95 passed，前端 Vitest 4 files / 32 tests passed，`start-all.cmd --check` passed。
+
+快速 TUI 测试：
+
+```powershell
+start-tui.cmd
+```
 
 ## 文档
 

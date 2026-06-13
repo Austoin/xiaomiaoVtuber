@@ -44,9 +44,16 @@ from qq_agent_bridge import (
     resolve_qq_image_url,
     should_private_message_enter_agent,
 )
-from qq_agent_tools import (
-    decide_agent_tool_request,
-)
+
+# 使用统一工具层的适配器
+import sys
+from pathlib import Path
+TOOL_DIR = Path(__file__).parents[1] / "tool"
+if str(TOOL_DIR) not in sys.path:
+    sys.path.insert(0, str(TOOL_DIR))
+
+from tool.adapters.qq_adapter import decide_tool_request as decide_agent_tool_request
+
 from qq_permissions import has_agent_tool_permission, has_manage_permission
 from qq_workspace import (
     QQWorkspaceError,

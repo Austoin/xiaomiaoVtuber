@@ -6,11 +6,11 @@
 
 1. `xiaomiao`：Python QQ 机器人，负责 QQ 消息、命令、人设、模型调用、图片能力、群管理和本地桥接。
 2. `xiaomiaobot`：`xiaomiaoVirtual` 的 Electron/Vue Vtuber 表现层，负责 Web/桌面角色、Live2D/VRM、字幕、TTS 和口型同步。内部包名保留 `@proj-airi/*` 兼容标识。
-3. `xiaomiaoAgent`：Python Agent 框架，内部包名仍是 `nanobot`，负责 Agent Loop、通道抽象、工具调用、记忆、会话管理、OpenAI 兼容 API、Gateway 和 WebUI。
+3. `xiaomiaoAgent`：Python Agent 框架，内部包名仍是 `nanobot`，负责 Agent Loop、通道抽象、工具调用、记忆、会话管理和 OpenAI 兼容 API。
 
-当前项目已经打通统一 Agent 闭环：`xiaomiaobot stage-web`、`xiaomiao` 桌面 bridge、QQ 群/私聊普通 AI 回复和 `xiaomiaoAgent WebUI` 都会进入同一个 `xiaomiaoAgent` 能力层。QQ 侧已增加 Agent 工具权限网关，普通用户默认 `low_risk`，ROOT/Super/`agent_tool_allowlist` 用户的高风险动作必须二次确认后才会以 `trusted_confirmed` 调用 Agent。命令型 QQ 功能仍由 `xiaomiao` 本地处理，`xiaomiaobot` 继续承担 Web/桌面/移动端表现层。
+当前项目已经打通统一 Agent 闭环：`xiaomiaobot stage-web`、`xiaomiao` 桌面 bridge、QQ 群/私聊普通 AI 回复和 TUI 终端界面都会进入同一个 `xiaomiaoAgent` 能力层。QQ 侧已增加 Agent 工具权限网关，普通用户默认 `low_risk`，ROOT/Super/`agent_tool_allowlist` 用户的高风险动作必须二次确认后才会以 `trusted_confirmed` 调用 Agent。命令型 QQ 功能仍由 `xiaomiao` 本地处理，`xiaomiaobot` 继续承担 Web/桌面/移动端表现层。
 
-当前目标不再是“后续引入 Agent”，而是维护清楚的边界：外部入口统一到 `xiaomiao` bridge / `agent_backend`，Agent 能力由 `xiaomiaoAgent` OpenAI 兼容 API 提供，确定性命令继续留在 `xiaomiao`。
+当前目标不再是”后续引入 Agent”，而是维护清楚的边界：外部入口统一到 `xiaomiao` bridge / `agent_backend` 或 TUI 直接调用，Agent 能力由 `xiaomiaoAgent` OpenAI 兼容 API 或 AgentLoop 提供，确定性命令继续留在 `xiaomiao`。
 
 ## 2. 总体架构
 
@@ -26,14 +26,6 @@
 [AgentLoop / AgentRunner / 工具 / 记忆 / 会话]
     ↓
 [stage-web 聊天会话]
-
-[xiaomiaoAgent WebUI :5174]
-    ↓ WebSocket
-[xiaomiaoAgent 网关 :8765]
-    ↓ chat_id=xiaomiao-unified
-[xiaomiaoAgent 会话 / 工具 / 记忆]
-    ↓ 镜像同步
-[xiaomiao 桥接事件 :5519]
 
 [QQ 用户]
     ↓
@@ -54,6 +46,12 @@
 [xiaomiao 桥接事件 :5519]
     ↓
 [聊天 / 工具 / 确认 / 记忆 / 舞台事件只读同步]
+
+[TUI 终端界面]
+    ↓
+[直接调用 AgentLoop]
+    ↓
+[xiaomiaoAgent 工具 / 记忆 / 会话]
 ```
 
 ## 3. xiaomiao 子系统
@@ -173,16 +171,14 @@ xiaomiaoAgent OpenAI 兼容 API
     ↓
 Agent 回复
 
-xiaomiaoAgent WebUI
-    ↓ 网关 WebSocket :8765
-chat_id=xiaomiao-unified
+TUI 终端界面
     ↓
-会话 API:xiaomiao-unified
+直接调用 AgentLoop
     ↓
-镜像到 xiaomiao 桥接事件
+xiaomiaoAgent 工具 / 记忆 / 会话
 ```
 
-`xiaomiao` 继续负责 QQ Bot 的稳定运行、命令分支、权限网关和确认码。`xiaomiaoAgent` 负责普通自然语言 Agent 回复、工具、记忆和统一会话。长期再评估是否把 QQ 原生接入迁移到 `nanobot/channels/qq.py` 或统一 MessageBus。
+`xiaomiao` 继续负责 QQ Bot 的稳定运行、命令分支、权限网关和确认码。`xiaomiaoAgent` 负责普通自然语言 Agent 回复、工具、记忆和统一会话。TUI 终端界面直接调用 `AgentLoop`，提供快速命令行交互能力。长期再评估是否把 QQ 原生接入迁移到 `nanobot/channels/qq.py` 或统一 MessageBus。
 
 ### 5.2 推荐融合优先级
 
@@ -193,8 +189,9 @@ chat_id=xiaomiao-unified
 5. 已完成：`markitdown_convert`、`scrapling_get` 第一批低风险工具。
 6. 已完成：Computer Use、Twitter、Minecraft MCP 安全配置档，默认关闭，启用后按风险策略暴露。
 7. 已完成第一步：stage-pocket 只读同步桥接事件。
-8. 待推进：把图片理解和更多多模态能力迁移到 xiaomiaoAgent tools。
-9. 待评估：是否启用 xiaomiaoAgent 原生 QQ/channel，并与现有 `xiaomiao` 命令系统合并。
+8. 已完成：TUI 终端界面，直接调用 `AgentLoop`，提供快速命令行交互。
+9. 待推进：把图片理解和更多多模态能力迁移到 xiaomiaoAgent tools。
+10. 待评估：是否启用 xiaomiaoAgent 原生 QQ/channel，并与现有 `xiaomiao` 命令系统合并。
 
 ## 6. 运行链路
 
@@ -430,9 +427,7 @@ F:\xiaomiaoVirtual\config.json
 5004  NapCat OneBot WebSocket
 5003  Hyper 监听端口
 5519  xiaomiao 桥接服务
-8765  xiaomiaoAgent 网关
 8900  xiaomiaoAgent OpenAI 兼容 API
-5174  xiaomiaoAgent WebUI
 5175  xiaomiaobot stage-web
 6099  NapCat WebUI，可选
 3000  NapCat HTTP API，可选
@@ -456,14 +451,18 @@ xiaomiaoAgent 常用命令：
 
 ```text
 python -m xiaomiao_agent serve --config F:\xiaomiaoVirtual\xiaomiaoAgent\.nanobot\config.json
-python -m xiaomiao_agent gateway --config F:\xiaomiaoVirtual\xiaomiaoAgent\.nanobot\config.json
-cd F:\xiaomiaoVirtual\xiaomiaoAgent\webui
-npm run dev -- --host 127.0.0.1 --port 5174
+python -m xiaomiao_agent tui
 ```
 
 旧 `nanobot` 命令入口仍保留兼容；新文档和用户提示统一使用 `xiaomiao`。
 
-根目录 `start-all.cmd` 是当前推荐启动入口。它按 `5004 → 8900 → 8765 → 5519 → 5175 → 5174` 串行启动，并对 API、网关、桥接服务、WebUI 做健康检查；前一步未就绪时停止，不打开后续终端。QQ 协议端可复用已登录的现有 NapCat/QQ 进程；其他服务遇到已占用端口会显示 PID 并停止，不再把端口监听误判为可用服务；`--check` 只检查当前状态，不启动窗口。脚本会设置 `NO_PROXY=127.0.0.1,localhost,::1`，避免本机代理影响 QQ OneBot 直连。
+根目录 `start-all.cmd` 是当前推荐启动入口。它按 `5004 → 8900 → 5519 → 5175` 串行启动，并对 API、桥接服务做健康检查；前一步未就绪时停止，不打开后续终端。QQ 协议端可复用已登录的现有 NapCat/QQ 进程；其他服务遇到已占用端口会显示 PID 并停止，不再把端口监听误判为可用服务；`--check` 只检查当前状态，不启动窗口。脚本会设置 `NO_PROXY=127.0.0.1,localhost,::1`，避免本机代理影响 QQ OneBot 直连。
+
+快速 TUI 测试：
+
+```text
+start-tui.cmd
+```
 
 ## 10. 工程风险
 
@@ -497,7 +496,7 @@ xiaomiaobot 中桥接地址和绑定用户仍是原型硬编码：`http://127.0.
 
 ### 10.8 双 Agent 状态分裂
 
-当前普通 AI 回复已默认使用 `xiaomiao-unified` 会话，降低 Web、QQ、桌面端上下文分裂风险。后续如果启用多用户会话映射或 xiaomiaoAgent 原生 QQ/channel，需要重新定义用户映射和事件 ID，避免同一用户跨入口状态漂移。
+当前普通 AI 回复已默认使用 `xiaomiao-unified` 会话，降低 Web、QQ、桌面端、TUI 上下文分裂风险。后续如果启用多用户会话映射或 xiaomiaoAgent 原生 QQ/channel，需要重新定义用户映射和事件 ID，避免同一用户跨入口状态漂移。
 
 ## 11. 测试现状
 
@@ -507,7 +506,8 @@ xiaomiaobot 中桥接地址和绑定用户仍是原型硬编码：`http://127.0.
 python -m pytest --basetemp .pytest-tmp-xiaomiao-verify test\xiaomiao
 uv run --extra dev pytest --basetemp ..\.pytest-tmp-agent-verify tests\test_openai_api.py tests\tools\test_tool_registry.py tests\tools\test_tool_loader.py tests\tools\test_computer_use_mcp_profile.py tests\tools\test_markitdown_tool.py tests\tools\test_scrapling_tool.py tests\tools\test_xiaomiao_stage_tool.py tests\tools\test_xiaomiaobot_services_tool.py
 pnpm exec vitest run apps/stage-pocket/src/modules/xiaomiao-bridge-events.test.ts packages/stage-ui/src/xiaomiao-bridge-events.test.ts apps/stage-tamagotchi/src/renderer/pages/xiaomiao-bridge-reaction.test.ts apps/stage-tamagotchi/src/renderer/pages/xiaomiao-bridge.test.ts
-cmd /c call start-all.cmd --check
+start-all.cmd --check
+start-tui.cmd  # TUI 快速测试
 ```
 
 最近一次完整验证结果：
@@ -538,7 +538,7 @@ start-all.cmd --check: passed
 4. Python 拆分：从 `main.py` 中继续拆出命令、权限、模型、桥接、图片和角色服务。
 5. 桥接绑定：为 stage-web/stage-tamagotchi/stage-pocket 增加用户绑定握手、动态桥接 URL 和最小鉴权。
 6. Vtuber 增强：支持 QQ 用户到桌面会话映射，并根据回复情绪驱动 Live2D 表情。
-7. xiaomiaoAgent 状态观测：在小喵控制台展示 `serve :8900`、WebUI/网关、会话和工具状态。
+7. xiaomiaoAgent 状态观测：在小喵控制台展示 `serve :8900`、会话和工具状态。
 8. xiaomiaoAgent 能力深化：逐步把图片理解、Web 搜索、Cron 和更多工具迁移到 xiaomiaoAgent。
 9. 待产品化服务：HomeAssistant、Bilibili、Chess、Claude Code、Browser Extension。
 10. 记忆体系评估：明确 xiaomiaoAgent 文件记忆与 xiaomiaobot `memory-pgvector` 的权威来源和同步方向。
@@ -546,4 +546,4 @@ start-all.cmd --check: passed
 
 ## 13. 当前结论
 
-项目已经完成 `stage-web`、桌面桥接、QQ 普通 AI 回复到 `xiaomiaoAgent` 的统一接入，并补齐了 QQ Agent 工具权限/确认码、中文记忆命令、低风险 MarkItDown/Scrapling 工具、Computer Use/Twitter/Minecraft MCP 安全配置档、舞台动作闭环和 stage-pocket 第一批只读桥接事件同步。当前剩余重点是桥接绑定、待产品化服务、记忆体系合并评估，以及继续拆分 Python Bot 单体边界。
+项目已经完成 `stage-web`、桌面桥接、QQ 普通 AI 回复到 `xiaomiaoAgent` 的统一接入，并补齐了 QQ Agent 工具权限/确认码、中文记忆命令、低风险 MarkItDown/Scrapling 工具、Computer Use/Twitter/Minecraft MCP 安全配置档、舞台动作闭环、stage-pocket 第一批只读桥接事件同步和 TUI 终端界面。当前剩余重点是桥接绑定、待产品化服务、记忆体系合并评估，以及继续拆分 Python Bot 单体边界。

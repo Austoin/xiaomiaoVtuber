@@ -9,7 +9,6 @@
 | Agent Loop | 负责多轮任务、上下文、工具调用和回复生成 |
 | 记忆层 | 支持 session、历史、Dream 和记忆恢复 |
 | OpenAI 兼容 API | 提供 `POST /v1/chat/completions`，供 QQ 和 bridge 调用 |
-| gateway | 提供 WebUI、WebSocket、会话 API 和多通道入口 |
 | 工具层 | 文件、搜索、Web、Shell、MCP、Cron、Notebook、Subagent、图片等 |
 | xiaomiaoVirtual 工具 | 文档转 Markdown、网页抓取、舞台动作、xiaomiaobot 服务状态 |
 
@@ -43,12 +42,11 @@ conda activate xiaomiao
 python -m xiaomiao_agent serve --config <项目根目录>\xiaomiaoAgent\.nanobot\config.json
 ```
 
-启动 gateway：
+启动 TUI 终端界面：
 
 ```powershell
-cd <项目根目录>\xiaomiaoAgent
-conda activate xiaomiao
-python -m xiaomiao_agent gateway --config <项目根目录>\xiaomiaoAgent\.nanobot\config.json
+cd <项目根目录>
+start-tui.cmd
 ```
 
 命令行聊天：
