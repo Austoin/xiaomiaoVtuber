@@ -139,7 +139,7 @@
 | 路径 | 作用 |
 |------|------|
 | `docs/README.md` | 文档总导航 |
-| `docs/运行与配置.md` | 最短启动和环境说明 |
+| `docs/run-and-config.md` | 最短启动和环境说明 |
 | `docs/STARTUP.md` | 详细启动、端口和常见问题 |
 | `docs/project-overview.md` | 项目概览 |
 | `docs/project-deep-classification.md` | 本文，目录分类和清理清单 |

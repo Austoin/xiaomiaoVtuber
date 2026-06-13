@@ -12,7 +12,7 @@
 
 | 文档 | 用途 |
 |------|------|
-| [运行与配置.md](00-quick-start/运行与配置.md) | **⭐ 最快启动入口**，`setup-env.cmd` 和 `start-all.cmd` |
+| [run-and-config.md](00-quick-start/run-and-config.md) | **⭐ 最快启动入口**，`setup-env.cmd` 和 `start-all.cmd` |
 | [STARTUP.md](00-quick-start/STARTUP.md) | 详细启动流程、端口说明、手动运行步骤 |
 | [QQ机器人指令速查.md](00-quick-start/QQ机器人指令速查.md) | QQ 群聊/私聊可用的所有指令 |
 
@@ -66,7 +66,7 @@
 | 文档 | 用途 |
 |------|------|
 | [xiaomiaobot/README.md](03-subsystems/xiaomiaobot/README.md) | 前端架构、技术栈和功能 |
-| [xiaomiaobot/操作文档.md](03-subsystems/xiaomiaobot/操作文档.md) | 前端操作手册和使用说明 |
+| [xiaomiaobot/operation-guide.md](03-subsystems/xiaomiaobot/operation-guide.md) | 前端操作手册和使用说明 |
 | [xiaomiaobot/services-and-plugins.md](03-subsystems/xiaomiaobot/services-and-plugins.md) | 服务和插件简表 |
 | [xiaomiaobot/struct.md](03-subsystems/xiaomiaobot/struct.md) | 前端完整目录结构索引 |
 
@@ -112,7 +112,7 @@
 
 ### 新用户（第一次使用）
 
-1. 📖 [运行与配置.md](00-quick-start/运行与配置.md) - 最快启动
+1. 📖 [run-and-config.md](00-quick-start/run-and-config.md) - 最快启动
 2. 📖 [QQ机器人指令速查.md](00-quick-start/QQ机器人指令速查.md) - 了解指令
 3. 📖 [configuration.md](01-configuration/configuration.md) - 理解配置
 4. 📖 [project-overview.md](02-architecture/project-overview.md) - 了解架构
@@ -140,10 +140,20 @@
 
 ## 📚 其他重要文档
 
+### 项目级文档
 | 文档 | 位置 | 用途 |
 |------|------|------|
 | README.md | [../README.md](../README.md) | **项目根入口**和当前能力概览 |
 | TECHNICAL.md | [../TECHNICAL.md](../TECHNICAL.md) | 技术结构、桥接协议、风险和演进路线 |
+
+### 综合报告（2026-06-13 生成）
+| 文档 | 用途 |
+|------|------|
+| [DOCUMENTATION_INDEX.md](DOCUMENTATION_INDEX.md) | 📚 **文档总索引** - 一站式文档导航 |
+| [DOCUMENTATION_TREE.md](DOCUMENTATION_TREE.md) | 🌳 **文档分类树** - 2336+ 文档完整分类 |
+| [PROJECT_ARCHITECTURE_2026-06-13.md](PROJECT_ARCHITECTURE_2026-06-13.md) | 🏗️ **项目架构总览** - 含 Mermaid 架构图 |
+| [TEST_COVERAGE_MATRIX.md](TEST_COVERAGE_MATRIX.md) | 🧪 **测试覆盖矩阵** - 955+ 测试文件分析 |
+| [DEEP_ANALYSIS_SUMMARY_2026-06-13.md](DEEP_ANALYSIS_SUMMARY_2026-06-13.md) | 📊 **深度解析总结** - 完整执行报告 |
 
 ---
 

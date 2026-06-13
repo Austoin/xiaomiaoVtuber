@@ -17,7 +17,7 @@
 常用命令：
 
 ```powershell
-cd F:\xiaomiaoVirtual
+cd <项目根目录>
 cmd /c call setup-env.cmd
 ```
 
@@ -50,7 +50,7 @@ cmd /c call setup-env.cmd --check
 正式启动：
 
 ```powershell
-cd F:\xiaomiaoVirtual
+cd <项目根目录>
 cmd /c call start-all.cmd
 ```
 

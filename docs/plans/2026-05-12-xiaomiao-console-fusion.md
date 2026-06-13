@@ -361,7 +361,7 @@ python -m unittest test_desktop_bridge.py
 当前测试已迁移到统一 `test` 目录时，使用：
 
 ```powershell
-cd F:\xiaomiaoVirtual
+cd <项目根目录>
 conda run -n xiaomiao python -m unittest discover -s test/xiaomiao -p "test_*.py"
 ```
 

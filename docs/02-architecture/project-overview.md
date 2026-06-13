@@ -2,6 +2,131 @@
 
 `xiaomiaoVirtual` 是 QQ 机器人、Vtuber 表现层和轻量 Agent 框架的整合项目。当前主链路是：QQ、网页端、桌面端和 xiaomiaoAgent WebUI 共享统一 Agent 会话、工具权限和桥接事件。
 
+## 系统架构图
+
+```mermaid
+graph TB
+    subgraph "用户入口"
+        QQ[QQ 群聊/私聊]
+        Web[stage-web 网页端]
+        Desktop[stage-tamagotchi 桌面端]
+        WebUI[xiaomiaoAgent WebUI]
+    end
+
+    subgraph "接入层"
+        NapCat[NapCat OneBot<br/>:5004]
+        XMBridge[xiaomiao bridge<br/>:5519]
+        XAGateway[xiaomiaoAgent gateway<br/>:8765]
+    end
+
+    subgraph "Agent 核心"
+        XAAPI[xiaomiaoAgent API<br/>:8900<br/>OpenAI 兼容]
+        Session[Agent 会话<br/>xiaomiao-unified]
+        Memory[记忆系统<br/>Dream 整理]
+        Tools[工具系统<br/>文件/Shell/Web/MCP]
+    end
+
+    subgraph "输出层"
+        Bridge[桥接事件<br/>chat/tool/memory/stage]
+        QQReply[QQ 消息回复]
+        Live2D[Live2D 口型同步<br/>TTS 播报]
+    end
+
+    QQ --> NapCat
+    NapCat --> XMBridge
+    XMBridge --> XAAPI
+    
+    Web --> XMBridge
+    Desktop --> Bridge
+    WebUI --> XAGateway
+    XAGateway --> XAAPI
+    
+    XAAPI --> Session
+    Session --> Memory
+    Session --> Tools
+    
+    Session --> Bridge
+    Session --> QQReply
+    Bridge --> Live2D
+    
+    QQReply --> NapCat
+    NapCat --> QQ
+```
+
+## 统一 Agent 链路流程图
+
+```mermaid
+sequenceDiagram
+    participant User as 用户<br/>(QQ/Web/桌面)
+    participant Entry as 接入层<br/>(bridge/gateway)
+    participant API as xiaomiaoAgent API<br/>:8900
+    participant Agent as Agent Loop<br/>(会话/记忆/工具)
+    participant Bridge as 桥接事件<br/>(JSONL)
+    participant UI as 表现层<br/>(QQ回复/Live2D)
+
+    User->>Entry: 发送消息
+    Entry->>API: POST /v1/chat/completions<br/>session_id: xiaomiao-unified
+    API->>Agent: 创建/继续会话
+    
+    Agent->>Agent: 读取历史记忆
+    Agent->>Agent: 执行 Agent Loop
+    
+    alt 需要工具调用
+        Agent->>Bridge: 发布 tool 事件
+        Bridge->>UI: 轮询获取 (桌面端)
+        Agent->>Agent: 执行工具
+        Agent->>Bridge: 发布 tool 结果事件
+    end
+    
+    Agent->>Memory: 更新记忆
+    Agent->>Bridge: 发布 chat/memory 事件
+    Agent->>API: 返回流式响应
+    API->>Entry: 流式返回
+    Entry->>User: 显示回复
+    
+    Bridge->>UI: 同步所有事件
+    UI->>User: Live2D 口型同步<br/>TTS 播报
+```
+
+## 端口和服务依赖图
+
+```mermaid
+graph LR
+    subgraph "端口 5004"
+        A[NapCat OneBot<br/>WebSocket]
+    end
+    
+    subgraph "端口 5519"
+        B[xiaomiao bridge<br/>HTTP + SSE]
+    end
+    
+    subgraph "端口 8900"
+        C[xiaomiaoAgent API<br/>OpenAI 兼容]
+    end
+    
+    subgraph "端口 8765"
+        D[xiaomiaoAgent gateway<br/>WebSocket]
+    end
+    
+    subgraph "端口 5175"
+        E[stage-web<br/>Vite Dev Server]
+    end
+    
+    subgraph "端口 5174"
+        F[xiaomiaoAgent WebUI<br/>React 前端]
+    end
+    
+    A --> B
+    B --> C
+    D --> C
+    E --> B
+    F --> D
+    
+    style C fill:#ff6b6b
+    style B fill:#4ecdc4
+    style D fill:#4ecdc4
+```
+
 ## 根目录
 
 | 路径 | 说明 |
@@ -73,7 +198,7 @@ QQ 回复 + bridge event + Web/桌面同步
 | 范围 | 文档 |
 |------|------|
 | 文档总入口 | `docs/README.md` |
-| 启动与配置 | `docs/运行与配置.md`、`docs/STARTUP.md` |
+| 启动与配置 | `docs/run-and-config.md`、`docs/STARTUP.md` |
 | 项目深度分类 | `docs/project-deep-classification.md` |
 | 根脚本和配置 | `docs/scripts-and-config.md` |
 | 验证矩阵 | `docs/verification.md` |

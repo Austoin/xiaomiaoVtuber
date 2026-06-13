@@ -190,13 +190,13 @@ Minecraft 动作会改变游戏状态，因此只对高权限 QQ 用户开放。
 配置档和风险过滤：
 
 ```powershell
-cd F:\xiaomiaoVirtual\xiaomiaoAgent
+cd <项目根目录>\xiaomiaoAgent
 uv run --extra dev pytest --basetemp ..\.pytest-tmp-agent-verify tests\tools\test_computer_use_mcp_profile.py tests\tools\test_tool_registry.py tests\tools\test_xiaomiaobot_services_tool.py
 ```
 
 完整联动前检查：
 
 ```powershell
-cd F:\xiaomiaoVirtual
+cd <项目根目录>
 cmd /c call start-all.cmd --check
 ```

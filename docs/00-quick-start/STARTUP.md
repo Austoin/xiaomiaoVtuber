@@ -1,8 +1,10 @@
 # xiaomiaoVirtual 启动指南
 
+> **路径说明**：文档中的 `<项目根目录>` 表示 xiaomiaoVirtual 项目的根目录（即包含 `README.md`、`start-all.cmd` 的目录）。请根据你的实际安装路径替换。
+
 本文说明如何在本机启动 `xiaomiaoVirtual` 的三个核心部分，并跑通网页、桌面端和 QQ 普通 AI 回复的统一 Agent 链路：
 
-如果只需要最短命令入口，请先看 [运行与配置.md](运行与配置.md)。完整文档入口见 [README.md](README.md)，脚本和配置细节见 [scripts-and-config.md](scripts-and-config.md)，验收命令见 [verification.md](verification.md)。
+如果只需要最短命令入口，请先看 [run-and-config.md](run-and-config.md)。完整文档入口见 [README.md](README.md)，脚本和配置细节见 [scripts-and-config.md](scripts-and-config.md)，验收命令见 [verification.md](verification.md)。
 
 1. `xiaomiao`：QQ Bot 主体。
 2. `xiaomiaobot`：Vtuber Web / 桌面端。
@@ -23,7 +25,7 @@ conda activate xiaomiao
 首次运行或依赖缺失时，在 `xiaomiao` 目录安装依赖：
 
 ```powershell
-cd F:\xiaomiaoVirtual\xiaomiao
+cd <项目根目录>\xiaomiao
 pip install -r requirements.txt
 ```
 
@@ -32,7 +34,7 @@ pip install -r requirements.txt
 `xiaomiaobot` 使用 `pnpm@10.33.0`：
 
 ```powershell
-cd F:\xiaomiaoVirtual\xiaomiaobot
+cd <项目根目录>\xiaomiaobot
 corepack enable
 corepack prepare pnpm@10.33.0 --activate
 pnpm install
@@ -44,7 +46,7 @@ pnpm install
 
 ```powershell
 conda activate xiaomiao
-cd F:\xiaomiaoVirtual\xiaomiaoAgent
+cd <项目根目录>\xiaomiaoAgent
 pip install -e .
 ```
 
@@ -72,7 +74,7 @@ conda run -n xiaomiao python -c "import sys; print(sys.prefix)"
 
 ```powershell
 conda activate xiaomiao
-cd F:\xiaomiaoVirtual\xiaomiaoAgent\webui
+cd <项目根目录>\xiaomiaoAgent\webui
 npm install
 ```
 
@@ -153,7 +155,7 @@ xiaomiao 桥接事件 :5519
 可以直接使用根目录 `start-all.cmd` 一键启动：
 
 ```powershell
-cd F:\xiaomiaoVirtual
+cd <项目根目录>
 start-all.cmd
 ```
 
@@ -197,9 +199,9 @@ QQ 中文记忆命令会转发到 xiaomiaoAgent 内置命令：`记忆状态`、
 ### 终端一：启动 xiaomiaoAgent OpenAI 兼容 API
 
 ```powershell
-cd F:\xiaomiaoVirtual
+cd <项目根目录>
 conda activate xiaomiao
-python -m xiaomiao_agent serve --config F:\xiaomiaoVirtual\xiaomiaoAgent\.nanobot\config.json
+python -m xiaomiao_agent serve --config <项目根目录>\xiaomiaoAgent\.nanobot\config.json
 ```
 
 验证：
@@ -221,7 +223,7 @@ http://127.0.0.1:8900/health
 ### 终端三：启动 xiaomiao
 
 ```powershell
-cd F:\xiaomiaoVirtual\xiaomiao
+cd <项目根目录>\xiaomiao
 conda activate xiaomiao
 python main.py
 ```
@@ -246,7 +248,7 @@ set no_proxy=127.0.0.1,localhost,::1
 Web 版：
 
 ```powershell
-cd F:\xiaomiaoVirtual\xiaomiaobot\apps\stage-web
+cd <项目根目录>\xiaomiaobot\apps\stage-web
 pnpm exec vite --host 127.0.0.1 --port 5175
 ```
 
@@ -259,7 +261,7 @@ http://127.0.0.1:5175/
 Electron 桌面端：
 
 ```powershell
-cd F:\xiaomiaoVirtual\xiaomiaobot
+cd <项目根目录>\xiaomiaobot
 pnpm dev:tamagotchi
 ```
 
@@ -270,7 +272,7 @@ pnpm dev:tamagotchi
 进入 `xiaomiao`：
 
 ```powershell
-cd F:\xiaomiaoVirtual\xiaomiao
+cd <项目根目录>\xiaomiao
 conda activate xiaomiao
 ```
 
@@ -309,7 +311,7 @@ python main.py
 新开一个 PowerShell 窗口，进入 `xiaomiaobot`：
 
 ```powershell
-cd F:\xiaomiaoVirtual\xiaomiaobot
+cd <项目根目录>\xiaomiaobot
 ```
 
 启动 Web 版：
@@ -338,7 +340,7 @@ pnpm dev:tamagotchi
 进入 `xiaomiaoAgent` 目录：
 
 ```powershell
-cd F:\xiaomiaoVirtual\xiaomiaoAgent
+cd <项目根目录>\xiaomiaoAgent
 ```
 
 初始化项目内配置和工作区：
@@ -346,8 +348,8 @@ cd F:\xiaomiaoVirtual\xiaomiaoAgent
 ```powershell
 conda activate xiaomiao（你自己的环境）
 xiaomiao onboard `
-  --config F:\xiaomiaoVirtual\xiaomiaoAgent\.nanobot\config.json `
-  --workspace F:\xiaomiaoVirtual\xiaomiaoAgent\.nanobot\workspace
+  --config <项目根目录>\xiaomiaoAgent\.nanobot\config.json `
+  --workspace <项目根目录>\xiaomiaoAgent\.nanobot\workspace
 
 如果只写 xiaomiao onboard，就是默认配置路径
 ```
@@ -355,8 +357,8 @@ xiaomiao onboard `
 当前项目已执行过该命令，并生成：
 
 ```text
-F:\xiaomiaoVirtual\xiaomiaoAgent\.nanobot\config.json
-F:\xiaomiaoVirtual\xiaomiaoAgent\.nanobot\workspace\
+<项目根目录>\xiaomiaoAgent\.nanobot\config.json
+<项目根目录>\xiaomiaoAgent\.nanobot\workspace\
 ```
 
 `xiaomiaoAgent/.nanobot/` 已加入根 `.gitignore`，用于避免本地 API Key、会话、记忆和运行时状态被提交。
@@ -366,7 +368,7 @@ F:\xiaomiaoVirtual\xiaomiaoAgent\.nanobot\workspace\
 优先编辑主目录统一配置：
 
 ```text
-F:\xiaomiaoVirtual\config.json
+<项目根目录>\config.json
 ```
 
 最小第三方 OpenAI 兼容中转站示例：
@@ -415,14 +417,14 @@ F:\xiaomiaoVirtual\config.json
 
 ```powershell
 conda activate xiaomiao
-xiaomiao agent --config F:\xiaomiaoVirtual\xiaomiaoAgent\.nanobot\config.json
+xiaomiao agent --config <项目根目录>\xiaomiaoAgent\.nanobot\config.json
 ```
 
 直接发送一条消息：
 
 ```powershell
 conda activate xiaomiao
-xiaomiao agent -m "你好" --config F:\xiaomiaoVirtual\xiaomiaoAgent\.nanobot\config.json
+xiaomiao agent -m "你好" --config <项目根目录>\xiaomiaoAgent\.nanobot\config.json
 ```
 
 查看状态：
@@ -439,7 +441,7 @@ xiaomiao status
 
 ```powershell
 conda activate xiaomiao
-python -m xiaomiao_agent gateway --config F:\xiaomiaoVirtual\xiaomiaoAgent\.nanobot\config.json
+python -m xiaomiao_agent gateway --config <项目根目录>\xiaomiaoAgent\.nanobot\config.json
 
 如果是默认配置路径，就不用加 --config 后面的内容
 ```
@@ -450,7 +452,7 @@ WebUI 需要同时运行 `xiaomiaoAgent gateway` 网关。另开一个 PowerShel
 
 ```powershell
 conda activate xiaomiao
-cd F:\xiaomiaoVirtual\xiaomiaoAgent\webui
+cd <项目根目录>\xiaomiaoAgent\webui
 npm run dev -- --host 127.0.0.1 --port 5174
 ```
 
@@ -458,8 +460,8 @@ npm run dev -- --host 127.0.0.1 --port 5174
 
 ```powershell
 conda activate xiaomiao
-cd F:\xiaomiaoVirtual\xiaomiaoAgent
-python -m xiaomiao_agent serve --config F:\xiaomiaoVirtual\xiaomiaoAgent\.nanobot\config.json
+cd <项目根目录>\xiaomiaoAgent
+python -m xiaomiao_agent serve --config <项目根目录>\xiaomiaoAgent\.nanobot\config.json
 ```
 
 如果 `xiaomiao` 命令来自源码安装，通常不需要重复执行 `pip install "nanobot-ai[api]"`；缺少 API extra 时再安装。旧 `nanobot` 命令入口仍保留兼容。
@@ -491,7 +493,7 @@ xiaomiaobot stage-web 默认端口: 127.0.0.1:5175
 在项目根目录运行：
 
 ```powershell
-cd F:\xiaomiaoVirtual
+cd <项目根目录>
 python -m pytest --basetemp .pytest-tmp-xiaomiao-verify test\xiaomiao
 ```
 
@@ -506,7 +508,7 @@ python -m pytest --basetemp .pytest-tmp-xiaomiao-verify test\xiaomiao
 在 `xiaomiaoAgent` 目录运行：
 
 ```powershell
-cd F:\xiaomiaoVirtual\xiaomiaoAgent
+cd <项目根目录>\xiaomiaoAgent
 uv run --extra dev pytest --basetemp ..\.pytest-tmp-agent-verify tests\test_openai_api.py tests\tools\test_tool_registry.py tests\tools\test_tool_loader.py tests\tools\test_computer_use_mcp_profile.py tests\tools\test_markitdown_tool.py tests\tools\test_scrapling_tool.py tests\tools\test_xiaomiao_stage_tool.py tests\tools\test_xiaomiaobot_services_tool.py
 ```
 
@@ -523,7 +525,7 @@ uv run --extra dev pytest --basetemp ..\.pytest-tmp-agent-verify tests\test_open
 在 `xiaomiaobot` 目录运行：
 
 ```powershell
-cd F:\xiaomiaoVirtual\xiaomiaobot
+cd <项目根目录>\xiaomiaobot
 pnpm exec vitest run apps/stage-pocket/src/modules/xiaomiao-bridge-events.test.ts packages/stage-ui/src/xiaomiao-bridge-events.test.ts apps/stage-tamagotchi/src/renderer/pages/xiaomiao-bridge-reaction.test.ts apps/stage-tamagotchi/src/renderer/pages/xiaomiao-bridge.test.ts
 ```
 
@@ -557,9 +559,9 @@ http://127.0.0.1:5519/v1/xiaomiao/status
 初始化并配置模型后，运行：
 
 ```powershell
-cd F:\xiaomiaoVirtual\xiaomiaoAgent
+cd <项目根目录>\xiaomiaoAgent
 conda activate xiaomiao
-python -m xiaomiao_agent serve --config F:\xiaomiaoVirtual\xiaomiaoAgent\.nanobot\config.json
+python -m xiaomiao_agent serve --config <项目根目录>\xiaomiaoAgent\.nanobot\config.json
 ```
 
 然后访问：
@@ -582,7 +584,7 @@ Invoke-RestMethod `
 
 ```powershell
 conda activate xiaomiao
-python -m xiaomiao_agent gateway --config F:\xiaomiaoVirtual\xiaomiaoAgent\.nanobot\config.json
+python -m xiaomiao_agent gateway --config <项目根目录>\xiaomiaoAgent\.nanobot\config.json
 ```
 
 再检查日志中是否出现网关启动和通道加载信息。
@@ -590,7 +592,7 @@ python -m xiaomiao_agent gateway --config F:\xiaomiaoVirtual\xiaomiaoAgent\.nano
 ### 验证统一启动脚本
 
 ```powershell
-cd F:\xiaomiaoVirtual
+cd <项目根目录>
 cmd /c call start-all.cmd --check
 ```
 
@@ -664,7 +666,7 @@ corepack prepare pnpm@10.33.0 --activate
 在 `xiaomiao` 目录重新安装依赖：
 
 ```powershell
-cd F:\xiaomiaoVirtual\xiaomiao
+cd <项目根目录>\xiaomiao
 conda activate xiaomiao
 pip install -r requirements.txt
 ```
@@ -674,7 +676,7 @@ pip install -r requirements.txt
 确认已经在 `xiaomiaoAgent` 目录执行源码安装：
 
 ```powershell
-cd F:\xiaomiaoVirtual\xiaomiaoAgent
+cd <项目根目录>\xiaomiaoAgent
 pip install -e .
 ```
 
@@ -685,9 +687,9 @@ pip install -e .
 WebUI 需要 `xiaomiao gateway` 网关同时运行。请确认已经在另一个终端启动：
 
 ```powershell
-cd F:\xiaomiaoVirtual\xiaomiaoAgent
+cd <项目根目录>\xiaomiaoAgent
 conda activate xiaomiao
-python -m xiaomiao_agent gateway --config F:\xiaomiaoVirtual\xiaomiaoAgent\.nanobot\config.json
+python -m xiaomiao_agent gateway --config <项目根目录>\xiaomiaoAgent\.nanobot\config.json
 ```
 
 ## 推荐日常启动命令
@@ -695,9 +697,9 @@ python -m xiaomiao_agent gateway --config F:\xiaomiaoVirtual\xiaomiaoAgent\.nano
 终端一：
 
 ```powershell
-cd F:\xiaomiaoVirtual
+cd <项目根目录>
 conda activate xiaomiao
-python -m xiaomiao_agent serve --config F:\xiaomiaoVirtual\xiaomiaoAgent\.nanobot\config.json
+python -m xiaomiao_agent serve --config <项目根目录>\xiaomiaoAgent\.nanobot\config.json
 ```
 
 终端二：启动 NapCat，确认 OneBot WebSocket 是 `127.0.0.1:5004`。
@@ -705,7 +707,7 @@ python -m xiaomiao_agent serve --config F:\xiaomiaoVirtual\xiaomiaoAgent\.nanobo
 终端三：
 
 ```powershell
-cd F:\xiaomiaoVirtual\xiaomiao
+cd <项目根目录>\xiaomiao
 conda activate xiaomiao
 python main.py
 ```
@@ -713,37 +715,37 @@ python main.py
 终端四，Web 版：
 
 ```powershell
-cd F:\xiaomiaoVirtual\xiaomiaobot\apps\stage-web
+cd <项目根目录>\xiaomiaobot\apps\stage-web
 pnpm exec vite --host 127.0.0.1 --port 5175
 ```
 
 或终端四，桌面端：
 
 ```powershell
-cd F:\xiaomiaoVirtual\xiaomiaobot
+cd <项目根目录>\xiaomiaobot
 pnpm dev:tamagotchi
 ```
 
 可选终端三（xiaomiaoAgent 命令行或网关）：
 
 ```powershell
-cd F:\xiaomiaoVirtual\xiaomiaoAgent
+cd <项目根目录>\xiaomiaoAgent
 conda activate xiaomiao
-xiaomiao agent --config F:\xiaomiaoVirtual\xiaomiaoAgent\.nanobot\config.json
+xiaomiao agent --config <项目根目录>\xiaomiaoAgent\.nanobot\config.json
 ```
 
 或：
 
 ```powershell
-cd F:\xiaomiaoVirtual\xiaomiaoAgent
+cd <项目根目录>\xiaomiaoAgent
 conda activate xiaomiao
-python -m xiaomiao_agent gateway --config F:\xiaomiaoVirtual\xiaomiaoAgent\.nanobot\config.json
+python -m xiaomiao_agent gateway --config <项目根目录>\xiaomiaoAgent\.nanobot\config.json
 ```
 
 可选终端四（xiaomiaoAgent WebUI）：
 
 ```powershell
 conda activate xiaomiao
-cd F:\xiaomiaoVirtual\xiaomiaoAgent\webui
+cd <项目根目录>\xiaomiaoAgent\webui
 npm run dev -- --host 127.0.0.1 --port 5174
 ```

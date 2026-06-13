@@ -7,21 +7,21 @@
 只检查端口、配置和健康状态，不启动新窗口：
 
 ```powershell
-cd F:\xiaomiaoVirtual
+cd <项目根目录>
 cmd /c call start-all.cmd --check
 ```
 
 环境检查：
 
 ```powershell
-cd F:\xiaomiaoVirtual
+cd <项目根目录>
 cmd /c call setup-env.cmd --check
 ```
 
 ## xiaomiao 测试
 
 ```powershell
-cd F:\xiaomiaoVirtual
+cd <项目根目录>
 python -m pytest --basetemp .pytest-tmp-xiaomiao-verify test\xiaomiao
 ```
 
@@ -42,7 +42,7 @@ python -m pytest --basetemp .pytest-tmp-xiaomiao-verify test\xiaomiao
 ## xiaomiaoAgent 测试
 
 ```powershell
-cd F:\xiaomiaoVirtual\xiaomiaoAgent
+cd <项目根目录>\xiaomiaoAgent
 uv run --extra dev pytest --basetemp ..\.pytest-tmp-agent-verify tests\test_openai_api.py tests\tools\test_tool_registry.py tests\tools\test_tool_loader.py tests\tools\test_computer_use_mcp_profile.py tests\tools\test_markitdown_tool.py tests\tools\test_scrapling_tool.py tests\tools\test_xiaomiao_stage_tool.py tests\tools\test_xiaomiaobot_services_tool.py
 ```
 
@@ -64,7 +64,7 @@ uv run --extra dev pytest --basetemp ..\.pytest-tmp-agent-verify tests\test_open
 ## xiaomiaobot 桥接事件测试
 
 ```powershell
-cd F:\xiaomiaoVirtual\xiaomiaobot
+cd <项目根目录>\xiaomiaobot
 pnpm exec vitest run apps/stage-pocket/src/modules/xiaomiao-bridge-events.test.ts packages/stage-ui/src/xiaomiao-bridge-events.test.ts apps/stage-tamagotchi/src/renderer/pages/xiaomiao-bridge-reaction.test.ts apps/stage-tamagotchi/src/renderer/pages/xiaomiao-bridge.test.ts
 ```
 
@@ -84,7 +84,7 @@ pnpm exec vitest run apps/stage-pocket/src/modules/xiaomiao-bridge-events.test.t
 ## 文档和脚本格式检查
 
 ```powershell
-cd F:\xiaomiaoVirtual
+cd <项目根目录>
 git diff --check
 ```
 

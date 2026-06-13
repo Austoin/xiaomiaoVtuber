@@ -1,6 +1,6 @@
 ---
 mode: plan
-cwd: f:\xiaomiaoVirtual
+cwd: <项目根目录>
 task: 深度阅读 xiaomiaoAgent 和 xiaomiaobot，梳理未打通、重复、未使用功能并给出完整规划
 complexity: complex
 created_at: 2026-06-04 20:51:53 +08:00

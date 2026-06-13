@@ -1,6 +1,6 @@
 # 计划书索引
 
-本文是 `docs/plans/` 的中文索引，用于区分历史计划、已完成实施记录和仍需继续推进的能力缺口。当前运行方式、配置和验收命令以 `docs/运行与配置.md`、`docs/STARTUP.md`、`docs/verification.md` 为准。
+本文是 `docs/plans/` 的中文索引，用于区分历史计划、已完成实施记录和仍需继续推进的能力缺口。当前运行方式、配置和验收命令以 `docs/run-and-config.md`、`docs/STARTUP.md`、`docs/verification.md` 为准。
 
 ## 当前主计划
 

@@ -686,7 +686,7 @@ Remove-Item xiaomiaoAgent\.nanobot\config.json
 ## 相关文档
 
 - [configuration.md](./configuration.md) - 配置文件说明
-- [运行与配置.md](./运行与配置.md) - 快速启动
+- [run-and-config.md](./run-and-config.md) - 快速启动
 - [STARTUP.md](./STARTUP.md) - 详细启动流程
 - [verification.md](./verification.md) - 验证测试
 

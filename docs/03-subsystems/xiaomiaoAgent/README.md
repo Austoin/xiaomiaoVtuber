@@ -13,38 +13,50 @@
 | 工具层 | 文件、搜索、Web、Shell、MCP、Cron、Notebook、Subagent、图片等 |
 | xiaomiaoVirtual 工具 | 文档转 Markdown、网页抓取、舞台动作、xiaomiaobot 服务状态 |
 
+## 📚 详细文档
+
+xiaomiaoAgent 的完整文档请参考：
+
+- 📖 [快速开始](../../xiaomiaoAgent/docs/quick-start.md) - 安装和第一次使用
+- ⚙️ [配置详解](../../xiaomiaoAgent/docs/configuration.md) - 详细配置说明
+- 🖥️ [CLI 参考](../../xiaomiaoAgent/docs/cli-reference.md) - 命令行工具
+- 🌐 [OpenAI 兼容 API](../../xiaomiaoAgent/docs/openai-api.md) - API 使用方法
+- 🧠 [记忆系统](../../xiaomiaoAgent/docs/memory.md) - Dream 记忆机制
+- 🚀 [部署指南](../../xiaomiaoAgent/docs/deployment.md) - Docker 和生产部署
+- 📚 [完整文档索引](../../xiaomiaoAgent/docs/README.md) - 所有 16 个文档
+
 ## 运行入口
 
 初始化本地配置：
 
 ```powershell
-cd F:\xiaomiaoVirtual\xiaomiaoAgent
+cd <项目根目录>\xiaomiaoAgent
 conda activate xiaomiao
-xiaomiao onboard --config F:\xiaomiaoVirtual\xiaomiaoAgent\.nanobot\config.json --workspace F:\xiaomiaoVirtual\xiaomiaoAgent\.nanobot\workspace
+xiaomiao onboard --config <项目根目录>\xiaomiaoAgent\.nanobot\config.json --workspace <项目根目录>\xiaomiaoAgent\.nanobot\workspace
 ```
 
 启动 OpenAI 兼容 API：
 
 ```powershell
-cd F:\xiaomiaoVirtual\xiaomiaoAgent
+cd <项目根目录>\xiaomiaoAgent
 conda activate xiaomiao
-python -m xiaomiao_agent serve --config F:\xiaomiaoVirtual\xiaomiaoAgent\.nanobot\config.json
+python -m xiaomiao_agent serve --config <项目根目录>\xiaomiaoAgent\.nanobot\config.json
 ```
 
 启动 gateway：
 
 ```powershell
-cd F:\xiaomiaoVirtual\xiaomiaoAgent
+cd <项目根目录>\xiaomiaoAgent
 conda activate xiaomiao
-python -m xiaomiao_agent gateway --config F:\xiaomiaoVirtual\xiaomiaoAgent\.nanobot\config.json
+python -m xiaomiao_agent gateway --config <项目根目录>\xiaomiaoAgent\.nanobot\config.json
 ```
 
 命令行聊天：
 
 ```powershell
-cd F:\xiaomiaoVirtual\xiaomiaoAgent
+cd <项目根目录>\xiaomiaoAgent
 conda activate xiaomiao
-xiaomiao agent --config F:\xiaomiaoVirtual\xiaomiaoAgent\.nanobot\config.json
+xiaomiao agent --config <项目根目录>\xiaomiaoAgent\.nanobot\config.json
 ```
 
 ## API 请求元数据
@@ -107,7 +119,7 @@ QQ 和 bridge 会把来源和权限写入请求体：
 启动时会向上查找项目根 `config.json`，并用其中的 `xiaomiaoAgent` / `xiaomiao_agent` 段覆盖模型和运行配置。也可以通过环境变量指定统一配置：
 
 ```powershell
-set XIAOMIAO_UNIFIED_CONFIG=F:\xiaomiaoVirtual\config.json
+set XIAOMIAO_UNIFIED_CONFIG=<项目根目录>\config.json
 ```
 
 推荐根配置结构见 [scripts-and-config.md](../scripts-and-config.md)。

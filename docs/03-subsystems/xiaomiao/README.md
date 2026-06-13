@@ -51,7 +51,7 @@
 napcat.quick.bat <QQ号>
 
 也就是：
-cd /d F:\xiaomiaoVirtual\xiaomiao\NapCat.Shell.Windows.OneKey\NapCat.44498.Shell
+cd /d <项目根目录>\xiaomiao\NapCat.Shell.Windows.OneKey\NapCat.44498.Shell
 .\napcat.quick.bat 3994383071
 
 # 2. 等待看到 "WebSocket服务: 127.0.0.1:5004" 后
@@ -72,7 +72,7 @@ python main.py
 当前 QQ 群/私聊普通 AI 回复、`xiaomiaobot stage-web` 输入、桌面 bridge 和 xiaomiaoAgent WebUI 都统一进入 xiaomiaoAgent。推荐直接使用根目录 `start-all.cmd`：
 
 ```powershell
-cd F:\xiaomiaoVirtual
+cd <项目根目录>
 start-all.cmd
 ```
 
@@ -89,17 +89,17 @@ start-all.cmd --check
 1. 启动 xiaomiaoAgent OpenAI 兼容 API：
 
    ```powershell
-   cd F:\xiaomiaoVirtual\xiaomiaoAgent
+   cd <项目根目录>\xiaomiaoAgent
    conda activate xiaomiao
-   python -m xiaomiao_agent serve --config F:\xiaomiaoVirtual\xiaomiaoAgent\.nanobot\config.json
+   python -m xiaomiao_agent serve --config <项目根目录>\xiaomiaoAgent\.nanobot\config.json
    ```
 
 2. 启动 xiaomiaoAgent 网关：
 
    ```powershell
-   cd F:\xiaomiaoVirtual\xiaomiaoAgent
+   cd <项目根目录>\xiaomiaoAgent
    conda activate xiaomiao
-   python -m xiaomiao_agent gateway --config F:\xiaomiaoVirtual\xiaomiaoAgent\.nanobot\config.json
+   python -m xiaomiao_agent gateway --config <项目根目录>\xiaomiaoAgent\.nanobot\config.json
    ```
 
 3. 启动 NapCat，并确认 OneBot WebSocket 是 `127.0.0.1:5004`。
@@ -107,7 +107,7 @@ start-all.cmd --check
 4. 启动小喵：
 
    ```powershell
-   cd F:\xiaomiaoVirtual\xiaomiao
+   cd <项目根目录>\xiaomiao
    conda activate xiaomiao
    python main.py
    ```
@@ -115,17 +115,17 @@ start-all.cmd --check
 5. 启动 xiaomiaobot Web 或桌面端：
 
    ```powershell
-   cd F:\xiaomiaoVirtual\xiaomiaobot\apps\stage-web
+   cd <项目根目录>\xiaomiaobot\apps\stage-web
    pnpm exec vite --host 127.0.0.1 --port 5175
    # 或
-   cd F:\xiaomiaoVirtual\xiaomiaobot
+   cd <项目根目录>\xiaomiaobot
    pnpm dev:tamagotchi
    ```
 
 6. 启动 xiaomiaoAgent WebUI：
 
    ```powershell
-   cd F:\xiaomiaoVirtual\xiaomiaoAgent\webui
+   cd <项目根目录>\xiaomiaoAgent\webui
    npm run dev -- --host 127.0.0.1 --port 5174
    ```
 
@@ -534,7 +534,7 @@ class prerequisite:
 
 ### AI 对话 API
 
-`xiaomiao/config.json` 的 `Others` 模型字段保留给图片理解、`SearchOnline(...)` 和未迁移分支。QQ 群/私聊普通 AI 回复已经改走主目录 `F:\xiaomiaoVirtual\config.json` 的统一配置。
+`xiaomiao/config.json` 的 `Others` 模型字段保留给图片理解、`SearchOnline(...)` 和未迁移分支。QQ 群/私聊普通 AI 回复已经改走主目录 `<项目根目录>\config.json` 的统一配置。
 
 ```json
 {
@@ -882,7 +882,7 @@ WebSocket 服务器配置示例：
 
 ### 3. xiaomiaoAgent 调用失败
 
-- 检查 `python -m xiaomiao_agent serve --config F:\xiaomiaoVirtual\xiaomiaoAgent\.nanobot\config.json` 是否正在运行
+- 检查 `python -m xiaomiao_agent serve --config <项目根目录>\xiaomiaoAgent\.nanobot\config.json` 是否正在运行
 - 检查 `http://127.0.0.1:8900/health`
 - 检查主目录 `config.json` 的 `nanobot_agent.base_url` 是否指向 `http://127.0.0.1:8900/v1/chat/completions`
 - 如果返回 HTTP 502，查看错误内容；当前实现会显式暴露 xiaomiaoAgent HTTP 错误、空回复和超时

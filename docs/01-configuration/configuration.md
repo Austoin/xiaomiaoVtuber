@@ -27,7 +27,7 @@ xiaomiaoVirtual/
 
 ### config.json
 
-**位置**: `F:\xiaomiaoVirtual\config.json`  
+**位置**: `<项目根目录>\config.json`  
 **状态**: 不提交到 Git（包含密钥）  
 **作用**: 项目级配置，包含两个主要配置段
 
@@ -365,7 +365,7 @@ $env:CUSTOM_API_KEY = "sk-your-key"
 
 ## 相关文档
 
-- [运行与配置](./运行与配置.md) - 快速启动指南
+- [运行与配置](./run-and-config.md) - 快速启动指南
 - [STARTUP.md](./STARTUP.md) - 详细启动流程
 - [troubleshooting.md](./troubleshooting.md) - 故障排查
 - [xiaomiaoAgent/README.md](./xiaomiaoAgent/README.md) - Agent 框架文档

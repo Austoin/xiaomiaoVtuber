@@ -2,6 +2,18 @@
 
 `xiaomiaobot` 是 `xiaomiaoVirtual` 的 Web、桌面、移动端 Vtuber 表现层，负责把统一 Agent 回复呈现为网页聊天、桌面字幕、TTS、Live2D/VRM 和口型同步。该目录来自 AIRI monorepo，历史文档中也会出现 `AuBot`；内部包名、工作区作用域和部分目录仍保留 `@proj-airi/*` 兼容标识。
 
+## 📚 详细文档
+
+xiaomiaobot 的完整文档请参考：
+
+- 🤖 [AGENTS 开发指南](../../xiaomiaobot/AGENTS.md) - 详细技术栈、架构和开发实践 (推荐)
+- 📖 [VitePress 文档站](../../xiaomiaobot/docs/) - 多语言文档
+  - [简体中文文档](../../xiaomiaobot/docs/content/zh-Hans/docs/)
+  - [英文文档](../../xiaomiaobot/docs/content/en/docs/)
+- 🎨 [UI 组件参考](../../xiaomiaobot/docs/ai/context/ui-components.md) - 组件 API
+- 🏗️ [服务器架构](../../xiaomiaobot/apps/server/docs/ai-context/) - 8个详细架构文档
+- 📁 [目录结构索引](struct.md) - 完整目录树
+
 ## 目录
 
 - [快速开始](#快速开始)
@@ -111,7 +123,7 @@ Electron 桌面版应用，是当前桌面形态的主要入口，适合本地�
 如果要联动 `xiaomiao`、QQ 和 xiaomiaoAgent，推荐从仓库根目录启动：
 
 ```powershell
-cd F:\xiaomiaoVirtual
+cd <项目根目录>
 start-all.cmd
 ```
 
@@ -120,15 +132,15 @@ start-all.cmd
 手动启动时，先启动后端链路：
 
 ```powershell
-cd F:\xiaomiaoVirtual\xiaomiaoAgent
+cd <项目根目录>\xiaomiaoAgent
 conda activate xiaomiao
-python -m xiaomiao_agent serve --config F:\xiaomiaoVirtual\xiaomiaoAgent\.nanobot\config.json
+python -m xiaomiao_agent serve --config <项目根目录>\xiaomiaoAgent\.nanobot\config.json
 ```
 
 再启动 NapCat 和 `xiaomiao`：
 
 ```powershell
-cd F:\xiaomiaoVirtual\xiaomiao
+cd <项目根目录>\xiaomiao
 conda activate xiaomiao
 python main.py
 ```

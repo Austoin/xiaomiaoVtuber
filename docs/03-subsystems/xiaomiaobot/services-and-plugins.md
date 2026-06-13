@@ -70,13 +70,13 @@
 桥接事件测试：
 
 ```powershell
-cd F:\xiaomiaoVirtual\xiaomiaobot
+cd <项目根目录>\xiaomiaobot
 pnpm exec vitest run apps/stage-pocket/src/modules/xiaomiao-bridge-events.test.ts packages/stage-ui/src/xiaomiao-bridge-events.test.ts apps/stage-tamagotchi/src/renderer/pages/xiaomiao-bridge-reaction.test.ts apps/stage-tamagotchi/src/renderer/pages/xiaomiao-bridge.test.ts
 ```
 
 完整启动检查：
 
 ```powershell
-cd F:\xiaomiaoVirtual
+cd <项目根目录>
 cmd /c call start-all.cmd --check
 ```

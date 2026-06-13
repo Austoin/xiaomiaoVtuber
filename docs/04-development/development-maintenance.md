@@ -34,7 +34,7 @@ git diff --stat
 ## 文档维护规则
 
 - `docs/README.md` 是总入口，新文档要补链接。
-- `docs/运行与配置.md` 保持短，只放最短可执行流程。
+- `docs/run-and-config.md` 保持短，只放最短可执行流程。
 - `docs/STARTUP.md` 保持详细，放完整启动和排错。
 - 子系统文档放在对应目录，如 `docs/xiaomiao/`、`docs/xiaomiaoAgent/`、`docs/xiaomiaobot/`。
 - 技术字段、命令、路径、配置键、函数名保持原文，不强行翻译。

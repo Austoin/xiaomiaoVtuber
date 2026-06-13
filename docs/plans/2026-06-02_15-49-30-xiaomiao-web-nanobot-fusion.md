@@ -1,6 +1,6 @@
 ---
 mode: plan
-cwd: F:\xiaomiaoVirtual
+cwd: <项目根目录>
 task: 打通 xiaomiao 到 AuBot stage-web 并融合 nanobot Agent 能力
 complexity: complex
 tool: local-code-inspection

@@ -23,7 +23,7 @@ xiaomiao/runtime/bridge_events.jsonl
 可通过环境变量覆盖：
 
 ```powershell
-set XIAOMIAO_BRIDGE_EVENT_STORE=F:\xiaomiaoVirtual\workspace\tmp\bridge_events.jsonl
+set XIAOMIAO_BRIDGE_EVENT_STORE=<项目根目录>\workspace\tmp\bridge_events.jsonl
 ```
 
 运行态事件文件不应提交到仓库。

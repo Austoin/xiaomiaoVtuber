@@ -1,6 +1,6 @@
 ---
 mode: execution-plan
-cwd: f:\xiaomiaoVirtual
+cwd: <项目根目录>
 task: 三端对话同步、统一 config、QQ 接入 nanobot 全工具
 complexity: complex
 created_at: 2026-06-02_19-25-09

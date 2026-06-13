@@ -74,7 +74,7 @@ xiaomiaoAgent
 - `uno.config.ts`：UnoCSS 根配置。
 - `vite-env.d.ts`：Vite 全局类型声明。
 - `vitest.config.ts`：Vitest 根测试配置。
-- `操作文档.md`：本地操作手册，记录 Git 重建、上传、启动、构建和检查命令。
+- `operation-guide.md`：本地操作手册，记录 Git 重建、上传、启动、构建和检查命令。
 
 ## 3.1 小喵联动关键路径
 
@@ -4167,4 +4167,4 @@ apps/stage-tamagotchi/
 - `uno.config.ts`：UnoCSS 根配置。
 - `vite-env.d.ts`：Vite 全局类型声明。
 - `vitest.config.ts`：Vitest 根测试配置。
-- `操作文档.md`：本地操作手册，记录 Git 重建、上传、启动、构建和检查命令。
+- `operation-guide.md`：本地操作手册，记录 Git 重建、上传、启动、构建和检查命令。
