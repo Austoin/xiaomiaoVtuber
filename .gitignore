@@ -41,6 +41,8 @@ log/
 .cache/
 .ruff_cache/
 .uv-cache/
+xiaomiaobot/.cache/
+xiaomiaobot/apps/*/src/renderer/.cache/
 
 # Runtime data
 xiaomiaoAgent/.nanobot/
@@ -52,6 +54,8 @@ workspace/tmp/
 dist/
 build/
 *.egg-info/
+xiaomiaobot/apps/*/out/
+xiaomiaobot/packages/*/dist/
 
 # Node
 node_modules/
@@ -75,5 +79,16 @@ xiaomiao/NapCat.Shell.Windows.OneKey/
 xiaomiao/deploy/*.zip
 artemis-models/live2d-model/shiki_natsume/*.lpk
 
-# Large Live2D model files
+# Large Live2D model files and assets
 artemis-models/
+# Live2D models (download separately)
+*.moc3
+*.model3.json
+*.physics3.json
+*.motion3.json
+# VRM models
+*.vrm
+# Large package files
+*.lpk
+# Audio and image assets (exclude icons and small UI assets)
+xiaomiaobot/apps/stage-tamagotchi/src/renderer/.cache/assets/

@@ -12,6 +12,7 @@
 
 | 文档 | 用途 |
 |------|------|
+| [SETUP.md](00-quick-start/SETUP.md) | **⭐ 克隆后必读**，依赖安装、模型下载、环境配置 |
 | [run-and-config.md](00-quick-start/run-and-config.md) | **⭐ 最快启动入口**，`setup-env.cmd` 和 `start-all.cmd` |
 | [STARTUP.md](00-quick-start/STARTUP.md) | 详细启动流程、端口说明、手动运行步骤 |
 | [QQ机器人指令速查.md](00-quick-start/QQ机器人指令速查.md) | QQ 群聊/私聊可用的所有指令 |
