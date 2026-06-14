@@ -92,3 +92,6 @@ artemis-models/
 *.lpk
 # Audio and image assets (exclude icons and small UI assets)
 xiaomiaobot/apps/stage-tamagotchi/src/renderer/.cache/assets/
+# Large custom models (not in git, build locally)
+xiaomiaobot/packages/stage-ui/src/assets/live2d/models/atri.zip
+xiaomiaobot/packages/stage-ui/src/assets/live2d/models/natsume.zip

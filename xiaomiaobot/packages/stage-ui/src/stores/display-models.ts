@@ -36,6 +36,12 @@ const presetHaruPreview = new URL('../assets/live2d/models/haru/preview.png', im
 const presetMaoUrl = new URL('../assets/live2d/models/mao.zip', import.meta.url).href
 const presetMaoPreview = new URL('../assets/live2d/models/mao/preview.png', import.meta.url).href
 
+// Custom large models (not in git, users need to build locally)
+const presetAtriUrl = new URL('../assets/live2d/models/atri.zip', import.meta.url).href
+const presetAtriPreview = new URL('../assets/live2d/models/atri/preview.png', import.meta.url).href
+const presetNatsumeUrl = new URL('../assets/live2d/models/natsume.zip', import.meta.url).href
+const presetNatsumePreview = new URL('../assets/live2d/models/natsume/preview.png', import.meta.url).href
+
 // VRM models
 const presetVrmAvatarAUrl = new URL('../assets/vrm/models/AvatarSample-A/AvatarSample_A.vrm', import.meta.url).href
 const presetVrmAvatarAPreview = new URL('../assets/vrm/models/AvatarSample-A/preview.png', import.meta.url).href
@@ -72,6 +78,8 @@ const displayModelsPresets: DisplayModel[] = [
   { id: 'preset-live2d-6', format: DisplayModelFormat.Live2dZip, type: 'url', url: presetNatoriUrl, name: 'Natori', previewImage: presetNatoriPreview, importedAt: 1733113886844 },
   { id: 'preset-live2d-7', format: DisplayModelFormat.Live2dZip, type: 'url', url: presetMarkUrl, name: 'Mark', previewImage: presetMarkPreview, importedAt: 1733113886845 },
   { id: 'preset-live2d-8', format: DisplayModelFormat.Live2dZip, type: 'url', url: presetWankoUrl, name: 'Wanko', previewImage: presetWankoPreview, importedAt: 1733113886846 },
+  { id: 'preset-live2d-9', format: DisplayModelFormat.Live2dZip, type: 'url', url: presetAtriUrl, name: 'ATRI', previewImage: presetAtriPreview, importedAt: 1733113886847 },
+  { id: 'preset-live2d-10', format: DisplayModelFormat.Live2dZip, type: 'url', url: presetNatsumeUrl, name: 'Natsume', previewImage: presetNatsumePreview, importedAt: 1733113886848 },
 
   // VRM models
   { id: 'preset-vrm-1', format: DisplayModelFormat.VRM, type: 'url', url: presetVrmAvatarAUrl, name: 'AvatarSample_A', previewImage: presetVrmAvatarAPreview, importedAt: 1733113886840 },
