@@ -78,8 +78,11 @@ const displayModelsPresets: DisplayModel[] = [
   { id: 'preset-live2d-6', format: DisplayModelFormat.Live2dZip, type: 'url', url: presetNatoriUrl, name: 'Natori', previewImage: presetNatoriPreview, importedAt: 1733113886844 },
   { id: 'preset-live2d-7', format: DisplayModelFormat.Live2dZip, type: 'url', url: presetMarkUrl, name: 'Mark', previewImage: presetMarkPreview, importedAt: 1733113886845 },
   { id: 'preset-live2d-8', format: DisplayModelFormat.Live2dZip, type: 'url', url: presetWankoUrl, name: 'Wanko', previewImage: presetWankoPreview, importedAt: 1733113886846 },
-  { id: 'preset-live2d-9', format: DisplayModelFormat.Live2dZip, type: 'url', url: presetAtriUrl, name: 'ATRI', previewImage: presetAtriPreview, importedAt: 1733113886847 },
-  { id: 'preset-live2d-10', format: DisplayModelFormat.Live2dZip, type: 'url', url: presetNatsumeUrl, name: 'Natsume', previewImage: presetNatsumePreview, importedAt: 1733113886848 },
+  // NOTE: ATRI (588MB) and Natsume (84MB) are commented out due to large file size
+  // causing slow page load. Users can add them manually via the "Add" button.
+  // Uncomment these lines if you want them in the preset list:
+  // { id: 'preset-live2d-9', format: DisplayModelFormat.Live2dZip, type: 'url', url: presetAtriUrl, name: 'ATRI', previewImage: presetAtriPreview, importedAt: 1733113886847 },
+  // { id: 'preset-live2d-10', format: DisplayModelFormat.Live2dZip, type: 'url', url: presetNatsumeUrl, name: 'Natsume', previewImage: presetNatsumePreview, importedAt: 1733113886848 },
 
   // VRM models
   { id: 'preset-vrm-1', format: DisplayModelFormat.VRM, type: 'url', url: presetVrmAvatarAUrl, name: 'AvatarSample_A', previewImage: presetVrmAvatarAPreview, importedAt: 1733113886840 },
