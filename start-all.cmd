@@ -21,7 +21,7 @@ set "NO_PROXY=127.0.0.1,localhost,::1"
 set "no_proxy=127.0.0.1,localhost,::1"
 
 set "CMD_AGENT_API=conda run --no-capture-output -n xiaomiao python -m xiaomiao_agent serve --config %XIAOMIAO_AGENT_CONFIG%"
-set "CMD_XIAOMIAO_MAIN=conda run --no-capture-output -n xiaomiao python main.py"
+set "CMD_XIAOMIAO_MAIN=conda run --no-capture-output -n xiaomiao python xiaomiao\main.py"
 set "CMD_XIAOMIAOBOT_WEB=pnpm exec vite --host 127.0.0.1 --port %XIAOMIAOBOT_STAGE_WEB_PORT%"
 
 if /I "%~1"=="--check" set "CHECK_ONLY=1"
@@ -179,7 +179,7 @@ echo.
 echo [3/4] Starting xiaomiao main.py and bridge...
 call :assert_free "xiaomiao main.py and bridge" 5519
 if errorlevel 1 exit /b 1
-start "xiaomiao main.py" /min /D "%XIAOMIAO_DIR%" powershell -NoProfile -ExecutionPolicy Bypass -NoExit -Command "%CMD_XIAOMIAO_MAIN%"
+start "xiaomiao main.py" /min /D "%ROOT_DIR%" powershell -NoProfile -ExecutionPolicy Bypass -NoExit -Command "%CMD_XIAOMIAO_MAIN%"
 call :wait_xiaomiao "xiaomiao main.py, bridge, and QQ listener" 5519 "http://127.0.0.1:5519/v1/xiaomiao/status" "xiaomiao-desktop-bridge"
 exit /b %errorlevel%
 

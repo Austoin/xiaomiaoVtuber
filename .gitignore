@@ -73,3 +73,7 @@ xiaomiao/NapCat.Shell.Windows.OneKey/
 
 # Deploy artifacts
 xiaomiao/deploy/*.zip
+artemis-models/live2d-model/shiki_natsume/*.lpk
+
+# Large Live2D model files
+artemis-models/

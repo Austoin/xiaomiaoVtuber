@@ -3,7 +3,7 @@ import type { BrowserWindow, LoadFileOptions, LoadURLOptions } from 'electron'
 import { join } from 'node:path'
 import { env } from 'node:process'
 
-import { is } from '@electron-toolkit/utils'
+import { is } from './toolkit-utils'
 
 let electronMainDirname: string = ''
 

@@ -23,7 +23,8 @@
     "./components/Widgets/*": "./src/components/Widgets/*.vue",
     "./components/Backgrounds/*": "./src/components/Backgrounds/*",
     "./composables/*": "./src/composables/*.ts",
-    "./stores/*": "./src/stores/*.ts"
+    "./stores/*": "./src/stores/*.ts",
+    "./xiaomiao-bridge": "./src/xiaomiao-bridge.ts"
   },
   "scripts": {
     "typecheck": "vue-tsc --noEmit"

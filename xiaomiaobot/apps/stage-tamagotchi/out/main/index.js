@@ -1,3 +1,6 @@
+import { createRequire as __createRequire } from "node:module";
+const __electron_require = __createRequire(import.meta.url);
+const {  BrowserWindow, Menu, Tray, app, desktopCapturer, ipcMain, nativeImage, powerMonitor, screen, session, shell, systemPreferences  } = __electron_require('electron');
 import { a as __toCommonJS, i as __require$1, n as __esmMin, o as __toESM$2, r as __exportAll$1, t as __commonJSMin$2 } from "./rolldown-runtime-zNMctmct.js";
 import { a as eventHandler, c as handleCors, i as defineWebSocketHandler, l as serveStatic, n as H3, o as getQuery, r as HTTPError, s as getRequestURL, t as serve, u as NodeRequest } from "./vendor-h3-Clhc2Ibk.js";
 import { t as require_src } from "./vendor-debug-MA8ZPLW0.js";
@@ -6,7 +9,7 @@ import process$1, { cwd, env, platform } from "node:process";
 import { basename, delimiter, dirname, isAbsolute, join, normalize, resolve, sep } from "node:path";
 import { fileURLToPath } from "node:url";
 import messages from "@proj-airi/i18n/locales";
-import { BrowserWindow, Menu, Tray, app, desktopCapturer, ipcMain, nativeImage, powerMonitor, screen, session, shell, systemPreferences } from "electron";
+;
 import { Format, LogLevel, LogLevelString, availableLogLevelStrings, logLevelStringToLogLevelMap, setGlobalFormat, setGlobalHookPostLog, setGlobalLogLevel, useLogg } from "@guiiai/logg";
 import { createContext } from "@moeru/eventa/adapters/electron/main";
 import { X509Certificate, createHash, randomBytes, randomUUID, timingSafeEqual, webcrypto } from "node:crypto";
@@ -42,8 +45,21 @@ import { animate, utils } from "animejs";
 import clickDragPlugin from "electron-click-drag-plugin";
 import { defu } from "defu";
 import { clamp } from "es-toolkit/math";
-//#region ../../node_modules/.pnpm/@electron-toolkit+utils@4.0.0_electron@41.2.1/node_modules/@electron-toolkit/utils/dist/index.mjs
-var is = { dev: !app.isPackaged };
+//#region src/main/libs/electron/toolkit-utils.ts
+/**
+* Replacement for @electron-toolkit/utils to avoid top-level electron.app access issues.
+*
+* NOTICE:
+* @electron-toolkit/utils v4.0.0 accesses electron.app.isPackaged at module top-level,
+* which fails when electron is externalized in CommonJS builds with Node.js v24+.
+* This module reimplements the needed functionality with delayed electron access.
+*
+* Source: @electron-toolkit/utils v4.0.0
+* https://github.com/alex8088/electron-toolkit/blob/main/packages/utils/src/index.ts
+*/
+var is = { get dev() {
+	return !app.isPackaged;
+} };
 var platform$1 = {
 	isWindows: process.platform === "win32",
 	isMacOS: process.platform === "darwin",
@@ -77,37 +93,17 @@ var optimizer = {
 				if (!is.dev) {
 					if (input.code === "KeyR" && (input.control || input.meta)) event.preventDefault();
 					if (input.code === "KeyI" && (input.alt && input.meta || input.control && input.shift)) event.preventDefault();
-				} else if (input.code === "F12") if (webContents.isDevToolsOpened()) webContents.closeDevTools();
-				else {
-					webContents.openDevTools({ mode: "undocked" });
-					console.log("Open dev tool...");
 				}
-				if (escToCloseWindow) {
-					if (input.code === "Escape" && input.key !== "Process") {
-						window.close();
-						event.preventDefault();
-					}
-				}
+				if (input.code === "Escape" && escToCloseWindow) window.close();
 				if (!zoom) {
-					if (input.code === "Minus" && (input.control || input.meta)) event.preventDefault();
-					if (input.code === "Equal" && input.shift && (input.control || input.meta)) event.preventDefault();
+					if (input.code === "Equal" && (input.control || input.meta) && webContents.getZoomFactor() < 2) event.preventDefault();
+					if (input.code === "Minus" && (input.control || input.meta) && webContents.getZoomFactor() > .5) event.preventDefault();
+					if (input.code === "Digit0" && (input.control || input.meta)) event.preventDefault();
 				}
 			}
 		});
 	},
-	registerFramelessWindowIpc() {
-		ipcMain.on("win:invoke", (event, action) => {
-			const win = BrowserWindow.fromWebContents(event.sender);
-			if (win) {
-				if (action === "show") win.show();
-				else if (action === "showInactive") win.showInactive();
-				else if (action === "min") win.minimize();
-				else if (action === "max") if (win.isMaximized()) win.unmaximize();
-				else win.maximize();
-				else if (action === "close") win.close();
-			}
-		});
-	}
+	registerFramelessWindowIpc() {}
 };
 //#endregion
 //#region ../../node_modules/.pnpm/std-env@4.1.0/node_modules/std-env/dist/index.mjs
@@ -62293,7 +62289,7 @@ var require_NsisUpdater = /* @__PURE__ */ __commonJSMin$2(((exports) => {
 	exports.NsisUpdater = NsisUpdater;
 }));
 //#endregion
-//#region src/main/services/electron/mock-auto-updater.ts
+//#region \0~build/git
 var import_main = /* @__PURE__ */ __toESM$2((/* @__PURE__ */ __commonJSMin$2(((exports) => {
 	var __createBinding = exports && exports.__createBinding || (Object.create ? (function(o, m, k, k2) {
 		if (k2 === void 0) k2 = k;
@@ -62420,6 +62416,9 @@ var import_main = /* @__PURE__ */ __toESM$2((/* @__PURE__ */ __commonJSMin$2(((e
 		}
 	});
 })))(), 1);
+var committerDate = "Sat Jun 13 23:06:19 2026 +0800";
+//#endregion
+//#region src/main/services/electron/mock-auto-updater.ts
 var MockAutoUpdater = class extends EventEmitter {
 	autoDownload = false;
 	async checkForUpdates() {
@@ -62483,21 +62482,21 @@ function getCacheRoot() {
 function getLegacyCacheRoot() {
 	return getCacheRoot();
 }
-var UPDATER_DEBUG_CACHE_DIR = join(getCacheRoot(), "stage-tamagotchi-updater");
-var UPDATER_LOG_FILE = join(UPDATER_DEBUG_CACHE_DIR, "updater-log.txt");
-var OFFICIAL_UPDATER_CACHE_DIR = join(getCacheRoot(), "ai.moeru.airi-updater");
-var LEGACY_OFFICIAL_UPDATER_CACHE_DIR = join(getLegacyCacheRoot(), "ai.moeru.airi-updater");
-var OFFICIAL_UPDATER_CACHE_DIRS = Array.from(new Set([OFFICIAL_UPDATER_CACHE_DIR, LEGACY_OFFICIAL_UPDATER_CACHE_DIR]));
+var UPDATER_DEBUG_CACHE_DIR = (() => join(getCacheRoot(), "stage-tamagotchi-updater"));
+var UPDATER_LOG_FILE = (() => join(UPDATER_DEBUG_CACHE_DIR(), "updater-log.txt"));
+var OFFICIAL_UPDATER_CACHE_DIR = (() => join(getCacheRoot(), "ai.moeru.airi-updater"));
+var LEGACY_OFFICIAL_UPDATER_CACHE_DIR = (() => join(getLegacyCacheRoot(), "ai.moeru.airi-updater"));
+var OFFICIAL_UPDATER_CACHE_DIRS = (() => Array.from(new Set([OFFICIAL_UPDATER_CACHE_DIR(), LEGACY_OFFICIAL_UPDATER_CACHE_DIR()])));
 async function logToFile(level, message) {
-	await mkdir(UPDATER_DEBUG_CACHE_DIR, { recursive: true }).catch(() => {});
-	await appendFile(UPDATER_LOG_FILE, `${(/* @__PURE__ */ new Date()).toISOString()} [${level}] ${message}\n`).catch(() => {});
+	await mkdir(UPDATER_DEBUG_CACHE_DIR(), { recursive: true }).catch(() => {});
+	await appendFile(UPDATER_LOG_FILE(), `${(/* @__PURE__ */ new Date()).toISOString()} [${level}] ${message}\n`).catch(() => {});
 }
 async function cleanupStaleUpdateFiles() {
-	await Promise.allSettled(OFFICIAL_UPDATER_CACHE_DIRS.map((cacheDir) => rm(cacheDir, {
+	await Promise.allSettled(OFFICIAL_UPDATER_CACHE_DIRS().map((cacheDir) => rm(cacheDir, {
 		recursive: true,
 		force: true
 	})));
-	await logToFile("INFO", `Updater cache cleanup attempted: ${OFFICIAL_UPDATER_CACHE_DIRS.join(", ")}`);
+	await logToFile("INFO", `Updater cache cleanup attempted: ${OFFICIAL_UPDATER_CACHE_DIRS().join(", ")}`);
 }
 function getUpdateServerOverride() {
 	if (!is.dev) return void 0;
@@ -62649,7 +62648,7 @@ function setupAutoUpdater(options = {}) {
 			platform: process$1.platform,
 			arch: process$1.arch,
 			channel: autoUpdater.channel || releaseChannelName,
-			logFilePath: UPDATER_LOG_FILE,
+			logFilePath: UPDATER_LOG_FILE(),
 			executablePath: process$1.execPath,
 			installDirectory: dirname(process$1.execPath),
 			requiresAdminForInstallPath: requiresAdminForInstallPath(process$1.execPath),
@@ -62748,7 +62747,7 @@ function setupAutoUpdater(options = {}) {
 		info: {
 			version: app.getVersion(),
 			files: [],
-			releaseDate: null
+			releaseDate: committerDate
 		}
 	}));
 	autoUpdater.on("download-progress", (progress) => broadcast({
@@ -63693,7 +63692,7 @@ function setupTray(params) {
 			locale();
 			rebuildContextMenu();
 		});
-		appTray.setToolTip("Project AIRI");
+		appTray.setToolTip("xiaomiaoVirtual");
 		appTray.addListener("click", () => toggleWindowShow(params.mainWindow));
 		if (w$1) appTray.addListener("double-click", () => toggleWindowShow(params.mainWindow));
 	})();
@@ -63743,7 +63742,7 @@ async function setupAboutWindowElectronInvokes(params) {
 function setupAboutWindowReusable(params) {
 	return createReusableWindow(async () => {
 		const window = new BrowserWindow({
-			title: "About AIRI",
+			title: "About xiaomiaoVirtual",
 			width: 670,
 			height: 880,
 			show: false,
@@ -64499,7 +64498,7 @@ async function setupDesktopOverlayWindow(params) {
 	if (!isDesktopOverlayEnabled()) return null;
 	const { x, y, width, height } = screen.getPrimaryDisplay().bounds;
 	overlayWindow = new BrowserWindow({
-		title: "AIRI Desktop Overlay",
+		title: "xiaomiaoVirtual Desktop Overlay",
 		width,
 		height,
 		x,
@@ -64714,14 +64713,14 @@ async function setupMainWindow(params) {
 	});
 	const getConfig = () => getConfigRaw() ?? { windows: [] };
 	setupConfig();
-	const mainWindowConfig = getConfig().windows?.find((w) => w.title === "AIRI" && w.tag === "main");
+	const mainWindowConfig = getConfig().windows?.find((w) => w.tag === "main");
 	const defaultWindowSize = {
 		width: mainWindowConfig?.width ?? 450,
 		height: mainWindowConfig?.height ?? 600
 	};
 	const defaultWindowBounds = computeCenteredBounds(screen.getPrimaryDisplay().workArea, defaultWindowSize);
 	const window = new BrowserWindow({
-		title: "AIRI",
+		title: "xiaomiaoVirtual",
 		width: defaultWindowSize.width,
 		height: defaultWindowSize.height,
 		x: defaultWindowBounds.x,
@@ -64748,9 +64747,9 @@ async function setupMainWindow(params) {
 	function handleNewBounds(newBounds) {
 		const config = getConfig();
 		if (!config.windows || !Array.isArray(config.windows)) config.windows = [];
-		const existingConfigIndex = config.windows.findIndex((w) => w.title === "AIRI" && w.tag === "main");
+		const existingConfigIndex = config.windows.findIndex((w) => w.tag === "main");
 		if (existingConfigIndex === -1) config.windows.push({
-			title: "AIRI",
+			title: "xiaomiaoVirtual",
 			tag: "main",
 			x: newBounds.x,
 			y: newBounds.y,
@@ -64759,7 +64758,7 @@ async function setupMainWindow(params) {
 		});
 		else {
 			const mainWindowConfig = defu(config.windows[existingConfigIndex], {
-				title: "AIRI",
+				title: "xiaomiaoVirtual",
 				tag: "main"
 			});
 			mainWindowConfig.x = newBounds.x;
@@ -64954,7 +64953,7 @@ function setupOnboardingWindowManager(params) {
 	}
 	const reusableWindow = createReusableWindow(async () => {
 		const newWindow = new BrowserWindow({
-			title: "Welcome to AIRI",
+			title: "Welcome to xiaomiaoVirtual",
 			width: 1e3,
 			height: 650,
 			minWidth: 400,
@@ -65530,7 +65529,6 @@ function setupWidgetsWindowManager(params) {
 }
 //#endregion
 //#region src/main/index.ts
-ipcMain.setMaxListeners(100);
 setElectronMainDirname(dirname(fileURLToPath(import.meta.url)));
 setGlobalFormat(Format.Pretty);
 setGlobalLogLevel(LogLevel.Log);
@@ -65552,6 +65550,7 @@ initScreenCaptureForMain();
 var fileLogger = nullFileLoggerHandle;
 var skipFileLogging = false;
 app.whenReady().then(async () => {
+	initScreenCaptureForMain();
 	fileLogger = await setupFileLogger();
 	setGlobalHookPostLog((_, formatted) => {
 		if (skipFileLogging || fileLogger.logFileFd === null) return;

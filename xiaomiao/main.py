@@ -48,9 +48,9 @@ from qq_agent_bridge import (
 # 使用统一工具层的适配器
 import sys
 from pathlib import Path
-TOOL_DIR = Path(__file__).parents[1] / "tool"
-if str(TOOL_DIR) not in sys.path:
-    sys.path.insert(0, str(TOOL_DIR))
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
 
 from tool.adapters.qq_adapter import decide_tool_request as decide_agent_tool_request
 
@@ -68,8 +68,9 @@ from qq_workspace import (
 )
 
 # import framework
+CONFIG_FILE = Path(__file__).parent / "config.json"
 Configurator.cm = Configurator.ConfigManager(
-    Configurator.Config(file="config.json").load_from_file()
+    Configurator.Config(file=str(CONFIG_FILE)).load_from_file()
 )
 bot_name = Configurator.cm.get_cfg().others["bot_name"]  # 星·简
 bot_name_en = Configurator.cm.get_cfg().others["bot_name_en"]  # Shining girl
@@ -101,7 +102,7 @@ generating = False
 bridge_server = None
 bridge_lock = threading.Lock()
 QQ_AGENT_WAIT_NOTICE_SECONDS = 300.0
-RUNTIME_DIR = "runtime"
+RUNTIME_DIR = Path(__file__).parent / "runtime"
 SUPER_USER_FILE = os.path.join(RUNTIME_DIR, "Super_User.ini")
 MANAGE_USER_FILE = os.path.join(RUNTIME_DIR, "Manage_User.ini")
 SISTERS_FILE = os.path.join(RUNTIME_DIR, "sisters.ini")

@@ -10,7 +10,7 @@ import type { WidgetsWindowManager } from '../windows/widgets'
 
 import { env } from 'node:process'
 
-import { is } from '@electron-toolkit/utils'
+import { is } from '../libs/electron/toolkit-utils'
 import { isRendererUnavailable } from '@proj-airi/electron-vueuse/main'
 import { effect } from 'alien-signals'
 import { app, Menu, nativeImage, screen, Tray } from 'electron'

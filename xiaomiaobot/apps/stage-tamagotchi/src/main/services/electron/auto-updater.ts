@@ -13,7 +13,7 @@ import { dirname, join, normalize } from 'node:path'
 import electronUpdater from 'electron-updater'
 import semver from 'semver'
 
-import { is } from '@electron-toolkit/utils'
+import { is } from '../../libs/electron/toolkit-utils'
 import { useLogg } from '@guiiai/logg'
 import { defineInvokeHandler } from '@moeru/eventa'
 import { errorMessageFrom, tryCatch } from '@moeru/std'
@@ -50,24 +50,26 @@ function getLegacyCacheRoot() {
   return getCacheRoot()
 }
 
-const UPDATER_DEBUG_CACHE_DIR = join(getCacheRoot(), 'stage-tamagotchi-updater')
-const UPDATER_LOG_FILE = join(UPDATER_DEBUG_CACHE_DIR, 'updater-log.txt')
-const OFFICIAL_UPDATER_CACHE_DIR = join(getCacheRoot(), 'ai.moeru.airi-updater')
-const LEGACY_OFFICIAL_UPDATER_CACHE_DIR = join(getLegacyCacheRoot(), 'ai.moeru.airi-updater')
-const OFFICIAL_UPDATER_CACHE_DIRS = Array.from(new Set([
-  OFFICIAL_UPDATER_CACHE_DIR,
-  LEGACY_OFFICIAL_UPDATER_CACHE_DIR,
-]))
+// NOTICE: Lazy initialization to avoid top-level electron.app access in externalized builds.
+// These getters ensure electron.app is available at runtime, not at module load time.
+const UPDATER_DEBUG_CACHE_DIR = (() => join(getCacheRoot(), 'stage-tamagotchi-updater'))
+const UPDATER_LOG_FILE = (() => join(UPDATER_DEBUG_CACHE_DIR(), 'updater-log.txt'))
+const OFFICIAL_UPDATER_CACHE_DIR = (() => join(getCacheRoot(), 'ai.moeru.airi-updater'))
+const LEGACY_OFFICIAL_UPDATER_CACHE_DIR = (() => join(getLegacyCacheRoot(), 'ai.moeru.airi-updater'))
+const OFFICIAL_UPDATER_CACHE_DIRS = (() => Array.from(new Set([
+  OFFICIAL_UPDATER_CACHE_DIR(),
+  LEGACY_OFFICIAL_UPDATER_CACHE_DIR(),
+])))
 
 async function logToFile(level: 'INFO' | 'WARN' | 'ERROR' | 'DEBUG', message: string) {
-  await mkdir(UPDATER_DEBUG_CACHE_DIR, { recursive: true }).catch(() => {})
-  await appendFile(UPDATER_LOG_FILE, `${new Date().toISOString()} [${level}] ${message}\n`).catch(() => {})
+  await mkdir(UPDATER_DEBUG_CACHE_DIR(), { recursive: true }).catch(() => {})
+  await appendFile(UPDATER_LOG_FILE(), `${new Date().toISOString()} [${level}] ${message}\n`).catch(() => {})
 }
 
 async function cleanupStaleUpdateFiles() {
   // Remove both current and legacy updater cache roots so stale installers do not linger.
-  await Promise.allSettled(OFFICIAL_UPDATER_CACHE_DIRS.map(cacheDir => rm(cacheDir, { recursive: true, force: true })))
-  await logToFile('INFO', `Updater cache cleanup attempted: ${OFFICIAL_UPDATER_CACHE_DIRS.join(', ')}`)
+  await Promise.allSettled(OFFICIAL_UPDATER_CACHE_DIRS().map(cacheDir => rm(cacheDir, { recursive: true, force: true })))
+  await logToFile('INFO', `Updater cache cleanup attempted: ${OFFICIAL_UPDATER_CACHE_DIRS().join(', ')}`)
 }
 
 export type UpdateLane = ElectronUpdaterChannel
@@ -307,7 +309,7 @@ export function setupAutoUpdater(options: AutoUpdaterOptions = {}): AutoUpdater 
       platform: process.platform,
       arch: process.arch,
       channel: autoUpdater.channel || releaseChannelName,
-      logFilePath: UPDATER_LOG_FILE,
+      logFilePath: UPDATER_LOG_FILE(),
       executablePath: process.execPath,
       installDirectory: dirname(process.execPath),
       requiresAdminForInstallPath: requiresAdminForInstallPath(process.execPath),

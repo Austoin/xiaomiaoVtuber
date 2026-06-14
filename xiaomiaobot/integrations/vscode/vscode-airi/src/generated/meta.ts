@@ -5,8 +5,8 @@
 export const publisher = "proj-airi"
 export const name = "airi-vscode"
 export const version = "0.9.9000"
-export const displayName = "AIRI VSCode adapter"
-export const description = "Adapter that connects VSCode into Project AIRI"
+export const displayName = "xiaomiaoVirtual VSCode adapter"
+export const description = "Adapter that connects VSCode into xiaomiaoVirtual"
 export const extensionId = `${publisher}.${name}`
 
 /**
@@ -22,17 +22,17 @@ export type CommandKey =
  */
 export const commands = {
   /**
-   * AIRI: Enable
+   * xiaomiaoVirtual: Enable
    * @value `airi-vscode.enable`
    */
   enable: "airi-vscode.enable",
   /**
-   * AIRI: Disable
+   * xiaomiaoVirtual: Disable
    * @value `airi-vscode.disable`
    */
   disable: "airi-vscode.disable",
   /**
-   * AIRI: Show Status
+   * xiaomiaoVirtual: Show Status
    * @value `airi-vscode.status`
    */
   status: "airi-vscode.status",
@@ -75,7 +75,7 @@ export interface ConfigItem<T extends keyof ConfigKeyTypeMap> {
  */
 export const configs = {
   /**
-   * Enable or disable the AIRI extension
+   * Enable or disable the xiaomiaoVirtual extension
    * @key `airi-vscode.enabled`
    * @default `true`
    * @type `boolean`

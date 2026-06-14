@@ -7,7 +7,7 @@ import { fileURLToPath } from 'node:url'
 
 import messages from '@proj-airi/i18n/locales'
 
-import { electronApp, optimizer } from '@electron-toolkit/utils'
+import { electronApp, optimizer } from './libs/electron/toolkit-utils'
 import { Format, LogLevel, setGlobalFormat, setGlobalHookPostLog, setGlobalLogLevel, useLogg } from '@guiiai/logg'
 import { createContext } from '@moeru/eventa/adapters/electron/main'
 import { initScreenCaptureForMain } from '@proj-airi/electron-screen-capture/main'
@@ -49,7 +49,11 @@ import { setupWidgetsWindowManager } from './windows/widgets'
 // TODO: once we refactored eventa to support window-namespaced contexts,
 // we can remove the setMaxListeners call below since eventa will be able to dispatch and
 // manage events within eventa's context system.
-ipcMain.setMaxListeners(100)
+//
+// NOTICE: Commented out because electron modules are undefined at top-level in ESM mode
+// with Node.js v24+ until app.whenReady() is called. This call is also redundant since
+// ipcMain handlers already call setMaxListeners(0) when registering.
+// ipcMain.setMaxListeners(100)
 
 setElectronMainDirname(dirname(fileURLToPath(import.meta.url)))
 setGlobalFormat(Format.Pretty)
@@ -86,13 +90,16 @@ if (isLinux) {
 
 app.dock?.setIcon(icon)
 electronApp.setAppUserModelId('ai.moeru.airi')
-
 initScreenCaptureForMain()
 
 let fileLogger: FileLoggerHandle = nullFileLoggerHandle
 let skipFileLogging = false
 
 app.whenReady().then(async () => {
+
+  // Initialize screen capture (requires app.commandLine to be accessible)
+  initScreenCaptureForMain()
+
   // Initialize file logger and register the hook
   fileLogger = await setupFileLogger()
 

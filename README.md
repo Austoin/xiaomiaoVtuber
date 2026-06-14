@@ -2,6 +2,26 @@
 
 `xiaomiaoVirtual` 是一个 QQ 机器人、Vtuber 桌面角色与轻量 Agent 框架逐步融合的项目。
 
+## 🎭 Live2D 角色系统
+
+**当前已整合 9 个 Live2D 角色，支持 Web 界面和 QQ Bot 无缝切换！**
+
+- ✅ **7 个 xiaomiaobot 原生角色**：Haru (春)、Hiyori (日和)、Mao (真绪)、Mark (马克)、Natori (名取)、Rice (米)、Wanko (小狗)
+- ✅ **2 个 Artemis 角色**：Natsume (四季夏目) ⭐、ATRI (亚托莉) ⭐
+
+**快速体验**：
+```bash
+cd xiaomiaobot/apps/stage-tamagotchi
+pnpm dev
+# 访问 http://localhost:5173
+```
+
+详见：[INTEGRATION_COMPLETE.md](INTEGRATION_COMPLETE.md) | [LIVE2D_COMPLETE_GUIDE.md](LIVE2D_COMPLETE_GUIDE.md)
+
+---
+
+## 系统架构
+
 项目由三个主要子系统组成：
 
 1. `xiaomiao`：Python QQ 机器人，基于 NapCat、OneBot 和 Hyper Bot，负责 QQ 消息接入、命令处理、AI 对话、图片能力和群管理。

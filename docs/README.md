@@ -95,16 +95,73 @@
 
 ---
 
-### 📋 [plans/](plans/) - 规划文档
+### 📋 [archive/](archive/) - 归档文档
 
-**项目规划和演进记录**。
+**历史规划和报告**，项目演进记录。
+
+| 目录 | 用途 |
+|------|------|
+| [archive/plans/](archive/plans/) | 历史开发计划和架构设计（6 个计划书） |
+| [archive/reports/](archive/reports/) | 历史报告和分析文档（4 个报告） |
+
+---
+
+### 📖 [guide/](guide/) - 使用指南
+
+**新手入门和配置指南**。
 
 | 文档 | 用途 |
 |------|------|
-| [plans/README.md](plans/README.md) | 计划书索引、完成度和后续缺口 |
-| [2026-06-06-qq-agent-xiaomiaobot-capability-integration.md](plans/2026-06-06-qq-agent-xiaomiaobot-capability-integration.md) | QQ 直连 Agent / xiaomiaobot 能力计划 |
-| [2026-06-06-project-deep-analysis-and-qq-agent-gap-audit.md](plans/2026-06-06-project-deep-analysis-and-qq-agent-gap-audit.md) | 项目深度审计和缺口跟踪 |
-| 其他历史计划 | 项目演进历史记录 |
+| [QUICK_START.md](guide/QUICK_START.md) | 快速开始指南 |
+| [QQ_BOT_GUIDE.md](guide/QQ_BOT_GUIDE.md) | QQ Bot 使用指南 |
+| [CONFIGURATION.md](guide/CONFIGURATION.md) | 配置说明 |
+
+---
+
+### 🎭 [live2d/](live2d/) - Live2D 相关
+
+**Live2D 角色和模型文档**。
+
+| 文档 | 用途 |
+|------|------|
+| [LIVE2D_CHARACTER_SWITCH.md](live2d/LIVE2D_CHARACTER_SWITCH.md) | Live2D 角色切换说明 |
+| [LIVE2D_MODELS_LOCATION.md](live2d/LIVE2D_MODELS_LOCATION.md) | Live2D 模型位置说明 |
+| [QQ_CHARACTER_SWITCH.md](live2d/QQ_CHARACTER_SWITCH.md) | QQ Bot 角色切换功能 |
+
+---
+
+### 📊 [report/](report/) - 测试报告
+
+**功能测试和项目总结报告**。
+
+| 文档 | 用途 |
+|------|------|
+| [FUNCTIONAL_TEST_REPORT_2026-06-13.md](report/FUNCTIONAL_TEST_REPORT_2026-06-13.md) | 功能测试报告 |
+| [TEST_REPORT_2026-06-13.md](report/TEST_REPORT_2026-06-13.md) | 完整测试报告 |
+| [PROJECT_FINAL_SUMMARY.md](report/PROJECT_FINAL_SUMMARY.md) | 项目最终总结 |
+
+---
+
+### 📝 [changelog/](changelog/) - 变更日志
+
+**重大功能变更和移除记录**。
+
+| 文档 | 用途 |
+|------|------|
+| [WEBUI_REMOVAL_CHANGELOG.md](changelog/WEBUI_REMOVAL_CHANGELOG.md) | WebUI 移除变更日志 |
+| [WEBUI_REMOVAL_COMPLETE.md](changelog/WEBUI_REMOVAL_COMPLETE.md) | WebUI 移除完成报告 |
+| [WEBUI_REMOVED.md](changelog/WEBUI_REMOVED.md) | WebUI 移除说明 |
+
+---
+
+### 🔧 [task/](task/) - 任务记录
+
+**开发任务和问题分析**。
+
+| 文档 | 用途 |
+|------|------|
+| [ELECTRON_ESM_ISSUE.md](task/ELECTRON_ESM_ISSUE.md) | ⚠️ Electron ESM 兼容性问题（未解决） |
+| [LIVE2D_CHARACTER_VERIFICATION.md](task/LIVE2D_CHARACTER_VERIFICATION.md) | ✅ Live2D 角色验证报告（已完成） |
 
 ---
 
@@ -114,14 +171,22 @@
 
 1. 📖 [run-and-config.md](00-quick-start/run-and-config.md) - 最快启动
 2. 📖 [QQ机器人指令速查.md](00-quick-start/QQ机器人指令速查.md) - 了解指令
-3. 📖 [configuration.md](01-configuration/configuration.md) - 理解配置
-4. 📖 [project-overview.md](02-architecture/project-overview.md) - 了解架构
+3. 📖 [guide/QQ_BOT_GUIDE.md](guide/QQ_BOT_GUIDE.md) - QQ Bot 详细指南
+4. 📖 [configuration.md](01-configuration/configuration.md) - 理解配置
+5. 📖 [project-overview.md](02-architecture/project-overview.md) - 了解架构
+
+### 使用 Live2D 角色
+
+1. 🎭 [live2d/LIVE2D_CHARACTER_SWITCH.md](live2d/LIVE2D_CHARACTER_SWITCH.md) - 角色切换方法
+2. 🎭 [live2d/QQ_CHARACTER_SWITCH.md](live2d/QQ_CHARACTER_SWITCH.md) - QQ 中切换角色
+3. 🎭 [task/LIVE2D_CHARACTER_VERIFICATION.md](task/LIVE2D_CHARACTER_VERIFICATION.md) - 角色验证报告
 
 ### 遇到问题时
 
 1. 🔍 [troubleshooting.md](01-configuration/troubleshooting.md) - 故障排查
 2. 🔍 [configuration.md](01-configuration/configuration.md) - 检查配置
-3. 🔍 [verification.md](04-development/verification.md) - 运行验证测试
+3. 🔍 [task/ELECTRON_ESM_ISSUE.md](task/ELECTRON_ESM_ISSUE.md) - Electron 已知问题
+4. 🔍 [verification.md](04-development/verification.md) - 运行验证测试
 
 ### 开发贡献者
 
@@ -130,11 +195,17 @@
 3. 💻 [testing-and-quality.md](04-development/testing-and-quality.md) - 测试要求
 4. 💻 [verification.md](04-development/verification.md) - 验证流程
 
+### 查看项目历史
+
+1. 📋 [archive/plans/](archive/plans/) - 历史开发计划
+2. 📋 [archive/reports/](archive/reports/) - 历史报告
+3. 📊 [report/PROJECT_FINAL_SUMMARY.md](report/PROJECT_FINAL_SUMMARY.md) - 项目最终总结
+
 ### 深入理解
 
 1. 🏗️ [02-architecture/](02-architecture/) - 架构文档全部阅读
 2. 🔧 [03-subsystems/](03-subsystems/) - 子系统详细文档
-3. 📋 [plans/](plans/) - 项目演进历史
+3. 📋 [archive/plans/](archive/plans/) - 项目演进历史
 
 ---
 
@@ -167,15 +238,29 @@
 | ✅ 子系统详细文档 | 已覆盖（8 个文档） |
 | ✅ 开发维护规范 | 已覆盖（4 个文档） |
 | ✅ 工具和第三方源码 | 已覆盖（1 个文档） |
-| ✅ 项目规划和演进 | 已覆盖（7 个文档） |
+| ✅ 使用指南 | 已覆盖（3 个文档） |
+| ✅ Live2D 角色 | 已覆盖（3 个文档） |
+| ✅ 测试报告 | 已覆盖（3 个文档） |
+| ✅ 变更日志 | 已覆盖（3 个文档） |
+| ✅ 任务记录 | 已覆盖（2 个文档） |
+| ✅ 历史归档 | 已覆盖（10 个文档） |
 
-**总计**: 31 个文档，覆盖全面
+**总计**: 47 个文档，覆盖全面
 
 ---
 
 ## 🔄 文档更新
 
-本文档中心于 **2026-06-12** 进行了分类重组，采用数字前缀分类：
+### 2026-06-14 更新
+- ✅ 新增 `guide/` 目录 - 使用指南（3 个文档）
+- ✅ 新增 `live2d/` 目录 - Live2D 相关（3 个文档）
+- ✅ 新增 `report/` 目录 - 测试报告（3 个文档）
+- ✅ 新增 `changelog/` 目录 - 变更日志（3 个文档）
+- ✅ 新增 `task/` 目录 - 任务记录（2 个文档）
+- ✅ 新增 `archive/` 目录 - 历史归档（10 个文档）
+
+### 2026-06-12 更新
+本文档中心进行了分类重组，采用数字前缀分类：
 
 - `00-quick-start/` - 快速开始
 - `01-configuration/` - 配置与故障排查
@@ -183,6 +268,5 @@
 - `03-subsystems/` - 子系统文档
 - `04-development/` - 开发与维护
 - `05-tools/` - 工具文档
-- `plans/` - 规划文档
 
 所有文档链接已更新，旧链接会自动失效。

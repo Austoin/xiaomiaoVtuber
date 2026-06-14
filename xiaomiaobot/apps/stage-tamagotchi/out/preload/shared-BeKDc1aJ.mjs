@@ -1,6 +1,6 @@
 import { contextIsolated, platform } from "node:process";
 import { contextBridge, ipcRenderer, webFrame, webUtils } from "electron";
-//#region ../../node_modules/.pnpm/@electron-toolkit+preload@3.0.2_electron@41.2.1/node_modules/@electron-toolkit/preload/dist/index.mjs
+//#region ../../node_modules/.pnpm/@electron-toolkit+preload@3.0.2_electron@40.8.5/node_modules/@electron-toolkit/preload/dist/index.mjs
 var electronAPI = {
 	ipcRenderer: {
 		send(channel, ...args) {
