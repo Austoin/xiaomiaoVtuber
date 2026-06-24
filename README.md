@@ -86,6 +86,8 @@ xiaomiaoVirtual/
 
 ## 快速启动
 
+**📖 完整启动指南** → [docs/00-quick-start/run-and-config.md](docs/00-quick-start/run-and-config.md)
+
 ### 0. 一键启动
 
 主目录提供统一启动脚本，会打开必要的 PowerShell 独立终端，并按真实健康状态串行启动。QQ/NapCat 登录窗口保持可见，其它服务窗口默认最小化，仍可从任务栏逐个点开查看日志：

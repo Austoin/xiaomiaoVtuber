@@ -2,77 +2,55 @@
 
 > 3 分钟快速启动 xiaomiaoVirtual
 
+**📖 完整启动指南** → [run-and-config.md](../00-quick-start/run-and-config.md)
+
 ---
 
-## 🚀 快速启动
+## 🚀 最快启动
 
-### 方式一：TUI 终端（最快）
-```cmd
-cd f:\xiaomiaoVirtual
-start-tui.cmd
-```
-- ⚡ 启动最快（1-2秒）
-- 💻 纯终端操作
-- ✅ 完整工具能力
-
-### 方式二：QQ Bot + Live2D
-```cmd
-cd f:\xiaomiaoVirtual
+### 方式一：一键启动（推荐）
+```powershell
+cd F:\xiaomiaoVirtual
 start-all.cmd
 ```
-- 🤖 QQ 群聊/私聊
-- 🎭 Live2D 虚拟角色
-- 🔊 TTS 语音和字幕
+自动启动所有服务：QQ Bot + Agent API + Web 界面
 
----
-
-## 📋 前置要求
-
-### 必需
-- Python 3.11+（通过 conda）
-- Node.js 18+（如果使用 Live2D）
-
-### 可选
-- NapCat（QQ Bot）
-- API Keys（LLM 提供商）
-
----
-
-## ⚙️ 环境配置
-
-### 1. 首次配置
-```cmd
-setup-env.cmd
+### 方式二：TUI 终端（最快）
+```powershell
+cd F:\xiaomiaoVirtual
+start-tui.cmd
 ```
-自动安装：
-- xiaomiao（QQ Bot）
-- xiaomiaoAgent（Agent 核心）
-- xiaomiaobot（前端，可选）
+⚡ 1-2 秒启动，纯终端交互，完整工具能力
 
-### 2. 配置文件
+---
 
-#### 主配置（f:\xiaomiaoVirtual\config.json）
+## 📋 首次使用
+
+### 1. 环境准备
+- ✅ Python 3.11+ (通过 conda)
+- ✅ Node.js 18+ (可选，用于 Live2D)
+- ✅ NapCat (可选，用于 QQ Bot)
+
+**详细安装步骤** → [SETUP.md](../00-quick-start/SETUP.md)
+
+### 2. 最小配置
 ```json
+// F:\xiaomiaoVirtual\config.json
 {
-  "xiaomiao_agent": {
-    "enabled": true,
-    "base_url": "http://127.0.0.1:8900/v1/chat/completions"
-  },
-  "xiaomiaoAgent": {
+  "nanobot": {
+    "provider": "custom",
     "model": "deepseek-v4-flash",
-    "provider": "custom"
+    "providers": {
+      "custom": {
+        "apiKey": "你的密钥",
+        "baseUrl": "https://你的中转站/v1"
+      }
+    }
   }
 }
 ```
 
-#### QQ Bot 配置（xiaomiao\config.json）
-```json
-{
-  "ROOT": "你的QQ号",
-  "Super": [],
-  "agent_tool_allowlist": []
-}
-```
+**完整配置说明** → [configuration.md](../01-configuration/configuration.md)
 
 ---
 
@@ -80,54 +58,55 @@ setup-env.cmd
 
 ### TUI 终端
 ```
-启动后直接输入消息：
+启动后直接输入：
 > 你好
 
-退出：
-- 输入 /exit
-- 按 Ctrl+C
+退出：/exit 或 Ctrl+C
 ```
 
 ### QQ Bot
 ```
-在 QQ 中发送：
 @小喵 你好
-
-或使用命令前缀：
-- 搜索最新新闻
+或：搜索最新新闻
 ```
+
+**所有指令** → [QQ机器人指令速查.md](../00-quick-start/QQ机器人指令速查.md)
 
 ---
 
-## 🔧 常见问题
+## 🔧 遇到问题？
 
-### Q: 启动失败？
-**A**: 检查 conda 环境
-```cmd
+**常见问题排查** → [troubleshooting.md](../01-configuration/troubleshooting.md)
+
+快速检查：
+```powershell
+# 检查环境
 conda activate xiaomiao
-python --version  # 应该是 3.11+
-```
+python --version  # 应该 3.11+
 
-### Q: QQ Bot 没反应？
-**A**: 检查 NapCat 是否运行
-```
-查看端口：netstat -ano | findstr "5003"
-```
+# 检查端口
+netstat -ano | findstr "5004"  # NapCat
+netstat -ano | findstr "8900"  # Agent API
 
-### Q: 没有工具权限？
-**A**: 配置 ROOT 权限
-```json
-// xiaomiao/config.json
-{
-  "ROOT": "你的QQ号"
-}
+# 检查配置
+ls config.json
+ls xiaomiao/config.json
 ```
 
 ---
 
-## 📚 进阶文档
+## 📚 更多文档
 
-- [配置说明](CONFIGURATION.md) - 详细配置指南
-- [QQ Bot 指南](QQ_BOT_GUIDE.md) - QQ 使用和权限
-- [故障排查](TROUBLESHOOTING.md) - 问题解决
-- [项目架构](ARCHITECTURE.md) - 技术架构
+### 使用指南
+- 📖 [run-and-config.md](../00-quick-start/run-and-config.md) - **完整启动指南**
+- 📖 [QQ Bot 指南](QQ_BOT_GUIDE.md) - QQ 使用和权限
+- 📖 [配置说明](CONFIGURATION.md) - 详细配置
+
+### 深入了解
+- 🏗️ [项目架构](../02-architecture/project-overview.md) - 系统架构
+- 🔧 [子系统文档](../03-subsystems/) - 三大子系统详解
+- 💻 [开发指南](../04-development/development-maintenance.md) - 开发规范
+
+---
+
+**版本**: v1.1 | **更新**: 2026-06-24

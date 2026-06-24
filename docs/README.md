@@ -12,9 +12,8 @@
 
 | 文档 | 用途 |
 |------|------|
+| [run-and-config.md](00-quick-start/run-and-config.md) | **⭐ 主快速启动文档**，一键启动、手动启动、配置说明、常见问题 |
 | [SETUP.md](00-quick-start/SETUP.md) | **⭐ 克隆后必读**，依赖安装、模型下载、环境配置 |
-| [run-and-config.md](00-quick-start/run-and-config.md) | **⭐ 最快启动入口**，`setup-env.cmd` 和 `start-all.cmd` |
-| [STARTUP.md](00-quick-start/STARTUP.md) | 详细启动流程、端口说明、手动运行步骤 |
 | [QQ机器人指令速查.md](00-quick-start/QQ机器人指令速查.md) | QQ 群聊/私聊可用的所有指令 |
 
 ---
@@ -170,11 +169,11 @@
 
 ### 新用户（第一次使用）
 
-1. 📖 [run-and-config.md](00-quick-start/run-and-config.md) - 最快启动
-2. 📖 [QQ机器人指令速查.md](00-quick-start/QQ机器人指令速查.md) - 了解指令
-3. 📖 [guide/QQ_BOT_GUIDE.md](guide/QQ_BOT_GUIDE.md) - QQ Bot 详细指南
-4. 📖 [configuration.md](01-configuration/configuration.md) - 理解配置
-5. 📖 [project-overview.md](02-architecture/project-overview.md) - 了解架构
+1. 📖 [00-quick-start/SETUP.md](00-quick-start/SETUP.md) - 环境配置（首次必读）
+2. 📖 [00-quick-start/run-and-config.md](00-quick-start/run-and-config.md) - 完整启动指南
+3. 📖 [00-quick-start/QQ机器人指令速查.md](00-quick-start/QQ机器人指令速查.md) - 了解指令
+4. 📖 [guide/QQ_BOT_GUIDE.md](guide/QQ_BOT_GUIDE.md) - QQ Bot 详细指南
+5. 📖 [01-configuration/configuration.md](01-configuration/configuration.md) - 理解配置
 
 ### 使用 Live2D 角色
 
