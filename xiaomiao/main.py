@@ -747,9 +747,18 @@ async def handler(event: Events.Event, actions: Listener.Actions) -> None:
                 # 是命令,已处理
                 logger.info(f"命令系统处理: {user_message}, 结果: {cmd_result.success}")
                 if cmd_result.success:
+                    # 构建响应消息
+                    segments = []
+                    if cmd_result.message:
+                        segments.append(Segments.Text(cmd_result.message))
+
+                    # 如果有图片数据
+                    if cmd_result.data and 'image' in cmd_result.data:
+                        segments.append(Segments.Image(url=cmd_result.data['image']))
+
                     await actions.send(
                         group_id=event.group_id,
-                        message=Manager.Message(Segments.Text(cmd_result.message))
+                        message=Manager.Message(*segments)
                     )
                 else:
                     await actions.send(
@@ -2648,9 +2657,18 @@ CPU 使用率：{str(system_info["cpu_usage"]) + "%"}
                 # 是命令,已处理
                 logger.info(f"[私聊] 命令系统处理: {user_message}, 结果: {cmd_result.success}")
                 if cmd_result.success:
+                    # 构建响应消息
+                    segments = []
+                    if cmd_result.message:
+                        segments.append(Segments.Text(cmd_result.message))
+
+                    # 如果有图片数据
+                    if cmd_result.data and 'image' in cmd_result.data:
+                        segments.append(Segments.Image(url=cmd_result.data['image']))
+
                     await actions.send(
                         user_id=event.user_id,
-                        message=Manager.Message(Segments.Text(cmd_result.message))
+                        message=Manager.Message(*segments)
                     )
                 else:
                     await actions.send(

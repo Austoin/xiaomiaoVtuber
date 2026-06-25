@@ -20,11 +20,10 @@ from .registry import command_registry
 
 # 导入命令模块(导入时会自动注册)
 from . import basic  # noqa: F401
+from . import image  # noqa: F401 - 新增图片命令
 
 # TODO: 逐步添加其他命令模块
-# from . import ai  # noqa: F401
 # from . import agent  # noqa: F401
-# from . import image  # noqa: F401
 # from . import persona  # noqa: F401
 # from . import admin  # noqa: F401
 # from . import system  # noqa: F401
@@ -45,6 +44,7 @@ __all__ = [
 
     # 命令模块
     'basic',
+    'image',
 ]
 
 
