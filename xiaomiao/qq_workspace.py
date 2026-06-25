@@ -24,11 +24,13 @@ def _default_project_root(module_file: str | Path | None = None) -> Path:
 
 PROJECT_ROOT = _default_project_root()
 
-# 使用统一的缓存配置
-from cache_config import QQ_WORKSPACE_CACHE
+# 使用全局缓存配置
+import sys
+sys.path.insert(0, str(PROJECT_ROOT))
+from cache_config import QQ_WORKSPACE, QQ_DOWNLOADS
 
-WORKSPACE_ROOT = QQ_WORKSPACE_CACHE
-QQ_DOWNLOAD_ROOT = WORKSPACE_ROOT / "downloads" / "qq"
+WORKSPACE_ROOT = QQ_WORKSPACE
+QQ_DOWNLOAD_ROOT = QQ_DOWNLOADS
 
 DEFAULT_MAX_QQ_DOCUMENT_BYTES = 20 * 1024 * 1024
 DOWNLOAD_TIMEOUT_SECONDS = 30
