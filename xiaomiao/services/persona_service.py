@@ -14,7 +14,9 @@ class PersonaService:
     """人设服务"""
 
     def __init__(self):
-        self.runtime_dir = Path(__file__).resolve().parents[1] / "runtime"
+        # 使用统一的缓存配置
+        from ..cache_config import RUNTIME_DIR
+        self.runtime_dir = RUNTIME_DIR
         self.sisters_file = self.runtime_dir / "sisters.ini"
         self.jhq_file = self.runtime_dir / "jhq.ini"
         self.programmers_file = self.runtime_dir / "programmers.ini"

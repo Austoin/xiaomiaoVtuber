@@ -46,9 +46,11 @@ xiaomiaobot/apps/*/src/renderer/.cache/
 
 # Runtime data
 xiaomiaoAgent/.nanobot/
-xiaomiao/runtime/bridge_events.jsonl
-xiaomiao/temps/
-workspace/tmp/
+xiaomiao/runtime/
+workspace/
+*.ini
+!xiaomiao/config.json.example
+bridge_events.jsonl
 
 # Build artifacts
 dist/

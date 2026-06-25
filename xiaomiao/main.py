@@ -111,14 +111,31 @@ generating = False
 bridge_server = None
 bridge_lock = threading.Lock()
 QQ_AGENT_WAIT_NOTICE_SECONDS = 300.0
-RUNTIME_DIR = Path(__file__).parent / "runtime"
-SUPER_USER_FILE = os.path.join(RUNTIME_DIR, "Super_User.ini")
-MANAGE_USER_FILE = os.path.join(RUNTIME_DIR, "Manage_User.ini")
-SISTERS_FILE = os.path.join(RUNTIME_DIR, "sisters.ini")
-JHQ_FILE = os.path.join(RUNTIME_DIR, "jhq.ini")
-PROGRAMMERS_FILE = os.path.join(RUNTIME_DIR, "programmers.ini")
-TIMING_MESSAGE_FILE = os.path.join(RUNTIME_DIR, "timing_message.ini")
-BLACKLIST_FILE = os.path.join(RUNTIME_DIR, "blacklist.sr")
+
+# 使用统一的缓存配置
+from cache_config import (
+    RUNTIME_DIR,
+    SUPER_USER_FILE,
+    MANAGE_USER_FILE,
+    SISTERS_FILE,
+    JHQ_FILE,
+    PROGRAMMERS_FILE,
+    TIMING_MESSAGE_FILE,
+    BLACKLIST_FILE,
+    ensure_cache_dirs,
+)
+
+# 确保缓存目录存在
+ensure_cache_dirs()
+
+# 转换为字符串路径(兼容旧代码)
+SUPER_USER_FILE = str(SUPER_USER_FILE)
+MANAGE_USER_FILE = str(MANAGE_USER_FILE)
+SISTERS_FILE = str(SISTERS_FILE)
+JHQ_FILE = str(JHQ_FILE)
+PROGRAMMERS_FILE = str(PROGRAMMERS_FILE)
+TIMING_MESSAGE_FILE = str(TIMING_MESSAGE_FILE)
+BLACKLIST_FILE = str(BLACKLIST_FILE)
 
 
 class Tools:

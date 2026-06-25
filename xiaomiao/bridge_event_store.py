@@ -3,8 +3,11 @@ import os
 from pathlib import Path
 from typing import Any
 
+# 使用统一的缓存配置
+from cache_config import BRIDGE_EVENTS_CACHE
+
 BRIDGE_EVENT_STORE_ENV = "XIAOMIAO_BRIDGE_EVENT_STORE"
-DEFAULT_BRIDGE_EVENT_STORE = Path(__file__).resolve().parent / "runtime" / "bridge_events.jsonl"
+DEFAULT_BRIDGE_EVENT_STORE = BRIDGE_EVENTS_CACHE / "bridge_events.jsonl"
 REQUIRED_EVENT_FIELDS = ("id", "source", "channel", "chat_id", "user_id", "role", "content", "timestamp")
 BRIDGE_EVENT_SCHEMA_VERSION = 1
 OPTIONAL_EVENT_FIELDS = (
