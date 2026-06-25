@@ -7,8 +7,15 @@
 import re
 import logging
 from typing import Optional
-from .base import CommandContext, CommandResult
-from .registry import command_registry
+
+# 使用绝对导入避免测试时的问题
+try:
+    from ..commands.base import CommandContext, CommandResult
+    from ..commands.registry import command_registry
+except ImportError:
+    # 当作为顶层模块运行时
+    from commands.base import CommandContext, CommandResult
+    from commands.registry import command_registry
 
 logger = logging.getLogger(__name__)
 

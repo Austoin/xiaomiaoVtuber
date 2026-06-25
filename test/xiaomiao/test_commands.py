@@ -5,14 +5,30 @@
 """
 
 import pytest
-from xiaomiao.commands.base import (
-    Command,
-    CommandContext,
-    CommandResult,
-    PermissionLevel,
-    command,
-)
-from xiaomiao.commands.registry import CommandRegistry
+import sys
+from pathlib import Path
+
+# 添加项目根目录到路径
+project_root = Path(__file__).resolve().parents[2]
+xiaomiao_path = project_root / "xiaomiao"
+if str(project_root) not in sys.path:
+    sys.path.insert(0, str(project_root))
+if str(xiaomiao_path) not in sys.path:
+    sys.path.insert(0, str(xiaomiao_path))
+
+# 直接导入,不使用相对导入
+import commands.base as cmd_base
+import commands.registry as cmd_registry
+import handlers.command_dispatcher as cmd_dispatcher
+
+Command = cmd_base.Command
+CommandContext = cmd_base.CommandContext
+CommandResult = cmd_base.CommandResult
+PermissionLevel = cmd_base.PermissionLevel
+command = cmd_base.command
+
+CommandRegistry = cmd_registry.CommandRegistry
+CommandDispatcher = cmd_dispatcher.CommandDispatcher
 
 
 # 测试命令上下文
@@ -238,8 +254,6 @@ def test_registry_cooldown():
 
 
 # 测试命令分发器
-
-from xiaomiao.handlers.command_dispatcher import CommandDispatcher
 
 
 def test_dispatcher_is_command():

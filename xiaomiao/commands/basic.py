@@ -6,8 +6,8 @@
 """
 
 import logging
-from ..commands.base import command, CommandContext, CommandResult, PermissionLevel
-from ..commands.registry import command_registry
+from .base import command, CommandContext, CommandResult, PermissionLevel
+from .registry import command_registry
 
 logger = logging.getLogger(__name__)
 
