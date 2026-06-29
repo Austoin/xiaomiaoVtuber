@@ -40,7 +40,7 @@
 
 ```powershell
 # 在项目根目录执行
-start-monitor.cmd
+web\monitoring\start-monitor.cmd
 ```
 
 这将自动：
@@ -55,12 +55,12 @@ start-monitor.cmd
 ```powershell
 cd F:\xiaomiaoVirtual
 conda activate xiaomiao
-python monitor-api.py
+python web\monitoring\monitor-api.py
 ```
 
 **步骤 2**: 打开监控面板
 
-用浏览器打开 `monitor-dashboard-enhanced.html`
+用浏览器打开 `web/monitoring/monitor-dashboard-enhanced.html`
 
 ---
 
@@ -162,23 +162,23 @@ GET http://127.0.0.1:8888/api/status
 
 ### 核心文件
 
-1. **monitor-dashboard-enhanced.html**
+1. **web/monitoring/monitor-dashboard-enhanced.html**
    - 增强版监控面板
    - 支持实时 API 连接
    - 包含自动刷新功能
    - 推荐使用 ⭐
 
-2. **monitor-dashboard.html**
+2. **web/monitoring/monitor-dashboard.html**
    - 基础版监控面板
    - 纯前端，无需后端
    - 模拟状态显示
 
-3. **monitor-api.py**
+3. **web/monitoring/monitor-api.py**
    - 监控 API 后端
    - 提供服务状态检查接口
    - 基于 aiohttp 异步框架
 
-4. **start-monitor.cmd**
+4. **web\monitoring\start-monitor.cmd**
    - 一键启动脚本
    - 自动安装依赖
    - 启动 API 和面板
@@ -200,7 +200,7 @@ netstat -ano | findstr ":8888"
 taskkill /PID <进程ID> /F
 ```
 
-或者修改 `monitor-api.py` 中的端口号。
+或者修改 `web/monitoring/monitor-api.py` 中的端口号。
 
 ---
 
@@ -211,7 +211,7 @@ taskkill /PID <进程ID> /F
 **原因**: 监控 API 未启动或无法访问
 
 **解决方案**:
-1. 确认 `monitor-api.py` 正在运行
+1. 确认 `web/monitoring/monitor-api.py` 正在运行
 2. 检查端口 8888 是否开放
 3. 访问 http://127.0.0.1:8888/api/status 测试 API
 
@@ -241,7 +241,7 @@ taskkill /PID <进程ID> /F
 **说明**:
 - 没有端口的服务（如 QQ Bot、TUI）无法通过端口检测
 - 建议结合实际运行情况判断
-- 可以在 `monitor-api.py` 中自定义检测逻辑
+- 可以在 `web/monitoring/monitor-api.py` 中自定义检测逻辑
 
 ---
 
@@ -249,7 +249,7 @@ taskkill /PID <进程ID> /F
 
 ### 添加新服务
 
-编辑 `monitor-dashboard-enhanced.html`：
+编辑 `web/monitoring/monitor-dashboard-enhanced.html`：
 
 ```javascript
 const services = {
@@ -262,7 +262,7 @@ const services = {
 };
 ```
 
-编辑 `monitor-api.py`：
+编辑 `web/monitoring/monitor-api.py`：
 
 ```python
 SERVICES = [
@@ -281,7 +281,7 @@ SERVICES = [
 
 ### 修改刷新间隔
 
-编辑 `monitor-dashboard-enhanced.html`，找到：
+编辑 `web/monitoring/monitor-dashboard-enhanced.html`，找到：
 
 ```javascript
 autoRefreshInterval = setInterval(checkAllServices, 5000);
@@ -293,7 +293,7 @@ autoRefreshInterval = setInterval(checkAllServices, 5000);
 
 ### 修改 API 端口
 
-编辑 `monitor-api.py`，找到：
+编辑 `web/monitoring/monitor-api.py`，找到：
 
 ```python
 web.run_app(app, host='127.0.0.1', port=8888)
@@ -301,7 +301,7 @@ web.run_app(app, host='127.0.0.1', port=8888)
 
 修改 `port=8888` 为你想要的端口。
 
-同时需要修改 `monitor-dashboard-enhanced.html` 中的 API 地址：
+同时需要修改 `web/monitoring/monitor-dashboard-enhanced.html` 中的 API 地址：
 
 ```javascript
 const response = await fetch('http://127.0.0.1:8888/api/status');

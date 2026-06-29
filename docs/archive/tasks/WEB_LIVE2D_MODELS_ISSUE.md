@@ -115,7 +115,7 @@ async function loadCubismSampleModels() {
 ## 相关文件
 - `xiaomiaobot/packages/stage-ui/src/stores/display-models.ts` - 模型预设列表
 - `xiaomiaobot/apps/stage-tamagotchi/src/renderer/.cache/assets/js/CubismSdkForWeb-5-r.3/Samples/Resources/` - 实际模型文件位置
-- `docs/task/LIVE2D_CHARACTER_VERIFICATION.md` - 角色验证报告
+- `docs/archive/tasks/LIVE2D_CHARACTER_VERIFICATION.md` - 角色验证报告
 
 ## 文档日期
 2026-06-14

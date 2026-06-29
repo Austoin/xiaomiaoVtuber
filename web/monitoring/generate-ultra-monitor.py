@@ -1,6 +1,9 @@
 """
 生成细化版监控面板 - 更详细的服务拆分
 """
+from pathlib import Path
+
+OUTPUT_FILE = Path(__file__).resolve().parent / "monitor-dashboard-ultra.html"
 
 html = '''<!DOCTYPE html>
 <html lang="zh-CN">
@@ -432,5 +435,5 @@ html = '''<!DOCTYPE html>
 </body>
 </html>'''
 
-with open('monitor-dashboard-ultra.html', 'w', encoding='utf-8') as f:
+with open(OUTPUT_FILE, 'w', encoding='utf-8') as f:
     f.write(html)

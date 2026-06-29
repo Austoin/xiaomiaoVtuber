@@ -82,7 +82,7 @@ xiaomiaoVirtual/
 └── TECHNICAL.md    # 技术分析文档
 ```
 
-文件和运行态边界见 `docs/file-workspace-hygiene.md`：`workspace/` 只提交目录骨架，QQ 下载文件、Agent 产物、缓存、会话、桥接事件和本机数据库都留在本地。
+文件和运行态边界见 `docs/04-development/file-workspace-hygiene.md`：`workspace/` 只提交目录骨架，QQ 下载文件、Agent 产物、缓存、会话、桥接事件和本机数据库都留在本地。
 
 ## 快速启动
 
@@ -337,13 +337,13 @@ start-tui.cmd
 ## 文档
 
 - `TECHNICAL.md`：完整技术结构、运行链路、桥接协议、风险和演进建议。
-- `docs/STARTUP.md`：本地启动步骤、端口、验证和常见问题。
-- `docs/file-workspace-hygiene.md`：文件追踪、工作区、QQ 下载资源、运行态缓存和清理规则。
-- `docs/xiaomiao/README.md`：QQ 机器人部署和功能说明。
-- `docs/AuBot/README.md`：历史命名下的 xiaomiaobot / xiaomiaoVirtual 表现层启动和模块说明。
-- `docs/tool/tool-directory-analysis.md`：`tool/markitdown` 与 `tool/Scrapling` 精简源码和接入边界。
-- `docs/plans/2026-06-06-qq-agent-xiaomiaobot-capability-integration.md`：QQ 直连 Agent/xiaomiaobot 能力计划与执行批次。
-- `docs/plans/2026-06-06-project-deep-analysis-and-qq-agent-gap-audit.md`：上一计划完成度审计、剩余缺口和下一阶段路线。
+- `docs/getting-started/README.md`：本地启动步骤、端口、验证和常见问题。
+- `docs/04-development/file-workspace-hygiene.md`：文件追踪、工作区、QQ 下载资源、运行态缓存和清理规则。
+- `docs/subsystems/xiaomiao/README.md`：QQ 机器人部署和功能说明。
+- `docs/subsystems/xiaomiaobot/README.md`：历史命名下的 xiaomiaobot / xiaomiaoVirtual 表现层启动和模块说明。
+- `docs/05-tools/tool-directory-analysis.md`：`tool/markitdown` 与 `tool/Scrapling` 精简源码和接入边界。
+- `docs/archive/plans/2026-06-06-qq-agent-xiaomiaobot-capability-integration.md`：QQ 直连 Agent/xiaomiaobot 能力计划与执行批次。
+- `docs/archive/plans/2026-06-06-project-deep-analysis-and-qq-agent-gap-audit.md`：上一计划完成度审计、剩余缺口和下一阶段路线。
 
 ## 安全注意
 

@@ -1,7 +1,9 @@
 """
 生成增强版监控面板
 """
-import os
+from pathlib import Path
+
+OUTPUT_FILE = Path(__file__).resolve().parent / "monitor-dashboard-pro.html"
 
 html_content = '''<!DOCTYPE html>
 <html lang="zh-CN">
@@ -419,7 +421,7 @@ html_content = '''<!DOCTYPE html>
 </html>'''
 
 # 保存文件
-with open('monitor-dashboard-pro.html', 'w', encoding='utf-8') as f:
+with open(OUTPUT_FILE, 'w', encoding='utf-8') as f:
     f.write(html_content)
 
-print("✓ 监控面板已生成: monitor-dashboard-pro.html")
+print(f"✓ 监控面板已生成: {OUTPUT_FILE}")
