@@ -8,22 +8,19 @@ import datetime
 import os
 import random
 import re
-import base64
 import urllib.parse
 import emoji
 import time
 import traceback
 from dataclasses import replace
 from openai import OpenAI
-import requests, aiohttp
+import requests
 from Hyper import Configurator
 import platform
 import psutil
 import GPUtil
 import subprocess
 from typing import Set
-from PIL import Image
-import io
 import threading
 import paramiko
 from console_output import configure_console_output
@@ -67,6 +64,12 @@ from qq_workspace import (
     resolve_group_upload_url,
 )
 
+# ========== 新增: 导入命令系统 ==========
+from commands import list_all_commands
+from handlers.command_dispatcher import command_dispatcher
+import commands.basic  # 自动注册基础命令
+# ========================================
+
 # import framework
 CONFIG_FILE = Path(__file__).parent / "config.json"
 Configurator.cm = Configurator.ConfigManager(
@@ -82,14 +85,24 @@ from Hyper.Events import *
 from GoogleAI import genai, Context, Parts, Roles
 
 # from google.generativeai.types import FunctonDeclaration
-from prerequisites import prerequisite, select_role, update_role_lists
+from prerequisites import prerequisite, select_role
 import Quote
+from utils.runtime_helpers import (
+    SettingsStore,
+    deal_image,
+    download_and_compress_image,
+    seconds_to_hms,
+    verfiy_pixiv,
+)
 
 config = Configurator.cm.get_cfg()
 logger = Logger.Logger()
 logger.set_level(config.log_level)
 configure_console_output()
 version_name = "2.0"
+
+# 命令系统启动日志
+logger.info(f"命令系统已加载,共 {len(list_all_commands())} 个命令: {list_all_commands()}")
 cooldowns = {}
 cooldowns1 = {}
 second_start = time.time()
@@ -102,14 +115,39 @@ generating = False
 bridge_server = None
 bridge_lock = threading.Lock()
 QQ_AGENT_WAIT_NOTICE_SECONDS = 300.0
-RUNTIME_DIR = Path(__file__).parent / "runtime"
-SUPER_USER_FILE = os.path.join(RUNTIME_DIR, "Super_User.ini")
-MANAGE_USER_FILE = os.path.join(RUNTIME_DIR, "Manage_User.ini")
-SISTERS_FILE = os.path.join(RUNTIME_DIR, "sisters.ini")
-JHQ_FILE = os.path.join(RUNTIME_DIR, "jhq.ini")
-PROGRAMMERS_FILE = os.path.join(RUNTIME_DIR, "programmers.ini")
-TIMING_MESSAGE_FILE = os.path.join(RUNTIME_DIR, "timing_message.ini")
-BLACKLIST_FILE = os.path.join(RUNTIME_DIR, "blacklist.sr")
+
+# 使用统一的缓存配置
+from cache_config import (
+    RUNTIME_DIR,
+    SUPER_USER_FILE,
+    MANAGE_USER_FILE,
+    SISTERS_FILE,
+    JHQ_FILE,
+    PROGRAMMERS_FILE,
+    TIMING_MESSAGE_FILE,
+    BLACKLIST_FILE,
+    ensure_cache_dirs,
+)
+
+# 确保缓存目录存在
+ensure_cache_dirs()
+
+# 转换为字符串路径(兼容旧代码)
+SUPER_USER_FILE = str(SUPER_USER_FILE)
+MANAGE_USER_FILE = str(MANAGE_USER_FILE)
+SISTERS_FILE = str(SISTERS_FILE)
+JHQ_FILE = str(JHQ_FILE)
+PROGRAMMERS_FILE = str(PROGRAMMERS_FILE)
+TIMING_MESSAGE_FILE = str(TIMING_MESSAGE_FILE)
+BLACKLIST_FILE = str(BLACKLIST_FILE)
+
+settings_store = SettingsStore(
+    super_user_file=Path(SUPER_USER_FILE),
+    manage_user_file=Path(MANAGE_USER_FILE),
+    sisters_file=Path(SISTERS_FILE),
+    jhq_file=Path(JHQ_FILE),
+    programmers_file=Path(PROGRAMMERS_FILE),
+)
 
 
 class Tools:
@@ -493,72 +531,38 @@ def timing_message(actions: Listener.Actions):
 
 def Read_Settings():
     global Super_User, Manage_User, sisters, jhq, programmers
-    with open(SUPER_USER_FILE, "r") as f:
-        Super_User = f.read().split("\n")
-        f.close()
-    with open(MANAGE_USER_FILE, "r") as f:
-        Manage_User = f.read().split("\n")
-        f.close()
-    with open(SISTERS_FILE, "r") as f:
-        sisters = f.read().split("\n")
-        f.close()
-    with open(JHQ_FILE, "r") as f:
-        jhq = f.read().split("\n")
-        f.close()
-    try:
-        with open(PROGRAMMERS_FILE, "r") as f:
-            programmers = f.read().split("\n")
-            f.close()
-    except FileNotFoundError:
-        programmers = []
+    settings = settings_store.read_settings()
+    Super_User = settings["super_users"]
+    Manage_User = settings["manage_users"]
+    sisters = settings["sisters"]
+    jhq = settings["jhq"]
+    programmers = settings["programmers"]
 
 
 def Write_Roles(role: str, user_id: int) -> bool:
     global sisters, jhq, programmers
-    sisters, jhq, programmers = update_role_lists(
-        str(user_id), role, sisters, jhq, programmers
+    success, sisters, jhq, programmers = settings_store.write_roles(
+        role=role,
+        user_id=user_id,
+        sisters=sisters,
+        jhq=jhq,
+        programmers=programmers,
     )
-    try:
-        with open(SISTERS_FILE, "w") as f:
-            f.write("\n".join(sisters))
-        with open(JHQ_FILE, "w") as f:
-            f.write("\n".join(jhq))
-        with open(PROGRAMMERS_FILE, "w") as f:
-            f.write("\n".join(programmers))
-        return True
-    except Exception:
-        return False
+    return success
 
 
 def Write_Settings(s: list, m: list) -> bool:
-    s = [item for item in s if item]
-    m = [item for item in m if item]
     global Super_User, Manage_User
-    su = ""
-    for item in range(len(s)):
-        su += s[item]
-        if item != len(s) - 1:
-            su += "\n"
-    ma = ""
-    for item in range(len(m)):
-        ma += m[item]
-        if item != len(m) - 1:
-            ma += "\n"
-
-    try:
-        with open(SUPER_USER_FILE, "w") as f:
-            f.write(su)
-            f.close()
-        with open(MANAGE_USER_FILE, "w") as f:
-            f.write(ma)
-            f.close()
-
-        Super_User = s
-        Manage_User = m
-
-        return True
-    except:
-        return False
+    normalized_super_users = [item for item in s if item]
+    normalized_manage_users = [item for item in m if item]
+    success = settings_store.write_settings(
+        normalized_super_users,
+        normalized_manage_users,
+    )
+    if success:
+        Super_User = normalized_super_users
+        Manage_User = normalized_manage_users
+    return success
 
 
 @Listener.reg
@@ -722,6 +726,45 @@ async def handler(event: Events.Event, actions: Listener.Actions) -> None:
         #         await actions.send(group_id=event.group_id, message=Manager.Message(Segments.Image("https://pixiv.t.sr-studio.top/img-original/img/2023/01/24/03/53/38/104766095_p0.png")))
         print(event.user_id)
         sys_prompt = select_persona_prompt(event.user_id, event_user)
+
+        # ========== 新增: 命令系统分发 ==========
+        try:
+            cmd_result = await command_dispatcher.dispatch(
+                user_id=event.user_id,
+                user_name=event_user,
+                message_id=event.message_id,
+                message_text=user_message,
+                chat_id=str(event.group_id),
+                chat_type='group',
+            )
+
+            if cmd_result is not None:
+                # 是命令,已处理
+                logger.info(f"命令系统处理: {user_message}, 结果: {cmd_result.success}")
+                if cmd_result.success:
+                    # 构建响应消息
+                    segments = []
+                    if cmd_result.message:
+                        segments.append(Segments.Text(cmd_result.message))
+
+                    # 如果有图片数据
+                    if cmd_result.data and 'image' in cmd_result.data:
+                        segments.append(Segments.Image(url=cmd_result.data['image']))
+
+                    await actions.send(
+                        group_id=event.group_id,
+                        message=Manager.Message(*segments)
+                    )
+                else:
+                    await actions.send(
+                        group_id=event.group_id,
+                        message=Manager.Message(Segments.Text(f"❌ {cmd_result.error}"))
+                    )
+                return  # 命令已处理,不继续走原有流程
+        except Exception as e:
+            logger.error(f"命令分发异常: {e}", exc_info=True)
+            # 继续走原有流程
+        # ========== 命令分发结束 ==========
 
         if "ping" == user_message:
             print(str(event.user_id))
@@ -2594,6 +2637,45 @@ CPU 使用率：{str(system_info["cpu_usage"]) + "%"}
         # 根据用户身份设置系统提示
         sys_prompt = select_persona_prompt(event.user_id, event_user)
 
+        # ========== 新增: 命令系统分发 (私聊) ==========
+        try:
+            cmd_result = await command_dispatcher.dispatch(
+                user_id=event.user_id,
+                user_name=event_user,
+                message_id=event.message_id,
+                message_text=user_message,
+                chat_id=str(event.user_id),
+                chat_type='private',
+            )
+
+            if cmd_result is not None:
+                # 是命令,已处理
+                logger.info(f"[私聊] 命令系统处理: {user_message}, 结果: {cmd_result.success}")
+                if cmd_result.success:
+                    # 构建响应消息
+                    segments = []
+                    if cmd_result.message:
+                        segments.append(Segments.Text(cmd_result.message))
+
+                    # 如果有图片数据
+                    if cmd_result.data and 'image' in cmd_result.data:
+                        segments.append(Segments.Image(url=cmd_result.data['image']))
+
+                    await actions.send(
+                        user_id=event.user_id,
+                        message=Manager.Message(*segments)
+                    )
+                else:
+                    await actions.send(
+                        user_id=event.user_id,
+                        message=Manager.Message(Segments.Text(f"❌ {cmd_result.error}"))
+                    )
+                return  # 命令已处理,不继续走原有流程
+        except Exception as e:
+            logger.error(f"[私聊] 命令分发异常: {e}", exc_info=True)
+            # 继续走原有流程
+        # ========== 命令分发结束 ==========
+
         # ping 测试
         if "ping" == user_message:
             await actions.send(
@@ -3189,25 +3271,6 @@ Made by SR Studio
                 )
 
 
-def seconds_to_hms(total_seconds):
-    hours = total_seconds // 3600
-    remaining_seconds = total_seconds % 3600
-    minutes = remaining_seconds // 60
-    seconds = remaining_seconds % 60
-    return f"{hours}h, {minutes}m, {seconds}s"
-
-
-def verfiy_pixiv(file_path):
-    try:
-        img = Image.open(file_path)
-        img.verify()  # 验证图像
-        img.close()
-        return True
-    except (IOError, SyntaxError) as e:
-        print(f"Error: {e}")
-        return False
-
-
 def get_system_info():
     # 系统
     version_info = platform.platform()
@@ -3241,101 +3304,6 @@ def get_system_info():
         "gpu_count": gpu_count,
         "gpu_usage": gpu_usage,
     }
-
-
-def deal_image(i, max_width=1920, max_height=1920, max_size_mb=5):
-    """
-    压缩图片：限制尺寸和文件大小
-
-    Args:
-        i: 图片二进制数据
-        max_width: 最大宽度（默认1920）
-        max_height: 最大高度（默认1920）
-        max_size_mb: 最大文件大小MB（默认5MB）
-
-    Returns:
-        压缩后的图片二进制数据
-    """
-    img = Image.open(io.BytesIO(i))
-
-    # 转换为RGB模式（处理PNG透明通道等）
-    if img.mode in ("RGBA", "P", "LA"):
-        background = Image.new("RGB", img.size, (255, 255, 255))
-        if img.mode == "P":
-            img = img.convert("RGBA")
-        background.paste(img, mask=img.split()[-1] if img.mode == "RGBA" else None)
-        img = background
-    elif img.mode != "RGB":
-        img = img.convert("RGB")
-
-    # 限制尺寸
-    width, height = img.size
-    if width > max_width or height > max_height:
-        ratio = min(max_width / width, max_height / height)
-        new_width = int(width * ratio)
-        new_height = int(height * ratio)
-        img = img.resize((new_width, new_height), Image.Resampling.LANCZOS)
-        print(f"图片尺寸调整: {width}x{height} -> {new_width}x{new_height}")
-
-    # 压缩文件大小
-    buffer = io.BytesIO()
-    max_size = max_size_mb * 1024 * 1024
-    quality = 95
-
-    while quality >= 10:
-        buffer.seek(0)
-        buffer.truncate()
-        img.save(buffer, format="JPEG", quality=quality, optimize=True)
-        if buffer.tell() < max_size:
-            break
-        quality -= 10
-
-    print(f"图片压缩完成: {buffer.tell() / 1024:.1f}KB, quality={quality}")
-    return buffer.getvalue()
-
-
-async def download_and_compress_image(
-    url, max_width=1920, max_height=1920, max_size_mb=5
-):
-    """
-    下载并压缩图片
-
-    Args:
-        url: 图片URL
-        max_width: 最大宽度
-        max_height: 最大高度
-        max_size_mb: 最大文件大小MB
-
-    Returns:
-        base64编码的图片数据，失败返回None
-    """
-    try:
-        async with aiohttp.ClientSession() as session:
-            async with session.get(
-                url, timeout=aiohttp.ClientTimeout(total=30)
-            ) as resp:
-                if resp.status == 200:
-                    image_data = await resp.read()
-                    original_size = len(image_data) / 1024
-                    print(f"下载图片成功: {original_size:.1f}KB")
-
-                    # 压缩图片
-                    compressed = deal_image(
-                        image_data, max_width, max_height, max_size_mb
-                    )
-                    compressed_size = len(compressed) / 1024
-                    print(
-                        f"压缩后: {compressed_size:.1f}KB (节省 {(1 - compressed_size / original_size) * 100:.1f}%)"
-                    )
-
-                    # 返回base64编码
-                    return base64.b64encode(compressed).decode("utf-8")
-                else:
-                    print(f"下载图片失败: HTTP {resp.status}")
-                    return None
-    except Exception as e:
-        print(f"下载图片异常: {e}")
-        return None
 
 
 start_desktop_bridge()

@@ -134,7 +134,7 @@
 
 ## 上一计划完成度审计
 
-上一计划文件：`docs/plans/2026-06-06-qq-agent-xiaomiaobot-capability-integration.md`
+上一计划文件：`docs/archive/plans/2026-06-06-qq-agent-xiaomiaobot-capability-integration.md`
 
 ### 完成度总评
 

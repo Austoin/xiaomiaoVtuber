@@ -44,11 +44,15 @@ log/
 xiaomiaobot/.cache/
 xiaomiaobot/apps/*/src/renderer/.cache/
 
-# Runtime data
+# Runtime data (已迁移到 .cache,保留忽略以防旧文件)
 xiaomiaoAgent/.nanobot/
-xiaomiao/runtime/bridge_events.jsonl
+xiaomiao/runtime/
 xiaomiao/temps/
-workspace/tmp/
+workspace/
+log/
+*.ini
+!config/*.ini
+bridge_events.jsonl
 
 # Build artifacts
 dist/
@@ -95,3 +99,4 @@ xiaomiaobot/apps/stage-tamagotchi/src/renderer/.cache/assets/
 # Large custom models (not in git, build locally)
 xiaomiaobot/packages/stage-ui/src/assets/live2d/models/atri.zip
 xiaomiaobot/packages/stage-ui/src/assets/live2d/models/natsume.zip
+xiaomiao/temps/

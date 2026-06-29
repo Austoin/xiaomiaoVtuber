@@ -1,6 +1,6 @@
 # 小喵 QQ Bot 控制台融合实施计划
 
-> 状态提示：这是 2026-05-12 的历史计划文档。当前项目已在 2026-06-02 完成 `stage-web`、桌面 bridge、QQ 普通 AI 回复到 xiaomiaoAgent 的统一接入。当前启动方式以 `docs/STARTUP.md`、`README.md` 和 `TECHNICAL.md` 为准。
+> 状态提示：这是 2026-05-12 的历史计划文档。当前项目已在 2026-06-02 完成 `stage-web`、桌面 bridge、QQ 普通 AI 回复到 xiaomiaoAgent 的统一接入。当前启动方式以 `docs/getting-started/README.md`、`README.md` 和 `TECHNICAL.md` 为准。
 
 > **给 Claude：** 需要使用 `superpowers:executing-plans` 子技能，按任务逐步实施本计划。
 
@@ -232,7 +232,7 @@ pnpm dev:tamagotchi
 
 - 修改：`README.md`
 - 修改：`TECHNICAL.md`
-- 如实现细节变化，修改：`docs/plans/2026-05-12-xiaomiao-console-fusion.md`
+- 如实现细节变化，修改：`docs/archive/plans/2026-05-12-xiaomiao-console-fusion.md`
 
 **步骤 1：更新 README**
 
@@ -252,7 +252,7 @@ pnpm dev:tamagotchi
 
 - 修改：`README.md`
 - 修改：`TECHNICAL.md`
-- 修改：`docs/plans/2026-05-12-xiaomiao-console-fusion.md`
+- 修改：`docs/archive/plans/2026-05-12-xiaomiao-console-fusion.md`
 
 **步骤 1：说明 xiaomiaoAgent 角色**
 

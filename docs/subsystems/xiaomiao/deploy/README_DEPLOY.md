@@ -1,6 +1,6 @@
 # 小喵 QQ 机器人 - Linux 部署指南
 
-> 范围说明：本文档描述的是 Linux 服务器上的 QQ Bot / NapCat 部署。Windows 本机三端联动、`start-all.cmd`、xiaomiaoAgent API/网关/WebUI、xiaomiaobot stage-web/stage-tamagotchi/stage-pocket、QQ Agent 工具确认链路，请以 `docs/STARTUP.md` 和根目录 `README.md` 为准。
+> 范围说明：本文档描述的是 Linux 服务器上的 QQ Bot / NapCat 部署。Windows 本机三端联动、`start-all.cmd`、xiaomiaoAgent API/网关/WebUI、xiaomiaobot stage-web/stage-tamagotchi/stage-pocket、QQ Agent 工具确认链路，请以 `docs/getting-started/README.md` 和根目录 `README.md` 为准。
 
 ## 部署文件说明
 
