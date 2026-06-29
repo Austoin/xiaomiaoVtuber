@@ -5,29 +5,32 @@ xiaomiao 模块缓存配置
 """
 
 import sys
+import importlib.util
 from pathlib import Path
 
-# 添加项目根目录到 Python 路径
+# 项目根目录
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
-if str(PROJECT_ROOT) not in sys.path:
-    sys.path.insert(0, str(PROJECT_ROOT))
 
-# 从全局配置导入
-from cache_config import (
-    CACHE_ROOT,
-    XIAOMIAO_RUNTIME as RUNTIME_DIR,
-    SUPER_USER_FILE,
-    MANAGE_USER_FILE,
-    SISTERS_FILE,
-    JHQ_FILE,
-    PROGRAMMERS_FILE,
-    TIMING_MESSAGE_FILE,
-    BLACKLIST_FILE,
-    QQ_WORKSPACE as QQ_WORKSPACE_CACHE,
-    BRIDGE_EVENTS_CACHE,
-    ensure_all_cache_dirs as ensure_cache_dirs,
-    get_cache_path,
-)
+# 直接加载项目根目录下的 cache_config.py (避免循环导入)
+global_cache_path = PROJECT_ROOT / "cache_config.py"
+spec = importlib.util.spec_from_file_location("global_cache_config", global_cache_path)
+global_cache = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(global_cache)
+
+# 导入全局配置
+CACHE_ROOT = global_cache.CACHE_ROOT
+RUNTIME_DIR = global_cache.XIAOMIAO_RUNTIME
+SUPER_USER_FILE = global_cache.SUPER_USER_FILE
+MANAGE_USER_FILE = global_cache.MANAGE_USER_FILE
+SISTERS_FILE = global_cache.SISTERS_FILE
+JHQ_FILE = global_cache.JHQ_FILE
+PROGRAMMERS_FILE = global_cache.PROGRAMMERS_FILE
+TIMING_MESSAGE_FILE = global_cache.TIMING_MESSAGE_FILE
+BLACKLIST_FILE = global_cache.BLACKLIST_FILE
+QQ_WORKSPACE_CACHE = global_cache.QQ_WORKSPACE
+BRIDGE_EVENTS_CACHE = global_cache.BRIDGE_EVENTS_CACHE
+ensure_cache_dirs = global_cache.ensure_all_cache_dirs
+get_cache_path = global_cache.get_cache_path
 
 __all__ = [
     "CACHE_ROOT",

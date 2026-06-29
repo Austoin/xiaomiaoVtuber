@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
 缓存目录迁移脚本
 
@@ -7,7 +8,13 @@
 
 import shutil
 import sys
+import io
 from pathlib import Path
+
+# 设置标准输出编码为 UTF-8 (解决 Windows 下的编码问题)
+if sys.platform == 'win32':
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+    sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8')
 
 # 项目根目录
 PROJECT_ROOT = Path(__file__).parent.parent
