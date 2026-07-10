@@ -1,13 +1,13 @@
 """Configuration schema using Pydantic."""
 from __future__ import annotations
 
-from pathlib import Path
 from typing import TYPE_CHECKING, Any, Literal
 
 from pydantic import AliasChoices, BaseModel, ConfigDict, Field
 from pydantic.alias_generators import to_camel
 from pydantic_settings import BaseSettings
 
+from nanobot.config.paths import get_workspace_path
 from nanobot.cron.types import CronSchedule
 
 if TYPE_CHECKING:
@@ -76,7 +76,7 @@ class DreamConfig(Base):
 class AgentDefaults(Base):
     """Default agent configuration."""
 
-    workspace: str = "~/.nanobot/workspace"
+    workspace: str = str(get_workspace_path())
     model: str = "anthropic/claude-opus-4-5"
     provider: str = (
         "auto"  # Provider name (e.g. "anthropic", "openrouter") or "auto" for auto-detection

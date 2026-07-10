@@ -12,6 +12,8 @@ from datetime import datetime
 from pathlib import Path
 import json
 
+from cache_config import BRIDGE_EVENTS_FILE
+
 logger = logging.getLogger(__name__)
 
 
@@ -35,7 +37,7 @@ class BridgeService:
             event_store_path: 事件存储路径
         """
         if event_store_path is None:
-            event_store_path = Path(__file__).parent.parent.parent / "workspace" / "bridge_events.jsonl"
+            event_store_path = BRIDGE_EVENTS_FILE
 
         self.event_store_path = event_store_path
         self.event_store_path.parent.mkdir(parents=True, exist_ok=True)

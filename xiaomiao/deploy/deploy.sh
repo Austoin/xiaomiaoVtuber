@@ -108,7 +108,7 @@ setup_directories() {
     
     mkdir -p "$BOT_DIR"
     mkdir -p "$BOT_DIR/logs"
-    mkdir -p "$BOT_DIR/temps"
+    mkdir -p "$BOT_DIR/.cache/xiaomiao/qq_workspace/tmp"
     mkdir -p "$BOT_DIR/napcat_data"
     
     success "目录创建完成: $BOT_DIR"

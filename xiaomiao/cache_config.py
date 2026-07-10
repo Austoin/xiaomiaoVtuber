@@ -29,6 +29,12 @@ TIMING_MESSAGE_FILE = global_cache.TIMING_MESSAGE_FILE
 BLACKLIST_FILE = global_cache.BLACKLIST_FILE
 QQ_WORKSPACE_CACHE = global_cache.QQ_WORKSPACE
 BRIDGE_EVENTS_CACHE = global_cache.BRIDGE_EVENTS_CACHE
+QQ_TMP = global_cache.QQ_TMP
+NANOBOT_CACHE = global_cache.NANOBOT_CACHE
+NANOBOT_CONFIG_FILE = global_cache.NANOBOT_CONFIG_FILE
+NANOBOT_WORKSPACE = global_cache.NANOBOT_WORKSPACE
+NANOBOT_BRIDGE = global_cache.NANOBOT_BRIDGE
+NANOBOT_CLI_HISTORY = global_cache.NANOBOT_CLI_HISTORY
 ensure_cache_dirs = global_cache.ensure_all_cache_dirs
 get_cache_path = global_cache.get_cache_path
 
@@ -44,6 +50,12 @@ __all__ = [
     "BLACKLIST_FILE",
     "QQ_WORKSPACE_CACHE",
     "BRIDGE_EVENTS_CACHE",
+    "QQ_TMP",
+    "NANOBOT_CACHE",
+    "NANOBOT_CONFIG_FILE",
+    "NANOBOT_WORKSPACE",
+    "NANOBOT_BRIDGE",
+    "NANOBOT_CLI_HISTORY",
     "ensure_cache_dirs",
     "get_cache_path",
 ]

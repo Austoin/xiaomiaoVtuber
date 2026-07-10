@@ -6,11 +6,18 @@ set "ROOT_DIR=%~dp0"
 set "XIAOMIAO_DIR=%ROOT_DIR%xiaomiao"
 set "XIAOMIAO_AGENT_DIR=%ROOT_DIR%xiaomiaoAgent"
 set "XIAOMIAOBOT_DIR=%ROOT_DIR%xiaomiaobot"
+set "CACHE_DIR=%ROOT_DIR%.cache"
+set "XIAOMIAO_CACHE_DIR=%CACHE_DIR%\xiaomiao"
+set "XIAOMIAO_QQ_WORKSPACE=%XIAOMIAO_CACHE_DIR%\qq_workspace"
+set "XIAOMIAO_QQ_DOWNLOADS=%XIAOMIAO_QQ_WORKSPACE%\downloads\qq"
+set "XIAOMIAO_QQ_ARTIFACTS=%XIAOMIAO_QQ_WORKSPACE%\artifacts"
+set "XIAOMIAO_QQ_TMP=%XIAOMIAO_QQ_WORKSPACE%\tmp"
+set "XIAOMIAO_AGENT_CACHE_DIR=%CACHE_DIR%\agent\nanobot"
 set "ROOT_CONFIG=%ROOT_DIR%config.json"
 set "ROOT_CONFIG_EXAMPLE=%ROOT_DIR%config.example.json"
 set "XIAOMIAO_CONFIG=%XIAOMIAO_DIR%\config.json"
-set "XIAOMIAO_AGENT_CONFIG=%XIAOMIAO_AGENT_DIR%\.nanobot\config.json"
-set "XIAOMIAO_AGENT_WORKSPACE=%XIAOMIAO_AGENT_DIR%\.nanobot\workspace"
+set "XIAOMIAO_AGENT_CONFIG=%XIAOMIAO_AGENT_CACHE_DIR%\config.json"
+set "XIAOMIAO_AGENT_WORKSPACE=%XIAOMIAO_AGENT_CACHE_DIR%\workspace"
 set "CHECK_ONLY=0"
 set "YES=0"
 set "SKIP_PYTHON=0"
@@ -173,13 +180,13 @@ echo.
 echo [Check] Config files
 call :check_file "%ROOT_CONFIG%" "root config.json"
 call :check_file "%XIAOMIAO_CONFIG%" "xiaomiao config.json"
-call :check_file "%XIAOMIAO_AGENT_CONFIG%" "xiaomiaoAgent .nanobot config.json"
+call :check_file "%XIAOMIAO_AGENT_CONFIG%" "xiaomiaoAgent cache config.json"
 
 echo.
 echo [Check] Dependency folders
 call :check_dir "%XIAOMIAOBOT_DIR%\node_modules" "xiaomiaobot node_modules"
 call :check_dir "%XIAOMIAO_AGENT_WORKSPACE%" "xiaomiaoAgent workspace"
-call :check_dir "%ROOT_DIR%workspace" "project workspace"
+call :check_dir "%XIAOMIAO_QQ_WORKSPACE%" "project QQ workspace"
 
 echo.
 echo ========================================
@@ -212,11 +219,11 @@ exit /b 0
 
 :ensure_workspace_dirs
 echo [Setup] Workspace directories
-if not exist "%ROOT_DIR%workspace" mkdir "%ROOT_DIR%workspace"
-if not exist "%ROOT_DIR%workspace\downloads" mkdir "%ROOT_DIR%workspace\downloads"
-if not exist "%ROOT_DIR%workspace\downloads\qq" mkdir "%ROOT_DIR%workspace\downloads\qq"
-if not exist "%ROOT_DIR%workspace\artifacts" mkdir "%ROOT_DIR%workspace\artifacts"
-if not exist "%ROOT_DIR%workspace\tmp" mkdir "%ROOT_DIR%workspace\tmp"
+if not exist "%CACHE_DIR%" mkdir "%CACHE_DIR%"
+if not exist "%XIAOMIAO_QQ_WORKSPACE%" mkdir "%XIAOMIAO_QQ_WORKSPACE%"
+if not exist "%XIAOMIAO_QQ_DOWNLOADS%" mkdir "%XIAOMIAO_QQ_DOWNLOADS%"
+if not exist "%XIAOMIAO_QQ_ARTIFACTS%" mkdir "%XIAOMIAO_QQ_ARTIFACTS%"
+if not exist "%XIAOMIAO_QQ_TMP%" mkdir "%XIAOMIAO_QQ_TMP%"
 if not exist "%XIAOMIAO_AGENT_WORKSPACE%" mkdir "%XIAOMIAO_AGENT_WORKSPACE%"
 echo   [OK] Workspace folders are ready.
 echo.
@@ -284,9 +291,9 @@ if exist "%XIAOMIAO_CONFIG%" (
 )
 
 if exist "%XIAOMIAO_AGENT_CONFIG%" (
-    echo   [OK] xiaomiaoAgent .nanobot config exists.
+    echo   [OK] xiaomiaoAgent cache config exists.
 ) else (
-    echo   Creating xiaomiaoAgent .nanobot config...
+    echo   Creating xiaomiaoAgent cache config...
     call conda run --no-capture-output -n xiaomiao xiaomiao onboard --config "%XIAOMIAO_AGENT_CONFIG%" --workspace "%XIAOMIAO_AGENT_WORKSPACE%"
     if errorlevel 1 exit /b 1
 )

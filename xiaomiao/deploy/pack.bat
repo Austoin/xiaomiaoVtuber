@@ -9,7 +9,7 @@ echo.
 cd /d "%~dp0.."
 set "ZIP_FILE=%~dp0xiaomiaoVirtual.zip"
 set "TEMP_ZIP=%CD%\xiaomiaoVirtual.tmp.zip"
-set "BOT_FILES=main.py agent_backend.py bridge_event_store.py console_output.py desktop_bridge.py GoogleAI.py prerequisites.py qq_agent_bridge.py qq_agent_tools.py qq_permissions.py qq_workspace.py Quote.py SearchOnline.py unified_config.py config.json requirements.txt start.bat assets temps runtime deploy"
+set "BOT_FILES=main.py agent_backend.py bridge_event_store.py console_output.py desktop_bridge.py GoogleAI.py prerequisites.py qq_agent_bridge.py qq_agent_tools.py qq_permissions.py qq_workspace.py Quote.py SearchOnline.py unified_config.py config.json requirements.txt start.bat assets runtime deploy"
 
 echo Source: %CD%
 echo Output: %ZIP_FILE%
@@ -18,9 +18,6 @@ echo.
 :: Delete old zip
 if exist "%ZIP_FILE%" del /f /q "%ZIP_FILE%"
 if exist "%TEMP_ZIP%" del /f /q "%TEMP_ZIP%"
-
-:: Create placeholder in temps if empty
-if not exist "temps\*" echo. > "temps\.gitkeep"
 
 :: Check 7z
 where 7z >nul 2>&1

@@ -126,6 +126,7 @@ from cache_config import (
     PROGRAMMERS_FILE,
     TIMING_MESSAGE_FILE,
     BLACKLIST_FILE,
+    QQ_TMP,
     ensure_cache_dirs,
 )
 
@@ -140,6 +141,7 @@ JHQ_FILE = str(JHQ_FILE)
 PROGRAMMERS_FILE = str(PROGRAMMERS_FILE)
 TIMING_MESSAGE_FILE = str(TIMING_MESSAGE_FILE)
 BLACKLIST_FILE = str(BLACKLIST_FILE)
+QUOTE_IMAGE_PATH = QQ_TMP / "quote.png"
 
 settings_store = SettingsStore(
     super_user_file=Path(SUPER_USER_FILE),
@@ -1787,7 +1789,8 @@ CPU 使用率：{str(system_info["cpu_usage"]) + "%"}
                         Segments.Reply(event.message_id), quoteimage
                     ),
                 )
-                os.remove("./temps/quote.png")
+                if QUOTE_IMAGE_PATH.exists():
+                    os.remove(QUOTE_IMAGE_PATH)
             else:
                 await actions.send(
                     group_id=event.group_id,

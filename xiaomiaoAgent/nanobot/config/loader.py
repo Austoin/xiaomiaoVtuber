@@ -11,6 +11,7 @@ from loguru import logger
 from pydantic import BaseModel
 
 from nanobot.config.schema import Config
+from nanobot.config.paths import get_default_config_path
 from nanobot.config.unified_root import (
     UNIFIED_CONFIG_ENV,
     apply_unified_config_overrides,
@@ -30,7 +31,7 @@ def get_config_path() -> Path:
     """Get the configuration file path."""
     if _current_config_path:
         return _current_config_path
-    return Path.home() / ".nanobot" / "config.json"
+    return get_default_config_path()
 
 
 def load_config(config_path: Path | None = None) -> Config:

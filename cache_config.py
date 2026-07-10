@@ -49,9 +49,15 @@ BRIDGE_EVENTS_FILE = BRIDGE_EVENTS_CACHE / "bridge_events.jsonl"
 # ==================== Agent 缓存 ====================
 # nanobot 缓存
 NANOBOT_CACHE = AGENT_CACHE / "nanobot"
+NANOBOT_CONFIG_FILE = NANOBOT_CACHE / "config.json"
 NANOBOT_WORKSPACE = NANOBOT_CACHE / "workspace"
 NANOBOT_SESSIONS = NANOBOT_CACHE / "sessions"
 NANOBOT_MEMORY = NANOBOT_CACHE / "memory"
+NANOBOT_HISTORY = NANOBOT_CACHE / "history"
+NANOBOT_CLI_HISTORY = NANOBOT_HISTORY / "cli_history"
+NANOBOT_BRIDGE = NANOBOT_CACHE / "bridge"
+NANOBOT_MEDIA = NANOBOT_CACHE / "media"
+NANOBOT_CRON = NANOBOT_CACHE / "cron"
 
 # Agent 工具缓存
 AGENT_TOOLS_CACHE = AGENT_CACHE / "tools"
@@ -107,9 +113,14 @@ def ensure_all_cache_dirs():
 
         # agent
         NANOBOT_CACHE,
+        NANOBOT_CONFIG_FILE.parent,
         NANOBOT_WORKSPACE,
         NANOBOT_SESSIONS,
         NANOBOT_MEMORY,
+        NANOBOT_HISTORY,
+        NANOBOT_BRIDGE,
+        NANOBOT_MEDIA,
+        NANOBOT_CRON,
         AGENT_TOOLS_CACHE,
         AGENT_SKILLS_CACHE,
 
@@ -204,9 +215,15 @@ __all__ = [
 
     # agent
     "NANOBOT_CACHE",
+    "NANOBOT_CONFIG_FILE",
     "NANOBOT_WORKSPACE",
     "NANOBOT_SESSIONS",
     "NANOBOT_MEMORY",
+    "NANOBOT_HISTORY",
+    "NANOBOT_CLI_HISTORY",
+    "NANOBOT_BRIDGE",
+    "NANOBOT_MEDIA",
+    "NANOBOT_CRON",
     "AGENT_TOOLS_CACHE",
     "AGENT_SKILLS_CACHE",
 

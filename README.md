@@ -77,12 +77,12 @@ xiaomiaoVirtual/
 ├── xiaomiaoAgent/  # 轻量 Agent 框架、网关、API 与 WebUI
 ├── docs/           # 项目文档、启动说明和融合计划
 ├── test/           # 项目统一测试目录
-├── workspace/      # 对话资源工作区，QQ 文件下载和生成物按子目录归档
+├── .cache/         # 全项目缓存、运行态、下载和中间产物
 ├── README.md       # 项目入口说明
 └── TECHNICAL.md    # 技术分析文档
 ```
 
-文件和运行态边界见 `docs/04-development/file-workspace-hygiene.md`：`workspace/` 只提交目录骨架，QQ 下载文件、Agent 产物、缓存、会话、桥接事件和本机数据库都留在本地。
+文件和运行态边界见 `docs/CACHE_DIRECTORY.md`：QQ 下载文件、Agent 产物、缓存、会话、桥接事件和本机数据库统一保存在根目录 `.cache/` 下。
 
 ## 快速启动
 
@@ -121,7 +121,7 @@ start-all.cmd --check
 ```powershell
 cd F:\xiaomiaoVirtual
 conda activate xiaomiao
-python -m xiaomiao_agent serve --config F:\xiaomiaoVirtual\xiaomiaoAgent\.nanobot\config.json
+python -m xiaomiao_agent serve --config F:\xiaomiaoVirtual\.cache\agent\nanobot\config.json
 ```
 
 默认监听：
@@ -173,7 +173,7 @@ pnpm dev:tamagotchi
 - QQ 普通 AI 对话统一进入 xiaomiaoAgent。
 - QQ Agent 工具权限网关：普通用户 `low_risk`，白名单高风险动作二次确认。
 - QQ 中文记忆命令：`记忆状态`、`整理记忆`、`记忆日志`、`恢复记忆`、`新会话`、`停止任务`。
-- QQ 群文件上传和 file 消息段会保存到 `workspace/downloads/qq/`，再由 Agent 调用 `markitdown_convert` 转 Markdown 和总结。
+- QQ 群文件上传和 file 消息段会保存到 `.cache/xiaomiao/qq_workspace/downloads/qq/`，再由 Agent 调用 `markitdown_convert` 转 Markdown 和总结。
 - QQ 可通过 Agent 低风险工具抓取公网网页正文：`scrapling_get` 负责结构化抽取，仍阻断内网和本机地址。
 - `stage-web` 文本输入和语音转文字入口统一进入 xiaomiao 桥接服务。
 - 人设切换：女朋友、姐姐、妈妈、高级程序员。
@@ -229,7 +229,7 @@ pnpm dev:tamagotchi
 - `xiaomiaoAgent/nanobot/agent/runner.py`：LLM 对话循环、工具调用和流式响应执行器。
 - `xiaomiaoAgent/nanobot/channels/`：Telegram、Discord、Slack、Feishu、QQ、WeChat、WebSocket 等通道适配。
 - `xiaomiaoAgent/nanobot/agent/tools/`：文件系统、Shell、Web、MCP、Cron、Notebook、Subagent 等工具能力。
-- `xiaomiaoAgent/nanobot/agent/tools/markitdown_tool.py`：Agent 工作区和项目 `workspace/` 文件转 Markdown 的低风险工具。
+- `xiaomiaoAgent/nanobot/agent/tools/markitdown_tool.py`：Agent 工作区和项目 `.cache/xiaomiao/qq_workspace/` 文件转 Markdown 的低风险工具。
 - `xiaomiaoAgent/nanobot/agent/tools/scrapling_tool.py`：公网网页主内容抽取的低风险工具。
 - `xiaomiaoAgent/nanobot/agent/tools/xiaomiao_stage.py`：舞台动作工具。
 - `xiaomiaoAgent/nanobot/agent/tools/xiaomiaobot_services.py`：xiaomiaobot 服务状态/动作适配。

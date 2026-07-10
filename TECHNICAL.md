@@ -65,7 +65,7 @@
 - 解析命令前缀和 `@机器人` 消息。
 - 对 Agent 工具型请求做权限分级、确认码生成和确认码校验。
 - 转发中文记忆命令到 xiaomiaoAgent slash command。
-- 接收 QQ 群文件上传和 file 消息段，将支持的文档下载到项目 `workspace/downloads/qq/`。
+- 接收 QQ 群文件上传和 file 消息段，将支持的文档下载到 `.cache/xiaomiao/qq_workspace/downloads/qq/`。
 - 根据用户角色选择人设提示词。
 - 普通自然语言回复调用 `agent_backend.py`，再转发到 xiaomiaoAgent OpenAI 兼容 API。
 - 支持图片识别、图片获取、名言图片、系统状态和群管理。
@@ -84,7 +84,7 @@ xiaomiao/
 ├── GoogleAI.py          # OpenAI SDK 兼容模型封装
 ├── SearchOnline.py      # 备用 OpenAI 对话封装
 ├── prerequisites.py     # 人设和角色选择
-├── Quote.py             # 名言图片生成
+├── Quote.py             # 名言图片生成兼容入口
 ├── config.json          # 主配置
 ├── requirements.txt     # Python 依赖
 └── runtime/             # 权限、角色、定时消息和黑名单配置
@@ -135,7 +135,7 @@ xiaomiaobot/
 - 提供 React/Vite WebUI 和网关，可作为后续小喵控制台或多通道管理入口参考。
 - 通过 `tool_policy` 将 QQ 入口限制为 `low_risk`、`trusted_pending` 或 `trusted_confirmed`。
 - 已接入 `markitdown_convert`、`scrapling_get` 低风险工具，以及 Computer Use/Twitter/Minecraft 显式启用的 MCP 安全配置档。
-- `markitdown_convert` 可读取 Agent 工作区和项目根 `workspace/` 内文件，用于 QQ 文档上传后的 Markdown 转换。
+- `markitdown_convert` 可读取 Agent 工作区和项目根 `.cache/xiaomiao/qq_workspace/` 内文件，用于 QQ 文档上传后的 Markdown 转换。
 
 关键目录：
 
@@ -218,7 +218,7 @@ xiaomiaoAgent 工具 / 记忆 / 会话
 5. 若是 Agent 工具型请求，计算风险等级和用户权限。
 6. 高风险请求首次生成 `确认执行 <code>`；确认通过后才发送 `trusted_confirmed`。
 7. 若是中文记忆命令，转发到 `/status`、`/dream`、`/dream-log`、`/dream-restore`、`/new`、`/stop`。
-8. 若消息包含 QQ 文件段或群文件上传，先经 `qq_workspace.py` 校验扩展名、大小和 URL，再保存到 `workspace/downloads/qq/`。
+8. 若消息包含 QQ 文件段或群文件上传，先经 `qq_workspace.py` 校验扩展名、大小和 URL，再保存到 `.cache/xiaomiao/qq_workspace/downloads/qq/`。
 9. 根据命令分支执行具体能力。
 10. 如果是普通 AI 对话，调用 `generate_agent_reply()` 转发到 xiaomiaoAgent API。
 11. 将回复发送回 QQ。
@@ -265,7 +265,7 @@ QQ 群文件上传 / file 消息段
     ↓
 qq_workspace.py 校验文件名、扩展名、大小和下载 URL
     ↓
-workspace/downloads/qq/<channel>/<chat>/<date>/
+.cache/xiaomiao/qq_workspace/downloads/qq/<channel>/<chat>/<date>/
     ↓
 Agent 请求文本追加 workspace_path 和不可信数据提示
     ↓
@@ -274,7 +274,7 @@ markitdown_convert(path=workspace_path)
 Markdown 摘要返回 QQ，并同步桥接事件
 ```
 
-支持的第一批格式包括 `.txt`、`.md`、`.pdf`、`.docx`、`.xlsx`、`.pptx`、`.xls`、`.csv`、`.json`、`.xml`、`.html`、`.htm`、`.epub`、`.rtf`。普通 file 消息段会阻断 localhost/private/link-local 下载地址；群上传通知通过 OneBot `get_group_file_url` 获取的临时地址允许本机/private URL，因为 NapCat 可能返回本地下载地址。`markitdown_convert` 仍只读取 Agent 工作区和项目根 `workspace/`，拒绝 URL、`file:`、`data:` 和其它本机路径。
+支持的第一批格式包括 `.txt`、`.md`、`.pdf`、`.docx`、`.xlsx`、`.pptx`、`.xls`、`.csv`、`.json`、`.xml`、`.html`、`.htm`、`.epub`、`.rtf`。普通 file 消息段会阻断 localhost/private/link-local 下载地址；群上传通知通过 OneBot `get_group_file_url` 获取的临时地址允许本机/private URL，因为 NapCat 可能返回本地下载地址。`markitdown_convert` 仍只读取 Agent 工作区和项目根 `.cache/xiaomiao/qq_workspace/`，拒绝 URL、`file:`、`data:` 和其它本机路径。
 
 ### 6.4 stage-web 输入进入 Agent
 
@@ -450,7 +450,7 @@ pnpm lint             # 代码规范检查
 xiaomiaoAgent 常用命令：
 
 ```text
-python -m xiaomiao_agent serve --config F:\xiaomiaoVirtual\xiaomiaoAgent\.nanobot\config.json
+python -m xiaomiao_agent serve --config F:\xiaomiaoVirtual\.cache\agent\nanobot\config.json
 python -m xiaomiao_agent tui
 ```
 
@@ -472,7 +472,7 @@ start-tui.cmd
 
 ### 10.2 文件与运行态污染
 
-项目根 `workspace/` 只提交目录骨架，QQ 下载文件、Agent 工具产物和临时文件不进入仓库。`xiaomiaoAgent/.nanobot/`、`xiaomiao/runtime/bridge_events.jsonl`、`xiaomiaobot/.cache/`、`xiaomiaobot/services/satori-bot/data/db.json` 和 `.understand-anything/` 都属于本机运行态或缓存，已由 `.gitignore` 排除。详细规则见 `docs/file-workspace-hygiene.md`。
+QQ 下载文件、Agent 工具产物、临时文件、桥接事件和会话统一写入根目录 `.cache/`。`xiaomiaoAgent/.nanobot/`、`workspace/`、`xiaomiao/temps/`、`logs/` 等旧目录仅作为迁移来源保留，不再是运行时默认路径。详细规则见 `docs/CACHE_DIRECTORY.md`。
 
 ### 10.3 主程序职责过重
 

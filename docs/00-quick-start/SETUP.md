@@ -111,10 +111,10 @@ pnpm run build:tamagotchi
 
 ### 运行时数据
 - `*.log` - 所有日志文件
-- `logs/` - 日志目录
-- `xiaomiao/runtime/bridge_events.jsonl` - 桥接事件日志
-- `xiaomiao/temps/` - 临时文件
-- `xiaomiaoAgent/.nanobot/` - Agent 运行时数据
+- `.cache/logs/` - 统一日志目录
+- `.cache/xiaomiao/bridge_events/bridge_events.jsonl` - 桥接事件日志
+- `.cache/xiaomiao/qq_workspace/tmp/` - xiaomiao 临时文件
+- `.cache/agent/nanobot/` - Agent 运行时数据
 
 ### 第三方组件
 - `node_modules/` - Node.js 依赖

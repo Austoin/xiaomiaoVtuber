@@ -176,16 +176,19 @@ class QQChannel(BaseChannel):
     # ---------------------------
 
     def _init_media_root(self) -> Path:
-        """Choose a directory for saving inbound attachments."""
+        """Choose a directory for saving inbound attachments.
+
+        Honors an explicit ``media_dir`` config; otherwise uses the shared media
+        root resolved from the active config instance (``get_media_dir("qq")``).
+        """
         if self.config.media_dir:
             root = Path(self.config.media_dir).expanduser()
-        elif get_media_dir:
+        else:
             try:
                 root = Path(get_media_dir("qq"))
             except Exception:
-                root = Path.home() / ".nanobot" / "media" / "qq"
-        else:
-            root = Path.home() / ".nanobot" / "media" / "qq"
+                from nanobot.config.paths import _default_nanobot_root
+                root = _default_nanobot_root() / "media" / "qq"
 
         root.mkdir(parents=True, exist_ok=True)
         self.logger.info("media directory: {}", str(root))

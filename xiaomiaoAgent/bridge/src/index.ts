@@ -20,11 +20,14 @@ if (!globalThis.crypto) {
 }
 
 import { BridgeServer } from './server.js';
-import { homedir } from 'os';
-import { join } from 'path';
+import { dirname, join, resolve } from 'path';
+import { fileURLToPath } from 'url';
 
 const PORT = parseInt(process.env.BRIDGE_PORT || '3001', 10);
-const AUTH_DIR = process.env.AUTH_DIR || join(homedir(), '.nanobot', 'whatsapp-auth');
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+const repoRoot = resolve(__dirname, '..', '..', '..');
+const AUTH_DIR = process.env.AUTH_DIR || process.env.XIAOMIAO_AGENT_CACHE_DIR || join(repoRoot, '.cache', 'agent', 'nanobot', 'whatsapp-auth');
 const TOKEN = process.env.BRIDGE_TOKEN?.trim();
 
 if (!TOKEN) {

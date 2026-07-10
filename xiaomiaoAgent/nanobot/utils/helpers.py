@@ -14,7 +14,6 @@ from typing import Any
 import tiktoken
 from loguru import logger
 
-
 def strip_think(text: str) -> str:
     """Remove thinking blocks, unclosed trailing tags, and tokenizer-level
     template leaks occasionally emitted by some models (notably Gemma 4's
@@ -128,7 +127,6 @@ def current_time_str(timezone: str | None = None) -> str:
 
 _UNSAFE_CHARS = re.compile(r'[<>:"/\\|?*]')
 _TOOL_RESULT_PREVIEW_CHARS = 1200
-_TOOL_RESULTS_DIR = ".nanobot/tool-results"
 _TOOL_RESULT_RETENTION_SECS = 7 * 24 * 60 * 60
 _TOOL_RESULT_MAX_BUCKETS = 32
 
@@ -259,7 +257,9 @@ def maybe_persist_tool_result(
     if len(text_payload) <= max_chars:
         return content
 
-    root = ensure_dir(workspace / _TOOL_RESULTS_DIR)
+    from nanobot.config.paths import get_tool_results_dir
+
+    root = get_tool_results_dir(workspace)
     bucket = ensure_dir(root / safe_filename(session_key or "default"))
     try:
         _cleanup_tool_result_buckets(root, bucket)

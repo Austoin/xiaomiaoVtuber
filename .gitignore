@@ -39,6 +39,8 @@ log/
 .turbo/
 *.tmp
 .cache/
+__pycache__/
+.pytest_cache/
 .ruff_cache/
 .uv-cache/
 xiaomiaobot/.cache/
@@ -48,8 +50,10 @@ xiaomiaobot/apps/*/src/renderer/.cache/
 xiaomiaoAgent/.nanobot/
 xiaomiao/runtime/
 xiaomiao/temps/
+list/
 workspace/
 log/
+logs/
 *.ini
 !config/*.ini
 bridge_events.jsonl

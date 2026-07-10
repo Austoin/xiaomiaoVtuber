@@ -23,14 +23,24 @@ PROJECT_ROOT = Path(__file__).parent.parent
 OLD_XIAOMIAO_RUNTIME = PROJECT_ROOT / "xiaomiao" / "runtime"
 OLD_WORKSPACE = PROJECT_ROOT / "workspace"
 OLD_LOG = PROJECT_ROOT / "log"
+OLD_LOGS = PROJECT_ROOT / "logs"
 OLD_NANOBOT_WORKSPACE = PROJECT_ROOT / "xiaomiaoAgent" / ".nanobot" / "workspace"
+OLD_NANOBOT_CONFIG = PROJECT_ROOT / "xiaomiaoAgent" / ".nanobot" / "config.json"
+OLD_NANOBOT_HISTORY = PROJECT_ROOT / "xiaomiaoAgent" / ".nanobot" / "history"
+OLD_NANOBOT_BRIDGE = PROJECT_ROOT / "xiaomiaoAgent" / ".nanobot" / "bridge"
+OLD_XIAOMIAO_TEMPS = PROJECT_ROOT / "xiaomiao" / "temps"
 
 # 新目录
 NEW_CACHE = PROJECT_ROOT / ".cache"
 NEW_XIAOMIAO_RUNTIME = NEW_CACHE / "xiaomiao" / "runtime"
 NEW_QQ_WORKSPACE = NEW_CACHE / "xiaomiao" / "qq_workspace"
 NEW_LOG_ROOT = NEW_CACHE / "logs"
+NEW_QQ_TMP = NEW_QQ_WORKSPACE / "tmp"
+NEW_NANOBOT_ROOT = NEW_CACHE / "agent" / "nanobot"
+NEW_NANOBOT_CONFIG = NEW_NANOBOT_ROOT / "config.json"
 NEW_NANOBOT_WORKSPACE = NEW_CACHE / "agent" / "nanobot" / "workspace"
+NEW_NANOBOT_HISTORY = NEW_NANOBOT_ROOT / "history"
+NEW_NANOBOT_BRIDGE = NEW_NANOBOT_ROOT / "bridge"
 
 
 def migrate():
@@ -86,9 +96,10 @@ def migrate():
         print()
 
     # 3. 迁移 log/
-    if OLD_LOG.exists():
-        print(f"📦 迁移 log...")
-        print(f"  从: {OLD_LOG}")
+    old_log_dir = OLD_LOG if OLD_LOG.exists() else OLD_LOGS
+    if old_log_dir.exists():
+        print(f"📦 迁移日志目录...")
+        print(f"  从: {old_log_dir}")
         print(f"  到: {NEW_LOG_ROOT}")
 
         if NEW_LOG_ROOT.exists() and list(NEW_LOG_ROOT.iterdir()):
@@ -97,17 +108,17 @@ def migrate():
         else:
             try:
                 NEW_LOG_ROOT.mkdir(parents=True, exist_ok=True)
-                for item in OLD_LOG.iterdir():
+                for item in old_log_dir.iterdir():
                     dest = NEW_LOG_ROOT / item.name
                     if item.is_dir():
                         shutil.copytree(item, dest, dirs_exist_ok=True)
                     else:
                         shutil.copy2(item, dest)
                 print("  ✅ 迁移完成")
-                migrated.append("log")
+                migrated.append(old_log_dir.name)
             except Exception as e:
                 print(f"  ❌ 迁移失败: {e}")
-                errors.append(("log", str(e)))
+                errors.append((old_log_dir.name, str(e)))
         print()
 
     # 4. 迁移 xiaomiaoAgent/.nanobot/workspace
@@ -131,6 +142,44 @@ def migrate():
         print()
 
     # 5. 创建其他缓存目录
+    if OLD_NANOBOT_CONFIG.exists() and not NEW_NANOBOT_CONFIG.exists():
+        print("📦 迁移 .nanobot/config.json...")
+        print(f"  从: {OLD_NANOBOT_CONFIG}")
+        print(f"  到: {NEW_NANOBOT_CONFIG}")
+        try:
+            NEW_NANOBOT_CONFIG.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(OLD_NANOBOT_CONFIG, NEW_NANOBOT_CONFIG)
+            print("  ✅ 迁移完成")
+            migrated.append(".nanobot/config.json")
+        except Exception as e:
+            print(f"  ❌ 迁移失败: {e}")
+            errors.append((".nanobot/config.json", str(e)))
+        print()
+
+    for source_dir, target_dir, name in [
+        (OLD_NANOBOT_HISTORY, NEW_NANOBOT_HISTORY, ".nanobot/history"),
+        (OLD_NANOBOT_BRIDGE, NEW_NANOBOT_BRIDGE, ".nanobot/bridge"),
+        (OLD_XIAOMIAO_TEMPS, NEW_QQ_TMP, "xiaomiao/temps"),
+    ]:
+        if not source_dir.exists():
+            continue
+        print(f"📦 迁移 {name}...")
+        print(f"  从: {source_dir}")
+        print(f"  到: {target_dir}")
+        if target_dir.exists() and any(target_dir.iterdir()):
+            print("  ⚠️  目标已存在,跳过迁移")
+            skipped.append(name)
+        else:
+            try:
+                target_dir.parent.mkdir(parents=True, exist_ok=True)
+                shutil.copytree(source_dir, target_dir, dirs_exist_ok=True)
+                print("  ✅ 迁移完成")
+                migrated.append(name)
+            except Exception as e:
+                print(f"  ❌ 迁移失败: {e}")
+                errors.append((name, str(e)))
+        print()
+
     print("📁 创建其他缓存目录...")
     cache_dirs = [
         NEW_CACHE / "xiaomiao" / "bridge_events",
@@ -186,8 +235,8 @@ def migrate():
         print(f"     rm -rf {OLD_XIAOMIAO_RUNTIME}")
     if OLD_WORKSPACE.exists():
         print(f"     rm -rf {OLD_WORKSPACE}")
-    if OLD_LOG.exists():
-        print(f"     rm -rf {OLD_LOG}")
+    if old_log_dir.exists():
+        print(f"     rm -rf {old_log_dir}")
     print()
     print("=" * 70)
 

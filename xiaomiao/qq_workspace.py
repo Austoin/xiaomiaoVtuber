@@ -165,7 +165,7 @@ async def download_qq_document(
     max_bytes: int = DEFAULT_MAX_QQ_DOCUMENT_BYTES,
     allow_private_url: bool = False,
 ) -> QQWorkspaceDocument:
-    """Download a document URL into workspace/downloads/qq."""
+    """Download a document URL into .cache/xiaomiao/qq_workspace/downloads/qq."""
     workspace_root = workspace_root.expanduser().resolve()
     ensure_workspace_layout(workspace_root)
     safe_name = sanitize_filename(filename)

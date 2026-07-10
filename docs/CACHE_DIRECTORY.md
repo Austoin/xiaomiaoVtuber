@@ -23,9 +23,16 @@
 │       └── bridge_events.jsonl
 │
 ├── agent/                  # xiaomiaoAgent 缓存
-│   ├── sessions/          # 会话数据
-│   ├── memory/            # 记忆数据
-│   └── tools/             # 工具缓存
+│   └── nanobot/
+│       ├── config.json    # Agent 配置
+│       ├── workspace/     # Agent 工作区
+│       ├── media/         # 多通道媒体文件
+│       ├── bridge/        # WhatsApp bridge 等运行文件
+│       ├── history/       # CLI 历史
+│       ├── logs/          # Agent 日志
+│       ├── sessions/      # 兼容会话目录
+│       ├── memory/        # 兼容记忆目录
+│       └── tool-results/  # 大工具输出落盘结果
 │
 ├── bot/                    # xiaomiaobot 缓存
 │
@@ -36,7 +43,7 @@
 
 ## 🔄 迁移旧数据
 
-如果你有现有的 `xiaomiao/runtime/` 或 `workspace/` 数据,运行迁移脚本:
+如果你有现有的 `xiaomiao/runtime/`、`workspace/`、`xiaomiaoAgent/.nanobot/` 或 `xiaomiao/temps/` 数据,运行迁移脚本:
 
 ```bash
 python scripts/migrate_cache.py
@@ -45,8 +52,11 @@ python scripts/migrate_cache.py
 迁移脚本会:
 1. 复制 `xiaomiao/runtime/` → `.cache/xiaomiao/runtime/`
 2. 复制 `workspace/` → `.cache/xiaomiao/qq_workspace/`
-3. 创建其他必要的缓存目录
-4. 保留旧目录 (手动验证后删除)
+3. 复制 `xiaomiaoAgent/.nanobot/config.json` → `.cache/agent/nanobot/config.json`
+4. 复制 `xiaomiaoAgent/.nanobot/workspace` / `history` / `bridge` → `.cache/agent/nanobot/`
+5. 复制 `xiaomiao/temps/` → `.cache/xiaomiao/qq_workspace/tmp/`
+6. 创建其他必要的缓存目录
+7. 保留旧目录 (手动验证后删除)
 
 ## 🎯 优点
 
@@ -106,6 +116,10 @@ my_cache = get_cache_path("xiaomiao", "my_feature", "data.json")
 | `RUNTIME_DIR` | `.cache/xiaomiao/runtime/` | 运行时配置 |
 | `QQ_WORKSPACE_CACHE` | `.cache/xiaomiao/qq_workspace/` | QQ 资源 |
 | `BRIDGE_EVENTS_CACHE` | `.cache/xiaomiao/bridge_events/` | Bridge 事件 |
+| `NANOBOT_CONFIG_FILE` | `.cache/agent/nanobot/config.json` | Agent 配置 |
+| `NANOBOT_WORKSPACE` | `.cache/agent/nanobot/workspace/` | Agent 工作区 |
+| `NANOBOT_BRIDGE` | `.cache/agent/nanobot/bridge/` | WhatsApp Bridge |
+| `NANOBOT_CLI_HISTORY` | `.cache/agent/nanobot/history/cli_history` | TUI 历史 |
 
 ## 🧹 清理缓存
 

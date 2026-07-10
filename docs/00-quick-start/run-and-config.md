@@ -84,7 +84,7 @@ pnpm --version    # 应该已安装
 # 检查关键配置文件
 ls config.json                    # 主配置
 ls xiaomiao/config.json          # QQ Bot 配置
-ls xiaomiaoAgent/.nanobot/config.json  # Agent 配置
+ls .cache/agent/nanobot/config.json  # Agent 配置
 ```
 
 ---
@@ -161,7 +161,7 @@ ls xiaomiaoAgent/.nanobot/config.json  # Agent 配置
 ```powershell
 cd F:\xiaomiaoVirtual
 conda activate xiaomiao
-python -m xiaomiao_agent serve --config F:\xiaomiaoVirtual\xiaomiaoAgent\.nanobot\config.json
+python -m xiaomiao_agent serve --config F:\xiaomiaoVirtual\.cache\agent\nanobot\config.json
 ```
 
 **验证**：

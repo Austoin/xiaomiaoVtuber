@@ -5,6 +5,12 @@ import os
 from io import BytesIO
 import httpx
 from PIL import ImageFilter
+from pathlib import Path
+
+from cache_config import QQ_TMP
+
+
+QUOTE_IMAGE_PATH = QQ_TMP / "quote.png"
 
 def open_from_url(url: str):
     return Image.open(BytesIO(httpx.get(url).content))
@@ -71,7 +77,8 @@ async def get_image(quote, ava_url, name, uin):
 
     nbg = Image.new('RGB', mask.size, (0, 0, 0))
     nbg.paste(background, (0, 0))
-    nbg.save("./temps/quote.png")
+    QUOTE_IMAGE_PATH.parent.mkdir(parents=True, exist_ok=True)
+    nbg.save(QUOTE_IMAGE_PATH)
 
 async def handle(message, actions, images = None) -> Segments.Image:
     if isinstance(message[0], Segments.Reply):
@@ -92,4 +99,4 @@ async def handle(message, actions, images = None) -> Segments.Image:
     else:
         await get_image(text, f"http://q2.qlogo.cn/headimg_dl?dst_uin={uin}&spec=640", name, uin) # 传递 uin 参数
 
-    return Segments.Image(f"file://{os.path.abspath('./temps/quote.png')}")
+    return Segments.Image(f"file://{QUOTE_IMAGE_PATH.resolve()}")
