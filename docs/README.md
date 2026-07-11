@@ -33,16 +33,10 @@
 - [subsystems/xiaomiaobot/services-and-plugins.md](subsystems/xiaomiaobot/services-and-plugins.md): 服务与插件
 - [subsystems/xiaomiaobot/struct.md](subsystems/xiaomiaobot/struct.md): 前端完整结构索引
 
-### 重构与整理
-
-- [refactor/README.md](refactor/README.md): 重构总览
-- [refactor/COMPLETION_REPORT.md](refactor/COMPLETION_REPORT.md): 重构完成报告
-- [refactor/DELIVERY_SUMMARY.md](refactor/DELIVERY_SUMMARY.md): 交付摘要
-- [refactor/CHECKLIST.md](refactor/CHECKLIST.md): 执行清单
-
 ### 历史归档
 
 - [archive/plans/](archive/plans/): 历史开发计划
+- [archive/refactor/](archive/refactor/): 已归档的重构计划、设计和交付记录
 - [archive/reports/](archive/reports/): 历史报告与阶段总结
 - [archive/tasks/](archive/tasks/): 已完成/历史任务记录
 - [archive/changelogs/](archive/changelogs/): 历史变更日志

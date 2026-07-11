@@ -9,14 +9,31 @@ QQ_AGENT_PRIVATE = "qq-private"
 
 QQ_MEMORY_COMMAND_ALIASES = {
     "记忆状态": "/status",
+    "状态": "/status",
+    "status": "/status",
     "整理记忆": "/dream",
+    "记忆整理": "/dream",
+    "dream": "/dream",
     "记忆日志": "/dream-log",
+    "日志": "/dream-log",
+    "dream-log": "/dream-log",
+    "恢复记忆": "/dream-restore",
+    "记忆恢复": "/dream-restore",
+    "dream-restore": "/dream-restore",
     "新会话": "/new",
+    "new": "/new",
+    "new-session": "/new",
     "停止任务": "/stop",
+    "停止": "/stop",
+    "stop": "/stop",
 }
 QQ_MEMORY_PREFIX_ALIASES = {
     "记忆日志 ": "/dream-log ",
+    "日志 ": "/dream-log ",
+    "dream-log ": "/dream-log ",
     "恢复记忆 ": "/dream-restore ",
+    "记忆恢复 ": "/dream-restore ",
+    "dream-restore ": "/dream-restore ",
 }
 
 
@@ -52,6 +69,27 @@ WaitNoticeCallback = Callable[[], Awaitable[None]]
 
 def is_qq_exact_command(order: str, command: str) -> bool:
     return order.strip() == command
+
+
+def is_qq_command_alias(order: str, aliases: tuple[str, ...]) -> bool:
+    clean_text = order.strip()
+    clean_text_folded = clean_text.casefold()
+    return any(clean_text_folded == alias.strip().casefold() for alias in aliases)
+
+
+def get_qq_command_args(order: str, aliases: tuple[str, ...]) -> str | None:
+    clean_text = order.strip()
+    clean_text_folded = clean_text.casefold()
+    for alias in aliases:
+        clean_alias = alias.strip()
+        clean_alias_folded = clean_alias.casefold()
+        if clean_text_folded == clean_alias_folded:
+            return ""
+        if clean_text_folded.startswith(clean_alias_folded):
+            args = clean_text[len(clean_alias):]
+            if args and args[0].isspace():
+                return args.strip()
+    return None
 
 
 def should_private_message_enter_agent(
@@ -174,13 +212,13 @@ def build_qq_agent_turn(
 
 def map_qq_memory_command(text: str) -> str:
     clean_text = text.strip()
-    if clean_text in QQ_MEMORY_COMMAND_ALIASES:
-        return QQ_MEMORY_COMMAND_ALIASES[clean_text]
+    clean_text_folded = clean_text.casefold()
+    for alias, command in QQ_MEMORY_COMMAND_ALIASES.items():
+        if clean_text_folded == alias.casefold():
+            return command
     for prefix, mapped_prefix in QQ_MEMORY_PREFIX_ALIASES.items():
-        if clean_text.startswith(prefix):
+        if clean_text_folded.startswith(prefix.casefold()):
             return mapped_prefix + clean_text[len(prefix):].strip()
-    if clean_text == "恢复记忆":
-        return "/dream-restore"
     return clean_text
 
 

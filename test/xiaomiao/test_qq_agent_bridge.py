@@ -13,7 +13,9 @@ from qq_agent_bridge import (  # noqa: E402
     await_agent_reply_with_wait_notice,
     build_agent_media_from_urls,
     build_qq_agent_reply,
+    get_qq_command_args,
     get_market_face_url,
+    is_qq_command_alias,
     is_qq_exact_command,
     map_qq_memory_command,
     publish_qq_agent_reply,
@@ -208,6 +210,22 @@ class QQAgentBridgeTests(unittest.TestCase):
         self.assertFalse(is_qq_exact_command("帮助我写文件", "帮助"))
         self.assertFalse(is_qq_exact_command("读图总结这张图片", "读图"))
 
+    def test_command_alias_does_not_match_agent_prompt_words(self):
+        aliases = ("关于", "about", "info")
+
+        self.assertTrue(is_qq_command_alias("ABOUT", aliases))
+        self.assertTrue(is_qq_command_alias(" info ", aliases))
+        self.assertFalse(is_qq_command_alias("about this project", aliases))
+        self.assertFalse(is_qq_command_alias("关于agent的知识", aliases))
+
+    def test_prefixed_command_args_require_command_boundary(self):
+        aliases = ("生图", "pic", "图片", "生成图片")
+
+        self.assertEqual(get_qq_command_args("pic miku", aliases), "miku")
+        self.assertEqual(get_qq_command_args(" 图片   白丝 ", aliases), "白丝")
+        self.assertEqual(get_qq_command_args("生图", aliases), "")
+        self.assertIsNone(get_qq_command_args("图片识别一下", aliases))
+
     def test_private_bare_text_and_media_enter_agent(self):
         self.assertTrue(
             should_private_message_enter_agent(
@@ -244,13 +262,25 @@ class QQAgentBridgeTests(unittest.TestCase):
 
     def test_qq_memory_command_aliases_map_to_agent_slash_commands(self):
         self.assertEqual(map_qq_memory_command("记忆状态"), "/status")
+        self.assertEqual(map_qq_memory_command("状态"), "/status")
+        self.assertEqual(map_qq_memory_command("status"), "/status")
+        self.assertEqual(map_qq_memory_command("STATUS"), "/status")
         self.assertEqual(map_qq_memory_command("整理记忆"), "/dream")
+        self.assertEqual(map_qq_memory_command("记忆整理"), "/dream")
+        self.assertEqual(map_qq_memory_command("dream"), "/dream")
         self.assertEqual(map_qq_memory_command("记忆日志"), "/dream-log")
+        self.assertEqual(map_qq_memory_command("日志"), "/dream-log")
         self.assertEqual(map_qq_memory_command("记忆日志 abc123"), "/dream-log abc123")
+        self.assertEqual(map_qq_memory_command("日志 abc123"), "/dream-log abc123")
         self.assertEqual(map_qq_memory_command("恢复记忆"), "/dream-restore")
+        self.assertEqual(map_qq_memory_command("记忆恢复"), "/dream-restore")
+        self.assertEqual(map_qq_memory_command("DREAM-RESTORE"), "/dream-restore")
         self.assertEqual(map_qq_memory_command("恢复记忆 abc123"), "/dream-restore abc123")
+        self.assertEqual(map_qq_memory_command("dream-restore abc123"), "/dream-restore abc123")
         self.assertEqual(map_qq_memory_command("新会话"), "/new")
+        self.assertEqual(map_qq_memory_command("new-session"), "/new")
         self.assertEqual(map_qq_memory_command("停止任务"), "/stop")
+        self.assertEqual(map_qq_memory_command("停止"), "/stop")
 
     def test_build_qq_agent_turn_applies_memory_aliases(self):
         calls = []

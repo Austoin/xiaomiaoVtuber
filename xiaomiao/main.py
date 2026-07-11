@@ -35,8 +35,9 @@ from qq_agent_bridge import (
     QQ_AGENT_PRIVATE,
     await_agent_reply_with_wait_notice,
     build_qq_agent_reply,
+    get_qq_command_args,
     get_market_face_url,
-    is_qq_exact_command,
+    is_qq_command_alias,
     publish_qq_agent_reply,
     resolve_qq_image_url,
     should_private_message_enter_agent,
@@ -71,6 +72,17 @@ from qq_workspace import (
 # 上述重构体系已归档至 xiaomiao/archive/{commands,handlers,services}，
 # 命令分发回到下方原有命令分支逻辑。
 # ====================================
+
+PING_COMMAND_ALIASES = ("ping", "pong")
+HELP_COMMAND_ALIASES = ("帮助", "help", "?")
+ABOUT_COMMAND_ALIASES = ("关于", "about", "info")
+READ_IMAGE_COMMAND_ALIASES = ("读图", "识图", "看图")
+GENERATE_IMAGE_COMMAND_ALIASES = ("生图", "pic", "图片", "生成图片")
+AVATAR_COMMAND_ALIASES = ("大头照", "头像", "avatar")
+GIRLFRIEND_COMMAND_ALIASES = ("当我女朋友", "女朋友", "girlfriend")
+SISTER_COMMAND_ALIASES = ("做我姐姐吧", "姐姐", "sister")
+MOTHER_COMMAND_ALIASES = ("做我mm吧", "妈妈", "mother")
+PROGRAMMER_COMMAND_ALIASES = ("程序员", "programmer", "工程师")
 
 # import framework
 CONFIG_FILE = Path(__file__).parent / "config.json"
@@ -733,7 +745,7 @@ async def handler(event: Events.Event, actions: Listener.Actions) -> None:
 
         # 命令系统已归档至 xiaomiao/archive/，回到下方原有命令分支逻辑。
 
-        if "ping" == user_message:
+        if is_qq_command_alias(order or user_message, PING_COMMAND_ALIASES):
             print(str(event.user_id))
             await actions.send(
                 group_id=event.group_id,
@@ -806,7 +818,7 @@ async def handler(event: Events.Event, actions: Listener.Actions) -> None:
                     print(f"收到@命令 {order}")
 
         # 快捷命令：直接发送"生图"或"生图 xxx"也可以触发
-        if not order and (user_message == "生图" or user_message.startswith("生图 ")):
+        if not order and get_qq_command_args(user_message, GENERATE_IMAGE_COMMAND_ALIASES) is not None:
             order = user_message
             print(f"收到快捷命令 {order}")
 
@@ -1125,7 +1137,7 @@ async def handler(event: Events.Event, actions: Listener.Actions) -> None:
                     ),
                 )
 
-        elif is_qq_exact_command(order, "读图"):
+        elif is_qq_command_alias(order, READ_IMAGE_COMMAND_ALIASES):
             EnableNetwork = "Pixmap"
             await actions.send(
                 group_id=event.group_id,
@@ -1445,7 +1457,7 @@ ROOT_User: {ROOT_User}
             await actions.send(
                 group_id=event.group_id, message=Manager.Message(Segments.Text(r))
             )
-        elif is_qq_exact_command(order, "帮助"):
+        elif is_qq_command_alias(order, HELP_COMMAND_ALIASES):
             if str(event.user_id) in ROOT_User or str(event.user_id) in Super_User:
                 content = f"""管理我们的{bot_name}
 ————————————————————
@@ -1535,7 +1547,7 @@ ROOT_User: {ROOT_User}
                 group_id=event.group_id, message=Manager.Message(Segments.Text(content))
             )
 
-        elif is_qq_exact_command(order, "关于"):
+        elif is_qq_command_alias(order, ABOUT_COMMAND_ALIASES):
             global version_name
             about = f"""{bot_name} {bot_name_en} - 简单 可爱 个性 全知
 ————————————————————
@@ -1559,7 +1571,7 @@ Made by SR Studio
                 group_id=event.group_id, message=Manager.Message(Segments.Text(about))
             )
 
-        elif "当我女朋友" in order:
+        elif is_qq_command_alias(order, GIRLFRIEND_COMMAND_ALIASES):
             try:
                 if not Write_Roles("girlfriend", event.user_id):
                     raise RuntimeError("角色写入失败")
@@ -1578,7 +1590,7 @@ Made by SR Studio
                     ),
                 )
 
-        elif "做我姐姐吧" in order:
+        elif is_qq_command_alias(order, SISTER_COMMAND_ALIASES):
             try:
                 if not Write_Roles("sister", event.user_id):
                     raise RuntimeError("角色写入失败")
@@ -1597,7 +1609,7 @@ Made by SR Studio
                     ),
                 )
 
-        elif "做我mm吧" in order:
+        elif is_qq_command_alias(order, MOTHER_COMMAND_ALIASES):
             try:
                 if not Write_Roles("mother", event.user_id):
                     raise RuntimeError("角色写入失败")
@@ -1618,7 +1630,7 @@ Made by SR Studio
                     ),
                 )
 
-        elif "程序员" in order:
+        elif is_qq_command_alias(order, PROGRAMMER_COMMAND_ALIASES) or "程序员" in order:
             try:
                 if not Write_Roles("programmer", event.user_id):
                     raise RuntimeError("角色写入失败")
@@ -1813,14 +1825,10 @@ CPU 使用率：{str(system_info["cpu_usage"]) + "%"}
                 group_id=event.group_id, message=Manager.Message(Segments.Text("🌿"))
             )
 
-        elif order == "生图" or "生图 " in order:
+        elif (generate_image_args := get_qq_command_args(order, GENERATE_IMAGE_COMMAND_ALIASES)) is not None:
             # 统一生图命令：- 生图 <标签> 或直接 生图
             # 使用鸭子API (mossia.top) - Pixiv/X 图源
-            if "生图 " in order:
-                start_index = order.find("生图 ")
-                result = order[start_index + len("生图 ") :].strip().lower()
-            else:
-                result = ""  # 没有参数时默认随机
+            result = generate_image_args.lower()
 
             selfID = await actions.send(
                 group_id=event.group_id,
@@ -2248,7 +2256,7 @@ CPU 使用率：{str(system_info["cpu_usage"]) + "%"}
                     message=Manager.Message(Segments.Text(f"解密失败: {str(e)}")),
                 )
 
-        elif "大头照" in order:
+        elif get_qq_command_args(order, AVATAR_COMMAND_ALIASES) is not None:
             uin = ""
 
             for i in event.message:
@@ -2608,7 +2616,7 @@ CPU 使用率：{str(system_info["cpu_usage"]) + "%"}
         # 命令系统已归档至 xiaomiao/archive/，回到下方原有命令分支逻辑。
 
         # ping 测试
-        if "ping" == user_message:
+        if is_qq_command_alias(order or user_message, PING_COMMAND_ALIASES):
             await actions.send(
                 user_id=event.user_id,
                 message=Manager.Message(Segments.Text("pong! 爆炸！v(◦'ωˉ◦)~♡ ")),
@@ -2638,7 +2646,7 @@ CPU 使用率：{str(system_info["cpu_usage"]) + "%"}
                 print(f"[私聊] 收到命令: {order}")
 
         # 快捷命令：直接发送"生图"或"生图 xxx"也可以触发
-        if not order and (user_message == "生图" or user_message.startswith("生图 ")):
+        if not order and get_qq_command_args(user_message, GENERATE_IMAGE_COMMAND_ALIASES) is not None:
             order = user_message
             print(f"[私聊] 收到快捷命令 {order}")
         elif not order:
@@ -2647,7 +2655,7 @@ CPU 使用率：{str(system_info["cpu_usage"]) + "%"}
                 print(f"[私聊] 收到裸消息: {order}")
 
         # 帮助命令
-        if is_qq_exact_command(order, "帮助"):
+        if is_qq_command_alias(order, HELP_COMMAND_ALIASES):
             p = " "
             match EnableNetwork:
                 case "Pixmap":
@@ -2666,7 +2674,7 @@ CPU 使用率：{str(system_info["cpu_usage"]) + "%"}
             )
 
         # 关于命令
-        elif is_qq_exact_command(order, "关于"):
+        elif is_qq_command_alias(order, ABOUT_COMMAND_ALIASES):
             about = f"""{bot_name} {bot_name_en} - 简单 可爱 个性 全知
 ————————————————————
 构建信息
@@ -2690,7 +2698,7 @@ Made by SR Studio
             )
 
         # 切换模式
-        elif is_qq_exact_command(order, "读图"):
+        elif is_qq_command_alias(order, READ_IMAGE_COMMAND_ALIASES):
             EnableNetwork = "Pixmap"
             await actions.send(
                 user_id=event.user_id,
@@ -2700,7 +2708,7 @@ Made by SR Studio
             )
 
         # 角色切换 - 当我女朋友
-        elif "当我女朋友" in order:
+        elif is_qq_command_alias(order, GIRLFRIEND_COMMAND_ALIASES):
             try:
                 if not Write_Roles("girlfriend", event.user_id):
                     raise RuntimeError("角色写入失败")
@@ -2720,7 +2728,7 @@ Made by SR Studio
                 )
 
         # 角色切换 - 做我姐姐吧
-        elif "做我姐姐吧" in order:
+        elif is_qq_command_alias(order, SISTER_COMMAND_ALIASES):
             try:
                 if not Write_Roles("sister", event.user_id):
                     raise RuntimeError("角色写入失败")
@@ -2740,7 +2748,7 @@ Made by SR Studio
                 )
 
         # 角色切换 - 做我mm吧
-        elif "做我mm吧" in order:
+        elif is_qq_command_alias(order, MOTHER_COMMAND_ALIASES):
             try:
                 if not Write_Roles("mother", event.user_id):
                     raise RuntimeError("角色写入失败")
@@ -2762,7 +2770,7 @@ Made by SR Studio
                 )
 
         # 角色切换 - 程序员
-        elif "程序员" in order:
+        elif is_qq_command_alias(order, PROGRAMMER_COMMAND_ALIASES) or "程序员" in order:
             try:
                 if not Write_Roles("programmer", event.user_id):
                     raise RuntimeError("角色写入失败")
@@ -2780,7 +2788,7 @@ Made by SR Studio
                 )
 
         # 大头照
-        elif "大头照" in order:
+        elif get_qq_command_args(order, AVATAR_COMMAND_ALIASES) is not None:
             uin = event.user_id
             await actions.send(
                 user_id=event.user_id,
@@ -2792,12 +2800,8 @@ Made by SR Studio
             )
 
         # 生图功能（私聊版）- 使用鸭子API
-        elif order == "生图" or "生图 " in order:
-            if "生图 " in order:
-                start_index = order.find("生图 ")
-                result = order[start_index + len("生图 ") :].strip().lower()
-            else:
-                result = ""  # 没有参数时默认随机
+        elif (generate_image_args := get_qq_command_args(order, GENERATE_IMAGE_COMMAND_ALIASES)) is not None:
+            result = generate_image_args.lower()
 
             user_id = event.user_id
             current_time = time.time()
