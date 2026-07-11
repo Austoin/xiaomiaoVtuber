@@ -2,7 +2,8 @@
 chcp 65001 >nul
 setlocal EnableExtensions
 
-set "ROOT_DIR=%~dp0"
+set "SCRIPT_DIR=%~dp0"
+for %%I in ("%SCRIPT_DIR%..") do set "ROOT_DIR=%%~fI\"
 set "XIAOMIAO_DIR=%ROOT_DIR%xiaomiao"
 set "XIAOMIAOBOT_DIR=%ROOT_DIR%xiaomiaobot"
 set "XIAOMIAO_AGENT_DIR=%ROOT_DIR%xiaomiaoAgent"
@@ -196,7 +197,7 @@ exit /b %errorlevel%
 echo.
 echo ========================================
 echo Launch stopped. Later services were not opened.
-echo Fix the failed service above, then run start-all.cmd again.
+echo Fix the failed service above, then run pnpm run start:all again.
 echo ========================================
 pause
 exit /b 1
@@ -213,7 +214,7 @@ echo   xiaomiao bridge:       127.0.0.1:5519
 echo   xiaomiaoAgent API:     127.0.0.1:8900
 echo   xiaomiaobot web:       http://127.0.0.1:%XIAOMIAOBOT_STAGE_WEB_PORT%
 echo.
-echo Note: Use start-tui.cmd for terminal-only interface
+echo Note: Use pnpm run tui for terminal-only interface
 echo.
 pause
 exit /b 0

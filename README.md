@@ -90,7 +90,7 @@ xiaomiaoVirtual/
 
 ### 0. 一键启动
 
-主目录提供统一启动脚本，会打开必要的 PowerShell 独立终端，并按真实健康状态串行启动。QQ/NapCat 登录窗口保持可见，其它服务窗口默认最小化，仍可从任务栏逐个点开查看日志：
+主目录提供统一菜单 `menu.cmd` 和根 `package.json` 脚本入口，会打开必要的 PowerShell 独立终端，并按真实健康状态串行启动。QQ/NapCat 登录窗口保持可见，其它服务窗口默认最小化，仍可从任务栏逐个点开查看日志：
 
 ```text
 QQ 协议端 :5004
@@ -103,7 +103,9 @@ QQ 协议端 :5004
 
 ```powershell
 cd F:\xiaomiaoVirtual
-start-all.cmd
+pnpm start
+# 或直接启动全部服务
+pnpm run start:all
 ```
 
 一键启动打开的服务窗口统一使用 PowerShell。QQ/NapCat 窗口保持可见，用于登录和扫码；其它服务窗口默认最小化。
@@ -111,7 +113,7 @@ start-all.cmd
 只检查依赖路径、端口占用和 HTTP 健康状态，不启动窗口：
 
 ```powershell
-start-all.cmd --check
+pnpm run start:check
 ```
 
 ### 1. 启动 xiaomiaoAgent API
@@ -323,15 +325,15 @@ uv run --extra dev pytest --basetemp ..\.pytest-tmp-agent-verify tests\test_open
 cd ..\xiaomiaobot
 pnpm exec vitest run apps/stage-pocket/src/modules/xiaomiao-bridge-events.test.ts packages/stage-ui/src/xiaomiao-bridge-events.test.ts apps/stage-tamagotchi/src/renderer/pages/xiaomiao-bridge-reaction.test.ts apps/stage-tamagotchi/src/renderer/pages/xiaomiao-bridge.test.ts
 cd ..
-start-all.cmd --check
+pnpm run start:check
 ```
 
-最近验证结果：`test/xiaomiao` 77 passed，`xiaomiaoAgent` 95 passed，前端 Vitest 4 files / 32 tests passed，`start-all.cmd --check` passed。
+最近验证结果：`test/xiaomiao` 77 passed，`xiaomiaoAgent` 95 passed，前端 Vitest 4 files / 32 tests passed，`pnpm run start:check` passed。
 
 快速 TUI 测试：
 
 ```powershell
-start-tui.cmd
+pnpm run tui
 ```
 
 ## 文档

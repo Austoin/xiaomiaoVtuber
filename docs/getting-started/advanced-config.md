@@ -688,7 +688,7 @@ ROOT (最高) > Super > agent_tool_allowlist > 普通用户
    Ctrl+C
 
    # 重新启动
-   start-all.cmd
+   pnpm run start:all
    ```
 
 3. 检查环境变量

@@ -60,7 +60,7 @@
 ### 3. 验证和测试
 使用示例后，运行验证命令确保配置正确：
 ```powershell
-start-all.cmd --check
+pnpm run start:check
 ```
 
 ---

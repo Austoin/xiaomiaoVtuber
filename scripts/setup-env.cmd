@@ -2,7 +2,8 @@
 chcp 65001 >nul
 setlocal EnableExtensions
 
-set "ROOT_DIR=%~dp0"
+set "SCRIPT_DIR=%~dp0"
+for %%I in ("%SCRIPT_DIR%..") do set "ROOT_DIR=%%~fI\"
 set "XIAOMIAO_DIR=%ROOT_DIR%xiaomiao"
 set "XIAOMIAO_AGENT_DIR=%ROOT_DIR%xiaomiaoAgent"
 set "XIAOMIAOBOT_DIR=%ROOT_DIR%xiaomiaobot"
@@ -99,8 +100,8 @@ echo.
 echo ========================================
 echo Environment setup finished.
 echo Next:
-echo   cmd /c call start-all.cmd --check
-echo   cmd /c call start-all.cmd
+echo   pnpm run start:check
+echo   pnpm run start:all
 echo ========================================
 exit /b 0
 
@@ -114,7 +115,8 @@ exit /b 1
 
 :print_usage
 echo Usage:
-echo   setup-env.cmd [options]
+echo   pnpm run setup -- [options]
+echo   menu.cmd setup
 echo.
 echo Description:
 echo   Install or refresh local dependencies, create workspace folders,
@@ -128,9 +130,9 @@ echo   --skip-node    Skip xiaomiaobot pnpm installation.
 echo   --help, -h     Show this help message.
 echo.
 echo Examples:
-echo   setup-env.cmd
-echo   setup-env.cmd --check
-echo   setup-env.cmd --yes
+echo   pnpm run setup
+echo   pnpm run setup:check
+echo   pnpm run setup -- --yes
 exit /b 0
 
 :check_layout
@@ -191,7 +193,7 @@ call :check_dir "%XIAOMIAO_QQ_WORKSPACE%" "project QQ workspace"
 echo.
 echo ========================================
 if "%FAILED%"=="1" (
-    echo Environment check failed. Run setup-env.cmd to install or initialize missing parts.
+    echo Environment check failed. Run pnpm run setup to install or initialize missing parts.
     echo ========================================
     exit /b 1
 )
@@ -275,7 +277,7 @@ if exist "%ROOT_CONFIG%" (
             echo   [Created] root config.json copied from config.example.json.
         ) else (
             echo   [Missing] root config.json
-            echo   Run setup-env.cmd --yes to copy config.example.json automatically,
+            echo   Run pnpm run setup -- --yes to copy config.example.json automatically,
             echo   then edit API Key, baseUrl and model before startup.
         )
     ) else (

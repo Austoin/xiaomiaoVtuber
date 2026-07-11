@@ -1,0 +1,18 @@
+{
+  "name": "xiaomiao-virtual",
+  "private": true,
+  "version": "0.1.0",
+  "packageManager": "pnpm@10.33.0",
+  "scripts": {
+    "start": "cmd /c menu.cmd",
+    "menu": "cmd /c menu.cmd",
+    "start:all": "cmd /c menu.cmd all",
+    "start:check": "cmd /c menu.cmd check",
+    "tui": "cmd /c menu.cmd tui",
+    "monitor": "cmd /c menu.cmd monitor",
+    "monitor:simple": "cmd /c menu.cmd monitor-simple",
+    "setup": "cmd /c menu.cmd setup",
+    "setup:check": "cmd /c menu.cmd setup-check",
+    "nano-staged": "pnpm --dir xiaomiaobot exec nano-staged"
+  }
+}

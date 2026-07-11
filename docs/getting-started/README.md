@@ -11,14 +11,14 @@
 ### 方式一：一键启动（推荐）
 ```powershell
 cd F:\xiaomiaoVirtual
-start-all.cmd
+pnpm run start:all
 ```
 自动启动所有服务：QQ Bot + Agent API + Web 界面
 
 ### 方式二：TUI 终端（最快）
 ```powershell
 cd F:\xiaomiaoVirtual
-start-tui.cmd
+pnpm run tui
 ```
 ⚡ 1-2 秒启动，纯终端交互，完整工具能力
 

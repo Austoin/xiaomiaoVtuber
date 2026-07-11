@@ -23,7 +23,7 @@
 
 ```powershell
 cd F:\xiaomiaoVirtual
-start-all.cmd
+pnpm run start:all
 ```
 
 **自动启动**：
@@ -40,14 +40,14 @@ start-all.cmd
 
 **仅检查不启动**：
 ```powershell
-start-all.cmd --check
+pnpm run start:check
 ```
 
 ### 方式二：TUI 终端（最快，无需 QQ）
 
 ```powershell
 cd F:\xiaomiaoVirtual
-start-tui.cmd
+pnpm run tui
 ```
 
 **特点**：
@@ -280,7 +280,7 @@ pnpm dev:tamagotchi
 
 ## 🔍 常见问题排查
 
-### Q1: start-all.cmd 启动失败
+### Q1: pnpm run start:all 启动失败
 
 **症状**：脚本停止，后续服务未启动
 

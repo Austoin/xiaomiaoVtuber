@@ -46,7 +46,7 @@ python -m xiaomiao_agent serve --config <项目根目录>\xiaomiaoAgent\.nanobot
 
 ```powershell
 cd <项目根目录>
-start-tui.cmd
+pnpm run tui
 ```
 
 命令行聊天：

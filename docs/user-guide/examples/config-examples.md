@@ -266,7 +266,7 @@
 
 **启动命令**:
 ```powershell
-start-tui.cmd
+pnpm run tui
 ```
 
 ---
@@ -280,7 +280,7 @@ start-tui.cmd
 
 **启动命令**:
 ```powershell
-start-all.cmd
+pnpm run start:all
 ```
 
 **关键配置点**:
@@ -305,7 +305,7 @@ start-all.cmd
 
 **启动命令**:
 ```powershell
-start-all.cmd
+pnpm run start:all
 ```
 
 **访问地址**:
@@ -415,7 +415,7 @@ python -c "import json; print(json.load(open('config.json')))"
 python -c "import json; print(json.load(open('xiaomiao/config.json')))"
 
 # 启动前检查
-start-all.cmd --check
+pnpm run start:check
 ```
 
 ### 常见配置错误

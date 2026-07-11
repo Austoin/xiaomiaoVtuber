@@ -78,5 +78,5 @@ pnpm exec vitest run apps/stage-pocket/src/modules/xiaomiao-bridge-events.test.t
 
 ```powershell
 cd <项目根目录>
-cmd /c call start-all.cmd --check
+pnpm run start:check
 ```

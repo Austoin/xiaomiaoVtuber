@@ -129,7 +129,7 @@ pnpm run build:tamagotchi
 
 ```bash
 # Windows
-start-all.cmd
+pnpm run start:all
 
 # 或手动启动各组件
 python xiaomiao/main.py

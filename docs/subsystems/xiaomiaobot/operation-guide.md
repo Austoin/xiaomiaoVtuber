@@ -57,10 +57,10 @@ git push -u origin main
 
 ```powershell
 cd <项目根目录>
-start-all.cmd
+pnpm run start:all
 ```
 
-`start-all.cmd` 会串行启动必要服务。QQ/NapCat 登录窗口保持可见，其它服务窗口默认最小化；前一步未通过健康检查时，后续终端不会打开。
+`pnpm run start:all` 会串行启动必要服务。QQ/NapCat 登录窗口保持可见，其它服务窗口默认最小化；前一步未通过健康检查时，后续终端不会打开。
 
 手动启动时，需要先启动后端链路：
 

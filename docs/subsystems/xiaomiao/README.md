@@ -69,17 +69,17 @@ python main.py
 
 ### 与 xiaomiaoAgent / xiaomiaobot 联动启动
 
-当前 QQ 群/私聊普通 AI 回复、`xiaomiaobot stage-web` 输入、桌面 bridge 和 xiaomiaoAgent WebUI 都统一进入 xiaomiaoAgent。推荐直接使用根目录 `start-all.cmd`：
+当前 QQ 群/私聊普通 AI 回复、`xiaomiaobot stage-web` 输入、桌面 bridge 和 xiaomiaoAgent WebUI 都统一进入 xiaomiaoAgent。推荐直接使用根目录 `pnpm run start:all`：
 
 ```powershell
 cd <项目根目录>
-start-all.cmd
+pnpm run start:all
 ```
 
 只检查路径、端口占用和健康状态，不打开窗口：
 
 ```powershell
-start-all.cmd --check
+pnpm run start:check
 ```
 
 脚本会按真实健康状态串行启动。前一步未就绪时，后续终端不会打开；QQ 协议端会复用已登录并监听 `5004` 的现有 NapCat/QQ 进程，未监听时会等待 600 秒给你扫码或进入 WebUI 登录；其他端口已被旧进程占用时会显示 PID 并停止，不会跳过到后续服务。这样可以保证每个新启动的服务都有自己的独立 PowerShell 终端。QQ/NapCat 窗口保持可见用于登录和扫码，其它服务窗口默认最小化。终端字符二维码扫不了时，打开 NapCat WebUI `http://127.0.0.1:6099` 或使用弹出的 QQ 登录窗口完成扫码。脚本也会设置 `NO_PROXY=127.0.0.1,localhost,::1`，避免本机代理影响 `main.py` 直连 NapCat。

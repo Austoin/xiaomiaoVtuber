@@ -124,10 +124,10 @@ Electron 桌面版应用，是当前桌面形态的主要入口，适合本地�
 
 ```powershell
 cd <项目根目录>
-start-all.cmd
+pnpm run start:all
 ```
 
-`start-all.cmd` 会串行启动 QQ 协议端、xiaomiaoAgent API、xiaomiaoAgent 网关、xiaomiao 桥接服务、stage-web 和 xiaomiaoAgent WebUI。QQ/NapCat 登录窗口保持可见，其它服务窗口默认最小化；前一步没有通过健康检查时，后续服务不会打开。
+`pnpm run start:all` 会串行启动 QQ 协议端、xiaomiaoAgent API、xiaomiaoAgent 网关、xiaomiao 桥接服务、stage-web 和 xiaomiaoAgent WebUI。QQ/NapCat 登录窗口保持可见，其它服务窗口默认最小化；前一步没有通过健康检查时，后续服务不会打开。
 
 手动启动时，先启动后端链路：
 

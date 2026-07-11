@@ -10,7 +10,8 @@ echo.
 echo 启动中...
 echo.
 
-set "ROOT_DIR=%~dp0"
+set "SCRIPT_DIR=%~dp0"
+for %%I in ("%SCRIPT_DIR%..") do set "ROOT_DIR=%%~fI\"
 set "AGENT_DIR=%ROOT_DIR%xiaomiaoAgent"
 set "AGENT_CONFIG=%ROOT_DIR%.cache\\agent\\nanobot\\config.json"
 
