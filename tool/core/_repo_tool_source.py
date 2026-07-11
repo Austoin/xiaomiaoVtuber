@@ -6,14 +6,21 @@ import sys
 from pathlib import Path
 
 
+def _find_repo_root(start: Path) -> Path | None:
+    """Find the repository root from either tool/core or compatibility wrappers."""
+    for directory in (start, *start.parents):
+        if (directory / "package.json").exists() and (directory / "xiaomiaoAgent").exists():
+            return directory
+    return None
+
+
 def prefer_repo_tool_source(package_name: str, relative_source: tuple[str, ...]) -> None:
     """Prefer the repository copy of a third-party tool if it is available."""
     if package_name in sys.modules:
         return
 
-    try:
-        repo_root = Path(__file__).resolve().parents[4]
-    except IndexError:
+    repo_root = _find_repo_root(Path(__file__).resolve().parent)
+    if repo_root is None:
         return
 
     source_path = repo_root.joinpath(*relative_source)

@@ -4,19 +4,42 @@ setlocal EnableExtensions
 
 set "ROOT_DIR=%~dp0"
 set "SCRIPTS_DIR=%ROOT_DIR%scripts"
+set "XIAOMIAO_DIR=%ROOT_DIR%xiaomiao"
+set "XIAOMIAOBOT_DIR=%ROOT_DIR%xiaomiaobot"
+set "XIAOMIAO_AGENT_DIR=%ROOT_DIR%xiaomiaoAgent"
+set "AGENT_CONFIG=%ROOT_DIR%.cache\agent\nanobot\config.json"
 
-if /I "%~1"=="--help" goto help
-if /I "%~1"=="-h" goto help
-if /I "%~1"=="help" goto help
-if /I "%~1"=="list" goto list
-if /I "%~1"=="all" goto start_all
-if /I "%~1"=="check" goto start_check
-if /I "%~1"=="tui" goto start_tui
-if /I "%~1"=="monitor" goto start_monitor
-if /I "%~1"=="monitor-simple" goto start_monitor_simple
-if /I "%~1"=="setup" goto setup_env
-if /I "%~1"=="setup-check" goto setup_check
-if not "%~1"=="" goto unknown
+set "COMMAND=%~1"
+set "FORWARDED_ARGS="
+if not "%~1"=="" (
+    for /f "tokens=1,* delims= " %%A in ("%*") do set "FORWARDED_ARGS=%%B"
+)
+
+if /I "%COMMAND%"=="--help" goto help
+if /I "%COMMAND%"=="-h" goto help
+if /I "%COMMAND%"=="help" goto help
+if /I "%COMMAND%"=="list" goto list
+if /I "%COMMAND%"=="all" goto start_all
+if /I "%COMMAND%"=="check" goto start_check
+if /I "%COMMAND%"=="qq" goto start_qq
+if /I "%COMMAND%"=="xiaomiao" goto start_qq
+if /I "%COMMAND%"=="tui" goto start_tui
+if /I "%COMMAND%"=="agent" goto start_agent
+if /I "%COMMAND%"=="agent-api" goto start_agent_api
+if /I "%COMMAND%"=="agent-gateway" goto start_agent_gateway
+if /I "%COMMAND%"=="monitor" goto start_monitor
+if /I "%COMMAND%"=="monitor-simple" goto start_monitor_simple
+if /I "%COMMAND%"=="bot-web" goto bot_web
+if /I "%COMMAND%"=="bot-tamagotchi" goto bot_tamagotchi
+if /I "%COMMAND%"=="bot-test" goto bot_test
+if /I "%COMMAND%"=="bot-typecheck" goto bot_typecheck
+if /I "%COMMAND%"=="bot-build" goto bot_build
+if /I "%COMMAND%"=="test-xiaomiao" goto test_xiaomiao
+if /I "%COMMAND%"=="test-agent-config" goto test_agent_config
+if /I "%COMMAND%"=="migrate-cache" goto migrate_cache
+if /I "%COMMAND%"=="setup" goto setup_env
+if /I "%COMMAND%"=="setup-check" goto setup_check
+if not "%COMMAND%"=="" goto unknown
 
 :menu
 cls
@@ -27,11 +50,17 @@ echo Root: %ROOT_DIR%
 echo.
 echo   1. Start all services
 echo   2. Check service status
-echo   3. Start xiaomiaoAgent TUI
-echo   4. Start monitoring dashboard
-echo   5. Start simple monitoring dashboard
-echo   6. Run environment setup
-echo   7. Check environment setup
+echo   3. Start QQ bot bridge
+echo   4. Start xiaomiaoAgent TUI
+echo   5. Start xiaomiaoAgent API
+echo   6. Start xiaomiaoAgent Gateway
+echo   7. Start xiaomiaobot stage-web
+echo   8. Start monitoring dashboard
+echo   9. Start simple monitoring dashboard
+echo  10. Run xiaomiao tests
+echo  11. Run Agent config tests
+echo  12. Run environment setup
+echo  13. Check environment setup
 echo   0. Exit
 echo.
 set "CHOICE="
@@ -39,11 +68,17 @@ set /p "CHOICE=Select an option: "
 
 if "%CHOICE%"=="1" goto start_all_interactive
 if "%CHOICE%"=="2" goto start_check_interactive
-if "%CHOICE%"=="3" goto start_tui_interactive
-if "%CHOICE%"=="4" goto start_monitor_interactive
-if "%CHOICE%"=="5" goto start_monitor_simple_interactive
-if "%CHOICE%"=="6" goto setup_env_interactive
-if "%CHOICE%"=="7" goto setup_check_interactive
+if "%CHOICE%"=="3" goto start_qq_interactive
+if "%CHOICE%"=="4" goto start_tui_interactive
+if "%CHOICE%"=="5" goto start_agent_api_interactive
+if "%CHOICE%"=="6" goto start_agent_gateway_interactive
+if "%CHOICE%"=="7" goto bot_web_interactive
+if "%CHOICE%"=="8" goto start_monitor_interactive
+if "%CHOICE%"=="9" goto start_monitor_simple_interactive
+if "%CHOICE%"=="10" goto test_xiaomiao_interactive
+if "%CHOICE%"=="11" goto test_agent_config_interactive
+if "%CHOICE%"=="12" goto setup_env_interactive
+if "%CHOICE%"=="13" goto setup_check_interactive
 if "%CHOICE%"=="0" exit /b 0
 
 echo.
@@ -54,9 +89,22 @@ goto menu
 :list
 echo all
 echo check
+echo qq
+echo xiaomiao
 echo tui
+echo agent
+echo agent-api
+echo agent-gateway
 echo monitor
 echo monitor-simple
+echo bot-web
+echo bot-tamagotchi
+echo bot-test
+echo bot-typecheck
+echo bot-build
+echo test-xiaomiao
+echo test-agent-config
+echo migrate-cache
 echo setup
 echo setup-check
 exit /b 0
@@ -64,57 +112,151 @@ exit /b 0
 :help
 echo Usage:
 echo   menu.cmd
-echo   menu.cmd all
-echo   menu.cmd check
-echo   menu.cmd tui
-echo   menu.cmd monitor
-echo   menu.cmd monitor-simple
-echo   menu.cmd setup
-echo   menu.cmd setup-check
-echo   menu.cmd list
+echo   menu.cmd ^<command^> [args]
 echo.
-echo npm/pnpm shortcuts:
+echo Service commands:
+echo   all                 Start QQ, Agent API, xiaomiao bridge, and stage-web
+echo   check               Check service status without starting windows
+echo   qq                  Start xiaomiao QQ bot bridge
+echo   tui                 Start xiaomiaoAgent TUI
+echo   agent               Run xiaomiaoAgent direct CLI with shared config
+echo   agent-api           Start OpenAI-compatible Agent API
+echo   agent-gateway       Start xiaomiaoAgent gateway
+echo   monitor             Start monitoring dashboard
+echo   monitor-simple      Start simple monitoring dashboard
+echo.
+echo xiaomiaobot commands:
+echo   bot-web             Run stage-web dev server
+echo   bot-tamagotchi      Run stage-tamagotchi dev server
+echo   bot-test            Run xiaomiaobot tests
+echo   bot-typecheck       Run xiaomiaobot typecheck
+echo   bot-build           Build xiaomiaobot apps/packages
+echo.
+echo Maintenance commands:
+echo   test-xiaomiao       Run xiaomiao Python tests
+echo   test-agent-config   Run Agent config path tests
+echo   migrate-cache       Run cache migration helper
+echo   setup               Run environment setup
+echo   setup-check         Check environment setup
+echo   list                Print command names
+echo.
+echo pnpm shortcuts:
 echo   pnpm start
-echo   pnpm run start:all
-echo   pnpm run start:check
-echo   pnpm run tui
-echo   pnpm run monitor
-echo   pnpm run monitor:simple
-echo   pnpm run setup
-echo   pnpm run setup:check
+echo   pnpm run qq
+echo   pnpm run agent:api
+echo   pnpm run bot:web
+echo   pnpm run test:xiaomiao
 exit /b 0
 
 :unknown
-echo Unknown command: %~1
+echo Unknown command: %COMMAND%
 echo.
 goto help
 
 :start_all
-call "%SCRIPTS_DIR%\start-all.cmd" %2 %3 %4 %5 %6 %7 %8 %9
+call "%SCRIPTS_DIR%\start-all.cmd" %FORWARDED_ARGS%
 exit /b %errorlevel%
 
 :start_check
-call "%SCRIPTS_DIR%\start-all.cmd" --check %2 %3 %4 %5 %6 %7 %8 %9
+call "%SCRIPTS_DIR%\start-all.cmd" --check %FORWARDED_ARGS%
+exit /b %errorlevel%
+
+:start_qq
+call :require_file "%XIAOMIAO_DIR%\main.py"
+if errorlevel 1 exit /b 1
+call conda run --no-capture-output -n xiaomiao python "%XIAOMIAO_DIR%\main.py" %FORWARDED_ARGS%
 exit /b %errorlevel%
 
 :start_tui
-call "%SCRIPTS_DIR%\start-tui.cmd" %2 %3 %4 %5 %6 %7 %8 %9
+call "%SCRIPTS_DIR%\start-tui.cmd" %FORWARDED_ARGS%
 exit /b %errorlevel%
 
+:start_agent
+call :require_file "%XIAOMIAO_AGENT_DIR%\xiaomiao_agent\__main__.py"
+if errorlevel 1 exit /b 1
+pushd "%XIAOMIAO_AGENT_DIR%"
+call conda run --no-capture-output -n xiaomiao python -m xiaomiao_agent agent --config "%AGENT_CONFIG%" %FORWARDED_ARGS%
+set "EXIT_CODE=%errorlevel%"
+popd
+exit /b %EXIT_CODE%
+
+:start_agent_api
+call :require_file "%XIAOMIAO_AGENT_DIR%\xiaomiao_agent\__main__.py"
+if errorlevel 1 exit /b 1
+pushd "%XIAOMIAO_AGENT_DIR%"
+call conda run --no-capture-output -n xiaomiao python -m xiaomiao_agent serve --config "%AGENT_CONFIG%" %FORWARDED_ARGS%
+set "EXIT_CODE=%errorlevel%"
+popd
+exit /b %EXIT_CODE%
+
+:start_agent_gateway
+call :require_file "%XIAOMIAO_AGENT_DIR%\xiaomiao_agent\__main__.py"
+if errorlevel 1 exit /b 1
+pushd "%XIAOMIAO_AGENT_DIR%"
+call conda run --no-capture-output -n xiaomiao python -m xiaomiao_agent gateway --config "%AGENT_CONFIG%" %FORWARDED_ARGS%
+set "EXIT_CODE=%errorlevel%"
+popd
+exit /b %EXIT_CODE%
+
 :start_monitor
-call "%SCRIPTS_DIR%\start-monitor.cmd" %2 %3 %4 %5 %6 %7 %8 %9
+call "%SCRIPTS_DIR%\start-monitor.cmd" %FORWARDED_ARGS%
 exit /b %errorlevel%
 
 :start_monitor_simple
-call "%SCRIPTS_DIR%\start-monitor-simple.cmd" %2 %3 %4 %5 %6 %7 %8 %9
+call "%SCRIPTS_DIR%\start-monitor-simple.cmd" %FORWARDED_ARGS%
+exit /b %errorlevel%
+
+:bot_web
+call :require_file "%XIAOMIAOBOT_DIR%\package.json"
+if errorlevel 1 exit /b 1
+call pnpm --dir "%XIAOMIAOBOT_DIR%" run dev:web -- %FORWARDED_ARGS%
+exit /b %errorlevel%
+
+:bot_tamagotchi
+call :require_file "%XIAOMIAOBOT_DIR%\package.json"
+if errorlevel 1 exit /b 1
+call pnpm --dir "%XIAOMIAOBOT_DIR%" run dev:tamagotchi -- %FORWARDED_ARGS%
+exit /b %errorlevel%
+
+:bot_test
+call :require_file "%XIAOMIAOBOT_DIR%\package.json"
+if errorlevel 1 exit /b 1
+call pnpm --dir "%XIAOMIAOBOT_DIR%" exec vitest run %FORWARDED_ARGS%
+exit /b %errorlevel%
+
+:bot_typecheck
+call :require_file "%XIAOMIAOBOT_DIR%\package.json"
+if errorlevel 1 exit /b 1
+call pnpm --dir "%XIAOMIAOBOT_DIR%" run typecheck -- %FORWARDED_ARGS%
+exit /b %errorlevel%
+
+:bot_build
+call :require_file "%XIAOMIAOBOT_DIR%\package.json"
+if errorlevel 1 exit /b 1
+call pnpm --dir "%XIAOMIAOBOT_DIR%" run build -- %FORWARDED_ARGS%
+exit /b %errorlevel%
+
+:test_xiaomiao
+call python -m pytest test/xiaomiao %FORWARDED_ARGS%
+exit /b %errorlevel%
+
+:test_agent_config
+pushd "%XIAOMIAO_AGENT_DIR%"
+call uv run pytest tests/config/test_config_paths.py -q --basetemp ..\.pytest-tmp-agent-config %FORWARDED_ARGS%
+set "EXIT_CODE=%errorlevel%"
+popd
+exit /b %EXIT_CODE%
+
+:migrate_cache
+call python "%SCRIPTS_DIR%\migrate_cache.py" %FORWARDED_ARGS%
 exit /b %errorlevel%
 
 :setup_env
-call "%SCRIPTS_DIR%\setup-env.cmd" %2 %3 %4 %5 %6 %7 %8 %9
+call "%SCRIPTS_DIR%\setup-env.cmd" %FORWARDED_ARGS%
 exit /b %errorlevel%
 
 :setup_check
-call "%SCRIPTS_DIR%\setup-env.cmd" --check %2 %3 %4 %5 %6 %7 %8 %9
+call "%SCRIPTS_DIR%\setup-env.cmd" --check %FORWARDED_ARGS%
 exit /b %errorlevel%
 
 :start_all_interactive
@@ -125,8 +267,28 @@ goto return_to_menu
 call "%SCRIPTS_DIR%\start-all.cmd" --check
 goto return_to_menu
 
+:start_qq_interactive
+call conda run --no-capture-output -n xiaomiao python "%XIAOMIAO_DIR%\main.py"
+goto return_to_menu
+
 :start_tui_interactive
 call "%SCRIPTS_DIR%\start-tui.cmd"
+goto return_to_menu
+
+:start_agent_api_interactive
+pushd "%XIAOMIAO_AGENT_DIR%"
+call conda run --no-capture-output -n xiaomiao python -m xiaomiao_agent serve --config "%AGENT_CONFIG%"
+popd
+goto return_to_menu
+
+:start_agent_gateway_interactive
+pushd "%XIAOMIAO_AGENT_DIR%"
+call conda run --no-capture-output -n xiaomiao python -m xiaomiao_agent gateway --config "%AGENT_CONFIG%"
+popd
+goto return_to_menu
+
+:bot_web_interactive
+call pnpm --dir "%XIAOMIAOBOT_DIR%" run dev:web
 goto return_to_menu
 
 :start_monitor_interactive
@@ -135,6 +297,16 @@ goto return_to_menu
 
 :start_monitor_simple_interactive
 call "%SCRIPTS_DIR%\start-monitor-simple.cmd"
+goto return_to_menu
+
+:test_xiaomiao_interactive
+call python -m pytest test/xiaomiao
+goto return_to_menu
+
+:test_agent_config_interactive
+pushd "%XIAOMIAO_AGENT_DIR%"
+call uv run pytest tests/config/test_config_paths.py -q --basetemp ..\.pytest-tmp-agent-config
+popd
 goto return_to_menu
 
 :setup_env_interactive
@@ -149,3 +321,10 @@ goto return_to_menu
 echo.
 pause
 goto menu
+
+:require_file
+if not exist "%~1" (
+    echo [Error] Missing required file: %~1
+    exit /b 1
+)
+exit /b 0

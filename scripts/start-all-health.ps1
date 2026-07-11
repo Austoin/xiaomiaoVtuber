@@ -218,14 +218,14 @@ function Test-XiaomiaoAgentConfigSafe {
     if ($qq -and $qq.enabled -eq $true) {
         Write-Host "[Error] xiaomiaoAgent native QQ channel is enabled."
         Write-Host "        Current XiaoMiao QQ authority is xiaomiao/main.py + NapCat."
-        Write-Host "        Disable channels.qq.enabled before running start-all.cmd."
+        Write-Host "        Disable channels.qq.enabled before running pnpm run start:all."
         return $false
     }
     $defaults = $config.agents.defaults
     if ($defaults -and $defaults.unifiedSession -eq $true) {
         Write-Host "[Error] xiaomiaoAgent global unifiedSession is enabled."
         Write-Host "        XiaoMiao uses explicit xiaomiao-unified routing instead."
-        Write-Host "        Disable agents.defaults.unifiedSession before running start-all.cmd."
+        Write-Host "        Disable agents.defaults.unifiedSession before running pnpm run start:all."
         return $false
     }
     return $true
@@ -266,8 +266,8 @@ function Invoke-AssertFree {
     if (-not (Test-TcpPort $Port)) { return $true }
     Write-Host "[Error] $Name already owns 127.0.0.1:$Port."
     Write-PortOwners $Port
-    Write-Host "        start-all.cmd cannot attach an old process to a new visible terminal."
-    Write-Host "        Close that service first, then run start-all.cmd again."
+    Write-Host "        pnpm run start:all cannot attach an old process to a new visible terminal."
+    Write-Host "        Close that service first, then run pnpm run start:all again."
     return $false
 }
 

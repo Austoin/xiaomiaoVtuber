@@ -14,8 +14,8 @@ import httpx
 from loguru import logger
 from pydantic import Field
 
-from nanobot.agent.tools.base import Tool, tool_parameters
-from nanobot.agent.tools.schema import IntegerSchema, StringSchema, tool_parameters_schema
+from tool.core.base import Tool, tool_parameters
+from tool.core.schema import IntegerSchema, StringSchema, tool_parameters_schema
 from nanobot.config.schema import Base
 from nanobot.utils.helpers import build_image_content_blocks
 

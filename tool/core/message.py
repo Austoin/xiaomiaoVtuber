@@ -5,9 +5,9 @@ from contextvars import ContextVar
 from pathlib import Path
 from typing import Any, Awaitable, Callable
 
-from nanobot.agent.tools.base import Tool, tool_parameters
-from nanobot.agent.tools.context import ContextAware, RequestContext
-from nanobot.agent.tools.schema import ArraySchema, StringSchema, tool_parameters_schema
+from tool.core.base import Tool, tool_parameters
+from tool.core.context import ContextAware, RequestContext
+from tool.core.schema import ArraySchema, StringSchema, tool_parameters_schema
 from nanobot.bus.events import OutboundMessage
 from nanobot.config.paths import get_workspace_path
 

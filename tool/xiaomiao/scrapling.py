@@ -5,9 +5,9 @@ from __future__ import annotations
 import json
 from typing import Any
 
-from nanobot.agent.tools._repo_tool_source import prefer_repo_tool_source
-from nanobot.agent.tools.base import Tool, tool_parameters
-from nanobot.agent.tools.schema import IntegerSchema, StringSchema, tool_parameters_schema
+from tool.core._repo_tool_source import prefer_repo_tool_source
+from tool.core.base import Tool, tool_parameters
+from tool.core.schema import IntegerSchema, StringSchema, tool_parameters_schema
 from nanobot.security.network import validate_resolved_url, validate_url_target
 
 _DEFAULT_MAX_CHARS = 50_000

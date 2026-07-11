@@ -14,9 +14,9 @@ from typing import Any
 from loguru import logger
 from pydantic import Field
 
-from nanobot.agent.tools.base import Tool, tool_parameters
-from nanobot.agent.tools.sandbox import wrap_command
-from nanobot.agent.tools.schema import IntegerSchema, StringSchema, tool_parameters_schema
+from tool.core.base import Tool, tool_parameters
+from tool.core.sandbox import wrap_command
+from tool.core.schema import IntegerSchema, StringSchema, tool_parameters_schema
 from nanobot.config.paths import get_media_dir
 from nanobot.config.schema import Base
 

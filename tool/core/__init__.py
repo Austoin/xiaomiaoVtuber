@@ -1,10 +1,27 @@
-"""核心工具模块
+"""Canonical core tool package."""
 
-提供文件系统、Shell、搜索、Web、MCP 等基础工具能力。
-"""
+from tool.core.base import Schema, Tool, tool_parameters
+from tool.core.registry import ToolRegistry
+from tool.core.schema import (
+    ArraySchema,
+    BooleanSchema,
+    IntegerSchema,
+    NumberSchema,
+    ObjectSchema,
+    StringSchema,
+    tool_parameters_schema,
+)
 
-from .registry import ToolRegistry
-from .base import Tool
-
-__all__ = ["ToolRegistry", "Tool"]
-
+__all__ = [
+    "ArraySchema",
+    "BooleanSchema",
+    "IntegerSchema",
+    "NumberSchema",
+    "ObjectSchema",
+    "Schema",
+    "StringSchema",
+    "Tool",
+    "ToolRegistry",
+    "tool_parameters",
+    "tool_parameters_schema",
+]

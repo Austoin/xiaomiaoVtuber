@@ -2,8 +2,8 @@
 
 from typing import Any
 
-from nanobot.agent.tools.base import Tool
-from nanobot.agent.tools.context import RequestContext
+from tool.core.base import Tool
+from tool.core.context import RequestContext
 
 
 LOW_RISK_CHANNEL_POLICY = "low_risk"

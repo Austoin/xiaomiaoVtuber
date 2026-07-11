@@ -3,8 +3,8 @@
 import json
 from typing import Any
 
-from nanobot.agent.tools.base import Tool, tool_parameters
-from nanobot.agent.tools.schema import ArraySchema, StringSchema, tool_parameters_schema
+from tool.core.base import Tool, tool_parameters
+from tool.core.schema import ArraySchema, StringSchema, tool_parameters_schema
 
 STRUCTURED_BUTTON_CHANNELS = frozenset({"telegram", "websocket"})
 

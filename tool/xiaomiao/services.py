@@ -7,9 +7,9 @@ import json
 from typing import Any
 from urllib import error, request
 
-from nanobot.agent.tools.base import Tool, tool_parameters
-from nanobot.agent.tools.context import ContextAware, RequestContext
-from nanobot.agent.tools.schema import ObjectSchema, StringSchema, tool_parameters_schema
+from tool.core.base import Tool, tool_parameters
+from tool.core.context import ContextAware, RequestContext
+from tool.core.schema import ObjectSchema, StringSchema, tool_parameters_schema
 
 
 DEFAULT_BRIDGE_EVENTS_URL = "http://127.0.0.1:5519/v1/xiaomiao/events"

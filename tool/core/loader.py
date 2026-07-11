@@ -8,8 +8,8 @@ from typing import Any
 
 from loguru import logger
 
-from nanobot.agent.tools.base import Tool
-from nanobot.agent.tools.registry import ToolRegistry
+from tool.core.base import Tool
+from tool.core.registry import ToolRegistry
 
 _SKIP_MODULES = frozenset({
     "base", "schema", "registry", "context", "loader", "config",
@@ -21,8 +21,13 @@ class ToolLoader:
     def __init__(self, package: Any = None, *, test_classes: list[type[Tool]] | None = None):
         if package is None:
             import nanobot.agent.tools as _pkg
-            package = _pkg
-        self._package = package
+            import tool.xiaomiao as _xiaomiao_pkg
+            packages = (_pkg, _xiaomiao_pkg)
+        elif isinstance(package, (tuple, list)):
+            packages = tuple(package)
+        else:
+            packages = (package,)
+        self._packages = packages
         self._test_classes = test_classes
         self._discovered: list[type[Tool]] | None = None
         self._plugins: dict[str, type[Tool]] | None = None
@@ -34,27 +39,28 @@ class ToolLoader:
             return self._discovered
         seen: set[int] = set()
         results: list[type[Tool]] = []
-        for _importer, module_name, _ispkg in pkgutil.iter_modules(self._package.__path__):
-            if module_name.startswith("_") or module_name in _SKIP_MODULES:
-                continue
-            try:
-                module = importlib.import_module(f".{module_name}", self._package.__name__)
-            except Exception:
-                logger.exception("Failed to import tool module: %s", module_name)
-                continue
-            for attr_name in dir(module):
-                attr = getattr(module, attr_name)
-                if (
-                    isinstance(attr, type)
-                    and issubclass(attr, Tool)
-                    and attr is not Tool
-                    and not attr_name.startswith("_")
-                    and not getattr(attr, "__abstractmethods__", None)
-                    and getattr(attr, "_plugin_discoverable", True)
-                    and id(attr) not in seen
-                ):
-                    seen.add(id(attr))
-                    results.append(attr)
+        for package in self._packages:
+            for _importer, module_name, _ispkg in pkgutil.iter_modules(package.__path__):
+                if module_name.startswith("_") or module_name in _SKIP_MODULES:
+                    continue
+                try:
+                    module = importlib.import_module(f".{module_name}", package.__name__)
+                except Exception:
+                    logger.exception("Failed to import tool module: %s", module_name)
+                    continue
+                for attr_name in dir(module):
+                    attr = getattr(module, attr_name)
+                    if (
+                        isinstance(attr, type)
+                        and issubclass(attr, Tool)
+                        and attr is not Tool
+                        and not attr_name.startswith("_")
+                        and not getattr(attr, "__abstractmethods__", None)
+                        and getattr(attr, "_plugin_discoverable", True)
+                        and id(attr) not in seen
+                    ):
+                        seen.add(id(attr))
+                        results.append(attr)
         results.sort(key=lambda cls: cls.__name__)
         self._discovered = results
         return results

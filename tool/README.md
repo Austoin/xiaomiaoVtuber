@@ -53,9 +53,7 @@ tool/
 │
 └── adapters/                   # 调用适配器
     ├── __init__.py
-    ├── nanobot_adapter.py      # xiaomiaoAgent 适配
-    ├── qq_adapter.py           # QQ Bot 适配
-    └── tui_adapter.py          # TUI 适配
+    └── qq_adapter.py           # QQ Bot 适配
 ```
 
 ---
@@ -84,13 +82,13 @@ tool/
 
 ### xiaomiaoAgent (nanobot)
 
-原有导入路径继续有效：
+`tool/core/` 是核心工具唯一源码位置。原有 nanobot 导入路径继续有效，并作为兼容层转发到 `tool.core`：
 ```python
 from nanobot.agent.tools import ToolRegistry, Tool
-from nanobot.agent.tools.filesystem import list_dir, read_file
+from nanobot.agent.tools.filesystem import ReadFileTool, WriteFileTool
 ```
 
-内部已自动重定向到 `tool/core/`。
+ToolLoader 默认发现 `nanobot.agent.tools` 兼容入口和 `tool.xiaomiao` 项目专属工具，因此 Agent 运行时实际使用根目录 `tool/` 下的工具实现。
 
 ### xiaomiao QQ Bot
 
@@ -112,7 +110,7 @@ decision = decide_tool_request(
 
 ### TUI 终端
 
-TUI 通过 xiaomiaoAgent 间接调用，无需修改。
+TUI 通过 xiaomiaoAgent 间接调用 `tool/core` 工具实现，无需单独适配器。
 
 ---
 

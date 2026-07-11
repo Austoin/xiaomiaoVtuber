@@ -7,9 +7,9 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
-from nanobot.agent.tools.base import Tool, tool_parameters
-from nanobot.agent.tools.file_state import FileStates, _hash_file, current_file_states
-from nanobot.agent.tools.schema import (
+from tool.core.base import Tool, tool_parameters
+from tool.core.file_state import FileStates, _hash_file, current_file_states
+from tool.core.schema import (
     BooleanSchema,
     IntegerSchema,
     StringSchema,

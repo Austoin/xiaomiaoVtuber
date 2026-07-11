@@ -614,7 +614,8 @@ async def test_exec_timeout_parameter() -> None:
     """LLM-supplied timeout should override the constructor default."""
     tool = ExecTool(timeout=60)
     # A very short timeout should cause the command to be killed
-    result = await tool.execute(command="sleep 10", timeout=1)
+    command = subprocess.list2cmdline([sys.executable, "-c", "import time; time.sleep(10)"])
+    result = await tool.execute(command=command, timeout=1)
     assert "timed out" in result
     assert "1 seconds" in result
 

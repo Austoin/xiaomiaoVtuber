@@ -1,15 +1,24 @@
-"""
-xiaomiaoVirtual 统一工具层
+"""xiaomiaoVirtual unified tool layer."""
 
-将所有工具、记忆层和第三方依赖集中管理，提供统一的访问接口。
+from __future__ import annotations
 
-目录结构：
-- core/: 核心工具（文件系统、Shell、搜索、MCP 等）
-- xiaomiao/: 项目专属工具（markitdown、scrapling、舞台动作等）
-- memory/: 记忆层（存储、整理、Dream）
-- vendor/: 第三方源码
-- adapters/: 调用适配器（xiaomiaoAgent、QQ Bot、TUI）
-"""
+import sys
+from pathlib import Path
+
+
+def _prefer_repo_agent_source() -> None:
+    """Expose the in-repository nanobot package when running from repo root."""
+    repo_root = Path(__file__).resolve().parents[1]
+    agent_dir = repo_root / "xiaomiaoAgent"
+    if not (agent_dir / "nanobot").exists():
+        return
+
+    source = str(agent_dir)
+    if source not in sys.path:
+        sys.path.insert(0, source)
+
+
+_prefer_repo_agent_source()
 
 __version__ = "1.0.0"
 __all__ = ["core", "xiaomiao", "memory", "vendor", "adapters"]
