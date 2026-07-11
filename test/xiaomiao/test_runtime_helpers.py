@@ -32,7 +32,9 @@ def test_seconds_to_hms_formats_duration():
 
 
 def _workspace_temp_dir() -> str:
-    return str(project_root / ".pytest_cache")
+    temp_dir = project_root / ".pytest-tmp-xiaomiao"
+    temp_dir.mkdir(exist_ok=True)
+    return str(temp_dir)
 
 
 def test_verfiy_pixiv_accepts_valid_image():
