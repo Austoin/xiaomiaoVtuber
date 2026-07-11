@@ -10,7 +10,9 @@
     "module": "esnext",
     "moduleResolution": "bundler",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": [
+        "./src/*"
+      ]
     },
     "resolveJsonModule": true,
     "types": [
@@ -25,11 +27,11 @@
     "skipLibCheck": true
   },
   "include": [
-    "/**/*.vue",
+    "**/*.vue",
     "components/**/*.vue",
     ".vitepress/**/*.vue",
-    "/**/*.ts",
-    "/**/*.md",
+    "**/*.ts",
+    "**/*.md",
     ".vitepress/**/*.ts",
     ".vitepress/**/*.vue"
   ],
@@ -37,6 +39,8 @@
     "node_modules"
   ],
   "vueCompilerOptions": {
-    "vitePressExtensions": [".md"]
+    "vitePressExtensions": [
+      ".md"
+    ]
   }
 }

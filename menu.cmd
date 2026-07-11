@@ -29,6 +29,7 @@ if /I "%COMMAND%"=="agent-api" goto start_agent_api
 if /I "%COMMAND%"=="agent-gateway" goto start_agent_gateway
 if /I "%COMMAND%"=="monitor" goto start_monitor
 if /I "%COMMAND%"=="monitor-simple" goto start_monitor_simple
+if /I "%COMMAND%"=="bot-script" goto bot_script
 if /I "%COMMAND%"=="bot-web" goto bot_web
 if /I "%COMMAND%"=="bot-tamagotchi" goto bot_tamagotchi
 if /I "%COMMAND%"=="bot-test" goto bot_test
@@ -97,6 +98,7 @@ echo agent-api
 echo agent-gateway
 echo monitor
 echo monitor-simple
+echo bot-script
 echo bot-web
 echo bot-tamagotchi
 echo bot-test
@@ -126,6 +128,7 @@ echo   monitor             Start monitoring dashboard
 echo   monitor-simple      Start simple monitoring dashboard
 echo.
 echo xiaomiaobot commands:
+echo   bot-script SCRIPT   Run any xiaomiaobot package.json script
 echo   bot-web             Run stage-web dev server
 echo   bot-tamagotchi      Run stage-tamagotchi dev server
 echo   bot-test            Run xiaomiaobot tests
@@ -145,6 +148,7 @@ echo   pnpm start
 echo   pnpm run qq
 echo   pnpm run agent:api
 echo   pnpm run bot:web
+echo   pnpm run bot:knip
 echo   pnpm run test:xiaomiao
 exit /b 0
 
@@ -204,6 +208,20 @@ exit /b %errorlevel%
 
 :start_monitor_simple
 call "%SCRIPTS_DIR%\start-monitor-simple.cmd" %FORWARDED_ARGS%
+exit /b %errorlevel%
+
+:bot_script
+call :require_file "%XIAOMIAOBOT_DIR%\package.json"
+if errorlevel 1 exit /b 1
+if "%~2"=="" (
+    echo [Error] Missing xiaomiaobot script name.
+    echo Usage: menu.cmd bot-script ^<script^> [args]
+    exit /b 1
+)
+set "BOT_SCRIPT=%~2"
+set "BOT_SCRIPT_ARGS="
+for /f "tokens=1,2,* delims= " %%A in ("%*") do set "BOT_SCRIPT_ARGS=%%C"
+call pnpm --dir "%XIAOMIAOBOT_DIR%" %BOT_SCRIPT% %BOT_SCRIPT_ARGS%
 exit /b %errorlevel%
 
 :bot_web
