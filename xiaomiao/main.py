@@ -64,11 +64,13 @@ from qq_workspace import (
     resolve_group_upload_url,
 )
 
-# ========== 新增: 导入命令系统 ==========
-from commands import list_all_commands
-from handlers.command_dispatcher import command_dispatcher
-import commands.basic  # 自动注册基础命令
-# ========================================
+# ========== 命令系统迁移说明 ==========
+# from commands import list_all_commands
+# from handlers.command_dispatcher import command_dispatcher
+# import commands.basic  # 自动注册基础命令
+# 上述重构体系已归档至 xiaomiao/archive/{commands,handlers,services}，
+# 命令分发回到下方原有命令分支逻辑。
+# ====================================
 
 # import framework
 CONFIG_FILE = Path(__file__).parent / "config.json"
@@ -101,8 +103,9 @@ logger.set_level(config.log_level)
 configure_console_output()
 version_name = "2.0"
 
-# 命令系统启动日志
-logger.info(f"命令系统已加载,共 {len(list_all_commands())} 个命令: {list_all_commands()}")
+# 命令系统迁移说明：
+# 该日志依赖已归档的 commands 体系，注释保留以提示切换点。
+# logger.info(f"命令系统已加载,共 {len(list_all_commands())} 个命令: {list_all_commands()}")
 cooldowns = {}
 cooldowns1 = {}
 second_start = time.time()
@@ -177,7 +180,6 @@ genai.configure(api_key=key, base_url=gemini_base_url)
 default_model = Configurator.cm.get_cfg().others.get(
     "default_model", "gemini-3-flash-preview"
 )
-fallback_model = Configurator.cm.get_cfg().others.get("fallback_model", "deepseek-v3")
 fallback_key = Configurator.cm.get_cfg().others.get("fallback_key", key)
 
 # 图片API配置
@@ -729,44 +731,7 @@ async def handler(event: Events.Event, actions: Listener.Actions) -> None:
         print(event.user_id)
         sys_prompt = select_persona_prompt(event.user_id, event_user)
 
-        # ========== 新增: 命令系统分发 ==========
-        try:
-            cmd_result = await command_dispatcher.dispatch(
-                user_id=event.user_id,
-                user_name=event_user,
-                message_id=event.message_id,
-                message_text=user_message,
-                chat_id=str(event.group_id),
-                chat_type='group',
-            )
-
-            if cmd_result is not None:
-                # 是命令,已处理
-                logger.info(f"命令系统处理: {user_message}, 结果: {cmd_result.success}")
-                if cmd_result.success:
-                    # 构建响应消息
-                    segments = []
-                    if cmd_result.message:
-                        segments.append(Segments.Text(cmd_result.message))
-
-                    # 如果有图片数据
-                    if cmd_result.data and 'image' in cmd_result.data:
-                        segments.append(Segments.Image(url=cmd_result.data['image']))
-
-                    await actions.send(
-                        group_id=event.group_id,
-                        message=Manager.Message(*segments)
-                    )
-                else:
-                    await actions.send(
-                        group_id=event.group_id,
-                        message=Manager.Message(Segments.Text(f"❌ {cmd_result.error}"))
-                    )
-                return  # 命令已处理,不继续走原有流程
-        except Exception as e:
-            logger.error(f"命令分发异常: {e}", exc_info=True)
-            # 继续走原有流程
-        # ========== 命令分发结束 ==========
+        # 命令系统已归档至 xiaomiao/archive/，回到下方原有命令分支逻辑。
 
         if "ping" == user_message:
             print(str(event.user_id))
@@ -2640,44 +2605,7 @@ CPU 使用率：{str(system_info["cpu_usage"]) + "%"}
         # 根据用户身份设置系统提示
         sys_prompt = select_persona_prompt(event.user_id, event_user)
 
-        # ========== 新增: 命令系统分发 (私聊) ==========
-        try:
-            cmd_result = await command_dispatcher.dispatch(
-                user_id=event.user_id,
-                user_name=event_user,
-                message_id=event.message_id,
-                message_text=user_message,
-                chat_id=str(event.user_id),
-                chat_type='private',
-            )
-
-            if cmd_result is not None:
-                # 是命令,已处理
-                logger.info(f"[私聊] 命令系统处理: {user_message}, 结果: {cmd_result.success}")
-                if cmd_result.success:
-                    # 构建响应消息
-                    segments = []
-                    if cmd_result.message:
-                        segments.append(Segments.Text(cmd_result.message))
-
-                    # 如果有图片数据
-                    if cmd_result.data and 'image' in cmd_result.data:
-                        segments.append(Segments.Image(url=cmd_result.data['image']))
-
-                    await actions.send(
-                        user_id=event.user_id,
-                        message=Manager.Message(*segments)
-                    )
-                else:
-                    await actions.send(
-                        user_id=event.user_id,
-                        message=Manager.Message(Segments.Text(f"❌ {cmd_result.error}"))
-                    )
-                return  # 命令已处理,不继续走原有流程
-        except Exception as e:
-            logger.error(f"[私聊] 命令分发异常: {e}", exc_info=True)
-            # 继续走原有流程
-        # ========== 命令分发结束 ==========
+        # 命令系统已归档至 xiaomiao/archive/，回到下方原有命令分支逻辑。
 
         # ping 测试
         if "ping" == user_message:
