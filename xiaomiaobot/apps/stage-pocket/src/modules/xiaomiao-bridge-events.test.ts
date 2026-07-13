@@ -1,5 +1,5 @@
-import type { ChatHistoryItem } from '@proj-airi/stage-ui/types/chat'
 import type { XiaomiaoBridgeEvent } from '@proj-airi/stage-layouts/xiaomiao-bridge'
+import type { ChatHistoryItem } from '@proj-airi/stage-ui/types/chat'
 
 import { describe, expect, it, vi } from 'vitest'
 
@@ -70,7 +70,7 @@ describe('createStagePocketBridgeEventSync', () => {
 
     expect(messages).toEqual([])
     expect(logger.error).toHaveBeenCalledWith(
-      'Failed to sync XiaoMiao bridge events in stage-pocket:',
+      'Failed to sync XiaoMiao bridge events:',
       expect.any(Error),
     )
   })

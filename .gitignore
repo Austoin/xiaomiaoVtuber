@@ -23,6 +23,8 @@ env/
 *.swo
 *~
 .cursor/
+.zed/
+.gemini/
 
 # OS
 .DS_Store
@@ -62,8 +64,13 @@ bridge_events.jsonl
 dist/
 build/
 *.egg-info/
+*.tsbuildinfo
 xiaomiaobot/apps/*/out/
 xiaomiaobot/packages/*/dist/
+xiaomiaobot/apps/server/public/
+xiaomiaobot/apps/stage-pocket/public/assets/
+xiaomiaobot/apps/stage-pocket/src/typed-router.d.ts
+xiaomiaobot/apps/ui-server-auth/src/typed-router.d.ts
 
 # Node
 node_modules/

@@ -1,22 +1,9 @@
+import type { ArtifactTransformer, VishotArtifact } from '@proj-airi/vishot-runtime/runtime/artifact-types'
 import type { ElectronApplication, Page } from 'playwright'
 
 import type { StageWindowName, StageWindowSnapshot } from '../utils/windows'
 
-export type VishotArtifactKind = 'image'
-export type VishotArtifactStage = 'browser-final' | 'electron-raw'
-
-export interface VishotArtifact {
-  kind: VishotArtifactKind
-  stage: VishotArtifactStage
-  artifactName: string
-  filePath: string
-  format: string
-  metadata?: Record<string, unknown>
-}
-
-export type ArtifactTransformer = (
-  artifact: VishotArtifact,
-) => Promise<VishotArtifact | VishotArtifact[]>
+export type { ArtifactTransformer, VishotArtifact, VishotArtifactKind, VishotArtifactStage } from '@proj-airi/vishot-runtime/runtime/artifact-types'
 
 export interface CaptureOptions {
   fullPage?: boolean

@@ -1,5 +1,5 @@
 @import '@proj-airi/ui/main.css';
-@import './transitions.css';
+@import '@proj-airi/ui-transitions/styles/transitions.css';
 
 html,
 body,

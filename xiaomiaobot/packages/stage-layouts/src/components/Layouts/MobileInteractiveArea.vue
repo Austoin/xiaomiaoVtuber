@@ -22,11 +22,11 @@ import { useI18n } from 'vue-i18n'
 import { RouterLink } from 'vue-router'
 
 import IndicatorMicVolume from '../Widgets/IndicatorMicVolume.vue'
-import { appendXiaomiaoBridgeError, appendXiaomiaoBridgeExchange, createXiaomiaoClientMessageId, requestXiaomiaoBridgeReply } from '../../xiaomiao-bridge'
 import ActionAbout from './InteractiveArea/Actions/About.vue'
 import ActionViewControls from './InteractiveArea/Actions/ViewControls.vue'
 import ViewControlInputs from './ViewControls/Inputs.vue'
 
+import { appendXiaomiaoBridgeError, appendXiaomiaoBridgeReply, createXiaomiaoClientMessageId } from '../../xiaomiao-bridge'
 import { BackgroundDialogPicker } from '../Backgrounds'
 
 const { isDark, toggleDark } = useTheme()
@@ -79,14 +79,13 @@ function appendBridgeError(text: string, error: unknown) {
 async function sendChatText(text: string) {
   if (isStageWeb()) {
     const clientMessageId = createXiaomiaoClientMessageId()
-    const replyText = await requestXiaomiaoBridgeReply({
-      text,
-      model: activeModel.value,
-      clientMessageId,
-    })
     chatSession.setSessionMessages(
       chatSession.activeSessionId,
-      appendXiaomiaoBridgeExchange(activeMessages(), text, replyText, { clientMessageId }),
+      await appendXiaomiaoBridgeReply(activeMessages(), {
+        text,
+        model: activeModel.value,
+        clientMessageId,
+      }),
     )
     return
   }

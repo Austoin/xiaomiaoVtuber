@@ -34,6 +34,7 @@ export async function startSceneViteServer(sceneAppRoot: string): Promise<Manage
       host: '127.0.0.1',
       port: 41731,
       strictPort: false,
+      watch: null,
     },
   })
 

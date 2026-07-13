@@ -25,11 +25,7 @@ xiaomiaoAgent
 ## 2. 顶层目录
 
 - `.agents/`：本地 AI agent 技能与指令配置。
-- `.cursor/`：Cursor 编辑器配置。
-- `.gemini/`：Gemini CLI/Agent 配置。
 - `.github/`：GitHub 工作流、Issue 模板和仓库自动化配置。
-- `.vscode/`：VS Code 工作区推荐配置。
-- `.zed/`：Zed 编辑器配置。
 - `apps/`：应用入口集合，包含 Web、桌面端、移动端、Server 和示例应用。
 - `bucket/`：Scoop/发布相关 bucket 配置。
 - `docs/`：文档站与项目文档内容。
@@ -543,17 +539,10 @@ apps/stage-tamagotchi/
 - `.agents/skills/xsai/references/structured-output.md`：Markdown 文档。
 - `.agents/skills/xsai/references/text-stream-tools.md`：Markdown 文档。
 - `.agents/skills/xsai/SKILL.md`：Markdown 文档。
-### .cursor
-
-- `.cursor/commands/deslop.md`：Markdown 文档。
 ### 根目录文件
 
 - `.dockerignore`：Docker 构建忽略规则。
 - `.editorconfig`：跨编辑器格式配置。
-### .gemini
-
-- `.gemini/config.yaml`：YAML 配置文件。
-- `.gemini/styleguide.md`：Markdown 文档。
 ### 根目录文件
 
 - `.gitattributes`：Git 文件属性配置。
@@ -606,14 +595,6 @@ apps/stage-tamagotchi/
 - `.gitignore`：Git 忽略规则。
 - `.prototools`：Proto 工具链配置。
 - `.tool-versions`：工具版本管理配置。
-### .vscode
-
-- `.vscode/extensions.json`：JSON 配置或数据文件。
-- `.vscode/launch.json`：JSON 配置或数据文件。
-- `.vscode/settings.json`：JSON 配置或数据文件。
-### .zed
-
-- `.zed/settings.json`：JSON 配置或数据文件。
 ### 根目录文件
 
 - `AGENTS.md`：仓库级 AI 编码代理工作约定。

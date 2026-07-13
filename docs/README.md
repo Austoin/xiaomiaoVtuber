@@ -33,6 +33,12 @@
 - [subsystems/xiaomiaobot/services-and-plugins.md](subsystems/xiaomiaobot/services-and-plugins.md): 服务与插件
 - [subsystems/xiaomiaobot/struct.md](subsystems/xiaomiaobot/struct.md): 前端完整结构索引
 
+### 工具与协作
+
+- [tooling/editor-settings.md](tooling/editor-settings.md): 编辑器本地设置整合说明
+- [tooling/ai-assistants.md](tooling/ai-assistants.md): AI 辅助工具配置整合说明
+- [tooling/repository-cleanup.md](tooling/repository-cleanup.md): 缓存、生成物和协作目录清理说明
+
 ### 历史归档
 
 - [archive/plans/](archive/plans/): 历史开发计划

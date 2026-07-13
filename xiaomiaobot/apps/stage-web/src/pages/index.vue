@@ -1,15 +1,15 @@
 <script setup lang="ts">
-import { errorMessageFrom } from '@moeru/std'
 import Header from '@proj-airi/stage-layouts/components/Layouts/Header.vue'
 import InteractiveArea from '@proj-airi/stage-layouts/components/Layouts/InteractiveArea.vue'
 import MobileHeader from '@proj-airi/stage-layouts/components/Layouts/MobileHeader.vue'
 import MobileInteractiveArea from '@proj-airi/stage-layouts/components/Layouts/MobileInteractiveArea.vue'
-import { appendXiaomiaoBridgeError, appendXiaomiaoBridgeEvents, appendXiaomiaoBridgeExchange, createXiaomiaoClientMessageId, requestXiaomiaoBridgeEvents, requestXiaomiaoBridgeReply } from '@proj-airi/stage-layouts/xiaomiao-bridge'
 import workletUrl from '@proj-airi/stage-ui/workers/vad/process.worklet?worker&url'
 
+import { errorMessageFrom } from '@moeru/std'
 import { BackgroundProvider } from '@proj-airi/stage-layouts/components/Backgrounds'
 import { useBackgroundThemeColor } from '@proj-airi/stage-layouts/composables/theme-color'
 import { useBackgroundStore } from '@proj-airi/stage-layouts/stores/background'
+import { appendXiaomiaoBridgeError, appendXiaomiaoBridgeReply, createXiaomiaoBridgeEventSync, createXiaomiaoClientMessageId } from '@proj-airi/stage-layouts/xiaomiao-bridge'
 import { HoloCoupon } from '@proj-airi/stage-ui/components'
 import { WidgetStage } from '@proj-airi/stage-ui/components/scenes'
 import { useAudioRecorder } from '@proj-airi/stage-ui/composables/audio/audio-recorder'
@@ -21,8 +21,6 @@ import { useSettingsAudioDevice } from '@proj-airi/stage-ui/stores/settings'
 import { breakpointsTailwind, useBreakpoints, useMouse } from '@vueuse/core'
 import { storeToRefs } from 'pinia'
 import { computed, onMounted, onUnmounted, ref, useTemplateRef, watch } from 'vue'
-
-const BRIDGE_EVENTS_POLL_INTERVAL_MS = 1500
 
 const paused = ref(false)
 
@@ -64,9 +62,7 @@ const {
 })
 
 let stopOnStopRecord: (() => void) | undefined
-let bridgeEventsCursor = 0
-let bridgeEventsPolling = false
-let bridgeEventsTimer: ReturnType<typeof setInterval> | undefined
+let bridgeEventSync: ReturnType<typeof createXiaomiaoBridgeEventSync> | undefined
 
 function activeMessages() {
   return chatSession.getSessionMessages(chatSession.activeSessionId)
@@ -81,48 +77,23 @@ function appendBridgeError(text: string, error: unknown) {
 
 async function sendViaXiaomiaoBridge(text: string) {
   const clientMessageId = createXiaomiaoClientMessageId('stage-web-voice')
-  const replyText = await requestXiaomiaoBridgeReply({ text, clientMessageId })
   chatSession.setSessionMessages(
     chatSession.activeSessionId,
-    appendXiaomiaoBridgeExchange(activeMessages(), text, replyText, { clientMessageId }),
+    await appendXiaomiaoBridgeReply(activeMessages(), { text, clientMessageId }),
   )
 }
 
-async function pollXiaomiaoBridgeEvents() {
-  if (bridgeEventsPolling)
-    return
-
-  bridgeEventsPolling = true
-  try {
-    const result = await requestXiaomiaoBridgeEvents({ after: bridgeEventsCursor })
-    bridgeEventsCursor = Math.max(bridgeEventsCursor, result.lastId)
-
-    const currentMessages = activeMessages()
-    const nextMessages = appendXiaomiaoBridgeEvents(currentMessages, result.events, { includeWeb: true })
-    if (nextMessages !== currentMessages)
-      chatSession.setSessionMessages(chatSession.activeSessionId, nextMessages)
-  }
-  catch (error) {
-    console.error('Failed to poll XiaoMiao bridge events:', error)
-  }
-  finally {
-    bridgeEventsPolling = false
-  }
-}
-
 function startBridgeEventPolling() {
-  void pollXiaomiaoBridgeEvents()
-  bridgeEventsTimer = setInterval(() => {
-    void pollXiaomiaoBridgeEvents()
-  }, BRIDGE_EVENTS_POLL_INTERVAL_MS)
+  bridgeEventSync = createXiaomiaoBridgeEventSync({
+    getMessages: () => activeMessages(),
+    setMessages: messages => chatSession.setSessionMessages(chatSession.activeSessionId, messages),
+  })
+  bridgeEventSync.start()
 }
 
 function stopBridgeEventPolling() {
-  if (!bridgeEventsTimer)
-    return
-
-  clearInterval(bridgeEventsTimer)
-  bridgeEventsTimer = undefined
+  bridgeEventSync?.stop()
+  bridgeEventSync = undefined
 }
 
 async function startAudioInteraction() {

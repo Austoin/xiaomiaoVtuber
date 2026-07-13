@@ -20,6 +20,7 @@
     "./components/animations": "./src/components/animations/index.ts",
     "./components/form": "./src/components/form/index.ts",
     "./components/layouts": "./src/components/layouts/index.ts",
+    "./styles/app-shell.css": "./src/styles/app-shell.css",
     "./*": "./*"
   },
   "scripts": {

@@ -36,12 +36,6 @@ const presetHaruPreview = new URL('../assets/live2d/models/haru/preview.png', im
 const presetMaoUrl = new URL('../assets/live2d/models/mao.zip', import.meta.url).href
 const presetMaoPreview = new URL('../assets/live2d/models/mao/preview.png', import.meta.url).href
 
-// Custom large models (not in git, users need to build locally)
-const presetAtriUrl = new URL('../assets/live2d/models/atri.zip', import.meta.url).href
-const presetAtriPreview = new URL('../assets/live2d/models/atri/preview.png', import.meta.url).href
-const presetNatsumeUrl = new URL('../assets/live2d/models/natsume.zip', import.meta.url).href
-const presetNatsumePreview = new URL('../assets/live2d/models/natsume/preview.png', import.meta.url).href
-
 // VRM models
 const presetVrmAvatarAUrl = new URL('../assets/vrm/models/AvatarSample-A/AvatarSample_A.vrm', import.meta.url).href
 const presetVrmAvatarAPreview = new URL('../assets/vrm/models/AvatarSample-A/preview.png', import.meta.url).href

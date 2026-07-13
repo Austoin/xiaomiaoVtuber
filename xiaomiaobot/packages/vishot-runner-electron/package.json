@@ -15,6 +15,9 @@
     "capture": "tsx src/cli/capture.ts",
     "typecheck": "tsc --noEmit"
   },
+  "dependencies": {
+    "@proj-airi/vishot-runtime": "workspace:^"
+  },
   "devDependencies": {
     "@moeru/std": "catalog:",
     "@napi-rs/image": "catalog:",

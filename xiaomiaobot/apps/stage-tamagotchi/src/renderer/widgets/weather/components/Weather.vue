@@ -1,7 +1,6 @@
 <script setup lang="ts">
+import { Skeleton } from '@proj-airi/ui/components/layouts'
 import { computed } from 'vue'
-
-import Skeleton from './Skeleton.vue'
 
 type WeatherEffect = 'rain' | 'snow' | 'thunder' | 'fog' | 'cloudy' | 'none'
 type SizePreset = 's' | 'm' | 'l' | { cols?: number, rows?: number }

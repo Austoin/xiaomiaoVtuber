@@ -16,28 +16,28 @@ import {
   useElectronMouseInWindow,
   useElectronRelativeMouse,
 } from '@proj-airi/electron-vueuse'
+import { createXiaomiaoBridgeEventSync } from '@proj-airi/stage-layouts/xiaomiao-bridge'
 import { useModelStore, useThreeSceneIsTransparentAtPoint } from '@proj-airi/stage-ui-three'
 import { HoloCoupon } from '@proj-airi/stage-ui/components'
 import {
   createEmptyModelSettingsRuntimeSnapshot,
   resolveComponentStateToRuntimePhase,
 } from '@proj-airi/stage-ui/components/scenarios/settings/model-settings/runtime'
-import { appendXiaomiaoBridgeEvents, requestXiaomiaoBridgeEvents } from '@proj-airi/stage-layouts/xiaomiao-bridge'
 import { WidgetStage } from '@proj-airi/stage-ui/components/scenes'
 import { useAudioRecorder } from '@proj-airi/stage-ui/composables/audio/audio-recorder'
 import { useCanvasPixelIsTransparentAtPoint } from '@proj-airi/stage-ui/composables/canvas-alpha'
 import { EMOTION_VALUES } from '@proj-airi/stage-ui/constants/emotions'
 import { useVAD } from '@proj-airi/stage-ui/stores/ai/models/vad'
 import { useBackgroundStore } from '@proj-airi/stage-ui/stores/background'
-import { useChatSessionStore } from '@proj-airi/stage-ui/stores/chat/session-store'
 import { useCharacterStore } from '@proj-airi/stage-ui/stores/character'
+import { useChatSessionStore } from '@proj-airi/stage-ui/stores/chat/session-store'
 import { useDisplayModelsStore } from '@proj-airi/stage-ui/stores/display-models'
 import { useLive2d } from '@proj-airi/stage-ui/stores/live2d'
-import { useSpeechStore } from '@proj-airi/stage-ui/stores/modules/speech'
 import { useAiriCardStore } from '@proj-airi/stage-ui/stores/modules/airi-card'
-import { useProvidersStore } from '@proj-airi/stage-ui/stores/providers'
 import { useHearingSpeechInputPipeline } from '@proj-airi/stage-ui/stores/modules/hearing'
+import { useSpeechStore } from '@proj-airi/stage-ui/stores/modules/speech'
 import { useOnboardingStore } from '@proj-airi/stage-ui/stores/onboarding'
+import { useProvidersStore } from '@proj-airi/stage-ui/stores/providers'
 import { useSettings, useSettingsAudioDevice } from '@proj-airi/stage-ui/stores/settings'
 import { refDebounced, useBroadcastChannel } from '@vueuse/core'
 import { storeToRefs } from 'pinia'
@@ -54,12 +54,12 @@ import { useControlsIslandStore } from '../stores/controls-island'
 import { useStageWindowLifecycleStore } from '../stores/stage-window-lifecycle'
 import { useWindowStore } from '../stores/window'
 import { shouldSampleStageTransparency } from '../utils/stage-three-transparency'
+import { readXiaomiaoBridgeState } from './xiaomiao-bridge'
 import {
   applyXiaomiaoBridgeReaction,
   applyXiaomiaoStageActionEvents,
   ensureBridgeSpeechReady as ensureBridgeSpeechReadyForStores,
 } from './xiaomiao-bridge-reaction'
-import { readXiaomiaoBridgeState } from './xiaomiao-bridge'
 
 const controlsIslandRef = ref<InstanceType<typeof ControlsIsland>>()
 const statusIslandRef = ref<InstanceType<typeof StatusIsland>>()
@@ -309,9 +309,7 @@ const { post: postCaption } = useBroadcastChannel<CaptionChannelEvent, CaptionCh
 const lastBridgeAssistantCaption = ref('')
 const lastBridgeAssistantTimestamp = ref(0)
 let bridgeCaptionTimer: ReturnType<typeof setInterval> | undefined
-let bridgeEventsCursor = 0
-let bridgeEventsPolling = false
-let bridgeEventsTimer: ReturnType<typeof setInterval> | undefined
+let bridgeEventSync: ReturnType<typeof createXiaomiaoBridgeEventSync> | undefined
 const handledStageActionEventIds = new Set<number>()
 
 // NOTICE:
@@ -350,40 +348,32 @@ async function pollXiaomiaoBridgeCaption() {
   }
 }
 
-async function pollXiaomiaoBridgeEvents() {
-  if (bridgeEventsPolling)
-    return
+function startBridgeEventSync() {
+  bridgeEventSync = createXiaomiaoBridgeEventSync({
+    getMessages: () => chatSession.getSessionMessages(chatSession.activeSessionId),
+    setMessages: messages => chatSession.setSessionMessages(chatSession.activeSessionId, messages),
+    logger: { error: () => {} },
+    onEvents: async (events) => {
+      await applyXiaomiaoStageActionEvents({
+        events,
+        handledEventIds: handledStageActionEventIds,
+        postCaption: text => postCaption({ type: 'caption-assistant', text }),
+        ensureSpeechReady: ensureBridgeSpeechReady,
+        speakReply: async text => await characterStore.emitTextOutput(text),
+        applyEmotion: applyStageEmotion,
+        applyBackground: applyStageBackground,
+        applyModel: applyStageModel,
+        readStatus: readStageStatus,
+        onRejected: appendStageActionError,
+      })
+    },
+  })
+  bridgeEventSync.start()
+}
 
-  bridgeEventsPolling = true
-  try {
-    const result = await requestXiaomiaoBridgeEvents({ after: bridgeEventsCursor })
-    bridgeEventsCursor = Math.max(bridgeEventsCursor, result.lastId)
-
-    const sessionId = chatSession.activeSessionId
-    const currentMessages = chatSession.getSessionMessages(sessionId)
-    const nextMessages = appendXiaomiaoBridgeEvents(currentMessages, result.events, { includeWeb: true })
-    if (nextMessages !== currentMessages)
-      chatSession.setSessionMessages(sessionId, nextMessages)
-
-    await applyXiaomiaoStageActionEvents({
-      events: result.events,
-      handledEventIds: handledStageActionEventIds,
-      postCaption: text => postCaption({ type: 'caption-assistant', text }),
-      ensureSpeechReady: ensureBridgeSpeechReady,
-      speakReply: async text => await characterStore.emitTextOutput(text),
-      applyEmotion: applyStageEmotion,
-      applyBackground: applyStageBackground,
-      applyModel: applyStageModel,
-      readStatus: readStageStatus,
-      onRejected: appendStageActionError,
-    })
-  }
-  catch {
-    // Ignore local bridge event polling errors so the stage keeps rendering normally.
-  }
-  finally {
-    bridgeEventsPolling = false
-  }
+function stopBridgeEventSync() {
+  bridgeEventSync?.stop()
+  bridgeEventSync = undefined
 }
 
 async function applyStageEmotion(name: string, intensity: number) {
@@ -456,7 +446,8 @@ function readStageStatus(query?: string) {
   const modelName = settingsStore.stageModelSelectedDisplayModel?.name || settingsStore.stageModelSelected || 'none'
   const recentMessage = chatSession.getSessionMessages(chatSession.activeSessionId)
     .filter(message => message.role !== 'system')
-    .at(-1)?.content
+    .at(-1)
+    ?.content
   const recent = typeof recentMessage === 'string' && recentMessage.trim()
     ? truncateStatusText(recentMessage.trim())
     : 'none'
@@ -651,10 +642,7 @@ onMounted(() => {
   bridgeCaptionTimer = setInterval(() => {
     void pollXiaomiaoBridgeCaption()
   }, 1500)
-  void pollXiaomiaoBridgeEvents()
-  bridgeEventsTimer = setInterval(() => {
-    void pollXiaomiaoBridgeEvents()
-  }, 1500)
+  startBridgeEventSync()
   if (onboardingStore.needsOnboarding) {
     openOnboarding()
   }
@@ -665,10 +653,7 @@ onUnmounted(() => {
     clearInterval(bridgeCaptionTimer)
     bridgeCaptionTimer = undefined
   }
-  if (bridgeEventsTimer) {
-    clearInterval(bridgeEventsTimer)
-    bridgeEventsTimer = undefined
-  }
+  stopBridgeEventSync()
   postModelSettingsRuntimeChannelEvent({
     type: 'owner-gone',
     ownerInstanceId: modelSettingsRuntimeOwnerInstanceId,

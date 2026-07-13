@@ -1,11 +1,15 @@
 import type { ChatHistoryItem } from './types/chat'
-import { describe, expect, it } from 'vitest'
+
+import { describe, expect, it, vi } from 'vitest'
+
 import {
-  appendXiaomiaoBridgeExchange,
   appendXiaomiaoBridgeEvents,
-  requestXiaomiaoBridgeReply,
+  appendXiaomiaoBridgeExchange,
+  appendXiaomiaoBridgeReply,
+  createXiaomiaoBridgeEventSync,
   requestXiaomiaoBridgeConfigStatus,
   requestXiaomiaoBridgeEvents,
+  requestXiaomiaoBridgeReply,
   saveXiaomiaoBridgeConfig,
 } from '../../stage-layouts/src/xiaomiao-bridge'
 
@@ -71,6 +75,31 @@ describe('xiaomiao bridge events', () => {
       client_message_id: 'stage-web-local-2',
       messages: [{ role: 'user', content: '你好' }],
     })
+  })
+
+  it('requests and appends bridge replies through the shared helper', async () => {
+    const bodies: unknown[] = []
+    const next = await appendXiaomiaoBridgeReply([], {
+      text: '语音问题',
+      model: 'deepseek-chat',
+      clientMessageId: 'stage-web-voice-1',
+      fetcher: async (_input, init) => {
+        bodies.push(JSON.parse(String(init?.body)))
+        return jsonResponse({
+          choices: [{ message: { content: '语音回答' } }],
+        })
+      },
+    })
+
+    expect(bodies[0]).toEqual({
+      model: 'deepseek-chat',
+      client_message_id: 'stage-web-voice-1',
+      messages: [{ role: 'user', content: '语音问题' }],
+    })
+    expect(next).toHaveLength(2)
+    expect(next[0].id).toBe('xiaomiao-client-stage-web-voice-1-user')
+    expect(next[1].id).toBe('xiaomiao-client-stage-web-voice-1-assistant')
+    expect(next[1].content).toBe('语音回答')
   })
 
   it('appends non-web events and skips duplicates', () => {
@@ -181,6 +210,36 @@ describe('xiaomiao bridge events', () => {
     expect(next).toHaveLength(2)
     expect(next[0].content).toBe('[QQ群 42] [舞台动作:background] 目标：builtin:cozy-tea-corner')
     expect(next[1].content).toBe('[QQ群 42] [舞台动作:emotion] 表情：happy')
+  })
+
+  it('syncs bridge events through the shared polling helper', async () => {
+    let messages: ChatHistoryItem[] = []
+    const onEvents = vi.fn()
+    const requestEvents = vi.fn(async () => ({
+      lastId: 14,
+      events: [
+        bridgeEvent(13, 'qq-private', 'user', '同步问题'),
+        bridgeEvent(14, 'qq-private', 'assistant', '同步回答'),
+      ],
+    }))
+    const sync = createXiaomiaoBridgeEventSync({
+      getMessages: () => messages,
+      setMessages: next => messages = next,
+      requestEvents,
+      onEvents,
+    })
+
+    await sync.poll()
+
+    expect(requestEvents).toHaveBeenCalledWith({ after: 0 })
+    expect(sync.getCursor()).toBe(14)
+    expect(messages).toHaveLength(2)
+    expect(messages[0].content).toBe('[QQ私聊 42] 同步问题')
+    expect(messages[1].content).toBe('[QQ私聊 42] 同步回答')
+    expect(onEvents).toHaveBeenCalledWith(expect.arrayContaining([
+      expect.objectContaining({ id: 13 }),
+      expect.objectContaining({ id: 14 }),
+    ]))
   })
 
   it('requests bridge root config status without requiring secrets', async () => {

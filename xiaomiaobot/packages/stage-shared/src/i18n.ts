@@ -7,7 +7,6 @@ function getLocale() {
   let language = localStorage.getItem('settings/language')
 
   if (!language) {
-    // Fallback to browser language
     language = navigator.language || 'en'
   }
 

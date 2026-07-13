@@ -675,7 +675,7 @@ declare module 'vue-router/auto-routes' {
       views:
         | never
     }
-    'src/pages/[...all].vue': {
+    '../../packages/stage-pages/src/pages/[...all].vue': {
       routes:
         | '/[...all]'
       views:
@@ -699,19 +699,19 @@ declare module 'vue-router/auto-routes' {
       views:
         | never
     }
-    'src/pages/devtools/audio-record.vue': {
+    '../../packages/stage-pages/src/pages/devtools/audio-record.vue': {
       routes:
         | '/devtools/audio-record'
       views:
         | never
     }
-    'src/pages/devtools/background-gradient-blending.vue': {
+    '../../packages/stage-pages/src/pages/devtools/background-gradient-blending.vue': {
       routes:
         | '/devtools/background-gradient-blending'
       views:
         | never
     }
-    'src/pages/devtools/background-removal.vue': {
+    '../../packages/stage-pages/src/pages/devtools/background-removal.vue': {
       routes:
         | '/devtools/background-removal'
       views:
@@ -729,7 +729,7 @@ declare module 'vue-router/auto-routes' {
       views:
         | never
     }
-    'src/pages/devtools/gesture-circle.vue': {
+    '../../packages/stage-pages/src/pages/devtools/gesture-circle.vue': {
       routes:
         | '/devtools/gesture-circle'
       views:
@@ -777,7 +777,7 @@ declare module 'vue-router/auto-routes' {
       views:
         | never
     }
-    'src/pages/devtools/polaroid.vue': {
+    '../../packages/stage-pages/src/pages/devtools/polaroid.vue': {
       routes:
         | '/devtools/polaroid'
       views:
@@ -789,7 +789,7 @@ declare module 'vue-router/auto-routes' {
       views:
         | never
     }
-    'src/pages/devtools/use-magic-keys.vue': {
+    '../../packages/stage-pages/src/pages/devtools/use-magic-keys.vue': {
       routes:
         | '/devtools/use-magic-keys'
       views:
@@ -1137,7 +1137,7 @@ declare module 'vue-router/auto-routes' {
       views:
         | never
     }
-    'src/pages/settings/system/index.vue': {
+    '../../packages/stage-pages/src/pages/settings/system/index.vue': {
       routes:
         | '/settings/system/'
       views:

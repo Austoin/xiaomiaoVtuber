@@ -17,6 +17,8 @@
   "exports": {
     ".": "./src/index.ts",
     "./components": "./src/components/index.ts",
+    "./styles/transitions.css": "./src/styles/transitions.css",
+    "./styles/vue-transitions.css": "./src/styles/vue-transitions.css",
     "./*": "./*"
   },
   "scripts": {

@@ -1,3 +1,5 @@
+import type { ArtifactTransformer } from '@proj-airi/vishot-runtime/runtime/artifact-types'
+
 export interface CaptureBrowserCliArguments {
   renderEntry: string
   outputDir: string
@@ -18,18 +20,4 @@ export interface BrowserCaptureRequest {
     deviceScaleFactor?: number
   }
 }
-export type VishotArtifactKind = 'image'
-export type VishotArtifactStage = 'browser-final' | 'electron-raw'
-
-export interface VishotArtifact {
-  kind: VishotArtifactKind
-  stage: VishotArtifactStage
-  artifactName: string
-  filePath: string
-  format: string
-  metadata?: Record<string, unknown>
-}
-
-export type ArtifactTransformer = (
-  artifact: VishotArtifact,
-) => Promise<VishotArtifact | VishotArtifact[]>
+export type { ArtifactTransformer, VishotArtifact, VishotArtifactKind, VishotArtifactStage } from '@proj-airi/vishot-runtime/runtime/artifact-types'

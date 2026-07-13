@@ -18,8 +18,9 @@ import { DropdownMenuContent, DropdownMenuItem, DropdownMenuPortal, DropdownMenu
 import { computed, nextTick, onUnmounted, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 
-import { appendXiaomiaoBridgeError, appendXiaomiaoBridgeExchange, createXiaomiaoClientMessageId, requestXiaomiaoBridgeReply } from '../../xiaomiao-bridge'
 import IndicatorMicVolume from './IndicatorMicVolume.vue'
+
+import { appendXiaomiaoBridgeError, appendXiaomiaoBridgeReply, createXiaomiaoClientMessageId } from '../../xiaomiao-bridge'
 
 const messageInput = ref('')
 const hearingPopoverOpen = ref(false)
@@ -63,14 +64,13 @@ function appendBridgeError(text: string, error: unknown) {
 async function sendChatText(text: string) {
   if (isStageWeb()) {
     const clientMessageId = createXiaomiaoClientMessageId()
-    const replyText = await requestXiaomiaoBridgeReply({
-      text,
-      model: activeModel.value,
-      clientMessageId,
-    })
     chatSession.setSessionMessages(
       chatSession.activeSessionId,
-      appendXiaomiaoBridgeExchange(activeMessages(), text, replyText, { clientMessageId }),
+      await appendXiaomiaoBridgeReply(activeMessages(), {
+        text,
+        model: activeModel.value,
+        clientMessageId,
+      }),
     )
     return
   }

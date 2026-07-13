@@ -456,12 +456,12 @@ python -m xiaomiao_agent tui
 
 旧 `nanobot` 命令入口仍保留兼容；新文档和用户提示统一使用 `xiaomiao`。
 
-根目录 `start-all.cmd` 是当前推荐启动入口。它按 `5004 → 8900 → 5519 → 5175` 串行启动，并对 API、桥接服务做健康检查；前一步未就绪时停止，不打开后续终端。QQ 协议端可复用已登录的现有 NapCat/QQ 进程；其他服务遇到已占用端口会显示 PID 并停止，不再把端口监听误判为可用服务；`--check` 只检查当前状态，不启动窗口。脚本会设置 `NO_PROXY=127.0.0.1,localhost,::1`，避免本机代理影响 QQ OneBot 直连。
+根目录 `menu.cmd` 是当前推荐启动入口，`package.json` 里的 `pnpm start` / `pnpm run start:all` / `pnpm run start:check` 只是包装它。它按 `5004 → 8900 → 5519 → 5175` 串行启动，并对 API、桥接服务做健康检查；前一步未就绪时停止，不打开后续终端。QQ 协议端可复用已登录的现有 NapCat/QQ 进程；其他服务遇到已占用端口会显示 PID 并停止，不再把端口监听误判为可用服务；`check` 只检查当前状态，不启动窗口。脚本会设置 `NO_PROXY=127.0.0.1,localhost,::1`，避免本机代理影响 QQ OneBot 直连。
 
 快速 TUI 测试：
 
 ```text
-start-tui.cmd
+pnpm run tui
 ```
 
 ## 10. 工程风险
@@ -472,7 +472,7 @@ start-tui.cmd
 
 ### 10.2 文件与运行态污染
 
-QQ 下载文件、Agent 工具产物、临时文件、桥接事件和会话统一写入根目录 `.cache/`。`xiaomiaoAgent/.nanobot/`、`workspace/`、`xiaomiao/temps/`、`logs/` 等旧目录仅作为迁移来源保留，不再是运行时默认路径。详细规则见 `docs/CACHE_DIRECTORY.md`。
+QQ 下载文件、Agent 工具产物、临时文件、桥接事件和会话统一写入根目录 `.cache/`。`xiaomiaoAgent/.nanobot/`、`workspace/`、`xiaomiao/temps/`、`logs/` 等旧目录仅作为迁移来源保留，不再是运行时默认路径。详细规则见 `docs/tooling/repository-cleanup.md`。
 
 ### 10.3 主程序职责过重
 
@@ -506,8 +506,8 @@ xiaomiaobot 中桥接地址和绑定用户仍是原型硬编码：`http://127.0.
 python -m pytest --basetemp .pytest-tmp-xiaomiao-verify test\xiaomiao
 uv run --extra dev pytest --basetemp ..\.pytest-tmp-agent-verify tests\test_openai_api.py tests\tools\test_tool_registry.py tests\tools\test_tool_loader.py tests\tools\test_computer_use_mcp_profile.py tests\tools\test_markitdown_tool.py tests\tools\test_scrapling_tool.py tests\tools\test_xiaomiao_stage_tool.py tests\tools\test_xiaomiaobot_services_tool.py
 pnpm exec vitest run apps/stage-pocket/src/modules/xiaomiao-bridge-events.test.ts packages/stage-ui/src/xiaomiao-bridge-events.test.ts apps/stage-tamagotchi/src/renderer/pages/xiaomiao-bridge-reaction.test.ts apps/stage-tamagotchi/src/renderer/pages/xiaomiao-bridge.test.ts
-start-all.cmd --check
-start-tui.cmd  # TUI 快速测试
+pnpm run start:check
+pnpm run tui  # TUI 快速测试
 ```
 
 最近一次完整验证结果：
@@ -516,7 +516,7 @@ start-tui.cmd  # TUI 快速测试
 test/xiaomiao: 77 passed
 xiaomiaoAgent selected tests: 95 passed
 xiaomiaobot bridge Vitest: 4 files / 32 tests passed
-start-all.cmd --check: passed
+pnpm run start:check: passed
 ```
 
 覆盖范围包括：

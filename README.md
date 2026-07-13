@@ -78,11 +78,13 @@ xiaomiaoVirtual/
 ├── docs/           # 项目文档、启动说明和融合计划
 ├── test/           # 项目统一测试目录
 ├── .cache/         # 全项目缓存、运行态、下载和中间产物
+├── menu.cmd        # 根目录统一菜单入口
+├── package.json    # 根目录 pnpm 脚本包装器
 ├── README.md       # 项目入口说明
 └── TECHNICAL.md    # 技术分析文档
 ```
 
-文件和运行态边界见 `docs/CACHE_DIRECTORY.md`：QQ 下载文件、Agent 产物、缓存、会话、桥接事件和本机数据库统一保存在根目录 `.cache/` 下。
+文件和运行态边界见 `docs/CACHE_DIRECTORY.md`：QQ 下载文件、Agent 产物、缓存、会话、桥接事件和本机数据库统一保存在根目录 `.cache/` 下。编辑器、AI 协作和仓库清理约定见 `docs/tooling/repository-cleanup.md`。
 
 ## 快速启动
 
@@ -339,11 +341,13 @@ pnpm run tui
 ## 文档
 
 - `TECHNICAL.md`：完整技术结构、运行链路、桥接协议、风险和演进建议。
+- `docs/README.md`：文档中心索引。
 - `docs/getting-started/README.md`：本地启动步骤、端口、验证和常见问题。
-- `docs/04-development/file-workspace-hygiene.md`：文件追踪、工作区、QQ 下载资源、运行态缓存和清理规则。
+- `docs/tooling/repository-cleanup.md`：文件追踪、工作区、QQ 下载资源、运行态缓存和清理规则。
+- `docs/tooling/editor-settings.md`：编辑器本地设置整合说明。
+- `docs/tooling/ai-assistants.md`：AI 协作工具配置整合说明。
 - `docs/subsystems/xiaomiao/README.md`：QQ 机器人部署和功能说明。
 - `docs/subsystems/xiaomiaobot/README.md`：历史命名下的 xiaomiaobot / xiaomiaoVirtual 表现层启动和模块说明。
-- `docs/05-tools/tool-directory-analysis.md`：`tool/markitdown` 与 `tool/Scrapling` 精简源码和接入边界。
 - `docs/archive/plans/2026-06-06-qq-agent-xiaomiaobot-capability-integration.md`：QQ 直连 Agent/xiaomiaobot 能力计划与执行批次。
 - `docs/archive/plans/2026-06-06-project-deep-analysis-and-qq-agent-gap-audit.md`：上一计划完成度审计、剩余缺口和下一阶段路线。
 

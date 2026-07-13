@@ -21,6 +21,9 @@
     "test:run": "vitest run",
     "typecheck": "tsc --noEmit"
   },
+  "dependencies": {
+    "@proj-airi/vishot-runtime": "workspace:^"
+  },
   "devDependencies": {
     "@moeru/std": "catalog:",
     "meow": "catalog:",

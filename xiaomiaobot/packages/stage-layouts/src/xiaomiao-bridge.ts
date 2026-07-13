@@ -3,6 +3,7 @@ import type { ChatHistoryItem } from '@proj-airi/stage-ui/types/chat'
 const XIAOMIAO_BRIDGE_BASE_URL = 'http://127.0.0.1:5519'
 const DEFAULT_XIAOMIAO_MODEL = 'deepseek-chat'
 const CLIENT_MESSAGE_ID_PREFIX = 'stage-web'
+export const XIAOMIAO_BRIDGE_EVENTS_POLL_INTERVAL_MS = 1500
 
 export interface XiaomiaoBridgeRequest {
   text: string
@@ -40,6 +41,29 @@ export interface XiaomiaoBridgeEventsRequest {
 export interface XiaomiaoBridgeEventsResult {
   events: XiaomiaoBridgeEvent[]
   lastId: number
+}
+
+type RequestBridgeEvents = (params?: XiaomiaoBridgeEventsRequest) => Promise<XiaomiaoBridgeEventsResult>
+type TimerHandle = ReturnType<typeof setInterval>
+
+export interface XiaomiaoBridgeEventSyncOptions {
+  getMessages: () => ChatHistoryItem[]
+  setMessages: (messages: ChatHistoryItem[]) => void
+  requestEvents?: RequestBridgeEvents
+  pollIntervalMs?: number
+  includeWeb?: boolean
+  setIntervalFn?: typeof setInterval
+  clearIntervalFn?: typeof clearInterval
+  logger?: Pick<Console, 'error'>
+  onEvents?: (events: XiaomiaoBridgeEvent[]) => void | Promise<void>
+}
+
+export interface XiaomiaoBridgeEventSync {
+  poll: () => Promise<void>
+  start: () => void
+  stop: () => void
+  getCursor: () => number
+  isRunning: () => boolean
 }
 
 export interface XiaomiaoBridgeConfigStatus {
@@ -85,7 +109,7 @@ interface XiaomiaoBridgeConfigResponse {
 export async function requestXiaomiaoBridgeReply(params: XiaomiaoBridgeRequest): Promise<string> {
   const fetcher = params.fetcher ?? globalThis.fetch
   if (typeof fetcher !== 'function') {
-    throw new Error('XiaoMiao bridge requires fetch support')
+    throw new TypeError('XiaoMiao bridge requires fetch support')
   }
 
   const response = await fetcher(`${XIAOMIAO_BRIDGE_BASE_URL}/v1/chat/completions`, {
@@ -122,7 +146,7 @@ export function createXiaomiaoClientMessageId(prefix = CLIENT_MESSAGE_ID_PREFIX)
 export async function requestXiaomiaoBridgeConfigStatus(params: XiaomiaoBridgeConfigRequest = {}): Promise<XiaomiaoBridgeConfigStatus> {
   const fetcher = params.fetcher ?? globalThis.fetch
   if (typeof fetcher !== 'function') {
-    throw new Error('XiaoMiao bridge config requires fetch support')
+    throw new TypeError('XiaoMiao bridge config requires fetch support')
   }
 
   const response = await fetcher(`${XIAOMIAO_BRIDGE_BASE_URL}/v1/xiaomiao/config`)
@@ -137,7 +161,7 @@ export async function requestXiaomiaoBridgeConfigStatus(params: XiaomiaoBridgeCo
 export async function saveXiaomiaoBridgeConfig(params: XiaomiaoBridgeConfigUpdate): Promise<XiaomiaoBridgeConfigStatus> {
   const fetcher = params.fetcher ?? globalThis.fetch
   if (typeof fetcher !== 'function') {
-    throw new Error('XiaoMiao bridge config save requires fetch support')
+    throw new TypeError('XiaoMiao bridge config save requires fetch support')
   }
 
   const response = await fetcher(`${XIAOMIAO_BRIDGE_BASE_URL}/v1/xiaomiao/config`, {
@@ -163,7 +187,7 @@ export async function saveXiaomiaoBridgeConfig(params: XiaomiaoBridgeConfigUpdat
 export async function requestXiaomiaoBridgeEvents(params: XiaomiaoBridgeEventsRequest = {}): Promise<XiaomiaoBridgeEventsResult> {
   const fetcher = params.fetcher ?? globalThis.fetch
   if (typeof fetcher !== 'function') {
-    throw new Error('XiaoMiao bridge events require fetch support')
+    throw new TypeError('XiaoMiao bridge events require fetch support')
   }
 
   const url = new URL(`${XIAOMIAO_BRIDGE_BASE_URL}/v1/xiaomiao/events`)
@@ -178,10 +202,10 @@ export async function requestXiaomiaoBridgeEvents(params: XiaomiaoBridgeEventsRe
 
   const data = await response.json() as XiaomiaoBridgeEventsResponse
   if (!Array.isArray(data.events)) {
-    throw new Error('XiaoMiao bridge events response is missing events')
+    throw new TypeError('XiaoMiao bridge events response is missing events')
   }
   if (typeof data.last_id !== 'number') {
-    throw new Error('XiaoMiao bridge events response is missing last_id')
+    throw new TypeError('XiaoMiao bridge events response is missing last_id')
   }
 
   return {
@@ -218,6 +242,16 @@ export function appendXiaomiaoBridgeExchange(
   ]
 }
 
+export async function appendXiaomiaoBridgeReply(
+  messages: ChatHistoryItem[],
+  params: XiaomiaoBridgeRequest,
+): Promise<ChatHistoryItem[]> {
+  const replyText = await requestXiaomiaoBridgeReply(params)
+  return appendXiaomiaoBridgeExchange(messages, params.text, replyText, {
+    clientMessageId: params.clientMessageId,
+  })
+}
+
 export function appendXiaomiaoBridgeEvents(
   messages: ChatHistoryItem[],
   events: XiaomiaoBridgeEvent[],
@@ -239,6 +273,76 @@ export function appendXiaomiaoBridgeEvents(
   }
 
   return nextMessages.length === messages.length ? messages : nextMessages
+}
+
+export function createXiaomiaoBridgeEventSync(
+  options: XiaomiaoBridgeEventSyncOptions,
+): XiaomiaoBridgeEventSync {
+  const requestEvents = options.requestEvents ?? requestXiaomiaoBridgeEvents
+  const pollIntervalMs = options.pollIntervalMs ?? XIAOMIAO_BRIDGE_EVENTS_POLL_INTERVAL_MS
+  const setIntervalFn = options.setIntervalFn ?? setInterval
+  const clearIntervalFn = options.clearIntervalFn ?? clearInterval
+  const logger = options.logger ?? console
+  const includeWeb = options.includeWeb ?? true
+
+  let cursor = 0
+  let polling = false
+  let timer: TimerHandle | undefined
+
+  async function poll(): Promise<void> {
+    if (polling)
+      return
+
+    polling = true
+    try {
+      const result = await requestEvents({ after: cursor })
+      cursor = Math.max(cursor, result.lastId)
+
+      const currentMessages = options.getMessages()
+      const nextMessages = appendXiaomiaoBridgeEvents(
+        currentMessages,
+        result.events,
+        { includeWeb },
+      )
+
+      if (nextMessages !== currentMessages)
+        options.setMessages(nextMessages)
+
+      await options.onEvents?.(result.events)
+    }
+    catch (error) {
+      logger.error('Failed to sync XiaoMiao bridge events:', error)
+    }
+    finally {
+      polling = false
+    }
+  }
+
+  function start(): void {
+    if (timer !== undefined)
+      return
+
+    void poll()
+    timer = setIntervalFn(() => {
+      void poll()
+    }, pollIntervalMs)
+  }
+
+  function stop(): void {
+    if (timer === undefined)
+      return
+
+    clearIntervalFn(timer)
+    timer = undefined
+  }
+
+  return {
+    poll,
+    start,
+    stop,
+    getCursor: () => cursor,
+    isRunning: () => timer !== undefined,
+  }
 }
 
 function chatHistoryItemId(role: 'user' | 'assistant', createdAt: number, clientMessageId?: string | null): string {
@@ -464,14 +568,14 @@ function formatBridgeEventSource(event: XiaomiaoBridgeEvent): string {
 
 function requireNumber(value: unknown, name: string): number {
   if (typeof value !== 'number' || !Number.isFinite(value)) {
-    throw new Error(`XiaoMiao bridge event ${name} must be a number`)
+    throw new TypeError(`XiaoMiao bridge event ${name} must be a number`)
   }
   return value
 }
 
 function requireString(value: unknown, name: string): string {
   if (typeof value !== 'string') {
-    throw new Error(`XiaoMiao bridge event ${name} must be a string`)
+    throw new TypeError(`XiaoMiao bridge event ${name} must be a string`)
   }
   return value
 }
@@ -490,7 +594,7 @@ function optionalString(value: unknown): string | undefined {
 
 function requireBoolean(value: unknown, name: string): boolean {
   if (typeof value !== 'boolean') {
-    throw new Error(`XiaoMiao bridge config ${name} must be a boolean`)
+    throw new TypeError(`XiaoMiao bridge config ${name} must be a boolean`)
   }
   return value
 }

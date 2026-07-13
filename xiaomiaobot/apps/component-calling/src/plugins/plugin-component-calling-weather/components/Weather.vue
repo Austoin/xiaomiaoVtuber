@@ -1,6 +1,7 @@
 <script setup lang="ts">
+import { Skeleton } from '@proj-airi/ui/components/layouts'
+
 import ClearDay from '../assets/clear-day.svg'
-import Skeleton from './Skeleton.vue'
 
 const props = defineProps<{
   propsLoading: boolean
