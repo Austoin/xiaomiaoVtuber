@@ -16,7 +16,7 @@ pnpm dev
 # 访问 http://localhost:5173
 ```
 
-详见：[INTEGRATION_COMPLETE.md](INTEGRATION_COMPLETE.md) | [LIVE2D_COMPLETE_GUIDE.md](LIVE2D_COMPLETE_GUIDE.md)
+详见：[Live2D 角色验证报告](docs/archive/tasks/LIVE2D_CHARACTER_VERIFICATION.md) | [Live2D 网页端角色切换指南](docs/user-guide/live2d/character-switch.md)
 
 ---
 
@@ -321,9 +321,9 @@ xiaomiaoAgent 工具 / 记忆 / 会话
 当前最小回归矩阵：
 
 ```powershell
-python -m pytest --basetemp .pytest-tmp-xiaomiao-verify test\xiaomiao
+python -m pytest test\xiaomiao
 cd xiaomiaoAgent
-uv run --extra dev pytest --basetemp ..\.pytest-tmp-agent-verify tests\test_openai_api.py tests\tools\test_tool_registry.py tests\tools\test_tool_loader.py tests\tools\test_computer_use_mcp_profile.py tests\tools\test_markitdown_tool.py tests\tools\test_scrapling_tool.py tests\tools\test_xiaomiao_stage_tool.py tests\tools\test_xiaomiaobot_services_tool.py
+uv run --extra dev pytest tests\test_openai_api.py tests\tools\test_tool_registry.py tests\tools\test_tool_loader.py tests\tools\test_computer_use_mcp_profile.py tests\tools\test_markitdown_tool.py tests\tools\test_scrapling_tool.py tests\tools\test_xiaomiao_stage_tool.py tests\tools\test_xiaomiaobot_services_tool.py
 cd ..\xiaomiaobot
 pnpm exec vitest run apps/stage-pocket/src/modules/xiaomiao-bridge-events.test.ts packages/stage-ui/src/xiaomiao-bridge-events.test.ts apps/stage-tamagotchi/src/renderer/pages/xiaomiao-bridge-reaction.test.ts apps/stage-tamagotchi/src/renderer/pages/xiaomiao-bridge.test.ts
 cd ..

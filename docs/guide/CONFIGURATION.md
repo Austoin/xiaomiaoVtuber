@@ -701,7 +701,7 @@ ROOT (最高) > Super > agent_tool_allowlist > 普通用户
    ```powershell
    # 清理 Python 缓存
    rm -rf __pycache__
-   rm -rf .pytest_cache
+   rm -rf .cache/pytest
    ```
 
 ---

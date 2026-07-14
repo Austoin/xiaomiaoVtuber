@@ -32,8 +32,8 @@ def test_seconds_to_hms_formats_duration():
 
 
 def _workspace_temp_dir() -> str:
-    temp_dir = project_root / ".pytest-tmp-xiaomiao"
-    temp_dir.mkdir(exist_ok=True)
+    temp_dir = project_root / ".cache" / "pytest" / "xiaomiao" / "runtime-helpers"
+    temp_dir.mkdir(parents=True, exist_ok=True)
     return str(temp_dir)
 
 

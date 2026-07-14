@@ -34,6 +34,13 @@ declare module 'vue-router/auto-routes' {
       Record<never, never>,
       | never
     >,
+    '/[...all]': RouteRecordInfo<
+      '/[...all]',
+      '/:all(.*)',
+      { all: ParamValue<true> },
+      { all: ParamValue<false> },
+      | never
+    >,
     '/about': RouteRecordInfo<
       '/about',
       '/about',
@@ -76,6 +83,27 @@ declare module 'vue-router/auto-routes' {
       Record<never, never>,
       | never
     >,
+    '/devtools/audio-record': RouteRecordInfo<
+      '/devtools/audio-record',
+      '/devtools/audio-record',
+      Record<never, never>,
+      Record<never, never>,
+      | never
+    >,
+    '/devtools/background-gradient-blending': RouteRecordInfo<
+      '/devtools/background-gradient-blending',
+      '/devtools/background-gradient-blending',
+      Record<never, never>,
+      Record<never, never>,
+      | never
+    >,
+    '/devtools/background-removal': RouteRecordInfo<
+      '/devtools/background-removal',
+      '/devtools/background-removal',
+      Record<never, never>,
+      Record<never, never>,
+      | never
+    >,
     '/devtools/beat-sync': RouteRecordInfo<
       '/devtools/beat-sync',
       '/devtools/beat-sync',
@@ -86,6 +114,13 @@ declare module 'vue-router/auto-routes' {
     '/devtools/context-flow/': RouteRecordInfo<
       '/devtools/context-flow/',
       '/devtools/context-flow',
+      Record<never, never>,
+      Record<never, never>,
+      | never
+    >,
+    '/devtools/gesture-circle': RouteRecordInfo<
+      '/devtools/gesture-circle',
+      '/devtools/gesture-circle',
       Record<never, never>,
       Record<never, never>,
       | never
@@ -121,6 +156,13 @@ declare module 'vue-router/auto-routes' {
     '/devtools/plugin-host': RouteRecordInfo<
       '/devtools/plugin-host',
       '/devtools/plugin-host',
+      Record<never, never>,
+      Record<never, never>,
+      | never
+    >,
+    '/devtools/polaroid': RouteRecordInfo<
+      '/devtools/polaroid',
+      '/devtools/polaroid',
       Record<never, never>,
       Record<never, never>,
       | never
@@ -716,6 +758,12 @@ declare module 'vue-router/auto-routes' {
       views:
         | never
     }
+    '../../packages/stage-pages/src/pages/[...all].vue': {
+      routes:
+        | '/[...all]'
+      views:
+        | never
+    }
     'src/renderer/pages/about.vue': {
       routes:
         | '/about'
@@ -752,6 +800,24 @@ declare module 'vue-router/auto-routes' {
       views:
         | never
     }
+    '../../packages/stage-pages/src/pages/devtools/audio-record.vue': {
+      routes:
+        | '/devtools/audio-record'
+      views:
+        | never
+    }
+    '../../packages/stage-pages/src/pages/devtools/background-gradient-blending.vue': {
+      routes:
+        | '/devtools/background-gradient-blending'
+      views:
+        | never
+    }
+    '../../packages/stage-pages/src/pages/devtools/background-removal.vue': {
+      routes:
+        | '/devtools/background-removal'
+      views:
+        | never
+    }
     '../../packages/stage-pages/src/pages/devtools/beat-sync.vue': {
       routes:
         | '/devtools/beat-sync'
@@ -761,6 +827,12 @@ declare module 'vue-router/auto-routes' {
     '../../packages/stage-pages/src/pages/devtools/context-flow/index.vue': {
       routes:
         | '/devtools/context-flow/'
+      views:
+        | never
+    }
+    '../../packages/stage-pages/src/pages/devtools/gesture-circle.vue': {
+      routes:
+        | '/devtools/gesture-circle'
       views:
         | never
     }
@@ -794,6 +866,12 @@ declare module 'vue-router/auto-routes' {
       views:
         | never
     }
+    '../../packages/stage-pages/src/pages/devtools/polaroid.vue': {
+      routes:
+        | '/devtools/polaroid'
+      views:
+        | never
+    }
     '../../packages/stage-pages/src/pages/devtools/providers-transcription-realtime-aliyun-nls.vue': {
       routes:
         | '/devtools/providers-transcription-realtime-aliyun-nls'
@@ -824,7 +902,7 @@ declare module 'vue-router/auto-routes' {
       views:
         | never
     }
-    'src/renderer/pages/devtools/use-magic-keys.vue': {
+    '../../packages/stage-pages/src/pages/devtools/use-magic-keys.vue': {
       routes:
         | '/devtools/use-magic-keys'
       views:

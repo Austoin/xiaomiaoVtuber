@@ -30,7 +30,7 @@
 - `dist/`
 - `build/`
 - `out/`
-- `.pytest_cache/`
+- `.cache/pytest/`
 - `.ruff_cache/`
 - `__pycache__/`
 

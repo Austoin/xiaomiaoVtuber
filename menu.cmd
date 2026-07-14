@@ -260,7 +260,7 @@ exit /b %errorlevel%
 
 :test_agent_config
 pushd "%XIAOMIAO_AGENT_DIR%"
-call uv run pytest tests/config/test_config_paths.py -q --basetemp ..\.pytest-tmp-agent-config %FORWARDED_ARGS%
+call uv run pytest tests/config/test_config_paths.py -q %FORWARDED_ARGS%
 set "EXIT_CODE=%errorlevel%"
 popd
 exit /b %EXIT_CODE%
@@ -323,7 +323,7 @@ goto return_to_menu
 
 :test_agent_config_interactive
 pushd "%XIAOMIAO_AGENT_DIR%"
-call uv run pytest tests/config/test_config_paths.py -q --basetemp ..\.pytest-tmp-agent-config
+call uv run pytest tests/config/test_config_paths.py -q
 popd
 goto return_to_menu
 

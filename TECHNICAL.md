@@ -503,8 +503,8 @@ xiaomiaobot 中桥接地址和绑定用户仍是原型硬编码：`http://127.0.
 当前最小验证矩阵：
 
 ```text
-python -m pytest --basetemp .pytest-tmp-xiaomiao-verify test\xiaomiao
-uv run --extra dev pytest --basetemp ..\.pytest-tmp-agent-verify tests\test_openai_api.py tests\tools\test_tool_registry.py tests\tools\test_tool_loader.py tests\tools\test_computer_use_mcp_profile.py tests\tools\test_markitdown_tool.py tests\tools\test_scrapling_tool.py tests\tools\test_xiaomiao_stage_tool.py tests\tools\test_xiaomiaobot_services_tool.py
+python -m pytest test\xiaomiao
+uv run --extra dev pytest tests\test_openai_api.py tests\tools\test_tool_registry.py tests\tools\test_tool_loader.py tests\tools\test_computer_use_mcp_profile.py tests\tools\test_markitdown_tool.py tests\tools\test_scrapling_tool.py tests\tools\test_xiaomiao_stage_tool.py tests\tools\test_xiaomiaobot_services_tool.py
 pnpm exec vitest run apps/stage-pocket/src/modules/xiaomiao-bridge-events.test.ts packages/stage-ui/src/xiaomiao-bridge-events.test.ts apps/stage-tamagotchi/src/renderer/pages/xiaomiao-bridge-reaction.test.ts apps/stage-tamagotchi/src/renderer/pages/xiaomiao-bridge.test.ts
 pnpm run start:check
 pnpm run tui  # TUI 快速测试

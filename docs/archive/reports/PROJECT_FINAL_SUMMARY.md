@@ -174,7 +174,7 @@ QQ 协议端 :5004
 
 ```powershell
 # xiaomiao 测试
-python -m pytest --basetemp .pytest-tmp-xiaomiao-verify test\xiaomiao
+python -m pytest test\xiaomiao
 
 # xiaomiaoAgent 测试
 cd xiaomiaoAgent

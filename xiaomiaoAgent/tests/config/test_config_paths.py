@@ -1,3 +1,5 @@
+import configparser
+import tomllib
 from pathlib import Path
 
 from nanobot.config.paths import (
@@ -24,6 +26,34 @@ def test_repo_default_paths_use_project_cache() -> None:
     assert get_cli_history_path().as_posix().endswith("/.cache/agent/nanobot/history/cli_history")
     assert get_bridge_install_dir().as_posix().endswith("/.cache/agent/nanobot/bridge")
     assert get_tool_results_dir().as_posix().endswith("/.cache/agent/nanobot/tool-results")
+
+
+def test_pytest_artifacts_stay_under_project_cache() -> None:
+    project_root = Path(__file__).resolve().parents[3]
+    cache_root = (project_root / ".cache").resolve()
+
+    root_config = configparser.ConfigParser()
+    root_config.read(project_root / "pytest.ini", encoding="utf-8")
+    root_options = root_config["pytest"]
+
+    agent_config = tomllib.loads(
+        (project_root / "xiaomiaoAgent" / "pyproject.toml").read_text(encoding="utf-8")
+    )
+    agent_options = agent_config["tool"]["pytest"]["ini_options"]
+
+    configured_paths = (
+        (project_root, root_options["cache_dir"]),
+        (project_root, root_options["addopts"].removeprefix("--basetemp=")),
+        (project_root / "xiaomiaoAgent", agent_options["cache_dir"]),
+        (
+            project_root / "xiaomiaoAgent",
+            agent_options["addopts"].removeprefix("--basetemp="),
+        ),
+    )
+
+    for config_dir, configured_path in configured_paths:
+        resolved_path = (config_dir / configured_path).resolve()
+        assert resolved_path.is_relative_to(cache_root)
 
 
 def test_runtime_dirs_follow_config_path(monkeypatch, tmp_path: Path) -> None:
