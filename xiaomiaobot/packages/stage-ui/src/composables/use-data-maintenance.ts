@@ -11,6 +11,7 @@ import { useAiriCardStore } from '../stores/modules/airi-card'
 import { useConsciousnessStore } from '../stores/modules/consciousness'
 import { useDiscordStore } from '../stores/modules/discord'
 import { useFactorioStore } from '../stores/modules/gaming-factorio'
+import { useMinecraftStore } from '../stores/modules/gaming-minecraft'
 import { useHearingStore } from '../stores/modules/hearing'
 import { useSpeechStore } from '../stores/modules/speech'
 import { useTwitterStore } from '../stores/modules/twitter'
@@ -31,6 +32,7 @@ export function useDataMaintenance() {
   const consciousnessStore = useConsciousnessStore()
   const twitterStore = useTwitterStore()
   const discordStore = useDiscordStore()
+  const minecraftStore = useMinecraftStore()
   const factorioStore = useFactorioStore()
   const mcpStore = useMcpStore()
   const onboardingStore = useOnboardingStore()
@@ -52,6 +54,7 @@ export function useDataMaintenance() {
     consciousnessStore.resetState()
     twitterStore.resetState()
     discordStore.resetState()
+    minecraftStore.resetState()
     factorioStore.resetState()
   }
 

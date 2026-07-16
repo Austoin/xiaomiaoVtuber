@@ -462,6 +462,37 @@ pages:
       username-description: Su nombre de usuario en el servidor de Factorio
       username-placeholder: Ingrese su nombre de usuario de Factorio
       configured: '¡Factorio está configurado correctamente!'
+    gaming-minecraft:
+      description: '¡Jugando Minecraft!'
+      title: Minecraft
+      enable: Habilitar integración con Minecraft
+      enable-description: >-
+        Include Minecraft self-knowledge in Stage chat turns and keep passive runtime visibility enabled.
+      configured: '¡Minecraft está configurado correctamente!'
+      read-only:
+        title: Consola de solo lectura
+        description: >-
+          Stage currently exposes Minecraft as a passive shell. Runtime status and traffic are visible here, but service configuration stays in the Minecraft service files.
+      setup:
+        title: Configurar
+        description: >-
+          Puedes encontrar las instrucciones para configurar el bot en el siguiente archivo
+      runtime:
+        title:
+        connection: Connection
+        latest-context: Latest bot context
+        waiting: Waiting for a fresh bot-originated context push.
+        unknown: Unknown
+      debug:
+        title: Minecraft traffic
+        empty: No Minecraft traffic observed yet.
+        source: 'Source: {source}'
+      status:
+        service-online: Service online
+        service-offline: Service offline
+        no-runtime-context: No bot context observed yet
+        last-context-seconds: 'Last bot context: {seconds}s ago'
+        last-context-stale: 'Last bot context: Stale'
     hearing:
       description: Configurar cómo funciona el reconocimiento de voz
       title: Audición

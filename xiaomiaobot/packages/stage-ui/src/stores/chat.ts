@@ -16,6 +16,7 @@ import { categorizeResponse, createStreamingCategorizer } from '../composables/r
 import { activeTurnSpan, startSpan } from '../composables/use-io-tracer'
 import { requestXiaomiaoAgentReply } from '../libs/xiaomiao-agent'
 import { formatContextPromptText } from './chat/context-prompt'
+import { createMinecraftContext } from './chat/context-providers'
 import { useChatContextStore } from './chat/context-store'
 import { formatTimePrefix } from './chat/datetime-prefix'
 import { createChatHooks } from './chat/hooks'
@@ -164,6 +165,10 @@ export const useChatOrchestratorStore = defineStore('chat-orchestrator', () => {
     // It is applied at message-assembly time (see below) as a system-prompt
     // date anchor + per-message [HH:MM] prefixes, which is more KV-cache
     // friendly and less prone to weak models echoing timestamps verbatim.
+    const minecraftContext = createMinecraftContext()
+    if (minecraftContext)
+      chatContext.ingestContextMessage(minecraftContext)
+
     const sendingCreatedAt = Date.now()
     const streamingMessageContext: ChatStreamEventContext = {
       message: { role: 'user', content: sendingMessage, createdAt: sendingCreatedAt, id: nanoid() },

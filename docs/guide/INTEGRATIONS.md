@@ -43,6 +43,8 @@ $env:XIAOMIAO_AGENT_SESSION_ID="minecraft-runtime"
 pnpm run bot:minecraft
 ```
 
+服务上线后，可在 Web、Pocket 或 Desktop 的“设置 -> 模块 -> Minecraft”查看连接状态、最新 Bot 上下文和最近 50 条服务事件。Minecraft 上下文会作为旁路状态注入下一轮对话，实际推理仍只经过 `xiaomiaoAgent`。
+
 需要 Minecraft 调试 MCP 时设置 `$env:ENABLE_MCP_SERVER="true"`。服务地址为 `http://127.0.0.1:3001/sse`，根配置中的 `tools.minecraftMcp` 可按 `config.example.json` 启用。真实验证需要可连接的 Minecraft Server 和对应账号。
 
 ## Twitter

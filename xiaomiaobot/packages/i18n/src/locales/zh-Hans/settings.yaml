@@ -505,6 +505,37 @@ pages:
       username-description: 您在异星工厂服务器中的用户名
       username-placeholder: 输入您的异星工厂用户名
       configured: 异星工厂已正确配置！
+    gaming-minecraft:
+      description: 一起玩 Minecraft！
+      title: 我的世界 Minecraft
+      enable: 启用我的世界集成
+      enable-description: >-
+        在 Chat 界面 中包含 Minecraft 自己的上下文和认知，并保持 Passive runtime visibility 启用。
+      configured: 我的世界已正确配置！
+      read-only:
+        title: 只读外壳
+        description: >-
+          目前此 Minecraft 管理界面将作为一个被动的外壳。你可以在这里观察运行状态，但服务配置仍然存在于 Minecraft 服务文件中。
+      setup:
+        title: 配置
+        description: >-
+          你可以在下面的文件中找到设置 Minecraft bot 的说明
+      runtime:
+        title: 可观测
+        connection: 连接
+        latest-context: 最后的 Bot 状态
+        waiting: 等待一个新的 Bot 上下文推送。
+        unknown: 未知
+      debug:
+        title: Minecraft流量
+        empty: 还没有观察到任何 Minecraft 流量。
+        source: '来源: {source}'
+      status:
+        service-online: 服务已上线
+        service-offline: 服务已离线
+        no-runtime-context: 尚未观察到 Bot 状态
+        last-context-seconds: '最后一次 Bot 状态更新：{seconds} 秒之前'
+        last-context-stale: '最后一次 Bot 状态：挂起'
     hearing:
       description: 语音识别
       title: 听觉

@@ -300,6 +300,13 @@ declare module 'vue-router/auto-routes' {
       Record<never, never>,
       | never
     >,
+    '/settings/modules/gaming-minecraft': RouteRecordInfo<
+      '/settings/modules/gaming-minecraft',
+      '/settings/modules/gaming-minecraft',
+      Record<never, never>,
+      Record<never, never>,
+      | never
+    >,
     '/settings/modules/hearing': RouteRecordInfo<
       '/settings/modules/hearing',
       '/settings/modules/hearing',
@@ -893,6 +900,12 @@ declare module 'vue-router/auto-routes' {
     '../../packages/stage-pages/src/pages/settings/modules/gaming-factorio.vue': {
       routes:
         | '/settings/modules/gaming-factorio'
+      views:
+        | never
+    }
+    '../../packages/stage-pages/src/pages/settings/modules/gaming-minecraft.vue': {
+      routes:
+        | '/settings/modules/gaming-minecraft'
       views:
         | never
     }

@@ -462,6 +462,37 @@ pages:
       username-description: Factorioサーバーでのユーザー名
       username-placeholder: Factorioユーザー名を入力
       configured: Factorioは適切に設定されています！
+    gaming-minecraft:
+      description: Minecraftをプレイ！
+      title: Minecraft
+      enable: Minecraft連携を有効にする
+      enable-description: >-
+        ステージチャットにMinecraftの自己知識を含め、パッシブな実行時可視性を有効に維持する。
+      configured: Minecraftは適切に設定されています！
+      read-only:
+        title: 読み取り専用シェル
+        description: >-
+          ステージは現在、Minecraftをパッシブなシェルとして公開しています。実行状態やトラフィックはここで確認できますが、サービスの構成設定については、引き続きMinecraftのサービスファイル側で管理されます。
+      setup:
+        title: セットアップ
+        description: >-
+          ボットのセットアップ手順については、以下のファイルで確認できます
+      runtime:
+        title: 観察されたランタイム
+        connection: 接続
+        latest-context: 最新のボットのコンテキスト
+        waiting: ボット発信の新規コンテキストプッシュを待機しています。
+        unknown: 不明
+      debug:
+        title: Minecraft のトラフィック
+        empty: Minecraftのトラフィックはまだ観測されていません。
+        source: 'ソース: {source}'
+      status:
+        service-online: サービスはオンラインです
+        service-offline: サービスはオフラインです
+        no-runtime-context: ボットのコンテキストがまだありません
+        last-context-seconds: '最後のボットコンテキスト: {seconds}秒前'
+        last-context-stale: '最後のボットコンテキスト: 期限切れ'
     hearing:
       description: 音声認識の動作を設定する
       title: 聴覚
