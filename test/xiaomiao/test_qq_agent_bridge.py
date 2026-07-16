@@ -1,9 +1,7 @@
 import asyncio
 import sys
 import unittest
-from dataclasses import dataclass
 from pathlib import Path
-from typing import Any
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "xiaomiao"))
 
@@ -18,7 +16,6 @@ from qq_agent_bridge import (  # noqa: E402
     is_qq_command_alias,
     is_qq_exact_command,
     map_qq_memory_command,
-    publish_qq_agent_reply,
     resolve_qq_image_url,
     should_private_message_enter_agent,
 )
@@ -27,7 +24,6 @@ from qq_agent_bridge import (  # noqa: E402
 class QQAgentBridgeTests(unittest.TestCase):
     def test_group_turn_uses_group_source_and_media(self):
         calls = []
-        bridge_events = []
 
         def reply_callback(user_id, channel, chat_id, text, media=()):
             calls.append((user_id, channel, chat_id, text, media))
@@ -41,8 +37,6 @@ class QQAgentBridgeTests(unittest.TestCase):
             media=("data:image/jpeg;base64,AAA=",),
             reply_callback=reply_callback,
         )
-        publish_qq_agent_reply(result, lambda **kwargs: bridge_events.append(kwargs))
-
         self.assertEqual(result.assistant_text, "agent reply")
         self.assertEqual(
             calls,
@@ -54,77 +48,6 @@ class QQAgentBridgeTests(unittest.TestCase):
                     "hello",
                     ("data:image/jpeg;base64,AAA=",),
                 )
-            ],
-        )
-        self.assertEqual(
-            bridge_events,
-            [
-                {
-                    "source": "qq-group",
-                    "channel": "qq-group",
-                    "chat_id": "10001",
-                    "user_id": 3554978979,
-                    "user_text": "hello",
-                    "assistant_text": "agent reply",
-                }
-            ],
-        )
-
-    def test_agent_tool_events_are_published_as_bridge_events(self):
-        bridge_exchanges = []
-        tool_events = []
-
-        @dataclass(frozen=True)
-        class Response:
-            assistant_text: str
-            tool_events: tuple[dict[str, Any], ...]
-
-        def reply_callback(*_args, **_kwargs):
-            return Response(
-                assistant_text="queued",
-                tool_events=(
-                    {
-                        "event_type": "tool_start",
-                        "tool_name": "xiaomiaobot_action",
-                        "risk_level": "high",
-                        "confirmation_id": "ABC123",
-                        "result_summary": "homeassistant:control",
-                    },
-                ),
-            )
-
-        result = build_qq_agent_reply(
-            source=QQ_AGENT_GROUP,
-            user_id=3554978979,
-            chat_id=10001,
-            text="打开台灯",
-            reply_callback=reply_callback,
-        )
-        publish_qq_agent_reply(
-            result,
-            lambda **kwargs: bridge_exchanges.append(kwargs),
-            lambda **kwargs: tool_events.append(kwargs),
-        )
-
-        self.assertEqual(result.assistant_text, "queued")
-        self.assertEqual(len(bridge_exchanges), 1)
-        self.assertEqual(bridge_exchanges[0]["assistant_text"], "queued")
-        self.assertEqual(
-            tool_events,
-            [
-                {
-                    "source": "qq-group",
-                    "channel": "qq-group",
-                    "chat_id": "10001",
-                    "user_id": 3554978979,
-                    "role": "assistant",
-                    "content": "homeassistant:control",
-                    "event_type": "tool_start",
-                    "tool_name": "xiaomiaobot_action",
-                    "risk_level": "high",
-                    "confirmation_id": "ABC123",
-                    "result_summary": "homeassistant:control",
-                }
             ],
         )
 

@@ -462,37 +462,6 @@ pages:
       username-description: Tên người dùng của bạn trên máy chủ Factorio
       username-placeholder: Nhập tên người dùng Factorio của bạn
       configured: Đã cấu hình Factorio thành công!
-    gaming-minecraft:
-      description: Chơi Minecraft!
-      title: Minecraft
-      enable: Bật tích hợp Minecraft
-      enable-description: >-
-        Include Minecraft self-knowledge in Stage chat turns and keep passive runtime visibility enabled.
-      configured: Đã cấu hình Minecraft thành công!
-      read-only:
-        title: Read-only shell
-        description: >-
-          Stage currently exposes Minecraft as a passive shell. Runtime status and traffic are visible here, but service configuration stays in the Minecraft service files.
-      setup:
-        title: Setup
-        description: >-
-          You can find the instructions for setting up the bot in the following file
-      runtime:
-        title: Observed runtime
-        connection: Connection
-        latest-context: Latest bot context
-        waiting: Waiting for a fresh bot-originated context push.
-        unknown: Unknown
-      debug:
-        title: Minecraft traffic
-        empty: No Minecraft traffic observed yet.
-        source: 'Source: {source}'
-      status:
-        service-online: Service online
-        service-offline: Service offline
-        no-runtime-context: No bot context observed yet
-        last-context-seconds: 'Last bot context: {seconds}s ago'
-        last-context-stale: 'Last bot context: Stale'
     hearing:
       description: Cấu hình nhận diện giọng nói
       title: Nghe

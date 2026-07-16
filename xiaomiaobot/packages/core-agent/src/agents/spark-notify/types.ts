@@ -126,3 +126,8 @@ export interface SparkNotifyRuntimePolicy {
   /** Whether free-form text deltas should be ignored after rendering the provider response. */
   ignoreTextOutput: boolean
 }
+
+/** Result returned by the stage notification adapter after Agent processing. */
+export interface SparkNotifyHandleResult {
+  commands: []
+}

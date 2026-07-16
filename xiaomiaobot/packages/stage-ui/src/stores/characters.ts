@@ -184,7 +184,6 @@ export const useCharacterStore = defineStore('characters', () => {
       remote: async () => {
         const res = await (client.api.v1.characters[':id'].$patch)({
           param: { id },
-          // @ts-expect-error FIXME: hono client typing misses json option for this route
           json: payload,
         })
         if (!res.ok) {

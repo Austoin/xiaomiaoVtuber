@@ -2,11 +2,11 @@
 全局缓存配置
 
 统一管理整个项目的所有缓存和运行时数据
-包括 xiaomiao, xiaomiaoAgent, tool 等所有模块
+包括 QQ 端和 xiaomiaoAgent
 """
 
-from pathlib import Path
 import os
+from pathlib import Path
 
 # ==================== 项目根目录 ====================
 # cache_config.py 在项目根目录下
@@ -22,8 +22,6 @@ if "XIAOMIAO_CACHE_ROOT" in os.environ:
 # ==================== 一级缓存目录 ====================
 XIAOMIAO_CACHE = CACHE_ROOT / "xiaomiao"
 AGENT_CACHE = CACHE_ROOT / "agent"
-BOT_CACHE = CACHE_ROOT / "bot"
-TOOL_CACHE = CACHE_ROOT / "tool"
 
 # ==================== xiaomiao 缓存 ====================
 # 运行时配置
@@ -42,10 +40,6 @@ QQ_DOWNLOADS = QQ_WORKSPACE / "downloads"
 QQ_ARTIFACTS = QQ_WORKSPACE / "artifacts"
 QQ_TMP = QQ_WORKSPACE / "tmp"
 
-# Bridge 事件
-BRIDGE_EVENTS_CACHE = XIAOMIAO_CACHE / "bridge_events"
-BRIDGE_EVENTS_FILE = BRIDGE_EVENTS_CACHE / "bridge_events.jsonl"
-
 # ==================== Agent 缓存 ====================
 # nanobot 缓存
 NANOBOT_CACHE = AGENT_CACHE / "nanobot"
@@ -55,42 +49,13 @@ NANOBOT_SESSIONS = NANOBOT_CACHE / "sessions"
 NANOBOT_MEMORY = NANOBOT_CACHE / "memory"
 NANOBOT_HISTORY = NANOBOT_CACHE / "history"
 NANOBOT_CLI_HISTORY = NANOBOT_HISTORY / "cli_history"
-NANOBOT_BRIDGE = NANOBOT_CACHE / "bridge"
 NANOBOT_MEDIA = NANOBOT_CACHE / "media"
 NANOBOT_CRON = NANOBOT_CACHE / "cron"
-
-# Agent 工具缓存
-AGENT_TOOLS_CACHE = AGENT_CACHE / "tools"
-AGENT_SKILLS_CACHE = AGENT_CACHE / "skills"
-
-# ==================== Tool 缓存 ====================
-# 嵌入向量缓存
-EMBEDDING_CACHE = TOOL_CACHE / "embeddings"
-HF_CACHE = TOOL_CACHE / "huggingface"
-
-# 模型缓存
-MODEL_CACHE = TOOL_CACHE / "models"
-
-# TTS 缓存
-TTS_CACHE = TOOL_CACHE / "tts"
-
-# 临时文件
-TOOL_TMP = TOOL_CACHE / "tmp"
 
 # ==================== 日志目录 ====================
 LOG_ROOT = CACHE_ROOT / "logs"
 XIAOMIAO_LOG = LOG_ROOT / "xiaomiao"
 AGENT_LOG = LOG_ROOT / "agent"
-TOOL_LOG = LOG_ROOT / "tool"
-
-# ==================== 向后兼容映射 ====================
-# 旧路径 -> 新路径
-LEGACY_PATHS = {
-    "xiaomiao/runtime": XIAOMIAO_RUNTIME,
-    "workspace": QQ_WORKSPACE,
-    "log": LOG_ROOT,
-    ".nanobot/workspace": NANOBOT_WORKSPACE,
-}
 
 
 def ensure_all_cache_dirs():
@@ -100,8 +65,6 @@ def ensure_all_cache_dirs():
         CACHE_ROOT,
         XIAOMIAO_CACHE,
         AGENT_CACHE,
-        BOT_CACHE,
-        TOOL_CACHE,
 
         # xiaomiao
         XIAOMIAO_RUNTIME,
@@ -109,7 +72,6 @@ def ensure_all_cache_dirs():
         QQ_DOWNLOADS,
         QQ_ARTIFACTS,
         QQ_TMP,
-        BRIDGE_EVENTS_CACHE,
 
         # agent
         NANOBOT_CACHE,
@@ -118,24 +80,13 @@ def ensure_all_cache_dirs():
         NANOBOT_SESSIONS,
         NANOBOT_MEMORY,
         NANOBOT_HISTORY,
-        NANOBOT_BRIDGE,
         NANOBOT_MEDIA,
         NANOBOT_CRON,
-        AGENT_TOOLS_CACHE,
-        AGENT_SKILLS_CACHE,
-
-        # tool
-        EMBEDDING_CACHE,
-        HF_CACHE,
-        MODEL_CACHE,
-        TTS_CACHE,
-        TOOL_TMP,
 
         # logs
         LOG_ROOT,
         XIAOMIAO_LOG,
         AGENT_LOG,
-        TOOL_LOG,
     ]
 
     for dir_path in dirs:
@@ -147,7 +98,7 @@ def get_cache_path(category: str, *parts: str) -> Path:
     获取缓存路径
 
     Args:
-        category: 类别 (xiaomiao, agent, bot, tool, log)
+        category: 类别 (xiaomiao, agent, log)
         *parts: 路径部分
 
     Returns:
@@ -156,8 +107,6 @@ def get_cache_path(category: str, *parts: str) -> Path:
     category_map = {
         "xiaomiao": XIAOMIAO_CACHE,
         "agent": AGENT_CACHE,
-        "bot": BOT_CACHE,
-        "tool": TOOL_CACHE,
         "log": LOG_ROOT,
     }
 
@@ -166,19 +115,6 @@ def get_cache_path(category: str, *parts: str) -> Path:
     cache_path.parent.mkdir(parents=True, exist_ok=True)
 
     return cache_path
-
-
-def get_legacy_path(old_path: str) -> Path:
-    """
-    获取旧路径对应的新路径
-
-    Args:
-        old_path: 旧路径 (相对于项目根目录)
-
-    Returns:
-        新的缓存路径
-    """
-    return LEGACY_PATHS.get(old_path, PROJECT_ROOT / old_path)
 
 
 # 自动创建基本目录
@@ -194,8 +130,6 @@ __all__ = [
     # 一级目录
     "XIAOMIAO_CACHE",
     "AGENT_CACHE",
-    "BOT_CACHE",
-    "TOOL_CACHE",
 
     # xiaomiao
     "XIAOMIAO_RUNTIME",
@@ -210,8 +144,6 @@ __all__ = [
     "QQ_DOWNLOADS",
     "QQ_ARTIFACTS",
     "QQ_TMP",
-    "BRIDGE_EVENTS_CACHE",
-    "BRIDGE_EVENTS_FILE",
 
     # agent
     "NANOBOT_CACHE",
@@ -221,27 +153,15 @@ __all__ = [
     "NANOBOT_MEMORY",
     "NANOBOT_HISTORY",
     "NANOBOT_CLI_HISTORY",
-    "NANOBOT_BRIDGE",
     "NANOBOT_MEDIA",
     "NANOBOT_CRON",
-    "AGENT_TOOLS_CACHE",
-    "AGENT_SKILLS_CACHE",
-
-    # tool
-    "EMBEDDING_CACHE",
-    "HF_CACHE",
-    "MODEL_CACHE",
-    "TTS_CACHE",
-    "TOOL_TMP",
 
     # logs
     "LOG_ROOT",
     "XIAOMIAO_LOG",
     "AGENT_LOG",
-    "TOOL_LOG",
 
     # 函数
     "ensure_all_cache_dirs",
     "get_cache_path",
-    "get_legacy_path",
 ]

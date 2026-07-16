@@ -1,11 +1,11 @@
 import type { Card, ccv3 } from '@proj-airi/ccc'
 
 import { useLocalStorageManualReset } from '@proj-airi/stage-shared/composables'
+import { i18n } from '@proj-airi/stage-shared/i18n'
 import { watchDebounced } from '@vueuse/core'
 import { nanoid } from 'nanoid'
 import { defineStore, storeToRefs } from 'pinia'
 import { computed } from 'vue'
-import { useI18n } from 'vue-i18n'
 
 import SystemPromptV2 from '../../constants/prompts/system-v2'
 
@@ -79,7 +79,7 @@ export interface AiriCard extends Card {
 }
 
 export const useAiriCardStore = defineStore('airi-card', () => {
-  const { t } = useI18n()
+  const t = i18n.global.t
 
   const cards = useLocalStorageManualReset<Map<string, AiriCard>>('airi-cards', new Map())
   const activeCardId = useLocalStorageManualReset<string>('airi-card-active-id', 'default')
@@ -277,7 +277,7 @@ export const useAiriCardStore = defineStore('airi-card', () => {
     if (!newCard)
       return
 
-    // TODO: Minecraft Agent, etc
+    // TODO: Additional domain modules.
     const extension = resolveAiriExtension(newCard)
     if (!extension)
       return

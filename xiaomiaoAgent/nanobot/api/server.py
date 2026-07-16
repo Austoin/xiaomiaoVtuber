@@ -12,11 +12,14 @@ import json as _json
 import time
 import uuid
 from dataclasses import dataclass
+from pathlib import Path
 from typing import Any
+from urllib.parse import urlsplit
 
 from aiohttp import web
 from loguru import logger
 
+from nanobot.api.services import UnifiedConfigRepository, XiaomiaoEventStore
 from nanobot.config.paths import get_media_dir
 from nanobot.utils.helpers import safe_filename
 from nanobot.utils.media_decode import (
@@ -28,7 +31,6 @@ from nanobot.utils.media_decode import (
 from nanobot.utils.media_decode import (
     save_base64_data_url as _save_base64_data_url,
 )
-from nanobot.utils.runtime import EMPTY_FINAL_RESPONSE_MESSAGE
 
 __all__ = (
     "MAX_FILE_SIZE",
@@ -53,6 +55,9 @@ VALID_TOOL_POLICIES = frozenset({
     TRUSTED_PENDING_TOOL_POLICY,
     TRUSTED_CONFIRMED_TOOL_POLICY,
 })
+LOCAL_WEB_HOSTS = frozenset({"localhost", "127.0.0.1", "::1"})
+CORS_ALLOW_METHODS = "GET, POST, OPTIONS"
+CORS_ALLOW_HEADERS = "Content-Type"
 
 
 @dataclass(frozen=True)
@@ -62,6 +67,7 @@ class RequestSource:
     user_id: str
     channel_policy: str
     confirmation_id: str | None = None
+    client_message_id: str | None = None
 
     @property
     def metadata(self) -> dict[str, str]:
@@ -157,6 +163,7 @@ def _request_source(
     user_id: Any = None,
     tool_policy: Any = None,
     confirmation_id: Any = None,
+    client_message_id: Any = None,
 ) -> RequestSource:
     resolved_channel = _source_text(channel, "api")
     resolved_policy = _tool_policy(tool_policy, channel=resolved_channel)
@@ -167,12 +174,42 @@ def _request_source(
         user_id=_source_text(user_id, DEFAULT_API_USER_ID),
         channel_policy=resolved_policy,
         confirmation_id=resolved_confirmation_id,
+        client_message_id=_optional_source_text(client_message_id),
     )
 
 
 def _optional_source_text(value: Any) -> str | None:
     text = str(value).strip() if value is not None else ""
     return text or None
+
+
+def _is_allowed_local_origin(origin: str | None) -> bool:
+    if origin == "null":
+        return True
+    if not origin:
+        return False
+    parsed = urlsplit(origin)
+    return parsed.scheme in {"http", "https"} and parsed.hostname in LOCAL_WEB_HOSTS
+
+
+@web.middleware
+async def _local_cors_middleware(request: web.Request, handler):
+    origin = request.headers.get("Origin")
+    allow_origin = _is_allowed_local_origin(origin)
+
+    if request.method == "OPTIONS" and request.headers.get("Access-Control-Request-Method"):
+        if not allow_origin:
+            return _error_json(403, "CORS origin is not allowed")
+        response = web.Response(status=204)
+    else:
+        response = await handler(request)
+
+    if allow_origin and origin:
+        response.headers["Access-Control-Allow-Origin"] = origin
+        response.headers["Access-Control-Allow-Methods"] = CORS_ALLOW_METHODS
+        response.headers["Access-Control-Allow-Headers"] = CORS_ALLOW_HEADERS
+        response.headers["Vary"] = "Origin"
+    return response
 
 # ---------------------------------------------------------------------------
 # SSE helpers
@@ -258,6 +295,7 @@ async def _parse_multipart(
     user_id = None
     tool_policy = None
     confirmation_id = None
+    client_message_id = None
     media_paths: list[str] = []
 
     while True:
@@ -271,7 +309,14 @@ async def _parse_multipart(
             session_id = (await part.read()).decode("utf-8").strip()
         elif part.name == "model":
             model = (await part.read()).decode("utf-8").strip()
-        elif part.name in {"channel", "chat_id", "user_id", "tool_policy", "confirmation_id"}:
+        elif part.name in {
+            "channel",
+            "chat_id",
+            "user_id",
+            "tool_policy",
+            "confirmation_id",
+            "client_message_id",
+        }:
             value = (await part.read()).decode("utf-8").strip()
             if part.name == "channel":
                 channel = value
@@ -281,8 +326,10 @@ async def _parse_multipart(
                 user_id = value
             elif part.name == "tool_policy":
                 tool_policy = value
-            else:
+            elif part.name == "confirmation_id":
                 confirmation_id = value
+            else:
+                client_message_id = value
         elif part.name == "files":
             raw = await part.read()
             if len(raw) > MAX_FILE_SIZE:
@@ -304,6 +351,7 @@ async def _parse_multipart(
         user_id=user_id,
         tool_policy=tool_policy,
         confirmation_id=confirmation_id,
+        client_message_id=client_message_id,
     )
 
 
@@ -341,6 +389,7 @@ async def handle_chat_completions(request: web.Request) -> web.Response:
                 user_id=body.get("user_id"),
                 tool_policy=body.get("tool_policy"),
                 confirmation_id=body.get("confirmation_id"),
+                client_message_id=body.get("client_message_id"),
             )
     except ValueError as e:
         return _error_json(400, str(e))
@@ -435,8 +484,7 @@ async def handle_chat_completions(request: web.Request) -> web.Response:
             await resp.write(_SSE_DONE)
         return resp
 
-    # -- non-streaming path (original logic) --
-    fallback = EMPTY_FINAL_RESPONSE_MESSAGE
+    # -- non-streaming path --
     collected_tool_events: list[dict[str, Any]] = []
 
     async def _on_progress(
@@ -465,27 +513,12 @@ async def handle_chat_completions(request: web.Request) -> web.Response:
                     timeout_s,
                 )
                 response_text = _response_text(response)
-
-                if not response_text or not response_text.strip():
-                    logger.warning("Empty response for session {}, retrying", session_key)
-                    retry_response = await _maybe_wait_for(
-                        agent_loop.process_direct(
-                            content=text,
-                            media=media_paths if media_paths else None,
-                            session_key=session_key,
-                            channel=source.channel,
-                            chat_id=source.chat_id,
-                            sender_id=source.user_id,
-                            metadata=source.metadata,
-                            on_progress=_on_progress,
-                        ),
-                        timeout_s,
+                if not response_text.strip():
+                    return _error_json(
+                        502,
+                        "xiaomiaoAgent returned an empty response",
+                        err_type="server_error",
                     )
-                    response_text = _response_text(retry_response)
-                    if not response_text or not response_text.strip():
-                        logger.warning("Empty response after retry, using fallback")
-                        response_text = fallback
-
             except asyncio.TimeoutError:
                 return _error_json(504, f"Request timed out after {timeout_s}s")
             except Exception:
@@ -494,6 +527,37 @@ async def handle_chat_completions(request: web.Request) -> web.Response:
     except Exception:
         logger.exception("Unexpected API lock error for session {}", session_key)
         return _error_json(500, "Internal server error", err_type="server_error")
+
+    event_store: XiaomiaoEventStore = request.app["event_store"]
+    event_store.publish_exchange(
+        source=source.channel,
+        chat_id=source.chat_id,
+        user_id=source.user_id,
+        user_text=text,
+        assistant_text=response_text,
+        client_message_id=source.client_message_id,
+    )
+    for tool_event in collected_tool_events:
+        event_store.publish({
+            "source": source.channel,
+            "channel": source.channel,
+            "chat_id": source.chat_id,
+            "user_id": source.user_id,
+            "role": "assistant",
+            "content": str(tool_event.get("result_summary") or response_text),
+            **{
+                key: value
+                for key, value in tool_event.items()
+                if key in {
+                    "event_type",
+                    "tool_name",
+                    "risk_level",
+                    "confirmation_id",
+                    "result_summary",
+                }
+                and value is not None
+            },
+        })
 
     return web.json_response(
         _chat_completion_response(
@@ -527,13 +591,61 @@ async def handle_health(request: web.Request) -> web.Response:
     return web.json_response({"status": "ok"})
 
 
+async def handle_events(request: web.Request) -> web.Response:
+    store: XiaomiaoEventStore = request.app["event_store"]
+    try:
+        after = int(request.query.get("after", "0"))
+        user_id = int(request.query["user_id"]) if "user_id" in request.query else None
+    except ValueError:
+        return _error_json(400, "after and user_id must be integers")
+    return web.json_response(store.query(after=after, user_id=user_id))
+
+
+async def handle_event_create(request: web.Request) -> web.Response:
+    store: XiaomiaoEventStore = request.app["event_store"]
+    try:
+        payload = await request.json()
+        if not isinstance(payload, dict):
+            raise ValueError("request body must be a JSON object")
+        event = store.publish(payload)
+    except (ValueError, _json.JSONDecodeError) as exc:
+        return _error_json(400, str(exc))
+    return web.json_response({"event": event}, status=201)
+
+
+async def handle_config_status(request: web.Request) -> web.Response:
+    repository: UnifiedConfigRepository = request.app["unified_config_repository"]
+    try:
+        return web.json_response(repository.status())
+    except (OSError, ValueError, _json.JSONDecodeError) as exc:
+        return _error_json(500, f"Unable to read unified config: {exc}", "server_error")
+
+
+async def handle_config_update(request: web.Request) -> web.Response:
+    repository: UnifiedConfigRepository = request.app["unified_config_repository"]
+    try:
+        payload = await request.json()
+        if not isinstance(payload, dict):
+            raise ValueError("request body must be a JSON object")
+        return web.json_response(repository.update_custom_provider(payload))
+    except (ValueError, _json.JSONDecodeError) as exc:
+        return _error_json(400, str(exc))
+    except OSError as exc:
+        return _error_json(500, f"Unable to write unified config: {exc}", "server_error")
+
+
 # ---------------------------------------------------------------------------
 # App factory
 # ---------------------------------------------------------------------------
 
 
 def create_app(
-    agent_loop, model_name: str = "xiaomiaoAgent", request_timeout: float = 120.0
+    agent_loop,
+    model_name: str = "xiaomiaoAgent",
+    request_timeout: float = 120.0,
+    *,
+    event_store_path: Path | None = None,
+    unified_config_path: Path | None = None,
 ) -> web.Application:
     """Create the aiohttp application.
 
@@ -542,13 +654,22 @@ def create_app(
         model_name: Model name reported in responses.
         request_timeout: Per-request timeout in seconds.
     """
-    app = web.Application(client_max_size=20 * 1024 * 1024)  # 20MB for base64 images
+    app = web.Application(
+        client_max_size=20 * 1024 * 1024,
+        middlewares=[_local_cors_middleware],
+    )
     app["agent_loop"] = agent_loop
     app["model_name"] = model_name
     app["request_timeout"] = request_timeout
     app["session_locks"] = {}  # per-user locks, keyed by session_key
+    app["event_store"] = XiaomiaoEventStore(event_store_path)
+    app["unified_config_repository"] = UnifiedConfigRepository(unified_config_path)
 
     app.router.add_post("/v1/chat/completions", handle_chat_completions)
     app.router.add_get("/v1/models", handle_models)
+    app.router.add_get("/v1/xiaomiao/events", handle_events)
+    app.router.add_post("/v1/xiaomiao/events", handle_event_create)
+    app.router.add_get("/v1/xiaomiao/config", handle_config_status)
+    app.router.add_post("/v1/xiaomiao/config", handle_config_update)
     app.router.add_get("/health", handle_health)
     return app

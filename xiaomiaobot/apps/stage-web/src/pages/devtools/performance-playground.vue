@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { EmotionPayload } from '@proj-airi/stage-ui/constants/emotions'
-import type { ChatProvider, SpeechProviderWithExtraOptions } from '@xsai-ext/providers/utils'
+import type { SpeechProviderWithExtraOptions } from '@xsai-ext/providers/utils'
 
 import { createPlaybackManager, createSpeechPipeline } from '@proj-airi/pipelines-audio'
 import { ThreeScene } from '@proj-airi/stage-ui-three'
@@ -12,7 +12,6 @@ import { useAudioContext, useSpeakingStore } from '@proj-airi/stage-ui/stores/au
 import { useChatOrchestratorStore } from '@proj-airi/stage-ui/stores/chat'
 import { useChatMaintenanceStore } from '@proj-airi/stage-ui/stores/chat/maintenance'
 import { useChatSessionStore } from '@proj-airi/stage-ui/stores/chat/session-store'
-import { useConsciousnessStore } from '@proj-airi/stage-ui/stores/modules/consciousness'
 import { useSpeechStore } from '@proj-airi/stage-ui/stores/modules/speech'
 import { useProvidersStore } from '@proj-airi/stage-ui/stores/providers'
 import { useSettings } from '@proj-airi/stage-ui/stores/settings'
@@ -46,8 +45,6 @@ onMounted(async () => {
 const providersStore = useProvidersStore()
 const speechStore = useSpeechStore()
 const { activeSpeechProvider, activeSpeechVoice, activeSpeechModel, ssmlEnabled, pitch } = storeToRefs(speechStore)
-const consciousnessStore = useConsciousnessStore()
-const { activeProvider: activeChatProvider, activeModel: activeChatModel } = storeToRefs(consciousnessStore)
 
 const delaysQueue = useDelayMessageQueue()
 const currentMotion = ref<{ group: string }>({ group: EmotionThinkMotionName })
@@ -199,22 +196,13 @@ async function sendChat() {
   if (!content)
     return
 
-  const provider = await providersStore.getProviderInstance(activeChatProvider.value)
-  if (!provider || !activeChatModel.value) {
-    log('未配置聊天模型或 provider')
-    return
-  }
-
   try {
-    await chatOrchestrator.ingest(content, {
-      model: activeChatModel.value,
-      chatProvider: provider as ChatProvider,
-    })
+    await chatOrchestrator.ingest(content, {})
     chatInput.value = ''
   }
   catch (err) {
     console.error(err)
-    log('发送到 LLM 失败')
+    log('发送到 xiaomiaoAgent 失败')
   }
 }
 

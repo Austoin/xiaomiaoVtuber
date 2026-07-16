@@ -1,22 +1,16 @@
-import type { SparkNotifyResponseControl } from '@proj-airi/core-agent/agents/spark-notify'
+import type { SparkNotifyHandleResult, SparkNotifyResponseControl } from '@proj-airi/core-agent/agents/spark-notify'
 import type { WebSocketBaseEvent, WebSocketEventOf, WebSocketEvents } from '@proj-airi/server-sdk'
 
-import { setupAgentSparkNotifyHandler } from '@proj-airi/core-agent/agents/spark-notify'
 import { defineStore, storeToRefs } from 'pinia'
 import { ref } from 'vue'
 
 import { useCharacterNotebookStore, useCharacterStore } from '../'
-import { useLLM } from '../../llm'
+import { requestXiaomiaoAgentReply } from '../../../libs/xiaomiao-agent'
 import { useModsServerChannelStore } from '../../mods/api/channel-server'
-import { useConsciousnessStore } from '../../modules/consciousness'
-import { useProvidersStore } from '../../providers'
 
 export { sparkNotifyCommandSchema } from '@proj-airi/core-agent/agents/spark-notify'
 
 export const useCharacterOrchestratorStore = defineStore('character-orchestrator', () => {
-  const { stream } = useLLM()
-  const { activeProvider, activeModel } = storeToRefs(useConsciousnessStore())
-  const providersStore = useProvidersStore()
   const characterStore = useCharacterStore()
   const notebookStore = useCharacterNotebookStore()
   const { systemPrompt } = storeToRefs(characterStore)
@@ -42,19 +36,6 @@ export const useCharacterOrchestratorStore = defineStore('character-orchestrator
   let tickTimer: ReturnType<typeof setInterval> | undefined
   let initialized = false
   const eventUnsubscribes: Array<() => void> = []
-  const sparkNotifyAgent = setupAgentSparkNotifyHandler({
-    stream,
-    getActiveProvider: () => activeProvider.value,
-    getActiveModel: () => activeModel.value,
-    getProviderInstance: name => providersStore.getProviderInstance(name),
-    onReactionDelta: (eventId, text) => characterStore.onSparkNotifyReactionStreamEvent(eventId, text),
-    onReactionEnd: (eventId, text) => characterStore.onSparkNotifyReactionStreamEnd(eventId, text),
-    getSystemPrompt: () => systemPrompt.value,
-    getProcessing: () => processing.value,
-    setProcessing: next => processing.value = next,
-    getPending: () => pendingNotifies.value,
-    setPending: next => pendingNotifies.value = next,
-  })
 
   function computeNextRunAt(event: WebSocketEventOf<'spark:notify'>, attempts: number) {
     const now = Date.now()
@@ -102,19 +83,37 @@ export const useCharacterOrchestratorStore = defineStore('character-orchestrator
     })
   }
 
-  async function processSparkNotify(event: WebSocketEventOf<'spark:notify'>, control?: SparkNotifyResponseControl) {
-    const result = await sparkNotifyAgent.handle(event, control)
-    if (!result?.commands?.length)
-      return result
-
-    for (const command of result.commands) {
-      modsServerChannelStore.send({
-        type: 'spark:command',
-        data: command as WebSocketEvents['spark:command'],
+  async function processSparkNotify(
+    event: WebSocketEventOf<'spark:notify'>,
+    control?: SparkNotifyResponseControl,
+  ): Promise<SparkNotifyHandleResult | undefined> {
+    processing.value = true
+    try {
+      const systemInstructions = [
+        systemPrompt.value,
+        'Handle this xiaomiaoVirtual spark notification. React naturally and use Agent tools when an action is required.',
+        ...(control?.messageOverride?.appendSystemInstructions ?? []),
+      ].filter(Boolean).join('\n\n')
+      const eventPayload = control?.messageOverride?.replaceUserMessage
+        ?? [
+          JSON.stringify({ source: event.source, notify: event.data }, null, 2),
+          ...(control?.messageOverride?.appendUserSections ?? []),
+        ].join('\n\n')
+      const reaction = await requestXiaomiaoAgentReply({
+        text: `${systemInstructions}\n\n${eventPayload}`,
+        clientMessageId: `stage-spark-${event.data.id}`,
       })
+      characterStore.onSparkNotifyReactionStreamEvent(event.data.id, reaction)
+      characterStore.onSparkNotifyReactionStreamEnd(event.data.id, reaction)
+      return { commands: [] }
     }
-
-    return result
+    catch (error) {
+      characterStore.onSparkNotifyReactionStreamEnd(event.data.id, '')
+      throw error
+    }
+    finally {
+      processing.value = false
+    }
   }
 
   async function handleIncomingSparkNotify(event: WebSocketEventOf<'spark:notify'>, control?: SparkNotifyResponseControl) {

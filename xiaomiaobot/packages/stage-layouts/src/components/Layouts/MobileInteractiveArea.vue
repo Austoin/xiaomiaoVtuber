@@ -1,18 +1,13 @@
 <script setup lang="ts">
 import type { ChatHistoryItem } from '@proj-airi/stage-ui/types/chat'
-import type { ChatProvider } from '@xsai-ext/providers/utils'
 
 import { errorMessageFrom } from '@moeru/std'
-import { isStageWeb } from '@proj-airi/stage-shared'
 import { ChatHistory, HearingConfigDialog } from '@proj-airi/stage-ui/components'
 import { useAudioAnalyzer } from '@proj-airi/stage-ui/composables'
 import { useAudioContext } from '@proj-airi/stage-ui/stores/audio'
-import { useChatOrchestratorStore } from '@proj-airi/stage-ui/stores/chat'
 import { useChatMaintenanceStore } from '@proj-airi/stage-ui/stores/chat/maintenance'
 import { useChatSessionStore } from '@proj-airi/stage-ui/stores/chat/session-store'
 import { useChatStreamStore } from '@proj-airi/stage-ui/stores/chat/stream-store'
-import { useConsciousnessStore } from '@proj-airi/stage-ui/stores/modules/consciousness'
-import { useProvidersStore } from '@proj-airi/stage-ui/stores/providers'
 import { useSettings, useSettingsAudioDevice } from '@proj-airi/stage-ui/stores/settings'
 import { BasicTextarea, useTheme } from '@proj-airi/ui'
 import { useResizeObserver, useScreenSafeArea } from '@vueuse/core'
@@ -31,13 +26,12 @@ import { BackgroundDialogPicker } from '../Backgrounds'
 
 const { isDark, toggleDark } = useTheme()
 const hearingDialogOpen = ref(false)
-const chatOrchestrator = useChatOrchestratorStore()
 const chatSession = useChatSessionStore()
 const chatStream = useChatStreamStore()
 const { cleanupMessages } = useChatMaintenanceStore()
 const { messages } = storeToRefs(chatSession)
 const { streamingMessage } = storeToRefs(chatStream)
-const { sending } = storeToRefs(chatOrchestrator)
+const sending = ref(false)
 const historyMessages = computed(() => messages.value as unknown as ChatHistoryItem[])
 
 function handleDeleteMessage(index: number) {
@@ -52,14 +46,10 @@ const isComposing = ref(false)
 const backgroundDialogOpen = ref(false)
 
 const screenSafeArea = useScreenSafeArea()
-const providersStore = useProvidersStore()
-const { activeProvider, activeModel } = storeToRefs(useConsciousnessStore())
-
 useResizeObserver(document.documentElement, () => screenSafeArea.update())
 const { themeColorsHueDynamic, stageViewControlsEnabled } = storeToRefs(useSettings())
 const settingsAudioDevice = useSettingsAudioDevice()
 const { enabled, selectedAudioInput, stream, audioInputs } = storeToRefs(settingsAudioDevice)
-const { ingest, onAfterMessageComposed } = chatOrchestrator
 const { t } = useI18n()
 const { audioContext } = useAudioContext()
 const { startAnalyzer, stopAnalyzer, volumeLevel } = useAudioAnalyzer()
@@ -77,25 +67,20 @@ function appendBridgeError(text: string, error: unknown) {
 }
 
 async function sendChatText(text: string) {
-  if (isStageWeb()) {
+  sending.value = true
+  try {
     const clientMessageId = createXiaomiaoClientMessageId()
     chatSession.setSessionMessages(
       chatSession.activeSessionId,
       await appendXiaomiaoBridgeReply(activeMessages(), {
         text,
-        model: activeModel.value,
         clientMessageId,
       }),
     )
-    return
   }
-
-  const providerConfig = providersStore.getProviderConfig(activeProvider.value)
-  await ingest(text, {
-    chatProvider: await providersStore.getProviderInstance(activeProvider.value) as ChatProvider,
-    model: activeModel.value,
-    providerConfig,
-  })
+  finally {
+    sending.value = false
+  }
 }
 
 function isMobileDevice() {
@@ -155,9 +140,6 @@ watch(hearingDialogOpen, (value) => {
   if (value) {
     settingsAudioDevice.askPermission()
   }
-})
-
-onAfterMessageComposed(async () => {
 })
 
 onUnmounted(() => {

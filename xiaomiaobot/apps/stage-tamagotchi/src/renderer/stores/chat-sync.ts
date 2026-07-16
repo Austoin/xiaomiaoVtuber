@@ -1,21 +1,15 @@
 import type { WebSocketEventInputs } from '@proj-airi/server-sdk'
 import type { ChatHistoryItem, StreamingAssistantMessage } from '@proj-airi/stage-ui/types/chat'
 import type { ChatSessionMeta } from '@proj-airi/stage-ui/types/chat-session'
-import type { ChatProvider } from '@xsai-ext/providers/utils'
 
 import { errorMessageFrom } from '@moeru/std'
+import { appendXiaomiaoBridgeReply, createXiaomiaoClientMessageId } from '@proj-airi/stage-layouts/xiaomiao-bridge'
 import { useChatOrchestratorStore } from '@proj-airi/stage-ui/stores/chat'
 import { useChatMaintenanceStore } from '@proj-airi/stage-ui/stores/chat/maintenance'
 import { useChatSessionStore } from '@proj-airi/stage-ui/stores/chat/session-store'
 import { useChatStreamStore } from '@proj-airi/stage-ui/stores/chat/stream-store'
-import { useConsciousnessStore } from '@proj-airi/stage-ui/stores/modules/consciousness'
-import { useProvidersStore } from '@proj-airi/stage-ui/stores/providers'
 import { defineStore, storeToRefs } from 'pinia'
-import { ref, unref, watch } from 'vue'
-
-import { imageJournalTools } from './tools/builtin/image-journal'
-import { weatherTools } from './tools/builtin/weather'
-import { widgetsTools } from './tools/builtin/widgets'
+import { ref, watch } from 'vue'
 
 type ChatSyncMode = 'inactive' | 'authority' | 'follower'
 type ToolsetId = 'widgets' | 'artistry'
@@ -70,7 +64,6 @@ interface PendingRequest {
 const CHAT_SYNC_CHANNEL_NAME = 'airi:stage-tamagotchi:chat-sync'
 const AUTHORITY_HEARTBEAT_INTERVAL_MS = 1000
 const REQUEST_TIMEOUT_MS = 30000
-const XIAOMIAO_BRIDGE_BASE_URL = 'http://127.0.0.1:5519'
 
 function createRequestId() {
   return `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 10)}`
@@ -81,17 +74,6 @@ function createUserHistoryItem(content: string): ChatHistoryItem {
     id: createRequestId(),
     role: 'user',
     content,
-    createdAt: Date.now(),
-  }
-}
-
-function createAssistantHistoryItem(content: string): ChatHistoryItem {
-  return {
-    id: createRequestId(),
-    role: 'assistant',
-    content,
-    slices: [],
-    tool_results: [],
     createdAt: Date.now(),
   }
 }
@@ -149,9 +131,6 @@ export const useChatSyncStore = defineStore('stage-tamagotchi:chat-sync', () => 
   const chatStream = useChatStreamStore()
   const chatOrchestrator = useChatOrchestratorStore()
   const { cleanupMessages } = useChatMaintenanceStore()
-  const providersStore = useProvidersStore()
-  const consciousnessStore = useConsciousnessStore()
-  const { activeProvider, activeModel } = storeToRefs(consciousnessStore)
   const { activeSessionId, sessionMessages, sessionMetas } = storeToRefs(chatSession)
   const { streamingMessage } = storeToRefs(chatStream)
   const { sending } = storeToRefs(chatOrchestrator)
@@ -259,52 +238,31 @@ export const useChatSyncStore = defineStore('stage-tamagotchi:chat-sync', () => 
     chatStream.streamingMessage = snapshot.streamingMessage
   }
 
-  function resolveTools(toolset?: ToolsetId) {
-    const toolsetRegistry: Record<string, () => Promise<any[]>> = {
-      widgets: async () => {
-        const [w, we] = await Promise.all([widgetsTools(), weatherTools()])
-        return [...w, ...we]
-      },
-      artistry: async () => {
-        const [ai, wi, we] = await Promise.all([
-          imageJournalTools(),
-          widgetsTools(),
-          weatherTools(),
-        ])
-        return [...ai, ...wi, ...we]
-      },
-    }
-
-    if (toolset && toolsetRegistry[toolset]) {
-      return toolsetRegistry[toolset]
-    }
-
-    return undefined
-  }
-
   async function executeIngest(payload: IngestCommandPayload) {
-    if (await tryIngestViaXiaomiaoBridge(payload)) {
-      return
-    }
+    const sessionId = payload.sessionId || chatSession.activeSessionId
+    const media = payload.attachments?.map((attachment) => {
+      if (attachment.data.startsWith('data:'))
+        return attachment.data
+      return `data:${attachment.mimeType};base64,${attachment.data}`
+    })
 
-    const providerId = activeProvider.value
-    const modelId = activeModel.value
-    if (!providerId || !modelId) {
-      throw new Error('No active chat provider or model configured')
+    chatOrchestrator.sending = true
+    try {
+      chatSession.setSessionMessages(
+        sessionId,
+        await appendXiaomiaoBridgeReply(
+          chatSession.getSessionMessages(sessionId),
+          {
+            text: payload.text,
+            media,
+            clientMessageId: createXiaomiaoClientMessageId('stage-tamagotchi'),
+          },
+        ),
+      )
     }
-
-    const chatProvider = await providersStore.getProviderInstance<ChatProvider>(providerId)
-    if (!chatProvider) {
-      throw new Error(`Failed to resolve chat provider "${providerId}"`)
+    finally {
+      chatOrchestrator.sending = false
     }
-
-    await chatOrchestrator.ingest(payload.text, {
-      model: modelId,
-      chatProvider,
-      attachments: payload.attachments,
-      input: payload.input,
-      tools: resolveTools(payload.toolset),
-    }, payload.sessionId)
   }
 
   async function executeRetry(payload: RetryCommandPayload) {
@@ -355,55 +313,6 @@ export const useChatSyncStore = defineStore('stage-tamagotchi:chat-sync', () => 
       } satisfies ChatHistoryItem,
     ]
     chatSession.setSessionMessages(sessionId, nextMessages)
-  }
-
-  async function tryIngestViaXiaomiaoBridge(payload: IngestCommandPayload): Promise<boolean> {
-    const fetcher = globalThis.fetch
-    if (typeof fetcher !== 'function') {
-      return false
-    }
-
-    const sessionId = payload.sessionId || chatSession.activeSessionId
-    const resolvedModel = unref(activeModel.value)
-    const response = await fetcher(`${XIAOMIAO_BRIDGE_BASE_URL}/v1/chat/completions`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        model: typeof resolvedModel === 'string' && resolvedModel.trim() ? resolvedModel : 'deepseek-chat',
-        messages: [
-          {
-            role: 'user',
-            content: payload.text,
-          },
-        ],
-      }),
-    }).catch(() => null)
-
-    if (!response?.ok) {
-      return false
-    }
-
-    const data = await response.json() as {
-      choices?: Array<{
-        message?: {
-          content?: string
-        }
-      }>
-    }
-    const replyText = data.choices?.[0]?.message?.content?.trim()
-    if (!replyText) {
-      return false
-    }
-
-    const nextMessages = [
-      ...chatSession.getSessionMessages(sessionId),
-      createUserHistoryItem(payload.text),
-      createAssistantHistoryItem(replyText),
-    ]
-    chatSession.setSessionMessages(sessionId, nextMessages)
-    return true
   }
 
   async function handleCommand(message: Extract<ChatSyncMessage, { type: 'command' }>) {

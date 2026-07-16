@@ -2,10 +2,9 @@ import type { WebSocketEventInputs } from '@proj-airi/server-sdk'
 import type { ChatProvider } from '@xsai-ext/providers/utils'
 import type { CommonContentPart, Message, ToolMessage } from '@xsai/shared-chat'
 
-import type { ChatAssistantMessage, ChatSlices, ChatStreamEventContext, StreamingAssistantMessage } from '../types/chat'
-import type { StreamEvent, StreamOptions } from './llm'
+import type { ChatAssistantMessage, ChatStreamEventContext, StreamingAssistantMessage } from '../types/chat'
 
-import { IOAttributes, IOEvents, IOSpanNames, IOSubsystems } from '@proj-airi/stage-shared'
+import { IOAttributes, IOSpanNames, IOSubsystems } from '@proj-airi/stage-shared'
 import { createQueue } from '@proj-airi/stream-kit'
 import { nanoid } from 'nanoid'
 import { defineStore, storeToRefs } from 'pinia'
@@ -15,15 +14,14 @@ import { useAnalytics } from '../composables'
 import { useLlmmarkerParser } from '../composables/llm-marker-parser'
 import { categorizeResponse, createStreamingCategorizer } from '../composables/response-categoriser'
 import { activeTurnSpan, startSpan } from '../composables/use-io-tracer'
+import { requestXiaomiaoAgentReply } from '../libs/xiaomiao-agent'
 import { formatContextPromptText } from './chat/context-prompt'
-import { createMinecraftContext } from './chat/context-providers'
 import { useChatContextStore } from './chat/context-store'
 import { formatTimePrefix } from './chat/datetime-prefix'
 import { createChatHooks } from './chat/hooks'
 import { useChatSessionStore } from './chat/session-store'
 import { useChatStreamStore } from './chat/stream-store'
 import { useContextObservabilityStore } from './devtools/context-observability'
-import { useLLM } from './llm'
 import { useAiriCardStore } from './modules/airi-card'
 import { useAutonomousArtistryStore } from './modules/artistry-autonomous'
 import { useConsciousnessStore } from './modules/consciousness'
@@ -64,11 +62,11 @@ function cloneStreamingMessage(message: StreamingAssistantMessage): StreamingAss
 }
 
 interface SendOptions {
-  model: string
-  chatProvider: ChatProvider
+  model?: string
+  chatProvider?: ChatProvider
   providerConfig?: Record<string, unknown>
   attachments?: { type: 'image', data: string, mimeType: string }[]
-  tools?: StreamOptions['tools']
+  tools?: unknown
   input?: WebSocketEventInputs
 }
 
@@ -101,7 +99,6 @@ export interface QueuedSendSnapshot {
 }
 
 export const useChatOrchestratorStore = defineStore('chat-orchestrator', () => {
-  const llmStore = useLLM()
   const consciousnessStore = useConsciousnessStore()
   const artistryAutonomousStore = useAutonomousArtistryStore()
   const { activeProvider } = storeToRefs(consciousnessStore)
@@ -167,14 +164,7 @@ export const useChatOrchestratorStore = defineStore('chat-orchestrator', () => {
     // It is applied at message-assembly time (see below) as a system-prompt
     // date anchor + per-message [HH:MM] prefixes, which is more KV-cache
     // friendly and less prone to weak models echoing timestamps verbatim.
-    const minecraftContext = createMinecraftContext()
-    if (minecraftContext)
-      chatContext.ingestContextMessage(minecraftContext)
-
     const sendingCreatedAt = Date.now()
-    // TODO: Expire or prune stale runtime contexts from disconnected services before composing.
-    // The Minecraft page already times out service liveness locally, but the shared chat context
-    // snapshot can still retain the last runtime context:update until we add cross-store expiry.
     const streamingMessageContext: ChatStreamEventContext = {
       message: { role: 'user', content: sendingMessage, createdAt: sendingCreatedAt, id: nanoid() },
       contexts: chatContext.getContextsSnapshot(),
@@ -312,25 +302,6 @@ export const useChatOrchestratorStore = defineStore('chat-orchestrator', () => {
         minLiteralEmitLength: 24,
       })
 
-      const toolCallQueue = createQueue<ChatSlices>({
-        handlers: [
-          async (ctx) => {
-            if (shouldAbort())
-              return
-            if (ctx.data.type === 'tool-call') {
-              buildingMessage.slices.push(ctx.data)
-              updateUI()
-              return
-            }
-
-            if (ctx.data.type === 'tool-call-result') {
-              buildingMessage.tool_results.push(ctx.data)
-              updateUI()
-            }
-          },
-        ],
-      })
-
       // Per-message datetime injection (replaces the old `<context>` XML block):
       // every user/assistant message gets a `[YYYY-MM-DD HH:MM]` prefix
       // derived from its persisted `createdAt`. The full date appears on every
@@ -414,9 +385,6 @@ export const useChatOrchestratorStore = defineStore('chat-orchestrator', () => {
       await hooks.emitAfterMessageComposedHooks(sendingMessage, streamingMessageContext)
       await hooks.emitBeforeSendHooks(sendingMessage, streamingMessageContext)
 
-      let fullText = ''
-      const headers = (options.providerConfig?.headers || {}) as Record<string, string>
-
       if (shouldAbort())
         return
 
@@ -426,61 +394,30 @@ export const useChatOrchestratorStore = defineStore('chat-orchestrator', () => {
 
       const llmSpan = startSpan(IOSpanNames.LLMInference, activeTurnSpan.value, {
         [IOAttributes.Subsystem]: IOSubsystems.LLM,
-        [IOAttributes.GenAIRequestModel]: options.model,
+        [IOAttributes.GenAIRequestModel]: 'xiaomiaoAgent',
       })
       const llmRequestTs = performance.now()
-      let llmFirstTokenEmitted = false
+      let fullText = ''
 
       try {
-        await llmStore.stream(options.model, options.chatProvider, newMessages as Message[], {
-          headers,
-          tools: options.tools,
-          // NOTICE: xsai stream may emit `finish` before tool steps continue, so keep waiting until
-          // the final non-tool finish to avoid ending the chat turn with no assistant reply.
-          waitForTools: true,
-          onStreamEvent: async (event: StreamEvent) => {
-            switch (event.type) {
-              case 'tool-call':
-                toolCallQueue.enqueue({
-                  type: 'tool-call',
-                  toolCall: event,
-                })
-
-                break
-              case 'tool-result':
-                toolCallQueue.enqueue({
-                  type: 'tool-call-result',
-                  id: event.toolCallId,
-                  result: event.result,
-                })
-
-                break
-              case 'tool-error':
-                toolCallQueue.enqueue({
-                  type: 'tool-call-result',
-                  id: event.toolCallId,
-                  isError: true,
-                  result: event.result,
-                })
-
-                break
-              case 'text-delta':
-                if (!llmFirstTokenEmitted) {
-                  llmFirstTokenEmitted = true
-                  llmSpan.addEvent(IOEvents.LLMFirstToken, {
-                    [IOAttributes.LLM_TTFT]: performance.now() - llmRequestTs,
-                  })
-                }
-                fullText += event.text
-                await parser.consume(event.text)
-                break
-              case 'finish':
-                break
-              case 'error':
-                throw event.error ?? new Error('Stream error')
-            }
-          },
+        const media = options.attachments?.map((attachment) => {
+          const data = attachment.data.startsWith('data:')
+            ? attachment.data
+            : `data:${attachment.mimeType};base64,${attachment.data}`
+          return data
         })
+        const agentText = contextPromptText
+          ? `${sendingMessage}\n\n${contextPromptText}`
+          : sendingMessage
+        fullText = await requestXiaomiaoAgentReply({
+          text: agentText,
+          media,
+          clientMessageId: `stage-ui-${nanoid()}`,
+        })
+        llmSpan.addEvent('xiaomiao.agent.response', {
+          [IOAttributes.LLM_TTFT]: performance.now() - llmRequestTs,
+        })
+        await parser.consume(fullText)
 
         llmSpan.setAttribute(IOAttributes.LLMTextLength, fullText.length)
       }

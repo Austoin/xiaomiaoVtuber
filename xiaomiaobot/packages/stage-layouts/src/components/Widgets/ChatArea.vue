@@ -1,13 +1,9 @@
 <script setup lang="ts">
-import type { ChatProvider } from '@xsai-ext/providers/utils'
-
 import { errorMessageFrom } from '@moeru/std'
-import { isStageTamagotchi, isStageWeb } from '@proj-airi/stage-shared'
+import { isStageTamagotchi } from '@proj-airi/stage-shared'
 import { useAudioAnalyzer } from '@proj-airi/stage-ui/composables'
 import { useAudioContext } from '@proj-airi/stage-ui/stores/audio'
-import { useChatOrchestratorStore } from '@proj-airi/stage-ui/stores/chat'
 import { useChatSessionStore } from '@proj-airi/stage-ui/stores/chat/session-store'
-import { useConsciousnessStore } from '@proj-airi/stage-ui/stores/modules/consciousness'
 import { useHearingSpeechInputPipeline, useHearingStore } from '@proj-airi/stage-ui/stores/modules/hearing'
 import { useProvidersStore } from '@proj-airi/stage-ui/stores/providers'
 import { useSettings, useSettingsAudioDevice } from '@proj-airi/stage-ui/stores/settings'
@@ -34,14 +30,11 @@ const sendMode = useLocalStorage<SendMode>('ui/chat/settings/send-mode', 'enter'
 const lastEnterTime = ref(0)
 
 const providersStore = useProvidersStore()
-const { activeProvider, activeModel } = storeToRefs(useConsciousnessStore())
 const { themeColorsHueDynamic } = storeToRefs(useSettings())
 
 const { askPermission, startStream } = useSettingsAudioDevice()
 const { enabled, selectedAudioInput, stream, audioInputs } = storeToRefs(useSettingsAudioDevice())
-const chatOrchestrator = useChatOrchestratorStore()
 const chatSession = useChatSessionStore()
-const { ingest, onAfterMessageComposed } = chatOrchestrator
 const { audioContext } = useAudioContext()
 const { t } = useI18n()
 const sendModeLabels = computed<Record<SendMode, string>>(() => ({
@@ -62,25 +55,14 @@ function appendBridgeError(text: string, error: unknown) {
 }
 
 async function sendChatText(text: string) {
-  if (isStageWeb()) {
-    const clientMessageId = createXiaomiaoClientMessageId()
-    chatSession.setSessionMessages(
-      chatSession.activeSessionId,
-      await appendXiaomiaoBridgeReply(activeMessages(), {
-        text,
-        model: activeModel.value,
-        clientMessageId,
-      }),
-    )
-    return
-  }
-
-  const providerConfig = providersStore.getProviderConfig(activeProvider.value)
-  await ingest(text, {
-    chatProvider: await providersStore.getProviderInstance(activeProvider.value) as ChatProvider,
-    model: activeModel.value,
-    providerConfig,
-  })
+  const clientMessageId = createXiaomiaoClientMessageId()
+  chatSession.setSessionMessages(
+    chatSession.activeSessionId,
+    await appendXiaomiaoBridgeReply(activeMessages(), {
+      text,
+      clientMessageId,
+    }),
+  )
 }
 
 // Transcription pipeline
@@ -208,9 +190,6 @@ watch(hearingPopoverOpen, async (value) => {
   if (value) {
     await askPermission()
   }
-})
-
-onAfterMessageComposed(async () => {
 })
 
 const { startAnalyzer, stopAnalyzer, volumeLevel } = useAudioAnalyzer()

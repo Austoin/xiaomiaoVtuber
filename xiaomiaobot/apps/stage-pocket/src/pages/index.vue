@@ -1,23 +1,21 @@
 <script setup lang="ts">
-import type { ChatProvider } from '@xsai-ext/providers/utils'
-
 import Header from '@proj-airi/stage-layouts/components/Layouts/Header.vue'
 import InteractiveArea from '@proj-airi/stage-layouts/components/Layouts/InteractiveArea.vue'
 import MobileHeader from '@proj-airi/stage-layouts/components/Layouts/MobileHeader.vue'
 import MobileInteractiveArea from '@proj-airi/stage-layouts/components/Layouts/MobileInteractiveArea.vue'
 import workletUrl from '@proj-airi/stage-ui/workers/vad/process.worklet?worker&url'
 
+import { errorMessageFrom } from '@moeru/std'
 import { BackgroundProvider } from '@proj-airi/stage-layouts/components/Backgrounds'
 import { useBackgroundThemeColor } from '@proj-airi/stage-layouts/composables/theme-color'
 import { useBackgroundStore } from '@proj-airi/stage-layouts/stores/background'
+import { appendXiaomiaoBridgeError, appendXiaomiaoBridgeReply, createXiaomiaoClientMessageId } from '@proj-airi/stage-layouts/xiaomiao-bridge'
 import { WidgetStage } from '@proj-airi/stage-ui/components/scenes'
 import { useAudioRecorder } from '@proj-airi/stage-ui/composables/audio/audio-recorder'
 import { useVAD } from '@proj-airi/stage-ui/stores/ai/models/vad'
-import { useChatOrchestratorStore } from '@proj-airi/stage-ui/stores/chat'
+import { useChatSessionStore } from '@proj-airi/stage-ui/stores/chat/session-store'
 import { useLive2d } from '@proj-airi/stage-ui/stores/live2d'
-import { useConsciousnessStore } from '@proj-airi/stage-ui/stores/modules/consciousness'
 import { useHearingSpeechInputPipeline } from '@proj-airi/stage-ui/stores/modules/hearing'
-import { useProvidersStore } from '@proj-airi/stage-ui/stores/providers'
 import { useSettingsAudioDevice } from '@proj-airi/stage-ui/stores/settings'
 import { breakpointsTailwind, useBreakpoints, useMouse } from '@vueuse/core'
 import { storeToRefs } from 'pinia'
@@ -50,10 +48,7 @@ const { startRecord, stopRecord, onStopRecord } = useAudioRecorder(stream)
 const hearingPipeline = useHearingSpeechInputPipeline()
 const { transcribeForRecording, transcribeForMediaStream, stopStreamingTranscription } = hearingPipeline
 const { supportsStreamInput } = storeToRefs(hearingPipeline)
-const providersStore = useProvidersStore()
-const consciousnessStore = useConsciousnessStore()
-const { activeProvider: activeChatProvider, activeModel: activeChatModel } = storeToRefs(consciousnessStore)
-const chatStore = useChatOrchestratorStore()
+const chatSession = useChatSessionStore()
 
 const shouldUseStreamInput = computed(() => supportsStreamInput.value && !!stream.value)
 
@@ -70,6 +65,31 @@ const {
 
 let stopOnStopRecord: (() => void) | undefined
 
+function activeMessages() {
+  return chatSession.getSessionMessages(chatSession.activeSessionId)
+}
+
+function appendVoiceError(text: string, error: unknown) {
+  chatSession.setSessionMessages(
+    chatSession.activeSessionId,
+    appendXiaomiaoBridgeError(
+      activeMessages(),
+      text,
+      errorMessageFrom(error) ?? 'xiaomiaoAgent voice request failed',
+    ),
+  )
+}
+
+async function sendVoiceTextToAgent(text: string) {
+  chatSession.setSessionMessages(
+    chatSession.activeSessionId,
+    await appendXiaomiaoBridgeReply(activeMessages(), {
+      text,
+      clientMessageId: createXiaomiaoClientMessageId('stage-pocket-voice'),
+    }),
+  )
+}
+
 async function startAudioInteraction() {
   try {
     await initVAD()
@@ -83,14 +103,11 @@ async function startAudioInteraction() {
         return
 
       try {
-        const provider = await providersStore.getProviderInstance(activeChatProvider.value)
-        if (!provider || !activeChatModel.value)
-          return
-
-        await chatStore.ingest(text, { model: activeChatModel.value, chatProvider: provider as ChatProvider })
+        await sendVoiceTextToAgent(text)
       }
       catch (err) {
         console.error('Failed to send chat from voice:', err)
+        appendVoiceError(text, err)
       }
     })
   }
@@ -112,14 +129,11 @@ async function handleSpeechStart() {
 
         void (async () => {
           try {
-            const provider = await providersStore.getProviderInstance(activeChatProvider.value)
-            if (!provider || !activeChatModel.value)
-              return
-
-            await chatStore.ingest(finalText, { model: activeChatModel.value, chatProvider: provider as ChatProvider })
+            await sendVoiceTextToAgent(finalText)
           }
           catch (err) {
             console.error('Failed to send chat from voice:', err)
+            appendVoiceError(finalText, err)
           }
         })()
       },

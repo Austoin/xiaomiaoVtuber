@@ -5,7 +5,7 @@ import { tool } from '@xsai/tool'
 import { z } from 'zod'
 
 /**
- * Describes an MCP tool that can be exposed to the shared LLM runtime.
+ * Describes an MCP tool exposed through the unified xiaomiaoAgent integration.
  *
  * Use when:
  * - A runtime needs to list available MCP tools before exposing them to models

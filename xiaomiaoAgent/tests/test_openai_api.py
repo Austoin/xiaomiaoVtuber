@@ -17,6 +17,7 @@ from nanobot.api.server import (
     create_app,
     handle_chat_completions,
 )
+from nanobot.api.services import EVENT_STORE_ENV, XiaomiaoEventStore
 
 try:
     from aiohttp.test_utils import TestClient, TestServer
@@ -355,6 +356,41 @@ async def test_qq_source_cannot_request_legacy_trusted_policy(aiohttp_client, mo
 
 @pytest.mark.skipif(not HAS_AIOHTTP, reason="aiohttp not installed")
 @pytest.mark.asyncio
+async def test_local_web_origin_can_preflight_chat_api(aiohttp_client, app) -> None:
+    client = await aiohttp_client(app)
+    origin = "http://localhost:5173"
+
+    resp = await client.options(
+        "/v1/chat/completions",
+        headers={
+            "Origin": origin,
+            "Access-Control-Request-Method": "POST",
+            "Access-Control-Request-Headers": "content-type",
+        },
+    )
+
+    assert resp.status == 204
+    assert resp.headers["Access-Control-Allow-Origin"] == origin
+    assert "POST" in resp.headers["Access-Control-Allow-Methods"]
+    assert "Content-Type" in resp.headers["Access-Control-Allow-Headers"]
+
+
+@pytest.mark.skipif(not HAS_AIOHTTP, reason="aiohttp not installed")
+@pytest.mark.asyncio
+async def test_remote_web_origin_is_not_granted_cors(aiohttp_client, app) -> None:
+    client = await aiohttp_client(app)
+
+    resp = await client.get(
+        "/health",
+        headers={"Origin": "https://untrusted.example"},
+    )
+
+    assert resp.status == 200
+    assert "Access-Control-Allow-Origin" not in resp.headers
+
+
+@pytest.mark.skipif(not HAS_AIOHTTP, reason="aiohttp not installed")
+@pytest.mark.asyncio
 async def test_invalid_tool_policy_returns_400(aiohttp_client, mock_agent) -> None:
     app = create_app(mock_agent, model_name="test-model")
     client = await aiohttp_client(app)
@@ -516,18 +552,12 @@ async def test_multimodal_remote_image_url_returns_400(aiohttp_client, mock_agen
 
 @pytest.mark.skipif(not HAS_AIOHTTP, reason="aiohttp not installed")
 @pytest.mark.asyncio
-async def test_empty_response_retry_then_success(aiohttp_client) -> None:
-    call_count = 0
-
-    async def sometimes_empty(content, session_key="", channel="", chat_id="", **kwargs):
-        nonlocal call_count
-        call_count += 1
-        if call_count == 1:
-            return ""
-        return "recovered response"
+async def test_empty_response_returns_explicit_error(aiohttp_client) -> None:
+    async def empty_response(content, session_key="", channel="", chat_id="", **kwargs):
+        return ""
 
     agent = MagicMock()
-    agent.process_direct = sometimes_empty
+    agent.process_direct = empty_response
     agent._connect_mcp = AsyncMock()
     agent.close_mcp = AsyncMock()
 
@@ -537,17 +567,14 @@ async def test_empty_response_retry_then_success(aiohttp_client) -> None:
         "/v1/chat/completions",
         json={"messages": [{"role": "user", "content": "hello"}]},
     )
-    assert resp.status == 200
+    assert resp.status == 502
     body = await resp.json()
-    assert body["choices"][0]["message"]["content"] == "recovered response"
-    assert call_count == 2
+    assert body["error"]["message"] == "xiaomiaoAgent returned an empty response"
 
 
 @pytest.mark.skipif(not HAS_AIOHTTP, reason="aiohttp not installed")
 @pytest.mark.asyncio
-async def test_empty_response_falls_back(aiohttp_client) -> None:
-    from nanobot.utils.runtime import EMPTY_FINAL_RESPONSE_MESSAGE
-
+async def test_empty_response_is_not_retried(aiohttp_client) -> None:
     call_count = 0
 
     async def always_empty(content, session_key="", channel="", chat_id="", **kwargs):
@@ -566,10 +593,114 @@ async def test_empty_response_falls_back(aiohttp_client) -> None:
         "/v1/chat/completions",
         json={"messages": [{"role": "user", "content": "hello"}]},
     )
-    assert resp.status == 200
-    body = await resp.json()
-    assert body["choices"][0]["message"]["content"] == EMPTY_FINAL_RESPONSE_MESSAGE
-    assert call_count == 2
+    assert resp.status == 502
+    assert call_count == 1
+
+
+@pytest.mark.skipif(not HAS_AIOHTTP, reason="aiohttp not installed")
+@pytest.mark.asyncio
+async def test_agent_owns_events(aiohttp_client, mock_agent, tmp_path) -> None:
+    app = create_app(
+        mock_agent,
+        model_name="test-model",
+        event_store_path=tmp_path / "events.jsonl",
+    )
+    client = await aiohttp_client(app)
+
+    response = await client.post(
+        "/v1/chat/completions",
+        json={
+            "session_id": "xiaomiao-unified",
+            "channel": "qq-private",
+            "chat_id": "42",
+            "user_id": "42",
+            "client_message_id": "qq-42-1",
+            "messages": [{"role": "user", "content": "hello"}],
+        },
+    )
+    assert response.status == 200
+
+    events_response = await client.get("/v1/xiaomiao/events?after=0&user_id=42")
+    assert events_response.status == 200
+    body = await events_response.json()
+    assert body["last_id"] == 2
+    assert [(event["role"], event["content"]) for event in body["events"]] == [
+        ("user", "hello"),
+        ("assistant", "mock response"),
+    ]
+    assert body["events"][0]["client_message_id"] == "qq-42-1"
+    assert body["events"][0]["conversation_id"] == "qq-private:42"
+
+
+@pytest.mark.skipif(not HAS_AIOHTTP, reason="aiohttp not installed")
+@pytest.mark.asyncio
+async def test_agent_accepts_structured_events(aiohttp_client, mock_agent, tmp_path) -> None:
+    app = create_app(mock_agent, event_store_path=tmp_path / "events.jsonl")
+    client = await aiohttp_client(app)
+    response = await client.post(
+        "/v1/xiaomiao/events",
+        json={
+            "source": "qq-group",
+            "channel": "qq-group",
+            "chat_id": "10001",
+            "user_id": 42,
+            "role": "assistant",
+            "content": "需要确认",
+            "event_type": "confirmation_requested",
+            "confirmation_id": "ABC123",
+        },
+    )
+    assert response.status == 201
+    event = (await response.json())["event"]
+    assert event["event_type"] == "confirmation_requested"
+    assert event["confirmation_id"] == "ABC123"
+
+
+def test_event_store_uses_agent_owned_names(tmp_path) -> None:
+    assert EVENT_STORE_ENV == "XIAOMIAO_EVENT_STORE"
+    store = XiaomiaoEventStore(tmp_path / "events.jsonl")
+
+    event = store.publish(
+        {
+            "source": "web",
+            "chat_id": "stage-client",
+            "user_id": "stage-client",
+            "role": "user",
+            "content": "hello",
+        }
+    )
+
+    assert event["message_id"] == "event:1"
+
+
+@pytest.mark.skipif(not HAS_AIOHTTP, reason="aiohttp not installed")
+@pytest.mark.asyncio
+async def test_agent_owns_unified_config_route(aiohttp_client, mock_agent, tmp_path) -> None:
+    config_path = tmp_path / "config.json"
+    config_path.write_text("{}", encoding="utf-8")
+    app = create_app(mock_agent, unified_config_path=config_path)
+    client = await aiohttp_client(app)
+
+    update = await client.post(
+        "/v1/xiaomiao/config",
+        json={
+            "apiKey": "secret-key",
+            "baseUrl": "https://relay.example.com/v1",
+            "model": "deepseek-v4-flash",
+        },
+    )
+    assert update.status == 200
+    status = await (await client.get("/v1/xiaomiao/config")).json()
+    assert status == {
+        "ok": True,
+        "configured": True,
+        "provider": "custom",
+        "model": "deepseek-v4-flash",
+        "baseUrl": "https://relay.example.com/v1",
+        "hasApiKey": True,
+    }
+    persisted = json.loads(config_path.read_text(encoding="utf-8"))
+    assert persisted["xiaomiaoAgent"]["providers"]["custom"]["apiKey"] == "secret-key"
 
 
 @pytest.mark.asyncio

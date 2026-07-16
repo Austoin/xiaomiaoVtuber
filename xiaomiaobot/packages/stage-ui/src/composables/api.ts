@@ -1,10 +1,11 @@
-import type { AppType } from '../../../../apps/server/src/app'
-
 import { hc } from 'hono/client'
 
 import { authedFetch } from '../libs/auth-fetch'
 import { SERVER_URL } from '../libs/server'
 
-export const client = hc<AppType>(SERVER_URL, {
+// The optional cloud service is external to this local Agent workspace.
+
+export const client = hc<any>(SERVER_URL, {
   fetch: authedFetch,
-})
+
+}) as any

@@ -3,7 +3,7 @@ param(
     [ValidateSet("check", "assert-free", "wait", "is-open", "config-safe")]
     [string] $Command,
 
-    [ValidateSet("Port", "Http", "Gateway", "Xiaomiao")]
+    [ValidateSet("Port", "Http", "Gateway")]
     [string] $Kind = "Port",
 
     [string] $Name = "service",
@@ -59,20 +59,6 @@ function Write-PortOwners {
             Write-Host "        $owner $($proc.ProcessName) $($proc.Path)"
         }
     }
-}
-
-function Test-ProcessConnectedToPort {
-    param([string[]] $ProcessIds, [int] $RemotePort)
-    if ($ProcessIds.Count -eq 0) { return $false }
-    foreach ($line in (netstat -ano -p tcp)) {
-        $pattern = "^\s*TCP\s+(\S+)\s+(\S+)\s+ESTABLISHED\s+(\d+)\s*$"
-        if ($line -notmatch $pattern) { continue }
-        if ($ProcessIds -notcontains $Matches[3]) { continue }
-        if ($Matches[1] -like "*:$RemotePort" -or $Matches[2] -like "*:$RemotePort") {
-            return $true
-        }
-    }
-    return $false
 }
 
 function Test-HttpReady {
@@ -182,20 +168,6 @@ function Test-GatewayUnifiedSessionReadable {
     return $false
 }
 
-function Test-XiaomiaoReady {
-    if (-not (Test-HttpReady $Url $Needle)) {
-        $script:LastHealthDetail = "bridge status endpoint is not ready"
-        return $false
-    }
-    $owners = @(Get-PortOwners -PortNumber $Port)
-    if (-not (Test-ProcessConnectedToPort $owners 5004)) {
-        $script:LastHealthDetail = "bridge PID is not connected to QQ OneBot port 5004"
-        return $false
-    }
-    $script:LastHealthDetail = ""
-    return $true
-}
-
 function Test-XiaomiaoAgentConfigSafe {
     param([string] $Path)
     if ([string]::IsNullOrWhiteSpace($Path)) {
@@ -236,7 +208,6 @@ function Test-Health {
         "Port" { return Test-TcpPort $Port }
         "Http" { return Test-HttpReady $Url $Needle }
         "Gateway" { return Test-GatewayReady $BaseUrl }
-        "Xiaomiao" { return Test-XiaomiaoReady }
     }
 }
 

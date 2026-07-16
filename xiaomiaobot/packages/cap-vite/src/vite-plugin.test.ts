@@ -3,6 +3,7 @@ import type { Plugin } from 'vite'
 import process from 'node:process'
 
 import { EventEmitter } from 'node:events'
+import { resolve } from 'node:path'
 
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
@@ -133,7 +134,7 @@ describe('capVitePlugin', () => {
     expect(stdin.setRawMode).toHaveBeenCalledWith(true)
     expect(x).toHaveBeenNthCalledWith(1, 'cap', ['run', 'ios', '--scheme', 'AIRI'], {
       nodeOptions: {
-        cwd: '/repo/app',
+        cwd: resolve('/repo/app'),
         env: {
           CAPACITOR_DEV_SERVER_URL: 'http://127.0.0.1:5173/',
         },
@@ -146,10 +147,10 @@ describe('capVitePlugin', () => {
 
     await vi.waitFor(() => {
       expect(firstRun.kill).toHaveBeenCalledWith('SIGINT')
-      expect(server.config.logger.info).toHaveBeenCalledWith('[cap-vite] manual restart requested. Re-running cap run ios.')
+      expect(server.config.logger.info).toHaveBeenCalledWith('[cap-vite] manual restart requested. Re-running "cap run ios --scheme AIRI".')
       expect(x).toHaveBeenNthCalledWith(2, 'cap', ['run', 'ios', '--scheme', 'AIRI'], {
         nodeOptions: {
-          cwd: '/repo/app',
+          cwd: resolve('/repo/app'),
           env: {
             CAPACITOR_DEV_SERVER_URL: 'http://127.0.0.1:5173/',
           },

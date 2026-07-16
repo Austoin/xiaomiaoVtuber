@@ -69,6 +69,7 @@ async function mountSceneNavigator(onNavigate = vi.fn()) {
   app.use(router)
 
   app.mount(host)
+  await nextTick()
 
   return {
     app,
@@ -112,7 +113,7 @@ describe('scene-navigator', () => {
   it('opens palette on Ctrl+K and closes with Escape', async () => {
     const { app, host } = await mountSceneNavigator()
 
-    window.dispatchEvent(new KeyboardEvent('keydown', { ctrlKey: true, key: 'k' }))
+    window.dispatchEvent(new KeyboardEvent('keydown', { ctrlKey: true, key: 'k', code: 'KeyK' }))
     await nextTick()
     expect(document.querySelector('[data-scene-nav-palette][data-state="open"]')).not.toBeNull()
 
@@ -220,17 +221,20 @@ describe('scene-navigator', () => {
     host.querySelector<HTMLElement>('[data-scene-nav-jump]')?.click()
     await nextTick()
 
-    window.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown' }))
+    const filter = document.querySelector<HTMLInputElement>('input[placeholder="Jump to scene"]')
+    expect(filter).not.toBeNull()
+
+    filter?.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown', code: 'ArrowDown', bubbles: true }))
     await nextTick()
     expect(document.querySelector('[data-scene-nav-item="intro-websocket"][data-scene-nav-active="true"]')).not.toBeNull()
 
-    window.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowUp' }))
+    filter?.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowUp', code: 'ArrowUp', bubbles: true }))
     await nextTick()
     expect(document.querySelector('[data-scene-nav-item="intro-chat"][data-scene-nav-active="true"]')).not.toBeNull()
 
-    window.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown' }))
+    filter?.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown', code: 'ArrowDown', bubbles: true }))
     await nextTick()
-    window.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter' }))
+    filter?.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', code: 'Enter', bubbles: true }))
     await nextTick()
 
     expect(onNavigate).toHaveBeenCalledWith('intro-websocket')

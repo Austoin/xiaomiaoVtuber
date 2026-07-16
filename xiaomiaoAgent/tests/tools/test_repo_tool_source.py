@@ -9,13 +9,13 @@ from nanobot.agent.tools._repo_tool_source import prefer_repo_tool_source
 
 def test_prefer_repo_tool_source_adds_trimmed_source_path(monkeypatch):
     repo_root = Path(__file__).resolve().parents[3]
-    source = repo_root / "tool" / "markitdown" / "packages" / "markitdown" / "src"
+    source = repo_root / "xiaomiaoAgent" / "vendor" / "markitdown" / "packages" / "markitdown" / "src"
     monkeypatch.delitem(sys.modules, "markitdown", raising=False)
     monkeypatch.setattr(sys, "path", [item for item in sys.path if item != str(source)])
 
     prefer_repo_tool_source(
         "markitdown",
-        ("tool", "markitdown", "packages", "markitdown", "src"),
+        ("xiaomiaoAgent", "vendor", "markitdown", "packages", "markitdown", "src"),
     )
 
     assert sys.path[0] == str(source)

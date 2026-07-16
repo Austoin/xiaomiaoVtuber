@@ -42,7 +42,7 @@ describe('xiaomiao bridge events', () => {
       },
     })
 
-    expect(calls[0]).toContain('/v1/xiaomiao/events?after=7&user_id=42')
+    expect(calls[0]).toBe('http://127.0.0.1:8900/v1/xiaomiao/events?after=7&user_id=42')
     expect(result.lastId).toBe(8)
     expect(result.events[0].content).toBe('你好')
     expect(result.events[0].client_message_id).toBe('stage-web-local-1')
@@ -59,7 +59,6 @@ describe('xiaomiao bridge events', () => {
     const bodies: unknown[] = []
     const reply = await requestXiaomiaoBridgeReply({
       text: '你好',
-      model: 'deepseek-chat',
       clientMessageId: 'stage-web-local-2',
       fetcher: async (_input, init) => {
         bodies.push(JSON.parse(String(init?.body)))
@@ -71,7 +70,10 @@ describe('xiaomiao bridge events', () => {
 
     expect(reply).toBe('你好呀')
     expect(bodies[0]).toEqual({
-      model: 'deepseek-chat',
+      session_id: 'xiaomiao-unified',
+      channel: 'web',
+      chat_id: 'stage-client',
+      user_id: 'stage-client',
       client_message_id: 'stage-web-local-2',
       messages: [{ role: 'user', content: '你好' }],
     })
@@ -81,7 +83,6 @@ describe('xiaomiao bridge events', () => {
     const bodies: unknown[] = []
     const next = await appendXiaomiaoBridgeReply([], {
       text: '语音问题',
-      model: 'deepseek-chat',
       clientMessageId: 'stage-web-voice-1',
       fetcher: async (_input, init) => {
         bodies.push(JSON.parse(String(init?.body)))
@@ -92,7 +93,10 @@ describe('xiaomiao bridge events', () => {
     })
 
     expect(bodies[0]).toEqual({
-      model: 'deepseek-chat',
+      session_id: 'xiaomiao-unified',
+      channel: 'web',
+      chat_id: 'stage-client',
+      user_id: 'stage-client',
       client_message_id: 'stage-web-voice-1',
       messages: [{ role: 'user', content: '语音问题' }],
     })
@@ -257,7 +261,7 @@ describe('xiaomiao bridge events', () => {
       },
     })
 
-    expect(calls[0]).toContain('/v1/xiaomiao/config')
+    expect(calls[0]).toBe('http://127.0.0.1:8900/v1/xiaomiao/config')
     expect(result).toEqual({
       configured: true,
       provider: 'custom',

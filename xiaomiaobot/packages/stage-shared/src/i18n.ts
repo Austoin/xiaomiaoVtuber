@@ -4,11 +4,16 @@ import { resolveSupportedLocale } from '@proj-airi/i18n'
 import { createI18n } from 'vue-i18n'
 
 function getLocale() {
-  let language = localStorage.getItem('settings/language')
-
-  if (!language) {
-    language = navigator.language || 'en'
+  let language: string | null = null
+  try {
+    language = globalThis.localStorage?.getItem('settings/language') ?? null
   }
+  catch {
+    language = null
+  }
+
+  if (!language)
+    language = globalThis.navigator?.language || 'en'
 
   return resolveSupportedLocale(language, Object.keys(messages!))
 }

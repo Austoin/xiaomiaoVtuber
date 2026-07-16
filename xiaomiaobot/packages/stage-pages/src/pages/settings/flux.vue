@@ -38,7 +38,7 @@ const currencyOptions = computed(() => {
 
 // NOTICE: Manual interface instead of hono InferResponseType because hono client
 // type instantiation hits TS recursion limits ("excessively deep and possibly infinite").
-// Keep in sync with the route response shape in apps/server/src/routes/flux.ts
+// Keep in sync with the external account API response shape.
 interface AuditRecord {
   id: string
   type: string

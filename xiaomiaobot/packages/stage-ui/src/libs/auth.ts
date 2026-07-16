@@ -207,7 +207,7 @@ export async function signInOIDC(params: OIDCFlowParams) {
  *
  * `opts.provider` (optional): skip the picker page and jump straight to a
  * social provider. Omit to land on the project's hosted login page
- * (ui-server-auth) where the user can choose email/password or social.
+ * where the user can choose email/password or social authentication.
  */
 export async function triggerSignIn(opts?: { provider?: OAuthProvider }): Promise<void> {
   await signInOIDC({

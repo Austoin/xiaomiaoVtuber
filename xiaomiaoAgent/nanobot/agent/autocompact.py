@@ -92,7 +92,7 @@ class AutoCompact:
             session.messages = kept_msgs
             session.last_consolidated = 0
             session.updated_at = datetime.now()
-            self.sessions.save(session)
+            self.sessions.save(session, merge_disk=False)
             if archive_msgs:
                 logger.info(
                     "Auto-compact: archived {} (archived={}, kept={}, summary={})",

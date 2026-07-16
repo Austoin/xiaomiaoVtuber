@@ -1,35 +1,9 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { reactive, toRefs } from 'vue'
 
-const stream = vi.fn()
-const getProviderInstance = vi.fn()
+const requestXiaomiaoAgentReply = vi.fn()
 
-vi.mock('pinia', async () => {
-  const actual = await vi.importActual<typeof import('pinia')>('pinia')
-  return {
-    ...actual,
-    storeToRefs: (store: object) => toRefs(store as never),
-  }
-})
-
-vi.mock('../../stores/llm', () => ({
-  useLLM: () => ({
-    stream,
-  }),
-}))
-
-vi.mock('../../stores/providers', () => ({
-  useProvidersStore: () => ({
-    getProviderInstance,
-  }),
-}))
-
-vi.mock('../../stores/modules/vision', () => ({
-  useVisionStore: () => reactive({
-    activeProvider: 'mock-provider',
-    activeModel: 'mock-model',
-    ollamaThinkingEnabled: false,
-  }),
+vi.mock('../../libs/xiaomiao-agent', () => ({
+  requestXiaomiaoAgentReply,
 }))
 
 vi.mock('./use-vision-workloads', () => ({
@@ -41,24 +15,17 @@ vi.mock('./use-vision-workloads', () => ({
 describe('useVisionInference', () => {
   beforeEach(() => {
     vi.useFakeTimers()
-    stream.mockReset()
-    getProviderInstance.mockReset()
-    getProviderInstance.mockResolvedValue({
-      chat: vi.fn().mockReturnValue({
-        apiKey: 'test-key',
-        baseURL: 'https://example.com/v1/',
-      }),
-    })
+    requestXiaomiaoAgentReply.mockReset()
   })
 
   afterEach(() => {
     vi.useRealTimers()
   })
 
-  it('passes an abort signal to llmStore.stream', async () => {
-    stream.mockImplementation(async (_model, _provider, _messages, options) => {
-      expect(options?.abortSignal).toBeInstanceOf(AbortSignal)
-      options?.onStreamEvent?.({ type: 'text-delta', text: 'Frame summary' })
+  it('passes an abort signal to xiaomiaoAgent', async () => {
+    requestXiaomiaoAgentReply.mockImplementation(async (params) => {
+      expect(params.signal).toBeInstanceOf(AbortSignal)
+      return 'Frame summary'
     })
 
     const { useVisionInference } = await import('./use-vision-inference')
@@ -71,9 +38,9 @@ describe('useVisionInference', () => {
   })
 
   it('aborts vision inference when the stream never settles', async () => {
-    stream.mockImplementation((_model, _provider, _messages, options) => new Promise((_, reject) => {
-      options?.abortSignal?.addEventListener('abort', () => {
-        reject(options.abortSignal?.reason)
+    requestXiaomiaoAgentReply.mockImplementation(params => new Promise((_, reject) => {
+      params.signal?.addEventListener('abort', () => {
+        reject(params.signal?.reason)
       }, { once: true })
     }))
 

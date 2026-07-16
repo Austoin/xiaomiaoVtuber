@@ -27,9 +27,9 @@ from console_output import configure_console_output
 from agent_backend import (
     XiaomiaoAgentRequest,
     load_xiaomiao_agent_config,
+    publish_xiaomiao_agent_event,
     request_xiaomiao_agent,
 )
-from desktop_bridge import publish_bridge_event, publish_bridge_exchange, start_desktop_bridge_server
 from qq_agent_bridge import (
     QQ_AGENT_GROUP,
     QQ_AGENT_PRIVATE,
@@ -38,7 +38,6 @@ from qq_agent_bridge import (
     get_qq_command_args,
     get_market_face_url,
     is_qq_command_alias,
-    publish_qq_agent_reply,
     resolve_qq_image_url,
     should_private_message_enter_agent,
 )
@@ -50,7 +49,7 @@ PROJECT_ROOT = Path(__file__).resolve().parents[1]
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
-from tool.adapters.qq_adapter import decide_tool_request as decide_agent_tool_request
+from qq_agent_tools import decide_agent_tool_request
 
 from qq_permissions import has_agent_tool_permission, has_manage_permission
 from qq_workspace import (
@@ -95,10 +94,6 @@ from Hyper import Listener, Events, Logger, Manager, Segments
 from Hyper.Utils import Logic
 from Hyper.Events import *
 
-# import moudles
-from GoogleAI import genai, Context, Parts, Roles
-
-# from google.generativeai.types import FunctonDeclaration
 from prerequisites import prerequisite, select_role
 import Quote
 from utils.runtime_helpers import (
@@ -127,13 +122,11 @@ in_timing = False
 emoji_send_count: datetime = None
 
 generating = False
-bridge_server = None
-bridge_lock = threading.Lock()
 QQ_AGENT_WAIT_NOTICE_SECONDS = 300.0
 
 # 使用统一的缓存配置
 from cache_config import (
-    RUNTIME_DIR,
+    XIAOMIAO_RUNTIME as RUNTIME_DIR,
     SUPER_USER_FILE,
     MANAGE_USER_FILE,
     SISTERS_FILE,
@@ -142,11 +135,11 @@ from cache_config import (
     TIMING_MESSAGE_FILE,
     BLACKLIST_FILE,
     QQ_TMP,
-    ensure_cache_dirs,
+    ensure_all_cache_dirs,
 )
 
 # 确保缓存目录存在
-ensure_cache_dirs()
+ensure_all_cache_dirs()
 
 # 转换为字符串路径(兼容旧代码)
 SUPER_USER_FILE = str(SUPER_USER_FILE)
@@ -167,32 +160,8 @@ settings_store = SettingsStore(
 )
 
 
-class Tools:
-    pass
-
-
-generation_config = {
-    "temperature": 1,
-    "top_p": 0.95,
-    "top_k": 64,
-    "max_output_tokens": 8192,
-    "response_mime_type": "text/plain",
-}
-
 sys_prompt = f""""""
-
-model = genai.GenerativeModel()
-
-key = Configurator.cm.get_cfg().others["gemini_key"]
-gemini_base_url = Configurator.cm.get_cfg().others.get("gemini_base_url", None)
 reminder: str = Configurator.cm.get_cfg().others["reminder"]
-genai.configure(api_key=key, base_url=gemini_base_url)
-
-# 模型配置
-default_model = Configurator.cm.get_cfg().others.get(
-    "default_model", "gemini-3-flash-preview"
-)
-fallback_key = Configurator.cm.get_cfg().others.get("fallback_key", key)
 
 # 图片API配置
 image_api_config = Configurator.cm.get_cfg().others.get("image_api", {})
@@ -202,7 +171,6 @@ x_api_url = image_api_config.get("x_url", "https://api.mossia.top/duckMo/x")
 # 人设配置
 personas_config = Configurator.cm.get_cfg().others.get("personas", {})
 
-tools = []
 ROOT_User: list = Configurator.cm.get_cfg().others["ROOT_User"]
 Super_User: list = []
 Manage_User: list = []
@@ -227,38 +195,6 @@ def load_blacklist():
         return set()
 
 
-class ContextManager:
-    def __init__(self):
-        self.groups: dict[int, dict[int, Context]] = {}
-
-    def get_context(self, uin: int, gid: int):
-        try:
-            ctx = self.groups[gid][uin]
-            # 同步更新 model 配置，确保使用最新的模型
-            ctx.model = model
-            ctx.model_name = getattr(
-                model, "model_name", "gemini-2.0-flash-thinking-exp-01-21"
-            )
-            ctx.system_instruction = getattr(model, "_system_instruction", None)
-            ctx.generation_config = getattr(model, "generation_config", {})
-            return ctx
-        except KeyError:
-            if self.groups.get(gid):
-                self.groups[gid][uin] = Context(
-                    key, model, base_url=gemini_base_url, tools=tools
-                )
-                return self.groups[gid][uin]
-            else:
-                self.groups[gid] = {}
-                self.groups[gid][uin] = Context(
-                    key, model, base_url=gemini_base_url, tools=tools
-                )
-                return self.groups[gid][uin]
-
-
-cmc = ContextManager()
-
-
 def has_emoji(s: str) -> bool:
     # 判断找到的 emoji 数量是否为 1 并且字符串的长度大于等于 1
     return emoji.emoji_count(s) == 1 and len(s) == 1
@@ -276,11 +212,6 @@ def select_persona_prompt(user_id: int, event_user: str) -> str:
     if role == "sister":
         return persona.sister()
     return persona.girl_friend()
-
-
-def generate_desktop_reply(user_id: int, text: str) -> str:
-    with bridge_lock:
-        return generate_agent_reply(user_id, "web", "stage-web", text)
 
 
 def generate_agent_reply(
@@ -349,16 +280,19 @@ def build_authorized_qq_agent_reply(
         ),
     )
     if not decision.allowed:
-        publish_bridge_event(
-            source=source,
-            channel=source,
-            chat_id=str(chat_id),
-            user_id=user_id,
-            role="assistant",
-            content=decision.message,
-            event_type="tool_error",
-            risk_level="high",
-            result_summary=decision.message,
+        publish_xiaomiao_agent_event(
+            load_xiaomiao_agent_config(Configurator.cm.get_cfg().others),
+            {
+                "source": source,
+                "channel": source,
+                "chat_id": str(chat_id),
+                "user_id": user_id,
+                "role": "assistant",
+                "content": decision.message,
+                "event_type": "tool_error",
+                "risk_level": "high",
+                "result_summary": decision.message,
+            },
         )
         return None, decision.message
 
@@ -493,25 +427,6 @@ async def collect_agent_media_from_private_message(message) -> tuple[str, ...]:
             except Exception as img_err:
                 print(f"[私聊] 表情包下载失败: {img_err}")
     return tuple(media)
-
-
-def start_desktop_bridge() -> None:
-    global bridge_server
-
-    if bridge_server is not None:
-        return
-
-    bridge_user_id = int((config.owner or [config.others["ROOT_User"][0]])[0])
-    bridge_server = start_desktop_bridge_server(
-        host="127.0.0.1",
-        port=5519,
-        default_user_id=bridge_user_id,
-        model_name=default_model,
-        reply_callback=generate_desktop_reply,
-    )
-    bridge_thread = threading.Thread(target=bridge_server.serve_forever, daemon=True)
-    bridge_thread.start()
-    print(f"[桌面桥接] 已启动: http://127.0.0.1:5519/v1/chat/completions")
 
 
 def timing_message(actions: Listener.Actions):
@@ -679,11 +594,6 @@ async def handler(event: Events.Event, actions: Listener.Actions) -> None:
                 group_id=event.group_id,
                 message=Manager.Message(Segments.Text(agent_reply.assistant_text)),
             )
-            publish_qq_agent_reply(
-                agent_reply,
-                publish_bridge_exchange,
-                publish_bridge_event,
-            )
             return
         except QQWorkspaceError as exc:
             await actions.send(
@@ -729,7 +639,6 @@ async def handler(event: Events.Event, actions: Listener.Actions) -> None:
         global EnableNetwork
         global generating
         global Super_User, Manage_User, ROOT_User, sisters, jhq
-        global model
 
         event_user = (await actions.get_stranger_info(event.user_id)).data.raw
         event_user = event_user["nickname"]
@@ -946,9 +855,6 @@ async def handler(event: Events.Event, actions: Listener.Actions) -> None:
                         Listener.restart()
 
                     case "message clear":
-                        global cmc
-                        del cmc
-                        cmc = ContextManager()
                         user_lists.clear()
                         await actions.send(
                             group_id=event.group_id,
@@ -1717,9 +1623,6 @@ CPU 使用率：{str(system_info["cpu_usage"]) + "%"}
                 or str(event.user_id) in ROOT_User
                 or str(event.user_id) in Manage_User
             ):
-                #   global cmc
-                del cmc
-                cmc = ContextManager()
                 user_lists.clear()
                 await actions.send(
                     group_id=event.group_id,
@@ -2438,15 +2341,6 @@ CPU 使用率：{str(system_info["cpu_usage"]) + "%"}
                             #     },
                             # )
 
-                            model = genai.GenerativeModel(
-                                model_name=default_model,
-                                generation_config=generation_config,
-                                system_instruction=sys_prompt or None,
-                                # tools=[search_tool]
-                                # tools="code_execution
-                            )
-
-                            new = []
                             media = []
 
                             if isinstance(event.message[0], Segments.Reply):
@@ -2457,64 +2351,46 @@ CPU 使用率：{str(system_info["cpu_usage"]) + "%"}
                                 message = gen_message({"message": message})
                                 print("有引用消息")
                                 for i in message:
-                                    if isinstance(i, Segments.Text):
-                                        new.append(
-                                            Parts.Text(i.text.replace(reminder, "", 1))
-                                        )
-                                    elif isinstance(i, Segments.Image):
+                                    if isinstance(i, Segments.Image):
                                         url = resolve_qq_image_url(i.file, i.url)
                                         try:
-                                            new.append(Parts.File.upload_from_url(url))
                                             media_item = await image_url_to_agent_media(url)
                                             if media_item:
                                                 media.append(media_item)
                                             print("有图")
                                         except Exception as img_err:
                                             print(f"图片下载失败: {img_err}")
-                                            new.append(Parts.Text("[图片下载失败]"))
                                     elif isinstance(i, Segments.MarketFace):
                                         # 商城表情包
                                         url = get_market_face_url(i.face_id)
                                         try:
-                                            new.append(Parts.File.upload_from_url(url))
                                             media_item = await image_url_to_agent_media(url)
                                             if media_item:
                                                 media.append(media_item)
                                             print("有表情包")
                                         except Exception as img_err:
                                             print(f"表情包下载失败: {img_err}")
-                                            new.append(Parts.Text("[表情包下载失败]"))
 
                             for i in event.message:
-                                if isinstance(i, Segments.Text):
-                                    new.append(
-                                        Parts.Text(i.text.replace(reminder, "", 1))
-                                    )
-                                elif isinstance(i, Segments.Image):
+                                if isinstance(i, Segments.Image):
                                     url = resolve_qq_image_url(i.file, i.url)
                                     try:
-                                        new.append(Parts.File.upload_from_url(url))
                                         media_item = await image_url_to_agent_media(url)
                                         if media_item:
                                             media.append(media_item)
                                         print("有图")
                                     except Exception as img_err:
                                         print(f"图片下载失败: {img_err}")
-                                        new.append(Parts.Text("[图片下载失败]"))
                                 elif isinstance(i, Segments.MarketFace):
                                     # 商城表情包
                                     url = get_market_face_url(i.face_id)
                                     try:
-                                        new.append(Parts.File.upload_from_url(url))
                                         media_item = await image_url_to_agent_media(url)
                                         if media_item:
                                             media.append(media_item)
                                         print("有表情包")
                                     except Exception as img_err:
                                         print(f"表情包下载失败: {img_err}")
-                                        new.append(Parts.Text("[表情包下载失败]"))
-
-                            new = Roles.User(*new)
                             agent_text, document_warning = await build_agent_text_with_qq_documents(
                                 base_text=order or user_message,
                                 raw_message=getattr(event, "data", {}).get("message"),
@@ -2564,12 +2440,6 @@ CPU 使用率：{str(system_info["cpu_usage"]) + "%"}
                             Segments.Text(agent_reply.assistant_text),
                         ),
                     )
-                    publish_qq_agent_reply(
-                        agent_reply,
-                        publish_bridge_exchange,
-                        publish_bridge_event,
-                    )
-
                 except UnboundLocalError:
                     await actions.send(
                         group_id=event.group_id,
@@ -3097,35 +2967,6 @@ Made by SR Studio
             try:
                 match EnableNetwork:
                     case "Pixmap":
-                        model = genai.GenerativeModel(
-                            model_name=default_model,
-                            generation_config=generation_config,
-                            system_instruction=sys_prompt or None,
-                        )
-
-                        new = []
-                        for i in event.message:
-                            if isinstance(i, Segments.Text):
-                                new.append(Parts.Text(i.text.replace(reminder, "", 1)))
-                            elif isinstance(i, Segments.Image):
-                                url = resolve_qq_image_url(i.file, i.url)
-                                try:
-                                    new.append(Parts.File.upload_from_url(url))
-                                    print("[私聊] 有图")
-                                except Exception as img_err:
-                                    print(f"[私聊] 图片下载失败: {img_err}")
-                                    new.append(Parts.Text("[图片下载失败]"))
-                            elif isinstance(i, Segments.MarketFace):
-                                # 商城表情包
-                                url = get_market_face_url(i.face_id)
-                                try:
-                                    new.append(Parts.File.upload_from_url(url))
-                                    print("[私聊] 有表情包")
-                                except Exception as img_err:
-                                    print(f"[私聊] 表情包下载失败: {img_err}")
-                                    new.append(Parts.Text("[表情包下载失败]"))
-
-                        new = Roles.User(*new)
                         media = await collect_agent_media_from_private_message(event.message)
                         agent_text, document_warning = await build_agent_text_with_qq_documents(
                             base_text=order or user_message,
@@ -3172,12 +3013,6 @@ Made by SR Studio
                     user_id=event.user_id,
                     message=Manager.Message(Segments.Text(agent_reply.assistant_text)),
                 )
-                publish_qq_agent_reply(
-                    agent_reply,
-                    publish_bridge_exchange,
-                    publish_bridge_event,
-                )
-
             except UnboundLocalError:
                 await actions.send(
                     user_id=event.user_id,
@@ -3241,5 +3076,4 @@ def get_system_info():
     }
 
 
-start_desktop_bridge()
 Listener.run()

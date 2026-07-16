@@ -16,6 +16,7 @@ from agent_backend import (  # noqa: E402
     XiaomiaoAgentConfig,
     XiaomiaoAgentRequest,
     load_xiaomiao_agent_config,
+    publish_xiaomiao_agent_event,
     request_xiaomiao_agent,
     reply_with_xiaomiao_agent,
 )
@@ -148,6 +149,24 @@ class AgentBackendTests(unittest.TestCase):
             ),
         )
 
+    def test_structured_event_is_published_to_agent_api(self):
+        with _agent_server(_SuccessHandler) as base_url:
+            publish_xiaomiao_agent_event(
+                _config(base_url),
+                {
+                    "source": "qq-group",
+                    "channel": "qq-group",
+                    "chat_id": "10001",
+                    "user_id": 3554978979,
+                    "role": "assistant",
+                    "content": "permission denied",
+                    "event_type": "tool_error",
+                },
+            )
+
+        self.assertEqual(_SuccessHandler.last_path, "/v1/xiaomiao/events")
+        self.assertEqual(_SuccessHandler.last_body["event_type"], "tool_error")
+
     def test_http_error_is_visible(self):
         with _agent_server(_ErrorHandler) as base_url:
             with self.assertRaisesRegex(RuntimeError, "HTTP 502"):
@@ -189,10 +208,12 @@ class _ServerContext:
 
 class _SuccessHandler(BaseHTTPRequestHandler):
     last_body = {}
+    last_path = ""
 
     def do_POST(self):
         body = self.rfile.read(int(self.headers["Content-Length"]))
         _SuccessHandler.last_body = json.loads(body.decode("utf-8"))
+        _SuccessHandler.last_path = self.path
         self._write(200, {"choices": [{"message": {"content": "agent reply"}}]})
 
     def _write(self, status, payload):

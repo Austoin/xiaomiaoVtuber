@@ -6,6 +6,7 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 from urllib import error, request
+from urllib.parse import urlsplit, urlunsplit
 
 from unified_config import merge_unified_config_section
 
@@ -75,6 +76,19 @@ def request_xiaomiao_agent(
     body = _build_request_body(config, payload)
     raw_response = _post_json(config.base_url, body, config.timeout_seconds)
     return _extract_agent_response(raw_response)
+
+
+def publish_xiaomiao_agent_event(
+    config: XiaomiaoAgentConfig,
+    event: dict[str, Any],
+) -> None:
+    if not config.enabled:
+        raise RuntimeError("xiaomiaoAgent backend is disabled")
+    parsed = urlsplit(config.base_url)
+    events_url = urlunsplit(
+        (parsed.scheme, parsed.netloc, "/v1/xiaomiao/events", "", "")
+    )
+    _post_json(events_url, event, config.timeout_seconds)
 
 
 def _optional_text(value: Any) -> str | None:

@@ -52,7 +52,7 @@ describe('asset-mount', () => {
     await mkdir(join(root, 'dist', 'ui'), { recursive: true })
     await writeFile(join(root, 'dist', 'ui', 'index.html'), '<html></html>')
 
-    await expect(resolvePluginAssetFilePath(root, 'dist/ui/index.html')).resolves.toContain('dist/ui/index.html')
+    await expect(resolvePluginAssetFilePath(root, 'dist/ui/index.html')).resolves.toContain(join('dist', 'ui', 'index.html'))
     await expect(resolvePluginAssetFilePath(root, '../outside.txt')).resolves.toBeUndefined()
   })
 

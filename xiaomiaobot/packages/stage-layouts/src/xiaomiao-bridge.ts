@@ -1,16 +1,13 @@
+import type { XiaomiaoAgentRequest } from '@proj-airi/stage-ui/libs/xiaomiao-agent'
 import type { ChatHistoryItem } from '@proj-airi/stage-ui/types/chat'
 
-const XIAOMIAO_BRIDGE_BASE_URL = 'http://127.0.0.1:5519'
-const DEFAULT_XIAOMIAO_MODEL = 'deepseek-chat'
+import { requestXiaomiaoAgentReply } from '@proj-airi/stage-ui/libs/xiaomiao-agent'
+
+const XIAOMIAO_BRIDGE_BASE_URL = 'http://127.0.0.1:8900'
 const CLIENT_MESSAGE_ID_PREFIX = 'stage-web'
 export const XIAOMIAO_BRIDGE_EVENTS_POLL_INTERVAL_MS = 1500
 
-export interface XiaomiaoBridgeRequest {
-  text: string
-  model?: string | null
-  clientMessageId?: string | null
-  fetcher?: typeof globalThis.fetch
-}
+export type XiaomiaoBridgeRequest = XiaomiaoAgentRequest
 
 export interface XiaomiaoBridgeEvent {
   id: number
@@ -85,14 +82,6 @@ export interface XiaomiaoBridgeConfigUpdate {
   fetcher?: typeof globalThis.fetch
 }
 
-interface XiaomiaoBridgeResponse {
-  choices?: Array<{
-    message?: {
-      content?: string
-    }
-  }>
-}
-
 interface XiaomiaoBridgeEventsResponse {
   events?: unknown
   last_id?: unknown
@@ -107,34 +96,7 @@ interface XiaomiaoBridgeConfigResponse {
 }
 
 export async function requestXiaomiaoBridgeReply(params: XiaomiaoBridgeRequest): Promise<string> {
-  const fetcher = params.fetcher ?? globalThis.fetch
-  if (typeof fetcher !== 'function') {
-    throw new TypeError('XiaoMiao bridge requires fetch support')
-  }
-
-  const response = await fetcher(`${XIAOMIAO_BRIDGE_BASE_URL}/v1/chat/completions`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      model: params.model?.trim() || DEFAULT_XIAOMIAO_MODEL,
-      ...(params.clientMessageId?.trim() ? { client_message_id: params.clientMessageId.trim() } : {}),
-      messages: [{ role: 'user', content: params.text }],
-    }),
-  })
-
-  if (!response.ok) {
-    throw new Error(`XiaoMiao bridge request failed with HTTP ${response.status}`)
-  }
-
-  const data = await response.json() as XiaomiaoBridgeResponse
-  const replyText = data.choices?.[0]?.message?.content?.trim()
-  if (!replyText) {
-    throw new Error('XiaoMiao bridge returned an empty reply')
-  }
-
-  return replyText
+  return requestXiaomiaoAgentReply(params)
 }
 
 export function createXiaomiaoClientMessageId(prefix = CLIENT_MESSAGE_ID_PREFIX): string {

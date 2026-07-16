@@ -38,7 +38,7 @@ vi.mock('electron', () => ({
   app: appMock,
 }))
 
-vi.mock('@electron-toolkit/utils', () => ({
+vi.mock('../../libs/electron/toolkit-utils', () => ({
   is: {
     get dev() {
       return isDevState.value

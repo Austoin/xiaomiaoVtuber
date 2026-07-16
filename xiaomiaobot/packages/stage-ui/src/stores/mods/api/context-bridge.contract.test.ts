@@ -99,7 +99,8 @@ vi.mock('es-toolkit', () => ({
   },
 }))
 
-vi.mock('@vueuse/core', () => ({
+vi.mock('@vueuse/core', async importOriginal => ({
+  ...await importOriginal<typeof import('@vueuse/core')>(),
   useBroadcastChannel: ({ name }: { name: string }) => {
     if (name === 'airi-context-update') {
       return {
@@ -117,6 +118,12 @@ vi.mock('@vueuse/core', () => ({
 
 vi.mock('../../chat', () => ({
   useChatOrchestratorStore: () => chatOrchestratorMock,
+}))
+
+vi.mock('../../character', () => ({
+  useCharacterOrchestratorStore: () => ({
+    handleSparkNotifyWithReaction: vi.fn(),
+  }),
 }))
 
 vi.mock('../../chat/context-store', () => ({

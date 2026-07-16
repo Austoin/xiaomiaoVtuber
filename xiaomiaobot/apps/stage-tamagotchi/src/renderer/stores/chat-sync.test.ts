@@ -4,6 +4,15 @@ import { createPinia, setActivePinia } from 'pinia'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { computed, ref } from 'vue'
 
+const { appendXiaomiaoBridgeReplyMock } = vi.hoisted(() => ({
+  appendXiaomiaoBridgeReplyMock: vi.fn(),
+}))
+
+vi.mock('@proj-airi/stage-layouts/xiaomiao-bridge', () => ({
+  appendXiaomiaoBridgeReply: appendXiaomiaoBridgeReplyMock,
+  createXiaomiaoClientMessageId: () => 'stage-tamagotchi-test',
+}))
+
 if (!globalThis.window) {
   vi.stubGlobal('window', {
     location: {
@@ -187,9 +196,10 @@ describe('useChatSyncStore authority ingest failures', async () => {
     }
 
     vi.stubGlobal('BroadcastChannel', MockBroadcastChannel)
-    vi.stubGlobal('fetch', vi.fn(async () => {
-      throw new Error('bridge unavailable')
-    }))
+    appendXiaomiaoBridgeReplyMock.mockReset()
+    appendXiaomiaoBridgeReplyMock.mockRejectedValue(
+      new Error('Remote sent 403 response: {"error":{"message":"This model is not available in your region.","code":403}}'),
+    )
   })
 
   afterEach(() => {
@@ -221,7 +231,7 @@ describe('useChatSyncStore authority ingest failures', async () => {
     })
 
     await vi.waitFor(() => {
-      expect(mockState.ingest).toHaveBeenCalledTimes(1)
+      expect(appendXiaomiaoBridgeReplyMock).toHaveBeenCalledTimes(1)
       expect(mockState.setSessionMessages).toHaveBeenCalledTimes(1)
     })
 
@@ -252,7 +262,13 @@ describe('useChatSyncStore authority ingest failures', async () => {
       { role: 'user', content: 'hello-3' },
       { role: 'assistant', content: 'answer-3' },
     ]
-    mockState.ingest.mockResolvedValueOnce(undefined)
+    appendXiaomiaoBridgeReplyMock.mockResolvedValueOnce([
+      { role: 'system', content: 'init' },
+      { role: 'user', content: 'hello-1' },
+      { role: 'assistant', content: 'answer-1' },
+      { role: 'user', content: 'hello' },
+      { role: 'assistant', content: 'retry-answer' },
+    ])
 
     const store = useChatSyncStore()
     store.initialize('authority')
@@ -275,7 +291,14 @@ describe('useChatSyncStore authority ingest failures', async () => {
         { role: 'user', content: 'hello-1' },
         { role: 'assistant', content: 'answer-1' },
       ])
-      expect(mockState.ingest).toHaveBeenCalledWith('hello', expect.any(Object), 'session-1')
+      expect(appendXiaomiaoBridgeReplyMock).toHaveBeenCalledWith(
+        [
+          { role: 'system', content: 'init' },
+          { role: 'user', content: 'hello-1' },
+          { role: 'assistant', content: 'answer-1' },
+        ],
+        expect.objectContaining({ text: 'hello' }),
+      )
     })
 
     const persistedMessages = mockState.sessionMessages.value['session-1']
@@ -283,6 +306,8 @@ describe('useChatSyncStore authority ingest failures', async () => {
       { role: 'system', content: 'init' },
       { role: 'user', content: 'hello-1' },
       { role: 'assistant', content: 'answer-1' },
+      { role: 'user', content: 'hello' },
+      { role: 'assistant', content: 'retry-answer' },
     ])
 
     peer.close()
@@ -304,7 +329,13 @@ describe('useChatSyncStore authority ingest failures', async () => {
       { role: 'assistant', content: 'answer-2' },
       { role: 'user', content: 'hello-3' },
     ]
-    mockState.ingest.mockResolvedValueOnce(undefined)
+    appendXiaomiaoBridgeReplyMock.mockResolvedValueOnce([
+      { role: 'system', content: 'init' },
+      { role: 'user', content: 'hello-1' },
+      { role: 'assistant', content: 'answer-1' },
+      { role: 'user', content: 'hello-2' },
+      { role: 'assistant', content: 'retry-answer-2' },
+    ])
 
     const store = useChatSyncStore()
     store.initialize('authority')
@@ -327,7 +358,14 @@ describe('useChatSyncStore authority ingest failures', async () => {
         { role: 'user', content: 'hello-1' },
         { role: 'assistant', content: 'answer-1' },
       ])
-      expect(mockState.ingest).toHaveBeenCalledWith('hello-2', expect.any(Object), 'session-1')
+      expect(appendXiaomiaoBridgeReplyMock).toHaveBeenCalledWith(
+        [
+          { role: 'system', content: 'init' },
+          { role: 'user', content: 'hello-1' },
+          { role: 'assistant', content: 'answer-1' },
+        ],
+        expect.objectContaining({ text: 'hello-2' }),
+      )
     })
 
     peer.close()
@@ -455,18 +493,11 @@ describe('useChatSyncStore xiaomiao bridge integration', async () => {
     }
 
     vi.stubGlobal('BroadcastChannel', MockBroadcastChannel)
-    vi.stubGlobal('fetch', vi.fn(async () => ({
-      ok: true,
-      json: async () => ({
-        choices: [
-          {
-            message: {
-              content: '桥接回复',
-            },
-          },
-        ],
-      }),
-    })))
+    appendXiaomiaoBridgeReplyMock.mockReset()
+    appendXiaomiaoBridgeReplyMock.mockResolvedValue([
+      { role: 'user', content: '你好' },
+      { role: 'assistant', content: '桥接回复' },
+    ])
   })
 
   afterEach(() => {
@@ -490,7 +521,7 @@ describe('useChatSyncStore xiaomiao bridge integration', async () => {
       sessionId: 'session-1',
     })
 
-    expect(globalThis.fetch).toHaveBeenCalledTimes(1)
+    expect(appendXiaomiaoBridgeReplyMock).toHaveBeenCalledTimes(1)
     expect(mockState.ingest).not.toHaveBeenCalled()
     expect(mockState.setSessionMessages).toHaveBeenCalledTimes(1)
     expect(mockState.setSessionMessages.mock.calls[0]?.[0]).toBe('session-1')

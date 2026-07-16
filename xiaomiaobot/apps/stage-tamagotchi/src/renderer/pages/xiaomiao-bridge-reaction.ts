@@ -1,6 +1,17 @@
-import type { XiaomiaoBridgeState } from './xiaomiao-bridge'
+export interface XiaomiaoBridgeState {
+  replyText: string
+  timestamp: number
+  userId: number
+}
 
-import { shouldAdoptXiaomiaoBridgeState } from './xiaomiao-bridge'
+export function shouldAdoptXiaomiaoBridgeState(
+  currentTimestamp: number,
+  nextTimestamp: number,
+  currentText: string,
+  nextText: string,
+): boolean {
+  return nextTimestamp > currentTimestamp || nextText !== currentText
+}
 
 export interface BridgeSpeechVoice {
   id: string

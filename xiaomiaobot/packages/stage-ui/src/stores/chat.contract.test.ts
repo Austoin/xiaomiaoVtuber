@@ -7,11 +7,12 @@ import { ref } from 'vue'
 
 import { useChatOrchestratorStore } from './chat'
 
-const llmStreamMock = vi.fn()
+const { requestXiaomiaoAgentReplyMock } = vi.hoisted(() => ({
+  requestXiaomiaoAgentReplyMock: vi.fn(),
+}))
 const trackFirstMessageMock = vi.fn()
 const ingestContextMessageMock = vi.fn()
 const getContextsSnapshotMock = vi.fn()
-const createMinecraftContextMock = vi.fn()
 const persistSessionMessagesMock = vi.fn()
 const forkSessionMock = vi.fn()
 const ensureSessionMock = vi.fn()
@@ -99,10 +100,6 @@ vi.mock('../composables/response-categoriser', () => ({
   }),
 }))
 
-vi.mock('./chat/context-providers', () => ({
-  createMinecraftContext: () => createMinecraftContextMock(),
-}))
-
 vi.mock('./chat/context-store', () => ({
   useChatContextStore: () => ({
     ingestContextMessage: ingestContextMessageMock,
@@ -135,10 +132,8 @@ vi.mock('./chat/stream-store', () => ({
   }),
 }))
 
-vi.mock('./llm', () => ({
-  useLLM: () => ({
-    stream: llmStreamMock,
-  }),
+vi.mock('../libs/xiaomiao-agent', () => ({
+  requestXiaomiaoAgentReply: requestXiaomiaoAgentReplyMock,
 }))
 
 vi.mock('./modules/consciousness', () => ({
@@ -154,12 +149,10 @@ const provider = {
 describe('chat orchestrator contract', () => {
   beforeEach(() => {
     setActivePinia(createPinia())
-    llmStreamMock.mockReset()
+    requestXiaomiaoAgentReplyMock.mockReset()
     trackFirstMessageMock.mockReset()
     ingestContextMessageMock.mockReset()
     getContextsSnapshotMock.mockReset()
-    createMinecraftContextMock.mockReset()
-    createMinecraftContextMock.mockReturnValue(undefined)
     persistSessionMessagesMock.mockReset()
     forkSessionMock.mockReset()
     ensureSessionMock.mockReset()
@@ -192,13 +185,7 @@ describe('chat orchestrator contract', () => {
     getContextsSnapshotMock.mockReturnValue(contextsSnapshot)
 
     let composedMessages: Message[] = []
-    llmStreamMock.mockImplementation(async (_model: string, _chatProvider: ChatProvider, messages: Message[], options: any) => {
-      composedMessages = messages
-      expect(options.waitForTools).toBe(true)
-
-      await options.onStreamEvent({ type: 'text-delta', text: 'hello' })
-      await options.onStreamEvent({ type: 'finish', finishReason: 'stop' })
-    })
+    requestXiaomiaoAgentReplyMock.mockResolvedValue('hello')
 
     const store = useChatOrchestratorStore()
     const hookOrder: string[] = []
@@ -206,8 +193,9 @@ describe('chat orchestrator contract', () => {
     store.onBeforeMessageComposed(async () => {
       hookOrder.push('before-compose')
     })
-    store.onAfterMessageComposed(async () => {
+    store.onAfterMessageComposed(async (_message, context) => {
       hookOrder.push('after-compose')
+      composedMessages = context.composedMessage
     })
     store.onBeforeSend(async () => {
       hookOrder.push('before-send')
@@ -287,7 +275,7 @@ describe('chat orchestrator contract', () => {
   })
 
   it('rejects cancelled queued sends before they start', async () => {
-    llmStreamMock.mockImplementation(async () => {
+    requestXiaomiaoAgentReplyMock.mockImplementation(async () => {
       // keep pending
       await new Promise(() => {})
     })
@@ -313,16 +301,13 @@ describe('chat orchestrator contract', () => {
     currentGeneration = 2
 
     await expect(pending).rejects.toThrow('Chat session was reset before send could start')
-    expect(llmStreamMock).not.toHaveBeenCalled()
+    expect(requestXiaomiaoAgentReplyMock).not.toHaveBeenCalled()
   })
 
   it('uses forked session id in ingestOnFork and keeps public store contract keys', async () => {
     getContextsSnapshotMock.mockReturnValue({})
     forkSessionMock.mockResolvedValue('session-forked')
-    llmStreamMock.mockImplementation(async (_model: string, _chatProvider: ChatProvider, _messages: Message[], options: any) => {
-      await options.onStreamEvent({ type: 'text-delta', text: 'fork-reply' })
-      await options.onStreamEvent({ type: 'finish', finishReason: 'stop' })
-    })
+    requestXiaomiaoAgentReplyMock.mockResolvedValue('fork-reply')
 
     const store = useChatOrchestratorStore()
 

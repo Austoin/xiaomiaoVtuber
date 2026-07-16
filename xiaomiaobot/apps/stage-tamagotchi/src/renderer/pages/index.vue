@@ -54,7 +54,6 @@ import { useControlsIslandStore } from '../stores/controls-island'
 import { useStageWindowLifecycleStore } from '../stores/stage-window-lifecycle'
 import { useWindowStore } from '../stores/window'
 import { shouldSampleStageTransparency } from '../utils/stage-three-transparency'
-import { readXiaomiaoBridgeState } from './xiaomiao-bridge'
 import {
   applyXiaomiaoBridgeReaction,
   applyXiaomiaoStageActionEvents,
@@ -308,45 +307,8 @@ type CaptionChannelEvent
 const { post: postCaption } = useBroadcastChannel<CaptionChannelEvent, CaptionChannelEvent>({ name: 'airi-caption-overlay' })
 const lastBridgeAssistantCaption = ref('')
 const lastBridgeAssistantTimestamp = ref(0)
-let bridgeCaptionTimer: ReturnType<typeof setInterval> | undefined
 let bridgeEventSync: ReturnType<typeof createXiaomiaoBridgeEventSync> | undefined
 const handledStageActionEventIds = new Set<number>()
-
-// NOTICE:
-// The current QQ ↔ desktop integration is bound to the active XiaoMiao owner QQ.
-// Root cause: the desktop bridge does not yet expose a user binding handshake to the renderer.
-// Source/context: `xiaomiao/config.json` currently runs with a single owner identity during integration testing.
-// Removal condition: replace with renderer-side binding state once multi-user session mapping lands.
-const BOUND_XIAOMIAO_USER_ID = 3554978979
-
-async function pollXiaomiaoBridgeCaption() {
-  try {
-    const bridgeState = await readXiaomiaoBridgeState(fetch, BOUND_XIAOMIAO_USER_ID)
-    if (!bridgeState) {
-      return
-    }
-
-    const reactionResult = await applyXiaomiaoBridgeReaction({
-      currentTimestamp: lastBridgeAssistantTimestamp.value,
-      currentText: lastBridgeAssistantCaption.value,
-      bridgeState,
-      postCaption: text => postCaption({ type: 'caption-assistant', text }),
-      syncChatHistory: () => {},
-      ensureSpeechReady: ensureBridgeSpeechReady,
-      speakReply: async text => await characterStore.emitTextOutput(text),
-    })
-
-    if (!reactionResult.accepted) {
-      return
-    }
-
-    lastBridgeAssistantCaption.value = reactionResult.nextText
-    lastBridgeAssistantTimestamp.value = reactionResult.nextTimestamp
-  }
-  catch {
-    // Ignore local bridge polling errors so the stage keeps rendering normally.
-  }
-}
 
 function startBridgeEventSync() {
   bridgeEventSync = createXiaomiaoBridgeEventSync({
@@ -354,6 +316,29 @@ function startBridgeEventSync() {
     setMessages: messages => chatSession.setSessionMessages(chatSession.activeSessionId, messages),
     logger: { error: () => {} },
     onEvents: async (events) => {
+      for (const event of events) {
+        if (event.role !== 'assistant' || event.source === 'web' || event.event_type !== 'chat')
+          continue
+
+        const reactionResult = await applyXiaomiaoBridgeReaction({
+          currentTimestamp: lastBridgeAssistantTimestamp.value,
+          currentText: lastBridgeAssistantCaption.value,
+          bridgeState: {
+            replyText: event.content,
+            timestamp: event.timestamp,
+            userId: event.user_id,
+          },
+          postCaption: text => postCaption({ type: 'caption-assistant', text }),
+          syncChatHistory: () => {},
+          ensureSpeechReady: ensureBridgeSpeechReady,
+          speakReply: async text => await characterStore.emitTextOutput(text),
+        })
+        if (reactionResult.accepted) {
+          lastBridgeAssistantCaption.value = reactionResult.nextText
+          lastBridgeAssistantTimestamp.value = reactionResult.nextTimestamp
+        }
+      }
+
       await applyXiaomiaoStageActionEvents({
         events,
         handledEventIds: handledStageActionEventIds,
@@ -639,9 +624,6 @@ watch(enabled, async (val) => {
 onMounted(() => {
   chatSyncStore.initialize('authority')
   void ensureBridgeSpeechReady()
-  bridgeCaptionTimer = setInterval(() => {
-    void pollXiaomiaoBridgeCaption()
-  }, 1500)
   startBridgeEventSync()
   if (onboardingStore.needsOnboarding) {
     openOnboarding()
@@ -649,10 +631,6 @@ onMounted(() => {
 })
 
 onUnmounted(() => {
-  if (bridgeCaptionTimer) {
-    clearInterval(bridgeCaptionTimer)
-    bridgeCaptionTimer = undefined
-  }
   stopBridgeEventSync()
   postModelSettingsRuntimeChannelEvent({
     type: 'owner-gone',

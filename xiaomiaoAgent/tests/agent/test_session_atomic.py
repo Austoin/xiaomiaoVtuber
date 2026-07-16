@@ -135,6 +135,32 @@ class TestAtomicSave:
         loaded = SessionManager(tmp_path).get_or_create("api:xiaomiao-unified")
         assert loaded.messages == []
 
+    def test_replace_save_drops_archived_disk_prefix(self, tmp_path: Path):
+        mgr = SessionManager(tmp_path)
+        session = mgr.get_or_create("api:xiaomiao-unified")
+        for content in ("old-1", "old-2", "recent-1", "recent-2"):
+            session.add_message("user", content)
+        mgr.save(session)
+
+        session.messages = session.messages[-2:]
+        mgr.save(session, merge_disk=False)
+
+        loaded = SessionManager(tmp_path).get_or_create("api:xiaomiao-unified")
+        assert [msg["content"] for msg in loaded.messages] == ["recent-1", "recent-2"]
+
+    def test_merged_save_keeps_advanced_consolidation_cursor(self, tmp_path: Path):
+        mgr = SessionManager(tmp_path)
+        session = mgr.get_or_create("api:xiaomiao-unified")
+        session.add_message("user", "archived")
+        session.add_message("assistant", "recent")
+        mgr.save(session)
+
+        session.last_consolidated = 1
+        mgr.save(session)
+
+        loaded = SessionManager(tmp_path).get_or_create("api:xiaomiao-unified")
+        assert loaded.last_consolidated == 1
+
 
 class TestRepairCorruptFile:
     def _write_corrupt_jsonl(self, path: Path, lines: list[str]) -> None:

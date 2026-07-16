@@ -3,17 +3,15 @@ import type { Message } from '@xsai/shared-chat'
 import { defineInvoke, defineInvokeEventa } from '@moeru/eventa'
 import { createContext } from '@moeru/eventa/adapters/electron/renderer'
 import { artistryGenerateHeadless } from '@proj-airi/stage-shared'
-import { generateText } from '@xsai/generate-text'
 import { defineStore } from 'pinia'
 import { ref, toRaw } from 'vue'
 import { toast } from 'vue-sonner'
 
+import { requestXiaomiaoAgentReply } from '../../libs/xiaomiao-agent'
 import { useBackgroundStore } from '../background'
 import { useChatSessionStore } from '../chat/session-store'
-import { useProvidersStore } from '../providers'
 import { useAiriCardStore } from './airi-card'
 import { useArtistryStore } from './artistry'
-import { useConsciousnessStore } from './consciousness'
 
 const artistLog = import.meta.env.DEV ? console.info.bind(console, '[AutonomousArtist]') : () => {}
 
@@ -21,8 +19,6 @@ export const useAutonomousArtistryStore = defineStore('artistry-autonomous', () 
   const cardStore = useAiriCardStore()
   const backgroundStore = useBackgroundStore()
   const artistryStore = useArtistryStore()
-  const consciousnessStore = useConsciousnessStore()
-  const providersStore = useProvidersStore()
   const chatSessionStore = useChatSessionStore()
 
   const isProcessing = ref(false)
@@ -133,33 +129,11 @@ ${historyText || '(No previous history)'}
 LATEST ${target === 'assistant' ? 'COMPANION RESPONSE' : 'USER INPUT'}:
 "${inputText}"`
 
-      const messages: Message[] = [
-        { role: 'system', content: systemPrompt },
-        {
-          role: 'user',
-          content: analysisPrompt,
-        },
-      ]
-
-      const modelId = consciousnessStore.activeModel
-      const providerId = consciousnessStore.activeProvider
-
       artistLog('Sending rolled-up prompt to Director LLM...', {
-        model: modelId,
-        provider: providerId,
         historyCount: recentHistory.length,
         textSubstring: inputText.substring(0, 50),
         target,
       })
-
-      if (!modelId || !providerId) {
-        throw new Error(`Missing LLM configuration (Model: ${modelId}, Provider: ${providerId})`)
-      }
-
-      const chatProvider = await providersStore.getProviderInstance(providerId) as any
-      if (!chatProvider) {
-        throw new Error(`Failed to resolve chat provider instance for: ${providerId}`)
-      }
 
       // NOTICE: Artificial 10s delay for USER target to avoid race conditions/429s.
       // Skipped for ASSISTANT target as the main response is already finalized.
@@ -168,15 +142,11 @@ LATEST ${target === 'assistant' ? 'COMPANION RESPONSE' : 'USER INPUT'}:
         await new Promise(resolve => setTimeout(resolve, 10000))
       }
 
-      // 2. Call LLM (Non-streaming for structured data)
-      const chatConfig = chatProvider.chat(modelId)
-      const response = await generateText({
-        ...chatConfig,
-        messages,
-        headers: { 'Accept-Encoding': 'identity' },
+      // 2. Call the unified agent for structured analysis.
+      const rawContent = await requestXiaomiaoAgentReply({
+        text: `${systemPrompt}\n\n${analysisPrompt}`,
+        clientMessageId: `stage-artistry-${Date.now().toString(36)}`,
       })
-
-      const rawContent = (response.text || '').trim()
       artistLog('Received raw response from Director LLM:', rawContent)
 
       // 3. Parse and analyze
@@ -356,6 +326,11 @@ LATEST ${target === 'assistant' ? 'COMPANION RESPONSE' : 'USER INPUT'}:
     }
     catch (err) {
       artistLog('Task failed with error:', err)
+      const message = err instanceof Error ? err.message : String(err)
+      chatSessionStore.appendSessionMessage(chatSessionStore.activeSessionId, {
+        role: 'error',
+        content: `xiaomiaoAgent artistry analysis failed: ${message}`,
+      })
     }
     finally {
       isProcessing.value = false

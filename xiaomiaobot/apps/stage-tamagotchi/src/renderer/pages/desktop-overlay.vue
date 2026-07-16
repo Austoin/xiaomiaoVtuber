@@ -18,13 +18,14 @@ import type { OverlayState } from './desktop-overlay-polling'
 
 import { electron } from '@proj-airi/electron-eventa'
 import { useElectronEventaInvoke } from '@proj-airi/electron-vueuse'
+import { requestXiaomiaoBridgeEvents } from '@proj-airi/stage-layouts/xiaomiao-bridge'
 import { getMcpToolBridge } from '@proj-airi/stage-ui/stores/mcp-tool-bridge'
 import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
 
 import { getDesktopOverlayReadinessContract } from '../../shared/eventa'
 import { pointInOverlay, rectIntersectsOverlay, screenRectToLocal, screenToLocal } from './desktop-overlay-coordinates'
 import { createEmptyOverlayState, createOverlayPollController } from './desktop-overlay-polling'
-import { readXiaomiaoBridgeState, shouldAdoptXiaomiaoBridgeState } from './xiaomiao-bridge'
+import { shouldAdoptXiaomiaoBridgeState } from './xiaomiao-bridge-reaction'
 
 // ---------------------------------------------------------------------------
 // Overlay window bounds — read once on mount from main process
@@ -36,13 +37,7 @@ const overlayBounds = ref<Rect | null>(null)
 const overlayBridgeReplyText = ref('')
 const overlayBridgeReplyTimestamp = ref(0)
 let overlayBridgeTimer: ReturnType<typeof setInterval> | null = null
-
-// NOTICE:
-// The current desktop overlay binds to the single XiaoMiao owner identity during integration testing.
-// Root cause: the renderer has not implemented a QQ-to-desktop binding handshake yet.
-// Source/context: the bridge state endpoint is keyed by user id and current manual tests use the owner QQ.
-// Removal condition: replace this constant with renderer-managed binding state once multi-user session mapping lands.
-const BOUND_XIAOMIAO_USER_ID = 3554978979
+let overlayBridgeEventCursor = 0
 
 // ---------------------------------------------------------------------------
 // Reactive state — single ref driven by poll controller
@@ -195,22 +190,26 @@ const targetBoxStyle = computed(() => {
 
 async function pollOverlayBridgeReply() {
   try {
-    const bridgeState = await readXiaomiaoBridgeState(fetch, BOUND_XIAOMIAO_USER_ID)
-    if (!bridgeState) {
+    const result = await requestXiaomiaoBridgeEvents({ after: overlayBridgeEventCursor })
+    overlayBridgeEventCursor = Math.max(overlayBridgeEventCursor, result.lastId)
+    const bridgeEvent = result.events.findLast(event =>
+      event.role === 'assistant' && event.source !== 'web' && event.event_type === 'chat',
+    )
+    if (!bridgeEvent) {
       return
     }
 
     if (!shouldAdoptXiaomiaoBridgeState(
       overlayBridgeReplyTimestamp.value,
-      bridgeState.timestamp,
+      bridgeEvent.timestamp,
       overlayBridgeReplyText.value,
-      bridgeState.replyText,
+      bridgeEvent.content,
     )) {
       return
     }
 
-    overlayBridgeReplyTimestamp.value = bridgeState.timestamp
-    overlayBridgeReplyText.value = bridgeState.replyText
+    overlayBridgeReplyTimestamp.value = bridgeEvent.timestamp
+    overlayBridgeReplyText.value = bridgeEvent.content
   }
   catch {
     // Ignore bridge polling errors so the overlay can keep rendering pointer feedback.

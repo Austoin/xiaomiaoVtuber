@@ -60,8 +60,6 @@ class QQMediaFailure:
 
 
 ReplyCallback = Callable[[int, str, str, str, tuple[str, ...]], Any]
-PublishCallback = Callable[..., None]
-EventPublishCallback = Callable[..., None]
 MediaConverter = Callable[[str], Awaitable[str | None]]
 SyncAgentCall = Callable[[], Any]
 WaitNoticeCallback = Callable[[], Awaitable[None]]
@@ -133,38 +131,6 @@ def build_qq_agent_reply(
     )
 
 
-def publish_qq_agent_reply(
-    reply: QQAgentReply,
-    publish_callback: PublishCallback,
-    event_publish_callback: EventPublishCallback | None = None,
-) -> None:
-    turn = reply.turn
-    publish_callback(
-        source=turn.source,
-        channel=turn.source,
-        chat_id=turn.chat_id,
-        user_id=turn.user_id,
-        user_text=turn.text,
-        assistant_text=reply.assistant_text,
-    )
-    if event_publish_callback is None:
-        return
-    for event in reply.tool_events:
-        event_publish_callback(
-            source=turn.source,
-            channel=turn.source,
-            chat_id=turn.chat_id,
-            user_id=turn.user_id,
-            role="assistant",
-            content=str(event.get("result_summary") or reply.assistant_text),
-            event_type=str(event.get("event_type") or "tool_finish"),
-            tool_name=_optional_event_text(event, "tool_name"),
-            risk_level=_optional_event_text(event, "risk_level"),
-            confirmation_id=_optional_event_text(event, "confirmation_id"),
-            result_summary=_optional_event_text(event, "result_summary"),
-        )
-
-
 async def await_agent_reply_with_wait_notice(
     call: SyncAgentCall,
     wait_notice_callback: WaitNoticeCallback,
@@ -180,13 +146,6 @@ async def await_agent_reply_with_wait_notice(
     except asyncio.TimeoutError:
         await wait_notice_callback()
         return await task
-
-
-def _optional_event_text(event: dict[str, Any], name: str) -> str | None:
-    value = event.get(name)
-    if value is None:
-        return None
-    return str(value)
 
 
 def build_qq_agent_turn(

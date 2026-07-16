@@ -9,7 +9,7 @@ import type {
 import type { WidgetsAddPayload, WidgetSnapshot, WidgetsUpdatePayload } from '../../../../shared/eventa'
 import type { PluginHostService } from './types'
 
-import { cp, mkdir, mkdtemp, readFile, rm, stat, writeFile } from 'node:fs/promises'
+import { mkdir, mkdtemp, readFile, rm, writeFile } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
 import { basename, join, resolve } from 'node:path'
 
@@ -89,25 +89,10 @@ const testDataRoot = resolve(
   'plugin-host',
   'testdata',
 )
-const repoRoot = resolve(
-  import.meta.dirname,
-  '..',
-  '..',
-  '..',
-  '..',
-  '..',
-  '..',
-  '..',
-)
 const samplePluginRoot = resolve(
   import.meta.dirname,
   'examples',
   'devtools-sample-plugin',
-)
-const chessLikePluginRoot = resolve(
-  repoRoot,
-  'plugins',
-  'airi-plugin-game-chess',
 )
 const pluginManifestFileName = 'plugin.airi.json'
 
@@ -668,77 +653,6 @@ describe('setupPluginHost', () => {
     const plugin = snapshot.plugins.find(item => item.name === 'devtools-sample-plugin')
 
     expect(plugin).toEqual(expect.objectContaining({ enabled: true, loaded: true }))
-  })
-
-  it('loads the chess-like demo plugin and exposes an active gamelet module snapshot', async () => {
-    const pluginDir = join(pluginsDir, 'airi-plugin-game-chess')
-    await mkdir(pluginsDir, { recursive: true })
-    try {
-      await stat(join(chessLikePluginRoot, 'dist'))
-      await cp(join(chessLikePluginRoot, 'dist'), pluginDir, { recursive: true })
-    }
-    catch {
-      await mkdir(pluginDir, { recursive: true })
-      await writeFile(
-        join(pluginDir, pluginManifestFileName),
-        await readFile(join(chessLikePluginRoot, pluginManifestFileName), 'utf-8'),
-      )
-      await mkdir(join(pluginDir, 'ui'), { recursive: true })
-      await writeFile(join(pluginDir, 'ui', 'index.html'), '<!doctype html><title>fallback</title>')
-    }
-
-    await setupPluginHost()
-
-    expect(contextState.lastContext).toBeDefined()
-    const invokeSetEnabled = defineInvoke(contextState.lastContext!, electronPluginSetEnabled)
-    const invokeLoadEnabled = defineInvoke(contextState.lastContext!, electronPluginLoadEnabled)
-    const invokeInspect = defineInvoke(contextState.lastContext!, electronPluginInspect)
-
-    await invokeSetEnabled({ name: 'airi-plugin-game-chess', enabled: true })
-
-    const registry = await invokeLoadEnabled()
-    const plugin = registry.plugins.find(item => item.name === 'airi-plugin-game-chess')
-    expect(plugin).toEqual(expect.objectContaining({ enabled: true, loaded: true }))
-
-    const snapshot = await invokeInspect()
-
-    // Verify the host exposes the announced module snapshot after activation.
-    expect(snapshot.modules).toEqual(expect.arrayContaining([
-      expect.objectContaining({
-        moduleId: 'chess-like-main',
-        ownerPluginId: 'airi-plugin-game-chess',
-        kitId: 'kit.gamelet',
-        kitModuleType: 'gamelet',
-        runtime: 'electron',
-        state: 'active',
-        config: expect.objectContaining({
-          title: 'Chess',
-          entrypoint: 'ui/index.html',
-          widget: expect.objectContaining({
-            mount: 'iframe',
-            iframe: expect.objectContaining({
-              assetPath: 'ui/index.html',
-              src: expect.stringMatching(
-                /^http:\/\/127\.0\.0\.1:\d+\/_airi\/extensions\/airi-plugin-game-chess\/ui\/index\.html\?t=[\w-]{10,}$/,
-              ),
-              sandbox: 'allow-scripts allow-same-origin allow-forms allow-popups',
-            }),
-            windowSize: expect.objectContaining({
-              width: 980,
-              height: 840,
-              minWidth: 640,
-              minHeight: 640,
-            }),
-          }),
-          config: expect.objectContaining({
-            defaults: expect.objectContaining({
-              opening: 'queen-gambit',
-              side: 'white',
-            }),
-          }),
-        }),
-      }),
-    ]))
   })
 
   it('exposes plugin asset base URL through Eventa invoke', async () => {

@@ -1,9 +1,8 @@
 <script setup lang="ts">
-import type { GenericComponentInstance } from 'reka-ui'
 import type { Ref } from 'vue'
 import type { RouteRecordNormalized } from 'vue-router'
 
-import { useMagicKeys } from '@vueuse/core'
+import { useEventListener } from '@vueuse/core'
 import {
   DialogContent,
   DialogDescription,
@@ -41,8 +40,7 @@ const sceneRouterStore = inject(injectSceneRouterStore, null)
 
 const isPaletteOpen = ref(false)
 const isPanelVisible = ref(false)
-const listboxRef = ref<GenericComponentInstance<typeof ListboxRoot>>()
-
+const paletteHighlightIndex = ref(0)
 let panelHideTimer: ReturnType<typeof setTimeout> | undefined
 
 function createRouteTitle(routeRecord: RouteRecordNormalized): string {
@@ -199,6 +197,29 @@ function selectScene(sceneId: string) {
   closePalette()
 }
 
+function handlePaletteKeydown(event: KeyboardEvent) {
+  if (!paletteItems.value.length)
+    return
+
+  if (event.key === 'ArrowDown') {
+    paletteHighlightIndex.value = (paletteHighlightIndex.value + 1) % paletteItems.value.length
+  }
+  else if (event.key === 'ArrowUp') {
+    paletteHighlightIndex.value = (paletteHighlightIndex.value - 1 + paletteItems.value.length) % paletteItems.value.length
+  }
+  else if (event.key === 'Enter') {
+    const scene = paletteItems.value[paletteHighlightIndex.value]
+    if (scene)
+      selectScene(scene.id)
+  }
+  else {
+    return
+  }
+
+  event.preventDefault()
+  event.stopImmediatePropagation()
+}
+
 function isEditableTarget(target: EventTarget | null): boolean {
   if (!(target instanceof HTMLElement)) {
     return false
@@ -218,9 +239,10 @@ watch(isPaletteOpen, (isOpen) => {
   if (isOpen) {
     isPanelVisible.value = true
     clearPanelHideTimer()
-    requestAnimationFrame(() => {
-      listboxRef.value?.highlightFirstItem()
-    })
+    paletteHighlightIndex.value = Math.max(
+      0,
+      paletteItems.value.findIndex(scene => scene.id === currentSceneId.value),
+    )
   }
   else {
     schedulePanelHide()
@@ -231,13 +253,25 @@ onBeforeUnmount(() => {
   clearPanelHideTimer()
 })
 
-const { ctrl_k, meta_k, escape, arrowleft, arrowright, space } = useMagicKeys()
+useEventListener('keydown', (event: KeyboardEvent) => {
+  if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === 'k') {
+    event.preventDefault()
+    openPalette()
+    return
+  }
 
-watch(escape, val => val && closePalette())
-watch([ctrl_k, meta_k], ([ctrl, meta]) => (ctrl || meta) && openPalette())
-watch(arrowleft, val => val && !isPaletteOpen.value && !hasEditableFocus() && goPrev())
-watch(arrowright, val => val && !isPaletteOpen.value && !hasEditableFocus() && goNext())
-watch(space, val => val && !isPaletteOpen.value && !hasEditableFocus() && goNext())
+  if (event.key === 'Escape') {
+    closePalette()
+    return
+  }
+
+  if (isPaletteOpen.value || hasEditableFocus())
+    return
+  if (event.key === 'ArrowLeft')
+    goPrev()
+  else if (event.key === 'ArrowRight' || event.key === ' ' || event.key === 'Space')
+    goNext()
+})
 </script>
 
 <template>
@@ -314,7 +348,7 @@ watch(space, val => val && !isPaletteOpen.value && !hasEditableFocus() && goNext
               Search and select a scene to navigate.
             </DialogDescription>
 
-            <ListboxRoot ref="listboxRef">
+            <ListboxRoot @keydown.capture="handlePaletteKeydown">
               <label :class="['block']">
                 <span :class="['sr-only']">Search scenes</span>
                 <ListboxFilter
@@ -342,6 +376,7 @@ watch(space, val => val && !isPaletteOpen.value && !hasEditableFocus() && goNext
                 >
                   <button
                     :data-scene-nav-item="scene.id"
+                    :data-scene-nav-active="scene.id === paletteItems[paletteHighlightIndex]?.id || undefined"
                     type="button"
                     :class="[
                       'flex w-full items-center justify-between gap-3 rounded-lg px-3 py-2 text-left text-sm transition',

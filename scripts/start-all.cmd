@@ -95,7 +95,6 @@ echo [Check] Current service state. No windows will be started.
 echo.
 call :check_port "QQ OneBot WebSocket" 5004
 call :check_http "xiaomiaoAgent API" 8900 "http://127.0.0.1:8900/health" "status"
-call :check_xiaomiao "xiaomiao main.py, bridge, and QQ listener" 5519 "http://127.0.0.1:5519/v1/xiaomiao/status" "xiaomiao-desktop-bridge"
 call :check_http "xiaomiaobot web" %XIAOMIAOBOT_STAGE_WEB_PORT% "http://127.0.0.1:%XIAOMIAOBOT_STAGE_WEB_PORT%/" "xiaomiao"
 echo.
 echo ========================================
@@ -122,13 +121,6 @@ if errorlevel 1 set "CHECK_FAILED=1"
 echo.
 exit /b 0
 
-:check_xiaomiao
-echo [%~1]
-powershell -NoProfile -ExecutionPolicy Bypass -File "%HEALTH_PS%" check -Kind Xiaomiao -Name "%~1" -Port %~2 -Url "%~3" -Needle "%~4"
-if errorlevel 1 set "CHECK_FAILED=1"
-echo.
-exit /b 0
-
 :assert_free
 powershell -NoProfile -ExecutionPolicy Bypass -File "%HEALTH_PS%" assert-free -Name "%~1" -Port %~2
 exit /b %errorlevel%
@@ -139,10 +131,6 @@ exit /b %errorlevel%
 
 :wait_http
 powershell -NoProfile -ExecutionPolicy Bypass -File "%HEALTH_PS%" wait -Kind Http -Name "%~1" -Port %~2 -Url "%~3" -Needle "%~4" -TimeoutSeconds %WAIT_TIMEOUT_SECONDS%
-exit /b %errorlevel%
-
-:wait_xiaomiao
-powershell -NoProfile -ExecutionPolicy Bypass -File "%HEALTH_PS%" wait -Kind Xiaomiao -Name "%~1" -Port %~2 -Url "%~3" -Needle "%~4" -TimeoutSeconds %WAIT_TIMEOUT_SECONDS%
 exit /b %errorlevel%
 
 :start_qq
@@ -177,12 +165,9 @@ exit /b %errorlevel%
 
 :start_xiaomiao_main
 echo.
-echo [3/4] Starting xiaomiao main.py and bridge...
-call :assert_free "xiaomiao main.py and bridge" 5519
-if errorlevel 1 exit /b 1
+echo [3/4] Starting xiaomiao QQ adapter...
 start "xiaomiao main.py" /min /D "%ROOT_DIR%" powershell -NoProfile -ExecutionPolicy Bypass -NoExit -Command "%CMD_XIAOMIAO_MAIN%"
-call :wait_xiaomiao "xiaomiao main.py, bridge, and QQ listener" 5519 "http://127.0.0.1:5519/v1/xiaomiao/status" "xiaomiao-desktop-bridge"
-exit /b %errorlevel%
+exit /b 0
 
 :start_xiaomiaobot_web
 echo.
@@ -210,7 +195,6 @@ echo ========================================
 echo.
 echo Ports:
 echo   QQ OneBot WebSocket:   127.0.0.1:5004
-echo   xiaomiao bridge:       127.0.0.1:5519
 echo   xiaomiaoAgent API:     127.0.0.1:8900
 echo   xiaomiaobot web:       http://127.0.0.1:%XIAOMIAOBOT_STAGE_WEB_PORT%
 echo.

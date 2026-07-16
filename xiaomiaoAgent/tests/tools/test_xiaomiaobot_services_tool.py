@@ -7,9 +7,20 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 
 from nanobot.agent.tools.context import RequestContext
 from nanobot.agent.tools.xiaomiaobot_services import (
+    DEFAULT_BRIDGE_EVENTS_URL,
+    DEFAULT_BRIDGE_STATUS_URL,
     XiaomiaobotActionTool,
     XiaomiaobotStatusTool,
 )
+from nanobot.agent.tools.xiaomiao_stage import DEFAULT_BRIDGE_EVENTS_URL as STAGE_EVENTS_URL
+from nanobot.channels.websocket import DEFAULT_XIAOMIAO_BRIDGE_EVENTS_URL
+
+
+def test_agent_owned_event_routes_use_port_8900() -> None:
+    assert DEFAULT_BRIDGE_EVENTS_URL == "http://127.0.0.1:8900/v1/xiaomiao/events"
+    assert STAGE_EVENTS_URL == DEFAULT_BRIDGE_EVENTS_URL
+    assert DEFAULT_XIAOMIAO_BRIDGE_EVENTS_URL == DEFAULT_BRIDGE_EVENTS_URL
+    assert DEFAULT_BRIDGE_STATUS_URL == "http://127.0.0.1:8900/health"
 
 
 def test_xiaomiaobot_status_tool_posts_low_risk_status_event() -> None:
