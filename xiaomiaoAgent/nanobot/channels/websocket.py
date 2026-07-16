@@ -68,7 +68,7 @@ def _append_buttons_as_text(text: str, buttons: list[list[str]]) -> str:
 XIAOMIAO_UNIFIED_CHAT_ID = "xiaomiao-unified"
 XIAOMIAO_UNIFIED_SESSION_KEY = "api:xiaomiao-unified"
 XIAOMIAO_BRIDGE_EVENTS_URL_ENV = "XIAOMIAO_BRIDGE_EVENTS_URL"
-DEFAULT_XIAOMIAO_BRIDGE_EVENTS_URL = "http://127.0.0.1:5519/v1/xiaomiao/events"
+DEFAULT_XIAOMIAO_BRIDGE_EVENTS_URL = "http://127.0.0.1:8900/v1/xiaomiao/events"
 XIAOMIAO_BRIDGE_TIMEOUT_SECONDS = 5.0
 XIAOMIAO_BRIDGE_EVENT_SOURCE = "agent-webui"
 

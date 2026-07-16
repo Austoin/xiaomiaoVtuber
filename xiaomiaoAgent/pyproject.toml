@@ -133,11 +133,15 @@ build-backend = "hatchling.build"
 allow-direct-references = true
 
 [tool.hatch.build]
+artifacts = [
+    "nanobot/web/dist/**",
+]
 include = [
     "nanobot/**/*.py",
     "nanobot/templates/**/*.md",
     "nanobot/skills/**/*.md",
     "nanobot/skills/**/*.sh",
+    "nanobot/web/dist/**",
 ]
 
 [tool.hatch.build.targets.wheel]
@@ -146,13 +150,9 @@ packages = ["nanobot"]
 [tool.hatch.build.targets.wheel.sources]
 "nanobot" = "nanobot"
 
-[tool.hatch.build.targets.wheel.force-include]
-"bridge" = "nanobot/bridge"
-
 [tool.hatch.build.targets.sdist]
 include = [
     "nanobot/",
-    "bridge/",
     "README.md",
     "LICENSE",
     "THIRD_PARTY_NOTICES.md",
@@ -171,7 +171,7 @@ ignore = ["E501"]
 asyncio_mode = "auto"
 testpaths = ["tests"]
 cache_dir = "../.cache/pytest/agent/cache"
-addopts = "--basetemp=../.cache/pytest/agent/tmp"
+addopts = "--basetemp=../../.cache/xiaomiao-agent-pytest"
 tmp_path_retention_policy = "none"
 
 [tool.coverage.run]

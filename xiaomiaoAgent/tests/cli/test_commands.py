@@ -9,15 +9,36 @@ import pytest
 from typer.testing import CliRunner
 
 from nanobot.bus.events import OutboundMessage
-from nanobot.cli.commands import app
-from nanobot.providers.factory import make_provider
+from nanobot.cli.commands import _configure_webui_channel, app
 from nanobot.config.schema import Config
 from nanobot.cron.types import CronJob, CronPayload
-from nanobot.providers.factory import ProviderSnapshot
+from nanobot.providers.factory import ProviderSnapshot, make_provider
 from nanobot.providers.openai_codex_provider import _strip_model_prefix
 from nanobot.providers.registry import find_by_name
 
 runner = CliRunner()
+
+
+def test_configure_webui_channel_enables_local_embedded_ui() -> None:
+    config = Config.model_validate({
+        "channels": {
+            "websocket": {
+                "enabled": False,
+                "token": "existing-token",
+                "allowFrom": ["local-client"],
+            }
+        }
+    })
+
+    url = _configure_webui_channel(config, host="127.0.0.1", port=8765)
+
+    websocket = config.channels.model_extra["websocket"]
+    assert url == "http://127.0.0.1:8765"
+    assert websocket["enabled"] is True
+    assert websocket["host"] == "127.0.0.1"
+    assert websocket["port"] == 8765
+    assert websocket["token"] == "existing-token"
+    assert websocket["allowFrom"] == ["local-client"]
 
 
 def _fake_provider():
@@ -496,8 +517,8 @@ def test_openai_compat_provider_passes_model_through():
 
 
 def test_make_provider_uses_github_copilot_backend():
-    from nanobot.providers.factory import make_provider
     from nanobot.config.schema import Config
+    from nanobot.providers.factory import make_provider
 
     config = Config.model_validate(
         {

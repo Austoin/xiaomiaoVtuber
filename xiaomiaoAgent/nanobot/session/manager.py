@@ -463,13 +463,22 @@ class SessionManager:
         session.created_at = min(session.created_at, disk_session.created_at)
         session.updated_at = max(session.updated_at, disk_session.updated_at)
         session.last_consolidated = min(
-            session.last_consolidated,
-            disk_session.last_consolidated,
+            max(session.last_consolidated, disk_session.last_consolidated),
             len(merged),
         )
 
-    def save(self, session: Session, *, fsync: bool = False) -> None:
+    def save(
+        self,
+        session: Session,
+        *,
+        fsync: bool = False,
+        merge_disk: bool = True,
+    ) -> None:
         """Save a session to disk atomically.
+
+        By default, messages added by another process are merged before the
+        write. Set *merge_disk* to ``False`` only for intentional history
+        replacement such as compaction.
 
         When *fsync* is ``True`` the final file and its parent directory are
         explicitly flushed to durable storage.  This is intentionally off by
@@ -481,7 +490,7 @@ class SessionManager:
         lock_path = self._get_session_lock_path(session.key)
         with FileLock(str(lock_path)):
             disk_session = self._load(session.key)
-            if disk_session is not None and session.messages:
+            if merge_disk and disk_session is not None and session.messages:
                 self._merge_disk_messages_into_session(session, disk_session)
             self._write_session_file(session, fsync=fsync)
 

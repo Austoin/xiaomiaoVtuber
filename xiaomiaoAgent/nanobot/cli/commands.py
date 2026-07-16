@@ -74,7 +74,7 @@ class SafeFileHistory(FileHistory):
         super().store_string(_sanitize_surrogates(string))
 from nanobot.cli.stream import StreamRenderer, ThinkingSpinner
 from nanobot.config.paths import get_workspace_path, is_default_workspace
-from nanobot.config.schema import Config
+from nanobot.config.schema import ChannelsConfig, Config
 from nanobot.utils.helpers import sync_workspace_templates
 from nanobot.utils.restart import (
     consume_restart_notice_from_env,
@@ -612,6 +612,29 @@ def gateway(
         )
     cfg = _load_runtime_config(config, workspace)
     _run_gateway(cfg, port=port)
+
+
+def _configure_webui_channel(config: Config, *, host: str, port: int) -> str:
+    """Enable the embedded WebUI without discarding existing channel settings."""
+    channels_data = config.channels.model_dump(by_alias=True)
+    websocket = dict(channels_data.get("websocket") or {})
+    websocket.update({"enabled": True, "host": host, "port": port})
+    channels_data["websocket"] = websocket
+    config.channels = ChannelsConfig.model_validate(channels_data)
+    return f"http://{host}:{port}"
+
+
+@app.command()
+def webui(
+    host: str = typer.Option("127.0.0.1", "--host", help="Embedded WebUI host"),
+    port: int = typer.Option(8765, "--port", "-p", help="Embedded WebUI port"),
+    workspace: str | None = typer.Option(None, "--workspace", "-w", help="Workspace directory"),
+    config: str | None = typer.Option(None, "--config", "-c", help="Path to config file"),
+):
+    """Start the gateway with the embedded xiaomiaoAgent WebUI enabled."""
+    cfg = _load_runtime_config(config, workspace)
+    browser_url = _configure_webui_channel(cfg, host=host, port=port)
+    _run_gateway(cfg, open_browser_url=browser_url)
 
 
 def _run_gateway(
