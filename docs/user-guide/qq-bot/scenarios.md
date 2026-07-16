@@ -689,9 +689,9 @@ https://example.com/article
 
 ## 📚 相关文档
 
-- [QQ Bot 指南](../guide/QQ_BOT_GUIDE.md) - 完整功能说明
-- [配置示例](config-examples.md) - 权限配置
-- [快速启动](../00-quick-start/run-and-config.md) - 部署指南
+- [QQ Bot 指南](README.md) - 完整功能说明
+- [配置说明](../../guide/CONFIGURATION.md) - 权限与 Agent 配置
+- [快速启动](../../guide/QUICK_START.md) - 启动指南
 
 ---
 

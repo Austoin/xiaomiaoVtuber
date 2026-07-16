@@ -223,6 +223,5 @@
 
 ## 📚 相关文档
 
-- [快速开始](QUICK_START.md) - 启动和基本配置
-- [配置说明](CONFIGURATION.md) - 详细配置选项
-- [故障排查](TROUBLESHOOTING.md) - 问题解决
+- [快速开始](../../guide/QUICK_START.md) - 启动和基本配置
+- [配置说明](../../guide/CONFIGURATION.md) - 详细配置选项
