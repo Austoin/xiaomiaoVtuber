@@ -1,11 +1,8 @@
 import type { Message } from '@xsai/shared-chat'
 
-import { generateText } from '@xsai/generate-text'
-
 export interface LLMConfig {
-  baseURL: string
-  apiKey: string
-  model: string
+  apiUrl: string
+  sessionId: string
 }
 
 export interface LLMCallOptions {
@@ -24,15 +21,10 @@ export interface LLMResult {
 }
 
 /**
- * Lightweight LLM agent for text generation using xsai
+ * Minecraft reasoning client backed by the single xiaomiaoAgent runtime.
  */
 export class LLMAgent {
   constructor(private config: LLMConfig) { }
-
-  private isCerebrasBaseURL(baseURL: string): boolean {
-    const normalized = baseURL.toLowerCase()
-    return normalized.includes('cerebras.ai') || normalized.includes('cerebras.com')
-  }
 
   private createLinkedAbortController(parentSignal?: AbortSignal): {
     controller: AbortController
@@ -68,13 +60,12 @@ export class LLMAgent {
    * Call LLM with the given messages
    */
   async callLLM(options: LLMCallOptions): Promise<LLMResult> {
-    const shouldSendReasoning = !this.isCerebrasBaseURL(this.config.baseURL)
     const { controller, dispose } = this.createLinkedAbortController(options.abortSignal)
     const timeoutMs = typeof options.timeoutMs === 'number' && Number.isFinite(options.timeoutMs) && options.timeoutMs > 0
       ? Math.floor(options.timeoutMs)
       : null
     const timeoutError = timeoutMs
-      ? Object.assign(new Error(`LLM provider call timeout after ${timeoutMs}ms`), { name: 'TimeoutError' })
+      ? Object.assign(new Error(`xiaomiaoAgent request timeout after ${timeoutMs}ms`), { name: 'TimeoutError' })
       : null
     const timeoutHandle = timeoutMs
       ? setTimeout(() => {
@@ -84,24 +75,35 @@ export class LLMAgent {
       : undefined
 
     try {
-      const response = await generateText({
-        baseURL: this.config.baseURL,
-        apiKey: this.config.apiKey,
-        model: this.config.model,
-        messages: options.messages,
-        headers: { 'Accept-Encoding': 'identity' },
-        abortSignal: controller.signal,
-        ...(options.responseFormat && { responseFormat: options.responseFormat }),
-        ...(shouldSendReasoning && {
-          // Enable reasoning with configurable effort (default: low)
-          reasoning: options.reasoning ?? { effort: 'low' },
+      const response = await fetch(this.config.apiUrl, {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          session_id: this.config.sessionId,
+          channel: 'minecraft',
+          chat_id: 'minecraft-bot',
+          user_id: 'minecraft-bot',
+          messages: options.messages,
         }),
-      } as Parameters<typeof generateText>[0])
+        signal: controller.signal,
+      })
+      if (!response.ok) {
+        const detail = (await response.text()).trim()
+        throw new Error(
+          `xiaomiaoAgent request failed with HTTP ${response.status}${detail ? `: ${detail}` : ''}`,
+        )
+      }
+      const payload = await response.json() as {
+        choices?: Array<{ message?: { content?: string } }>
+        usage?: unknown
+      }
 
       return {
-        text: response.text ?? '',
-        reasoning: (response as any).reasoningText,
-        usage: response.usage,
+        text: payload.choices?.[0]?.message?.content ?? '',
+        usage: payload.usage ?? {},
       }
     }
     finally {

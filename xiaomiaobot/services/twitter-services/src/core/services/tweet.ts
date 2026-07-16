@@ -279,7 +279,7 @@ export function useTwitterTweetServices(ctx: Context): TwitterService {
       }
 
       // Use the TweetParser to extract the main tweet data
-      const mainTweet = await TweetParser.extractTweetData(page, tweetElement)
+      const mainTweet = await TweetParser.extractTweetData(tweetElement)
       if (!mainTweet) {
         throw new Error('Failed to extract tweet data')
       }
@@ -288,7 +288,7 @@ export function useTwitterTweetServices(ctx: Context): TwitterService {
       let quotedTweet: Tweet | undefined
       const quotedTweetElement = await page.$('[data-testid="quotedTweet"]')
       if (quotedTweetElement) {
-        const extractedQuotedTweet = await TweetParser.extractTweetData(page, quotedTweetElement)
+        const extractedQuotedTweet = await TweetParser.extractTweetData(quotedTweetElement)
         if (extractedQuotedTweet) {
           quotedTweet = extractedQuotedTweet
         }
@@ -305,7 +305,7 @@ export function useTwitterTweetServices(ctx: Context): TwitterService {
 
       const replies: Tweet[] = []
       for (const replyElement of replyElements) {
-        const extractedReply = await TweetParser.extractTweetData(page, replyElement)
+        const extractedReply = await TweetParser.extractTweetData(replyElement)
         if (extractedReply) {
           replies.push(extractedReply)
         }

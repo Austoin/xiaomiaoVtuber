@@ -304,8 +304,11 @@ function renderTopDown(bot: Bot, options: Required<MapOptions>): MapResult {
 
   // Build the grid: each cell is [symbol, elevation_delta]
   const size = r * 2 + 1
-  const grid: string[][] = Array.from({ length: size }).fill(Array.from({ length: size }).fill(' '))
-  const elevations: (number | null)[][] = Array.from({ length: size }).fill(Array.from({ length: size }).fill(null))
+  const grid = Array.from({ length: size }, () => Array.from({ length: size }).fill(' '))
+  const elevations = Array.from(
+    { length: size },
+    () => Array.from({ length: size }).fill(null),
+  )
   const usedCategories = new Set<BlockCategory>()
 
   for (let dz = -r; dz <= r; dz++) {
@@ -454,7 +457,7 @@ function renderCrossSection(bot: Bot, options: Required<MapOptions>): MapResult 
   const yTop = cy + r
   const yBottom = cy - r
 
-  const grid: string[][] = Array.from({ length: height }).fill(Array.from({ length: width }).fill(' '))
+  const grid = Array.from({ length: height }, () => Array.from({ length: width }).fill(' '))
   const usedCategories = new Set<BlockCategory>()
 
   for (let dy = -r; dy <= r; dy++) {

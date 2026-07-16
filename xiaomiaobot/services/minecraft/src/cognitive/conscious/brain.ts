@@ -16,7 +16,6 @@ import type { LLMAgent, LLMResult } from './llm-agent'
 import type { LlmLogEntry, LlmLogEntryKind } from './llm-log'
 import type { CancellationToken } from './task-state'
 
-import { config } from '../../composables/config'
 import { DebugService } from '../../debug'
 import { ActionError } from '../../utils/errors'
 import { buildConsciousContextView } from './context-view'
@@ -229,7 +228,6 @@ const MAX_CONVERSATION_HISTORY_MESSAGES = 200
 const NO_ACTION_FOLLOWUP_BUDGET_DEFAULT = 3
 const NO_ACTION_FOLLOWUP_BUDGET_MAX = 8
 const NO_ACTION_STAGNATION_REPEAT_LIMIT = 2
-const DEFAULT_LLM_ATTEMPT_TIMEOUT_MS = 60_000
 const ERROR_BURST_GUARD_SOURCE_ID = 'brain:error_burst_guard'
 const ERROR_BURST_THRESHOLD = 3
 const ERROR_BURST_WINDOW_TURNS = 5
@@ -524,7 +522,6 @@ export class Brain {
       return await this.deps.llmAgent.callLLM({
         messages,
         abortSignal: abortController.signal,
-        timeoutMs: DEFAULT_LLM_ATTEMPT_TIMEOUT_MS,
       })
     }
     finally {
@@ -1851,7 +1848,7 @@ export class Brain {
         }
         this.currentInputEnvelope.llm = {
           attempt,
-          model: config.openai.model,
+          model: 'xiaomiaoAgent',
         }
         this.appendLlmLog({
           turnId,
@@ -1888,7 +1885,7 @@ export class Brain {
           content,
           reasoning,
           usage: llmResult.usage,
-          model: config.openai.model,
+          model: 'xiaomiaoAgent',
           duration: Date.now() - traceStart,
         })
         // Store lightweight trace (no full messages clone to prevent O(turns²) memory)
@@ -1904,7 +1901,7 @@ export class Brain {
           sourceType: event.source.type,
           sourceId: event.source.id,
           attempt,
-          model: config.openai.model,
+          model: 'xiaomiaoAgent',
           messageCount: messages.length,
           estimatedTokens,
           content,
@@ -1917,7 +1914,7 @@ export class Brain {
         }
         this.currentInputEnvelope.llm = {
           attempt,
-          model: config.openai.model,
+          model: 'xiaomiaoAgent',
           usage: llmResult.usage,
         }
         this.appendLlmLog({

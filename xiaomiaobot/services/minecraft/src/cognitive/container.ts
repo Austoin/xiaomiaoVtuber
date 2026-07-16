@@ -59,11 +59,10 @@ export function createAgentContainer(airiClient: Client) {
     // Create independent logger for each agent
     logger: asFunction(() => useLogg('agent').useGlobalConfig()).singleton(),
 
-    // Register LLM Agent (xsai-based)
+    // Route all Minecraft reasoning through the single xiaomiaoAgent runtime.
     llmAgent: asFunction(() => new LLMAgent({
-      baseURL: config.openai.baseUrl,
-      apiKey: config.openai.apiKey,
-      model: config.openai.model,
+      apiUrl: config.agent.apiUrl,
+      sessionId: config.agent.sessionId,
     })).singleton(),
 
     // Register EventBus (cognitive event core)

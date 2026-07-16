@@ -40,9 +40,24 @@ def _find_unified_config_path(config_path: Path) -> Path | None:
         candidate = parent / "config.json"
         if candidate == resolved_config:
             continue
-        if candidate.exists():
+        if candidate.exists() and _is_agent_config_layout(resolved_config, parent):
             return candidate
     return None
+
+
+def _is_agent_config_layout(config_path: Path, root: Path) -> bool:
+    try:
+        parts = config_path.relative_to(root).parts[:-1]
+    except ValueError:
+        return False
+    normalized = tuple(part.casefold() for part in parts)
+    return (
+        normalized[-3:] == (".cache", "agent", "nanobot")
+        or normalized[-2:] in {
+            ("nanobot", ".nanobot"),
+            ("xiaomiaoagent", ".nanobot"),
+        }
+    )
 
 
 def _build_nanobot_override(unified: dict[str, Any]) -> dict[str, Any]:
@@ -55,6 +70,13 @@ def _build_nanobot_override(unified: dict[str, Any]) -> dict[str, Any]:
         override["agents"] = {"defaults": defaults}
     if providers:
         override["providers"] = providers
+    for section_name in ("channels", "api", "gateway", "tools"):
+        section = _optional_dict(
+            sections["agent"].get(section_name),
+            f"config.json.xiaomiaoAgent.{section_name}",
+        )
+        if section:
+            override[section_name] = section
     return override
 
 

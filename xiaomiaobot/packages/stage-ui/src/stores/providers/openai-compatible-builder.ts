@@ -1,14 +1,11 @@
 import type { ModelInfo, ProviderMetadata } from '../providers'
 
-import { generateText } from '@xsai/generate-text'
 import { listModels } from '@xsai/model'
-import { message } from '@xsai/utils-chat'
 
 import { ProviderValidationCheck } from '../../libs/providers'
 
 type ProviderCreator = (apiKey: string, baseUrl: string) => any
 
-// Lightweight normalization utilities and conditional logging
 function normalizeString(value: unknown): string {
   return typeof value === 'string' ? value.trim() : ''
 }
@@ -18,21 +15,6 @@ function normalizeBaseUrl(value: unknown): string {
   if (base && !base.endsWith('/'))
     base += '/'
   return base
-}
-
-function shouldLog(): boolean {
-  try {
-    // Opt-in via localStorage to minimize I/O in production
-    return typeof localStorage !== 'undefined' && localStorage.getItem('airi:debug') === '1'
-  }
-  catch {
-    return false
-  }
-}
-
-function logWarn(...args: unknown[]) {
-  if (shouldLog())
-    console.warn(...args)
 }
 
 export function buildOpenAICompatibleProvider(
@@ -152,64 +134,29 @@ export function buildOpenAICompatibleProvider(
 
       const validationChecks = validation || []
       const hasApiKey = Boolean(apiKey)
-      // Prepare model auto-detection promise for checks that need it
-      const modelPromise = (async () => {
-        let detected = 'test'
-        if (!hasApiKey)
-          return detected
-        try {
-          const models = await listModels({
-            apiKey,
-            baseURL: baseUrl,
-            headers: additionalHeaders,
-          })
-            .then(models => models.filter(model =>
-              [
-                'embed',
-                'tts',
-                'models/gemini-2.5-pro',
-              ].every(str => !model.id.includes(str)),
-            ))
-          if (models.length > 0)
-            detected = models[0].id
-        }
-        catch (e) {
-          logWarn(`Model auto-detection failed: ${(e as Error).message}`)
-          logWarn('Falling back to default test model for validation checks.')
-          try {
-            if (capabilities?.listModels) {
-              const models = await capabilities.listModels(config)
-              if (models.length <= 0) {
-                throw new Error('No models returned from capabilities.listModels')
-              }
-              return models[0].id
-            }
-          }
-          catch (e) {
-            logWarn(`Model auto-detection via capabilities.listModels also failed: ${(e as Error).message}`)
-          }
-        }
-        return detected
-      })()
-
-      // Health check = try generating text (was: fetch(`${baseUrl}chat/completions`))
       const asyncChecks: Promise<Error | null>[] = []
       if (validationChecks.includes(ProviderValidationCheck.Health) && hasApiKey) {
         asyncChecks.push((async () => {
+          const controller = new AbortController()
+          const timeout = setTimeout(() => controller.abort(), 10_000)
           try {
-            const model = await modelPromise
-            await generateText({
-              apiKey,
-              baseURL: baseUrl,
-              headers: additionalHeaders,
-              model,
-              messages: message.messages(message.user('ping')),
-              max_tokens: 1,
+            const response = await fetch(`${baseUrl}models`, {
+              method: 'GET',
+              headers: {
+                Authorization: `Bearer ${apiKey}`,
+                ...additionalHeaders,
+              },
+              signal: controller.signal,
             })
+            if (!response.ok)
+              return new Error(`Health check failed: HTTP ${response.status}`)
             return null
           }
           catch (e) {
             return new Error(`Health check failed: ${(e as Error).message}`)
+          }
+          finally {
+            clearTimeout(timeout)
           }
         })())
       }

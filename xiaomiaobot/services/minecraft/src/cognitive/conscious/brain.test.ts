@@ -31,11 +31,9 @@ function createReflexSnapshot() {
 }
 
 function createDeps(llmText: string) {
-  config.openai = {
-    apiKey: 'test-api-key',
-    baseUrl: 'https://example.com/v1',
-    model: 'test-model',
-    reasoningModel: 'test-reasoning-model',
+  config.agent = {
+    apiUrl: 'http://127.0.0.1:8900/v1/chat/completions',
+    sessionId: 'minecraft-test',
   }
 
   const logger = {

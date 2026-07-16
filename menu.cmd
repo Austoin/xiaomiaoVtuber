@@ -7,6 +7,8 @@ set "SCRIPTS_DIR=%ROOT_DIR%scripts"
 set "XIAOMIAO_DIR=%ROOT_DIR%xiaomiao"
 set "XIAOMIAOBOT_DIR=%ROOT_DIR%xiaomiaobot"
 set "XIAOMIAO_AGENT_DIR=%ROOT_DIR%xiaomiaoAgent"
+set "MINECRAFT_DIR=%XIAOMIAOBOT_DIR%\services\minecraft"
+set "TWITTER_DIR=%XIAOMIAOBOT_DIR%\services\twitter-services"
 set "AGENT_CONFIG=%ROOT_DIR%.cache\agent\nanobot\config.json"
 
 set "COMMAND=%~1"
@@ -27,8 +29,9 @@ if /I "%COMMAND%"=="tui" goto start_tui
 if /I "%COMMAND%"=="agent" goto start_agent
 if /I "%COMMAND%"=="agent-api" goto start_agent_api
 if /I "%COMMAND%"=="agent-gateway" goto start_agent_gateway
-if /I "%COMMAND%"=="monitor" goto start_monitor
-if /I "%COMMAND%"=="monitor-simple" goto start_monitor_simple
+if /I "%COMMAND%"=="agent-webui" goto start_agent_webui
+if /I "%COMMAND%"=="bot-minecraft" goto bot_minecraft
+if /I "%COMMAND%"=="bot-twitter" goto bot_twitter
 if /I "%COMMAND%"=="bot-script" goto bot_script
 if /I "%COMMAND%"=="bot-web" goto bot_web
 if /I "%COMMAND%"=="bot-tamagotchi" goto bot_tamagotchi
@@ -37,7 +40,6 @@ if /I "%COMMAND%"=="bot-typecheck" goto bot_typecheck
 if /I "%COMMAND%"=="bot-build" goto bot_build
 if /I "%COMMAND%"=="test-xiaomiao" goto test_xiaomiao
 if /I "%COMMAND%"=="test-agent-config" goto test_agent_config
-if /I "%COMMAND%"=="migrate-cache" goto migrate_cache
 if /I "%COMMAND%"=="setup" goto setup_env
 if /I "%COMMAND%"=="setup-check" goto setup_check
 if not "%COMMAND%"=="" goto unknown
@@ -51,17 +53,18 @@ echo Root: %ROOT_DIR%
 echo.
 echo   1. Start all services
 echo   2. Check service status
-echo   3. Start QQ bot bridge
+echo   3. Start QQ adapter
 echo   4. Start xiaomiaoAgent TUI
 echo   5. Start xiaomiaoAgent API
 echo   6. Start xiaomiaoAgent Gateway
-echo   7. Start xiaomiaobot stage-web
-echo   8. Start monitoring dashboard
-echo   9. Start simple monitoring dashboard
-echo  10. Run xiaomiao tests
-echo  11. Run Agent config tests
-echo  12. Run environment setup
-echo  13. Check environment setup
+echo   7. Start xiaomiaoAgent WebUI
+echo   8. Start Minecraft service
+echo   9. Start Twitter MCP service
+echo  10. Start xiaomiaobot stage-web
+echo  11. Run xiaomiao tests
+echo  12. Run Agent config tests
+echo  13. Run environment setup
+echo  14. Check environment setup
 echo   0. Exit
 echo.
 set "CHOICE="
@@ -73,13 +76,14 @@ if "%CHOICE%"=="3" goto start_qq_interactive
 if "%CHOICE%"=="4" goto start_tui_interactive
 if "%CHOICE%"=="5" goto start_agent_api_interactive
 if "%CHOICE%"=="6" goto start_agent_gateway_interactive
-if "%CHOICE%"=="7" goto bot_web_interactive
-if "%CHOICE%"=="8" goto start_monitor_interactive
-if "%CHOICE%"=="9" goto start_monitor_simple_interactive
-if "%CHOICE%"=="10" goto test_xiaomiao_interactive
-if "%CHOICE%"=="11" goto test_agent_config_interactive
-if "%CHOICE%"=="12" goto setup_env_interactive
-if "%CHOICE%"=="13" goto setup_check_interactive
+if "%CHOICE%"=="7" goto start_agent_webui_interactive
+if "%CHOICE%"=="8" goto bot_minecraft_interactive
+if "%CHOICE%"=="9" goto bot_twitter_interactive
+if "%CHOICE%"=="10" goto bot_web_interactive
+if "%CHOICE%"=="11" goto test_xiaomiao_interactive
+if "%CHOICE%"=="12" goto test_agent_config_interactive
+if "%CHOICE%"=="13" goto setup_env_interactive
+if "%CHOICE%"=="14" goto setup_check_interactive
 if "%CHOICE%"=="0" exit /b 0
 
 echo.
@@ -96,8 +100,9 @@ echo tui
 echo agent
 echo agent-api
 echo agent-gateway
-echo monitor
-echo monitor-simple
+echo agent-webui
+echo bot-minecraft
+echo bot-twitter
 echo bot-script
 echo bot-web
 echo bot-tamagotchi
@@ -106,7 +111,6 @@ echo bot-typecheck
 echo bot-build
 echo test-xiaomiao
 echo test-agent-config
-echo migrate-cache
 echo setup
 echo setup-check
 exit /b 0
@@ -117,20 +121,21 @@ echo   menu.cmd
 echo   menu.cmd ^<command^> [args]
 echo.
 echo Service commands:
-echo   all                 Start QQ, Agent API, xiaomiao bridge, and stage-web
+echo   all                 Start QQ, Agent API, QQ adapter, and stage-web
 echo   check               Check service status without starting windows
-echo   qq                  Start xiaomiao QQ bot bridge
+echo   qq                  Start xiaomiao QQ adapter
 echo   tui                 Start xiaomiaoAgent TUI
 echo   agent               Run xiaomiaoAgent direct CLI with shared config
 echo   agent-api           Start OpenAI-compatible Agent API
 echo   agent-gateway       Start xiaomiaoAgent gateway
-echo   monitor             Start monitoring dashboard
-echo   monitor-simple      Start simple monitoring dashboard
+echo   agent-webui         Start embedded xiaomiaoAgent WebUI
 echo.
 echo xiaomiaobot commands:
 echo   bot-script SCRIPT   Run any xiaomiaobot package.json script
 echo   bot-web             Run stage-web dev server
 echo   bot-tamagotchi      Run stage-tamagotchi dev server
+echo   bot-minecraft       Start the Minecraft integration
+echo   bot-twitter         Start the Twitter MCP integration
 echo   bot-test            Run xiaomiaobot tests
 echo   bot-typecheck       Run xiaomiaobot typecheck
 echo   bot-build           Build xiaomiaobot apps/packages
@@ -138,7 +143,6 @@ echo.
 echo Maintenance commands:
 echo   test-xiaomiao       Run xiaomiao Python tests
 echo   test-agent-config   Run Agent config path tests
-echo   migrate-cache       Run cache migration helper
 echo   setup               Run environment setup
 echo   setup-check         Check environment setup
 echo   list                Print command names
@@ -202,12 +206,25 @@ set "EXIT_CODE=%errorlevel%"
 popd
 exit /b %EXIT_CODE%
 
-:start_monitor
-call "%SCRIPTS_DIR%\start-monitor.cmd" %FORWARDED_ARGS%
+:start_agent_webui
+call :require_file "%XIAOMIAO_AGENT_DIR%\xiaomiao_agent\__main__.py"
+if errorlevel 1 exit /b 1
+pushd "%XIAOMIAO_AGENT_DIR%"
+call conda run --no-capture-output -n xiaomiao python -m xiaomiao_agent webui --config "%AGENT_CONFIG%" %FORWARDED_ARGS%
+set "EXIT_CODE=%errorlevel%"
+popd
+exit /b %EXIT_CODE%
+
+:bot_minecraft
+call :require_file "%MINECRAFT_DIR%\package.json"
+if errorlevel 1 exit /b 1
+call pnpm --dir "%MINECRAFT_DIR%" run start -- %FORWARDED_ARGS%
 exit /b %errorlevel%
 
-:start_monitor_simple
-call "%SCRIPTS_DIR%\start-monitor-simple.cmd" %FORWARDED_ARGS%
+:bot_twitter
+call :require_file "%TWITTER_DIR%\package.json"
+if errorlevel 1 exit /b 1
+call pnpm --dir "%TWITTER_DIR%" run dev -- %FORWARDED_ARGS%
 exit /b %errorlevel%
 
 :bot_script
@@ -265,10 +282,6 @@ set "EXIT_CODE=%errorlevel%"
 popd
 exit /b %EXIT_CODE%
 
-:migrate_cache
-call python "%SCRIPTS_DIR%\migrate_cache.py" %FORWARDED_ARGS%
-exit /b %errorlevel%
-
 :setup_env
 call "%SCRIPTS_DIR%\setup-env.cmd" %FORWARDED_ARGS%
 exit /b %errorlevel%
@@ -305,16 +318,20 @@ call conda run --no-capture-output -n xiaomiao python -m xiaomiao_agent gateway 
 popd
 goto return_to_menu
 
+:start_agent_webui_interactive
+call "%~f0" agent-webui
+goto return_to_menu
+
+:bot_minecraft_interactive
+call "%~f0" bot-minecraft
+goto return_to_menu
+
+:bot_twitter_interactive
+call "%~f0" bot-twitter
+goto return_to_menu
+
 :bot_web_interactive
 call pnpm --dir "%XIAOMIAOBOT_DIR%" run dev:web
-goto return_to_menu
-
-:start_monitor_interactive
-call "%SCRIPTS_DIR%\start-monitor.cmd"
-goto return_to_menu
-
-:start_monitor_simple_interactive
-call "%SCRIPTS_DIR%\start-monitor-simple.cmd"
 goto return_to_menu
 
 :test_xiaomiao_interactive

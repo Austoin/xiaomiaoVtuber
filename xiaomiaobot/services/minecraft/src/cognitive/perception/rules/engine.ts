@@ -222,6 +222,9 @@ export class RuleEngine {
   }
 
   private recordDetectorDecision(snapshot: DetectorDecisionSnapshot): void {
+    if (snapshot.decision !== 'matched_not_fired') {
+      this.deps.logger.withFields(snapshot).log('RuleEngine: detector decision')
+    }
     this.detectorDecisions.push(snapshot)
     if (this.detectorDecisions.length > MAX_DETECTOR_DECISIONS) {
       this.detectorDecisions.splice(0, this.detectorDecisions.length - MAX_DETECTOR_DECISIONS)
@@ -258,6 +261,9 @@ export class RuleEngine {
     }
 
     if (nowMs < detectorState.lastUpdateMs) {
+      this.deps.logger.warn(
+        `RuleEngine: ignored out-of-order event for ${rule.name}/${groupKey}`,
+      )
       this.recordDetectorDecision(Object.freeze({
         ruleName: rule.name,
         mode: rule.detector.mode,

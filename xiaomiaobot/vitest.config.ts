@@ -2,10 +2,9 @@ import { defineConfig } from 'vitest/config'
 
 export default defineConfig({
   test: {
+    maxWorkers: 4,
     projects: [
-      'apps/server',
       'apps/stage-pocket',
-      'apps/ui-server-auth',
       'apps/stage-tamagotchi',
       'packages/audio-pipelines-transcribe',
       'packages/cap-vite',
@@ -15,7 +14,8 @@ export default defineConfig({
       'packages/server-runtime',
       'packages/server-sdk',
       'packages/stage-shared',
-      'packages/stage-ui',
+      'packages/stage-ui/vitest.config.ts',
+      'packages/stage-ui/vitest.browser.config.ts',
       'packages/vishot-runtime',
       'packages/vite-plugin-warpdrive',
     ],

@@ -14,6 +14,41 @@
         "baseUrl": "https://xxx.com/v1"
       }
     },
-    "provider": "custom"
+    "provider": "custom",
+    "gateway": {
+      "host": "127.0.0.1",
+      "port": 18790
+    },
+    "channels": {
+      "websocket": {
+        "enabled": true,
+        "host": "127.0.0.1",
+        "port": 8765,
+        "allowFrom": ["*"]
+      },
+      "discord": {
+        "enabled": false,
+        "token": "",
+        "allowFrom": []
+      },
+      "telegram": {
+        "enabled": false,
+        "token": "",
+        "allowFrom": []
+      }
+    },
+    "tools": {
+      "twitterMcp": {
+        "enable": false,
+        "url": "http://127.0.0.1:8080/sse",
+        "mode": "trusted_confirmed"
+      },
+      "minecraftMcp": {
+        "enable": false,
+        "url": "http://127.0.0.1:3001/mcp",
+        "transport": "streamableHttp",
+        "mode": "trusted_confirmed"
+      }
+    }
   }
 }

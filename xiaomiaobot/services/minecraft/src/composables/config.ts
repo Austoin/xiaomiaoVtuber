@@ -33,11 +33,9 @@ function wsUrlString(envKey: string) {
 }
 
 export const configSchema = z.object({
-  openai: z.object({
-    apiKey: requiredString('OPENAI_API_KEY'),
-    baseUrl: httpUrlString('OPENAI_API_BASEURL'),
-    model: requiredString('OPENAI_MODEL'),
-    reasoningModel: requiredString('OPENAI_REASONING_MODEL'),
+  agent: z.object({
+    apiUrl: httpUrlString('XIAOMIAO_AGENT_API_URL'),
+    sessionId: requiredString('XIAOMIAO_AGENT_SESSION_ID'),
   }),
   debug: z.object({
     mcp: z.boolean().default(false),
@@ -78,7 +76,11 @@ function formatConfigValidationErrors(error: z.ZodError): string {
 }
 
 // Default configurations
-const defaultConfig: Omit<Config, 'openai'> = {
+const defaultConfig: Config = {
+  agent: {
+    apiUrl: 'http://127.0.0.1:8900/v1/chat/completions',
+    sessionId: 'minecraft-runtime',
+  },
   bot: {
     username: 'airi-bot',
     host: 'localhost',
@@ -99,19 +101,16 @@ const defaultConfig: Omit<Config, 'openai'> = {
 }
 
 // Create a singleton config instance
-// openai is populated by initEnv() at startup
-export const config = { ...defaultConfig } as Config
+export const config = { ...defaultConfig }
 
 // Initialize environment configuration
 export function initEnv(): void {
   logger.log('Initializing environment variables')
 
   const parsedConfig = configSchema.safeParse({
-    openai: {
-      apiKey: env.OPENAI_API_KEY,
-      baseUrl: env.OPENAI_API_BASEURL,
-      model: env.OPENAI_MODEL,
-      reasoningModel: env.OPENAI_REASONING_MODEL,
+    agent: {
+      apiUrl: env.XIAOMIAO_AGENT_API_URL || defaultConfig.agent.apiUrl,
+      sessionId: env.XIAOMIAO_AGENT_SESSION_ID || defaultConfig.agent.sessionId,
     },
     debug: {
       mcp: env.ENABLE_MCP_SERVER === 'true',
@@ -139,7 +138,7 @@ export function initEnv(): void {
     throw parsedConfig.error
   }
 
-  config.openai = parsedConfig.data.openai
+  config.agent = parsedConfig.data.agent
   config.bot = parsedConfig.data.bot
   config.airi = parsedConfig.data.airi
   config.debug = parsedConfig.data.debug

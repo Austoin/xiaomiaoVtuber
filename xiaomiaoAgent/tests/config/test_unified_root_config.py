@@ -93,6 +93,64 @@ def test_root_xiaomiao_agent_sections_override_agent_config(
     assert config.providers.custom.api_base == "https://relay.example/v1"
 
 
+def test_root_xiaomiao_agent_exposes_channels_gateway_and_tools(
+    monkeypatch: pytest.MonkeyPatch,
+    tmp_path: Path,
+) -> None:
+    monkeypatch.delenv(UNIFIED_CONFIG_ENV, raising=False)
+    root_config = tmp_path / "config.json"
+    nanobot_config = tmp_path / "xiaomiaoAgent" / ".nanobot" / "config.json"
+    _write_json(
+        root_config,
+        {
+            "xiaomiaoAgent": {
+                "channels": {
+                    "discord": {
+                        "enabled": True,
+                        "token": "discord-token",
+                        "allowFrom": ["discord-user"],
+                    },
+                    "telegram": {
+                        "enabled": True,
+                        "token": "telegram-token",
+                        "allowFrom": ["telegram-user"],
+                    },
+                    "websocket": {"enabled": True, "port": 8765},
+                },
+                "gateway": {"port": 18790},
+                "tools": {
+                    "twitterMcp": {"enable": True, "url": "http://127.0.0.1:8080/sse"},
+                    "minecraftMcp": {
+                        "enable": True,
+                        "url": "http://127.0.0.1:3001/mcp",
+                        "transport": "streamableHttp",
+                    },
+                },
+            }
+        },
+    )
+    _write_json(nanobot_config, {})
+
+    config = load_config(nanobot_config)
+
+    discord = config.channels.model_extra["discord"]
+    telegram = config.channels.model_extra["telegram"]
+    websocket = config.channels.model_extra["websocket"]
+    assert discord["enabled"] is True
+    assert discord["token"] == "discord-token"
+    assert discord["allowFrom"] == ["discord-user"]
+    assert telegram["enabled"] is True
+    assert telegram["token"] == "telegram-token"
+    assert telegram["allowFrom"] == ["telegram-user"]
+    assert websocket["enabled"] is True
+    assert websocket["port"] == 8765
+    assert config.gateway.port == 18790
+    assert config.tools.twitter_mcp.enable is True
+    assert config.tools.twitter_mcp.url == "http://127.0.0.1:8080/sse"
+    assert config.tools.minecraft_mcp.enable is True
+    assert config.tools.minecraft_mcp.url == "http://127.0.0.1:3001/mcp"
+
+
 def test_root_xiaomiao_agent_runtime_model_fills_missing_agent_model(
     monkeypatch: pytest.MonkeyPatch,
     tmp_path: Path,

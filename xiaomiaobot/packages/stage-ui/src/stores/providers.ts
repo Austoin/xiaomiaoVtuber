@@ -17,11 +17,13 @@ import type {
   UnVolcengineOptions,
   VoiceProviderWithExtraOptions,
 } from 'unspeech'
+import type { ComposerTranslation } from 'vue-i18n'
 
 import type { ProviderOnboardingField } from '../libs/providers/types'
 import type { AliyunRealtimeSpeechExtraOptions } from './providers/aliyun/stream-transcription'
 
 import { isStageTamagotchi, isUrl } from '@proj-airi/stage-shared'
+import { i18n } from '@proj-airi/stage-shared/i18n'
 import { getCachedWebGPUCapabilities, isWebGPUSupported } from '@proj-airi/stage-shared/webgpu'
 import { computedAsync, useIntervalFn, useLocalStorage } from '@vueuse/core'
 import {
@@ -46,7 +48,6 @@ import {
   listVoices,
 } from 'unspeech'
 import { computed, ref, watch } from 'vue'
-import { useI18n } from 'vue-i18n'
 
 import { getKokoroAdapter } from '../libs/inference/adapters/kokoro'
 import { getProviderValidationIntervalMs, listProviders as listDefinedProviders, ProviderValidationCheck } from '../libs/providers'
@@ -141,13 +142,7 @@ export interface ProviderMetadata {
     loadModel?: (config: Record<string, unknown>, hooks?: { onProgress?: (progress: ProgressInfo) => Promise<void> | void }) => Promise<void>
   }
   validators: {
-    /**
-     * Validate a provider's configuration.
-     *
-     * PITFALL: When `skipChatPingCheck` is not set, the ChatCompletions validator
-     * (if present) may send a real `generateText("ping")` request that consumes
-     * API tokens. All automatic/background callers may consider pass `skipChatPingCheck: true`.
-     */
+    /** Validate a provider's configuration without invoking a chat model. */
     validateProviderConfig: (config: Record<string, unknown>, options?: { skipChatPingCheck?: boolean, onlyChatPingCheck?: boolean }) => Promise<{
       errors: unknown[]
       reason: string
@@ -217,7 +212,7 @@ export const useProvidersStore = defineStore('providers', () => {
   const providerCredentials = useLocalStorage<Record<string, Record<string, unknown>>>('settings/credentials/providers', {})
   const addedProviders = useLocalStorage<Record<string, boolean>>('settings/providers/added', {})
   const providerInstanceCache = ref<Record<string, unknown>>({})
-  const { t } = useI18n()
+  const t = i18n.global.t as unknown as ComposerTranslation
   const baseUrlValidator = computed(() => (baseUrl: unknown) => {
     let msg = ''
     if (!baseUrl) {

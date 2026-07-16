@@ -38,9 +38,7 @@ export function parseTwitterCommand(input: string): ParseResult | null {
       if (command === 'get timeline') {
         const countMatch = content.match(/count:\s*(\d+)/)
         const count = countMatch ? Number.parseInt(countMatch[1], 10) : 10
-        // For timeline command, use full trim for consistency
-        const trimmedContent = content.trim()
-        return { command: command as ParseResult['command'], content: trimmedContent, count }
+        return { command: command as ParseResult['command'], content: content.trimStart(), count }
       }
 
       return { command: command as NonTimelineCommands, content: content.trim() }

@@ -7,16 +7,8 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { ProviderValidationCheck } from '../types'
 import { createOpenAICompatibleValidators } from './openai-compatible'
 
-const {
-  generateTextMock,
-  listModelsMock,
-} = vi.hoisted(() => ({
-  generateTextMock: vi.fn(),
+const { listModelsMock } = vi.hoisted(() => ({
   listModelsMock: vi.fn(),
-}))
-
-vi.mock('@xsai/generate-text', () => ({
-  generateText: generateTextMock,
 }))
 
 vi.mock('@xsai/model', () => ({
@@ -58,7 +50,7 @@ describe('createOpenAICompatibleValidators', () => {
     vi.unstubAllGlobals()
   })
 
-  it('connectivity check uses lightweight fetch instead of generateText', async () => {
+  it('connectivity check uses lightweight fetch', async () => {
     const [connectivityValidator] = getProviderValidators({
       checks: [ProviderValidationCheck.Connectivity],
     })
@@ -66,7 +58,6 @@ describe('createOpenAICompatibleValidators', () => {
     const result = await connectivityValidator.validator(config, provider, providerExtra, { t: mockT })
 
     expect(result.valid).toBe(true)
-    expect(generateTextMock).not.toHaveBeenCalled()
     expect(fetchMock).toHaveBeenCalledWith(
       'https://example.com/v1/models',
       expect.objectContaining({ method: 'GET' }),
@@ -84,39 +75,6 @@ describe('createOpenAICompatibleValidators', () => {
 
     expect(result.valid).toBe(false)
     expect(result.reason).toContain('Connectivity check failed')
-    expect(generateTextMock).not.toHaveBeenCalled()
-  })
-
-  it('does not probe chat completions with a synthetic fallback model', async () => {
-    listModelsMock.mockResolvedValue([])
-
-    const [connectivityValidator, chatValidator] = getProviderValidators({
-      checks: [ProviderValidationCheck.Connectivity, ProviderValidationCheck.ChatCompletions],
-    })
-
-    const connectivityResult = await connectivityValidator.validator(config, provider, providerExtra, { t: mockT })
-    const chatResult = await chatValidator.validator(config, provider, providerExtra, { t: mockT })
-
-    expect(connectivityResult.valid).toBe(true)
-    expect(chatResult.valid).toBe(false)
-    expect(chatResult.reason).toContain('No model available for validation.')
-    expect(generateTextMock).not.toHaveBeenCalled()
-  })
-
-  it('allows providers to skip chat probing when they do not expose model listing', async () => {
-    listModelsMock.mockResolvedValue([])
-
-    const [connectivityValidator, chatValidator] = getProviderValidators({
-      checks: [ProviderValidationCheck.Connectivity, ProviderValidationCheck.ChatCompletions],
-      allowValidationWithoutModel: true,
-    })
-
-    const connectivityResult = await connectivityValidator.validator(config, provider, providerExtra, { t: mockT })
-    const chatResult = await chatValidator.validator(config, provider, providerExtra, { t: mockT })
-
-    expect(connectivityResult.valid).toBe(true)
-    expect(chatResult.valid).toBe(true)
-    expect(generateTextMock).not.toHaveBeenCalled()
   })
 
   it('default checks do not include chat_completions', () => {
@@ -126,5 +84,13 @@ describe('createOpenAICompatibleValidators', () => {
     expect(ids).toContain('openai-compatible:check-connectivity')
     expect(ids).toContain('openai-compatible:check-model-list')
     expect(ids).not.toContain('openai-compatible:check-chat-completions')
+  })
+
+  it('does not register client-side chat completion probes', () => {
+    const validators = getProviderValidators({
+      checks: [ProviderValidationCheck.ChatCompletions],
+    })
+
+    expect(validators).toHaveLength(0)
   })
 })
