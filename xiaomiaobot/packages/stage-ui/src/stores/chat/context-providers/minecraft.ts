@@ -5,7 +5,7 @@ import { nanoid } from 'nanoid'
 
 import { useMinecraftStore } from '../../modules/gaming-minecraft'
 
-const MINECRAFT_CONTEXT_ID = 'system:minecraft-integration'
+export const MINECRAFT_CONTEXT_ID = 'system:minecraft-integration'
 const MINECRAFT_SERVICE_NAME = 'minecraft-bot'
 
 export function createMinecraftContext(): ContextMessage | null {

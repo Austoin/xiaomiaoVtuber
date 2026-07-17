@@ -22,9 +22,7 @@ overrides:
   string.prototype.matchall: npm:@nolyfill/string.prototype.matchall@^1.0.44
 patchedDependencies:
   '@mediapipe/tasks-vision': patches/@mediapipe__tasks-vision.patch
-  '@xsai/generate-text@0.5.0-beta.2': patches/@xsai__generate-text@0.5.0-beta.2.patch
   '@xsai/shared-chat@0.5.0-beta.2': patches/@xsai__shared-chat@0.5.0-beta.2.patch
-  '@xsai/stream-text@0.5.0-beta.2': patches/@xsai__stream-text@0.5.0-beta.2.patch
   pixi-live2d-display: patches/pixi-live2d-display.patch
 catalog:
   '@ax-llm/ax': ^19.0.43
@@ -74,12 +72,10 @@ catalog:
   '@xsai-ext/providers': 0.5.0-beta.2
   '@xsai/embed': 0.5.0-beta.2
   '@xsai/generate-speech': 0.5.0-beta.2
-  '@xsai/generate-text': 0.5.0-beta.2
   '@xsai/generate-transcription': 0.5.0-beta.2
   '@xsai/model': 0.5.0-beta.2
   '@xsai/shared': 0.5.0-beta.2
   '@xsai/shared-chat': 0.5.0-beta.2
-  '@xsai/stream-text': 0.5.0-beta.2
   '@xsai/stream-transcription': 0.5.0-beta.2
   '@xsai/tool': 0.5.0-beta.2
   '@xsai/utils-chat': 0.5.0-beta.2

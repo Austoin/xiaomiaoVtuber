@@ -16,7 +16,7 @@ import { categorizeResponse, createStreamingCategorizer } from '../composables/r
 import { activeTurnSpan, startSpan } from '../composables/use-io-tracer'
 import { requestXiaomiaoAgentReply } from '../libs/xiaomiao-agent'
 import { formatContextPromptText } from './chat/context-prompt'
-import { createMinecraftContext } from './chat/context-providers'
+import { createMinecraftContext, MINECRAFT_CONTEXT_ID } from './chat/context-providers'
 import { useChatContextStore } from './chat/context-store'
 import { formatTimePrefix } from './chat/datetime-prefix'
 import { createChatHooks } from './chat/hooks'
@@ -168,6 +168,8 @@ export const useChatOrchestratorStore = defineStore('chat-orchestrator', () => {
     const minecraftContext = createMinecraftContext()
     if (minecraftContext)
       chatContext.ingestContextMessage(minecraftContext)
+    else
+      chatContext.removeContextsByContextId(MINECRAFT_CONTEXT_ID)
 
     const sendingCreatedAt = Date.now()
     const streamingMessageContext: ChatStreamEventContext = {

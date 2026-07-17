@@ -12,6 +12,7 @@ const { requestXiaomiaoAgentReplyMock } = vi.hoisted(() => ({
 }))
 const trackFirstMessageMock = vi.fn()
 const ingestContextMessageMock = vi.fn()
+const removeContextsByContextIdMock = vi.fn()
 const getContextsSnapshotMock = vi.fn()
 const persistSessionMessagesMock = vi.fn()
 const forkSessionMock = vi.fn()
@@ -103,8 +104,14 @@ vi.mock('../composables/response-categoriser', () => ({
 vi.mock('./chat/context-store', () => ({
   useChatContextStore: () => ({
     ingestContextMessage: ingestContextMessageMock,
+    removeContextsByContextId: removeContextsByContextIdMock,
     getContextsSnapshot: getContextsSnapshotMock,
   }),
+}))
+
+vi.mock('./chat/context-providers', () => ({
+  createMinecraftContext: () => null,
+  MINECRAFT_CONTEXT_ID: 'system:minecraft-integration',
 }))
 
 vi.mock('./chat/session-store', () => ({
@@ -152,6 +159,7 @@ describe('chat orchestrator contract', () => {
     requestXiaomiaoAgentReplyMock.mockReset()
     trackFirstMessageMock.mockReset()
     ingestContextMessageMock.mockReset()
+    removeContextsByContextIdMock.mockReset()
     getContextsSnapshotMock.mockReset()
     persistSessionMessagesMock.mockReset()
     forkSessionMock.mockReset()
@@ -167,6 +175,15 @@ describe('chat orchestrator contract', () => {
     }
 
     sessionMessages['session-1'] = [{ role: 'system', content: 'system prompt', createdAt: 1, id: 'system' }]
+  })
+
+  it('removes stale Minecraft context when no service is observed', async () => {
+    getContextsSnapshotMock.mockReturnValue({})
+    requestXiaomiaoAgentReplyMock.mockResolvedValue('hello')
+
+    await useChatOrchestratorStore().ingest('hello', {})
+
+    expect(removeContextsByContextIdMock).toHaveBeenCalledWith('system:minecraft-integration')
   })
 
   it('keeps hook order and composes context prompt after system message', async () => {

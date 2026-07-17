@@ -1,1 +1,1 @@
-export { createMinecraftContext } from './minecraft'
+export { createMinecraftContext, MINECRAFT_CONTEXT_ID } from './minecraft'

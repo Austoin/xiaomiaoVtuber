@@ -91,6 +91,27 @@ export const useChatContextStore = defineStore('chat-context', () => {
     contextHistory.value = []
   }
 
+  function removeContextsByContextId(contextId: string) {
+    let removedCount = 0
+    const nextContexts: Record<string, ContextMessage[]> = {}
+
+    for (const [sourceKey, messages] of Object.entries(activeContexts.value)) {
+      const remainingMessages = messages.filter((message) => {
+        const shouldRemove = message.contextId === contextId
+        if (shouldRemove)
+          removedCount += 1
+        return !shouldRemove
+      })
+
+      if (remainingMessages.length > 0)
+        nextContexts[sourceKey] = remainingMessages
+    }
+
+    if (removedCount > 0)
+      activeContexts.value = nextContexts
+    return removedCount
+  }
+
   function getContextsSnapshot() {
     return cloneSnapshot()
   }
@@ -110,6 +131,7 @@ export const useChatContextStore = defineStore('chat-context', () => {
 
   return {
     ingestContextMessage,
+    removeContextsByContextId,
     resetContexts,
     getContextsSnapshot,
     getContextBucketsSnapshot,
