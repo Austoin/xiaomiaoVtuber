@@ -1,8 +1,7 @@
-from dataclasses import dataclass
-from collections.abc import Awaitable
 import asyncio
+from collections.abc import Awaitable
+from dataclasses import dataclass
 from typing import Any, Callable
-
 
 QQ_AGENT_GROUP = "qq-group"
 QQ_AGENT_PRIVATE = "qq-private"

@@ -17,8 +17,8 @@ from agent_backend import (  # noqa: E402
     XiaomiaoAgentRequest,
     load_xiaomiao_agent_config,
     publish_xiaomiao_agent_event,
-    request_xiaomiao_agent,
     reply_with_xiaomiao_agent,
+    request_xiaomiao_agent,
 )
 
 

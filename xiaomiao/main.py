@@ -747,8 +747,8 @@ async def handler(event: Events.Event, actions: Listener.Actions) -> None:
                     with open("restart.temp", "w", encoding="utf-7") as f:
                         f.write(str(event.group_id))
                         f.close()
-                except:
-                    pass
+                except OSError:
+                    print(traceback.format_exc())
 
                 Listener.restart()
             else:
@@ -1485,8 +1485,8 @@ Made by SR Studio
                     group_id=event.group_id,
                     message=Manager.Message(Segments.Text("老公~你回来啦~(*≧︶≦)")),
                 )
-            except Exception as e:
-                print(traceback.format_exc)
+            except Exception:
+                print(traceback.format_exc())
                 await actions.send(
                     group_id=event.group_id,
                     message=Manager.Message(
@@ -1504,8 +1504,8 @@ Made by SR Studio
                     group_id=event.group_id,
                     message=Manager.Message(Segments.Text("你好呀！妹妹！~o(*≧▽≦)ツ")),
                 )
-            except Exception as e:
-                print(traceback.format_exc)
+            except Exception:
+                print(traceback.format_exc())
                 await actions.send(
                     group_id=event.group_id,
                     message=Manager.Message(
@@ -1525,8 +1525,8 @@ Made by SR Studio
                         Segments.Text("你好呀！血小板！~o(*≧▽≦)ツ")
                     ),
                 )
-            except Exception as e:
-                print(traceback.format_exc)
+            except Exception:
+                print(traceback.format_exc())
                 await actions.send(
                     group_id=event.group_id,
                     message=Manager.Message(
@@ -2308,8 +2308,8 @@ CPU 使用率：{str(system_info["cpu_usage"]) + "%"}
                 if isinstance(event.message[0], Segments.Reply):
                     try:
                         await actions.del_message(event.message[0].id)
-                    except:
-                        pass
+                    except Exception:
+                        print(traceback.format_exc())
             else:
                 await actions.send(
                     group_id=event.group_id,

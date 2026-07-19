@@ -4,7 +4,6 @@ from pathlib import Path
 from typing import Any
 from urllib.parse import urlparse
 
-
 UNIFIED_CONFIG_ENV = "XIAOMIAO_UNIFIED_CONFIG"
 XIAOMIAO_AGENT_SECTION = "xiaomiaoAgent"
 CUSTOM_PROVIDER = "custom"

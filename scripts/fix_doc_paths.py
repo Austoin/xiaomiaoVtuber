@@ -5,7 +5,6 @@
 将 F:\\xiaomiaoVirtual 和 f:\\xiaomiaoVirtual 替换为 <项目根目录>
 """
 
-import os
 import re
 from pathlib import Path
 
@@ -67,7 +66,7 @@ def main():
             print(f"[+] {md_file.relative_to(DOCS_DIR)}: {changes} replacements")
 
     print("\n" + "="*60)
-    print(f"Summary:")
+    print("Summary:")
     print(f"   - Modified files: {total_files}")
     print(f"   - Total replacements: {total_changes}")
     print("="*60)

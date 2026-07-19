@@ -5,7 +5,6 @@ from pathlib import Path
 
 import aiohttp
 from PIL import Image
-
 from prerequisites import update_role_lists
 
 

@@ -10,7 +10,6 @@ from urllib.parse import urlsplit, urlunsplit
 
 from unified_config import merge_unified_config_section
 
-
 DEFAULT_XIAOMIAO_AGENT_BASE_URL = "http://127.0.0.1:8900/v1/chat/completions"
 DEFAULT_XIAOMIAO_AGENT_SESSION_ID = "xiaomiao-unified"
 DEFAULT_XIAOMIAO_AGENT_TIMEOUT_SECONDS = 0.0

@@ -11,7 +11,7 @@ xiaomiao_path = project_root / "xiaomiao"
 if str(xiaomiao_path) not in sys.path:
     sys.path.insert(0, str(xiaomiao_path))
 
-from utils.runtime_helpers import (
+from utils.runtime_helpers import (  # noqa: E402
     SettingsStore,
     deal_image,
     download_and_compress_image,

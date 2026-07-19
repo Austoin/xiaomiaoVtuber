@@ -5,7 +5,6 @@
 
 from dataclasses import dataclass
 
-
 LOW_RISK_TOOL_POLICY = "low_risk"
 TRUSTED_CONFIRMED_TOOL_POLICY = "trusted_confirmed"
 
