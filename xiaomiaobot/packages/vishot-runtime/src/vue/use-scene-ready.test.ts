@@ -44,7 +44,7 @@ describe('useSceneReady', () => {
       },
     })
 
-    const { useSceneReady } = await import('./index')
+    const { useSceneReady } = await import('./use-scene-ready')
 
     const host = document.createElement('div')
     document.body.appendChild(host)

@@ -11,11 +11,10 @@ from nanobot.config.schema import (
     TWITTER_LOW_RISK_TOOLS,
     ComputerUseMCPProfileConfig,
     Config,
-    MinecraftMCPProfileConfig,
     MCPServerConfig,
+    MinecraftMCPProfileConfig,
     TwitterMCPProfileConfig,
 )
-
 from tests.tools.test_tool_registry import _FakeTool, _tool_names
 
 

@@ -2,9 +2,10 @@
 nanobot - A lightweight AI agent framework
 """
 
-from importlib.metadata import PackageNotFoundError, version as _pkg_version
-from pathlib import Path
 import tomllib
+from importlib.metadata import PackageNotFoundError
+from importlib.metadata import version as _pkg_version
+from pathlib import Path
 
 
 def _read_pyproject_version() -> str | None:
@@ -27,6 +28,8 @@ def _resolve_version() -> str:
 __version__ = _resolve_version()
 __logo__ = "🐈"
 
-from nanobot.nanobot import Nanobot, RunResult
+# Import the public API only after package metadata is resolved.  Some source-tree
+# consumers import ``__version__`` while ``nanobot.nanobot`` is still loading.
+from nanobot.nanobot import Nanobot, RunResult  # noqa: E402
 
 __all__ = ["Nanobot", "RunResult"]

@@ -1,3 +1,5 @@
+# ruff: noqa: E402
+
 from __future__ import annotations
 
 import asyncio
@@ -6,6 +8,7 @@ from types import SimpleNamespace
 
 import pytest
 
+# The optional dependency must be checked before importing the Discord channel.
 discord = pytest.importorskip("discord")
 
 from nanobot.bus.events import OutboundMessage

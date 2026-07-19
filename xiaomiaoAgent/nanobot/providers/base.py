@@ -4,8 +4,8 @@ import asyncio
 import json
 import re
 from abc import ABC, abstractmethod
-from contextlib import suppress
 from collections.abc import Awaitable, Callable
+from contextlib import suppress
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
 from email.utils import parsedate_to_datetime

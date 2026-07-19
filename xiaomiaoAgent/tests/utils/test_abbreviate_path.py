@@ -1,6 +1,7 @@
 """Tests for abbreviate_path utility."""
 
 import os
+
 from nanobot.utils.path import abbreviate_path
 
 
@@ -10,7 +11,7 @@ class TestAbbreviatePathShort:
 
     def test_exact_max_len_unchanged(self):
         path = "/a/b/c"  # 7 chars
-        assert abbreviate_path("/a/b/c", max_len=7) == "/a/b/c"
+        assert abbreviate_path(path, max_len=len(path)) == path
 
     def test_basename_only(self):
         assert abbreviate_path("file.py") == "file.py"

@@ -103,8 +103,8 @@ class TestHandleStop:
 
 class TestDispatch:
     def test_exec_tool_not_registered_when_disabled(self):
-        from nanobot.config.schema import ToolsConfig
         from nanobot.agent.tools.shell import ExecToolConfig
+        from nanobot.config.schema import ToolsConfig
 
         loop, _bus = _make_loop(tools_config=ToolsConfig(exec=ExecToolConfig(enable=False)))
 
@@ -286,8 +286,8 @@ class TestSubagentCancellation:
     @pytest.mark.asyncio
     async def test_subagent_exec_tool_not_registered_when_disabled(self, tmp_path):
         from nanobot.agent.subagent import SubagentManager
-        from nanobot.bus.queue import MessageBus
         from nanobot.agent.tools.shell import ExecToolConfig
+        from nanobot.bus.queue import MessageBus
         from nanobot.config.schema import ToolsConfig
 
         bus = MessageBus()

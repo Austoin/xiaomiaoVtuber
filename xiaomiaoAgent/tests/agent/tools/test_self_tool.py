@@ -230,13 +230,13 @@ class TestModifyRestricted:
     @pytest.mark.asyncio
     async def test_modify_string_int_coerced(self):
         tool = _make_tool()
-        result = await tool.execute(action="set", key="max_iterations", value="80")
+        await tool.execute(action="set", key="max_iterations", value="80")
         assert tool._runtime_state.max_iterations == 80
 
     @pytest.mark.asyncio
     async def test_modify_context_window_valid(self):
         tool = _make_tool()
-        result = await tool.execute(action="set", key="context_window_tokens", value=131072)
+        await tool.execute(action="set", key="context_window_tokens", value=131072)
         assert tool._runtime_state.context_window_tokens == 131072
 
     @pytest.mark.asyncio
@@ -336,13 +336,13 @@ class TestModifyFree:
     @pytest.mark.asyncio
     async def test_modify_allows_list(self):
         tool = _make_tool()
-        result = await tool.execute(action="set", key="items", value=[1, 2, 3])
+        await tool.execute(action="set", key="items", value=[1, 2, 3])
         assert tool._runtime_state._runtime_vars["items"] == [1, 2, 3]
 
     @pytest.mark.asyncio
     async def test_modify_allows_dict(self):
         tool = _make_tool()
-        result = await tool.execute(action="set", key="data", value={"a": 1})
+        await tool.execute(action="set", key="data", value={"a": 1})
         assert tool._runtime_state._runtime_vars["data"] == {"a": 1}
 
     @pytest.mark.asyncio

@@ -10,12 +10,21 @@ import pydantic
 from loguru import logger
 from pydantic import BaseModel
 
-from nanobot.config.schema import Config
 from nanobot.config.paths import get_default_config_path
+from nanobot.config.schema import Config
 from nanobot.config.unified_root import (
     UNIFIED_CONFIG_ENV,
     apply_unified_config_overrides,
 )
+
+__all__ = [
+    "UNIFIED_CONFIG_ENV",
+    "get_config_path",
+    "load_config",
+    "resolve_config_env_vars",
+    "save_config",
+    "set_config_path",
+]
 
 # Global variable to store current config path (for multi-instance support)
 _current_config_path: Path | None = None

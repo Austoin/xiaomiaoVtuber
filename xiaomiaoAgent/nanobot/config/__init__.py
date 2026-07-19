@@ -8,12 +8,12 @@ from nanobot.config.paths import (
     get_data_dir,
     get_default_config_path,
     get_legacy_sessions_dir,
-    is_default_workspace,
     get_logs_dir,
     get_media_dir,
     get_runtime_subdir,
     get_tool_results_dir,
     get_workspace_path,
+    is_default_workspace,
 )
 from nanobot.config.schema import Config
 

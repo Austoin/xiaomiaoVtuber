@@ -6,13 +6,13 @@ import threading
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 
 from nanobot.agent.tools.context import RequestContext
+from nanobot.agent.tools.xiaomiao_stage import DEFAULT_BRIDGE_EVENTS_URL as STAGE_EVENTS_URL
 from nanobot.agent.tools.xiaomiaobot_services import (
     DEFAULT_BRIDGE_EVENTS_URL,
     DEFAULT_BRIDGE_STATUS_URL,
     XiaomiaobotActionTool,
     XiaomiaobotStatusTool,
 )
-from nanobot.agent.tools.xiaomiao_stage import DEFAULT_BRIDGE_EVENTS_URL as STAGE_EVENTS_URL
 from nanobot.channels.websocket import DEFAULT_XIAOMIAO_BRIDGE_EVENTS_URL
 
 

@@ -3076,4 +3076,5 @@ def get_system_info():
     }
 
 
-Listener.run()
+if __name__ == "__main__":
+    Listener.run()

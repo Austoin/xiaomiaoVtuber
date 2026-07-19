@@ -16,8 +16,8 @@ _MAX_TOOL_RESULT_CHARS = AgentDefaults().max_tool_result_chars
 async def test_subagent_exec_tool_receives_allowed_env_keys(tmp_path):
     """allowed_env_keys from ExecToolConfig must be forwarded to the subagent's ExecTool."""
     from nanobot.agent.subagent import SubagentManager, SubagentStatus
-    from nanobot.bus.queue import MessageBus
     from nanobot.agent.tools.shell import ExecToolConfig
+    from nanobot.bus.queue import MessageBus
     from nanobot.config.schema import ToolsConfig
 
     bus = MessageBus()
@@ -435,8 +435,11 @@ async def test_drain_pending_timeout(tmp_path):
     assert injection_callback is not None
 
     # Patch the timeout to be very short for testing
-    with patch("nanobot.agent.loop.asyncio.wait_for") as mock_wait:
-        mock_wait.side_effect = asyncio.TimeoutError
+    async def raise_timeout(awaitable, *, timeout):
+        awaitable.close()
+        raise asyncio.TimeoutError
+
+    with patch("nanobot.agent.loop.asyncio.wait_for", side_effect=raise_timeout):
         results = await injection_callback()
         assert results == []
 

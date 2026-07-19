@@ -20,8 +20,8 @@ import time
 import uuid
 from pathlib import Path
 from typing import TYPE_CHECKING, Any, Self
-from urllib.parse import parse_qs, unquote, urlparse
 from urllib import request
+from urllib.parse import parse_qs, unquote, urlparse
 
 from loguru import logger
 from pydantic import Field, field_validator, model_validator

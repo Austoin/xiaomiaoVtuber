@@ -1,5 +1,9 @@
 """CLI commands for xiaomiaoAgent."""
 
+# The CLI must configure Windows stream encoding and the shared Loguru handler
+# before importing console renderers and command modules that may emit output.
+# ruff: noqa: E402
+
 import asyncio
 import os
 import select
@@ -72,6 +76,8 @@ class SafeFileHistory(FileHistory):
 
     def store_string(self, string: str) -> None:
         super().store_string(_sanitize_surrogates(string))
+
+
 from nanobot.cli.stream import StreamRenderer, ThinkingSpinner
 from nanobot.config.paths import get_workspace_path, is_default_workspace
 from nanobot.config.schema import ChannelsConfig, Config
