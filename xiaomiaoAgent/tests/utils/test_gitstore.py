@@ -110,6 +110,21 @@ class TestNestedRepoProtection:
         assert result is False
         assert not (workspace / ".git").is_dir()
 
+    def test_init_allows_workspace_ignored_by_parent_repo(self, tmp_path):
+        """An ignored runtime workspace may maintain its own memory history."""
+        project = tmp_path / "project"
+        project.mkdir()
+        subprocess.run(["git", "init", "-q", str(project)], check=True)
+        (project / ".gitignore").write_text("workspace/\n", encoding="utf-8")
+
+        workspace = project / "workspace"
+        workspace.mkdir()
+
+        g = GitStore(workspace, tracked_files=["MEMORY.md"])
+
+        assert g.init() is True
+        assert (workspace / ".git").is_dir()
+
     def test_init_preserves_existing_gitignore(self, tmp_path):
         """init() should preserve existing .gitignore entries and append new ones."""
         workspace = tmp_path / "workspace"

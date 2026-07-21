@@ -14,9 +14,9 @@ Discord / Telegram / embedded WebUI ────┘       ├── HTTP API :89
                                                 └── Twitter/Minecraft MCP tools
 ```
 
-- `xiaomiaoAgent/`：唯一推理、记忆、会话和工具执行层。
-- `xiaomiao/`：QQ/NapCat 通道适配器，调用 Agent HTTP API。
-- `xiaomiaobot/`：Web、Pocket、Electron 客户端，以及 Minecraft、Twitter 外部服务。
+- [`xiaomiaoAgent/`](xiaomiaoAgent/README.md)：唯一推理、记忆、会话和工具执行层。
+- [`xiaomiao/`](xiaomiao/README.md)：QQ/NapCat 通道适配器，调用 Agent HTTP API。
+- [`xiaomiaobot/`](xiaomiaobot/README.md)：Web、Pocket、Electron 客户端，以及 Minecraft、Twitter 外部服务。
 - `test/xiaomiao/`：QQ 适配器测试。
 - `scripts/`：统一启动与环境检查脚本。
 
@@ -82,4 +82,4 @@ pnpm --filter @proj-airi/stage-pocket typecheck
 pnpm --filter @proj-airi/stage-tamagotchi typecheck
 ```
 
-详细启动与配置见 [快速开始](docs/guide/QUICK_START.md)、[集成指南](docs/guide/INTEGRATIONS.md)和 [Agent API](xiaomiaoAgent/docs/openai-api.md)。
+详细启动与配置见 [文档中心](docs/README.md)、[快速开始](docs/guide/QUICK_START.md)、[集成指南](docs/guide/INTEGRATIONS.md)和 [Agent API](xiaomiaoAgent/docs/openai-api.md)。每个子项目的目录职责、常用命令、缓存边界和扩展建议统一维护在其 README 中，不再另设“项目文件目录说明”。

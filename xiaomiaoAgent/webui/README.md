@@ -37,7 +37,7 @@ pip install -e .
 
 ### 2. Enable the WebSocket channel
 
-In `~/.nanobot/config.json`:
+源码树使用 `../.cache/agent/nanobot/config.json`；独立安装使用 `~/.nanobot/config.json`：
 
 ```json
 { "channels": { "websocket": { "enabled": true } } }
@@ -48,7 +48,7 @@ In `~/.nanobot/config.json`:
 In one terminal:
 
 ```powershell
-python -m xiaomiao_agent gateway --config F:\xiaomiaoVirtual\xiaomiaoAgent\.nanobot\config.json
+python -m xiaomiao_agent gateway --config ..\.cache\agent\nanobot\config.json
 ```
 
 ### 4. Start the WebUI dev server
@@ -57,7 +57,7 @@ In another terminal:
 
 ```powershell
 cd webui
-npm install
+npm ci
 npm run dev -- --host 127.0.0.1 --port 5174
 ```
 

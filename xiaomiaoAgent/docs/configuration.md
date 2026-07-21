@@ -1,6 +1,6 @@
 # 配置
 
-配置文件位置：`~/.nanobot/config.json`
+配置文件位置：源码树默认为 `../.cache/agent/nanobot/config.json`；独立安装默认为 `~/.nanobot/config.json`。也可以通过 `--config` 或 `XIAOMIAO_AGENT_HOME` 显式指定。
 
 > [!NOTE]
 > 如果你的配置文件早于当前 schema，可以运行 `xiaomiao onboard` 刷新默认字段。系统询问是否覆盖配置时选择 `N`，xiaomiaoAgent 会合并缺失默认字段，并保留当前设置。
@@ -491,12 +491,12 @@ QQ 普通用户即使能触发 Agent，也只会走 `low_risk`；ROOT/Super/`age
 
 | 工具 | 来源 | 边界 |
 |---|---|---|
-| `markitdown_convert` | `tool/markitdown` | 只读 Agent 工作区和项目根 `workspace/` 内本地文件；拒绝 URI 和其它本机路径 |
+| `markitdown_convert` | 内置 vendor/MarkItDown | 只读 Agent 工作区和仓库根 `.cache/xiaomiao/qq_workspace/` 内本地文件；拒绝 URI 和其它本机路径 |
 | `scrapling_get` | `tool/Scrapling` | 只允许公网 `http/https` GET；阻断 localhost/private/link-local/云厂商元数据服务；不开放浏览器、会话、cookies、proxy、CDP |
 
-QQ 群文件上传和普通 file 消息段会先由 `xiaomiao/qq_workspace.py` 下载到项目根 `workspace/downloads/qq/`，再把 `workspace_path` 交给 Agent。`markitdown_convert` 会把项目根 `workspace/` 作为额外只读允许目录，因此可以读取这些 QQ 文档，但仍不能读取任意本机路径或远程 URI。
+QQ 群文件上传和普通 file 消息段会先由 `xiaomiao/qq_workspace.py` 下载到仓库根 `.cache/xiaomiao/qq_workspace/downloads/qq/`，再把 `workspace_path` 交给 Agent。`markitdown_convert` 会把 `.cache/xiaomiao/qq_workspace/` 作为额外只读允许目录，因此可以读取这些 QQ 文档，但仍不能读取任意本机路径或远程 URI。部署到其他布局时可用 `XIAOMIAO_RESOURCE_WORKSPACE` 显式指定资源目录。
 
-详细解析见 `../../docs/tool-directory-analysis.md`。
+工具边界和跨项目请求链路见 [`../README.md`](../README.md) 与 [`../../TECHNICAL.md`](../../TECHNICAL.md)。
 
 ## 安全
 

@@ -5,7 +5,7 @@ xiaomiaoAgent 默认绑定 `127.0.0.1:8900`，是 QQ、Stage Web、Pocket 和 El
 ## 启动
 
 ```powershell
-python -m xiaomiao_agent serve --config F:\xiaomiaoVirtual\.cache\agent\nanobot\config.json
+python -m xiaomiao_agent serve --config ..\.cache\agent\nanobot\config.json
 ```
 
 ## 路由

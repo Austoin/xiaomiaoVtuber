@@ -20,7 +20,7 @@ cd webui && npm run build
 cd webui && npm run test
 
 # Gateway
-python -m xiaomiao_agent gateway --config F:\xiaomiaoVirtual\.cache\agent\nanobot\config.json
+python -m xiaomiao_agent gateway --config ..\.cache\agent\nanobot\config.json
 ```
 
 ## High-Level Architecture
@@ -43,7 +43,7 @@ Messages flow through an async `MessageBus` (`nanobot/bus/queue.py`) that decoup
 - **Memory** (`nanobot/agent/memory.py`): Session history persistence with Dream two-phase memory consolidation. Uses atomic writes with fsync for durability.
 - **Session Management** (`nanobot/session/manager.py`): Per-session history, context compaction, and TTL-based auto-compaction.
 - **Config** (`nanobot/config/schema.py`, `loader.py`): Pydantic-based configuration loaded from the source-tree cache path or `~/.nanobot/config.json` when installed elsewhere. Supports camelCase aliases for JSON compatibility.
-- **Runtime cache** (`F:\xiaomiaoVirtual\.cache\agent\nanobot\`): source-tree runtime configuration, sessions, media, history, and workspace. Installed environments fall back to `~/.nanobot/`.
+- **Runtime cache** (`../.cache/agent/nanobot/`): source-tree runtime configuration, sessions, media, history, and workspace. Installed environments fall back to `~/.nanobot/`.
 - **WebUI** (`webui/`): Vite-based React SPA that talks to the gateway over a WebSocket multiplex protocol. The dev server proxies `/api`, `/webui`, `/auth`, and WebSocket traffic to the gateway.
 
 ### Entry Points

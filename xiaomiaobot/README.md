@@ -1,4 +1,8 @@
-# xiaomiaobot 项目文件与目录说明
+# xiaomiaobot
+
+基于 pnpm workspace 的多端交互项目，包含 Web、Pocket、Electron、插件、服务和共享 SDK。
+
+本文同时作为本目录的项目入口和文件维护说明。依赖、缓存、编译结果、模型和二进制资源按生成来源统一说明，业务目录与 workspace 包按职责说明。
 
 ## 1. 项目定位
 
@@ -201,11 +205,11 @@ pnpm lint
 pnpm typecheck
 pnpm build
 
-# 只测试 xiaomiaobot（仓库根 F:\xiaomiaoVirtual 不提供此脚本）
+# 只测试 xiaomiaobot（仓库根目录不提供此脚本）
 pnpm --dir .\xiaomiaobot test:run
 ```
 
-`test:run` 的脚本定义在 `xiaomiaobot/package.json`，因此直接在 `F:\xiaomiaoVirtual` 执行会提示找不到脚本；必须切换到 `xiaomiaobot` 或使用 `pnpm --dir`。
+`test:run` 的脚本定义在 `xiaomiaobot/package.json`，因此直接在仓库根目录执行会提示找不到脚本；必须切换到 `xiaomiaobot` 或使用 `pnpm --dir`。
 
 ESLint 缓存统一写入仓库根目录的 `../.cache/eslint/xiaomiaobot/.eslintcache`。普通检查、自动修复和提交钩子共用同一路径，不应再在 `xiaomiaobot/` 内生成 `.eslintcache`。
 

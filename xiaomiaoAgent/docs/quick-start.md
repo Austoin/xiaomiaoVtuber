@@ -53,7 +53,7 @@ xiaomiao channels login whatsapp
 ## 快速开始
 
 > [!TIP]
-> 请在 `~/.nanobot/config.json` 中设置 API Key。
+> 在本仓库源码树中运行时，请在仓库根目录 `.cache/agent/nanobot/config.json` 中设置 API Key；作为独立软件包安装时使用 `~/.nanobot/config.json`。
 > 获取 API Key：[OpenRouter](https://openrouter.ai/keys)（全球可用）。
 >
 > 其他 LLM 提供方请参考 [`configuration.md`](./configuration.md)。
@@ -72,7 +72,10 @@ xiaomiao onboard
 xiaomiao onboard --wizard
 ```
 
-**2. 配置**（`~/.nanobot/config.json`）
+**2. 配置**
+
+- 本仓库源码运行：`../.cache/agent/nanobot/config.json`
+- 独立安装：`~/.nanobot/config.json`
 
 在配置文件中配置下面 **两部分** 即可，其他选项都有默认值。
 

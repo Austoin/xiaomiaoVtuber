@@ -199,7 +199,7 @@ pairs = [(x, y) for x in [1,2,3] for y in [3,4,5]]
 - 自动检测群文件上传
 - 调用 markitdown_convert 工具转换
 - 智能总结文档内容
-- 保存到 workspace/downloads/qq/
+- 保存到仓库根 `.cache/xiaomiao/qq_workspace/downloads/qq/`
 
 ---
 

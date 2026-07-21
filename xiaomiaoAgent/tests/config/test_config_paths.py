@@ -29,7 +29,7 @@ def test_repo_default_paths_use_project_cache() -> None:
     assert get_tool_results_dir().as_posix().endswith("/.cache/agent/nanobot/tool-results")
 
 
-def test_pytest_cache_stays_in_project_and_agent_temp_stays_outside_git() -> None:
+def test_pytest_caches_stay_in_project_cache() -> None:
     project_root = Path(__file__).resolve().parents[3]
     cache_root = (project_root / ".cache").resolve()
 
@@ -46,18 +46,15 @@ def test_pytest_cache_stays_in_project_and_agent_temp_stays_outside_git() -> Non
         (project_root, root_options["cache_dir"]),
         (project_root, root_options["addopts"].removeprefix("--basetemp=")),
         (project_root / "xiaomiaoAgent", agent_options["cache_dir"]),
+        (
+            project_root / "xiaomiaoAgent",
+            agent_options["addopts"].removeprefix("--basetemp="),
+        ),
     )
 
     for config_dir, configured_path in project_cache_paths:
         resolved_path = (config_dir / configured_path).resolve()
         assert resolved_path.is_relative_to(cache_root)
-
-    agent_temp = (
-        project_root
-        / "xiaomiaoAgent"
-        / agent_options["addopts"].removeprefix("--basetemp=")
-    ).resolve()
-    assert not agent_temp.is_relative_to(project_root)
 
 
 def test_runtime_dirs_follow_config_path(monkeypatch, tmp_path: Path) -> None:

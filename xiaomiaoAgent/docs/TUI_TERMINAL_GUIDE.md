@@ -1,6 +1,6 @@
 # xiaomiaoAgent TUI 终端界面使用指南
 
-> **入口**: `start-tui.cmd`  
+> **入口**: 仓库根目录的 `scripts\start-tui.cmd`，或 `menu.cmd tui`
 > **类型**: 命令行交互界面  
 > **特点**: 无需浏览器，纯终端操作
 
@@ -8,16 +8,16 @@
 
 ## 🚀 快速启动
 
-### 方法一：双击启动脚本（推荐）
+### 方法一：双击仓库级启动脚本（推荐）
 ```
-双击运行: start-tui.cmd
+从仓库根目录双击运行: scripts\start-tui.cmd
 ```
 
 ### 方法二：命令行启动
 ```powershell
-cd f:\xiaomiaoVirtual\xiaomiaoAgent
+cd <仓库根目录>\xiaomiaoAgent
 conda activate xiaomiao
-python -m xiaomiao_agent agent --config .nanobot\config.json
+python -m xiaomiao_agent agent --config ..\.cache\agent\nanobot\config.json
 ```
 
 ---
@@ -72,27 +72,27 @@ python -m xiaomiao_agent agent [OPTIONS]
 
 #### 1. 静默模式（无日志）
 ```bash
-python -m xiaomiao_agent agent --config .nanobot\config.json --no-logs
+python -m xiaomiao_agent agent --config ..\.cache\agent\nanobot\config.json --no-logs
 ```
 
 #### 2. 调试模式（显示日志）
 ```bash
-python -m xiaomiao_agent agent --config .nanobot\config.json --logs
+python -m xiaomiao_agent agent --config ..\.cache\agent\nanobot\config.json --logs
 ```
 
 #### 3. 纯文本模式（不渲染 Markdown）
 ```bash
-python -m xiaomiao_agent agent --config .nanobot\config.json --no-markdown
+python -m xiaomiao_agent agent --config ..\.cache\agent\nanobot\config.json --no-markdown
 ```
 
 #### 4. 一次性消息（非交互）
 ```bash
-python -m xiaomiao_agent agent --config .nanobot\config.json -m "你好"
+python -m xiaomiao_agent agent --config ..\.cache\agent\nanobot\config.json -m "你好"
 ```
 
 #### 5. 指定会话 ID
 ```bash
-python -m xiaomiao_agent agent --config .nanobot\config.json -s my-session
+python -m xiaomiao_agent agent --config ..\.cache\agent\nanobot\config.json -s my-session
 ```
 
 ---
@@ -149,25 +149,24 @@ AI: 快速排序的核心思想是分治法...
 | 特性 | TUI (终端) | WebUI (网页) | QQ Bot |
 |------|-----------|-------------|---------|
 | **界面** | 命令行 | 图形界面 | QQ 消息 |
-| **启动** | 最快 | 需要浏览器 | 自动运行 |
+| **启动** | 直接打开终端 | 需要启动 Gateway 和浏览器 | 依赖 QQ/NapCat |
 | **Markdown** | 渲染 | 完整渲染 | 纯文本 |
 | **工具可视化** | 文本显示 | 图形展示 | 不显示 |
 | **会话管理** | 单会话 | 多会话 | 统一会话 |
 | **适合场景** | 开发调试、服务器 | 日常使用、演示 | 多人协作 |
 | **资源占用** | 最低 | 中等 | 低 |
-| **代理问题** | 无影响 | 可能受影响 | 无影响 |
+| **网络依赖** | 取决于模型 Provider | Gateway、WebSocket 和模型 Provider | NapCat 与 Agent API |
 
 ---
 
 ## 💡 优势和适用场景
 
 ### TUI 的优势
-1. ✅ **启动最快**: 1-2 秒即可开始对话
-2. ✅ **资源占用低**: 不需要运行浏览器和 WebUI 服务
-3. ✅ **无代理问题**: 不受系统代理影响
-4. ✅ **服务器友好**: SSH 远程也能用
-5. ✅ **纯键盘操作**: 适合键盘党
-6. ✅ **简洁高效**: 无干扰，专注对话
+1. ✅ **启动路径短**: 不需要单独启动 WebUI
+2. ✅ **资源占用低**: 不需要运行浏览器和 WebUI 开发服务器
+3. ✅ **服务器友好**: SSH 远程也能用
+4. ✅ **纯键盘操作**: 适合键盘党
+5. ✅ **输出直接**: 适合开发调试和回归验证
 
 ### 适用场景
 - 🔧 **快速测试**: 测试 Agent 配置和功能
@@ -216,14 +215,14 @@ python -m xiaomiao_agent agent -c config-prod.json
 **解决**: 
 ```bash
 conda activate xiaomiao
-python -m xiaomiao_agent agent --config .nanobot\config.json
+python -m xiaomiao_agent agent --config ..\.cache\agent\nanobot\config.json
 ```
 
 ### Q2: 报错 "ModuleNotFoundError"
 **原因**: xiaomiaoAgent 未安装  
 **解决**:
 ```bash
-cd f:\xiaomiaoVirtual\xiaomiaoAgent
+cd <仓库根目录>\xiaomiaoAgent
 conda activate xiaomiao
 pip install -e .
 ```
@@ -251,14 +250,14 @@ pip install rich markdown-it-py
 
 ---
 
-## 📊 性能对比
+## 📊 运行特征
 
-| 指标 | TUI | WebUI |
+| 项目 | TUI | WebUI |
 |------|-----|-------|
-| **启动时间** | ~1s | ~3s |
-| **内存占用** | ~50MB | ~200MB+ |
-| **CPU 占用** | 最低 | 中等 |
-| **网络需求** | 无 | WebSocket |
+| **额外界面进程** | 无 | 浏览器或 WebView |
+| **本地服务** | 直接运行 Agent | 需要 Gateway；开发模式还需要 Vite |
+| **模型网络** | 取决于 Provider | 取决于 Provider |
+| **适合验证** | CLI、配置、工具和单会话 | WebSocket、界面、多会话和上传 |
 
 ---
 
@@ -267,7 +266,7 @@ pip install rich markdown-it-py
 ### 场景 1: 快速测试 Agent
 ```bash
 # 启动 TUI
-start-tui.cmd
+scripts\start-tui.cmd
 
 # 输入测试消息
 > 测试工具调用：搜索最新新闻
@@ -279,10 +278,10 @@ start-tui.cmd
 ### 场景 2: 开发时调试
 ```bash
 # 修改了 Agent 配置
-vim .nanobot/config.json
+vim ..\.cache\agent\nanobot\config.json
 
 # 立即测试
-start-tui.cmd
+scripts\start-tui.cmd
 
 # 输入测试用例
 > 测试新配置...
@@ -317,7 +316,7 @@ Windows Terminal 和 PowerShell 支持：
 ### 技巧 3: 保存对话
 对话自动保存到会话历史：
 ```
-~/.nanobot/workspace/sessions/cli:direct/
+<仓库根目录>\.cache\agent\nanobot\workspace\sessions\cli:direct\
 ```
 
 ### 技巧 4: 多开终端
@@ -351,6 +350,6 @@ python -m xiaomiao_agent agent -s session-b
 
 ---
 
-**快速启动**: 双击 `start-tui.cmd`  
+**快速启动**: 双击 `scripts\start-tui.cmd` 或执行 `menu.cmd tui`
 **退出方式**: 输入 `/exit` 或按 `Ctrl+C`  
-**配置文件**: `.nanobot/config.json`
+**配置文件**: `<仓库根目录>\.cache\agent\nanobot\config.json`

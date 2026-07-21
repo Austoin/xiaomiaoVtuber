@@ -19,10 +19,11 @@
 
 相关项目文档：
 
-- `../../docs/STARTUP.md`
-- `../../docs/tool-directory-analysis.md`
-- `../../docs/plans/2026-06-06-qq-agent-xiaomiaobot-capability-integration.md`
-- `../../docs/plans/2026-06-06-project-deep-analysis-and-qq-agent-gap-audit.md`
+- [`../README.md`](../README.md)：Agent 项目入口、目录职责与维护边界。
+- [`../../docs/guide/QUICK_START.md`](../../docs/guide/QUICK_START.md)：统一启动顺序与常用入口。
+- [`../../docs/guide/CONFIGURATION.md`](../../docs/guide/CONFIGURATION.md)：仓库级配置与运行目录。
+- [`../../docs/guide/INTEGRATIONS.md`](../../docs/guide/INTEGRATIONS.md)：QQ、WebUI、Minecraft、Twitter 等集成说明。
+- [`../../TECHNICAL.md`](../../TECHNICAL.md)：单一 Agent 架构、请求链路和失败语义。
 
 ## 核心文档
 

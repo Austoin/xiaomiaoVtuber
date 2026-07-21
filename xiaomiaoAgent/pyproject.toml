@@ -175,7 +175,7 @@ ignore = ["E501"]
 asyncio_mode = "auto"
 testpaths = ["tests"]
 cache_dir = "../.cache/pytest/agent/cache"
-addopts = "--basetemp=../../.cache/xiaomiao-agent-pytest"
+addopts = "--basetemp=../.cache/xiaomiao-agent-pytest"
 tmp_path_retention_policy = "none"
 
 [tool.coverage.run]

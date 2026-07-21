@@ -22,10 +22,15 @@ def _default_resource_workspace() -> Path | None:
     if configured:
         return Path(configured).expanduser().resolve()
 
-    # Repository layout: xiaomiaoAgent/nanobot/agent/tools/markitdown_tool.py
-    # -> project root is parents[4].
+    # Source-tree layout: xiaomiaoAgent/nanobot/agent/tools/markitdown_tool.py
+    # -> repository root is parents[4]. QQ resources share the repository cache.
     try:
-        root_workspace = Path(__file__).resolve().parents[4] / "workspace"
+        root_workspace = (
+            Path(__file__).resolve().parents[4]
+            / ".cache"
+            / "xiaomiao"
+            / "qq_workspace"
+        )
     except IndexError:
         return None
     return root_workspace.resolve() if root_workspace.exists() else None

@@ -3,7 +3,7 @@
 ## 一键启动
 
 ```powershell
-cd F:\xiaomiaoVirtual
+cd <仓库根目录>
 pnpm run start:all
 ```
 

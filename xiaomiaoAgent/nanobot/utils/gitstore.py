@@ -179,8 +179,8 @@ class GitStore:
     def _is_inside_git_repo(self) -> bool:
         """Check if self._workspace is already inside a git repository.
 
-        Walks up from self._workspace to the filesystem root, returning True
-        if any parent directory contains a .git entry.
+        Ignored runtime directories may safely keep their own repository. Other
+        nested repositories are refused to avoid modifying a parent checkout.
 
         Git worktrees and submodules can use a ``.git`` file instead of a
         directory, so we must treat either form as "already inside a repo".
@@ -188,9 +188,23 @@ class GitStore:
         current = self._workspace.resolve()
         while current != current.parent:
             if (current / ".git").exists():
-                return True
+                return not self._is_ignored_by_repo(current)
             current = current.parent
         return False
+
+    def _is_ignored_by_repo(self, repo_root: Path) -> bool:
+        """Return whether the outer repository ignores this workspace."""
+        try:
+            from dulwich.ignore import IgnoreFilterManager
+            from dulwich.repo import Repo
+
+            relative_path = self._workspace.resolve().relative_to(repo_root).as_posix()
+            directory_path = relative_path.rstrip("/") + "/"
+            with Repo(str(repo_root)) as repo:
+                ignores = IgnoreFilterManager.from_repo(repo)
+                return ignores.is_ignored(directory_path) is True
+        except Exception:
+            return False
 
     def _build_gitignore(self) -> str:
         """Generate .gitignore content from tracked files."""

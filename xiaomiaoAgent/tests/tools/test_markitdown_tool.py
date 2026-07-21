@@ -5,7 +5,20 @@ import types
 
 import pytest
 
+from nanobot.agent.tools import markitdown_tool
 from nanobot.agent.tools.markitdown_tool import MarkItDownConvertTool
+
+
+def test_default_resource_workspace_uses_repository_qq_cache(tmp_path, monkeypatch):
+    module_path = tmp_path / "xiaomiaoAgent" / "nanobot" / "agent" / "tools" / "markitdown_tool.py"
+    resource_workspace = tmp_path / ".cache" / "xiaomiao" / "qq_workspace"
+    module_path.parent.mkdir(parents=True)
+    resource_workspace.mkdir(parents=True)
+
+    monkeypatch.delenv("XIAOMIAO_RESOURCE_WORKSPACE", raising=False)
+    monkeypatch.setattr(markitdown_tool, "__file__", str(module_path))
+
+    assert markitdown_tool._default_resource_workspace() == resource_workspace.resolve()
 
 
 @pytest.mark.asyncio
