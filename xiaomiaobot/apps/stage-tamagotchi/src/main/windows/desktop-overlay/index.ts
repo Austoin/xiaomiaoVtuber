@@ -23,6 +23,8 @@ import type { I18n } from '../../libs/i18n'
 import type { ServerChannel } from '../../services/airi/channel-server'
 import type { McpStdioManager } from '../../services/airi/mcp-servers'
 
+import process from 'node:process'
+
 import { join, resolve } from 'node:path'
 
 import { BrowserWindow, screen } from 'electron'

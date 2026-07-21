@@ -4,9 +4,9 @@ import { useElectronEventaContext, useElectronMouseAroundWindowBorder, useElectr
 import { refDebounced, useBroadcastChannel } from '@vueuse/core'
 import { computed, onMounted, ref, watch } from 'vue'
 
+import { captionGetIsFollowingWindow, captionIsFollowingWindowChanged } from '../../shared/eventa'
 import { syncCaptionAttachedState } from './caption-follow-state'
 import { CAPTION_DETACHED_DRAG_HANDLE_CLASSES, resolveCaptionOverlayOpacityClass } from './caption-presentation'
-import { captionGetIsFollowingWindow, captionIsFollowingWindowChanged } from '../../shared/eventa'
 
 const attached = ref(false)
 const speakerText = ref('')

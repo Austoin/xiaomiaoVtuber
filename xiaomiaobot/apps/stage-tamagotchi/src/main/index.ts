@@ -7,7 +7,6 @@ import { fileURLToPath } from 'node:url'
 
 import messages from '@proj-airi/i18n/locales'
 
-import { electronApp, optimizer } from './libs/electron/toolkit-utils'
 import { Format, LogLevel, setGlobalFormat, setGlobalHookPostLog, setGlobalLogLevel, useLogg } from '@guiiai/logg'
 import { createContext } from '@moeru/eventa/adapters/electron/main'
 import { initScreenCaptureForMain } from '@proj-airi/electron-screen-capture/main'
@@ -24,6 +23,7 @@ import { createArtistryConfig } from './configs/artistry'
 import { createGlobalAppConfig } from './configs/global'
 import { emitAppBeforeQuit, emitAppReady, emitAppWindowAllClosed } from './libs/bootkit/lifecycle'
 import { setElectronMainDirname } from './libs/electron/location'
+import { electronApp, optimizer } from './libs/electron/toolkit-utils'
 import { createI18n } from './libs/i18n'
 import { createWindowAuthManagerService } from './services/airi/auth'
 import { setupServerChannel } from './services/airi/channel-server'
@@ -96,7 +96,6 @@ let fileLogger: FileLoggerHandle = nullFileLoggerHandle
 let skipFileLogging = false
 
 app.whenReady().then(async () => {
-
   // Initialize screen capture (requires app.commandLine to be accessible)
   initScreenCaptureForMain()
 

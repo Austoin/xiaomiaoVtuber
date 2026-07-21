@@ -29,9 +29,8 @@ export function electronESMCompat(): Plugin {
 
         // Only process JS chunk files (not assets)
         if (chunk.type === 'chunk' && fileName.endsWith('.js')) {
-
           // Match: import { ...exports } from 'electron' or "electron"
-          const electronImportRegex = /import\s+\{([^}]+)\}\s+from\s+['"]electron['"]/g
+          const electronImportRegex = /import\s+\{[^}]+\}\s+from\s+['"]electron['"]/
 
           if (electronImportRegex.test(chunk.code)) {
             // Collect all electron imports
@@ -45,7 +44,7 @@ export function electronESMCompat(): Plugin {
                 electronImports.push(transformedExports)
                 // Remove the import statement
                 return ''
-              }
+              },
             )
 
             // Add createRequire-based loading at the top

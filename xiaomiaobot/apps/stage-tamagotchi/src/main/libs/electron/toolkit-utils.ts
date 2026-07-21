@@ -10,18 +10,22 @@
  * https://github.com/alex8088/electron-toolkit/blob/main/packages/utils/src/index.ts
  */
 
-import { app, session, type BrowserWindow } from 'electron'
+import type { BrowserWindow } from 'electron'
+
+import process from 'node:process'
+
+import { app, session } from 'electron'
 
 export const is = {
   get dev() {
     return !app.isPackaged
-  }
+  },
 }
 
 export const platform = {
   isWindows: process.platform === 'win32',
   isMacOS: process.platform === 'darwin',
-  isLinux: process.platform === 'linux'
+  isLinux: process.platform === 'linux',
 }
 
 export const electronApp = {
@@ -31,7 +35,8 @@ export const electronApp = {
     }
   },
   setAutoLaunch(auto: boolean): boolean {
-    if (platform.isLinux) return false
+    if (platform.isLinux)
+      return false
 
     const isOpenAtLogin = (): boolean => {
       return app.getLoginItemSettings().openAtLogin
@@ -40,13 +45,14 @@ export const electronApp = {
     if (isOpenAtLogin() !== auto) {
       app.setLoginItemSettings({ openAtLogin: auto })
       return isOpenAtLogin() === auto
-    } else {
+    }
+    else {
       return true
     }
   },
   skipProxy(): Promise<void> {
     return session.defaultSession.setProxy({ mode: 'direct' })
-  }
+  },
 }
 
 interface ShortcutOptions {
@@ -56,7 +62,8 @@ interface ShortcutOptions {
 
 export const optimizer = {
   watchWindowShortcuts(window: BrowserWindow, shortcutOptions?: ShortcutOptions): void {
-    if (!window) return
+    if (!window)
+      return
 
     const { webContents } = window
     const { escToCloseWindow = false, zoom = false } = shortcutOptions || {}
@@ -68,8 +75,8 @@ export const optimizer = {
             event.preventDefault()
           }
           if (
-            input.code === 'KeyI' &&
-            ((input.alt && input.meta) || (input.control && input.shift))
+            input.code === 'KeyI'
+            && ((input.alt && input.meta) || (input.control && input.shift))
           ) {
             event.preventDefault()
           }
@@ -81,16 +88,16 @@ export const optimizer = {
 
         if (!zoom) {
           if (
-            input.code === 'Equal' &&
-            (input.control || input.meta) &&
-            webContents.getZoomFactor() < 2.0
+            input.code === 'Equal'
+            && (input.control || input.meta)
+            && webContents.getZoomFactor() < 2.0
           ) {
             event.preventDefault()
           }
           if (
-            input.code === 'Minus' &&
-            (input.control || input.meta) &&
-            webContents.getZoomFactor() > 0.5
+            input.code === 'Minus'
+            && (input.control || input.meta)
+            && webContents.getZoomFactor() > 0.5
           ) {
             event.preventDefault()
           }
@@ -104,5 +111,5 @@ export const optimizer = {
 
   registerFramelessWindowIpc(): void {
     // Not implemented - not used in this project
-  }
+  },
 }

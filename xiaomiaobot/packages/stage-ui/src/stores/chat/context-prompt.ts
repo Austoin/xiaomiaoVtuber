@@ -27,7 +27,7 @@ export type ContextSnapshot = Record<string, ContextMessage[]>
  *   them as data to be quoted. A flat bullet list looks like ordinary
  *   narrative, which suppresses that mirroring tendency.
  * - See the context prompt design note for the rationale.
-*/
+ */
 export function formatContextPromptText(contextsSnapshot: ContextSnapshot) {
   const entries = Object.entries(contextsSnapshot)
   if (entries.length === 0)

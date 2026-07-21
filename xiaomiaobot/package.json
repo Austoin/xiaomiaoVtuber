@@ -32,8 +32,8 @@
     "build:engines": "turbo run build -F=\"./engines/*\"",
     "test": "vitest --coverage",
     "test:run": "vitest run",
-    "lint": "moeru-lint .",
-    "lint:fix": "moeru-lint --fix .",
+    "lint": "oxlint --ignore-pattern '**/.wxt/**' --ignore-pattern '**/tasks/assets/wasm/**' . && eslint --cache --cache-location ../.cache/eslint/xiaomiaobot/.eslintcache .",
+    "lint:fix": "oxlint --fix --ignore-pattern '**/.wxt/**' --ignore-pattern '**/tasks/assets/wasm/**' . && eslint --fix --cache --cache-location ../.cache/eslint/xiaomiaobot/.eslintcache .",
     "lint:swift": "pnpm -rF @proj-airi/stage-pocket run lint:swift",
     "capture:tamagotchi": "pnpm -F @proj-airi/vishot-runner-electron capture -- ./packages/scenarios-stage-tamagotchi-electron/src/scenarios/demo-controls-settings-chat-websocket.ts --output-dir ./packages/scenarios-stage-tamagotchi-browser/artifacts/raw",
     "to-avif": "tsx docs/scripts/avif.ts",
@@ -103,6 +103,9 @@
     "pre-commit": "pnpm nano-staged"
   },
   "nano-staged": {
-    "*": "moeru-lint --fix"
+    "*": [
+      "oxlint --fix --ignore-pattern '**/.wxt/**' --ignore-pattern '**/tasks/assets/wasm/**'",
+      "eslint --fix --cache --cache-location ../.cache/eslint/xiaomiaobot/.eslintcache"
+    ]
   }
 }

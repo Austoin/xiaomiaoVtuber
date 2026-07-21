@@ -2,7 +2,7 @@ import { beforeAll, describe, expect, it, vi } from 'vitest'
 
 vi.mock('electron', () => ({
   app: { quit: vi.fn() },
-  Menu: { buildFromTemplate: vi.fn((template) => template) },
+  Menu: { buildFromTemplate: vi.fn(template => template) },
   Tray: vi.fn(),
   nativeImage: { createFromPath: vi.fn(() => ({ resize: vi.fn(() => ({ setTemplateImage: vi.fn() })) })) },
   screen: { getPrimaryDisplay: vi.fn(() => ({ workArea: { x: 0, y: 0, width: 1920, height: 1080 } })) },
@@ -81,7 +81,7 @@ describe('buildTrayMenuTemplate', () => {
     const labels = template.flatMap((item) => {
       const own = 'label' in item && typeof item.label === 'string' ? [item.label] : []
       const nested = Array.isArray(item.submenu)
-        ? item.submenu.flatMap((entry) => 'label' in entry && typeof entry.label === 'string' ? [entry.label] : [])
+        ? item.submenu.flatMap(entry => 'label' in entry && typeof entry.label === 'string' ? [entry.label] : [])
         : []
       return [...own, ...nested]
     })
@@ -110,8 +110,7 @@ describe('buildTrayMenuTemplate', () => {
     const captionOverlay = template.find(item => 'label' in item && item.label === 'tamagotchi.electron.tray.menu.labels.label.caption_overlay')
     expect(captionOverlay && Array.isArray(captionOverlay.submenu)).toBe(true)
 
-    const resetItem = (captionOverlay as { submenu: Array<{ label?: string, click?: () => Promise<void> }> }).submenu
-      .find(item => item.label === 'tamagotchi.electron.tray.menu.labels.label.reset_position')
+    const resetItem = (captionOverlay as { submenu: Array<{ label?: string, click?: () => Promise<void> }> }).submenu.find(item => item.label === 'tamagotchi.electron.tray.menu.labels.label.reset_position')
 
     expect(resetItem?.click).toBeTypeOf('function')
     await resetItem?.click?.()

@@ -1,8 +1,10 @@
 {
   "$schema": "https://turborepo.com/schema.json",
+  "cacheDir": "../.cache/turbo/xiaomiaobot",
   "tasks": {
     "build": {
-      "outputs": ["dist/**"]
+      "dependsOn": ["^build"],
+      "outputs": ["dist/**", "out/**"]
     },
     "@proj-airi/electron-vueuse#build": {
       "dependsOn": ["@proj-airi/electron-eventa#build"],

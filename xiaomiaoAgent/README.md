@@ -1,5 +1,3 @@
-![cover-v5-optimized](./images/GitHub_README.png)
-
 <div align="center">
   <p>
     <a href="https://pypi.org/project/nanobot-ai/"><img src="https://img.shields.io/pypi/v/nanobot-ai" alt="PyPI"></a>
@@ -160,7 +158,7 @@ pip install nanobot-ai
 xiaomiao onboard
 ```
 
-**2. Configure** (`~/.nanobot/config.json`)
+**2. Configure** (`F:\xiaomiaoVirtual\.cache\agent\nanobot\config.json` in this source tree; installed copies use `~/.nanobot/config.json`)
 
 Configure these **two parts** in your config (other options have defaults). Add or merge the following blocks into your existing config instead of replacing the whole file.
 
@@ -204,12 +202,10 @@ xiaomiao agent
 
 > [!NOTE]
 > The WebUI development workflow currently requires a source checkout and is not yet shipped together with the official packaged release. See [WebUI Document](./webui/README.md) for full WebUI development docs and build steps.
+>
+> The repository currently does not distribute a standalone WebUI screenshot directory.
 
-<p align="center">
-  <img src="images/nanobot_webui.png" alt="nanobot webui preview" width="900">
-</p>
-
-**1. Enable the WebSocket channel in `~/.nanobot/config.json`**
+**1. Enable the WebSocket channel in `F:\xiaomiaoVirtual\.cache\agent\nanobot\config.json`**
 
 ```json
 { "channels": { "websocket": { "enabled": true } } }
@@ -218,7 +214,7 @@ xiaomiao agent
 **2. Start the gateway**
 
 ```powershell
-python -m xiaomiao_agent gateway --config F:\xiaomiaoVirtual\xiaomiaoAgent\.nanobot\config.json
+python -m xiaomiao_agent gateway --config F:\xiaomiaoVirtual\.cache\agent\nanobot\config.json
 ```
 
 **3. Start the webui dev server**

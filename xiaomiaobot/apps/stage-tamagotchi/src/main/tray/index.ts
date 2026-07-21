@@ -10,7 +10,6 @@ import type { WidgetsWindowManager } from '../windows/widgets'
 
 import { env } from 'node:process'
 
-import { is } from '../libs/electron/toolkit-utils'
 import { isRendererUnavailable } from '@proj-airi/electron-vueuse/main'
 import { effect } from 'alien-signals'
 import { app, Menu, nativeImage, screen, Tray } from 'electron'
@@ -21,6 +20,7 @@ import icon from '../../../resources/icon.png?asset'
 import macOSTrayIcon from '../../../resources/tray-icon-macos.png?asset'
 
 import { onAppBeforeQuit } from '../libs/bootkit/lifecycle'
+import { is } from '../libs/electron/toolkit-utils'
 import { setupInlayWindow } from '../windows/inlay'
 import { toggleWindowShow } from '../windows/shared/window'
 

@@ -162,6 +162,7 @@ include = [
 [tool.ruff]
 line-length = 100
 target-version = "py311"
+cache-dir = "../.cache/ruff/xiaomiaoAgent"
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "N", "W"]

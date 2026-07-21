@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { OnboardingDialog, OnboardingStepAnalyticsNotice, ToasterRoot } from '@proj-airi/stage-ui/components'
 import type { XiaomiaoBridgeConfigUpdate } from '@proj-airi/stage-layouts/xiaomiao-bridge'
+
 import { requestXiaomiaoBridgeConfigStatus, saveXiaomiaoBridgeConfig } from '@proj-airi/stage-layouts/xiaomiao-bridge'
+import { OnboardingDialog, OnboardingStepAnalyticsNotice, ToasterRoot } from '@proj-airi/stage-ui/components'
 import { useInferencePreload } from '@proj-airi/stage-ui/composables'
 import { isPosthogAvailableInBuild, useSharedAnalyticsStore } from '@proj-airi/stage-ui/stores/analytics'
 import { useCharacterOrchestratorStore } from '@proj-airi/stage-ui/stores/character'

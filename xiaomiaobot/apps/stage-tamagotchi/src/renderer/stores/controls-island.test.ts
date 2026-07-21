@@ -1,7 +1,6 @@
-import { ref } from 'vue'
-
-import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { createPinia, setActivePinia } from 'pinia'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
+import { ref } from 'vue'
 
 const storageState = new Map<string, ReturnType<typeof ref<boolean>>>()
 

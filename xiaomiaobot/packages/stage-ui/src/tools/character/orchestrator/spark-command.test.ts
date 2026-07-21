@@ -59,9 +59,11 @@ describe('tools/character/orchestrator/spark-command', () => {
       testField: z.union([z.string(), z.null()]),
     }))
     const normalized = normalizeNullableAnyOf(schemaTestUnion as JsonSchema)
+    const testField = normalized.properties?.testField
 
-    expect((normalized.properties?.testField as JsonSchema).type).toEqual(['string', 'null'])
-    expect((normalized.properties?.testField as JsonSchema).anyOf).toBeUndefined()
+    expect(testField).toBeDefined()
+    expect((testField as JsonSchema).type).toEqual(['string', 'null'])
+    expect((testField as JsonSchema).anyOf).toBeUndefined()
   })
 
   it('deduplicates primitive types after normalization', async () => {
@@ -69,9 +71,11 @@ describe('tools/character/orchestrator/spark-command', () => {
       testField: z.union([z.literal('force'), z.literal('soft'), z.literal(false)]),
     }))
     const normalized = normalizeNullableAnyOf(schemaTestUnion as JsonSchema)
+    const testField = normalized.properties?.testField
 
-    expect((normalized.properties?.testField as JsonSchema).type).toEqual(['string', 'boolean'])
-    expect((normalized.properties?.testField as JsonSchema).anyOf).toBeUndefined()
+    expect(testField).toBeDefined()
+    expect((testField as JsonSchema).type).toEqual(['string', 'boolean'])
+    expect((testField as JsonSchema).anyOf).toBeUndefined()
   })
 
   it('should render sparkNotifyCommandItemSchema into correct schema', async () => {

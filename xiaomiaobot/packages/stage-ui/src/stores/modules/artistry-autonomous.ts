@@ -12,6 +12,7 @@ import { useBackgroundStore } from '../background'
 import { useChatSessionStore } from '../chat/session-store'
 import { useAiriCardStore } from './airi-card'
 import { useArtistryStore } from './artistry'
+import { extractJsonContent } from './artistry-json'
 
 const artistLog = import.meta.env.DEV ? console.info.bind(console, '[AutonomousArtist]') : () => {}
 
@@ -151,10 +152,8 @@ LATEST ${target === 'assistant' ? 'COMPANION RESPONSE' : 'USER INPUT'}:
 
       // 3. Parse and analyze
       // Handle potential markdown fences: ```json ... ```
-      let jsonContent = rawContent
-      const fenceMatch = rawContent.match(/```(?:json)?\s*([\s\S]*?)```/)
-      if (fenceMatch) {
-        jsonContent = fenceMatch[1].trim()
+      const jsonContent = extractJsonContent(rawContent)
+      if (jsonContent !== rawContent) {
         artistLog('Extracted JSON from fences:', jsonContent)
       }
 

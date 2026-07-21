@@ -204,6 +204,12 @@ def test_exec_extract_absolute_paths_keeps_full_windows_path() -> None:
     assert paths == [r"C:\user\workspace\txt"]
 
 
+def test_exec_extract_absolute_paths_keeps_apostrophe_in_double_quoted_windows_path() -> None:
+    cmd = 'type "C:\\Users\\liu\'zhi\'gui\\workspace\\file.txt"'
+    paths = ExecTool._extract_absolute_paths(cmd)
+    assert paths == [r"C:\Users\liu'zhi'gui\workspace\file.txt"]
+
+
 def test_exec_extract_absolute_paths_captures_windows_drive_root_path() -> None:
     """Windows drive root paths like `E:\\` must be extracted for workspace guarding."""
     # Note: raw strings cannot end with a single backslash.

@@ -23,7 +23,7 @@
     "bot:typecheck": "cmd /c menu.cmd bot-script typecheck",
     "bot:build": "cmd /c menu.cmd bot-script build",
     "test:xiaomiao": "cmd /c menu.cmd test-xiaomiao",
-    "quality:python": "uv run --project xiaomiaoAgent ruff check test/xiaomiao scripts/fix_doc_paths.py scripts/fix_doc_links.py cache_config.py xiaomiao/agent_backend.py xiaomiao/qq_agent_bridge.py xiaomiao/qq_agent_tools.py xiaomiao/qq_permissions.py xiaomiao/unified_config.py xiaomiao/utils/runtime_helpers.py",
+    "quality:python": "uv run --project xiaomiaoAgent ruff check --cache-dir .cache/ruff/root test/xiaomiao scripts/fix_doc_paths.py scripts/fix_doc_links.py cache_config.py xiaomiao/agent_backend.py xiaomiao/qq_agent_bridge.py xiaomiao/qq_agent_tools.py xiaomiao/qq_permissions.py xiaomiao/unified_config.py xiaomiao/utils/runtime_helpers.py",
     "test:agent:config": "cmd /c menu.cmd test-agent-config",
     "setup": "cmd /c menu.cmd setup",
     "setup:check": "cmd /c menu.cmd setup-check",

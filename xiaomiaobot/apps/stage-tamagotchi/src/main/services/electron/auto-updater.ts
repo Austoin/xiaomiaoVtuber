@@ -13,7 +13,6 @@ import { dirname, join, normalize } from 'node:path'
 import electronUpdater from 'electron-updater'
 import semver from 'semver'
 
-import { is } from '../../libs/electron/toolkit-utils'
 import { useLogg } from '@guiiai/logg'
 import { defineInvokeHandler } from '@moeru/eventa'
 import { errorMessageFrom, tryCatch } from '@moeru/std'
@@ -29,6 +28,7 @@ import {
   electronSetUpdaterPreferences,
 
 } from '../../../shared/eventa'
+import { is } from '../../libs/electron/toolkit-utils'
 import { MockAutoUpdater } from './mock-auto-updater'
 
 function getReleaseChannelName() {
@@ -52,14 +52,16 @@ function getLegacyCacheRoot() {
 
 // NOTICE: Lazy initialization to avoid top-level electron.app access in externalized builds.
 // These getters ensure electron.app is available at runtime, not at module load time.
-const UPDATER_DEBUG_CACHE_DIR = (() => join(getCacheRoot(), 'stage-tamagotchi-updater'))
-const UPDATER_LOG_FILE = (() => join(UPDATER_DEBUG_CACHE_DIR(), 'updater-log.txt'))
-const OFFICIAL_UPDATER_CACHE_DIR = (() => join(getCacheRoot(), 'ai.moeru.airi-updater'))
-const LEGACY_OFFICIAL_UPDATER_CACHE_DIR = (() => join(getLegacyCacheRoot(), 'ai.moeru.airi-updater'))
-const OFFICIAL_UPDATER_CACHE_DIRS = (() => Array.from(new Set([
-  OFFICIAL_UPDATER_CACHE_DIR(),
-  LEGACY_OFFICIAL_UPDATER_CACHE_DIR(),
-])))
+const UPDATER_DEBUG_CACHE_DIR = () => join(getCacheRoot(), 'stage-tamagotchi-updater')
+const UPDATER_LOG_FILE = () => join(UPDATER_DEBUG_CACHE_DIR(), 'updater-log.txt')
+const OFFICIAL_UPDATER_CACHE_DIR = () => join(getCacheRoot(), 'ai.moeru.airi-updater')
+const LEGACY_OFFICIAL_UPDATER_CACHE_DIR = () => join(getLegacyCacheRoot(), 'ai.moeru.airi-updater')
+function OFFICIAL_UPDATER_CACHE_DIRS() {
+  return Array.from(new Set([
+    OFFICIAL_UPDATER_CACHE_DIR(),
+    LEGACY_OFFICIAL_UPDATER_CACHE_DIR(),
+  ]))
+}
 
 async function logToFile(level: 'INFO' | 'WARN' | 'ERROR' | 'DEBUG', message: string) {
   await mkdir(UPDATER_DEBUG_CACHE_DIR(), { recursive: true }).catch(() => {})
