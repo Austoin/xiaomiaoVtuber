@@ -19,7 +19,7 @@ apps/stage-web       ─┐
 apps/stage-pocket    ─┼─> packages/stage-ui / stage-shared / server-sdk
 apps/stage-tamagotchi┘
                               │
-                              ├─> packages/core-agent / core-character
+                              ├─> packages/core-agent
                               ├─> packages/stage-ui-live2d / stage-ui-three
                               ├─> packages/plugin-sdk / plugin-protocol
                               └─> services / integrations / plugins
@@ -133,7 +133,6 @@ pnpm 安装的依赖链接和包内容；由 lockfile 决定，不直接修改�
 | `cap-vite` | 启动 Vite 与 Capacitor live reload 的命令行工具。 |
 | `ccc` | 配置、转换和导出相关工具；具体能力以其 `src` 和导出 API 为准。 |
 | `core-agent` | 与 xiaomiaoAgent 对接的客户端协议、消息、会话和运行时 hook。 |
-| `core-character` | 角色文本分段、情绪、延迟、TTS 流式编排。 |
 | `drizzle-duckdb-wasm` | Drizzle ORM 与 DuckDB WASM 的适配。 |
 | `duckdb-wasm` | 浏览器/Worker 中的 DuckDB WASM 封装。 |
 | `electron-eventa` | Electron IPC 的 Eventa 合约和类型。 |

@@ -16,6 +16,8 @@ import type {
   VrmUpdateFrameTracePayload,
 } from '@proj-airi/stage-ui-three/trace'
 
+import type { PluginCapabilityState } from './plugin/capabilities'
+
 import { defineEventa, defineInvokeEventa } from '@moeru/eventa'
 
 export const electronStartTrackMousePosition = defineInvokeEventa('eventa:invoke:electron:start-tracking-mouse-position')
@@ -142,22 +144,6 @@ export interface PluginManifestSummary {
 export interface PluginRegistrySnapshot {
   root: string
   plugins: PluginManifestSummary[]
-}
-
-// TODO: Replace these manually duplicated IPC types with re-exports from
-// @proj-airi/plugin-sdk (CapabilityDescriptor) once stage-ui and the shared
-// eventa layer can depend on the SDK without introducing unwanted coupling.
-export interface PluginCapabilityPayload {
-  key: string
-  state: 'announced' | 'ready' | 'degraded' | 'withdrawn'
-  metadata?: Record<string, unknown>
-}
-
-export interface PluginCapabilityState {
-  key: string
-  state: 'announced' | 'ready' | 'degraded' | 'withdrawn'
-  metadata?: Record<string, unknown>
-  updatedAt: number
 }
 
 export interface PluginHostSessionSummary {

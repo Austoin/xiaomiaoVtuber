@@ -1,3 +1,5 @@
+import type { CapabilityDescriptor } from '@proj-airi/plugin-sdk'
+
 import { defineInvokeEventa } from '@moeru/eventa'
 
 /**
@@ -12,11 +14,7 @@ import { defineInvokeEventa } from '@moeru/eventa'
  * Returns:
  * - N/A
  */
-export interface PluginCapabilityPayload {
-  key: string
-  state: 'announced' | 'ready' | 'degraded' | 'withdrawn'
-  metadata?: Record<string, unknown>
-}
+export type PluginCapabilityPayload = Omit<CapabilityDescriptor, 'updatedAt'>
 
 /**
  * Plugin capability snapshot stored by the host.
@@ -30,16 +28,8 @@ export interface PluginCapabilityPayload {
  * Returns:
  * - N/A
  */
-export interface PluginCapabilityState {
-  key: string
-  state: 'announced' | 'ready' | 'degraded' | 'withdrawn'
-  metadata?: Record<string, unknown>
-  updatedAt: number
-}
+export type PluginCapabilityState = CapabilityDescriptor
 
 export const pluginProtocolListProvidersEventName = 'proj-airi:plugin-sdk:apis:protocol:resources:providers:list-providers'
 export const pluginProtocolListProviders = defineInvokeEventa<Array<{ name: string }>>(pluginProtocolListProvidersEventName)
-// TODO: Replace these manually duplicated IPC types with re-exports from
-// @proj-airi/plugin-sdk (CapabilityDescriptor) once stage-ui and the shared
-// eventa layer can depend on the SDK without introducing unwanted coupling.
 export const electronPluginUpdateCapability = defineInvokeEventa<PluginCapabilityState, PluginCapabilityPayload>('eventa:invoke:electron:plugins:capability:update')

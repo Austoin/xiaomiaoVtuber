@@ -49,7 +49,6 @@ describe('stage-ui exports contract', () => {
       './types/*',
       './utils',
       './utils/tts',
-      './workers',
       './workers/*',
       './workers/vad',
     ])
