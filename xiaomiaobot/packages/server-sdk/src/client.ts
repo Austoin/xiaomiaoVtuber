@@ -15,7 +15,7 @@ import superjson from 'superjson'
 
 import { errorMessageFrom, sleep } from '@moeru/std'
 import { isTerminalAuthenticationServerErrorMessage, parseServerErrorMessage } from '@proj-airi/server-shared'
-import { MessageHeartbeat, MessageHeartbeatKind } from '@proj-airi/server-shared/types'
+import { MessageHeartbeat, MessageHeartbeatKind, SERVER_CHANNEL_WEBSOCKET_PATH } from '@proj-airi/server-shared/types'
 
 export type ClientStatus
   = | 'idle'
@@ -148,7 +148,7 @@ export class Client<C = undefined> {
     const heartbeat = normalizeHeartbeatOptions(options.heartbeat)
 
     this.opts = {
-      url: 'ws://localhost:6121/ws',
+      url: `ws://localhost:6121${SERVER_CHANNEL_WEBSOCKET_PATH}`,
       connectTimeoutMs: 15_000,
       onAnyMessage: () => {},
       onAnySend: () => {},

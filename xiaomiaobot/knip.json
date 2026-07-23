@@ -3,6 +3,9 @@
   "tags": [
     "-lintignore"
   ],
+  "include": [
+    "duplicates"
+  ],
   "workspaces": {
     ".": {}
   }

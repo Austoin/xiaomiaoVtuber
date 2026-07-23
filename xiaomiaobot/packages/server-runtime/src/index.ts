@@ -25,6 +25,7 @@ import {
   getProtocolEventMetadata,
   MessageHeartbeat,
   MessageHeartbeatKind,
+  SERVER_CHANNEL_WEBSOCKET_PATH,
   WebSocketEventSource,
 } from '@proj-airi/server-shared/types'
 import { defineWebSocketHandler, H3 } from 'h3'
@@ -659,7 +660,7 @@ export function setupApp(options?: AppOptions): { app: H3, closeAllPeers: () => 
     }
   }
 
-  app.get('/ws', defineWebSocketHandler({
+  app.get(SERVER_CHANNEL_WEBSOCKET_PATH, defineWebSocketHandler({
     open: (peer) => {
       if (authToken) {
         peers.set(peer.id, { peer, authenticated: false, name: '', lastHeartbeatAt: Date.now() })

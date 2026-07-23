@@ -13,6 +13,7 @@ export default defineConfig({
       'packages/plugin-sdk-tamagotchi',
       'packages/server-runtime',
       'packages/server-sdk',
+      'packages/stage-layouts',
       'packages/stage-shared',
       'packages/stage-ui/vitest.config.ts',
       'packages/stage-ui/vitest.browser.config.ts',

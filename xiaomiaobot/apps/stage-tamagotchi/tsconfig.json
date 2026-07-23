@@ -29,7 +29,6 @@
       "@types/audioworklet",
       "vitest",
       "vite/client",
-      "vite-plugin-vue-layouts/client",
       "vue-macros/macros-global",
       "electron-vite/node",
       "unplugin-info/client",

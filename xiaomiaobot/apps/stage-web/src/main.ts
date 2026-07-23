@@ -5,11 +5,11 @@ import Tres from '@tresjs/core'
 import NProgress from 'nprogress'
 
 import { autoAnimatePlugin } from '@formkit/auto-animate/vue'
+import { setupStageLayouts } from '@proj-airi/stage-layouts/router'
 import { isEnvTruthy } from '@proj-airi/stage-shared'
 import { i18n } from '@proj-airi/stage-shared/i18n'
 import { MotionPlugin } from '@vueuse/motion'
 import { createPinia } from 'pinia'
-import { setupLayouts } from 'virtual:generated-layouts'
 import { createApp } from 'vue'
 import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router'
 import { routes } from 'vue-router/auto-routes'
@@ -26,8 +26,7 @@ import 'uno.css'
 
 const pinia = createPinia()
 
-// TODO: vite-plugin-vue-layouts is long deprecated, replace with another layout solution
-const routeRecords = setupLayouts(routes as RouteRecordRaw[])
+const routeRecords = setupStageLayouts(routes as RouteRecordRaw[])
 
 let router: Router
 if (isEnvTruthy(import.meta.env.VITE_APP_TARGET_HUGGINGFACE_SPACE))

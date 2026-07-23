@@ -300,4 +300,46 @@ describe('context bridge contract', () => {
 
     await store.dispose()
   })
+
+  it('forwards tool calls and estimated token usage in chat completion events', async () => {
+    const store = useContextBridgeStore()
+    await store.initialize()
+
+    const context = {
+      message: { role: 'user', content: '请查询天气' },
+      contexts: {},
+      composedMessage: [
+        { role: 'user', content: '请查询天气' },
+      ],
+    }
+    const toolCall = {
+      role: 'tool',
+      content: '晴天，25 度',
+      tool_call_id: 'call-weather',
+    }
+
+    await emitHooks(turnCompleteHooks, {
+      output: { role: 'assistant', content: '今天是晴天。' },
+      outputText: '今天是晴天。',
+      toolCalls: [toolCall],
+    }, context)
+
+    const completeEvent = serverSendMock.mock.calls.at(-1)?.[0]
+    expect(completeEvent).toMatchObject({
+      type: 'output:gen-ai:chat:complete',
+      data: {
+        toolCalls: [toolCall],
+        usage: {
+          source: 'estimate-based',
+        },
+      },
+    })
+    expect(completeEvent.data.usage.promptTokens).toBeGreaterThan(0)
+    expect(completeEvent.data.usage.completionTokens).toBeGreaterThan(0)
+    expect(completeEvent.data.usage.totalTokens).toBe(
+      completeEvent.data.usage.promptTokens + completeEvent.data.usage.completionTokens,
+    )
+
+    await store.dispose()
+  })
 })

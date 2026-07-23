@@ -15,7 +15,6 @@ import Info from 'unplugin-info/vite'
 import Yaml from 'unplugin-yaml/vite'
 import mkcert from 'vite-plugin-mkcert'
 import VueDevTools from 'vite-plugin-vue-devtools'
-import Layouts from 'vite-plugin-vue-layouts'
 import VueMacros from 'vue-macros/vite'
 import VueRouter from 'vue-router/vite'
 
@@ -145,14 +144,6 @@ export default defineConfig({
         },
       ],
       exclude: ['**/components/**'],
-    }),
-
-    // https://github.com/JohnCampionJr/vite-plugin-vue-layouts
-    Layouts({
-      layoutsDirs: [
-        resolve(import.meta.dirname, 'src', 'layouts'),
-        resolve(import.meta.dirname, '..', '..', 'packages', 'stage-layouts', 'src', 'layouts'),
-      ],
     }),
 
     // https://github.com/antfu/unocss

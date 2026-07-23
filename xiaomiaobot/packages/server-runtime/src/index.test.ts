@@ -1,8 +1,15 @@
 import type { WebSocketBaseEvent, WebSocketEvents } from '@proj-airi/server-shared/types'
 
+import { SERVER_CHANNEL_WEBSOCKET_PATH } from '@proj-airi/server-shared/types'
 import { describe, expect, it } from 'vitest'
 
 import { detectHeartbeatControlFrame, resolveDeliveryConfig, selectConsumerPeerId } from './index'
+
+describe('server channel protocol constants', () => {
+  it('exposes the shared websocket endpoint path', () => {
+    expect(SERVER_CHANNEL_WEBSOCKET_PATH).toBe('/ws')
+  })
+})
 
 function createInputTextEvent(
   overrides: Partial<WebSocketBaseEvent<'input:text', WebSocketEvents['input:text']>> = {},

@@ -36,6 +36,26 @@ export function normalizeContextSnapshot<C extends Pick<ChatStreamEventContext, 
   }
 }
 
+function estimateTextTokens(text: string): number {
+  const cjkCharacters = [...text].filter(character => /\p{Script=Han}/u.test(character)).length
+  const nonCjkText = text.replace(/\p{Script=Han}/gu, ' ')
+  const nonCjkTokens = nonCjkText.match(/[A-Z0-9]+|\S/gi)?.length ?? 0
+
+  return cjkCharacters + nonCjkTokens
+}
+
+function estimateMessageTokens(message: ChatStreamEventContext['composedMessage'][number]): number {
+  const content = typeof message.content === 'string'
+    ? message.content
+    : (message.content ?? []).map(part => part.type === 'text' ? part.text : `[${part.type}]`).join('\n')
+
+  return estimateTextTokens(content)
+}
+
+function estimatePromptTokens(messages: ChatStreamEventContext['composedMessage']): number {
+  return messages.reduce((total, message) => total + estimateMessageTokens(message), 0)
+}
+
 export const useContextBridgeStore = defineStore('mods:api:context-bridge', () => {
   const consumerRegistrationEvents = [
     'input:text',
@@ -516,20 +536,21 @@ export const useContextBridgeStore = defineStore('mods:api:context-bridge', () =
         }),
 
         chatOrchestrator.onChatTurnComplete(async (chat, context) => {
+          const promptTokens = estimatePromptTokens(context.composedMessage)
+          const completionTokens = estimateTextTokens(chat.outputText)
+
           serverChannelStore.send({
             type: 'output:gen-ai:chat:complete',
             data: {
               ...context.input?.data,
               'message': chat.output,
-              // TODO: tool calls should be captured properly
-              'toolCalls': [],
+              'toolCalls': chat.toolCalls,
               'stage-web': isStageWeb(),
               'stage-tamagotchi': isStageTamagotchi(),
-              // TODO: Properly calculate usage data
               'usage': {
-                promptTokens: 0,
-                completionTokens: 0,
-                totalTokens: 0,
+                promptTokens,
+                completionTokens,
+                totalTokens: promptTokens + completionTokens,
                 source: 'estimate-based',
               },
               'gen-ai:chat': {

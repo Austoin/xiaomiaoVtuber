@@ -16,6 +16,7 @@
   },
   "exports": {
     ".": "./src/index.ts",
+    "./router": "./src/router.ts",
     "./layouts/*": "./src/layouts/*.vue",
     "./components/Layouts/*": "./src/components/Layouts/*.vue",
     "./components/Layouts/InteractiveArea/Actions/*": "./src/components/Layouts/InteractiveArea/Actions/*.vue",

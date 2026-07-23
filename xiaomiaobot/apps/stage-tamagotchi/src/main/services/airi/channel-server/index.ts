@@ -14,6 +14,7 @@ import { defineInvokeHandler } from '@moeru/eventa'
 import { createContext } from '@moeru/eventa/adapters/electron/main'
 import { errorMessageFrom } from '@moeru/std'
 import { createServer, getLocalIPs } from '@proj-airi/server-runtime/server'
+import { SERVER_CHANNEL_WEBSOCKET_PATH } from '@proj-airi/server-sdk'
 import { createServerChannelQrPayload } from '@proj-airi/stage-shared/server-channel-qr'
 import { Mutex } from 'async-mutex'
 import { app, ipcMain, session } from 'electron'
@@ -100,9 +101,7 @@ function getServerChannelQrHosts(config: ElectronServerChannelConfig, serverChan
 
 function createServerChannelUrl(protocol: 'ws' | 'wss', host: string) {
   const urlHost = isIP(host) === 6 ? `[${host}]` : host
-  // TODO: Deduplicate the server channel websocket path with `packages/server-runtime/src/index.ts`
-  // and `packages/server-sdk/src/client.ts` so this does not rely on three separate `/ws` literals.
-  return `${protocol}://${urlHost}:${getServerChannelPort()}/ws`
+  return `${protocol}://${urlHost}:${getServerChannelPort()}${SERVER_CHANNEL_WEBSOCKET_PATH}`
 }
 
 function getServerChannelQrPayload(config: ElectronServerChannelConfig, serverChannel: Server) {
