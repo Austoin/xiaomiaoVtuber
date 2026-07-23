@@ -3,6 +3,7 @@ import type { Tool } from '@xsai/shared-chat'
 
 import { defineInvoke } from '@moeru/eventa'
 import { createContext } from '@moeru/eventa/adapters/electron/renderer'
+import { errorMessageFrom } from '@moeru/std'
 import { artistryGenerateHeadless } from '@proj-airi/stage-shared'
 import { useBackgroundStore } from '@proj-airi/stage-ui/stores/background'
 import { useAiriCardStore } from '@proj-airi/stage-ui/stores/modules/airi-card'
@@ -143,7 +144,7 @@ async function executeCreateImageJournalEntry(params: { prompt?: string, title?:
   }
   catch (e) {
     console.error('[ImageJournalTool] Failed to create entry', e)
-    return `Error: ${e instanceof Error ? e.message : String(e)}`
+    return `Error: ${errorMessageFrom(e) ?? String(e)}`
   }
 }
 
@@ -182,7 +183,7 @@ async function executeSetAsBackground(params: { query?: string }) {
       return `Background set to "${entry.title}".`
     }
     catch (e) {
-      return `Error applying "${entry.title}": ${e instanceof Error ? e.message : String(e)}`
+      return `Error applying "${entry.title}": ${errorMessageFrom(e) ?? String(e)}`
     }
   }
 

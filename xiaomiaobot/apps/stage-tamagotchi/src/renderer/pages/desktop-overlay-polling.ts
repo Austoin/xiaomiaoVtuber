@@ -7,6 +7,8 @@
 
 import type { McpCallToolResult } from '@proj-airi/stage-ui/stores/mcp-tool-bridge'
 
+import { errorMessageFrom } from '@moeru/std'
+
 // ---------------------------------------------------------------------------
 // Types — minimal shapes matching RunState fields the overlay consumes
 // ---------------------------------------------------------------------------
@@ -224,7 +226,7 @@ export function createOverlayPollController(config: OverlayPollConfig): OverlayP
     }
     catch (e) {
       currentBootstrapState = 'degraded'
-      currentBootstrapError = e instanceof Error ? e.message : String(e)
+      currentBootstrapError = errorMessageFrom(e) ?? String(e)
     }
 
     if (!running)

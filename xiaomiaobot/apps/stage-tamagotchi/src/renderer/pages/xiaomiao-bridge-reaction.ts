@@ -1,3 +1,5 @@
+import { errorMessageFrom } from '@moeru/std'
+
 export interface XiaomiaoBridgeState {
   replyText: string
   timestamp: number
@@ -425,7 +427,7 @@ async function applyStageAction(
     return reject(action, '不支持的舞台动作')
   }
   catch (error) {
-    return reject(action, error instanceof Error ? error.message : String(error))
+    return reject(action, errorMessageFrom(error) ?? String(error))
   }
 }
 

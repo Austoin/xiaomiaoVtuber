@@ -250,7 +250,7 @@ export async function generateHeadless(params: {
     return await executionPromise
   }
   catch (err) {
-    return { error: err instanceof Error ? err.message : String(err) }
+    return { error: errorMessageFrom(err) ?? String(err) }
   }
   finally {
     // Remove from map after completion so it can be re-triggered later

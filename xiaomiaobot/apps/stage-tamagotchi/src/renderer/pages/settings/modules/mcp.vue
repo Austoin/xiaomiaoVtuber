@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { ElectronMcpStdioRuntimeStatus } from '../../../../shared/eventa'
 
+import { errorMessageFrom } from '@moeru/std'
 import { useElectronEventaInvoke } from '@proj-airi/electron-vueuse'
 import { Button } from '@proj-airi/ui'
 import { computed, onMounted, ref } from 'vue'
@@ -39,7 +40,7 @@ async function handleOpenConfigFile() {
     lastActionMessage.value = t('settings.pages.modules.mcp-server.messages.opened', { path: result.path })
   }
   catch (error) {
-    errorMessage.value = error instanceof Error ? error.message : String(error)
+    errorMessage.value = errorMessageFrom(error) ?? String(error)
   }
   finally {
     isBusy.value = false
@@ -60,7 +61,7 @@ async function handleApplyAndRestart() {
     })
   }
   catch (error) {
-    errorMessage.value = error instanceof Error ? error.message : String(error)
+    errorMessage.value = errorMessageFrom(error) ?? String(error)
   }
   finally {
     isBusy.value = false
