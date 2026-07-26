@@ -77,6 +77,15 @@ def test_xiaomiaobot_lint_ignores_generated_artifacts() -> None:
     assert any(oxlint_ignore_args in command for command in staged_commands)
 
 
+def test_xiaomiaobot_lint_is_independent_of_editor_environment() -> None:
+    project_root = Path(__file__).resolve().parents[2]
+    eslint_config = (
+        project_root / "xiaomiaobot" / "eslint.config.js"
+    ).read_text(encoding="utf-8")
+
+    assert "isInEditor: false" in eslint_config
+
+
 def test_xiaomiaobot_build_waits_for_workspace_dependencies() -> None:
     project_root = Path(__file__).resolve().parents[2]
     turbo_config = json.loads(

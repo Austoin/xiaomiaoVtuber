@@ -1,6 +1,7 @@
 import { defineConfig } from '@moeru/eslint-config'
 
 export default defineConfig({
+  isInEditor: false,
   masknet: false,
   preferArrow: false,
   perfectionist: false,
